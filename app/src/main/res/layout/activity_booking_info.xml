@@ -1,0 +1,501 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/lyPaddingMainAll">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/imgtime" />
+
+                    <TextView
+                        android:id="@+id/tvBookInfoDate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="@dimen/tvBookingInfoMarginStartAll"
+                        android:gravity="center"
+                        android:text="@string/_03_02_2016"
+                        android:textSize="@dimen/etSignInUserPassSize" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/clock" />
+
+                    <TextView
+                        android:id="@+id/tvBookInfoTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/tvBookingInfoMarginStartAll"
+                        android:text="@string/_16_20am"
+                        android:textSize="@dimen/etSignInUserPassSize" />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/vHeightWidthAll"
+                android:layout_marginBottom="@dimen/vtvBookingInfoMarginTopBottomAll"
+                android:layout_marginTop="@dimen/vMarginTopBottomAll"
+                android:background="@android:color/darker_gray" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/from_"
+                        android:textColor="@color/background"
+                        android:textSize="@dimen/tvTitlesSizeAll" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tvBookInfoFrom"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/solihull_rd_shiral_sohill_west_midland_b90s_3lg_uk"
+                            android:textSize="@dimen/etSignInUserPassSize" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/lyBookingInfoMarginTopAll"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/via_1"
+                                android:textColor="@color/background"
+                                android:textSize="@dimen/tvTitlesSizeAll" />
+
+                            <TextView
+                                android:id="@+id/tvBookInfoVia1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/hull_uk"
+                                android:textSize="@dimen/etSignInUserPassSize" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/lyBookingInfoMarginTopAll"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/via_2"
+                                android:textColor="@color/background"
+                                android:textSize="@dimen/tvTitlesSizeAll" />
+
+                            <TextView
+                                android:id="@+id/tvBookInfoVia2"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/hampshire_uk"
+                                android:textSize="@dimen/etSignInUserPassSize" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="@dimen/lyBookingInfoMarginStartFromTo"
+                    android:layout_marginTop="@dimen/lyBookingInfoMarginTopAll"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/to_"
+                        android:textColor="@color/background"
+                        android:textSize="@dimen/tvTitlesSizeAll" />
+
+                    <TextView
+                        android:id="@+id/tvBookInfoTo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/battern_parks_rd_london_sw8_uk"
+                        android:textSize="@dimen/etSignInUserPassSize" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/vHeightWidthAll"
+                android:layout_marginBottom="@dimen/vtvBookingInfoMarginTopBottomAll"
+                android:layout_marginTop="@dimen/vtvBookingInfoMarginTopBottomAll"
+                android:background="@android:color/darker_gray" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@mipmap/car_gray" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/lyBookingInfoMarginStartAll"
+                            android:layout_marginTop="@dimen/tvBookingInfoMarginTop"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/tvBookInfoVehicleType"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/sedan"
+                                android:textSize="@dimen/etSignInUserPassSize" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/vehicle_type"
+                                android:textColor="@color/background"
+                                android:textSize="@dimen/tvTitlesSizeAll" />
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/lyBookingInfoMarginTopAll"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@mipmap/imgpassenger" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/lyBookingInfoMarginStartAll"
+                            android:layout_marginTop="@dimen/tvBookingInfoPaddingMarginTopAll"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/tvBookInfoPassengers"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/_02"
+                                android:textSize="@dimen/etSignInUserPassSize" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/passengers"
+                                android:textColor="@color/background"
+                                android:textSize="@dimen/tvTitlesSizeAll" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="@dimen/vHeightWidthAll"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/darker_gray" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/lyBookingInfoMarginStartAll"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@mipmap/car_gray" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/lyBookingInfoMarginStartAll"
+                            android:layout_marginTop="@dimen/tvBookingInfoMarginTop"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/tvBookInfoProvider"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:text="@string/lyft_llc"
+                                android:textSize="@dimen/etSignInUserPassSize" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:text="@string/taxi_provider"
+                                android:textColor="@color/background"
+                                android:textSize="@dimen/tvTitlesSizeAll" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="@dimen/lyBookingInfoMarginTopAll"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@mipmap/baggage" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/lyBookingInfoMarginStartAll"
+                            android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/tvBookInfoLugguages"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/_02"
+                                android:textSize="@dimen/etSignInUserPassSize" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/luggage"
+                                android:textColor="@color/background"
+                                android:textSize="@dimen/tvTitlesSizeAll" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/vHeightWidthAll"
+                android:layout_marginBottom="@dimen/vtvBookingInfoMarginTopBottomAll"
+                android:layout_marginTop="@dimen/vtvBookingInfoMarginTopBottomAll"
+                android:background="@android:color/darker_gray" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvBookInfoETA"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/_01_46_hrs"
+                        android:textSize="@dimen/etSignInUserPassSize" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/eta"
+                            android:textColor="@color/background"
+                            android:textSize="@dimen/tvTitlesSizeAll" />
+
+                        <ImageView
+                            android:layout_width="@dimen/ivHighImportantWidthHeightAll"
+                            android:layout_height="@dimen/ivHighImportantWidthHeightAll"
+                            android:src="@mipmap/high_importance" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="@dimen/vHeightWidthAll"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/darker_gray" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvBookInfoDistance"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/_230_miles"
+                        android:textSize="@dimen/etSignInUserPassSize" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/distance"
+                        android:textColor="@color/background"
+                        android:textSize="@dimen/tvTitlesSizeAll" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="@dimen/vHeightWidthAll"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/darker_gray" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvBookInfoRideType"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/single"
+                        android:textSize="@dimen/etSignInUserPassSize" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/ride_type"
+                        android:textColor="@color/background"
+                        android:textSize="@dimen/tvTitlesSizeAll" />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/vHeightWidthAll"
+                android:layout_marginTop="@dimen/vtvBookingInfoMarginTopBottomAll"
+                android:background="@android:color/darker_gray" />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/vtvBookingInfoMarginTopBottomAll"
+                android:gravity="center"
+                android:text="@string/fare_cost"
+                android:textColor="@color/Yellow"
+                android:textSize="@dimen/tvFareCostSizeAll" />
+
+            <TextView
+                android:id="@+id/tvBookInfoCost"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/_350_00"
+                android:textColor="@color/black"
+                android:textSize="@dimen/tvFareMoneySizeAll" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <Button
+        android:id="@+id/btBookingInfoConfirm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/Yellow"
+        android:text="@string/confirm"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="@dimen/btSignInSignUpSize" />
+</LinearLayout>

@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/clPersonalInfo"
+    android:layout_width="match_parent"
+    android:layout_height="fill_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include
+            layout="@layout/element_appbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+            <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="@color/white">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/lyPaddingMainAll">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/first_name"
+                        android:textColor="@color/background"
+                        android:textSize="@dimen/etSignUpSizeAll" />
+
+                    <EditText
+                        android:id="@+id/etPersonalInfoName"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="@dimen/vPersonalInfoMarginTopBottomAll"
+                        android:background="@null"
+                        android:hint="@string/firstName"
+                        android:inputType="textPersonName"
+                        android:paddingEnd="@dimen/etPersonalInfoPadding"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/light_Black"
+                        android:textSize="@dimen/tvTitlesSizeAll"
+                        android:textStyle="italic" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/vAccountAllHeight"
+                        android:background="@color/light_Gray" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/vPersonalInfoMarginTopBottomAll"
+                        android:text="@string/last_name"
+                        android:textColor="@color/background"
+                        android:textSize="@dimen/etSignUpSizeAll" />
+
+                    <EditText
+                        android:id="@+id/etPersonalInfolastName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/vPersonalInfoMarginTopBottomAll"
+                        android:background="@null"
+                        android:hint="@string/lastName"
+                        android:inputType="textPersonName"
+                        android:paddingEnd="@dimen/etPersonalInfoPadding"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/light_Black"
+                        android:textSize="@dimen/tvTitlesSizeAll"
+                        android:textStyle="italic" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/vAccountAllHeight"
+                        android:background="@color/light_Gray" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/vPersonalInfoMarginTopBottomAll"
+                        android:text="@string/mobile_no"
+                        android:textColor="@color/background"
+                        android:textSize="@dimen/etSignUpSizeAll" />
+
+                    <EditText
+                        android:id="@+id/etPersonalInfoNo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/vPersonalInfoMarginTopBottomAll"
+                        android:background="@null"
+                        android:hint="@string/myno"
+                        android:inputType="number"
+                        android:paddingEnd="@dimen/etPersonalInfoPadding"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/light_Black"
+                        android:textSize="@dimen/tvTitlesSizeAll"
+                        android:textStyle="italic" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/vAccountAllHeight"
+                        android:background="@color/light_Gray" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/vPersonalInfoMarginTopBottomAll"
+                        android:text="@string/email_add"
+                        android:textColor="@color/background"
+                        android:textSize="@dimen/etSignUpSizeAll" />
+
+                    <EditText
+                        android:id="@+id/etPersonalInfoEmail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/vPersonalInfoMarginTopBottomAll"
+                        android:background="@null"
+                        android:hint="@string/email_address"
+                        android:inputType="textEmailAddress"
+                        android:paddingEnd="@dimen/etPersonalInfoPadding"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/light_Black"
+                        android:textSize="@dimen/tvTitlesSizeAll"
+                        android:textStyle="italic" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/vAccountAllHeight"
+                        android:background="@color/light_Gray" />
+
+                    <CheckBox
+                        android:id="@+id/cbInfoSms"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
+                        android:button="@drawable/checkbox"
+                        android:checked="false"
+                        android:paddingStart="@dimen/tvMarginTopBottomStartEndAll"
+                        android:text="@string/checkbox_text"
+                        android:textSize="@dimen/cbCheckTextSizeAll"
+                        android:theme="@style/AppTheme" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/checkbox_textdown"
+                        android:textColor="@color/light_Black"
+                        android:textSize="@dimen/cbCheckTextSizeAll" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
+                        android:text="@string/add_info"
+                        android:textColor="@color/background" />
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/e.g"
+                        android:textSize="@dimen/cbCheckTextSizeAll" />
+
+                    <EditText
+                        android:id="@+id/etPersonalInfoAddInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/etLongTextHeightAll"
+                        android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
+                        android:background="@drawable/grayborder2"
+                        android:gravity="top"
+                        android:hint="@string/enter_additional_information"
+                        android:inputType="textLongMessage|textMultiLine"
+                        android:maxLines="4"
+                        android:padding="@dimen/vPersonalInfoMarginTopBottomAll"
+                        android:scrollbars="vertical"
+                        android:singleLine="true"
+                        android:textColorHint="@color/light_Gray"
+                        android:textSize="@dimen/tvTitlesSizeAll"
+                        android:textStyle="italic" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
+                        android:text="@string/how_did_you_hear_about_us"
+                        android:textColor="@color/background" />
+
+                    <EditText
+                        android:id="@+id/etInfoSocial"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/etHeightAll"
+                        android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
+                        android:background="@drawable/grayborder2"
+                        android:drawableEnd="@mipmap/imgdropdown"
+                        android:focusable="false"
+                        android:padding="@dimen/etInfoSocialPadding"
+                        android:text="@string/google"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/tvTitlesSizeAll"
+                        android:textStyle="italic" />
+
+                </LinearLayout>
+            </ScrollView>
+
+            <Button
+                android:id="@+id/btInfoConfirmNext"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:background="@color/Yellow"
+                android:text="@string/confirm_amp_next"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="@dimen/btSignInSignUpSize" />
+
+        </LinearLayout>
+    </LinearLayout>
+</android.support.design.widget.CoordinatorLayout>

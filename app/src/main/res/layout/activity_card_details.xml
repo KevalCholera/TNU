@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/clCardDetails"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <include
+            layout="@layout/element_appbar" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/lyCardDetailsImageMargin"
+                    android:background="@mipmap/visa_card_image">
+
+                    <TextView
+                        android:id="@+id/tvCardDetailsCardNumber"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:text="XXXX - XXXX - XXXX - 4569"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/tvCardDetailsCardNumberSize" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:paddingBottom="@dimen/lyPaddingMainAll"
+                    android:paddingEnd="@dimen/lyPaddingMainAll"
+                    android:paddingStart="@dimen/lyPaddingMainAll">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/expiry_date"
+                        android:textColor="@color/dark_gray"
+                        android:textSize="@dimen/tvTitlesSizeAll" />
+
+                    <EditText
+                        android:id="@+id/etCardDetailsExpiryDate"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/etHeightAll"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/etCardDetailsMarginTopAll"
+                        android:background="@drawable/grayborder2"
+                        android:hint="@string/_12_20"
+                        android:inputType="date"
+                        android:padding="@dimen/etSignInUserPasswordPaddingStartEnd"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/light_Gray"
+                        android:textSize="@dimen/tvHeadingSizeAll"
+                        android:textStyle="italic" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
+                        android:text="@string/c_s_c"
+                        android:textColor="@color/dark_gray"
+                        android:textSize="@dimen/tvTitlesSizeAll" />
+
+                    <EditText
+                        android:id="@+id/etCardDetailsCSC"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/etHeightAll"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/etCardDetailsMarginTopAll"
+                        android:background="@drawable/grayborder2"
+                        android:hint="@string/required"
+                        android:padding="@dimen/etSignInUserPasswordPaddingStartEnd"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/light_Gray"
+                        android:textSize="@dimen/tvHeadingSizeAll"
+                        android:textStyle="italic" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
+                        android:text="@string/billing_address"
+                        android:textColor="@color/dark_gray"
+                        android:textSize="@dimen/tvTitlesSizeAll" />
+
+                    <EditText
+                        android:id="@+id/etCardDetailsBillingAddress"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/etLongTextHeightAll"
+                        android:layout_marginTop="@dimen/etCardDetailsMarginTopAll"
+                        android:background="@drawable/grayborder2"
+                        android:gravity="top"
+                        android:hint="@string/billing_address"
+                        android:padding="@dimen/etSignInUserPasswordPaddingStartEnd"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/light_Gray"
+                        android:textSize="@dimen/tvHeadingSizeAll"
+                        android:textStyle="italic" />
+
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+
+        <Button
+            android:id="@+id/btCardDetailsSave"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|bottom"
+            android:background="@drawable/yellow"
+            android:text="@string/save"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/btSignInSignInSize" />
+
+    </LinearLayout>
+</android.support.design.widget.CoordinatorLayout>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/element"
+    android:orientation="vertical">
+
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/lyPaddingMainAll">
+
+        <RadioButton
+            android:id="@+id/rbLostItemOpen"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/radio_yellow_border_lost_item_open"
+            android:button="@color/white"
+            android:checked="true"
+            android:gravity="center"
+            android:padding="@dimen/rbPaddingAll"
+            android:text="Open"
+            android:textColor="@drawable/radio_yellow_border_lost_item_open"
+            android:textSize="@dimen/btSignInSignUpSize" />
+
+        <RadioButton
+            android:id="@+id/rbLostItemInprogress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/radio_yellow_border_lost_item_inprogress"
+            android:button="@color/white"
+            android:gravity="center"
+            android:padding="@dimen/rbPaddingAll"
+            android:text="Inprogress"
+            android:textColor="@drawable/radio_yellow_border_lost_item_inprogress"
+            android:textSize="@dimen/btSignInSignUpSize" />
+
+        <RadioButton
+            android:id="@+id/rbLostItemClosed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/radio_yellow_border_lost_item_closed"
+            android:button="@color/white"
+            android:gravity="center"
+            android:padding="@dimen/rbPaddingAll"
+            android:text="Closed"
+            android:textColor="@drawable/radio_yellow_border_lost_item_closed"
+            android:textSize="@dimen/btSignInSignUpSize" />
+
+    </RadioGroup>
+
+    <ListView
+        android:id="@+id/lvLostItemList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/lvMarginTopAll"
+        android:background="@color/element"
+        android:divider="@null"
+        android:dividerHeight="0dp" />
+
+</LinearLayout>

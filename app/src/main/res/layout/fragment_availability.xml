@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/lyPaddingMainAll">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@android:drawable/presence_online" />
+
+            <TextView
+                android:id="@+id/tvAvailabilityDriverNmae"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Keval"
+                android:textSize="@dimen/tvHeadingSizeAll" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvAvailabilityWaitingTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/tvAvailabilityWaitingTimeMarginTop"
+            android:gravity="center"
+            android:text="@string/timewait" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/vHeightWidthAll"
+            android:layout_marginBottom="@dimen/vMarginTopBottomAll"
+            android:layout_marginTop="@dimen/vMarginTopBottomAll"
+            android:background="@android:color/darker_gray" />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Please Check with the availability of a Taxi with traffic information before you proceed to booking" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/vHeightWidthAll"
+            android:layout_marginBottom="@dimen/vMarginTopBottomAll"
+            android:layout_marginTop="@dimen/vMarginTopBottomAll"
+            android:background="@android:color/darker_gray" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="ETA may differ at anytime due to unexpected circumstances e.g. traffic, weather changes, road works or any other events." />
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/vHeightWidthAll"
+            android:layout_marginBottom="@dimen/vMarginTopBottomAll"
+            android:layout_marginTop="@dimen/vMarginTopBottomAll"
+            android:background="@android:color/darker_gray" />
+
+    </LinearLayout>
+</ScrollView>

@@ -9,4 +9,6 @@
         <attr name="civ_fill_color" format="color" />
     </declare-styleable>
 
+    <attr name="colorForeground" />
+
 </resources>

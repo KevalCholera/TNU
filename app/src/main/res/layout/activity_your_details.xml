@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/clYourDetails"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <include layout="@layout/element_appbar" />
+
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@color/white">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/lyPaddingMainAll">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/lyYourDetailsEditMarginStartEnd"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/name"
+                            android:textColor="@color/background"
+                            android:textSize="@dimen/btSignInSignInSize" />
+
+                        <EditText
+                            android:id="@+id/etYourDetailName"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/etHeightAll"
+                            android:layout_gravity="center"
+                            android:background="@drawable/grayborder"
+                            android:cursorVisible="false"
+                            android:editable="false"
+                            android:inputType="text"
+                            android:paddingStart="@dimen/etSignUpAllPaddingStartEnd"
+                            android:singleLine="true"
+                            android:text="John Smith"
+                            android:textColor="@color/black"
+                            android:textColorHint="@android:color/darker_gray"
+                            android:textSize="@dimen/etSignInUserPassSize"
+                            android:textStyle="italic" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/lyYourDetailsEditMarginStartEnd"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/contact_number"
+                            android:textColor="@color/background"
+                            android:textSize="@dimen/btSignInSignInSize" />
+
+                        <EditText
+                            android:id="@+id/etYourDetailNumber"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/etHeightAll"
+                            android:layout_gravity="center"
+                            android:background="@drawable/grayborder"
+                            android:cursorVisible="false"
+                            android:editable="false"
+                            android:inputType="phone"
+                            android:paddingStart="@dimen/etSignUpAllPaddingStartEnd"
+                            android:singleLine="true"
+                            android:text="8545696325"
+                            android:textColor="@color/black"
+                            android:textColorHint="@android:color/darker_gray"
+                            android:textSize="@dimen/etSignInUserPassSize"
+                            android:textStyle="italic" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/lyYourDetailsEditMarginTop"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/email_id_"
+                        android:textColor="@color/background"
+                        android:textSize="@dimen/btSignInSignInSize" />
+
+                    <EditText
+                        android:id="@+id/etYourDetailID"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/etHeightAll"
+                        android:layout_gravity="center"
+                        android:background="@drawable/grayborder"
+                        android:cursorVisible="false"
+                        android:editable="false"
+                        android:inputType="textEmailAddress"
+                        android:paddingStart="@dimen/etSignUpAllPaddingStartEnd"
+                        android:singleLine="true"
+                        android:text="johnsmith@gmail.com"
+                        android:textColor="@color/black"
+                        android:textColorHint="@android:color/darker_gray"
+                        android:textSize="@dimen/etSignInUserPassSize"
+                        android:textStyle="italic" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/lyYourDetailsEditMarginTop"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/address"
+                        android:textColor="@color/background"
+                        android:textSize="@dimen/btSignInSignInSize" />
+
+                    <EditText
+                        android:id="@+id/etYourDetailAddress"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/etLongTextHeightAll"
+                        android:background="@drawable/grayborder"
+                        android:gravity="top"
+                        android:inputType="textLongMessage|textMultiLine"
+                        android:maxLines="4"
+                        android:padding="@dimen/etPaddingAll"
+                        android:scrollbars="vertical"
+                        android:singleLine="true"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/etSignInUserPassSize"
+                        android:textStyle="italic" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/lyYourDetailsEditMarginTop"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/lyYourDetailsEditMarginStartEnd"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/postcode"
+                            android:textColor="@color/background"
+                            android:textSize="@dimen/btSignInSignInSize" />
+
+                        <EditText
+                            android:id="@+id/etYourDetailPostcode"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/etHeightAll"
+                            android:background="@drawable/grayborder"
+                            android:inputType="number"
+                            android:paddingStart="@dimen/etPaddingAll"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/etSignInUserPassSize"
+                            android:textStyle="italic" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/lyYourDetailsEditMarginStartEnd"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/color"
+                            android:textColor="@color/background"
+                            android:textSize="@dimen/btSignInSignInSize" />
+
+                        <EditText
+                            android:id="@+id/etYourDetailColor"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/etHeightAll"
+                            android:background="@drawable/grayborder"
+                            android:inputType="text"
+                            android:paddingStart="@dimen/etPaddingAll"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/etSignInUserPassSize"
+                            android:textStyle="italic" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/lyYourDetailsEditMarginTop"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/item_description"
+                        android:textColor="@color/background"
+                        android:textSize="@dimen/btSignInSignInSize" />
+
+                    <EditText
+                        android:id="@+id/etYourDetailDescription"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/etLongTextHeightAll"
+                        android:background="@drawable/grayborder"
+                        android:gravity="top"
+                        android:inputType="textLongMessage|textMultiLine"
+                        android:maxLines="4"
+                        android:padding="@dimen/etPaddingAll"
+                        android:scrollbars="vertical"
+                        android:singleLine="true"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/etSignInUserPassSize"
+                        android:textStyle="italic" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/lyYourDetailsEditMarginTop"
+                    android:text="@string/taxinearu_will_not_be_responsible_or_liable_for_any_loss_or_damage_caused_while_using_our_services"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="@dimen/tvTitlesSizeAll" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/lyYourDetailsEditMarginTop"
+                    android:text="@string/we_aim_to_contact_you_within_24_48_hours_upon_receiving_your_lost_and_found_form"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="@dimen/tvTitlesSizeAll" />
+
+            </LinearLayout>
+
+        </ScrollView>
+
+        <Button
+            android:id="@+id/btYourDetailSubmit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/Yellow"
+            android:text="@string/submit"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/btSignInSignUpSize" />
+
+    </LinearLayout>
+</android.support.design.widget.CoordinatorLayout>

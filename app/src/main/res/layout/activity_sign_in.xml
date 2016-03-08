@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rlSignInMain"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/iv"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/ivTNUiconMain"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/lyElementLostItemFromToMarginStart"
+            android:background="@mipmap/imgtnulogo" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_gravity="center"
+            android:layout_marginEnd="@dimen/lySignInUserPasswordMarginStartEnd"
+            android:layout_marginStart="@dimen/lySignInUserPasswordMarginStartEnd"
+            android:layout_marginTop="@dimen/lySignInUserMarginTop"
+            android:background="@drawable/grayborder"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/imgSignInUserPassMarginStart"
+                android:src="@mipmap/imgusername" />
+
+            <View
+                android:layout_width="@dimen/vSignInUserPasswordWidth"
+                android:layout_height="@dimen/vSignInUserPasswordHeight"
+                android:layout_marginBottom="@dimen/vSignInUserPasswordMarginTopBottom"
+                android:layout_marginStart="@dimen/vSignInUserMarginStart"
+                android:layout_marginTop="@dimen/vSignInUserPasswordMarginTopBottom"
+                android:background="@android:color/darker_gray" />
+
+            <EditText
+                android:id="@+id/etSignInUserName"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:background="@null"
+                android:hint="@string/user_id"
+                android:inputType="textEmailAddress"
+                android:paddingEnd="@dimen/etSignInUserPasswordPaddingStartEnd"
+                android:paddingStart="@dimen/etSignInUserPasswordPaddingStartEnd"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:textColorHint="@color/light_Gray"
+                android:textSize="@dimen/etSignInUserPassSize"
+                android:textStyle="italic" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginEnd="@dimen/lySignInUserPasswordMarginStartEnd"
+            android:layout_marginStart="@dimen/lySignInUserPasswordMarginStartEnd"
+            android:layout_marginTop="@dimen/lySignInUserPasswordMarginTop"
+            android:background="@drawable/grayborder"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/imgPassword"
+                android:layout_width="@dimen/imgSignInUserPasswordWidth"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/imgSignInUserPassMarginStart"
+                android:src="@mipmap/imgpassword" />
+
+            <View
+                android:layout_width="@dimen/vSignInUserPasswordWidth"
+                android:layout_height="@dimen/vSignInUserPasswordHeight"
+                android:layout_marginBottom="@dimen/vSignInUserPasswordMarginTopBottom"
+                android:layout_marginStart="@dimen/vSignInPasswordMarginStart"
+                android:layout_marginTop="@dimen/vSignInUserPasswordMarginTopBottom"
+                android:background="@android:color/darker_gray" />
+
+            <EditText
+                android:id="@+id/etSignInPassword"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:background="@null"
+                android:hint="@string/password"
+                android:inputType="textPassword"
+                android:paddingEnd="@dimen/etSignInUserPasswordPaddingStartEnd"
+                android:paddingStart="@dimen/etSignInUserPasswordPaddingStartEnd"
+                android:textColor="@color/black"
+                android:textColorHint="@color/light_Gray"
+                android:textSize="@dimen/etSignInUserPassSize"
+                android:textStyle="italic" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btSignInSignIn"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/btSignInSignUpHeight"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginEnd="@dimen/lySignInUserPasswordMarginStartEnd"
+            android:layout_marginStart="@dimen/lySignInUserPasswordMarginStartEnd"
+            android:layout_marginTop="@dimen/btSignInSignInMarginTop"
+            android:background="@drawable/gray_blue"
+            android:text="@string/sign_in"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/btSignInSignInSize" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/tvSignInForgotPasswordMarginTop"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvSignInForgotPassword"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:text="@string/for_pass"
+                android:textColor="@color/background" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginEnd="@dimen/tvSignInOrMarginStartEnd"
+                android:layout_marginStart="@dimen/tvSignInOrMarginStartEnd"
+                android:text="@string/or"
+                android:textColor="@color/dark_gray" />
+
+            <TextView
+                android:id="@+id/tvSignInForgotEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:text="@string/forgot_email"
+                android:textColor="@color/background" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/tvSignInStillNotConnectedMarginTop"
+            android:text="@string/still"
+            android:textColor="@color/black"
+            android:textSize="@dimen/tvSignInStillNotConnectedSize" />
+
+        <Button
+            android:id="@+id/btSignInSignUp"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/btSignInSignUpHeight"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="@dimen/tvSignInSignUpMarginBottom"
+            android:layout_marginEnd="@dimen/lySignInUserPasswordMarginStartEnd"
+            android:layout_marginStart="@dimen/lySignInUserPasswordMarginStartEnd"
+            android:layout_marginTop="@dimen/btSignInSignUpMarginTop"
+            android:background="@drawable/yellow"
+            android:text="@string/sign_up"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/btSignInSignUpSize" />
+
+    </LinearLayout>
+</android.support.design.widget.CoordinatorLayout>

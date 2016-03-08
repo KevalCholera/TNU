@@ -1,0 +1,112 @@
+package com.smartsense.taxinearyou;
+
+import android.os.Bundle;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
+import android.widget.TextView;
+
+import com.smartsense.taxinearyou.Fragments.FragmentBook;
+import com.smartsense.taxinearyou.Fragments.FragmentCredit;
+import com.smartsense.taxinearyou.Fragments.FragmentMenu;
+import com.smartsense.taxinearyou.Fragments.FragmentMyTrips;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Search extends AppCompatActivity {
+
+    private TabLayout tbSearchTab;
+    private ViewPager viewPager;
+    CoordinatorLayout clSearch;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_search);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarAll);
+        setSupportActionBar(toolbar);
+
+        viewPager = (ViewPager) findViewById(R.id.vpSearchPager);
+        setupViewPager(viewPager);
+
+        clSearch = (CoordinatorLayout) findViewById(R.id.clSearch);
+
+        tbSearchTab = (TabLayout) findViewById(R.id.tbSearchTab);
+        tbSearchTab.setupWithViewPager(viewPager);
+        setupTabIcons();
+
+    }
+
+    private void setupViewPager(ViewPager viewPager) {
+        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
+        adapter.addFragment(new FragmentBook(), "Book");
+        adapter.addFragment(new FragmentMyTrips(), "My Trips");
+        adapter.addFragment(new FragmentCredit(), "Credit");
+        adapter.addFragment(new FragmentMenu(), "Menu");
+
+        viewPager.setAdapter(adapter);
+    }
+
+    private void setupTabIcons() {
+
+
+        TextView tabOne = (TextView) LayoutInflater.from(this).inflate(R.layout.element_search, null);
+        tabOne.setText("Book");
+        tabOne.setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.car_white, 0, 0);
+        tbSearchTab.getTabAt(0).setCustomView(tabOne);
+
+        TextView tabTwo = (TextView) LayoutInflater.from(this).inflate(R.layout.element_search, null);
+        tabTwo.setText("My Trips");
+        tabTwo.setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.ic_baggage, 0, 0);
+        tbSearchTab.getTabAt(1).setCustomView(tabTwo);
+
+        TextView tabThree = (TextView) LayoutInflater.from(this).inflate(R.layout.element_search, null);
+        tabThree.setText("Credit");
+        tabThree.setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.coins2, 0, 0);
+        tbSearchTab.getTabAt(2).setCustomView(tabThree);
+
+        TextView tabFour = (TextView) LayoutInflater.from(this).inflate(R.layout.element_search, null);
+        tabFour.setText("Menu");
+        tabFour.setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.hamburger, 0, 0);
+        tbSearchTab.getTabAt(3).setCustomView(tabFour);
+
+
+    }
+
+    class ViewPagerAdapter extends FragmentPagerAdapter {
+        private final List<Fragment> mFragmentList = new ArrayList<>();
+        private final List<String> mFragmentTitleList = new ArrayList<>();
+
+        public ViewPagerAdapter(FragmentManager manager) {
+            super(manager);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            return mFragmentList.get(position);
+        }
+
+        @Override
+        public int getCount() {
+            return mFragmentList.size();
+        }
+
+        public void addFragment(Fragment fragment, String title) {
+            mFragmentList.add(fragment);
+            mFragmentTitleList.add(title);
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return mFragmentTitleList.get(position);
+        }
+    }
+}

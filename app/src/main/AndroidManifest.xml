@@ -3,20 +3,165 @@
     package="com.smartsense.taxinearyou">
 
     <application
+        android:name=".TaxiNearYouApp"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/imgtnulogo"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ActivityTaxiNearYou"/>
+        <activity android:name=".ActivityTaxiNearYou" />
 
-        <activity android:name=".ActivitySplash">
+        <activity
+            android:name=".ActivitySplash"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".Search"
+            android:configChanges="orientation|screenSize"
+            android:label="@string/search"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden|adjustResize|adjustPan" />
+        <activity
+            android:name=".SignIn"
+            android:configChanges="orientation|screenSize"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".SignUp"
+            android:configChanges="orientation|screenSize"
+            android:label="@string/sign_up"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".SecurityQuestion"
+            android:configChanges="orientation|screenSize"
+            android:label="Security Question"
+            android:parentActivityName=".SignUp"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".SearchCars"
+            android:configChanges="orientation|screenSize"
+            android:label="@string/searchcars"
+            android:parentActivityName=".Search"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".BookingInfo"
+            android:configChanges="orientation|screenSize"
+            android:label="@string/title_activity_booking_info"
+            android:parentActivityName=".SearchCars"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".PartnerRating"
+            android:configChanges="orientation|screenSize"
+            android:label="@string/partner_rating"
+            android:parentActivityName=".SearchCars"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".GoogleApi"
+            android:label="Google Places"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".Filter"
+            android:label="Filter"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".PaymentDetails"
+            android:label="Payment Details"
+            android:parentActivityName=".PersonalInfo"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".TripDetails"
+            android:label="Trip Details"
+            android:parentActivityName=".Search"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".Feedback"
+            android:label="Feedback"
+            android:parentActivityName=".TripDetails"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".YourDetails"
+            android:label="Your Details"
+            android:parentActivityName=".TripDetails"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".GeneralInformation"
+            android:label="General Information"
+            android:parentActivityName=".Search"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".LostItemDetail"
+            android:label="Lost Item Detail"
+            android:parentActivityName=".LostItem"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".LostItem"
+            android:label="Lost Item"
+            android:parentActivityName=".Search"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".AccountSecurity"
+            android:label="Account Security"
+            android:parentActivityName=".Search"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".PersonalInfo"
+            android:configChanges="orientation|screenSize"
+            android:label="Personal Info"
+            android:parentActivityName=".BookingInfo"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".ResetPassword"
+            android:label="Reset Password"
+            android:parentActivityName=".SignIn"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".RecoverEmailAddress"
+            android:label="Recover Email Address"
+            android:parentActivityName=".SignIn"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".AddCard"
+            android:label="Add Card"
+            android:parentActivityName=".Card"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".Card"
+            android:label="Card"
+            android:parentActivityName=".PaymentDetails"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".CardList"
+            android:label="CardList"
+            android:parentActivityName=".Search"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".CardDetails"
+            android:label="Card Details"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden" />
     </application>
 
 </manifest>

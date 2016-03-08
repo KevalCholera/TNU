@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
+    app:theme="@style/AppTheme"
+    android:orientation="vertical">
+
+    <ListView
+        android:id="@+id/lvCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/lvCardListViewMarginTop"
+        android:divider="@null"
+        android:dividerHeight="0dp"
+        android:scrollbarStyle="@null" />
+
+    <Button
+        android:id="@+id/btCardAddCard"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/btSignUpAllheight"
+        android:layout_marginBottom="@dimen/tvMarginTopBottomStartEndAll"
+        android:layout_marginEnd="@dimen/btCardButtonMargin"
+        android:layout_marginStart="@dimen/btCardButtonMargin"
+        android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
+        android:background="@drawable/blue_stroke_gray_solid"
+        android:text="Add Card"
+        android:textColor="@color/dark_gray"
+        android:textSize="@dimen/btSignInSignInSize" />
+
+
+    <Button
+        android:id="@+id/btCardDone"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/btSignUpAllheight"
+        android:layout_margin="@dimen/tvMarginTopBottomStartEndAll"
+        android:background="@drawable/yellow"
+        android:text="@string/done"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="@dimen/btSignInSignUpSize" />
+</LinearLayout>

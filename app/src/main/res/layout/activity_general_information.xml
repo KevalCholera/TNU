@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/clGeneralInfo"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <include layout="@layout/element_appbar" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="@dimen/lyPaddingMainAll">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/first_name"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="@dimen/tvHeadingSizeAll" />
+
+            <EditText
+                android:id="@+id/etGeneralFirstName"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/etHeightAll"
+                android:layout_marginEnd="@dimen/etSignUpPersonNameMarginEnd"
+                android:background="@drawable/grayborder"
+                android:inputType="text"
+                android:paddingStart="@dimen/etSignUpAllPaddingStartEnd"
+                android:text="@string/john"
+                android:textColor="@color/black"
+                android:textSize="@dimen/etSignInUserPassSize" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/tvbtGeneralInfoMarginTopAll"
+                android:text="@string/last_name"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="@dimen/tvHeadingSizeAll" />
+
+            <EditText
+                android:id="@+id/etGeneralLastName"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/etHeightAll"
+                android:layout_marginEnd="@dimen/etSignUpPersonNameMarginEnd"
+                android:background="@drawable/grayborder"
+                android:inputType="text"
+                android:paddingStart="@dimen/etSignUpAllPaddingStartEnd"
+                android:text="@string/smith"
+                android:textColor="@color/black"
+                android:textSize="@dimen/etSignInUserPassSize" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/tvbtGeneralInfoMarginTopAll"
+                android:text="@string/mobile"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="@dimen/tvHeadingSizeAll" />
+
+            <EditText
+                android:id="@+id/etGeneralMobile"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/etHeightAll"
+                android:layout_marginEnd="@dimen/etSignUpPersonNameMarginEnd"
+                android:background="@drawable/grayborder"
+                android:inputType="phone"
+                android:paddingStart="@dimen/etSignUpAllPaddingStartEnd"
+                android:text="@string/_987896542"
+                android:textColor="@color/black"
+                android:textSize="@dimen/etSignInUserPassSize" />
+
+            <Button
+                android:id="@+id/btGeneralUpdateProfile"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/etHeightAll"
+                android:layout_marginTop="@dimen/tvbtGeneralInfoMarginTopAll"
+                android:background="@color/Yellow"
+                android:text="@string/update_profile"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="@dimen/btSignInSignUpSize" />
+
+
+        </LinearLayout>
+    </LinearLayout>
+</android.support.design.widget.CoordinatorLayout>

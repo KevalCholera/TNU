@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/clSecurityQuestion"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@mipmap/imgappbackground"
+        android:orientation="vertical">
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/ivTNUiconMain"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/lyElementLostItemFromToMarginStart"
+            android:background="@mipmap/imgtnulogo" />
+
+        <EditText
+            android:id="@+id/etSecurityQuestion1"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/btSignUpAllheight"
+            android:layout_marginEnd="@dimen/etSignUpContactMarginStartEnd"
+            android:layout_marginStart="@dimen/etSignUpContactMarginStartEnd"
+            android:layout_marginTop="@dimen/etForgotSecurityQuestionMarginTop"
+            android:background="@drawable/grayborder"
+            android:clickable="true"
+            android:cursorVisible="false"
+            android:drawableEnd="@mipmap/imgdropdown"
+            android:editable="false"
+            android:paddingStart="@dimen/etSignUpAllPaddingStartEnd"
+            android:text="@string/security_question1"
+            android:textColor="@color/dark_gray"
+            android:textSize="@dimen/etSignUpSizeAll"
+            android:textStyle="italic" />
+
+        <EditText
+            android:id="@+id/etSecurityAnswer1"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/btSignUpAllheight"
+            android:layout_marginEnd="@dimen/etSignUpContactMarginStartEnd"
+            android:layout_marginStart="@dimen/etSignUpContactMarginStartEnd"
+            android:layout_marginTop="@dimen/etSecurityAnswerMarginTop"
+            android:background="@drawable/grayborder"
+            android:hint="@string/security_answer"
+            android:nextFocusDown="@+id/etSecurityAnswer2"
+            android:paddingStart="@dimen/etSignUpAllPaddingStartEnd"
+            android:singleLine="true"
+            android:textColor="@color/black"
+            android:textColorHint="@color/light_Gray"
+            android:textSize="@dimen/etSignUpSizeAll"
+            android:textStyle="italic" />
+
+        <EditText
+            android:id="@+id/etSecurityQuestion2"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/btSignUpAllheight"
+            android:layout_marginEnd="@dimen/etSignUpContactMarginStartEnd"
+            android:layout_marginStart="@dimen/etSignUpContactMarginStartEnd"
+            android:layout_marginTop="@dimen/etForgotSecurityQuestionMarginTop"
+            android:background="@drawable/grayborder"
+            android:clickable="true"
+            android:cursorVisible="false"
+            android:drawableEnd="@mipmap/imgdropdown"
+            android:editable="false"
+            android:imeOptions="actionNext"
+            android:paddingStart="@dimen/etSignUpAllPaddingStartEnd"
+            android:text="@string/security_question1"
+            android:textColor="@color/dark_gray"
+            android:textSize="@dimen/etSignUpSizeAll"
+            android:textStyle="italic" />
+
+        <EditText
+            android:id="@+id/etSecurityAnswer2"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/btSignUpAllheight"
+            android:layout_marginEnd="@dimen/etSignUpContactMarginStartEnd"
+            android:layout_marginStart="@dimen/etSignUpContactMarginStartEnd"
+            android:layout_marginTop="@dimen/etSecurityAnswerMarginTop"
+            android:background="@drawable/grayborder"
+            android:hint="@string/security_answer"
+            android:paddingStart="@dimen/etSignUpAllPaddingStartEnd"
+            android:singleLine="true"
+            android:textColor="@color/black"
+            android:textColorHint="@color/light_Gray"
+            android:textSize="@dimen/etSignUpSizeAll"
+            android:textStyle="italic" />
+
+        <CheckBox
+            android:id="@+id/cbSecurityFromOrganization"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/etSignUpContactMarginStartEnd"
+            android:layout_marginStart="@dimen/etSignUpContactMarginStartEnd"
+            android:layout_marginTop="@dimen/cbForgotAllMarginTop"
+            android:button="@drawable/checkbox"
+            android:checked="false"
+            android:paddingStart="@dimen/tvMarginTopBottomStartEndAll"
+            android:text="@string/ReceiveOffersFromOrganization"
+            android:textSize="@dimen/cbCheckTextSizeAll"
+            android:theme="@style/AppTheme" />
+
+        <CheckBox
+            android:id="@+id/cbSecurityAboutTaxinearu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/etSignUpContactMarginStartEnd"
+            android:layout_marginStart="@dimen/etSignUpContactMarginStartEnd"
+            android:layout_marginTop="@dimen/cbForgotAllMarginTop"
+            android:button="@drawable/checkbox"
+            android:checked="false"
+            android:paddingStart="@dimen/tvMarginTopBottomStartEndAll"
+            android:text="@string/yes_i_would_like_to_receive_offers_and_infromation_about_products_and_services_about_taxinearu"
+            android:textSize="@dimen/cbCheckTextSizeAll"
+            android:theme="@style/AppTheme" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="@dimen/etSignUpContactMarginStartEnd"
+            android:layout_marginStart="@dimen/etSignUpContactMarginStartEnd"
+            android:layout_marginTop="@dimen/cbForgotAllMarginTop"
+            android:orientation="horizontal">
+
+
+            <CheckBox
+                android:id="@+id/cbSecurityFromPrivacyPolicy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:button="@drawable/checkbox"
+                android:checked="false"
+                android:paddingStart="@dimen/tvMarginTopBottomStartEndAll"
+                android:text="@string/agree"
+                android:textSize="@dimen/cbCheckTextSizeAll"
+                android:theme="@style/AppTheme" />
+
+            <TextView
+                android:id="@+id/tvSecurityTermsConditions"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/lySecurityQuestionCheckLayoutPaddingTop"
+                android:gravity="fill"
+                android:text="@string/conditions"
+                android:textColor="@color/purple"
+                android:textSize="@dimen/cbCheckTextSizeAll" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btSecuritySave"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/btSignUpAllheight"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginEnd="@dimen/etSignUpContactMarginStartEnd"
+            android:layout_marginStart="@dimen/etSignUpContactMarginStartEnd"
+            android:layout_marginTop="@dimen/btSignUpAllMarginTop"
+            android:background="@drawable/yellow"
+            android:text="@string/sign_up"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/btSignInSignUpSize" />
+    </LinearLayout>
+
+</android.support.design.widget.CoordinatorLayout>

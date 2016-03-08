@@ -12,6 +12,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -19,17 +20,26 @@ import android.net.Uri;
 import android.os.StrictMode;
 import android.provider.MediaStore;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Base64;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.mpt.storage.SharedPreferenceUtil;
+import com.smartsense.taxinearyou.R;
+import com.smartsense.taxinearyou.Search;
+import com.smartsense.taxinearyou.SignIn;
+import com.smartsense.taxinearyou.SnackBar.TSnackbar;
 
 import org.json.JSONArray;
 
@@ -46,6 +56,7 @@ public class CommonUtil {
 
     static ProgressDialog pDialog;
     SQLiteDatabase sqLiteDatabase;
+    static AlertDialog alert;
 
     public static void showProgressDialog(Context activity, String msg) {
         pDialog = new ProgressDialog(activity);
@@ -275,7 +286,7 @@ public class CommonUtil {
             inputManager.hideSoftInputFromWindow(a.getCurrentFocus().getWindowToken(),
                     InputMethodManager.HIDE_NOT_ALWAYS);
         } catch (Exception e) {
-e.printStackTrace();
+            e.printStackTrace();
         }
     }
 
@@ -379,5 +390,48 @@ e.printStackTrace();
         }
 
         return false;
+    }
+
+    public static void showSnackBar(Activity activity, String msg, View view) {
+        TSnackbar snackbar = TSnackbar.make(view, msg, TSnackbar.LENGTH_SHORT);
+        snackbar.setActionTextColor(Color.WHITE);
+        View snackbarView = snackbar.getView();
+        snackbarView.setBackgroundColor(activity.getResources().getColor(R.color.white));
+        TextView textView = (TextView) snackbarView.findViewById(R.id.snackbar_text);
+        textView.setTextColor(Color.RED);
+        snackbar.show();
+    }
+
+    public static void openDialogs(final Activity activity, final String buton_click, int layout, int button) {
+
+        try {
+            final AlertDialog.Builder alertDialogs = new AlertDialog.Builder(activity);
+            LayoutInflater inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+            final View dialog = inflater.inflate(R.layout.pop_up_all, null);
+            LinearLayout linearLayout = (LinearLayout) dialog.findViewById(layout);
+            Button button1 = (Button) dialog.findViewById(button);
+
+            linearLayout.setVisibility(View.VISIBLE);
+
+            button1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (buton_click.equalsIgnoreCase("Payment Details"))
+                        activity.startActivity(new Intent(activity, Search.class));
+                    else if (buton_click.equalsIgnoreCase("Recover Email"))
+                        activity.startActivity(new Intent(activity, SignIn.class));
+                    else
+                        alert.dismiss();
+                }
+            });
+            alertDialogs.setView(dialog);
+            alertDialogs.setCancelable(true);
+            alert = alertDialogs.create();
+            alert.show();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

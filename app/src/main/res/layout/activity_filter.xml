@@ -1,0 +1,486 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@mipmap/taxi"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="#99008fff">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/lyPaddingMainAll">
+
+            <ImageView
+                android:id="@+id/ivFilterCancel"
+                android:layout_width="@dimen/iconWidthHeightAll"
+                android:layout_height="@dimen/iconWidthHeightAll"
+                android:layout_gravity="end"
+                android:src="@mipmap/cancel" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/vehicle_type"
+                android:textColor="@color/white"
+                android:textSize="@dimen/tvHeadingSizeAll" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/vHeightWidthAll"
+                android:layout_marginTop="@dimen/vMarginTopBottomAll"
+                android:background="@color/white" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <RadioGroup
+                    android:id="@+id/rgFilterVehicleType1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/rgFilterMarginTopAll">
+
+                    <RadioButton
+                        android:id="@+id/rbFilter1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/Yellow"
+                        android:checked="true"
+                        android:text="@string/hatchback"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/tvTitlesSizeAll" />
+
+                    <RadioButton
+                        android:id="@+id/rbFilter2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/cbFilterMarginTop"
+                        android:buttonTint="@color/Yellow"
+                        android:text="@string/_4x4"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/tvTitlesSizeAll" />
+
+                    <RadioButton
+                        android:id="@+id/rbFilter3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/cbFilterMarginTop"
+                        android:buttonTint="@color/Yellow"
+                        android:text="@string/_9x9"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/tvTitlesSizeAll" />
+
+                    <RadioButton
+                        android:id="@+id/rbFilter4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/cbFilterMarginTop"
+                        android:buttonTint="@color/Yellow"
+                        android:text="@string/snmn"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/tvTitlesSizeAll" />
+
+                </RadioGroup>
+
+                <RadioGroup
+                    android:id="@+id/rgFilterVehicleType2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/tvMarginTopBottomStartEndAll"
+                    android:layout_marginTop="@dimen/rgFilterMarginTopAll">
+
+                    <RadioButton
+                        android:id="@+id/rbFilter5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/Yellow"
+                        android:text="@string/sedan"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/tvTitlesSizeAll" />
+
+                    <RadioButton
+                        android:id="@+id/rbFilter6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/cbFilterMarginTop"
+                        android:buttonTint="@color/Yellow"
+                        android:text="@string/abc"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/tvTitlesSizeAll" />
+
+                    <RadioButton
+                        android:id="@+id/rbFilter7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/cbFilterMarginTop"
+                        android:buttonTint="@color/Yellow"
+                        android:text="@string/kk_club"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/tvTitlesSizeAll" />
+
+                    <RadioButton
+                        android:id="@+id/rbFilter8"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/cbFilterMarginTop"
+                        android:buttonTint="@color/Yellow"
+                        android:text="@string/luxury"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/tvTitlesSizeAll" />
+
+                </RadioGroup>
+
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/tvFilterMarginTopAll"
+                android:text="@string/price"
+                android:textColor="@color/white"
+                android:textSize="@dimen/tvHeadingSizeAll" />
+
+            <RadioGroup
+                android:id="@+id/rgFilterPrice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/rgFilterMarginTopAll"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/rbFilterLow"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/radio_button"
+                    android:button="@color/white"
+                    android:gravity="center"
+                    android:padding="@dimen/rbPaddingAll"
+                    android:text="@string/low"
+                    android:textColor="@drawable/radio_button"
+                    android:textSize="@dimen/btSignInSignUpSize" />
+
+                <RadioButton
+                    android:id="@+id/rbFilterHigh"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/radio_button"
+                    android:button="@color/white"
+                    android:checked="true"
+                    android:gravity="center"
+                    android:padding="@dimen/rbPaddingAll"
+                    android:text="@string/high"
+                    android:textColor="@drawable/radio_button"
+                    android:textSize="@dimen/btSignInSignUpSize" />
+
+            </RadioGroup>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/tvFilterMarginTopAll"
+                android:text="@string/booking_type"
+                android:textColor="@color/white"
+                android:textSize="@dimen/tvHeadingSizeAll" />
+
+            <RadioGroup
+                android:id="@+id/rgFilterBookingType"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/rgFilterMarginTopAll"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/rbFilterSingle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/radio_button"
+                    android:button="@color/white"
+                    android:checked="true"
+                    android:gravity="center"
+                    android:padding="@dimen/rbPaddingAll"
+                    android:text="@string/single"
+                    android:textColor="@drawable/radio_button"
+                    android:textSize="@dimen/btSignInSignUpSize" />
+
+                <RadioButton
+                    android:id="@+id/rbFilterReturn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/radio_button"
+                    android:button="@color/white"
+                    android:gravity="center"
+                    android:padding="@dimen/rbPaddingAll"
+                    android:text="@string/return_"
+                    android:textColor="@drawable/radio_button"
+                    android:textSize="@dimen/btSignInSignUpSize" />
+
+            </RadioGroup>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/tvFilterMarginTopAll"
+                android:text="@string/distance"
+                android:textColor="@color/white"
+                android:textSize="@dimen/tvHeadingSizeAll" />
+
+            <RadioGroup
+                android:id="@+id/rgFilterDistance1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/rbFilterAll"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:buttonTint="@color/Yellow"
+                    android:checked="true"
+                    android:text="@string/all"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/tvTitlesSizeAll" />
+
+                <RadioButton
+                    android:id="@+id/rbFilter3Miles"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:buttonTint="@color/Yellow"
+                    android:text="@string/_3_miles"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/tvTitlesSizeAll" />
+
+                <RadioButton
+                    android:id="@+id/rbFilter5Miles"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:buttonTint="@color/Yellow"
+                    android:text="@string/_5_miles"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/tvTitlesSizeAll" />
+
+            </RadioGroup>
+
+            <RadioGroup
+                android:id="@+id/rgFilterDistance2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/rbFilter6Miles"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/cbFilterMarginTop"
+                    android:layout_weight="1"
+                    android:buttonTint="@color/Yellow"
+                    android:text="@string/_6_miles"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/tvTitlesSizeAll" />
+
+                <RadioButton
+                    android:id="@+id/rbFilter9Miles"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/cbFilterMarginTop"
+                    android:layout_weight="1"
+                    android:buttonTint="@color/Yellow"
+                    android:text="@string/_9_miles"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/tvTitlesSizeAll" />
+
+                <RadioButton
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/cbFilterMarginTop"
+                    android:layout_weight="1"
+                    android:button="@drawable/radio_button_filter"
+                    android:clickable="false"
+                    android:text="@string/_9_miles"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/tvTitlesSizeAll"
+                    android:visibility="invisible" />
+
+            </RadioGroup>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/tvFilterMarginTopAll"
+                android:text="@string/operator_rating"
+                android:textColor="@color/white"
+                android:textSize="@dimen/tvHeadingSizeAll" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioGroup
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <RadioButton
+                        android:id="@+id/rbFilterRatingAll"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/tvSearchCarsBookNowPaddingTopBottom"
+                        android:buttonTint="@color/Yellow"
+                        android:checked="true" />
+
+
+                    <RadioButton
+                        android:id="@+id/rbFilterRating5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="@dimen/tvPersonalInfoCheckDownMarginTop"
+                        android:buttonTint="@color/Yellow" />
+
+                    <RadioButton
+                        android:id="@+id/rbFilterRating4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
+                        android:buttonTint="@color/Yellow" />
+
+                    <RadioButton
+                        android:id="@+id/rbFilterRating3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
+                        android:buttonTint="@color/Yellow" />
+
+                    <RadioButton
+                        android:id="@+id/rbFilterRating2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
+                        android:buttonTint="@color/Yellow" />
+
+                    <RadioButton
+                        android:id="@+id/rbFilterRating1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
+                        android:buttonTint="@color/Yellow" />
+                </RadioGroup>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/lyPaddingMainAll"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/tvFilterRadioTextMarginTop"
+                        android:text="@string/all"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/tvTitlesSizeAll" />
+
+                    <RatingBar
+                        android:id="@+id/rbFeedbackRatingForDriver"
+                        style="@style/customRatingBar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
+                        android:numStars="5"
+                        android:rating="3"
+                        android:stepSize="1" />
+
+                    <RatingBar
+                        style="@style/customRatingBar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:numStars="5"
+                        android:rating="3"
+                        android:stepSize="1" />
+
+                    <RatingBar
+                        style="@style/customRatingBar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:numStars="5"
+                        android:rating="3"
+                        android:stepSize="1" />
+
+                    <RatingBar
+                        style="@style/customRatingBar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:numStars="5"
+                        android:rating="3"
+                        android:stepSize="1" />
+
+                    <RatingBar
+                        style="@style/customRatingBar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:numStars="5"
+                        android:rating="3"
+                        android:stepSize="1" />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <CheckBox
+                android:id="@+id/cbFilterRecommend"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/cbMarginTopStartPaddingTopAll"
+                android:layout_marginTop="@dimen/cbMarginTopStartPaddingTopAll"
+                android:button="@drawable/checkbox"
+                android:paddingStart="@dimen/cbMarginTopStartPaddingTopAll"
+                android:text="@string/recommend"
+                android:textColor="@color/white" />
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/btFilterDone"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/Yellow"
+            android:text="@string/done"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/btSignInSignUpSize" />
+
+        <Button
+            android:id="@+id/btFilterResetAll"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:text="@string/reset_all"
+            android:textAllCaps="false"
+            android:textColor="@color/Yellow"
+            android:textSize="@dimen/btSignInSignUpSize" />
+    </LinearLayout>
+
+</LinearLayout>

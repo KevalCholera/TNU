@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/clRecoverEmail"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include
+            layout="@layout/element_appbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/lyResetPaddingAll">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Please Select from the option below to recover your email address."
+                    android:textColor="@color/dark_gray" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/vHeightWidthAll"
+                    android:layout_marginBottom="@dimen/vResetForgotAll"
+                    android:layout_marginTop="@dimen/vResetForgotAll"
+                    android:background="@color/dark_gray" />
+
+                <RadioGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <RadioButton
+                        android:id="@+id/rbRecoverEmailAlternateEmail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:button="@drawable/radio_button_popup"
+                        android:checked="true"
+                        android:text="Enter Alternate Email."
+                        android:textColor="@color/dark_gray" />
+
+                    <LinearLayout
+                        android:id="@+id/lyRadioButton1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="@dimen/lyRecoverEmailMarginStartAll"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="(Please enter your alternate email which you have provided when creating your account)"
+                            android:textColor="@android:color/darker_gray" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/tvetRecoverEmailMarginTopBottomAll"
+                            android:text="@string/alternate_email"
+                            android:textColor="@color/background" />
+
+                        <EditText
+                            android:id="@+id/etRecoverEmailAlternateEmail"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/etHeightAll"
+                            android:background="@drawable/grayborder"
+                            android:hint="@string/alternate_email"
+                            android:inputType="textEmailAddress"
+                            android:nextFocusForward="@+id/etSignUpLastName"
+                            android:paddingStart="@dimen/etSignUpAllPaddingStartEnd"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/light_Gray"
+                            android:textSize="@dimen/etSignUpSizeAll" />
+
+                    </LinearLayout>
+
+                    <RadioButton
+                        android:id="@+id/rbRecoverEmailRememberEmail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/rbRecoverEmailRememberEmailMarginTop"
+                        android:button="@drawable/radio_button_popup"
+                        android:text="Do not remember alternate email?"
+                        android:textColor="@color/dark_gray" />
+
+                    <LinearLayout
+                        android:id="@+id/lyRadioButton2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="@dimen/lyRecoverEmailMarginStartAll"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="(We may require supportive evidence in order for us to locate your account)"
+                            android:textColor="@android:color/darker_gray" />
+
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/tvetRecoverEmailMarginTopBottomAll"
+                            android:text="@string/first_name"
+                            android:textColor="@color/background" />
+
+                        <EditText
+                            android:id="@+id/etRecoverEmailFirstName"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/etHeightAll"
+                            android:layout_marginBottom="@dimen/tvetRecoverEmailMarginTopBottomAll"
+                            android:background="@drawable/grayborder"
+                            android:hint="@string/first_name"
+                            android:inputType="textEmailAddress"
+                            android:nextFocusForward="@+id/etSignUpLastName"
+                            android:paddingStart="@dimen/etSignUpAllPaddingStartEnd"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/light_Gray"
+                            android:textSize="@dimen/etSignUpSizeAll" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/tvetRecoverEmailMarginTopBottomAll"
+                            android:text="@string/last_name"
+                            android:textColor="@color/background" />
+
+                        <EditText
+                            android:id="@+id/etRecoverEmailLastName"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/etHeightAll"
+                            android:layout_marginBottom="@dimen/tvetRecoverEmailMarginTopBottomAll"
+                            android:background="@drawable/grayborder"
+                            android:hint="@string/last_name"
+                            android:inputType="textEmailAddress"
+                            android:nextFocusForward="@+id/etSignUpLastName"
+                            android:paddingStart="@dimen/etSignUpAllPaddingStartEnd"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/light_Gray"
+                            android:textSize="@dimen/etSignUpSizeAll" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/tvetRecoverEmailMarginTopBottomAll"
+                            android:text="@string/contact"
+                            android:textColor="@color/background" />
+
+                        <EditText
+                            android:id="@+id/etRecoverEmailContact"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/etHeightAll"
+                            android:layout_marginBottom="@dimen/tvetRecoverEmailMarginTopBottomAll"
+                            android:background="@drawable/grayborder"
+                            android:hint="@string/contact"
+                            android:inputType="phone"
+                            android:nextFocusForward="@+id/etSignUpLastName"
+                            android:paddingStart="@dimen/etSignUpAllPaddingStartEnd"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/light_Gray"
+                            android:textSize="@dimen/etSignUpSizeAll" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/tvetRecoverEmailMarginTopBottomAll"
+                            android:text="@string/email_add"
+                            android:textColor="@color/background" />
+
+                        <EditText
+                            android:id="@+id/etRecoverEmailAddress"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/etHeightAll"
+                            android:layout_marginBottom="@dimen/tvetRecoverEmailMarginTopBottomAll"
+                            android:background="@drawable/grayborder"
+                            android:hint="@string/email_add"
+                            android:inputType="textEmailAddress"
+                            android:nextFocusForward="@+id/etSignUpLastName"
+                            android:paddingStart="@dimen/etSignUpAllPaddingStartEnd"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/light_Gray"
+                            android:textSize="@dimen/etSignUpSizeAll" />
+
+                    </LinearLayout>
+
+                </RadioGroup>
+
+            </LinearLayout>
+        </ScrollView>
+
+        <Button
+            android:id="@+id/btRecoverEmailSubmit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:background="@color/Yellow"
+            android:text="@string/submit"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/btSignInSignUpSize" />
+
+
+    </LinearLayout>
+</android.support.design.widget.CoordinatorLayout>
