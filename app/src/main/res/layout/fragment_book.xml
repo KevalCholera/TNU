@@ -296,7 +296,7 @@
             android:gravity="center"
             android:text="@string/searchcar"
             android:textColor="@color/white"
-            android:textSize="@dimen/btSignInSignUpSize" />
+            android:textSize="@dimen/btSizeAll" />
 
     </LinearLayout>
 </ScrollView>

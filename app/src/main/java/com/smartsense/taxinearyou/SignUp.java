@@ -8,6 +8,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 
 import com.smartsense.taxinearyou.utill.CommonUtil;
 
@@ -17,6 +18,7 @@ public class SignUp extends AppCompatActivity {
             etSignUpPassword, etSignUpConfirmPassword, etSignUpAlternateEmail;
     CoordinatorLayout clSignUp;
     Button btSignUpSaveNext;
+    ImageButton btSignUpBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +34,7 @@ public class SignUp extends AppCompatActivity {
         etSignUpAlternateEmail = (EditText) findViewById(R.id.etSignUpAlternateEmail);
         btSignUpSaveNext = (Button) findViewById(R.id.btSignUpSaveNext);
         clSignUp = (CoordinatorLayout) findViewById(R.id.clSignUp);
+        btSignUpBack = (ImageButton) findViewById(R.id.btSignUpBack);
 
         btSignUpSaveNext.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,6 +69,12 @@ public class SignUp extends AppCompatActivity {
                     CommonUtil.showSnackBar(SignUp.this, getString(R.string.conpass_pass_same), clSignUp);
                 else
                     startActivity(new Intent(SignUp.this, SecurityQuestion.class));
+            }
+        });
+        btSignUpBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
     }

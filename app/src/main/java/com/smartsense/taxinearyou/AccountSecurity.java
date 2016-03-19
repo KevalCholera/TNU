@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.text.TextUtils;
 import android.util.Log;
@@ -48,8 +47,6 @@ public class AccountSecurity extends AppCompatActivity implements View.OnClickLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account_security);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarAll);
-        setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         tvAccountSecurityNote = (TextView) findViewById(R.id.tvAccountSecurityNote);

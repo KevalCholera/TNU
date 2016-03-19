@@ -5,19 +5,32 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@mipmap/imgappbackground"
         android:orientation="vertical">
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/lyMarginMainAll"
+            android:orientation="horizontal">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/ivTNUiconMain"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="@dimen/lyElementLostItemFromToMarginStart"
-            android:background="@mipmap/imgtnulogo" />
+            <ImageButton
+                android:id="@+id/btSecurityBack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:src="@mipmap/back_blue" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/ivTNUiconMain"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:background="@mipmap/imgtnulogo" />
+        </RelativeLayout>
 
         <EditText
             android:id="@+id/etSecurityQuestion1"
@@ -25,13 +38,12 @@
             android:layout_height="@dimen/btSignUpAllheight"
             android:layout_marginEnd="@dimen/etSignUpContactMarginStartEnd"
             android:layout_marginStart="@dimen/etSignUpContactMarginStartEnd"
-            android:layout_marginTop="@dimen/etForgotSecurityQuestionMarginTop"
             android:background="@drawable/grayborder"
             android:clickable="true"
             android:cursorVisible="false"
             android:drawableEnd="@mipmap/imgdropdown"
-            android:editable="false"
             android:paddingStart="@dimen/etSignUpAllPaddingStartEnd"
+            android:singleLine="true"
             android:text="@string/security_question1"
             android:textColor="@color/dark_gray"
             android:textSize="@dimen/etSignUpSizeAll"
@@ -65,9 +77,9 @@
             android:clickable="true"
             android:cursorVisible="false"
             android:drawableEnd="@mipmap/imgdropdown"
-            android:editable="false"
             android:imeOptions="actionNext"
             android:paddingStart="@dimen/etSignUpAllPaddingStartEnd"
+            android:singleLine="true"
             android:text="@string/security_question1"
             android:textColor="@color/dark_gray"
             android:textSize="@dimen/etSignUpSizeAll"
@@ -161,7 +173,7 @@
             android:text="@string/sign_up"
             android:textAllCaps="false"
             android:textColor="@color/white"
-            android:textSize="@dimen/btSignInSignUpSize" />
+            android:textSize="@dimen/btSizeAll" />
     </LinearLayout>
 
 </android.support.design.widget.CoordinatorLayout>

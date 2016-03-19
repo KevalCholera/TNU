@@ -36,6 +36,7 @@ public class FragmentBook extends Fragment implements View.OnClickListener {
     int i = 0;
     Calendar calendar;
     CoordinatorLayout clSearch;
+    TimePickerDialog mTimePicker;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -148,7 +149,6 @@ public class FragmentBook extends Fragment implements View.OnClickListener {
 
             final int hour = calendar.get(Calendar.HOUR_OF_DAY);
             final int minute = calendar.get(Calendar.MINUTE);
-            TimePickerDialog mTimePicker;
 
             mTimePicker = new TimePickerDialog(getActivity(), new TimePickerDialog.OnTimeSetListener() {
                 @Override

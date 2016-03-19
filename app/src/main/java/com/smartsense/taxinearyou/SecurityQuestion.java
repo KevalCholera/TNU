@@ -9,17 +9,19 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.smartsense.taxinearyou.utill.CommonUtil;
 
-public class SecurityQuestion extends AppCompatActivity {
+public class SecurityQuestion extends AppCompatActivity implements View.OnClickListener {
 
     EditText etSecurityQuestion1, etSecurityAnswer1, etSecurityQuestion2, etSecurityAnswer2;
     CheckBox cbSecurityFromOrganization, cbSecurityFromPrivacyPolicy, cbSecurityAboutTaxinearu;
     Button btSecuritySave;
     TextView tvSecurityTermsConditions;
     CoordinatorLayout clSecurityQuestion;
+    ImageButton btSecurityBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,19 +38,26 @@ public class SecurityQuestion extends AppCompatActivity {
         btSecuritySave = (Button) findViewById(R.id.btSecuritySave);
         tvSecurityTermsConditions = (TextView) findViewById(R.id.tvSecurityTermsConditions);
         clSecurityQuestion = (CoordinatorLayout) findViewById(R.id.clSecurityQuestion);
+        btSecurityBack = (ImageButton) findViewById(R.id.btSecurityBack);
 
-        btSecuritySave.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        btSecuritySave.setOnClickListener(this);
+        btSecurityBack.setOnClickListener(this);
+    }
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.btSecuritySave:
                 if (TextUtils.isEmpty(etSecurityAnswer1.getText().toString()) || TextUtils.isEmpty(etSecurityAnswer2.getText().toString()))
                     CommonUtil.showSnackBar(SecurityQuestion.this, "Please Answer for Security Question", clSecurityQuestion);
                 else if (!cbSecurityFromPrivacyPolicy.isChecked())
                     CommonUtil.showSnackBar(SecurityQuestion.this, "Please Agree to Terms and Conditions ", clSecurityQuestion);
                 else
                     startActivity(new Intent(SecurityQuestion.this, SignIn.class));
-
-            }
-        });
+                break;
+            case R.id.btSecurityBack:
+                finish();
+                break;
+        }
     }
 }

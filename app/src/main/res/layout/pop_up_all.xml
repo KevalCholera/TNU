@@ -88,7 +88,7 @@
                 android:paddingRight="@dimen/btPopupSubmitPaddingLeftRight"
                 android:text="@string/submit"
                 android:textColor="@color/white"
-                android:textSize="@dimen/btSignInSignUpSize" />
+                android:textSize="@dimen/btSizeAll" />
 
         </LinearLayout>
 
@@ -169,7 +169,7 @@
                 android:paddingRight="@dimen/btPopupSubmitPaddingLeftRight"
                 android:text="@string/submit"
                 android:textColor="@color/white"
-                android:textSize="@dimen/btSignInSignUpSize" />
+                android:textSize="@dimen/btSizeAll" />
         </LinearLayout>
 
         <LinearLayout
@@ -303,7 +303,7 @@
                 android:paddingRight="@dimen/btPopupSubmitPaddingLeftRight"
                 android:text="@string/submit"
                 android:textColor="@color/white"
-                android:textSize="@dimen/btSignInSignUpSize" />
+                android:textSize="@dimen/btSizeAll" />
         </LinearLayout>
 
         <LinearLayout
@@ -383,7 +383,7 @@
                 android:paddingRight="@dimen/btPopupSubmitPaddingLeftRight"
                 android:text="Submit"
                 android:textColor="@color/white"
-                android:textSize="@dimen/btSignInSignUpSize" />
+                android:textSize="@dimen/btSizeAll" />
 
         </LinearLayout>
 
@@ -525,7 +525,7 @@
                 android:paddingRight="@dimen/btPopupSubmitPaddingLeftRight"
                 android:text="@string/submit"
                 android:textColor="@color/white"
-                android:textSize="@dimen/btSignInSignUpSize" />
+                android:textSize="@dimen/btSizeAll" />
 
         </LinearLayout>
 
@@ -678,7 +678,7 @@
                 android:paddingRight="@dimen/btPopupSubmitPaddingLeftRight"
                 android:text="@string/confirm"
                 android:textColor="@color/white"
-                android:textSize="@dimen/btSignInSignUpSize" />
+                android:textSize="@dimen/btSizeAll" />
 
         </LinearLayout>
 
@@ -728,7 +728,7 @@
                 android:paddingRight="@dimen/btPopupSubmitPaddingLeftRight"
                 android:text="@string/ok"
                 android:textColor="@color/white"
-                android:textSize="@dimen/btSignInSignUpSize" />
+                android:textSize="@dimen/btSizeAll" />
 
 
             <View
@@ -791,7 +791,7 @@
                     android:padding="@dimen/tvPopupCancelRidePadding"
                     android:text="@string/ok"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/btSignInSignUpSize" />
+                    android:textSize="@dimen/btSizeAll" />
 
                 <TextView
                     android:id="@+id/tvPopupCancelRideCancel"
@@ -805,7 +805,7 @@
                     android:padding="@dimen/tvPopupCancelRidePadding"
                     android:text="@string/cancel"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/btSignInSignUpSize" />
+                    android:textSize="@dimen/btSizeAll" />
             </LinearLayout>
 
 
@@ -864,7 +864,7 @@
                 android:paddingRight="@dimen/btPopupSubmitPaddingLeftRight"
                 android:text="@string/ok"
                 android:textColor="@color/white"
-                android:textSize="@dimen/btSignInSignUpSize" />
+                android:textSize="@dimen/btSizeAll" />
 
 
             <View
@@ -941,7 +941,7 @@
                 android:paddingRight="@dimen/btPopupSubmitPaddingLeftRight"
                 android:text="@string/back"
                 android:textColor="@color/white"
-                android:textSize="@dimen/btSignInSignUpSize" />
+                android:textSize="@dimen/btSizeAll" />
 
         </LinearLayout>
 
@@ -993,7 +993,7 @@
                 android:paddingRight="@dimen/btPopupSubmitPaddingLeftRight"
                 android:text="@string/back"
                 android:textColor="@color/white"
-                android:textSize="@dimen/btSignInSignUpSize" />
+                android:textSize="@dimen/btSizeAll" />
 
         </LinearLayout>
 
@@ -1043,7 +1043,7 @@
                 android:paddingRight="@dimen/btPopupSubmitPaddingLeftRight"
                 android:text="@string/ok"
                 android:textColor="@color/white"
-                android:textSize="@dimen/btSignInSignUpSize" />
+                android:textSize="@dimen/btSizeAll" />
 
 
             <View

@@ -80,19 +80,28 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
                     CommonUtil.showSnackBar(SignIn.this, getString(R.string.enter_pass), rlSignInMain);
                 else if (etSignInPassword.length() < 7 || etSignInPassword.length() > 15)
                     CommonUtil.showSnackBar(SignIn.this, getString(R.string.enter_valid_pass), rlSignInMain);
-                else
+                else {
                     startActivity(new Intent(SignIn.this, Search.class));
+                    null_all();
+                }
                 break;
             case R.id.btSignInSignUp:
                 startActivity(new Intent(SignIn.this, SignUp.class));
+                null_all();
                 break;
             case R.id.tvSignInForgotPassword:
                 startActivity(new Intent(SignIn.this, ResetPassword.class));
+                null_all();
                 break;
             case R.id.tvSignInForgotEmail:
                 startActivity(new Intent(SignIn.this, RecoverEmailAddress.class));
+                null_all();
                 break;
         }
+    }
 
+    public void null_all() {
+        etSignInUserName.setText("");
+        etSignInPassword.setText("");
     }
 }

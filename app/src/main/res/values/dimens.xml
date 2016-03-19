@@ -12,7 +12,7 @@
     <dimen name="tvSignInForgotPasswordMarginTop">20dp</dimen>
     <dimen name="tvSignInStillNotConnectedSize">17sp</dimen>
     <dimen name="tvSignInStillNotConnectedMarginTop">20dp</dimen>
-    <dimen name="btSignInSignUpSize">17sp</dimen>
+    <dimen name="btSizeAll">17sp</dimen>
     <dimen name="btSignInSignUpMarginTop">15dp</dimen>
     <dimen name="vSignInUserPasswordWidth">0.7dp</dimen>
     <dimen name="vSignInUserPasswordHeight">23dp</dimen>
@@ -105,6 +105,7 @@
     <dimen name="tvAccountSecurityCheckTextSizeAll">13sp</dimen>
     <dimen name="vHeightWidthAll">1dp</dimen>
     <dimen name="lyPaddingMainAll">20dp</dimen>
+    <dimen name="lyMarginMainAll">20dp</dimen>
     <dimen name="lyAccountSecurityMarginBottomAll">5dp</dimen>
     <dimen name="lyAccountSecurityCheckTextMarginStartTop">10dp</dimen>
     <dimen name="cbCheckboxMarginTopAll">7dp</dimen>
@@ -155,6 +156,7 @@
     <dimen name="vPersonalInfoMarginTopBottomAll">5dp</dimen>
     <dimen name="tvPersonalInfoCheckDownMarginTop">5dp</dimen>
     <dimen name="tvMarginTopBottomStartEndAll">10dp</dimen>
+    <dimen name="rbMarginTopBottomStartEndAll">10dp</dimen>
     <dimen name="tabSearchTabHeight">60dp</dimen>
     <dimen name="rgSearchCarsMarginTop">2dp</dimen>
     <dimen name="vSearchCarsMarginTop">5dp</dimen>

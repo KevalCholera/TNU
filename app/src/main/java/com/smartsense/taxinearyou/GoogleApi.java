@@ -98,7 +98,7 @@ public class GoogleApi extends Activity {
 
             StringBuilder sb = new StringBuilder();
 
-            String line = "";
+            String line;
             while ((line = br.readLine()) != null) {
                 sb.append(line);
             }
@@ -128,9 +128,9 @@ public class GoogleApi extends Activity {
             // For storing data from web service
             String data = "";
 
-            // Obtain browser key from https://code.google.com/apis/console
+          /*  // Obtain browser key from https://code.google.com/apis/console
             String key = "key=AIzaSyCp1vbSHgiC1lsNUYb-PuDs3kJ4wYEKu3I";
-            Log.i("Key", key);
+            Log.i("Key", key);*/
 
             String input = "";
 
@@ -139,22 +139,23 @@ public class GoogleApi extends Activity {
             } catch (UnsupportedEncodingException e1) {
                 e1.printStackTrace();
             }
-
+/*
             // place type to be searched
-            String types = "types=geocode";
+//            String types = "types=geocode";
+            String types = "types=cities";
+
             Log.d("Types", types);
 
             // Sensor enabled
             String sensor = "sensor=true";
 
-            // Building the parameters to the web service
             String parameters = input + "&" + types + "&" + sensor + "&" + key;
 
             // Output format
             String output = "json";
 
-            // Building the url to the web service
-            String url = "https://maps.googleapis.com/maps/api/place/autocomplete/" + output + "?" + parameters;
+            // Building the url to the web service*/
+            String url = "https://maps.googleapis.com/maps/api/place/autocomplete/json?key=AIzaSyCp1vbSHgiC1lsNUYb-PuDs3kJ4wYEKu3I&components=country:uk" + "&" + input;
 
             Log.i("url", url);
 

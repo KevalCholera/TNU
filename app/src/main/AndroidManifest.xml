@@ -10,7 +10,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".ActivityTaxiNearYou" />
-
         <activity
             android:name=".ActivitySplash"
             android:theme="@style/AppTheme.NoActionBar">
@@ -119,7 +118,7 @@
             android:name=".AccountSecurity"
             android:label="Account Security"
             android:parentActivityName=".Search"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".PersonalInfo"
             android:configChanges="orientation|screenSize"
@@ -162,6 +161,27 @@
             android:label="Card Details"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".GooglePlacesAutocompleteActivity"
+            android:label="Google Places"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".EventBooking"
+            android:label="Event Booking"
+            android:parentActivityName=".Search"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".ContactUs"
+            android:label="Contact Us"
+            android:parentActivityName=".Search"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".AboutUs"
+            android:label="About Us"
+            android:parentActivityName=".Search"
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>

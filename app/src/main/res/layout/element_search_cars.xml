@@ -127,7 +127,7 @@
             android:paddingTop="@dimen/tvSearchCarsBookNowPaddingTopBottom"
             android:text="@string/booknow"
             android:textColor="@color/white"
-            android:textSize="@dimen/btSignInSignUpSize" />
+            android:textSize="@dimen/btSizeAll" />
 
 
     </LinearLayout>

@@ -39,5 +39,5 @@
         android:text="@string/done"
         android:textAllCaps="false"
         android:textColor="@color/white"
-        android:textSize="@dimen/btSignInSignUpSize" />
+        android:textSize="@dimen/btSizeAll" />
 </LinearLayout>

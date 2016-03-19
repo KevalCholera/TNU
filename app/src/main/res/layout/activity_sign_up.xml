@@ -12,17 +12,30 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/ivTNUiconMain"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="@dimen/lyElementLostItemFromToMarginStart"
-            android:background="@mipmap/imgtnulogo" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/lyMarginMainAll"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/btSignUpBack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:src="@mipmap/back_blue" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/ivTNUiconMain"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:background="@mipmap/imgtnulogo" />
+        </RelativeLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/lySignUpPersonNameMarginTop"
             android:orientation="horizontal">
 
             <EditText
@@ -167,7 +180,7 @@
             android:text="@string/save_amp_next"
             android:textAllCaps="false"
             android:textColor="@color/white"
-            android:textSize="@dimen/btSignInSignUpSize" />
+            android:textSize="@dimen/btSizeAll" />
     </LinearLayout>
 
 </android.support.design.widget.CoordinatorLayout>

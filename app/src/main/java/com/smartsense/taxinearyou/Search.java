@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.smartsense.taxinearyou.Fragments.FragmentBook;
 import com.smartsense.taxinearyou.Fragments.FragmentCredit;
 import com.smartsense.taxinearyou.Fragments.FragmentMenu;
+import com.smartsense.taxinearyou.Fragments.FragmentMore;
 import com.smartsense.taxinearyou.Fragments.FragmentMyTrips;
 
 import java.util.ArrayList;
@@ -47,38 +48,41 @@ public class Search extends AppCompatActivity {
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new FragmentBook(), "Book");
-        adapter.addFragment(new FragmentMyTrips(), "My Trips");
-        adapter.addFragment(new FragmentCredit(), "Credit");
-        adapter.addFragment(new FragmentMenu(), "Menu");
+        adapter.addFragment(new FragmentBook(), getResources().getString(R.string.book));
+        adapter.addFragment(new FragmentMyTrips(), getResources().getString(R.string.my_trip));
+        adapter.addFragment(new FragmentCredit(), getResources().getString(R.string.credit));
+        adapter.addFragment(new FragmentMenu(), getResources().getString(R.string.menu));
+        adapter.addFragment(new FragmentMore(), getResources().getString(R.string.more));
 
         viewPager.setAdapter(adapter);
     }
 
     private void setupTabIcons() {
 
-
         TextView tabOne = (TextView) LayoutInflater.from(this).inflate(R.layout.element_search, null);
-        tabOne.setText("Book");
+        tabOne.setText(R.string.book);
         tabOne.setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.car_white, 0, 0);
         tbSearchTab.getTabAt(0).setCustomView(tabOne);
 
         TextView tabTwo = (TextView) LayoutInflater.from(this).inflate(R.layout.element_search, null);
-        tabTwo.setText("My Trips");
+        tabTwo.setText(R.string.my_trip);
         tabTwo.setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.ic_baggage, 0, 0);
         tbSearchTab.getTabAt(1).setCustomView(tabTwo);
 
         TextView tabThree = (TextView) LayoutInflater.from(this).inflate(R.layout.element_search, null);
-        tabThree.setText("Credit");
+        tabThree.setText(R.string.credit);
         tabThree.setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.coins2, 0, 0);
         tbSearchTab.getTabAt(2).setCustomView(tabThree);
 
         TextView tabFour = (TextView) LayoutInflater.from(this).inflate(R.layout.element_search, null);
-        tabFour.setText("Menu");
+        tabFour.setText(R.string.menu);
         tabFour.setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.hamburger, 0, 0);
         tbSearchTab.getTabAt(3).setCustomView(tabFour);
 
-
+        TextView tabFive = (TextView) LayoutInflater.from(this).inflate(R.layout.element_search, null);
+        tabFive.setText(R.string.more);
+        tabFive.setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.more, 0, 0);
+        tbSearchTab.getTabAt(4).setCustomView(tabFive);
     }
 
     class ViewPagerAdapter extends FragmentPagerAdapter {
