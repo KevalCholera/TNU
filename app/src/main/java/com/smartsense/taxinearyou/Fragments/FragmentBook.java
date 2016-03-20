@@ -15,7 +15,7 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
-import com.smartsense.taxinearyou.GoogleApi;
+import com.smartsense.taxinearyou.GooglePlaces;
 import com.smartsense.taxinearyou.R;
 import com.smartsense.taxinearyou.SearchCars;
 
@@ -215,19 +215,19 @@ public class FragmentBook extends Fragment implements View.OnClickListener {
                 break;
 
             case R.id.tvBookFrom:
-                startActivityForResult(new Intent(getActivity(), GoogleApi.class), 1);
+                startActivityForResult(new Intent(getActivity(), GooglePlaces.class), 1);
                 break;
 
             case R.id.tvBookTo:
-                startActivityForResult(new Intent(getActivity(), GoogleApi.class), 2);
+                startActivityForResult(new Intent(getActivity(), GooglePlaces.class), 2);
                 break;
 
             case R.id.tvBookvia1:
-                startActivityForResult(new Intent(getActivity(), GoogleApi.class), 3);
+                startActivityForResult(new Intent(getActivity(), GooglePlaces.class), 3);
                 break;
 
             case R.id.tvBookvia2:
-                startActivityForResult(new Intent(getActivity(), GoogleApi.class), 4);
+                startActivityForResult(new Intent(getActivity(), GooglePlaces.class), 4);
                 break;
         }
     }

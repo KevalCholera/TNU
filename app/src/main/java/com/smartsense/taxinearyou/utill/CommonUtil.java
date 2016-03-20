@@ -408,7 +408,7 @@ public class CommonUtil {
             final AlertDialog.Builder alertDialogs = new AlertDialog.Builder(activity);
             LayoutInflater inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-            final View dialog = inflater.inflate(R.layout.pop_up_all, null);
+            final View dialog = inflater.inflate(R.layout.Dialog_All, null);
             LinearLayout linearLayout = (LinearLayout) dialog.findViewById(layout);
             Button button1 = (Button) dialog.findViewById(button);
 

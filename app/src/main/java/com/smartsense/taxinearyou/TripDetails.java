@@ -87,7 +87,7 @@ public void openOccasionsPopup() {
 
         final AlertDialog.Builder alertDialogs = new AlertDialog.Builder(this);
         LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        final View dialog = inflater.inflate(R.layout.pop_up_all, null);
+        final View dialog = inflater.inflate(R.layout.Dialog_All, null);
         LinearLayout lyPopUpCancelRide = (LinearLayout) dialog.findViewById(R.id.lyPopUpCancelRide);
         lyPopUpCancelRide.setVisibility(View.VISIBLE);
 

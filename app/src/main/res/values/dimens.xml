@@ -105,6 +105,7 @@
     <dimen name="tvAccountSecurityCheckTextSizeAll">13sp</dimen>
     <dimen name="vHeightWidthAll">1dp</dimen>
     <dimen name="lyPaddingMainAll">20dp</dimen>
+    <dimen name="lyPadding10">10dp</dimen>
     <dimen name="lyMarginMainAll">20dp</dimen>
     <dimen name="lyAccountSecurityMarginBottomAll">5dp</dimen>
     <dimen name="lyAccountSecurityCheckTextMarginStartTop">10dp</dimen>
@@ -156,6 +157,7 @@
     <dimen name="vPersonalInfoMarginTopBottomAll">5dp</dimen>
     <dimen name="tvPersonalInfoCheckDownMarginTop">5dp</dimen>
     <dimen name="tvMarginTopBottomStartEndAll">10dp</dimen>
+    <dimen name="tvPopUpMarginTop">15dp</dimen>
     <dimen name="rbMarginTopBottomStartEndAll">10dp</dimen>
     <dimen name="tabSearchTabHeight">60dp</dimen>
     <dimen name="rgSearchCarsMarginTop">2dp</dimen>

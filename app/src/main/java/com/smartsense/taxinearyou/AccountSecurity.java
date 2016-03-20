@@ -76,7 +76,7 @@ public class AccountSecurity extends AppCompatActivity implements View.OnClickLi
         try {
             final AlertDialog.Builder alertDialogs = new AlertDialog.Builder(this);
             LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            dialog = inflater.inflate(R.layout.pop_up_all, null);
+            dialog = inflater.inflate(R.layout.Dialog_All, null);
             dialog.setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
 
             lyPopUpAlternateEmail = (LinearLayout) dialog.findViewById(R.id.lyPopUpAlternateEmail);

@@ -9,8 +9,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <include
-            layout="@layout/element_appbar" />
+        <include layout="@layout/element_appbar" />
 
         <ScrollView
             android:layout_width="match_parent"

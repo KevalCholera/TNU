@@ -162,7 +162,7 @@
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateHidden" />
         <activity
-            android:name=".GooglePlacesAutocompleteActivity"
+            android:name=".GooglePlaces"
             android:label="Google Places"
             android:theme="@style/AppTheme" />
         <activity
