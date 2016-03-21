@@ -231,6 +231,22 @@ public class FragmentBook extends Fragment implements View.OnClickListener {
                 break;
         }
     }
+
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        // check if the request code is same as what is passed  here it is 2
+        String message;
+        if (resultCode == 1) {
+            message = data.getStringExtra("From");
+            if (requestCode == 1) {
+                tvBookFrom.setText(message);
+            } else if (requestCode == 2) {
+                tvBookTo.setText(message);
+            } else if (requestCode == 3) {
+                tvBookvia1.setText(message);
+            } else if (requestCode == 4) {
+                tvBookvia2.setText(message);
+            }
+        }
+    }
 }
-
-

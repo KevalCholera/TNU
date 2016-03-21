@@ -22,7 +22,7 @@ public class FragmentMenu extends android.support.v4.app.Fragment implements Vie
     CircleImageView1 cvAccountPhoto;
     TextView tvAccountPersonName;
     TextView tvAccountGeneralInfo, tvAccountAccountSecurity, tvAccountPayment,
-            tvAccountCredits, tvAccountLostItems, tvAccountLogout;
+            tvAccountCredits, tvAccountLostItems, tvAccountLogout, tvAccountMore;
 
     ImageView ivEditProfilePhoto;
     Button btAccountActivateNow;
@@ -39,6 +39,7 @@ public class FragmentMenu extends android.support.v4.app.Fragment implements Vie
         tvAccountPayment = (TextView) rootView.findViewById(R.id.tvAccountPayment);
         tvAccountCredits = (TextView) rootView.findViewById(R.id.tvAccountCredits);
         tvAccountLostItems = (TextView) rootView.findViewById(R.id.tvAccountLostItems);
+        tvAccountMore = (TextView) rootView.findViewById(R.id.tvAccountMore);
         tvAccountLogout = (TextView) rootView.findViewById(R.id.tvAccountLogout);
         btAccountActivateNow = (Button) rootView.findViewById(R.id.btAccountActivateNow);
         ivEditProfilePhoto = (ImageView) rootView.findViewById(R.id.ivEditProfilePhoto);
@@ -54,6 +55,7 @@ public class FragmentMenu extends android.support.v4.app.Fragment implements Vie
         tvAccountLostItems.setOnClickListener(this);
         tvAccountGeneralInfo.setOnClickListener(this);
         tvAccountPayment.setOnClickListener(this);
+        tvAccountMore.setOnClickListener(this);
         return rootView;
 
     }
@@ -76,6 +78,9 @@ public class FragmentMenu extends android.support.v4.app.Fragment implements Vie
                 startActivity(new Intent(getActivity(), GeneralInformation.class));
                 break;
             case R.id.tvAccountPayment:
+                startActivity(new Intent(getActivity(), CardList.class));
+                break;
+            case R.id.tvAccountMore:
                 startActivity(new Intent(getActivity(), CardList.class));
                 break;
         }

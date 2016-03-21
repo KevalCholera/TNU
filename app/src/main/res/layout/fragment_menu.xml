@@ -143,7 +143,7 @@
             android:layout_marginStart="@dimen/lyAccountMarginTopAll"
             android:layout_marginTop="@dimen/tvAccountAllMarginTop"
             android:drawablePadding="@dimen/tvAccountDrawablePaddingAll"
-            android:drawableStart="@mipmap/coins"
+            android:drawableStart="@mipmap/coins_coming"
             android:gravity="fill"
             android:text="@string/Credits"
             android:textColor="@color/dark_gray"
@@ -173,6 +173,20 @@
             android:textSize="@dimen/tvAccountAllSize"
             android:textStyle="italic" />
 
+        <TextView
+            android:id="@+id/tvAccountMore"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/etHeightAll"
+            android:layout_marginEnd="@dimen/tvAccountAllMarginStartEnd"
+            android:layout_marginStart="@dimen/lyAccountMarginTopAll"
+            android:layout_marginTop="@dimen/tvAccountAllMarginTop"
+            android:drawablePadding="@dimen/tvAccountDrawablePaddingAll"
+            android:drawableStart="@mipmap/ic_more"
+            android:gravity="fill"
+            android:text="@string/more"
+            android:textColor="@color/black"
+            android:textSize="@dimen/tvAccountAllSize"
+            android:textStyle="italic" />
 
         <View
             android:layout_width="match_parent"

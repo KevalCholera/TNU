@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/lyPaddingMainAll">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.6"
+            android:background="@drawable/gray"
+            android:orientation="horizontal">
+
+            <AutoCompleteTextView
+                android:id="@+id/atv_places"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/etHeightAll"
+                android:layout_weight="1"
+                android:background="@null"
+                android:drawableStart="@mipmap/imglostitems"
+                android:ems="10"
+                android:hint="@string/please_enter_your_place"
+                android:imeOptions="actionSearch"
+                android:inputType="text"
+                android:textColor="@color/black"
+                android:textColorHint="@color/dark_gray"
+                android:textSize="@dimen/etSignInUserPassSize"
+                android:textStyle="italic">
+
+                <requestFocus />
+            </AutoCompleteTextView>
+
+            <ImageButton
+                android:id="@+id/ibGooglePlaceEmpty"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:layout_gravity="center"
+                android:src="@mipmap/clear"
+                android:visibility="gone" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvGooglePlacesCancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="@dimen/tvMarginTopBottomStartEndAll"
+            android:background="@null"
+            android:text="@string/cancel"
+            android:textColor="@color/background"
+            android:textSize="@dimen/tvHeadingSizeAll" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/vReviewTextAllMargin"
+        android:layout_marginTop="@dimen/tvPopupMarginTop"
+        android:background="@color/background" />
+</LinearLayout>

@@ -15,7 +15,6 @@ import android.widget.TextView;
 import com.smartsense.taxinearyou.Fragments.FragmentBook;
 import com.smartsense.taxinearyou.Fragments.FragmentCredit;
 import com.smartsense.taxinearyou.Fragments.FragmentMenu;
-import com.smartsense.taxinearyou.Fragments.FragmentMore;
 import com.smartsense.taxinearyou.Fragments.FragmentMyTrips;
 
 import java.util.ArrayList;
@@ -52,7 +51,6 @@ public class Search extends AppCompatActivity {
         adapter.addFragment(new FragmentMyTrips(), getResources().getString(R.string.my_trip));
         adapter.addFragment(new FragmentCredit(), getResources().getString(R.string.credit));
         adapter.addFragment(new FragmentMenu(), getResources().getString(R.string.menu));
-        adapter.addFragment(new FragmentMore(), getResources().getString(R.string.more));
 
         viewPager.setAdapter(adapter);
     }
@@ -78,11 +76,6 @@ public class Search extends AppCompatActivity {
         tabFour.setText(R.string.menu);
         tabFour.setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.hamburger, 0, 0);
         tbSearchTab.getTabAt(3).setCustomView(tabFour);
-
-        TextView tabFive = (TextView) LayoutInflater.from(this).inflate(R.layout.element_search, null);
-        tabFive.setText(R.string.more);
-        tabFive.setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.more, 0, 0);
-        tbSearchTab.getTabAt(4).setCustomView(tabFive);
     }
 
     class ViewPagerAdapter extends FragmentPagerAdapter {

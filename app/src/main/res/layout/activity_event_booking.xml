@@ -1,0 +1,410 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/clEventBooking"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context="com.smartsense.taxinearyou.EventBooking">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include
+            layout="@layout/element_appbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/lyPaddingMainAll">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/first_name_"
+                    android:textColor="@color/background" />
+
+                <EditText
+                    android:id="@+id/etEventBookingFirstName"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/etHeightAll"
+                    android:background="@drawable/grayborder"
+                    android:inputType="text"
+                    android:paddingStart="@dimen/etSignUpAllPaddingStartEnd"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/etSignUpSizeAll" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
+                    android:text="@string/last_name_"
+                    android:textColor="@color/background" />
+
+                <EditText
+                    android:id="@+id/etEventBookingLastName"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/etHeightAll"
+                    android:background="@drawable/grayborder"
+                    android:inputType="text"
+                    android:paddingStart="@dimen/etSignUpAllPaddingStartEnd"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/etSignUpSizeAll" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
+                    android:text="@string/email_add_"
+                    android:textColor="@color/background" />
+
+                <EditText
+                    android:id="@+id/etEventBookingEmailAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/etHeightAll"
+                    android:background="@drawable/grayborder"
+                    android:inputType="textEmailAddress"
+                    android:paddingStart="@dimen/etSignUpAllPaddingStartEnd"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/etSignUpSizeAll" />
+
+                <RadioGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/rbEventBookingOneWay"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:button="@drawable/radio_button_popup"
+                        android:checked="true"
+                        android:text="@string/one_way"
+                        android:textColor="@color/background" />
+
+                    <RadioButton
+                        android:id="@+id/rbEventBookingReturn"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/rbMarginTopBottomStartEndAll"
+                        android:layout_weight="1"
+                        android:button="@drawable/radio_button_popup"
+                        android:text="@string/returns"
+                        android:textColor="@color/background" />
+
+                </RadioGroup>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/tvMarginTopBottomStartEndAll"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/date_amp_time_"
+                            android:textColor="@color/background" />
+
+                        <EditText
+                            android:id="@+id/etEventBookingDateTime"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/etHeightAll"
+                            android:background="@drawable/grayborder"
+                            android:clickable="true"
+                            android:cursorVisible="false"
+                            android:focusable="false"
+                            android:paddingStart="@dimen/etSignUpAllPaddingStartEnd"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/etSignUpSizeAll" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/tvMarginTopBottomStartEndAll"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/event_duration"
+                            android:textColor="@color/background" />
+
+                        <EditText
+                            android:id="@+id/etEventBookingEventDuration"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/etHeightAll"
+                            android:background="@drawable/grayborder"
+                            android:clickable="true"
+                            android:cursorVisible="false"
+                            android:focusable="false"
+                            android:paddingStart="@dimen/etSignUpAllPaddingStartEnd"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/etSignUpSizeAll" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/tvMarginTopBottomStartEndAll"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/contact_number_"
+                            android:textColor="@color/background" />
+
+                        <EditText
+                            android:id="@+id/etEventBookingContactNumber"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/etHeightAll"
+                            android:background="@drawable/grayborder"
+                            android:imeOptions="actionNext"
+                            android:inputType="phone"
+                            android:paddingStart="@dimen/etSignUpAllPaddingStartEnd"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/etSignUpSizeAll" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/tvMarginTopBottomStartEndAll"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/vehicle_type_"
+                            android:textColor="@color/background" />
+
+                        <EditText
+                            android:id="@+id/etEventBookingVehicleType"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/etHeightAll"
+                            android:background="@drawable/grayborder"
+                            android:clickable="true"
+                            android:cursorVisible="false"
+                            android:focusable="false"
+                            android:paddingStart="@dimen/etSignUpAllPaddingStartEnd"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/etSignUpSizeAll" />
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/tvMarginTopBottomStartEndAll"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/pickup_"
+                            android:textColor="@color/background" />
+
+                        <EditText
+                            android:id="@+id/etEventBookingPickUp"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/etHeightAll"
+                            android:background="@drawable/grayborder"
+                            android:clickable="true"
+                            android:cursorVisible="false"
+                            android:focusable="false"
+                            android:paddingStart="@dimen/etSignUpAllPaddingStartEnd"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/etSignUpSizeAll" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/tvMarginTopBottomStartEndAll"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/drop_off_"
+                            android:textColor="@color/background" />
+
+                        <EditText
+                            android:id="@+id/etEventBookingEventDropOff"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/etHeightAll"
+                            android:background="@drawable/grayborder"
+                            android:clickable="true"
+                            android:cursorVisible="false"
+                            android:focusable="false"
+                            android:paddingStart="@dimen/etSignUpAllPaddingStartEnd"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/etSignUpSizeAll" />
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/tvMarginTopBottomStartEndAll"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/passengers_"
+                            android:textColor="@color/background" />
+
+                        <EditText
+                            android:id="@+id/etEventBookingPassengers"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/etHeightAll"
+                            android:background="@drawable/grayborder"
+                            android:clickable="true"
+                            android:cursorVisible="false"
+                            android:focusable="false"
+                            android:paddingStart="@dimen/etSignUpAllPaddingStartEnd"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/etSignUpSizeAll" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/tvMarginTopBottomStartEndAll"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/luggage_"
+                            android:textColor="@color/background" />
+
+                        <EditText
+                            android:id="@+id/etEventBookingEventLuggage"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/etHeightAll"
+                            android:background="@drawable/grayborder"
+                            android:clickable="true"
+                            android:cursorVisible="false"
+                            android:focusable="false"
+                            android:paddingStart="@dimen/etSignUpAllPaddingStartEnd"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/etSignUpSizeAll" />
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
+                    android:text="@string/any_other_requirement"
+                    android:textColor="@color/background" />
+
+                <EditText
+                    android:id="@+id/etEventBookingReq"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/etLongTextHeightAll"
+                    android:background="@drawable/grayborder"
+                    android:gravity="top"
+                    android:imeOptions="actionDone"
+                    android:inputType="textLongMessage"
+                    android:paddingStart="@dimen/etSignUpAllPaddingStartEnd"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/etSignUpSizeAll" />
+            </LinearLayout>
+        </ScrollView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btEventBookingBookNow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/yellow"
+                android:text="@string/booknow"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="@dimen/btSizeAll" />
+
+            <Button
+                android:id="@+id/btEventBookingCancel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/yellowborder"
+                android:text="@string/cancel"
+                android:textAllCaps="false"
+                android:textColor="@color/Yellow"
+                android:textSize="@dimen/btSizeAll" />
+        </LinearLayout>
+
+    </LinearLayout>
+</android.support.design.widget.CoordinatorLayout>

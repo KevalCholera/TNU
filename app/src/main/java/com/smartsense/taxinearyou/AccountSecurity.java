@@ -76,7 +76,7 @@ public class AccountSecurity extends AppCompatActivity implements View.OnClickLi
         try {
             final AlertDialog.Builder alertDialogs = new AlertDialog.Builder(this);
             LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            dialog = inflater.inflate(R.layout.Dialog_All, null);
+            dialog = inflater.inflate(R.layout.dialog_all, null);
             dialog.setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
 
             lyPopUpAlternateEmail = (LinearLayout) dialog.findViewById(R.id.lyPopUpAlternateEmail);
@@ -176,7 +176,7 @@ public class AccountSecurity extends AppCompatActivity implements View.OnClickLi
                                         public void onClick(View v) {
                                             if (TextUtils.isEmpty(etPopupSecurityPassword.getText().toString())) {
                                                 CommonUtil.showSnackBar(AccountSecurity.this, getString(R.string.enter_pass), clPopUpMain);
-                                            } else if (etPopupSecurityPassword.length() < 7 || etPopupSecurityPassword.length() >15) {
+                                            } else if (etPopupSecurityPassword.length() < 7 || etPopupSecurityPassword.length() > 15) {
                                                 CommonUtil.showSnackBar(AccountSecurity.this, getString(R.string.enter_valid_pass), clPopUpMain);
                                             } else if (TextUtils.isEmpty(etPopupSecurityConfirmPassword.getText().toString())) {
                                                 CommonUtil.showSnackBar(AccountSecurity.this, getString(R.string.enter_pass), clPopUpMain);

@@ -36,6 +36,7 @@
                     android:gravity="fill"
                     android:hint="@string/from"
                     android:paddingStart="@dimen/etSignInUserPasswordPaddingStartEnd"
+                    android:singleLine="true"
                     android:textColor="@color/black"
                     android:textSize="@dimen/etSignInUserPassSize" />
 
@@ -80,6 +81,7 @@
                     android:gravity="fill"
                     android:hint="@string/to"
                     android:paddingStart="@dimen/etSignInUserPasswordPaddingStartEnd"
+                    android:singleLine="true"
                     android:textColor="@color/black"
                     android:textSize="@dimen/etSignInUserPassSize" />
             </LinearLayout>
@@ -127,6 +129,8 @@
                 android:hint="@string/via1"
                 android:padding="@dimen/tvSearchAllPadding"
                 android:paddingStart="@dimen/ivetBookViaPaddingStart"
+                android:singleLine="true"
+                android:textColor="@color/black"
                 android:textSize="@dimen/tvSearchAllSize" />
 
             <ImageView
@@ -162,6 +166,8 @@
                 android:hint="@string/via2"
                 android:padding="@dimen/tvSearchAllPadding"
                 android:paddingStart="@dimen/ivetBookViaPaddingStart"
+                android:singleLine="true"
+                android:textColor="@color/black"
                 android:textSize="@dimen/tvSearchAllSize" />
 
             <ImageView
@@ -264,6 +270,7 @@
                 android:hint="@string/luggage"
                 android:inputType="text"
                 android:paddingStart="@dimen/etSignInUserPasswordPaddingStartEnd"
+                android:singleLine="true"
                 android:textColor="@color/black"
                 android:textSize="@dimen/etSignInUserPassSize" />
 
@@ -280,6 +287,7 @@
                 android:hint="@string/passengers"
                 android:inputType="text"
                 android:paddingStart="@dimen/tvPopupMarginTop"
+                android:singleLine="true"
                 android:textColor="@color/black"
                 android:textSize="@dimen/etSignInUserPassSize" />
 

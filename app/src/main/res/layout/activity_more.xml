@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:padding="@dimen/lyPaddingMainAll">
+
+    <TextView
+        android:id="@+id/tvMoreEventBooking"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableEnd="@mipmap/arrow_right"
+        android:drawablePadding="@dimen/tvElementCardListMarginStartEnd5"
+        android:drawableStart="@mipmap/ticket"
+        android:gravity="fill"
+        android:text="@string/event_booking"
+        android:textColor="@color/black"
+        android:textSize="@dimen/tvAccountAllSize"
+        android:textStyle="italic" />
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/vAccountAllHeight"
+        android:background="@color/light_Gray" />
+
+    <TextView
+        android:id="@+id/tvMoreContactUs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/tvAccountAllMarginTop"
+        android:drawableEnd="@mipmap/arrow_right"
+        android:drawablePadding="@dimen/tvElementCardListMarginStartEnd5"
+        android:drawableStart="@mipmap/business_contact"
+        android:gravity="fill"
+        android:text="@string/contact_us"
+        android:textColor="@color/black"
+        android:textSize="@dimen/tvAccountAllSize"
+        android:textStyle="italic" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/vAccountAllHeight"
+        android:background="@color/light_Gray" />
+
+    <TextView
+        android:id="@+id/tvMoreAboutUs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/tvAccountAllMarginTop"
+        android:drawableEnd="@mipmap/arrow_right"
+        android:drawablePadding="@dimen/tvAccountDrawablePaddingAll"
+        android:drawableStart="@mipmap/about_us"
+        android:gravity="fill"
+        android:text="@string/about_us"
+        android:textColor="@color/black"
+        android:textSize="@dimen/tvAccountAllSize"
+        android:textStyle="italic" />
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/vAccountAllHeight"
+        android:background="#90cacaca" />
+
+    <TextView
+        android:id="@+id/tvMorePrivacyPolicy"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/tvAccountAllMarginTop"
+        android:drawableEnd="@mipmap/arrow_right"
+        android:drawablePadding="@dimen/tvAccountDrawablePaddingAll"
+        android:drawableStart="@mipmap/privacy"
+        android:gravity="fill"
+        android:text="@string/privacy_poicy"
+        android:textColor="@color/black"
+        android:textSize="@dimen/tvAccountAllSize"
+        android:textStyle="italic" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/vAccountAllHeight"
+        android:background="@color/light_Gray"
+        android:textColor="#90cacaca" />
+
+    <TextView
+        android:id="@+id/tvMoreTermsConditions"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/etHeightAll"
+        android:layout_marginTop="@dimen/tvAccountAllMarginTop"
+        android:drawableEnd="@mipmap/arrow_right"
+        android:drawablePadding="@dimen/tvAccountDrawablePaddingAll"
+        android:drawableStart="@mipmap/terms_conditions"
+        android:gravity="fill"
+        android:text="@string/terms_and_conditions"
+        android:textColor="@color/black"
+        android:textSize="@dimen/tvAccountAllSize"
+        android:textStyle="italic" />
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/vAccountAllHeight"
+        android:background="@color/light_Gray" />
+
+</LinearLayout>
