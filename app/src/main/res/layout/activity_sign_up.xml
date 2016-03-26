@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/clSignUp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@mipmap/imgappbackground"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/lyMarginMainAll"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/btSignUpBack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:src="@mipmap/back_blue" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/ivTNUiconMain"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:background="@mipmap/imgtnulogo" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/etSignUpFirstName"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/etHeightAll"
+                android:layout_gravity="center"
+                android:layout_marginEnd="@dimen/etSignUpPersonNameMarginEnd"
+                android:layout_marginStart="@dimen/etSignUpPersonNameMarginStart"
+                android:layout_weight="1"
+                android:background="@drawable/grayborder"
+                android:hint="@string/first_name"
+                android:imeOptions="actionNext"
+                android:inputType="text"
+                android:paddingStart="@dimen/etSignUpAllPaddingStartEnd"
+                android:textColor="@color/black"
+                android:textColorHint="@color/light_Gray"
+                android:textSize="@dimen/etSignUpSizeAll"
+                android:textStyle="italic" />
+
+            <EditText
+                android:id="@+id/etSignUpLastName"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/etHeightAll"
+                android:layout_gravity="center"
+                android:layout_marginEnd="@dimen/etSignUpLastNameMarginEnd"
+                android:layout_marginStart="@dimen/etSignUpLastNameMarginStart"
+                android:layout_weight="1"
+                android:background="@drawable/grayborder"
+                android:hint="@string/last_name"
+                android:inputType="text"
+                android:nextFocusDown="@+id/etSignUpContact"
+                android:paddingStart="@dimen/etSignUpAllPaddingStartEnd"
+                android:textColor="@color/black"
+                android:textColorHint="@color/light_Gray"
+                android:textSize="@dimen/etSignUpSizeAll"
+                android:textStyle="italic" />
+
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/etSignUpContact"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/etHeightAll"
+            android:layout_marginEnd="@dimen/etSignUpContactMarginStartEnd"
+            android:layout_marginStart="@dimen/etSignUpContactMarginStartEnd"
+            android:layout_marginTop="@dimen/etSignUpAllMarginTop"
+            android:background="@drawable/grayborder"
+            android:hint="@string/contact"
+            android:inputType="number"
+            android:paddingStart="@dimen/etSignUpAllPaddingStartEnd"
+            android:textColor="@color/black"
+            android:textColorHint="@color/light_Gray"
+            android:textSize="@dimen/etSignUpSizeAll"
+            android:textStyle="italic" />
+
+        <EditText
+            android:id="@+id/etSignUpEmail"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/etHeightAll"
+            android:layout_marginEnd="@dimen/etSignUpContactMarginStartEnd"
+            android:layout_marginStart="@dimen/etSignUpContactMarginStartEnd"
+            android:layout_marginTop="@dimen/etSignUpAllMarginTop"
+            android:background="@drawable/grayborder"
+            android:hint="@string/email"
+            android:inputType="textEmailAddress"
+            android:paddingStart="@dimen/etSignUpAllPaddingStartEnd"
+            android:textColor="@color/black"
+            android:textColorHint="@color/light_Gray"
+            android:textSize="@dimen/etSignUpSizeAll"
+            android:textStyle="italic" />
+
+        <EditText
+            android:id="@+id/etSignUpAlternateEmail"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/etHeightAll"
+            android:layout_marginEnd="@dimen/etSignUpContactMarginStartEnd"
+            android:layout_marginStart="@dimen/etSignUpContactMarginStartEnd"
+            android:layout_marginTop="@dimen/etSignUpAllMarginTop"
+            android:background="@drawable/grayborder"
+            android:hint="@string/alternate_email"
+            android:inputType="textEmailAddress"
+            android:paddingStart="@dimen/etSignUpAllPaddingStartEnd"
+            android:textColor="@color/black"
+            android:textColorHint="@color/light_Gray"
+            android:textSize="@dimen/etSignUpSizeAll"
+            android:textStyle="italic" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/etSignUpAllMarginTop"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/etSignUpPassword"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/etHeightAll"
+                android:layout_gravity="center"
+                android:layout_marginEnd="@dimen/etSignUpPersonNameMarginEnd"
+                android:layout_marginStart="@dimen/etSignUpPersonNameMarginStart"
+                android:layout_weight="1"
+                android:background="@drawable/grayborder"
+                android:hint="@string/password_signup"
+                android:imeOptions="actionNext"
+                android:inputType="textPassword"
+                android:paddingStart="@dimen/etSignUpAllPaddingStartEnd"
+                android:textColor="@color/black"
+                android:textColorHint="@color/light_Gray"
+                android:textSize="@dimen/etSignUpSizeAll"
+                android:textStyle="italic" />
+
+            <EditText
+                android:id="@+id/etSignUpConfirmPassword"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/etHeightAll"
+                android:layout_gravity="center"
+                android:layout_marginEnd="@dimen/etSignUpLastNameMarginEnd"
+                android:layout_marginStart="@dimen/etSignUpLastNameMarginStart"
+                android:layout_weight="1"
+                android:background="@drawable/grayborder"
+                android:hint="@string/confirm_password"
+                android:inputType="textPassword"
+                android:paddingStart="@dimen/etSignUpAllPaddingStartEnd"
+                android:textColor="@color/black"
+                android:textColorHint="@color/light_Gray"
+                android:textSize="@dimen/etSignUpSizeAll" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btSignUpSaveNext"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/btSignUpAllheight"
+            android:layout_gravity="center"
+            android:layout_marginBottom="@dimen/tvSignUpSignUpMarginBottom"
+            android:layout_marginEnd="@dimen/etSignUpContactMarginStartEnd"
+            android:layout_marginStart="@dimen/etSignUpContactMarginStartEnd"
+            android:layout_marginTop="@dimen/btSignUpAllMarginTop"
+            android:background="@drawable/yellow"
+            android:text="@string/save_amp_next"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/btSizeAll" />
+    </LinearLayout>
+
+</android.support.design.widget.CoordinatorLayout>

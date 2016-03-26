@@ -12,7 +12,7 @@ import android.view.WindowManager;
 import com.smartsense.taxinearyou.utill.LocationSettingsHelper;
 
 
-public class ActivitySplash extends AppCompatActivity{
+public class ActivitySplash extends AppCompatActivity {
     private LocationSettingsHelper mSettingsHelper;
 
 
@@ -69,7 +69,7 @@ public class ActivitySplash extends AppCompatActivity{
 //                        }
 //                    } else
 //                    startActivity(new Intent(getBaseContext(), NoInternetConnection.class));
-                        startActivity(new Intent(getBaseContext(), ActivityTaxiNearYou.class));
+                    startActivity(new Intent(getBaseContext(), SignIn.class));
                     finish();
 
                 } catch (InterruptedException e) {
@@ -101,8 +101,4 @@ public class ActivitySplash extends AppCompatActivity{
 
         }
     }
-
-
-
-
 }

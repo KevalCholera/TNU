@@ -16,7 +16,7 @@ import com.smartsense.taxinearyou.imageutil.BitmapUtil;
 public class TaxiNearYouApp extends Application {
     private static TaxiNearYouApp appInstance;
     public static final String TAG = TaxiNearYouApp.class.getSimpleName();
-//    private static char[] KEYSTORE_PASSWORD = "gifkar".toCharArray();
+    //    private static char[] KEYSTORE_PASSWORD = "gifkar".toCharArray();
     private RequestQueue requestQueue;
     private ImageLoader imageLoader;
     private static Context mAppContext;
@@ -39,6 +39,7 @@ public class TaxiNearYouApp extends Application {
     public static Context getAppContext() {
         return mAppContext;
     }
+
     public void setAppContext(Context mAppContext) {
         this.mAppContext = mAppContext;
     }
