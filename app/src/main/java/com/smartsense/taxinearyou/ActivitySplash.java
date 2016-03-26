@@ -9,6 +9,8 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
+import com.mpt.storage.SharedPreferenceUtil;
+import com.smartsense.taxinearyou.utill.Constants;
 import com.smartsense.taxinearyou.utill.LocationSettingsHelper;
 
 
@@ -69,7 +71,10 @@ public class ActivitySplash extends AppCompatActivity {
 //                        }
 //                    } else
 //                    startActivity(new Intent(getBaseContext(), NoInternetConnection.class));
-                    startActivity(new Intent(getBaseContext(), SignIn.class));
+                    if (SharedPreferenceUtil.contains(Constants.PrefKeys.PREF_ACCESS_TOKEN))
+                        startActivity(new Intent(getBaseContext(), Search.class));
+                    else
+                        startActivity(new Intent(getBaseContext(), SignIn.class));
                     finish();
 
                 } catch (InterruptedException e) {

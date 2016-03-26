@@ -12,9 +12,19 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.mpt.storage.SharedPreferenceUtil;
 import com.smartsense.taxinearyou.utill.CommonUtil;
+import com.smartsense.taxinearyou.utill.Constants;
+import com.smartsense.taxinearyou.utill.DataRequest;
+import com.smartsense.taxinearyou.utill.JsonErrorShow;
 
-public class SignIn extends AppCompatActivity implements View.OnClickListener {
+import org.json.JSONException;
+import org.json.JSONObject;
+
+public class SignIn extends AppCompatActivity implements Response.Listener<JSONObject>, Response.ErrorListener, View.OnClickListener {
 
     Button btSignInSignIn, btSignInSignUp;
     EditText etSignInUserName, etSignInPassword;
@@ -81,8 +91,9 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
                 else if (etSignInPassword.length() < 7 || etSignInPassword.length() > 15)
                     CommonUtil.showSnackBar(SignIn.this, getString(R.string.enter_valid_pass), rlSignInMain);
                 else {
-                    startActivity(new Intent(SignIn.this, Search.class));
-                    null_all();
+//                    startActivity(new Intent(SignIn.this, Search.class));
+//                    null_all();
+                    doLogin();
                 }
                 break;
             case R.id.btSignInSignUp:
@@ -103,5 +114,61 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
     public void null_all() {
         etSignInUserName.setText("");
         etSignInPassword.setText("");
+    }
+
+    private void doLogin() {
+        final String tag = "login";
+        StringBuilder builder = new StringBuilder();
+        JSONObject jsonData = new JSONObject();
+
+        try {
+            builder.append(Constants.BASE_URL + Constants.BASE_URL_POSTFIX + Constants.Events.EVENT_LOGIN + "&json="
+                    + jsonData.put("password", etSignInPassword.getText().toString().trim()).put("username", etSignInUserName.getText().toString().trim()).toString());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        CommonUtil.showProgressDialog(this, "Login...");
+        DataRequest dataRequest = new DataRequest(Request.Method.GET, builder.toString(), null, this, this);
+        TaxiNearYouApp.getInstance().addToRequestQueue(dataRequest, tag);
+    }
+
+    @Override
+    public void onErrorResponse(VolleyError volleyError) {
+        CommonUtil.alertBox(this, "", getResources().getString(R.string.nointernet_try_again_msg));
+        CommonUtil.cancelProgressDialog();
+    }
+
+    @Override
+    public void onResponse(JSONObject response) {
+        CommonUtil.cancelProgressDialog();
+        if (response != null) {
+            try {
+                if (response.getInt("status") == Constants.STATUS_SUCCESS) {
+//                    switch (response.getInt("__eventid")) {
+//                        case Constants.Events.EVENT_LOGIN:
+                    SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_ACCESS_TOKEN, response.optJSONObject("json").optString("token"));
+                    SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_USER_ID, response.optJSONObject("json").optJSONObject("user").optString("userId"));
+                    SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_USER_FULLNAME, response.optJSONObject("json").optJSONObject("user").optString("firstName") + " " + response.optJSONObject("json").getJSONObject("user").getString("lastName"));
+                    SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_USER_EMAIL, response.optJSONObject("json").optJSONObject("user").optString("primaryEmailId"));
+                    SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_USER_MNO, response.optJSONObject("json").optJSONObject("user").optString("mobileNo"));
+                    SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_USER_PROIMG, response.optJSONObject("json").optJSONObject("user").optString("profilePic"));
+                    SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_USER_STATUS, response.optJSONObject("json").optJSONObject("user").optString("isActivated"));
+                    SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_USER_INFO, response.optJSONObject("json").optJSONObject("user").toString());
+                    SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_LUGGAGE, response.optJSONObject("json").optJSONArray("luggageArray").toString());
+                    SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_PASSENGER, response.optJSONObject("json").optJSONArray("passengerArray").toString());
+                    SharedPreferenceUtil.save();
+                    startActivity(new Intent(this, Search.class));
+                    finish();
+//                            break;
+//                    }
+                } else {
+                    JsonErrorShow.jsonErrorShow(response, this, rlSignInMain);
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
     }
 }

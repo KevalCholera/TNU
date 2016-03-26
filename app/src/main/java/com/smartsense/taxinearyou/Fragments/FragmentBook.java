@@ -1,23 +1,33 @@
 package com.smartsense.taxinearyou.Fragments;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
+import com.mpt.storage.SharedPreferenceUtil;
 import com.smartsense.taxinearyou.GooglePlaces;
 import com.smartsense.taxinearyou.R;
 import com.smartsense.taxinearyou.SearchCars;
+import com.smartsense.taxinearyou.utill.Constants;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -37,6 +47,7 @@ public class FragmentBook extends Fragment implements View.OnClickListener {
     Calendar calendar;
     CoordinatorLayout clSearch;
     TimePickerDialog mTimePicker;
+    private AlertDialog alert;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -83,7 +94,7 @@ public class FragmentBook extends Fragment implements View.OnClickListener {
         llBookVia2.setOnClickListener(this);
         ivBookDeleteVia1.setOnClickListener(this);
         ivBookDeleteVia2.setOnClickListener(this);
-
+        setDefaultValues();
         return rootView;
     }
 
@@ -229,6 +240,13 @@ public class FragmentBook extends Fragment implements View.OnClickListener {
             case R.id.tvBookvia2:
                 startActivityForResult(new Intent(getActivity(), GooglePlaces.class), 4);
                 break;
+            case R.id.tvBookPassenger:
+                openQuestionSelectPopup(false);
+                break;
+            case R.id.tvBookLuggage:
+                openQuestionSelectPopup(true);
+                break;
+
         }
     }
 
@@ -247,6 +265,128 @@ public class FragmentBook extends Fragment implements View.OnClickListener {
             } else if (requestCode == 4) {
                 tvBookvia2.setText(message);
             }
+        }
+    }
+
+    public void setDefaultValues() {
+        String str = "";
+        JSONArray jsonObject;
+        try {
+
+            str = SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_LUGGAGE, "");
+            jsonObject = new JSONArray(str);
+            if (jsonObject.length() > 0) {
+                tvBookLuggage.setTag(jsonObject.optJSONObject(0).optString("luggageId"));
+                tvBookLuggage.setText(jsonObject.optJSONObject(0).optString("name"));
+
+            }
+            str = SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_PASSENGER, "");
+            jsonObject = new JSONArray(str);
+            if (jsonObject.length() > 0) {
+                if (jsonObject.optJSONObject(0).optString("name").equalsIgnoreCase("1"))
+                    tvBookPassenger.setText(jsonObject.optJSONObject(0) + " passenger");
+                else
+                    tvBookPassenger.setText(jsonObject.optJSONObject(0) + " passengers");
+                tvBookPassenger.setTag(jsonObject.optJSONObject(0).optString("passengerCountId"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
+    public void openQuestionSelectPopup(Boolean check) {
+        try {
+
+            final AlertDialog.Builder alertDialogs = new AlertDialog.Builder(getActivity());
+            LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            View dialog = inflater.inflate(R.layout.dialog_select_question, null);
+
+            TextView tvCityDialogHead = (TextView) dialog.findViewById(R.id.tvCityDialogHead);
+            String str = "";
+            if (check) {
+                str = SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_LUGGAGE, "");
+                tvCityDialogHead.setText("Select Luggages");
+            } else {
+                str = SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_PASSENGER, "");
+                tvCityDialogHead.setText("Select Passenger/Passengers");
+            }
+            JSONArray jsonObject = new JSONArray(str);
+            ListView list_view = (ListView) dialog.findViewById(R.id.list_view);
+            AdapterClass adapterClass = new AdapterClass(getActivity(), jsonObject, check);
+            list_view.setAdapter(adapterClass);
+            alertDialogs.setView(dialog);
+            alertDialogs.setCancelable(true);
+            alert = alertDialogs.create();
+            alert.show();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public class AdapterClass extends BaseAdapter {
+        private final Boolean check;
+        private JSONArray data;
+        private LayoutInflater inflater = null;
+        Activity a;
+
+        public AdapterClass(Activity a, JSONArray data, Boolean check) {
+            this.data = data;
+            this.a = a;
+            this.check = check;
+            inflater = (LayoutInflater) a.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        }
+
+        public int getCount() {
+            return data.length();
+        }
+
+
+        public Object getItem(int position) {
+            return data.optJSONObject(position);
+        }
+
+
+        public long getItemId(int position) {
+            return position;
+        }
+
+
+        public View getView(int position, View convertView, ViewGroup parent) {
+            View vi = convertView;
+            if (convertView == null)
+                vi = inflater.inflate(R.layout.element_select_question, null);
+            final TextView cbElementClassName = (TextView) vi.findViewById(R.id.tvElementQuestionName);
+            JSONObject object = data.optJSONObject(position);
+            if (object.optInt("isEnable") == 1) {
+                if (check) {
+                    cbElementClassName.setTag(object.optString("luggageId"));
+                    cbElementClassName.setText(object.optString("name"));
+                } else {
+                    if (object.optString("name").equalsIgnoreCase("1"))
+                        cbElementClassName.setText(object.optString("name") + " passenger");
+                    else
+                        cbElementClassName.setText(object.optString("name") + " passengers");
+                    cbElementClassName.setTag(object.optString("passengerCountId"));
+                }
+                cbElementClassName.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (check) {
+                            tvBookLuggage.setText(cbElementClassName.getText().toString());
+                            tvBookLuggage.setTag((String) cbElementClassName.getTag());
+                        } else {
+                            tvBookPassenger.setText(cbElementClassName.getText().toString());
+                            tvBookPassenger.setTag((String) cbElementClassName.getTag());
+
+                        }
+                        alert.dismiss();
+                    }
+                });
+            }
+            return vi;
         }
     }
 }

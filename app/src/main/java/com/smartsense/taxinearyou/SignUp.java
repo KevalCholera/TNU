@@ -68,7 +68,7 @@ public class SignUp extends AppCompatActivity {
                 else if (!TextUtils.equals(etSignUpConfirmPassword.getText().toString(), etSignUpPassword.getText().toString()))
                     CommonUtil.showSnackBar(SignUp.this, getString(R.string.conpass_pass_same), clSignUp);
                 else
-                    startActivity(new Intent(SignUp.this, SecurityQuestion.class));
+                    startActivity(new Intent(SignUp.this, SecurityQuestion.class).putExtra("firstName", etSignUpFirstName.getText().toString().trim()).putExtra("lastName", etSignUpLastName.getText().toString().trim()).putExtra("contactNo", etSignUpContact.getText().toString().trim()).putExtra("emailId", etSignUpEmail.getText().toString().trim()).putExtra("password", etSignUpPassword.getText().toString().trim()).putExtra("confPassword", etSignUpConfirmPassword.getText().toString().trim()).putExtra("altEmailId", etSignUpAlternateEmail.getText().toString().trim()));
             }
         });
         btSignUpBack.setOnClickListener(new View.OnClickListener() {
@@ -78,4 +78,6 @@ public class SignUp extends AppCompatActivity {
             }
         });
     }
+
+
 }
