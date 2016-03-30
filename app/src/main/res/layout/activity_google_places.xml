@@ -2,13 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="@dimen/lyPaddingMainAll">
+
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:padding="@dimen/padding_10">
 
         <LinearLayout
             android:layout_width="0dp"
@@ -17,7 +18,7 @@
             android:background="@drawable/gray"
             android:orientation="horizontal">
 
-            <AutoCompleteTextView
+            <EditText
                 android:id="@+id/atv_places"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/etHeightAll"
@@ -34,14 +35,14 @@
                 android:textStyle="italic">
 
                 <requestFocus />
-            </AutoCompleteTextView>
+            </EditText>
 
             <ImageButton
                 android:id="@+id/ibGooglePlaceEmpty"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@null"
                 android:layout_gravity="center"
+                android:background="@null"
                 android:src="@mipmap/clear"
                 android:visibility="gone" />
         </LinearLayout>
@@ -62,6 +63,21 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/vReviewTextAllMargin"
-        android:layout_marginTop="@dimen/tvPopupMarginTop"
+
         android:background="@color/background" />
+
+    <ListView
+        android:id="@+id/lvGooglePlaces"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/tvElementCardListMarginStartEnd5"
+        android:src="@drawable/powered_by_google_light"
+        android:layout_gravity="right" />
+
 </LinearLayout>

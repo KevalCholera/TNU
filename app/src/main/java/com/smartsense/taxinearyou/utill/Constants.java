@@ -17,6 +17,10 @@ public class Constants {
     public static final String PRO_TITLE = "Please Wait";
     public static final String PRO_LIST = "Syncing Process Running...";
 
+    public static final String FROM_ADDRESS = "from_add";
+    public static final String TO_ADDRESS = "to_add";
+    public static final String VIA_ADDRESS = "via_add";
+    public static final String VIA2_ADDRESS = "via2_add";
 
     public class PrefKeys {
 

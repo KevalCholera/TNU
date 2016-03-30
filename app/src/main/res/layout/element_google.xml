@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TextView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+    android:id="@+id/tvElementGoogle"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:drawableStart="@mipmap/car_white"
+    android:drawableLeft="@mipmap/imgfromto"
     android:textColor="@color/black"
+    android:gravity="center_vertical"
+    android:text="Ronak Thacker"
     android:textSize="@dimen/tvHeadingSizeAll" />
