@@ -15,6 +15,8 @@ import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.smartsense.taxinearyou.utill.CommonUtil;
+
 public class Feedback extends AppCompatActivity implements View.OnClickListener {
 
     RatingBar rbFeedbackRatingForDriver;
@@ -41,7 +43,6 @@ public class Feedback extends AppCompatActivity implements View.OnClickListener 
         ivFeedbackhappy = (ImageView) findViewById(R.id.ivFeedbackhappy);
         ivFeedbacksad = (ImageView) findViewById(R.id.ivFeedbacksad);
         btFeedBackSubmit = (Button) findViewById(R.id.btFeedBackSubmit);
-
 
         cbFeedbackCommentForDriver.setOnClickListener(this);
         cbFeedbackCommentForTaxinearu.setOnClickListener(this);
@@ -70,15 +71,21 @@ public class Feedback extends AppCompatActivity implements View.OnClickListener 
             case R.id.cbFeedbackCommentForDriver:
                 if (cbFeedbackCommentForDriver.isChecked())
                     etFeedbackCommentForDriver.setVisibility(View.VISIBLE);
-                else
+                else {
                     etFeedbackCommentForDriver.setVisibility(View.GONE);
+                    etFeedbackCommentForDriver.setText("");
+                    CommonUtil.closeKeyboard(this);
+                }
 
                 break;
             case R.id.cbFeedbackCommentForTaxinearu:
                 if (cbFeedbackCommentForTaxinearu.isChecked())
                     etFeedbackCommentForTaxinearu.setVisibility(View.VISIBLE);
-                else
+                else {
                     etFeedbackCommentForTaxinearu.setVisibility(View.GONE);
+                    etFeedbackCommentForTaxinearu.setText("");
+                    CommonUtil.closeKeyboard(this);
+                }
                 break;
 
             case R.id.ivFeedbacksad:
@@ -94,6 +101,8 @@ public class Feedback extends AppCompatActivity implements View.OnClickListener 
                 etFeedbackCommentForTaxinearu.setVisibility(View.GONE);
                 cbFeedbackCommentForTaxinearu.setVisibility(View.GONE);
                 cbFeedbackCommentForTaxinearu.setChecked(false);
+                etFeedbackCommentForTaxinearu.setText("");
+                CommonUtil.closeKeyboard(this);
                 break;
 
             case R.id.btFeedBackSubmit:

@@ -68,10 +68,16 @@ public class RecoverEmailAddress extends AppCompatActivity implements Response.L
             case R.id.rbRecoverEmailAlternateEmail:
                 lyRadioButton2.setVisibility(View.GONE);
                 lyRadioButton1.setVisibility(View.VISIBLE);
+                etRecoverEmailFirstName.setText("");
+                etRecoverEmailLastName.setText("");
+                etRecoverEmailContact.setText("");
+                etRecoverEmailAddress.setText("");
+
                 break;
             case R.id.rbRecoverEmailRememberEmail:
                 lyRadioButton1.setVisibility(View.GONE);
                 lyRadioButton2.setVisibility(View.VISIBLE);
+                etRecoverEmailAlternateEmail.setText("");
                 break;
             case R.id.btRecoverEmailSubmit:
                 if (rbRecoverEmailAlternateEmail.isChecked()) {

@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/clSecurityQuestion"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@mipmap/imgappbackground">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@mipmap/imgappbackground"
         android:orientation="vertical">
 
         <RelativeLayout
@@ -22,7 +21,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@null"
-                android:src="@mipmap/back_blue" />
+                android:src="@mipmap/imgback" />
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -41,8 +40,8 @@
             android:background="@drawable/grayborder"
             android:clickable="true"
             android:cursorVisible="false"
-            android:focusable="false"
             android:drawableEnd="@mipmap/imgdropdown"
+            android:focusable="false"
             android:paddingStart="@dimen/etSignUpAllPaddingStartEnd"
             android:singleLine="true"
             android:text="@string/security_question1"
@@ -59,6 +58,7 @@
             android:layout_marginTop="@dimen/etSecurityAnswerMarginTop"
             android:background="@drawable/grayborder"
             android:hint="@string/security_answer"
+            android:inputType="textCapSentences"
             android:nextFocusDown="@+id/etSecurityAnswer2"
             android:paddingStart="@dimen/etSignUpAllPaddingStartEnd"
             android:singleLine="true"
@@ -77,8 +77,8 @@
             android:background="@drawable/grayborder"
             android:clickable="true"
             android:cursorVisible="false"
-            android:focusable="false"
             android:drawableEnd="@mipmap/imgdropdown"
+            android:focusable="false"
             android:imeOptions="actionNext"
             android:paddingStart="@dimen/etSignUpAllPaddingStartEnd"
             android:singleLine="true"
@@ -95,6 +95,7 @@
             android:layout_marginStart="@dimen/etSignUpContactMarginStartEnd"
             android:layout_marginTop="@dimen/etSecurityAnswerMarginTop"
             android:background="@drawable/grayborder"
+            android:inputType="textCapSentences"
             android:hint="@string/security_answer"
             android:paddingStart="@dimen/etSignUpAllPaddingStartEnd"
             android:singleLine="true"

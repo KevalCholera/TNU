@@ -95,7 +95,6 @@
                 app:civ_border_color="#d2d2d2"
                 app:civ_border_width="@dimen/civTripDetailsBorderWidth" />
 
-
         </LinearLayout>
 
         <LinearLayout

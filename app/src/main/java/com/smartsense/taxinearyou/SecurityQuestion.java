@@ -82,6 +82,7 @@ public class SecurityQuestion extends AppCompatActivity implements View.OnClickL
                 break;
             case R.id.btSecurityBack:
                 finish();
+                CommonUtil.closeKeyboard(this);
                 break;
             case R.id.etSecurityQuestion1:
                 openQuestionSelectPopup(true);

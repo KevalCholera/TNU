@@ -135,7 +135,7 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
 //        final RadioButton rb1 = (RadioButton) getActivity().findViewById(id);
         SimpleDateFormat timeStampFormat1 = new SimpleDateFormat("dd-MMM-yyyy");
         SimpleDateFormat timeStampFormat2 = new SimpleDateFormat("dd-MMM-yyyy -- hh:mm aa");
-        SimpleDateFormat timeStampFormat = new SimpleDateFormat("dd-MM-yyyy hh:mmaa");
+        SimpleDateFormat timeStampFormat = new SimpleDateFormat("dd-MMM-yyyy hh:mmaa");
 //        SimpleDateFormat timeStampFormat2 = new SimpleDateFormat("dd-MMM-yyyy");//hh == 12 hours && HH == 24 hours  aa == am/pm
 //        SimpleDateFormat timeStampFormat = new SimpleDateFormat("dd-MM-yyyy");
         Date Now = new Date();
@@ -153,21 +153,21 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
             final String finalDateTomorrow1 = timeStampFormat.format(tomorrow);
             if (rbBookToday.getId() == id) {
                 tvBookDateTime.setText(finalDateNow2 + " -- " + updateTime(hour, minute));
-                tvBookDateTime.setTag(finalDateNow1 + " " + updateTime(hour, minute));
+                tvBookDateTime.setTag(finalDateNow2 + " " + updateTime(hour, minute));
             } else if (rbBookTomorrow.getId() == id) {
                 tvBookDateTime.setText(finalDateTomorrow + " -- " + updateTime(hour, minute));
-                tvBookDateTime.setTag(finalDateTomorrow1 + " " + updateTime(hour, minute));
+                tvBookDateTime.setTag(finalDateTomorrow + " " + updateTime(hour, minute));
             }
             if (check) {
                 mTimePicker = new TimePickerDialog(getActivity(), new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
                         if (rbBookToday.getId() == id) {
-                            tvBookDateTime.setText(finalDateNow + " -- " + updateTime(selectedHour, selectedMinute));
-                            tvBookDateTime.setTag(finalDateNow1 + " " + updateTime(selectedHour, selectedMinute));
+                            tvBookDateTime.setText(finalDateNow2 + " -- " + updateTime(selectedHour, selectedMinute));
+                            tvBookDateTime.setTag(finalDateNow2 + " " + updateTime(selectedHour, selectedMinute));
                         } else if (rbBookTomorrow.getId() == id) {
                             tvBookDateTime.setText(finalDateTomorrow + " -- " + updateTime(selectedHour, selectedMinute));
-                            tvBookDateTime.setTag(finalDateTomorrow1 + " " + updateTime(selectedHour, selectedMinute));
+                            tvBookDateTime.setTag(finalDateTomorrow + " " + updateTime(selectedHour, selectedMinute));
                         }
                     }
                 }, hour, minute, true);//Yes 24 hour time
@@ -213,18 +213,19 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
                 break;
 
             case R.id.ivBookVia:
-                if (llBookVia1.getVisibility() == View.VISIBLE) {
+                if (llBookVia1.getVisibility() == View.VISIBLE)
                     llBookVia2.setVisibility(View.VISIBLE);
-                }
                 llBookVia1.setVisibility(View.VISIBLE);
                 break;
 
             case R.id.ivBookDeleteVia1:
                 llBookVia1.setVisibility(View.GONE);
+                tvBookvia1.setText("");
                 break;
 
             case R.id.ivBookDeleteVia2:
                 llBookVia2.setVisibility(View.GONE);
+                tvBookvia2.setText("");
                 break;
 
             case R.id.tvBookFrom:

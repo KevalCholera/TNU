@@ -5,7 +5,6 @@
     android:background="@color/element"
     android:orientation="vertical">
 
-
     <RadioGroup
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -35,7 +34,7 @@
             android:button="@color/white"
             android:gravity="center"
             android:padding="@dimen/rbPaddingAll"
-            android:text="Inprogress"
+            android:text="@string/inprogress"
             android:textColor="@drawable/radio_yellow_border_lost_item_inprogress"
             android:textSize="@dimen/btSizeAll" />
 
@@ -58,7 +57,6 @@
         android:id="@+id/lvLostItemList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/lvMarginTopAll"
         android:background="@color/element"
         android:divider="@null"
         android:dividerHeight="0dp" />

@@ -5,8 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#ffffff"
-    android:padding="@dimen/lyPaddingMainAll"
-    tools:context="com.example.root.taxi_nearu.LostItemDetail">
+    android:padding="@dimen/lyPaddingMainAll">
 
     <LinearLayout
         android:layout_width="match_parent"

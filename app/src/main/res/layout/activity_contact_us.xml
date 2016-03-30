@@ -33,7 +33,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/etHeightAll"
                 android:background="@drawable/grayborder"
-                android:inputType="text"
+                android:inputType="textCapSentences"
                 android:paddingStart="@dimen/etSignUpAllPaddingStartEnd"
                 android:textColor="@color/black"
                 android:textSize="@dimen/etSignUpSizeAll" />
@@ -85,7 +85,7 @@
                 android:layout_height="@dimen/etLongTextHeightAll"
                 android:background="@drawable/grayborder"
                 android:gravity="top"
-                android:inputType="textLongMessage"
+                android:inputType="textLongMessage|textMultiLine|textCapSentences"
                 android:paddingStart="@dimen/etSignUpAllPaddingStartEnd"
                 android:textColor="@color/black"
                 android:textSize="@dimen/etSignUpSizeAll" />

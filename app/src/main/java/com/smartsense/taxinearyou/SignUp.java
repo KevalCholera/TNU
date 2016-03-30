@@ -75,6 +75,7 @@ public class SignUp extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 finish();
+                CommonUtil.closeKeyboard(SignUp.this);
             }
         });
     }

@@ -340,5 +340,14 @@
     <string name="please_enter_your_place">Please enter your place</string>
     <string name="nointernet_try_again_msg">Please check your internet settings</string>
     <string name="select_question">Select Question</string>
+    <string name="inprogress">Inprogress</string>
+    <string name="_8866332300">8866332300</string>
+    <string name="_1234567">1234567</string>
+    <string name="ronak">Ronak</string>
+    <string name="thacker">Thacker</string>
+    <string name="john_smith">John Smith</string>
+    <string name="_8545696325">8545696325</string>
+    <string name="do_not_remember_alternate_email">Do not remember alternate email?</string>
+    <string name="we_may_require_supportive_evidence_in_order_for_us_to_locate_your_account">(We may require supportive evidence in order for us to locate your account)</string>
 
 </resources>

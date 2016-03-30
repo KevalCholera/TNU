@@ -93,7 +93,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/rbRecoverEmailRememberEmailMarginTop"
                         android:button="@drawable/radio_button_popup"
-                        android:text="Do not remember alternate email?"
+                        android:text="@string/do_not_remember_alternate_email"
                         android:textColor="@color/dark_gray" />
 
                     <LinearLayout
@@ -107,7 +107,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="(We may require supportive evidence in order for us to locate your account)"
+                            android:text="@string/we_may_require_supportive_evidence_in_order_for_us_to_locate_your_account"
                             android:textColor="@android:color/darker_gray" />
 
 
@@ -125,7 +125,7 @@
                             android:layout_marginBottom="@dimen/tvetRecoverEmailMarginTopBottomAll"
                             android:background="@drawable/grayborder"
                             android:hint="@string/first_name"
-                            android:inputType="textEmailAddress"
+                            android:inputType="textCapSentences"
                             android:nextFocusForward="@+id/etSignUpLastName"
                             android:paddingStart="@dimen/etSignUpAllPaddingStartEnd"
                             android:textColor="@color/black"
@@ -146,7 +146,7 @@
                             android:layout_marginBottom="@dimen/tvetRecoverEmailMarginTopBottomAll"
                             android:background="@drawable/grayborder"
                             android:hint="@string/last_name"
-                            android:inputType="textEmailAddress"
+                            android:inputType="textCapSentences"
                             android:nextFocusForward="@+id/etSignUpLastName"
                             android:paddingStart="@dimen/etSignUpAllPaddingStartEnd"
                             android:textColor="@color/black"

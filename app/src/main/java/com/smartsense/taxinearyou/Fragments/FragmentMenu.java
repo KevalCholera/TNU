@@ -13,6 +13,7 @@ import com.smartsense.taxinearyou.AccountSecurity;
 import com.smartsense.taxinearyou.CardList;
 import com.smartsense.taxinearyou.GeneralInformation;
 import com.smartsense.taxinearyou.LostItem;
+import com.smartsense.taxinearyou.More;
 import com.smartsense.taxinearyou.R;
 import com.smartsense.taxinearyou.SignIn;
 import com.smartsense.taxinearyou.utill.CircleImageView1;
@@ -81,7 +82,7 @@ public class FragmentMenu extends android.support.v4.app.Fragment implements Vie
                 startActivity(new Intent(getActivity(), CardList.class));
                 break;
             case R.id.tvAccountMore:
-                startActivity(new Intent(getActivity(), CardList.class));
+                startActivity(new Intent(getActivity(), More.class));
                 break;
         }
     }

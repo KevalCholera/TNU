@@ -10,7 +10,7 @@
 
     </item>
 
-    <item android:bottom="1dp" android:color="@color/Yellow" android:state_checked="false" android:top="1dp">
+    <item android:bottom="1dp" android:color="@color/Yellow" android:left="0dp" android:right="0dp" android:state_checked="false" android:top="1dp">
         <shape android:shape="rectangle">
             <stroke android:width="1dp" android:color="@color/Yellow" />
             <solid android:color="@color/white" />

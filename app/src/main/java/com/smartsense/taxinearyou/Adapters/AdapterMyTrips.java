@@ -11,6 +11,7 @@ import android.view.ViewTreeObserver;
 import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
 import com.smartsense.taxinearyou.R;
 import com.smartsense.taxinearyou.TripDetails;
 import com.smartsense.taxinearyou.utill.CircleImageView1;
@@ -115,11 +116,11 @@ public class AdapterMyTrips extends BaseAdapter {
 
     private CircleImageView1 createNewTextView() {
         CircleImageView1 circleImageView = new CircleImageView1(a);
-        circleImageView.setMaxWidth(R.dimen.tvMarginTopBottomStartEndAll);
-        circleImageView.setMaxHeight(R.dimen.tvMarginTopBottomStartEndAll);
+        circleImageView.setMaxWidth((int) a.getResources().getDimension(R.dimen.tvMarginTopBottomStartEndAll));
+        circleImageView.setMaxHeight((int) a.getResources().getDimension(R.dimen.tvMarginTopBottomStartEndAll));
         circleImageView.setBackgroundColor(a.getResources().getColor(R.color.white));
         circleImageView.setBorderColor(a.getResources().getColor(R.color.element));
-        circleImageView.setBorderWidth(R.dimen.civTripDetailsBorderWidth);
+        circleImageView.setBorderWidth((int) a.getResources().getDimension(R.dimen.civTripDetailsBorderWidth));
         return circleImageView;
     }
 }

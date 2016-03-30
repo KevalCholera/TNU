@@ -31,6 +31,7 @@ import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.PlaceBuffer;
 import com.google.android.gms.location.places.Places;
+import com.smartsense.taxinearyou.utill.CommonUtil;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -99,7 +100,7 @@ public class GooglePlaces extends FragmentActivity implements OnItemClickListene
                     ibGooglePlaceEmpty.setVisibility(View.VISIBLE);
                 else
                     ibGooglePlaceEmpty.setVisibility(View.GONE);
-                dataAdapter1.getFilter().filter(s.toString());
+                dataAdapter.getFilter().filter(s.toString());
             }
 
             @Override
@@ -188,6 +189,7 @@ public class GooglePlaces extends FragmentActivity implements OnItemClickListene
 
             setResult(Activity.RESULT_OK, new Intent().putExtra("typeAddress", getIntent().getIntExtra("typeAddress", 0)).putExtra("address", addObj.toString()).putExtra("AreaName", AreaName));
             finish();
+            CommonUtil.closeKeyboard(this);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -340,6 +342,7 @@ public class GooglePlaces extends FragmentActivity implements OnItemClickListene
                 break;
             case R.id.tvGooglePlacesCancel:
                 finish();
+                CommonUtil.closeKeyboard(this);
                 break;
         }
     }
@@ -445,7 +448,7 @@ public class GooglePlaces extends FragmentActivity implements OnItemClickListene
                 protected FilterResults performFiltering(CharSequence constraint) {
                     FilterResults filterResults = new FilterResults();
                     if (constraint != null) {
-                        Log.i("Yes","here");
+                        Log.i("Yes", "here");
                         // Retrieve the autocomplete results.
                         resultList1 = autocomplete1(constraint.toString());
 
@@ -462,9 +465,9 @@ public class GooglePlaces extends FragmentActivity implements OnItemClickListene
                 @Override
                 protected void publishResults(CharSequence constraint, FilterResults results) {
 //                    if (results != null && results.count > 0) {
-                    Log.i("Yes","here1");
-                        resultList11 = (JSONArray) results.values;
-                        notifyDataSetChanged();
+                    Log.i("Yes", "here1");
+                    resultList11 = (JSONArray) results.values;
+                    notifyDataSetChanged();
 //                    } else {
 //                        notifyDataSetInvalidated();
 //                    }
@@ -494,7 +497,6 @@ public class GooglePlaces extends FragmentActivity implements OnItemClickListene
     public void onConnectionSuspended(int i) {
         Log.e(LOG_TAG, "Google Places API connection suspended.");
     }
-
 
 
 }

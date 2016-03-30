@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/clYourDetails"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -12,7 +11,6 @@
         android:orientation="vertical">
 
         <include layout="@layout/element_appbar" />
-
 
         <ScrollView
             android:layout_width="match_parent"
@@ -51,12 +49,13 @@
                             android:layout_height="@dimen/etHeightAll"
                             android:layout_gravity="center"
                             android:background="@drawable/grayborder"
+                            android:clickable="false"
                             android:cursorVisible="false"
-                            android:editable="false"
-                            android:inputType="text"
+                            android:focusable="false"
+                            android:inputType="textCapSentences"
                             android:paddingStart="@dimen/etSignUpAllPaddingStartEnd"
                             android:singleLine="true"
-                            android:text="John Smith"
+                            android:text="@string/john_smith"
                             android:textColor="@color/black"
                             android:textColorHint="@android:color/darker_gray"
                             android:textSize="@dimen/etSignInUserPassSize"
@@ -84,12 +83,13 @@
                             android:layout_height="@dimen/etHeightAll"
                             android:layout_gravity="center"
                             android:background="@drawable/grayborder"
+                            android:clickable="false"
                             android:cursorVisible="false"
-                            android:editable="false"
+                            android:focusable="false"
                             android:inputType="phone"
                             android:paddingStart="@dimen/etSignUpAllPaddingStartEnd"
                             android:singleLine="true"
-                            android:text="8545696325"
+                            android:text="@string/_8545696325"
                             android:textColor="@color/black"
                             android:textColorHint="@android:color/darker_gray"
                             android:textSize="@dimen/etSignInUserPassSize"
@@ -119,8 +119,9 @@
                         android:layout_height="@dimen/etHeightAll"
                         android:layout_gravity="center"
                         android:background="@drawable/grayborder"
+                        android:clickable="false"
                         android:cursorVisible="false"
-                        android:editable="false"
+                        android:focusable="false"
                         android:inputType="textEmailAddress"
                         android:paddingStart="@dimen/etSignUpAllPaddingStartEnd"
                         android:singleLine="true"
@@ -152,7 +153,7 @@
                         android:layout_height="@dimen/etLongTextHeightAll"
                         android:background="@drawable/grayborder"
                         android:gravity="top"
-                        android:inputType="textLongMessage|textMultiLine"
+                        android:inputType="textLongMessage|textMultiLine|textCapSentences"
                         android:maxLines="4"
                         android:padding="@dimen/etPaddingAll"
                         android:scrollbars="vertical"
@@ -215,7 +216,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/etHeightAll"
                             android:background="@drawable/grayborder"
-                            android:inputType="text"
+                            android:inputType="textCapSentences"
                             android:paddingStart="@dimen/etPaddingAll"
                             android:textColor="@color/black"
                             android:textSize="@dimen/etSignInUserPassSize"
@@ -245,7 +246,7 @@
                         android:layout_height="@dimen/etLongTextHeightAll"
                         android:background="@drawable/grayborder"
                         android:gravity="top"
-                        android:inputType="textLongMessage|textMultiLine"
+                        android:inputType="textLongMessage|textMultiLine|textCapSentences"
                         android:maxLines="4"
                         android:padding="@dimen/etPaddingAll"
                         android:scrollbars="vertical"
