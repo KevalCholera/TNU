@@ -72,14 +72,14 @@ public class AdapterMyTrips extends BaseAdapter {
         JSONObject test = data.optJSONObject(position);
         Log.i("Test", test.toString());
 
-        tvElementMyTripsAmount.setText(test.optString("Amount"));
-        tvElementMyTripsFrom.setText(test.optString("From"));
-        tvElementMyTripsTo.setText(test.optString("To"));
-        tvElementMyTripsStatus.setText(test.optString("Status"));
-        tvElementMyTripsTaxiProvider.setText(test.optString("Taxi_Provider"));
-        tvElementMyTripsDateTime.setText(test.optString("Date_Time"));
+        tvElementMyTripsAmount.setText(test.optString("estimatedAmount"));
+        tvElementMyTripsFrom.setText(test.optString("from"));
+        tvElementMyTripsTo.setText(test.optString("to"));
+        tvElementMyTripsStatus.setText(test.optString("status"));
+        tvElementMyTripsTaxiProvider.setText(test.optString("partner"));
+        tvElementMyTripsDateTime.setText(test.optString("bookingTime"));
 
-        if (tvElementMyTripsStatus.getText().toString().equals("Cancelled"))
+        if (test.optString("status").equals("Cancelled"))
             tvElementMyTripsStatus.setBackgroundColor(red);
         else if (tvElementMyTripsStatus.getText().toString().equals("Completed"))
             tvElementMyTripsStatus.setBackgroundColor(green);

@@ -57,11 +57,18 @@
         <item name="android:textColor">#ffffff</item>
     </style>
 
-    <style name="customRatingBar" parent="@android:style/Widget.RatingBar">
+    <style name="customRatingBar" parent="@style/Widget.AppCompat.RatingBar">
         <item name="android:progressDrawable">@drawable/rating_custom_bar</item>
+
+    </style>
+
+    <style name="RatingBar" parent="Theme.AppCompat">
+        <item name="colorControlNormal">#f1c40f</item>
+        <item name="colorControlActivated">#cccccc</item>
         <item name="android:minHeight">40dip</item>
         <item name="android:maxHeight">40dip</item>
     </style>
+
 
 
 </resources>

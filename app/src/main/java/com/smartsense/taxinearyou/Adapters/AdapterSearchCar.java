@@ -8,7 +8,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.smartsense.taxinearyou.BookingInfo;
@@ -58,8 +60,8 @@ public class AdapterSearchCar extends BaseAdapter {
         TextView tvElementSearchCarsMoney = (TextView) vi.findViewById(R.id.tvElementSearchCarsMoney);
         TextView tvSearchCarsBookNow = (TextView) vi.findViewById(R.id.tvSearchCarsBookNow);
         LinearLayout llElementSearchCarsMain = (LinearLayout) vi.findViewById(R.id.llElementSearchCarsMain);
-
-
+        ImageView ivElementSearchCarsOnline = (ImageView) vi.findViewById(R.id.ivElementSearchCarsOnline);
+        RatingBar rbElementSearchCars = (RatingBar) vi.findViewById(R.id.rbElementSearchCars);
         llElementSearchCarsMain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -78,12 +80,20 @@ public class AdapterSearchCar extends BaseAdapter {
             }
         });
 
+        if (test.optInt("availability") == 1) {
+            ivElementSearchCarsOnline.setImageResource(android.R.drawable.presence_online);
+            tvElementSearchCarsChat.setText("taxiType");
+            tvElementSearchCarsWaitingTime.setText("(10 to 20 minutes for a taxi)");
+        } else {
+            ivElementSearchCarsOnline.setImageResource(android.R.drawable.presence_invisible);
+            tvElementSearchCarsChat.setText("taxiType");
+            tvElementSearchCarsWaitingTime.setText("(20 to 40 minutes for a taxi)");
+        }
+//        rbElementSearchCars.setRating(Float.valueOf(test.optString("partnerRating")));
+        rbElementSearchCars.setRating(3);
+        tvElementSearchCarsName.setText(test.optString("partnerName"));
+        tvElementSearchCarsMoney.setText("£" + test.optString("ETA"));
 
-        tvElementSearchCarsName.setText(test.optString("name"));
-        tvElementSearchCarsWaitingTime.setText(test.optString("time"));
-        tvElementSearchCarsChat.setText(test.optString("address"));
-        tvElementSearchCarsMoney.setText(test.optString("price"));
-        tvSearchCarsBookNow.setText(test.optString("submit"));
 
         return vi;
     }

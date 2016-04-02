@@ -12,7 +12,9 @@ import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
+import com.mpt.storage.SharedPreferenceUtil;
 import com.smartsense.taxinearyou.Adapters.AdapterSearchCar;
+import com.smartsense.taxinearyou.utill.Constants;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -45,9 +47,9 @@ public class SearchCars extends AppCompatActivity implements View.OnClickListene
         llSearchCarsFilter = (LinearLayout) findViewById(R.id.llSearchCarsFilter);
         lySearchCarsDateTime = (LinearLayout) findViewById(R.id.lySearchCarsDateTime);
 
-        String data = "[{\"name\":\"Keval Cholera\",\"time\":\"(pls wait 40 min)\",\"address\":\"Hello Keval\",\"price\":40000,\"submit\":\"Book Now\"},{\"name\":\"Keval Cholera\",\"time\":\"(pls wait 40 min)\",\"address\":\"Hello Keval\",\"price\":40000,\"submit\":\"Book Now\"},{\"name\":\"Keval Cholera\",\"time\":\"(pls wait 40 min)\",\"address\":\"Hello Keval\",\"price\":40000,\"submit\":\"Book Now\"},{\"name\":\"Keval Cholera\",\"time\":\"(pls wait 40 min)\",\"address\":\"Hello Keval\",\"price\":40000,\"submit\":\"Book Now\"}]";
+//        String data = "[{\"name\":\"Keval Cholera\",\"time\":\"(pls wait 40 min)\",\"address\":\"Hello Keval\",\"price\":40000,\"submit\":\"Book Now\"},{\"name\":\"Keval Cholera\",\"time\":\"(pls wait 40 min)\",\"address\":\"Hello Keval\",\"price\":40000,\"submit\":\"Book Now\"},{\"name\":\"Keval Cholera\",\"time\":\"(pls wait 40 min)\",\"address\":\"Hello Keval\",\"price\":40000,\"submit\":\"Book Now\"},{\"name\":\"Keval Cholera\",\"time\":\"(pls wait 40 min)\",\"address\":\"Hello Keval\",\"price\":40000,\"submit\":\"Book Now\"}]";
         try {
-            JSONArray jsonArray = new JSONArray(data);
+            JSONArray jsonArray = new JSONArray(SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_PARTNER_ARRAY, ""));
             AdapterSearchCar adapterSearchCar = new AdapterSearchCar(this, jsonArray);
             lvSearchCarsLine1.setAdapter(adapterSearchCar);
         } catch (JSONException e) {
@@ -75,10 +77,12 @@ public class SearchCars extends AppCompatActivity implements View.OnClickListene
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
-        int id = item.getItemId();
-
-        return id == R.id.action_settings || super.onOptionsItemSelected(item);
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
 
     }
 

@@ -37,7 +37,7 @@
     <string name="lytfllc">Lytf LLC</string>
     <string name="hello">Hello</string>
     <string name="waitingTime">{10 to 20 minutes for a taxi}</string>
-    <string name="textvalue1">5567.01</string>
+    <string name="textvalue1">&#163; 5567.01</string>
     <string name="booknow">Book Now</string>
     <string name="searchcars">Search Cars</string>
     <string name="availability">Availability</string>

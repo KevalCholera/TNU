@@ -27,6 +27,7 @@ import com.android.volley.VolleyError;
 import com.mpt.storage.SharedPreferenceUtil;
 import com.smartsense.taxinearyou.GooglePlaces;
 import com.smartsense.taxinearyou.R;
+import com.smartsense.taxinearyou.SearchCars;
 import com.smartsense.taxinearyou.TaxiNearYouApp;
 import com.smartsense.taxinearyou.utill.CommonUtil;
 import com.smartsense.taxinearyou.utill.Constants;
@@ -37,6 +38,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -209,7 +212,8 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
                     CommonUtil.showSnackBar(getActivity(), getString(R.string.enter_to), clSearch);
                 else
 //                startActivity(new Intent(getActivity(), SearchCars.class));
-                    doPartnerList();
+//                    doPartnerList();
+                doSearch();
                 break;
 
             case R.id.ivBookVia:
@@ -407,6 +411,21 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
     public void onErrorResponse(VolleyError volleyError) {
         CommonUtil.alertBox(getActivity(), "", getResources().getString(R.string.nointernet_try_again_msg));
         CommonUtil.cancelProgressDialog();
+//        NetworkResponse response = error.networkResponse;
+//        if (error instanceof ServerError && response != null) {
+//            try {
+//                String res = new String(response.data,
+//                        HttpHeaderParser.parseCharset(response.headers, "utf-8"));
+//                // Now you can use any deserializer to make sense of data
+//                JSONObject obj = new JSONObject(res);
+//            } catch (UnsupportedEncodingException e1) {
+//                // Couldn't properly decode data to string
+//                e1.printStackTrace();
+//            } catch (JSONException e2) {
+//                // returned data is not JSONObject?
+//                e2.printStackTrace();
+//            }
+//        }
     }
 
     @Override
@@ -415,13 +434,17 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
         if (response != null) {
             try {
                 if (response.getInt("status") == Constants.STATUS_SUCCESS) {
-//                    switch (response.getInt("__eventid")) {
-//                        case Constants.Events.EVENT_LOGIN:
-//                    SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_ACCESS_TOKEN, response.optJSONObject("json").optString("token"));
-//                    startActivity(new Intent(getActivity(), Search.class));
+                    switch (response.getInt("__eventid")) {
+                        case Constants.Events.EVENT_PARTNER_LIST:
+                            SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_TAXI_TYPE, response.optJSONObject("json").optJSONArray("taxiTypeArray").toString());
+                            SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_DISTANCE_LIST, response.optJSONObject("json").optJSONArray("distanceList").toString());
+                            SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_PARTNER_ARRAY, response.optJSONObject("json").optJSONArray("partnerArray").toString());
+                            SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_FILTER_REQUEST, response.optJSONObject("filterRequest").toString());
+                            SharedPreferenceUtil.save();
+                            startActivity(new Intent(getActivity(), SearchCars.class));
 
-//                            break;
-//                    }
+                            break;
+                    }
                 } else {
                     JsonErrorShow.jsonErrorShow(response, getActivity(), clSearch);
                 }
@@ -435,8 +458,9 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
     private void doPartnerList() {
         final String tag = "doPartnerList";
         StringBuilder builder = new StringBuilder();
-
-
+        String strDate = (String) tvBookDateTime.getTag();
+//        strDate = strDate.replace(" ", "%20");
+        tvBookDateTime.setTag(strDate);
         JSONObject jsonData = new JSONObject();
 
         try {
@@ -449,15 +473,36 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
             if (SharedPreferenceUtil.contains(Constants.VIA2_ADDRESS))
                 viaArea.put(new JSONObject(SharedPreferenceUtil.getString(Constants.VIA2_ADDRESS, "")));
 
-            builder.append(Constants.BASE_URL + Constants.BASE_URL_POSTFIX + Constants.Events.EVENT_PARTNER_LIST + "&json="
-                    + jsonData.put("fromAreaName", fromData.optString("AreaName")).put("fromAreaLat", fromData.optString("AreaLat")).put("fromAreaLong", fromData.optString("AreaLong")).put("fromAreaPlaceid", fromData.optString("AreaPlaceid")).put("fromAreaAddress", fromData.optString("AreaAddress")).put("fromAreaCity", fromData.optString("AreaCity")).put("fromAreaPostalCode", fromData.optString("AreaPostalCode")).put("toAreaName", toData.optString("AreaName")).put("toAreaLat", toData.optString("AreaLat")).put("toAreaLong", toData.optString("AreaLong")).put("toAreaPlaceid", toData.optString("AreaPlaceid")).put("toAreaAddress", toData.optString("AreaAddress")).put("toAreaCity", toData.optString("AreaCity")).put("toAreaPostalCode", toData.optString("AreaPostalCode")).put("viaArea", viaArea)
+            builder.append(jsonData.put("fromAreaName", fromData.optString("AreaName")).put("fromAreaLat", fromData.optString("AreaLat")).put("fromAreaLong", fromData.optString("AreaLong")).put("fromAreaPlaceid", fromData.optString("AreaPlaceid")).put("fromAreaAddress", fromData.optString("AreaAddress")).put("fromAreaCity", fromData.optString("AreaCity")).put("fromAreaPostalCode", fromData.optString("AreaPostalCode")).put("toAreaName", toData.optString("AreaName")).put("toAreaLat", toData.optString("AreaLat")).put("toAreaLong", toData.optString("AreaLong")).put("toAreaPlaceid", toData.optString("AreaPlaceid")).put("toAreaAddress", toData.optString("AreaAddress")).put("toAreaCity", toData.optString("AreaCity")).put("toAreaPostalCode", toData.optString("AreaPostalCode")).put("viaArea", viaArea)
                     .put("journeyDatetime", (String) tvBookDateTime.getTag()).put("luggageId", (String) tvBookLuggage.getTag()).put("passanger", (String) tvBookPassenger.getTag()).put("bookingduration", "1").put("pageSize", "1").put("pageNumber", "1").put("sortField", "rating").put("sortOrder", "asc").put("filterRequest", filterRequest).put("token", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_ACCESS_TOKEN, "")).put("userId", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_ID, "")));
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
+        String url = "";
+        try {
+            url = Constants.BASE_URL + Constants.BASE_URL_POSTFIX + Constants.Events.EVENT_PARTNER_LIST + "&json="
+                    + URLEncoder.encode(builder.toString(), "UTF8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
         CommonUtil.showProgressDialog(getActivity(), "Login...");
-        DataRequest dataRequest = new DataRequest(Request.Method.GET, builder.toString(), null, this, this);
+        DataRequest dataRequest = new DataRequest(Request.Method.GET, url, null, this, this);
         TaxiNearYouApp.getInstance().addToRequestQueue(dataRequest, tag);
+    }
+
+    public void doSearch() {
+        try {
+            String json = "{\"viaArea\":[],\"fromAreaLat\":\"51.5093963\",\"toAreaPostalCode\":\"WC1B 3LH\",\"fromAreaLong\":\"-0.1227355\",\"fromAreaCity\":\"London\",\"bookingduration\":\"1\",\"toAreaPlaceid\":\"ChIJEVMtYzIbdkgRt4AUjvmdeyQ\",\"fromAreaPlaceid\":\"ChIJE6nTVskEdkgRb8S8OkRY_J0\",\"luggageId\":\"1\",\"passanger\":\"1\",\"toAreaLong\":\"-0.128478\",\"sortField\":\"rating\",\"json\":{\"taxiTypeArray\":[{\"isEnable\":1,\"taxiName\":\"Saloon\",\"userId\":1,\"taxiTypeId\":15,\"maxPeopleAllow\":4,\"maxRate\":15,\"createdDate\":1.445150875038E12,\"minRate\":2},{\"isEnable\":1,\"taxiName\":\"Hatchback\",\"userId\":1,\"taxiTypeId\":16,\"maxPeopleAllow\":4,\"maxRate\":15,\"createdDate\":1.445150889203E12,\"minRate\":2},{\"isEnable\":1,\"taxiName\":\"4x4\",\"userId\":1,\"taxiTypeId\":19,\"maxPeopleAllow\":4,\"maxRate\":15,\"createdDate\":1.445177588911E12,\"minRate\":2},{\"isEnable\":1,\"taxiName\":\"9x9\",\"userId\":1,\"taxiTypeId\":22,\"maxPeopleAllow\":15,\"maxRate\":15,\"createdDate\":1.445753052622E12,\"minRate\":2},{\"isEnable\":1,\"taxiName\":\"Sedan\",\"userId\":1,\"taxiTypeId\":24,\"maxPeopleAllow\":5,\"maxRate\":10,\"createdDate\":1.450527196932E12,\"minRate\":1},{\"isEnable\":1,\"taxiName\":\"Luxury Club\",\"userId\":1,\"taxiTypeId\":32,\"maxPeopleAllow\":5,\"maxRate\":15,\"createdDate\":1.452002113783E12,\"minRate\":10},{\"isEnable\":1,\"taxiName\":\"Mini Van\",\"userId\":1,\"taxiTypeId\":33,\"maxPeopleAllow\":10,\"maxRate\":20,\"createdDate\":1.452253793721E12,\"minRate\":10},{\"isEnable\":1,\"taxiName\":\"SUV\",\"userId\":1,\"taxiTypeId\":35,\"maxPeopleAllow\":4,\"maxRate\":15,\"createdDate\":1.452681913177E12,\"minRate\":12}],\"errorCode\":0,\"distanceMatrix\":{\"duration\":923,\"distance\":2449},\"totalRecords\":6,\"distanceList\":[{\"isEnable\":1,\"name\":\"30 Miles\",\"mile\":30,\"distanceId\":1,\"createdDate\":1457768941000},{\"isEnable\":1,\"name\":\"40 Miles\",\"mile\":40,\"distanceId\":2,\"createdDate\":1457768941000},{\"isEnable\":1,\"name\":\"50 Miles\",\"mile\":50,\"distanceId\":3,\"createdDate\":1457768941000},{\"isEnable\":1,\"name\":\"60 Miles\",\"mile\":60,\"distanceId\":4,\"createdDate\":1457768941000},{\"isEnable\":1,\"name\":\"70 Miles\",\"mile\":70,\"distanceId\":5,\"createdDate\":1457768941000}],\"partnerArray\":[{\"placeLat\":\"51.5137959\",\"cityId\":26,\"cityName\":\"London\",\"partnerEmailId\":\"darshanganatra2010@gmail.com\",\"partnerId\":2,\"isAvailable\":1,\"areaId\":6121,\"distance\":7.929246863597007,\"postalCode\":\"e65ta\",\"isRecommended\":0,\"contactPersionEmail\":\"darshanganatra2010@gmail.com\",\"areaPostalCode\":\"e65ta\",\"createDate\":1.451995434734E12,\"partnerContactNo\":\"9033409563\",\"logoPath\":\"1451995434734_a2z_taxi_services_pvt_ltd\",\"partnerRating\":0,\"availability\":0,\"partnerName\":\"a2z taxi services pvt ltd\",\"userBeanUserId\":4,\"partnerCommision\":10,\"partnerIsEnable\":1,\"contactPersionNo\":\"9033409563\",\"contactPersionName\":\"Darshan Ganatra\",\"updateDate\":1.451996452769E12,\"partnerAlias\":\"a2z\",\"areaName\":\"Beckton, London Borough of Newham, United Kingdom\",\"activationToken\":\"1111\",\"address\":\"49 barry road beckton\",\"rating\":0,\"taxiType\":{\"kmRate\":12,\"isEnable\":0,\"partnerTaxiTypeId\":10,\"status\":0,\"partnerId\":2,\"taxiTypeName\":\"HEllo\",\"maxLuggageAllowed\":0,\"taxiTypeId\":14,\"createDate\":1.451995434744E12,\"maxPeopleAllowed\":12,\"updateDate\":1.459222745309E12,\"minRate\":\"0.00\"},\"placeLong\":\"-0.20096190000003844\"}]},\"token\":\"8XAqZ30saLIAb6HEt4jA\",\"userId\":\"42\",\"pageNumber\":\"1\",\"toAreaCity\":\"London\",\"status\":200,\"sortOrder\":\"asc\",\"fromAreaName\":\"The RSA, John Adam Street, London, United Kingdom\",\"pageSize\":\"1\",\"filterRequest\":{\"distance\":-1,\"bookingType\":0,\"vehicleType\":\"14\",\"rating\":-1},\"msg\":\"\",\"toAreaLat\":\"51.5177286\",\"fromAreaPostalCode\":\"WC2N 6EZ\",\"__eventid\":\"5001\",\"toAreaName\":\"FSU London Study Centre, Great Russell Street, London, United Kingdom\",\"journeyDatetime\":\"02-Apr-2016 10:55AM\",\"fromAreaAddress\":\"The RSA, 8 John Adam St, London WC2N 6EZ, UK\",\"toAreaAddress\":\"Florida State University, 99 Great Russell St, London WC1B 3LH, United Kingdom\"}";
+            JSONObject response = new JSONObject(json);
+            SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_TAXI_TYPE, response.optJSONObject("json").optJSONArray("taxiTypeArray").toString());
+            SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_DISTANCE_LIST, response.optJSONObject("json").optJSONArray("distanceList").toString());
+            SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_PARTNER_ARRAY, response.optJSONObject("json").optJSONArray("partnerArray").toString());
+            SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_FILTER_REQUEST, response.optJSONObject("filterRequest").toString());
+            SharedPreferenceUtil.save();
+            startActivity(new Intent(getActivity(), SearchCars.class));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

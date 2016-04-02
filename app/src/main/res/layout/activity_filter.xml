@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:background="@mipmap/taxi"
     android:orientation="vertical">
 
@@ -37,108 +37,16 @@
                 android:layout_marginTop="@dimen/vMarginTopBottomAll"
                 android:background="@color/white" />
 
-            <LinearLayout
+
+            <com.smartsense.taxinearyou.utill.RadioButtonWithTableLayout
+                android:id="@+id/rgFilterVehicleType1"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <RadioGroup
-                    android:id="@+id/rgFilterVehicleType1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/rgFilterMarginTopAll">
-
-                    <RadioButton
-                        android:id="@+id/rbFilter1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:buttonTint="@color/Yellow"
-                        android:checked="true"
-                        android:text="@string/hatchback"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/tvTitlesSizeAll" />
-
-                    <RadioButton
-                        android:id="@+id/rbFilter2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/cbFilterMarginTop"
-                        android:buttonTint="@color/Yellow"
-                        android:text="@string/_4x4"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/tvTitlesSizeAll" />
-
-                    <RadioButton
-                        android:id="@+id/rbFilter3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/cbFilterMarginTop"
-                        android:buttonTint="@color/Yellow"
-                        android:text="@string/_9x9"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/tvTitlesSizeAll" />
-
-                    <RadioButton
-                        android:id="@+id/rbFilter4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/cbFilterMarginTop"
-                        android:buttonTint="@color/Yellow"
-                        android:text="@string/snmn"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/tvTitlesSizeAll" />
-
-                </RadioGroup>
-
-                <RadioGroup
-                    android:id="@+id/rgFilterVehicleType2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/tvMarginTopBottomStartEndAll"
-                    android:layout_marginTop="@dimen/rgFilterMarginTopAll">
-
-                    <RadioButton
-                        android:id="@+id/rbFilter5"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:buttonTint="@color/Yellow"
-                        android:text="@string/sedan"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/tvTitlesSizeAll" />
-
-                    <RadioButton
-                        android:id="@+id/rbFilter6"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/cbFilterMarginTop"
-                        android:buttonTint="@color/Yellow"
-                        android:text="@string/abc"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/tvTitlesSizeAll" />
-
-                    <RadioButton
-                        android:id="@+id/rbFilter7"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/cbFilterMarginTop"
-                        android:buttonTint="@color/Yellow"
-                        android:text="@string/kk_club"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/tvTitlesSizeAll" />
-
-                    <RadioButton
-                        android:id="@+id/rbFilter8"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/cbFilterMarginTop"
-                        android:buttonTint="@color/Yellow"
-                        android:text="@string/luxury"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/tvTitlesSizeAll" />
-
-                </RadioGroup>
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/rgFilterMarginTopAll">
 
 
-            </LinearLayout>
+            </com.smartsense.taxinearyou.utill.RadioButtonWithTableLayout>
+
 
             <TextView
                 android:layout_width="wrap_content"
@@ -162,6 +70,7 @@
                     android:layout_weight="1"
                     android:background="@drawable/radio_button"
                     android:button="@color/white"
+                    android:checked="true"
                     android:gravity="center"
                     android:padding="@dimen/rbPaddingAll"
                     android:text="@string/low"
@@ -175,7 +84,6 @@
                     android:layout_weight="1"
                     android:background="@drawable/radio_button"
                     android:button="@color/white"
-                    android:checked="true"
                     android:gravity="center"
                     android:padding="@dimen/rbPaddingAll"
                     android:text="@string/high"
@@ -236,86 +144,13 @@
                 android:textColor="@color/white"
                 android:textSize="@dimen/tvHeadingSizeAll" />
 
-            <RadioGroup
+            <com.smartsense.taxinearyou.utill.RadioButtonWithTableLayout
                 android:id="@+id/rgFilterDistance1"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_height="wrap_content">
 
-                <RadioButton
-                    android:id="@+id/rbFilterAll"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:buttonTint="@color/Yellow"
-                    android:checked="true"
-                    android:text="@string/all"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/tvTitlesSizeAll" />
 
-                <RadioButton
-                    android:id="@+id/rbFilter3Miles"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:buttonTint="@color/Yellow"
-                    android:text="@string/_3_miles"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/tvTitlesSizeAll" />
-
-                <RadioButton
-                    android:id="@+id/rbFilter5Miles"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:buttonTint="@color/Yellow"
-                    android:text="@string/_5_miles"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/tvTitlesSizeAll" />
-
-            </RadioGroup>
-
-            <RadioGroup
-                android:id="@+id/rgFilterDistance2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <RadioButton
-                    android:id="@+id/rbFilter6Miles"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/cbFilterMarginTop"
-                    android:layout_weight="1"
-                    android:buttonTint="@color/Yellow"
-                    android:text="@string/_6_miles"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/tvTitlesSizeAll" />
-
-                <RadioButton
-                    android:id="@+id/rbFilter9Miles"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/cbFilterMarginTop"
-                    android:layout_weight="1"
-                    android:buttonTint="@color/Yellow"
-                    android:text="@string/_9_miles"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/tvTitlesSizeAll" />
-
-                <RadioButton
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/cbFilterMarginTop"
-                    android:layout_weight="1"
-                    android:button="@drawable/radio_button_filter"
-                    android:clickable="false"
-                    android:text="@string/_9_miles"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/tvTitlesSizeAll"
-                    android:visibility="invisible" />
-
-            </RadioGroup>
+            </com.smartsense.taxinearyou.utill.RadioButtonWithTableLayout>
 
             <TextView
                 android:layout_width="match_parent"
@@ -397,16 +232,24 @@
 
                     <RatingBar
                         android:id="@+id/rbFeedbackRatingForDriver"
-                        style="@style/customRatingBar"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
                         android:numStars="5"
-                        android:rating="3"
+                        style="@style/RatingBar"
+                        android:rating="5"
                         android:stepSize="1" />
 
                     <RatingBar
-                        style="@style/customRatingBar"
+                        style="@style/RatingBar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:numStars="5"
+                        android:rating="4"
+                        android:stepSize="1" />
+
+                    <RatingBar
+                        style="@style/RatingBar"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:numStars="5"
@@ -414,27 +257,19 @@
                         android:stepSize="1" />
 
                     <RatingBar
-                        style="@style/customRatingBar"
+                        style="@style/RatingBar"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:numStars="5"
-                        android:rating="3"
+                        android:rating="2"
                         android:stepSize="1" />
 
                     <RatingBar
-                        style="@style/customRatingBar"
+                        style="@style/RatingBar"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:numStars="5"
-                        android:rating="3"
-                        android:stepSize="1" />
-
-                    <RatingBar
-                        style="@style/customRatingBar"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:numStars="5"
-                        android:rating="3"
+                        android:rating="1"
                         android:stepSize="1" />
 
                 </LinearLayout>

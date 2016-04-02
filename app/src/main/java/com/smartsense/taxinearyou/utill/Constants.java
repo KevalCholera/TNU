@@ -10,7 +10,7 @@ public class Constants {
 
     public static final String BASE_URL = "http://13.76.228.139:8080";
     public static final String BASE_URL_POSTFIX = "/tnu/m?__eventid=";
-    public static final String BASE_URL_PHOTO = BASE_URL + "/images/products/";
+    public static final String BASE_URL_PHOTO = BASE_URL + "/tnu";
     public static final String BASE_URL_PHOTO_THUMB = BASE_URL + "/images/products/";
     public static final String BASE_IMAGE_URL = "http://104.43.15.1:8025";
 
@@ -67,6 +67,11 @@ public class Constants {
         public static final String DELIVERY_CHARGES = "del_charges";
         public static final String PREF_LUGGAGE = "luggageArray";
         public static final String PREF_PASSENGER = "passengerArray";
+        public static final String PREF_TAXI_TYPE = "taxiTypeArray";
+        public static final String PREF_DISTANCE_MATRIX = "distanceMatrix";
+        public static final String PREF_DISTANCE_LIST = "distanceList";
+        public static final String PREF_PARTNER_ARRAY = "partnerArray";
+        public static final String PREF_FILTER_REQUEST = "filterRequest";
     }
 
     public class NavigationItems {
@@ -95,11 +100,10 @@ public class Constants {
         public static final int EVENT_LOGIN = 4002;
         public static final int EVENT_FORGOT_PASS = 4013;
         public static final int EVENT_FORGOT_EMAIL = 1129;
-        public static final int EVENT_FORGOT_EMAIL_WITHOUT=1130;
+        public static final int EVENT_FORGOT_EMAIL_WITHOUT = 1130;
         public static final int EVENT_SIGNUP = 4003;
-        public static final int EVENT_PARTNER_LIST = 4;
-
-
+        public static final int EVENT_PARTNER_LIST = 5001;
+        public static final int EVENT_MY_TRIP = 5003;
     }
 
 
@@ -118,8 +122,6 @@ public class Constants {
         public static final int SCREEN_MYREMINDER = 4;
         public static final int SCREEN_LOGIN = 5;
     }
-
-
 
 
 }

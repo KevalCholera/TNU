@@ -50,21 +50,21 @@
             android:name=".SearchCars"
             android:configChanges="orientation|screenSize"
             android:label="@string/searchcars"
-            android:parentActivityName=".Search"
+
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".BookingInfo"
             android:configChanges="orientation|screenSize"
             android:label="@string/title_activity_booking_info"
-            android:parentActivityName=".SearchCars"
+
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".PartnerRating"
             android:configChanges="orientation|screenSize"
             android:label="@string/partner_rating"
-            android:parentActivityName=".SearchCars"
+
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="stateHidden" />
         <activity
@@ -75,7 +75,7 @@
         <activity
             android:name=".PaymentDetails"
             android:label="Payment Details"
-            android:parentActivityName=".PersonalInfo"
+
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".TripDetails"
@@ -85,78 +85,78 @@
         <activity
             android:name=".Feedback"
             android:label="Feedback"
-            android:parentActivityName=".TripDetails"
+
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".YourDetails"
             android:label="Your Details"
-            android:parentActivityName=".TripDetails"
+
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".GeneralInformation"
             android:label="General Information"
-            android:parentActivityName=".Search"
+
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".LostItemDetail"
             android:label="Lost Item Detail"
-            android:parentActivityName=".LostItem"
+
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".LostItem"
             android:label="Lost Item"
-            android:parentActivityName=".Search"
+
             android:theme="@style/AppTheme" />
         <activity
             android:name=".AccountSecurity"
             android:label="Account Security"
-            android:parentActivityName=".Search"
+
             android:theme="@style/AppTheme" />
         <activity
             android:name=".PersonalInfo"
             android:configChanges="orientation|screenSize"
             android:label="Personal Info"
-            android:parentActivityName=".BookingInfo"
+
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".ResetPassword"
             android:label="Reset Password"
-            android:parentActivityName=".SignIn"
+
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".RecoverEmailAddress"
             android:label="Recover Email Address"
-            android:parentActivityName=".SignIn"
+
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".AddCard"
             android:label="Add Card"
-            android:parentActivityName=".Card"
+
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".Card"
             android:label="Card"
-            android:parentActivityName=".PaymentDetails"
+
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".CardList"
             android:label="CardList"
-            android:parentActivityName=".Search"
+
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".CardDetails"
             android:label="Card Details"
-            android:parentActivityName=".CardList"
+
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateHidden" />
         <activity
@@ -166,24 +166,24 @@
         <activity
             android:name=".EventBooking"
             android:label="Event Booking"
-            android:parentActivityName=".Search"
+
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".ContactUs"
             android:label="Contact Us"
-            android:parentActivityName=".Search"
+
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".AboutUs"
             android:label="About Us"
-            android:parentActivityName=".Search"
+
             android:theme="@style/AppTheme" />
         <activity
             android:name=".More"
             android:label="More"
-            android:parentActivityName=".Search"
+
             android:theme="@style/AppTheme" />
 
         <meta-data
