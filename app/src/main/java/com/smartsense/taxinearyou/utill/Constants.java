@@ -104,6 +104,8 @@ public class Constants {
         public static final int EVENT_SIGNUP = 4003;
         public static final int EVENT_PARTNER_LIST = 5001;
         public static final int EVENT_MY_TRIP = 5003;
+        public static final int EVENT_LOGOUT = 5004;
+        public static final int EVENT_GET_SECURITY_QES = 5008;
     }
 
 

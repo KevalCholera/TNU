@@ -16,6 +16,10 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.mpt.storage.SharedPreferenceUtil;
+import com.pubnub.api.Callback;
+import com.pubnub.api.Pubnub;
+import com.pubnub.api.PubnubError;
+import com.pubnub.api.PubnubException;
 import com.smartsense.taxinearyou.utill.CommonUtil;
 import com.smartsense.taxinearyou.utill.Constants;
 import com.smartsense.taxinearyou.utill.DataRequest;
@@ -147,6 +151,58 @@ public class SignIn extends AppCompatActivity implements Response.Listener<JSONO
                 if (response.getInt("status") == Constants.STATUS_SUCCESS) {
 //                    switch (response.getInt("__eventid")) {
 //                        case Constants.Events.EVENT_LOGIN:
+                    final Pubnub pubnub = new Pubnub(
+                            "pub-c-fde08950-9a6c-48a9-99b6-7700e5bd884d",  // PUBLISH_KEY   (Optional, supply "" to disable)
+                            "sub-c-8e406cea-57aa-11e5-b316-0619f8945a4f"  // SUBSCRIBE_KEY (Required)
+                    );
+                    try {
+                        pubnub.subscribe("PUBNUB_mukundsonaiya@gmail.com", new Callback() {
+                                    @Override
+                                    public void connectCallback(String channel, Object message) {
+                                        pubnub.publish("my_channel", "Hello from the PubNub Java SDK", new Callback() {
+                                        });
+                                    }
+
+                                    @Override
+                                    public void disconnectCallback(String channel, Object message) {
+                                        System.out.println("SUBSCRIBE : DISCONNECT on channel:" + channel
+                                                + " : " + message.getClass() + " : "
+                                                + message.toString());
+                                    }
+
+                                    public void reconnectCallback(String channel, Object message) {
+                                        System.out.println("SUBSCRIBE : RECONNECT on channel:" + channel
+                                                + " : " + message.getClass() + " : "
+                                                + message.toString());
+                                    }
+
+                                    @Override
+                                    public void successCallback(String channel, Object message) {
+                                        System.out.println("SUBSCRIBE : " + channel + " : "
+                                                + message.getClass() + " : " + message.toString());
+                                    }
+
+                                    @Override
+                                    public void errorCallback(String channel, PubnubError error) {
+                                        System.out.println("SUBSCRIBE : ERROR on channel " + channel
+                                                + " : " + error.toString());
+                                    }
+                                }
+                        );
+                    } catch (PubnubException e) {
+                        System.out.println(e.toString());
+                    }
+                    Callback callback = new Callback() {
+                        public void successCallback(String channel, Object response) {
+                            System.out.println(response.toString());
+                        }
+
+                        public void errorCallback(String channel, PubnubError error) {
+                            System.out.println(error.toString());
+                        }
+                    };
+                    pubnub.time(callback);
+                    pubnub.publish("PUBNUB_mukundsonaiya@gmail.com", "Hello from the PubNub Java SDK!", callback);
                     SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_ACCESS_TOKEN, response.optJSONObject("json").optString("token"));
                     SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_USER_ID, response.optJSONObject("json").optJSONObject("user").optString("userId"));
                     SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_USER_FULLNAME, response.optJSONObject("json").optJSONObject("user").optString("firstName") + " " + response.optJSONObject("json").getJSONObject("user").getString("lastName"));

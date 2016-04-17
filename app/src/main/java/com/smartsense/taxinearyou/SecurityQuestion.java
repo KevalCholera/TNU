@@ -41,6 +41,7 @@ public class SecurityQuestion extends AppCompatActivity implements View.OnClickL
     CoordinatorLayout clSecurityQuestion;
     ImageButton btSecurityBack;
     private AlertDialog alert;
+    private JSONObject jsonObject;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,13 +60,10 @@ public class SecurityQuestion extends AppCompatActivity implements View.OnClickL
         clSecurityQuestion = (CoordinatorLayout) findViewById(R.id.clSecurityQuestion);
         btSecurityBack = (ImageButton) findViewById(R.id.btSecurityBack);
         etSecurityQuestion1.setOnClickListener(this);
-        etSecurityQuestion1.setText("In which city or town did your mother and father meet ?");
-        etSecurityQuestion1.setTag("1");
-        etSecurityQuestion2.setText("In which city or town did your mother and father meet ?");
-        etSecurityQuestion2.setTag("1");
         etSecurityQuestion2.setOnClickListener(this);
         btSecuritySave.setOnClickListener(this);
         btSecurityBack.setOnClickListener(this);
+        getSecurityQuestion();
     }
 
     @Override
@@ -85,10 +83,16 @@ public class SecurityQuestion extends AppCompatActivity implements View.OnClickL
                 CommonUtil.closeKeyboard(this);
                 break;
             case R.id.etSecurityQuestion1:
-                openQuestionSelectPopup(true);
+                if (jsonObject != null) {
+                    openQuestionSelectPopup(true, jsonObject);
+                } else
+                    getSecurityQuestion();
                 break;
             case R.id.etSecurityQuestion2:
-                openQuestionSelectPopup(false);
+                if (jsonObject != null) {
+                    openQuestionSelectPopup(false, jsonObject);
+                } else
+                    getSecurityQuestion();
                 break;
         }
     }
@@ -106,6 +110,17 @@ public class SecurityQuestion extends AppCompatActivity implements View.OnClickL
         }
 
         CommonUtil.showProgressDialog(this, "Login...");
+        DataRequest dataRequest = new DataRequest(Request.Method.GET, builder.toString(), null, this, this);
+        TaxiNearYouApp.getInstance().addToRequestQueue(dataRequest, tag);
+    }
+
+    private void getSecurityQuestion() {
+        final String tag = "getSecurityQuestion";
+        StringBuilder builder = new StringBuilder();
+
+        builder.append(Constants.BASE_URL + Constants.BASE_URL_POSTFIX + Constants.Events.EVENT_GET_SECURITY_QES);
+
+//        CommonUtil.showProgressDialog(this, "Wait...");
         DataRequest dataRequest = new DataRequest(Request.Method.GET, builder.toString(), null, this, this);
         TaxiNearYouApp.getInstance().addToRequestQueue(dataRequest, tag);
     }
@@ -140,6 +155,22 @@ public class SecurityQuestion extends AppCompatActivity implements View.OnClickL
 //                            startActivity(new Intent(this, OTPActivity.class).putExtra("mobile", etMobileNo.getText().toString()).putExtra("code", etCountryCode.getText().toString()).putExtra("tag", (String) etCountryCode.getTag()));
 //                            finish();
                             break;
+                        case Constants.Events.EVENT_GET_SECURITY_QES:
+                            if (response.optJSONObject("json").has("questionList")) {
+                                    for (int i = 0; i < response.optJSONObject("json").optJSONArray("questionList").length(); i++) {
+                                        if (i == 0) {
+                                            etSecurityQuestion1.setText(response.optJSONObject("json").optJSONArray("questionList").optJSONObject(i).optString("name"));
+                                            etSecurityQuestion1.setTag(response.optJSONObject("json").optJSONArray("questionList").optJSONObject(i).optString("id"));
+                                        }
+                                        if (i == response.optJSONObject("json").optJSONArray("questionList").length() / 2) {
+                                            etSecurityQuestion2.setText(response.optJSONObject("json").optJSONArray("questionList").optJSONObject(i).optString("name"));
+                                            etSecurityQuestion2.setTag(response.optJSONObject("json").optJSONArray("questionList").optJSONObject(i).optString("id"));
+                                            break;
+                                        }
+                                    }
+                            }
+                            jsonObject = response;
+                            break;
                     }
                 } else {
                     JsonErrorShow.jsonErrorShow(response, this, clSecurityQuestion);
@@ -151,15 +182,24 @@ public class SecurityQuestion extends AppCompatActivity implements View.OnClickL
 
     }
 
-    public void openQuestionSelectPopup(Boolean check) {
+    public void openQuestionSelectPopup(Boolean check, JSONObject jsonObject1) {
         try {
-            String str = "    { \"eventId\" : 123 ,   \"errorCode\" : 0,   \"status\" : 200,   \"message\" : \"country list.\",   \"data\" : { \"countries\" : [ { \"id\" : \"1\",   \"name\" : \"In which city or town did your mother and father meet ?\",   \"code\" : \"+92\" } , { \"id\" : \"2\",   \"name\" : \"What was the last name of your third grade teacher ?\" ,   \"code\" : \"+93\" }, { \"id\" : \"3\",   \"name\" : \"In Which city or town was your first job ?\" ,   \"code\" : \"+93\" }, { \"id\" : \"4\",   \"name\" : \"what was the name of your first stuffed animal ?\" ,   \"code\" : \"+93\" } ]  } }";
-            JSONObject jsonObject = new JSONObject(str);
+//            String str = "    { \"eventId\" : 123 ,   \"errorCode\" : 0,   \"status\" : 200,   \"message\" : \"country list.\",   \"data\" : { \"countries\" : [ { \"id\" : \"1\",   \"name\" : \"In which city or town did your mother and father meet ?\",   \"code\" : \"+92\" } , { \"id\" : \"2\",   \"name\" : \"What was the last name of your third grade teacher ?\" ,   \"code\" : \"+93\" }, { \"id\" : \"3\",   \"name\" : \"In Which city or town was your first job ?\" ,   \"code\" : \"+93\" }, { \"id\" : \"4\",   \"name\" : \"what was the name of your first stuffed animal ?\" ,   \"code\" : \"+93\" } ]  } }";
+            jsonObject = jsonObject1;
+            JSONArray question1 = new JSONArray();
+            JSONArray question2 = new JSONArray();
+            for (int i = 0; i < jsonObject.optJSONObject("json").optJSONArray("questionList").length(); i++) {
+                if (i < jsonObject.optJSONObject("json").optJSONArray("questionList").length() / 2) {
+                    question1.put(jsonObject.optJSONObject("json").optJSONArray("questionList").optJSONObject(i));
+                } else {
+                    question2.put(jsonObject.optJSONObject("json").optJSONArray("questionList").optJSONObject(i));
+                }
+            }
             final AlertDialog.Builder alertDialogs = new AlertDialog.Builder(this);
             LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             View dialog = inflater.inflate(R.layout.dialog_select_question, null);
             ListView list_view = (ListView) dialog.findViewById(R.id.list_view);
-            AdapterClass adapterClass = new AdapterClass(this, jsonObject.optJSONObject("data").optJSONArray("countries"), check);
+            AdapterClass adapterClass = new AdapterClass(this, question1, question2, check);
             list_view.setAdapter(adapterClass);
             alertDialogs.setView(dialog);
             alertDialogs.setCancelable(true);
@@ -177,10 +217,13 @@ public class SecurityQuestion extends AppCompatActivity implements View.OnClickL
         private LayoutInflater inflater = null;
         Activity a;
 
-        public AdapterClass(Activity a, JSONArray data, Boolean check) {
-            this.data = data;
-            this.a = a;
+        public AdapterClass(Activity a, JSONArray data, JSONArray data2, Boolean check) {
             this.check = check;
+            if (check)
+                this.data = data;
+            else
+                this.data = data2;
+            this.a = a;
             inflater = (LayoutInflater) a.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         }
 

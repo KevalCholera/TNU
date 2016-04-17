@@ -2,6 +2,8 @@ package com.smartsense.taxinearyou.Fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +11,10 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.mpt.storage.SharedPreferenceUtil;
 import com.smartsense.taxinearyou.AccountSecurity;
 import com.smartsense.taxinearyou.CardList;
 import com.smartsense.taxinearyou.GeneralInformation;
@@ -16,9 +22,17 @@ import com.smartsense.taxinearyou.LostItem;
 import com.smartsense.taxinearyou.More;
 import com.smartsense.taxinearyou.R;
 import com.smartsense.taxinearyou.SignIn;
+import com.smartsense.taxinearyou.TaxiNearYouApp;
 import com.smartsense.taxinearyou.utill.CircleImageView1;
+import com.smartsense.taxinearyou.utill.CommonUtil;
+import com.smartsense.taxinearyou.utill.Constants;
+import com.smartsense.taxinearyou.utill.DataRequest;
+import com.smartsense.taxinearyou.utill.JsonErrorShow;
 
-public class FragmentMenu extends android.support.v4.app.Fragment implements View.OnClickListener {
+import org.json.JSONException;
+import org.json.JSONObject;
+
+public class FragmentMenu extends Fragment implements Response.Listener<JSONObject>, Response.ErrorListener, View.OnClickListener {
 
     CircleImageView1 cvAccountPhoto;
     TextView tvAccountPersonName;
@@ -27,6 +41,7 @@ public class FragmentMenu extends android.support.v4.app.Fragment implements Vie
 
     ImageView ivEditProfilePhoto;
     Button btAccountActivateNow;
+    CoordinatorLayout clSearch;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -44,7 +59,7 @@ public class FragmentMenu extends android.support.v4.app.Fragment implements Vie
         tvAccountLogout = (TextView) rootView.findViewById(R.id.tvAccountLogout);
         btAccountActivateNow = (Button) rootView.findViewById(R.id.btAccountActivateNow);
         ivEditProfilePhoto = (ImageView) rootView.findViewById(R.id.ivEditProfilePhoto);
-
+        clSearch = (CoordinatorLayout) getActivity().findViewById(R.id.clSearch);
         if (btAccountActivateNow.getVisibility() == View.VISIBLE) {
             cvAccountPhoto.setBorderColor(getResources().getColor(R.color.Yellow));
             ivEditProfilePhoto.setBackground(getResources().getDrawable(R.drawable.circular_view_yellow_colored));
@@ -65,7 +80,7 @@ public class FragmentMenu extends android.support.v4.app.Fragment implements Vie
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.tvAccountLogout:
-                startActivity(new Intent(getActivity(), SignIn.class));
+                doLogout();
                 break;
 
             case R.id.tvAccountAccountSecurity:
@@ -85,5 +100,52 @@ public class FragmentMenu extends android.support.v4.app.Fragment implements Vie
                 startActivity(new Intent(getActivity(), More.class));
                 break;
         }
+    }
+
+    private void doLogout() {
+        final String tag = "doLogout";
+        StringBuilder builder = new StringBuilder();
+        JSONObject jsonData = new JSONObject();
+
+        try {
+            builder.append(Constants.BASE_URL + Constants.BASE_URL_POSTFIX + Constants.Events.EVENT_LOGOUT + "&json="
+                    + jsonData.put("token", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_ACCESS_TOKEN, "")).put("userId", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_ID, "")));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        CommonUtil.showProgressDialog(getActivity(), "Login...");
+        DataRequest dataRequest = new DataRequest(Request.Method.GET, builder.toString(), null, this, this);
+        TaxiNearYouApp.getInstance().addToRequestQueue(dataRequest, tag);
+    }
+
+    @Override
+    public void onErrorResponse(VolleyError volleyError) {
+        CommonUtil.alertBox(getActivity(), "", getResources().getString(R.string.nointernet_try_again_msg));
+        CommonUtil.cancelProgressDialog();
+    }
+
+    @Override
+    public void onResponse(JSONObject response) {
+        CommonUtil.cancelProgressDialog();
+        if (response != null) {
+            try {
+                if (response.getInt("status") == Constants.STATUS_SUCCESS) {
+                    switch (response.getInt("__eventid")) {
+                        case Constants.Events.EVENT_LOGOUT:
+                            SharedPreferenceUtil.clear();
+                            SharedPreferenceUtil.save();
+                            startActivity(new Intent(getActivity(), SignIn.class));
+                            getActivity().finish();
+                            break;
+                    }
+                } else {
+                    JsonErrorShow.jsonErrorShow(response, getActivity(), clSearch);
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
     }
 }

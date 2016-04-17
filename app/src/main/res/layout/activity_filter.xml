@@ -38,59 +38,16 @@
                 android:background="@color/white" />
 
 
-            <com.smartsense.taxinearyou.utill.RadioButtonWithTableLayout
+            <RadioGroup
                 android:id="@+id/rgFilterVehicleType1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/rgFilterMarginTopAll">
 
 
-            </com.smartsense.taxinearyou.utill.RadioButtonWithTableLayout>
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/tvFilterMarginTopAll"
-                android:text="@string/price"
-                android:textColor="@color/white"
-                android:textSize="@dimen/tvHeadingSizeAll" />
-
-            <RadioGroup
-                android:id="@+id/rgFilterPrice"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/rgFilterMarginTopAll"
-                android:orientation="horizontal">
-
-                <RadioButton
-                    android:id="@+id/rbFilterLow"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@drawable/radio_button"
-                    android:button="@color/white"
-                    android:checked="true"
-                    android:gravity="center"
-                    android:padding="@dimen/rbPaddingAll"
-                    android:text="@string/low"
-                    android:textColor="@drawable/radio_button"
-                    android:textSize="@dimen/btSizeAll" />
-
-                <RadioButton
-                    android:id="@+id/rbFilterHigh"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@drawable/radio_button"
-                    android:button="@color/white"
-                    android:gravity="center"
-                    android:padding="@dimen/rbPaddingAll"
-                    android:text="@string/high"
-                    android:textColor="@drawable/radio_button"
-                    android:textSize="@dimen/btSizeAll" />
-
             </RadioGroup>
+
+
 
             <TextView
                 android:layout_width="wrap_content"
@@ -144,13 +101,12 @@
                 android:textColor="@color/white"
                 android:textSize="@dimen/tvHeadingSizeAll" />
 
-            <com.smartsense.taxinearyou.utill.RadioButtonWithTableLayout
+            <RadioGroup
                 android:id="@+id/rgFilterDistance1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-
-            </com.smartsense.taxinearyou.utill.RadioButtonWithTableLayout>
+            </RadioGroup>
 
             <TextView
                 android:layout_width="match_parent"
@@ -167,6 +123,7 @@
                 android:orientation="horizontal">
 
                 <RadioGroup
+                    android:id="@+id/rbgFilterRating"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
@@ -236,6 +193,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
                         android:numStars="5"
+                        android:isIndicator="true"
                         style="@style/RatingBar"
                         android:rating="5"
                         android:stepSize="1" />
@@ -245,6 +203,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:numStars="5"
+                        android:isIndicator="true"
                         android:rating="4"
                         android:stepSize="1" />
 
@@ -254,6 +213,7 @@
                         android:layout_height="match_parent"
                         android:numStars="5"
                         android:rating="3"
+                        android:isIndicator="true"
                         android:stepSize="1" />
 
                     <RatingBar
@@ -262,6 +222,7 @@
                         android:layout_height="match_parent"
                         android:numStars="5"
                         android:rating="2"
+                        android:isIndicator="true"
                         android:stepSize="1" />
 
                     <RatingBar
@@ -269,6 +230,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:numStars="5"
+                        android:isIndicator="true"
                         android:rating="1"
                         android:stepSize="1" />
 

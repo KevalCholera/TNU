@@ -13,7 +13,7 @@ import android.widget.TableRow;
 public class RadioButtonWithTableLayout extends TableLayout implements
         View.OnClickListener {
 
-    private RadioButton mBtnCurrentRadio;
+    public static RadioButton mBtnCurrentRadio;
 
     public RadioButtonWithTableLayout(Context context) {
         super(context);

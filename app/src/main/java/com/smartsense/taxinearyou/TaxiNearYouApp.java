@@ -2,16 +2,22 @@ package com.smartsense.taxinearyou;
 
 import android.app.Application;
 import android.content.Context;
+import android.os.AsyncTask;
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.Volley;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesUtil;
+import com.google.android.gms.gcm.GoogleCloudMessaging;
 import com.mpt.storage.SharedPreferenceUtil;
-import com.smartsense.taxinearyou.imageutil.DiskBitmapCache;
+import com.onesignal.OneSignal;
 import com.smartsense.taxinearyou.imageutil.BitmapCache;
 import com.smartsense.taxinearyou.imageutil.BitmapUtil;
+import com.smartsense.taxinearyou.imageutil.DiskBitmapCache;
 
 public class TaxiNearYouApp extends Application {
     private static TaxiNearYouApp appInstance;
@@ -20,12 +26,16 @@ public class TaxiNearYouApp extends Application {
     private RequestQueue requestQueue;
     private ImageLoader imageLoader;
     private static Context mAppContext;
+    private String regId="";
+    private GoogleCloudMessaging gcm;
 
     @Override
     public void onCreate() {
         super.onCreate();
         appInstance = this;
         this.setAppContext(getApplicationContext());
+//        register();
+        OneSignal.startInit(this).init();
 //        Parse.initialize(this, "9yjUxrJuubYfJQvh8gONZuZqTEu3gcpqB1mdRkpH", "w3znN1nsItMDKIZaTJ8qzdRDPnfFKeW6uAI56C8Y");
 //        ParseInstallation.getCurrentInstallation().put("user", "customer");
 //        ParseInstallation.getCurrentInstallation().saveInBackground();
@@ -116,4 +126,44 @@ public class TaxiNearYouApp extends Application {
 //            throw new AssertionError(e);
 //        }
 //    }
+
+    private void register() {
+        if (checkPlayServices()) {
+            gcm = GoogleCloudMessaging.getInstance(this);
+
+                registerInBackground();
+
+        } else {
+            Log.e(TAG, "No valid Google Play Services APK found.");
+        }
+    }
+
+    private boolean checkPlayServices() {
+        int resultCode = GooglePlayServicesUtil.isGooglePlayServicesAvailable(this);
+        if (resultCode != ConnectionResult.SUCCESS) {
+            return false;
+        }
+        return true;
+    }
+
+    private void registerInBackground() {
+        new AsyncTask() {
+            @Override
+            protected String doInBackground(Object[] params) {
+                String msg;
+                try {
+                    if (gcm == null) {
+                        gcm = GoogleCloudMessaging.getInstance(TaxiNearYouApp.getAppContext());
+                    }
+                    regId = gcm.register("115896185562");
+                    msg = "Device registered, registration ID: " + regId;
+                    Log.i(TAG, msg);
+                } catch (Exception ex) {
+                    msg = "Error :" + ex.getMessage();
+                    Log.e(TAG, msg);
+                }
+                return msg;
+            }
+        }.execute(null, null, null);
+    }
 }

@@ -44,7 +44,7 @@
             android:focusable="false"
             android:paddingStart="@dimen/etSignUpAllPaddingStartEnd"
             android:singleLine="true"
-            android:text="@string/security_question1"
+            android:text=""
             android:textColor="@color/dark_gray"
             android:textSize="@dimen/etSignUpSizeAll"
             android:textStyle="italic" />
@@ -82,7 +82,7 @@
             android:imeOptions="actionNext"
             android:paddingStart="@dimen/etSignUpAllPaddingStartEnd"
             android:singleLine="true"
-            android:text="@string/security_question1"
+            android:text=""
             android:textColor="@color/dark_gray"
             android:textSize="@dimen/etSignUpSizeAll"
             android:textStyle="italic" />

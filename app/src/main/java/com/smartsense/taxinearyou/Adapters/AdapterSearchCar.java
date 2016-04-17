@@ -80,7 +80,7 @@ public class AdapterSearchCar extends BaseAdapter {
             }
         });
 
-        if (test.optInt("availability") == 1) {
+        if (test.optInt("isAvailable") == 1) {
             ivElementSearchCarsOnline.setImageResource(android.R.drawable.presence_online);
             tvElementSearchCarsChat.setText("taxiType");
             tvElementSearchCarsWaitingTime.setText("(10 to 20 minutes for a taxi)");
@@ -89,8 +89,8 @@ public class AdapterSearchCar extends BaseAdapter {
             tvElementSearchCarsChat.setText("taxiType");
             tvElementSearchCarsWaitingTime.setText("(20 to 40 minutes for a taxi)");
         }
-//        rbElementSearchCars.setRating(Float.valueOf(test.optString("partnerRating")));
-        rbElementSearchCars.setRating(3);
+        rbElementSearchCars.setRating(Float.valueOf(test.optString("partnerRating")));
+//        rbElementSearchCars.setRating(3);
         tvElementSearchCarsName.setText(test.optString("partnerName"));
         tvElementSearchCarsMoney.setText("£" + test.optString("ETA"));
 

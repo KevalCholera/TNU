@@ -1,5 +1,6 @@
 package com.smartsense.taxinearyou;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -11,7 +12,6 @@ import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.TableLayout;
 import android.widget.TableRow;
 
 import com.android.volley.Response;
@@ -24,31 +24,32 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class Filter extends AppCompatActivity implements View.OnClickListener , Response.Listener<JSONObject>, Response.ErrorListener {
+public class Filter extends AppCompatActivity implements View.OnClickListener {
 
-    RadioGroup rgFilterPrice, rgFilterBookingType;
-    TableLayout rgFilterDistance,
-            rgFilterVehicleType;
+    RadioGroup rgFilterBookingType, rgFilterDistance,
+            rgFilterVehicleType, rbgFilterRating;
+    //    TableLayout rgFilterDistance,
+//            rgFilterVehicleType;
     RadioButton rbFilterRating5, rbFilterRating4, rbFilterRating3, rbFilterRating2, rbFilterRating1, rbFilterRatingAll;
     Button btFilterDone, btFilterResetAll;
     ImageView ivFilterCancel;
     CheckBox cbFilterRecommend;
     private RadioButton rbFilterReturn;
     private RadioButton rbFilterSingle;
-    private RadioButton rbFilterHigh;
-    private RadioButton rbFilterLow;
+    private JSONObject filterObj;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_filter);
 
-        rgFilterPrice = (RadioGroup) findViewById(R.id.rgFilterPrice);
-        rgFilterVehicleType = (TableLayout) findViewById(R.id.rgFilterVehicleType1);
+
+        rgFilterVehicleType = (RadioGroup) findViewById(R.id.rgFilterVehicleType1);
+
         rgFilterBookingType = (RadioGroup) findViewById(R.id.rgFilterBookingType);
-        rgFilterDistance = (TableLayout) findViewById(R.id.rgFilterDistance1);
-        rbFilterLow = (RadioButton) findViewById(R.id.rbFilterLow);
-        rbFilterHigh = (RadioButton) findViewById(R.id.rbFilterHigh);
+
+        rgFilterDistance = (RadioGroup) findViewById(R.id.rgFilterDistance1);
+        rbgFilterRating = (RadioGroup) findViewById(R.id.rbgFilterRating);
         rbFilterSingle = (RadioButton) findViewById(R.id.rbFilterSingle);
         rbFilterReturn = (RadioButton) findViewById(R.id.rbFilterReturn);
         rbFilterRating5 = (RadioButton) findViewById(R.id.rbFilterRating5);
@@ -62,34 +63,110 @@ public class Filter extends AppCompatActivity implements View.OnClickListener , 
         btFilterResetAll = (Button) findViewById(R.id.btFilterResetAll);
         ivFilterCancel = (ImageView) findViewById(R.id.ivFilterCancel);
 
-
         cbFilterRecommend.setOnClickListener(this);
-        rbFilterLow.setOnClickListener(this);
-        rbFilterHigh.setOnClickListener(this);
         rbFilterSingle.setOnClickListener(this);
         rbFilterReturn.setOnClickListener(this);
-
-
         btFilterDone.setOnClickListener(this);
         btFilterResetAll.setOnClickListener(this);
         ivFilterCancel.setOnClickListener(this);
-
+        try {
+            filterObj = new JSONObject(SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_FILTER_REQUEST, ""));
+            if (filterObj.has("bookingType")) {
+                if (filterObj.optInt("bookingType") == 0)
+                    rbFilterSingle.setChecked(true);
+                else
+                    rbFilterReturn.setChecked(true);
+            }
+            if (filterObj.has("rating")) {
+                if (-1 == filterObj.optInt("rating"))
+                    rbFilterRatingAll.setChecked(true);
+                else if (5 == filterObj.optInt("rating"))
+                    rbFilterRating5.setChecked(true);
+                else if (4 == filterObj.optInt("rating"))
+                    rbFilterRating4.setChecked(true);
+                else if (3 == filterObj.optInt("rating"))
+                    rbFilterRating3.setChecked(true);
+                else if (2 == filterObj.optInt("rating"))
+                    rbFilterRating2.setChecked(true);
+                else if (filterObj.optInt("rating") == 1)
+                    rbFilterRating1.setChecked(true);
+            }
+            if (filterObj.has("isRecommended")) {
+                if (filterObj.optInt("isRecommended") == 1)
+                    cbFilterRecommend.setChecked(true);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         addRadioVehical();
     }
 
 
     @Override
     public void onClick(View v) {
-
         switch (v.getId()) {
             case R.id.ivFilterCancel:
-                startActivity(new Intent(Filter.this, SearchCars.class));
-                break;
-            case R.id.btFilterDone:
-                startActivity(new Intent(Filter.this, SearchCars.class));
+                setResult(Activity.RESULT_CANCELED, new Intent());
+                finish();
                 break;
             case R.id.btFilterResetAll:
-                reset();
+                SharedPreferenceUtil.remove(Constants.PrefKeys.PREF_FILTER_REQUEST);
+                SharedPreferenceUtil.save();
+                setResult(Activity.RESULT_OK, new Intent());
+                finish();
+                break;
+            case R.id.btFilterDone:
+                int selectedId2 = rgFilterVehicleType.getCheckedRadioButtonId();
+                RadioButton radioButton2 = (RadioButton) findViewById(selectedId2);
+                int selectedId1 = rgFilterDistance.getCheckedRadioButtonId();
+                RadioButton radioButton1 = (RadioButton) findViewById(selectedId1);
+                int selectedId = rgFilterBookingType.getCheckedRadioButtonId();
+                RadioButton radioButton = (RadioButton) findViewById(selectedId);
+                int selectedId3 = rbgFilterRating.getCheckedRadioButtonId();
+                RadioButton radioButton3 = (RadioButton) findViewById(selectedId3);
+                try {
+                    if (filterObj.has("vehicleType"))
+                        filterObj.remove("vehicleType");
+                    filterObj.put("vehicleType", String.valueOf(radioButton2.getId()));
+                    if (filterObj.has("distance"))
+                        filterObj.remove("distance");
+                    filterObj.put("distance", String.valueOf(radioButton1.getId() == 0 ? -1 : radioButton1.getId()));
+                    if (filterObj.has("bookingType"))
+                        filterObj.remove("bookingType");
+                    filterObj.put("bookingType", String.valueOf(radioButton.getId() == R.id.rbFilterSingle ? 0 : 1));
+                    if (filterObj.has("rating"))
+                        filterObj.remove("rating");
+                    int ratingId = -1;
+                    if (radioButton3.getId() == R.id.rbFilterRatingAll)
+                        ratingId = -1;
+                    else if (radioButton3.getId() == R.id.rbFilterRating5)
+                        ratingId = 5;
+                    else if (radioButton3.getId() == R.id.rbFilterRating4)
+                        ratingId = 4;
+                    else if (radioButton3.getId() == R.id.rbFilterRating3)
+                        ratingId = 3;
+                    else if (radioButton3.getId() == R.id.rbFilterRating2)
+                        ratingId = 2;
+                    else if (radioButton3.getId() == R.id.rbFilterRating1)
+                        ratingId = 1;
+                    filterObj.put("rating", String.valueOf(ratingId));
+                    if (filterObj.has("isRecommended"))
+                        filterObj.remove("isRecommended");
+                    filterObj.put("isRecommended", String.valueOf(cbFilterRecommend.isChecked() ? 1 : 0));
+                    Log.i("filterObj", filterObj.toString());
+                    SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_FILTER_REQUEST, filterObj.toString());
+                    SharedPreferenceUtil.save();
+                    setResult(Activity.RESULT_OK, new Intent());
+                    finish();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                break;
+            case R.id.rgFilterDistance1:
+
+                break;
+            case R.id.rgFilterBookingType:
+
                 break;
         }
     }
@@ -97,7 +174,7 @@ public class Filter extends AppCompatActivity implements View.OnClickListener , 
     public void reset() {
         rbFilterSingle.setChecked(true);
         cbFilterRecommend.setChecked(false);
-        rbFilterHigh.setChecked(true);
+
         rbFilterRatingAll.setChecked(true);
 
     }
@@ -105,160 +182,105 @@ public class Filter extends AppCompatActivity implements View.OnClickListener , 
     public void addRadioVehical() {
         TableRow.LayoutParams params = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT,
                 TableRow.LayoutParams.WRAP_CONTENT);
-        TableRow.LayoutParams params1 = new TableRow.LayoutParams(TableRow.LayoutParams.FILL_PARENT,
+        TableRow.LayoutParams params1 = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT,
                 TableRow.LayoutParams.WRAP_CONTENT);
         params.weight = 1.0f;
         params.setMargins(5, 0, 0, 0);
         try {
             JSONArray taxiTypeArray = new JSONArray(SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_TAXI_TYPE, ""));
-
-            JSONObject filterObj = new JSONObject(SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_FILTER_REQUEST, ""));
-            RadioButton[] radioButton = new RadioButton[taxiTypeArray.length()];
-            TableRow[] tableRow = new TableRow[(int) Math.ceil(taxiTypeArray.length() / 2)];
+            RadioButton[] radioButton = new RadioButton[taxiTypeArray.length() % 2 == 0 ? taxiTypeArray.length() : taxiTypeArray.length() + 1];
+            int typeLen = (int) Math.floor(taxiTypeArray.length() / 2);
+            Log.i("typeLen", taxiTypeArray.length() + " " + typeLen);
+            TableRow[] tableRow = new TableRow[typeLen + 1];
             int j = -1;
+            Boolean check = false;
             for (int i = 0; i < taxiTypeArray.length(); i++) {
-
                 if ((i + 1) % 2 != 0) {
                     j++;
-                    Log.i("Yes", j + "" + i);
+                    Log.i("Yes", j + " " + i);
                     tableRow[j] = new TableRow(this);
-                    tableRow[j].setId(j);
+                    tableRow[j].setId(taxiTypeArray.optJSONObject(i).getInt("taxiTypeId"));
                     tableRow[j].setLayoutParams(params1);
                 }
                 radioButton[i] = new RadioButton(this);
-                radioButton[i].setLayoutParams(params);
                 radioButton[i].setText(taxiTypeArray.optJSONObject(i).getString("taxiName"));
                 radioButton[i].setTextColor(getResources().getColor(R.color.white));
                 radioButton[i].setId(taxiTypeArray.optJSONObject(i).getInt("taxiTypeId"));
                 radioButton[i].setGravity(Gravity.CENTER);
                 radioButton[i].setPadding(15, 15, 15, 15); // android:checked="true"
-                if (filterObj.optInt("vehicleType") == (taxiTypeArray.optJSONObject(i).getInt("taxiTypeId")))
-                    radioButton[i].setClickable(true);
-//                radioButton[i].setChecked(true);
-                tableRow[j].addView(radioButton[i]);
-                if ((i + 1) % 2 == 0) {
-                    Log.i("Yes1", j + "" + i);
-                    rgFilterVehicleType.addView(tableRow[j], new TableLayout.LayoutParams(TableLayout.LayoutParams.FILL_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
-
+                if (filterObj.optInt("vehicleType") == taxiTypeArray.optJSONObject(i).getInt("taxiTypeId"))
+                    radioButton[i].setChecked(true);
+                radioButton[i].setClickable(true);
+                radioButton[i].setLayoutParams(params);
+//                tableRow[j].addView(radioButton[i]);
+                rgFilterVehicleType.addView(radioButton[i]);
+                if (taxiTypeArray.length() == i + 1) {
+                    Log.i("if", j + "" + i);
+                    check = (taxiTypeArray.length() % 2) == 0 ? false : true;
                 }
+//                if ((i + 1) % 2 == 0 || check) {
+//                    if (check) {
+//                        radioButton[i + 1] = new RadioButton(this);
+//                        radioButton[ i + 1].setLayoutParams(params);
+//                        radioButton[i + 1].setText(taxiTypeArray.optJSONObject(i).getString("taxiName"));
+//                        radioButton[i + 1].setVisibility(View.INVISIBLE);
+//                        tableRow[j].addView(radioButton[i + 1]);
+//                    }
+//                    check = false;
+//                    Log.i("Yes1", j + "" + i);
+//                    rgFilterVehicleType.addView(tableRow[j], new TableLayout.LayoutParams(TableLayout.LayoutParams.FILL_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
+//
+//                }
             }
 
             j = -1;
             JSONArray jsonArray = new JSONArray(SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_DISTANCE_LIST, ""));
-
-            radioButton = new RadioButton[jsonArray.length()];
-            tableRow = new TableRow[(int) Math.floor(jsonArray.length() / 2)+1];
+            radioButton = new RadioButton[jsonArray.length() % 2 == 0 ? jsonArray.length() : jsonArray.length() + 1];
+            tableRow = new TableRow[(int) Math.floor(jsonArray.length() / 2) + 1];
             Log.i("Yes", jsonArray.length() + "" + tableRow.length);
             for (int i = 0; i < jsonArray.length(); i++) {
                 if ((i + 1) % 2 != 0) {
                     j++;
                     Log.i("Yes", j + "" + i);
                     tableRow[j] = new TableRow(this);
-                    tableRow[j].setId(j);
+                    tableRow[j].setId(jsonArray.optJSONObject(i).getInt("distanceId"));
                     tableRow[j].setLayoutParams(params1);
                 }
                 radioButton[i] = new RadioButton(this);
                 radioButton[i].setLayoutParams(params);
                 radioButton[i].setText(jsonArray.optJSONObject(i).getString("name"));
                 radioButton[i].setTextColor(getResources().getColor(R.color.white));
-                radioButton[i].setId(jsonArray.optJSONObject(i).getInt("distanceId"));
+                int id1 = jsonArray.optJSONObject(i).getInt("distanceId") == -1 ? 0 : jsonArray.optJSONObject(i).getInt("distanceId");
+                radioButton[i].setId(id1);
                 radioButton[i].setGravity(Gravity.CENTER);
                 radioButton[i].setPadding(15, 15, 15, 15); // android:checked="true"
                 if (filterObj.optInt("distance") == (jsonArray.optJSONObject(i).getInt("distanceId")))
-                    radioButton[i].setClickable(true);
-//                radioButton[i].setChecked(true);
-                tableRow[j].addView(radioButton[i]);
-                if ((i + 1) % 2 == 0) {
-                    Log.i("Yes1", j + "" + i);
-                    rgFilterDistance.addView(tableRow[j], new TableLayout.LayoutParams(TableLayout.LayoutParams.FILL_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
+                    radioButton[i].setChecked(true);
+                radioButton[i].setClickable(true);
 
+                if (jsonArray.length() == i + 1) {
+                    Log.i("if", j + "" + i);
+                    check = (jsonArray.length() % 2) == 0 ? false : true;
                 }
+//                tableRow[j].addView(radioButton[i]);
+                rgFilterDistance.addView(radioButton[i]);
+//                if ((i + 1) % 2 == 0 || check) {
+//                    if (check) {
+//                        radioButton[i + 1] = new RadioButton(this);
+//                        radioButton[i + 1].setVisibility(View.INVISIBLE);
+//                        radioButton[i + 1].setLayoutParams(params);
+//                        radioButton[i + 1].setText(jsonArray.optJSONObject(i).getString("name"));
+//                        tableRow[j].addView(radioButton[i + 1]);
+//                    }
+//                    check = false;
+//                    Log.i("Yes1", j + "" + i);
+//                    rgFilterDistance.addView(tableRow[j], new TableLayout.LayoutParams(TableLayout.LayoutParams.FILL_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
+//
+//                }
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    @Override
-    public void onErrorResponse(VolleyError volleyError) {
-        CommonUtil.alertBox(this, "", getResources().getString(R.string.nointernet_try_again_msg));
-        CommonUtil.cancelProgressDialog();
-//        NetworkResponse response = error.networkResponse;
-//        if (error instanceof ServerError && response != null) {
-//            try {
-//                String res = new String(response.data,
-//                        HttpHeaderParser.parseCharset(response.headers, "utf-8"));
-//                // Now you can use any deserializer to make sense of data
-//                JSONObject obj = new JSONObject(res);
-//            } catch (UnsupportedEncodingException e1) {
-//                // Couldn't properly decode data to string
-//                e1.printStackTrace();
-//            } catch (JSONException e2) {
-//                // returned data is not JSONObject?
-//                e2.printStackTrace();
-//            }
-//        }
-    }
-
-    @Override
-    public void onResponse(JSONObject response) {
-        CommonUtil.cancelProgressDialog();
-        if (response != null) {
-            try {
-                if (response.getInt("status") == Constants.STATUS_SUCCESS) {
-                    switch (response.getInt("__eventid")) {
-                        case Constants.Events.EVENT_PARTNER_LIST:
-                            SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_TAXI_TYPE, response.optJSONObject("json").optJSONArray("taxiTypeArray").toString());
-                            SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_DISTANCE_LIST, response.optJSONObject("json").optJSONArray("distanceList").toString());
-                            SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_PARTNER_ARRAY, response.optJSONObject("json").optJSONArray("partnerArray").toString());
-                            SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_FILTER_REQUEST, response.optJSONObject("filterRequest").toString());
-                            SharedPreferenceUtil.save();
-                            startActivity(new Intent(this, SearchCars.class));
-                            break;
-                    }
-                } else {
-//                    JsonErrorShow.jsonErrorShow(response, this, clSearch);
-                }
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }
-
-    }
-
-//    private void doPartnerList() {
-//        final String tag = "doPartnerList";
-//        StringBuilder builder = new StringBuilder();
-//        String strDate = (String) tvBookDateTime.getTag();
-////        strDate = strDate.replace(" ", "%20");
-//        tvBookDateTime.setTag(strDate);
-//        JSONObject jsonData = new JSONObject();
-//
-//        try {
-//            JSONObject fromData = new JSONObject(SharedPreferenceUtil.getString(Constants.FROM_ADDRESS, ""));
-//            JSONObject toData = new JSONObject(SharedPreferenceUtil.getString(Constants.TO_ADDRESS, ""));
-//            JSONObject filterRequest = new JSONObject();
-//            JSONArray viaArea = new JSONArray();
-//            if (SharedPreferenceUtil.contains(Constants.VIA_ADDRESS))
-//                viaArea.put(new JSONObject(SharedPreferenceUtil.getString(Constants.VIA_ADDRESS, "")));
-//            if (SharedPreferenceUtil.contains(Constants.VIA2_ADDRESS))
-//                viaArea.put(new JSONObject(SharedPreferenceUtil.getString(Constants.VIA2_ADDRESS, "")));
-//
-//            builder.append(jsonData.put("fromAreaName", fromData.optString("AreaName")).put("fromAreaLat", fromData.optString("AreaLat")).put("fromAreaLong", fromData.optString("AreaLong")).put("fromAreaPlaceid", fromData.optString("AreaPlaceid")).put("fromAreaAddress", fromData.optString("AreaAddress")).put("fromAreaCity", fromData.optString("AreaCity")).put("fromAreaPostalCode", fromData.optString("AreaPostalCode")).put("toAreaName", toData.optString("AreaName")).put("toAreaLat", toData.optString("AreaLat")).put("toAreaLong", toData.optString("AreaLong")).put("toAreaPlaceid", toData.optString("AreaPlaceid")).put("toAreaAddress", toData.optString("AreaAddress")).put("toAreaCity", toData.optString("AreaCity")).put("toAreaPostalCode", toData.optString("AreaPostalCode")).put("viaArea", viaArea)
-//                    .put("journeyDatetime", (String) tvBookDateTime.getTag()).put("luggageId", (String) tvBookLuggage.getTag()).put("passanger", (String) tvBookPassenger.getTag()).put("bookingduration", "1").put("pageSize", "1").put("pageNumber", "1").put("sortField", "rating").put("sortOrder", "asc").put("filterRequest", filterRequest).put("token", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_ACCESS_TOKEN, "")).put("userId", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_ID, "")));
-//        } catch (JSONException e) {
-//            e.printStackTrace();
-//        }
-//
-//        String url = "";
-//        try {
-//            url = Constants.BASE_URL + Constants.BASE_URL_POSTFIX + Constants.Events.EVENT_PARTNER_LIST + "&json="
-//                    + URLEncoder.encode(builder.toString(), "UTF8");
-//        } catch (UnsupportedEncodingException e) {
-//            e.printStackTrace();
-//        }
-//        CommonUtil.showProgressDialog(getActivity(), "Login...");
-//        DataRequest dataRequest = new DataRequest(Request.Method.GET, url, null, this, this);
-//        TaxiNearYouApp.getInstance().addToRequestQueue(dataRequest, tag);
-//    }
 }

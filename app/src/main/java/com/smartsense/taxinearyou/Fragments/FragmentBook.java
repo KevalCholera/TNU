@@ -21,25 +21,20 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
-import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.mpt.storage.SharedPreferenceUtil;
 import com.smartsense.taxinearyou.GooglePlaces;
 import com.smartsense.taxinearyou.R;
 import com.smartsense.taxinearyou.SearchCars;
-import com.smartsense.taxinearyou.TaxiNearYouApp;
 import com.smartsense.taxinearyou.utill.CommonUtil;
 import com.smartsense.taxinearyou.utill.Constants;
-import com.smartsense.taxinearyou.utill.DataRequest;
 import com.smartsense.taxinearyou.utill.JsonErrorShow;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -138,7 +133,7 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
 //        final RadioButton rb1 = (RadioButton) getActivity().findViewById(id);
         SimpleDateFormat timeStampFormat1 = new SimpleDateFormat("dd-MMM-yyyy");
         SimpleDateFormat timeStampFormat2 = new SimpleDateFormat("dd-MMM-yyyy -- hh:mm aa");
-        SimpleDateFormat timeStampFormat = new SimpleDateFormat("dd-MMM-yyyy hh:mmaa");
+        SimpleDateFormat timeStampFormat = new SimpleDateFormat("dd-MMM-yyyy hh:mm aa");
 //        SimpleDateFormat timeStampFormat2 = new SimpleDateFormat("dd-MMM-yyyy");//hh == 12 hours && HH == 24 hours  aa == am/pm
 //        SimpleDateFormat timeStampFormat = new SimpleDateFormat("dd-MM-yyyy");
         Date Now = new Date();
@@ -211,9 +206,9 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
                 else if (TextUtils.isEmpty(tvBookTo.getText().toString()))
                     CommonUtil.showSnackBar(getActivity(), getString(R.string.enter_to), clSearch);
                 else
-//                startActivity(new Intent(getActivity(), SearchCars.class));
-//                    doPartnerList();
-                doSearch();
+                    startActivity(new Intent(getActivity(), SearchCars.class).putExtra("tvBookDateTime",(String) tvBookDateTime.getTag()).putExtra("tvBookLuggage",(String) tvBookLuggage.getTag()).putExtra("tvBookPassenger",(String) tvBookPassenger.getTag()));
+//                doPartnerList();
+//                doSearch();
                 break;
 
             case R.id.ivBookVia:
@@ -455,41 +450,6 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
 
     }
 
-    private void doPartnerList() {
-        final String tag = "doPartnerList";
-        StringBuilder builder = new StringBuilder();
-        String strDate = (String) tvBookDateTime.getTag();
-//        strDate = strDate.replace(" ", "%20");
-        tvBookDateTime.setTag(strDate);
-        JSONObject jsonData = new JSONObject();
-
-        try {
-            JSONObject fromData = new JSONObject(SharedPreferenceUtil.getString(Constants.FROM_ADDRESS, ""));
-            JSONObject toData = new JSONObject(SharedPreferenceUtil.getString(Constants.TO_ADDRESS, ""));
-            JSONObject filterRequest = new JSONObject();
-            JSONArray viaArea = new JSONArray();
-            if (SharedPreferenceUtil.contains(Constants.VIA_ADDRESS))
-                viaArea.put(new JSONObject(SharedPreferenceUtil.getString(Constants.VIA_ADDRESS, "")));
-            if (SharedPreferenceUtil.contains(Constants.VIA2_ADDRESS))
-                viaArea.put(new JSONObject(SharedPreferenceUtil.getString(Constants.VIA2_ADDRESS, "")));
-
-            builder.append(jsonData.put("fromAreaName", fromData.optString("AreaName")).put("fromAreaLat", fromData.optString("AreaLat")).put("fromAreaLong", fromData.optString("AreaLong")).put("fromAreaPlaceid", fromData.optString("AreaPlaceid")).put("fromAreaAddress", fromData.optString("AreaAddress")).put("fromAreaCity", fromData.optString("AreaCity")).put("fromAreaPostalCode", fromData.optString("AreaPostalCode")).put("toAreaName", toData.optString("AreaName")).put("toAreaLat", toData.optString("AreaLat")).put("toAreaLong", toData.optString("AreaLong")).put("toAreaPlaceid", toData.optString("AreaPlaceid")).put("toAreaAddress", toData.optString("AreaAddress")).put("toAreaCity", toData.optString("AreaCity")).put("toAreaPostalCode", toData.optString("AreaPostalCode")).put("viaArea", viaArea)
-                    .put("journeyDatetime", (String) tvBookDateTime.getTag()).put("luggageId", (String) tvBookLuggage.getTag()).put("passanger", (String) tvBookPassenger.getTag()).put("bookingduration", "1").put("pageSize", "1").put("pageNumber", "1").put("sortField", "rating").put("sortOrder", "asc").put("filterRequest", filterRequest).put("token", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_ACCESS_TOKEN, "")).put("userId", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_ID, "")));
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-        String url = "";
-        try {
-            url = Constants.BASE_URL + Constants.BASE_URL_POSTFIX + Constants.Events.EVENT_PARTNER_LIST + "&json="
-                    + URLEncoder.encode(builder.toString(), "UTF8");
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
-        CommonUtil.showProgressDialog(getActivity(), "Login...");
-        DataRequest dataRequest = new DataRequest(Request.Method.GET, url, null, this, this);
-        TaxiNearYouApp.getInstance().addToRequestQueue(dataRequest, tag);
-    }
 
     public void doSearch() {
         try {

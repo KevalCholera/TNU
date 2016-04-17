@@ -1,146 +1,157 @@
 <?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    android:orientation="vertical">
+    android:fitsSystemWindows="true">
 
     <LinearLayout
-        android:id="@+id/llSearchCarsMain"
+        android:id="@+id/clSearchCars"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_height="match_parent"
+        android:background="@color/white"
         android:orientation="vertical">
 
-        <RadioGroup
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/rgSearchCarsMarginTop"
-            android:orientation="horizontal">
-
-            <RadioButton
-                android:id="@+id/rbSearchCarsRating"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:button="@null"
-                android:gravity="center"
-                android:paddingBottom="@dimen/rbPaddingAll"
-                android:paddingTop="@dimen/rbPaddingAll"
-                android:text="@string/rating"
-                android:textColor="@drawable/radio_button_yellow_only"
-                android:textSize="@dimen/tvTitlesSizeAll"
-                android:textStyle="bold" />
-
-
-            <View
-                android:layout_width="@dimen/vRatingRatingWidth"
-                android:layout_height="@dimen/vRatingRatingHeight"
-                android:layout_marginTop="@dimen/vSearchCarsMarginTop"
-                android:background="@color/black" />
-
-            <RadioButton
-                android:id="@+id/rbSearchCarsAvailability"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:button="@null"
-                android:clickable="true"
-                android:gravity="center"
-                android:paddingBottom="@dimen/rbPaddingAll"
-                android:paddingTop="@dimen/rbPaddingAll"
-                android:text="@string/availability"
-                android:textColor="@drawable/radio_button_yellow_only"
-                android:textSize="@dimen/tvTitlesSizeAll"
-                android:textStyle="bold" />
-
-            <View
-                android:layout_width="@dimen/vRatingRatingWidth"
-                android:layout_height="@dimen/vRatingRatingHeight"
-                android:layout_marginTop="@dimen/vSearchCarsMarginTop"
-                android:background="@color/black" />
-
-            <RadioButton
-                android:id="@+id/rbSearchCarsPriceRange"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:button="@null"
-                android:clickable="true"
-                android:gravity="center"
-                android:paddingBottom="@dimen/rbPaddingAll"
-                android:paddingTop="@dimen/rbPaddingAll"
-                android:text="@string/pricerange"
-                android:textColor="@drawable/radio_button_yellow_only"
-                android:textSize="@dimen/tvTitlesSizeAll"
-                android:textStyle="bold" />
-
-        </RadioGroup>
-
         <LinearLayout
-            android:id="@+id/lySearchCarsDateTime"
+            android:id="@+id/llSearchCarsMain"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/search_car_gray"
-            android:orientation="horizontal">
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
 
-            <ImageView
-                android:id="@+id/ivSearchCarsBack"
-                android:layout_width="wrap_content"
+            <RadioGroup
+                android:id="@+id/rbgSearchCars"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="0.5"
-                android:src="@mipmap/imgarrowleft" />
+                android:layout_marginTop="@dimen/rgSearchCarsMarginTop"
+                android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/tvSearchCarsDateTime"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.5"
-                android:gravity="center"
-                android:paddingBottom="@dimen/tvSearchCarsPaddingTopBottom"
-                android:paddingTop="@dimen/tvSearchCarsPaddingTopBottom"
-                android:text="@string/timedate"
-                android:textSize="@dimen/tvTitlesSizeAll" />
+                <RadioButton
+                    android:id="@+id/rbSearchCarsRating"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:paddingBottom="@dimen/rbPaddingAll"
+                    android:paddingTop="@dimen/rbPaddingAll"
+                    android:text="@string/rating"
+                    android:textColor="@drawable/radio_button_yellow_only"
+                    android:textSize="@dimen/tvTitlesSizeAll"
+                    android:textStyle="bold" />
 
-            <ImageView
-                android:id="@+id/ivSearchCarsFront"
-                android:layout_width="wrap_content"
+
+                <View
+                    android:layout_width="@dimen/vRatingRatingWidth"
+                    android:layout_height="@dimen/vRatingRatingHeight"
+                    android:layout_marginTop="@dimen/vSearchCarsMarginTop"
+                    android:background="@color/black" />
+
+                <RadioButton
+                    android:id="@+id/rbSearchCarsAvailability"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:button="@null"
+                    android:clickable="true"
+                    android:gravity="center"
+                    android:paddingBottom="@dimen/rbPaddingAll"
+                    android:paddingTop="@dimen/rbPaddingAll"
+                    android:text="@string/availability"
+                    android:textColor="@drawable/radio_button_yellow_only"
+                    android:textSize="@dimen/tvTitlesSizeAll"
+                    android:textStyle="bold" />
+
+                <View
+                    android:layout_width="@dimen/vRatingRatingWidth"
+                    android:layout_height="@dimen/vRatingRatingHeight"
+                    android:layout_marginTop="@dimen/vSearchCarsMarginTop"
+                    android:background="@color/black" />
+
+                <RadioButton
+                    android:id="@+id/rbSearchCarsPriceRange"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:button="@null"
+                    android:clickable="true"
+                    android:gravity="center"
+                    android:paddingBottom="@dimen/rbPaddingAll"
+                    android:paddingTop="@dimen/rbPaddingAll"
+                    android:text="@string/pricerange"
+                    android:textColor="@drawable/radio_button_yellow_only"
+                    android:textSize="@dimen/tvTitlesSizeAll"
+                    android:textStyle="bold" />
+
+            </RadioGroup>
+
+            <LinearLayout
+                android:id="@+id/lySearchCarsDateTime"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="0.5"
-                android:src="@mipmap/imgarrowright" />
+                android:background="@color/search_car_gray"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/ivSearchCarsBack"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="0.5"
+                    android:src="@mipmap/imgarrowleft" />
+
+                <TextView
+                    android:id="@+id/tvSearchCarsDateTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:gravity="center"
+                    android:paddingBottom="@dimen/tvSearchCarsPaddingTopBottom"
+                    android:paddingTop="@dimen/tvSearchCarsPaddingTopBottom"
+                    android:text="@string/timedate"
+                    android:textSize="@dimen/tvTitlesSizeAll" />
+
+                <ImageView
+                    android:id="@+id/ivSearchCarsFront"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="0.5"
+                    android:src="@mipmap/imgarrowright" />
+
+            </LinearLayout>
+
+            <ListView
+                android:id="@+id/lvSearchCarsLine1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
 
         </LinearLayout>
 
-        <ListView
-            android:id="@+id/lvSearchCarsLine1"
+
+        <LinearLayout
+            android:id="@+id/llSearchCarsFilter"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:background="@color/colorAccent"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="@dimen/lySearchCarsFilterPadding">
 
+            <TextView
+                android:id="@+id/tvSearchCarsFilter"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:clickable="true"
+                android:drawableLeft="@mipmap/imgfilter"
+                android:text="@string/filter"
+                android:textColor="@color/white"
+                android:textSize="@dimen/tvHeadingSizeAll"
+                android:textStyle="bold" />
+        </LinearLayout>
     </LinearLayout>
-
-
-    <LinearLayout
-        android:id="@+id/llSearchCarsFilter"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:background="@color/colorAccent"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:padding="@dimen/lySearchCarsFilterPadding">
-
-        <TextView
-            android:id="@+id/tvSearchCarsFilter"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:clickable="true"
-            android:drawableLeft="@mipmap/imgfilter"
-            android:text="@string/filter"
-            android:textColor="@color/white"
-            android:textSize="@dimen/tvHeadingSizeAll"
-            android:textStyle="bold" />
-    </LinearLayout>
-</LinearLayout>
+</android.support.design.widget.CoordinatorLayout>
