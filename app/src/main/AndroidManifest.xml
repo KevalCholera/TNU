@@ -201,6 +201,21 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyDslds4uckd0q06CFMQGOKPFCWs8cZOKnI" />
 
+
+
+
+        <receiver
+            android:name="com.onesignal.NotificationOpenedReceiver"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+            </intent-filter>
+        </receiver>
+
+
+        <!--<receiver android:exported="false" android:name="com.onesignal.NotificationOpenedReceiver" />-->
+        <!--<service android:name="com.onesignal.GcmIntentService" />-->
+
         <receiver
             android:name=".push.GcmBroadcastReceiver"
             android:permission="com.google.android.c2dm.permission.SEND">

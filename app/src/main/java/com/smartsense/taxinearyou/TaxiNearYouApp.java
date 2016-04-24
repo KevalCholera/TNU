@@ -36,6 +36,11 @@ public class TaxiNearYouApp extends Application {
         this.setAppContext(getApplicationContext());
 //        register();
         OneSignal.startInit(this).init();
+        OneSignal.sendTag("emailId","thackerronak@gmail.com");
+        OneSignal.enableInAppAlertNotification(false);
+
+
+
 //        Parse.initialize(this, "9yjUxrJuubYfJQvh8gONZuZqTEu3gcpqB1mdRkpH", "w3znN1nsItMDKIZaTJ8qzdRDPnfFKeW6uAI56C8Y");
 //        ParseInstallation.getCurrentInstallation().put("user", "customer");
 //        ParseInstallation.getCurrentInstallation().saveInBackground();

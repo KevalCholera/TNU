@@ -39,9 +39,9 @@ public class GcmIntentService extends IntentService {
 //            } else if (GoogleCloudMessaging.MESSAGE_TYPE_MESSAGE.equals(messageType)) {
 //                Log.i(TAG, "Completed work @ " + SystemClock.elapsedRealtime());
 
-                sendNotification(messageType);
+//                sendNotification(extras.getString("alert"));
 
-                Log.i(TAG, "Received: "+messageType+" " + extras.toString());
+                Log.i(TAG, "Received: " + extras.toString());
 //            }
         }
         // Release the wake lock provided by the WakefulBroadcastReceiver.
