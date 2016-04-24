@@ -20,9 +20,9 @@
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <item name="android:textColorPrimary">@color/white</item>
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
         <item name="android:fitsSystemWindows">true</item>
 
     </style>
@@ -58,18 +58,9 @@
         <item name="android:textColor">#ffffff</item>
     </style>
 
-    <style name="customRatingBar" parent="@style/Widget.AppCompat.RatingBar">
-        <item name="android:progressDrawable">@drawable/rating_custom_bar</item>
-
+    <style name="Toolbar" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <!--<item name="android:background">@color/colorPrimary</item>-->
+        <item name="android:textColorPrimary">@color/white</item>
     </style>
-
-    <style name="RatingBar" parent="Theme.AppCompat">
-        <item name="colorControlNormal">#f1c40f</item>
-        <item name="colorControlActivated">#cccccc</item>
-        <item name="android:minHeight">40dip</item>
-        <item name="android:maxHeight">40dip</item>
-    </style>
-
-
 
 </resources>

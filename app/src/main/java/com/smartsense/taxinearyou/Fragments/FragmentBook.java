@@ -20,6 +20,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -206,7 +207,7 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
                 else if (TextUtils.isEmpty(tvBookTo.getText().toString()))
                     CommonUtil.showSnackBar(getActivity(), getString(R.string.enter_to), clSearch);
                 else
-                    startActivity(new Intent(getActivity(), SearchCars.class).putExtra("tvBookDateTime",(String) tvBookDateTime.getTag()).putExtra("tvBookLuggage",(String) tvBookLuggage.getTag()).putExtra("tvBookPassenger",(String) tvBookPassenger.getTag()));
+                    startActivity(new Intent(getActivity(), SearchCars.class).putExtra("tvBookDateTime", (String) tvBookDateTime.getTag()).putExtra("tvBookLuggage", (String) tvBookLuggage.getTag()).putExtra("tvBookPassenger", (String) tvBookPassenger.getTag()));
 //                doPartnerList();
 //                doSearch();
                 break;
@@ -247,6 +248,17 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
                 break;
             case R.id.tvBookLuggage:
                 openQuestionSelectPopup(true);
+                break;
+            case R.id.imgBookFromToReverse:
+                if (TextUtils.isEmpty(tvBookFrom.getText().toString()))
+                    CommonUtil.showSnackBar(getActivity(), getString(R.string.enter_from), clSearch);
+                else if (TextUtils.isEmpty(tvBookTo.getText().toString()))
+                    startActivity(new Intent(getActivity(), SearchCars.class).putExtra("tvBookDateTime", (String) tvBookDateTime.getTag()).putExtra("tvBookLuggage", (String) tvBookLuggage.getTag()).putExtra("tvBookPassenger", (String) tvBookPassenger.getTag()));
+                else {
+                    String reverseFrom = tvBookFrom.getText().toString();
+                    tvBookFrom.setText(tvBookTo.getText().toString());
+                    tvBookTo.setText(reverseFrom);
+                }
                 break;
 
         }

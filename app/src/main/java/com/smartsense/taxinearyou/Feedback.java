@@ -2,10 +2,14 @@ package com.smartsense.taxinearyou;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -25,7 +29,6 @@ public class Feedback extends AppCompatActivity implements View.OnClickListener 
     EditText etFeedbackCommentForDriver, etFeedbackCommentForTaxinearu;
     ImageView ivFeedbackhappy, ivFeedbacksad;
     Button btFeedBackSubmit;
-    LinearLayout lyFeedbckCheckCommentTaxinearu;
     AlertDialog alert;
 
     @Override
@@ -43,6 +46,9 @@ public class Feedback extends AppCompatActivity implements View.OnClickListener 
         ivFeedbackhappy = (ImageView) findViewById(R.id.ivFeedbackhappy);
         ivFeedbacksad = (ImageView) findViewById(R.id.ivFeedbacksad);
         btFeedBackSubmit = (Button) findViewById(R.id.btFeedBackSubmit);
+
+        rbFeedbackRatingForDriver.getProgressDrawable().setColorFilter(ContextCompat.getColor(this, R.color.Yellow), PorterDuff.Mode.SRC_ATOP);
+
 
         cbFeedbackCommentForDriver.setOnClickListener(this);
         cbFeedbackCommentForTaxinearu.setOnClickListener(this);
@@ -142,5 +148,20 @@ public class Feedback extends AppCompatActivity implements View.OnClickListener 
             e.printStackTrace();
         }
     }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.ratingforsearch, menu);
+        return false;
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+
+    }
 }

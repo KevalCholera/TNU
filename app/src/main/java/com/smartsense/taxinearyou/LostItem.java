@@ -2,6 +2,8 @@ package com.smartsense.taxinearyou;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.RadioButton;
@@ -20,6 +22,7 @@ public class LostItem extends AppCompatActivity implements View.OnClickListener 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lost_item);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         lvLostItemList = (ListView) findViewById(R.id.lvLostItemList);
 
@@ -51,5 +54,22 @@ public class LostItem extends AppCompatActivity implements View.OnClickListener 
             case R.id.rbLostItemClosed:
                 break;
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.ratingforsearch, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+
     }
 }

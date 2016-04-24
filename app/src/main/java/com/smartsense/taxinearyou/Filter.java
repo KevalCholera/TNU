@@ -2,16 +2,25 @@ package com.smartsense.taxinearyou;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.RatingBar;
 import android.widget.TableRow;
 
 import com.android.volley.Response;
@@ -26,28 +35,27 @@ import org.json.JSONObject;
 
 public class Filter extends AppCompatActivity implements View.OnClickListener {
 
-    RadioGroup rgFilterBookingType, rgFilterDistance,
-            rgFilterVehicleType, rbgFilterRating;
-    //    TableLayout rgFilterDistance,
-//            rgFilterVehicleType;
+    RadioGroup rgFilterBookingType, rgFilterDistance, rgFilterVehicleType, rbgFilterRating;
     RadioButton rbFilterRating5, rbFilterRating4, rbFilterRating3, rbFilterRating2, rbFilterRating1, rbFilterRatingAll;
     Button btFilterDone, btFilterResetAll;
-    ImageView ivFilterCancel;
+//    ImageView ivFilterCancel;
     CheckBox cbFilterRecommend;
     private RadioButton rbFilterReturn;
+    RatingBar rbFeedbackRatingForDriver5, rbFeedbackRatingForDriver4, rbFeedbackRatingForDriver3, rbFeedbackRatingForDriver2, rbFeedbackRatingForDriver1;
     private RadioButton rbFilterSingle;
     private JSONObject filterObj;
-
+Toolbar toolbarAll;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_filter);
 
+        toolbarAll = (Toolbar)findViewById(R.id.toolbarAll);
+        setSupportActionBar(toolbarAll);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         rgFilterVehicleType = (RadioGroup) findViewById(R.id.rgFilterVehicleType1);
-
         rgFilterBookingType = (RadioGroup) findViewById(R.id.rgFilterBookingType);
-
         rgFilterDistance = (RadioGroup) findViewById(R.id.rgFilterDistance1);
         rbgFilterRating = (RadioGroup) findViewById(R.id.rbgFilterRating);
         rbFilterSingle = (RadioButton) findViewById(R.id.rbFilterSingle);
@@ -58,17 +66,28 @@ public class Filter extends AppCompatActivity implements View.OnClickListener {
         rbFilterRating2 = (RadioButton) findViewById(R.id.rbFilterRating2);
         rbFilterRating1 = (RadioButton) findViewById(R.id.rbFilterRating1);
         rbFilterRatingAll = (RadioButton) findViewById(R.id.rbFilterRatingAll);
+        rbFeedbackRatingForDriver5 = (RatingBar) findViewById(R.id.rbFeedbackRatingForDriver5);
+        rbFeedbackRatingForDriver4 = (RatingBar) findViewById(R.id.rbFeedbackRatingForDriver4);
+        rbFeedbackRatingForDriver3 = (RatingBar) findViewById(R.id.rbFeedbackRatingForDriver3);
+        rbFeedbackRatingForDriver2 = (RatingBar) findViewById(R.id.rbFeedbackRatingForDriver2);
+        rbFeedbackRatingForDriver1 = (RatingBar) findViewById(R.id.rbFeedbackRatingForDriver1);
         cbFilterRecommend = (CheckBox) findViewById(R.id.cbFilterRecommend);
         btFilterDone = (Button) findViewById(R.id.btFilterDone);
         btFilterResetAll = (Button) findViewById(R.id.btFilterResetAll);
-        ivFilterCancel = (ImageView) findViewById(R.id.ivFilterCancel);
+//        ivFilterCancel = (ImageView) findViewById(R.id.ivFilterCancel);
+
+        rbFeedbackRatingForDriver5.getProgressDrawable().setColorFilter(ContextCompat.getColor(this, R.color.Yellow), PorterDuff.Mode.SRC_ATOP);
+        rbFeedbackRatingForDriver4.getProgressDrawable().setColorFilter(ContextCompat.getColor(this, R.color.Yellow), PorterDuff.Mode.SRC_ATOP);
+        rbFeedbackRatingForDriver3.getProgressDrawable().setColorFilter(ContextCompat.getColor(this, R.color.Yellow), PorterDuff.Mode.SRC_ATOP);
+        rbFeedbackRatingForDriver2.getProgressDrawable().setColorFilter(ContextCompat.getColor(this, R.color.Yellow), PorterDuff.Mode.SRC_ATOP);
+        rbFeedbackRatingForDriver1.getProgressDrawable().setColorFilter(ContextCompat.getColor(this, R.color.Yellow), PorterDuff.Mode.SRC_ATOP);
 
         cbFilterRecommend.setOnClickListener(this);
         rbFilterSingle.setOnClickListener(this);
         rbFilterReturn.setOnClickListener(this);
         btFilterDone.setOnClickListener(this);
         btFilterResetAll.setOnClickListener(this);
-        ivFilterCancel.setOnClickListener(this);
+//        ivFilterCancel.setOnClickListener(this);
         try {
             filterObj = new JSONObject(SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_FILTER_REQUEST, ""));
             if (filterObj.has("bookingType")) {
@@ -105,10 +124,10 @@ public class Filter extends AppCompatActivity implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.ivFilterCancel:
-                setResult(Activity.RESULT_CANCELED, new Intent());
-                finish();
-                break;
+//            case R.id.ivFilterCancel:
+//                setResult(Activity.RESULT_CANCELED, new Intent());
+//                finish();
+//                break;
             case R.id.btFilterResetAll:
                 SharedPreferenceUtil.remove(Constants.PrefKeys.PREF_FILTER_REQUEST);
                 SharedPreferenceUtil.save();
@@ -205,6 +224,7 @@ public class Filter extends AppCompatActivity implements View.OnClickListener {
                 radioButton[i] = new RadioButton(this);
                 radioButton[i].setText(taxiTypeArray.optJSONObject(i).getString("taxiName"));
                 radioButton[i].setTextColor(getResources().getColor(R.color.white));
+                radioButton[i].setButtonDrawable(R.drawable.radio_button_filter);
                 radioButton[i].setId(taxiTypeArray.optJSONObject(i).getInt("taxiTypeId"));
                 radioButton[i].setGravity(Gravity.CENTER);
                 radioButton[i].setPadding(15, 15, 15, 15); // android:checked="true"
@@ -248,6 +268,7 @@ public class Filter extends AppCompatActivity implements View.OnClickListener {
                 }
                 radioButton[i] = new RadioButton(this);
                 radioButton[i].setLayoutParams(params);
+                radioButton[i].setButtonDrawable(R.drawable.radio_button_filter);
                 radioButton[i].setText(jsonArray.optJSONObject(i).getString("name"));
                 radioButton[i].setTextColor(getResources().getColor(R.color.white));
                 int id1 = jsonArray.optJSONObject(i).getInt("distanceId") == -1 ? 0 : jsonArray.optJSONObject(i).getInt("distanceId");
@@ -282,5 +303,20 @@ public class Filter extends AppCompatActivity implements View.OnClickListener {
             e.printStackTrace();
         }
     }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.ratingforsearch, menu);
+        return false;
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+
+    }
 }

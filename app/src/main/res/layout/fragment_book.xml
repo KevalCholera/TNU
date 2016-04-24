@@ -38,7 +38,6 @@
                     android:gravity="fill"
                     android:hint="@string/from"
                     android:maxLines="1"
-                    android:paddingStart="@dimen/etSignInUserPasswordPaddingStartEnd"
                     android:singleLine="true"
                     android:textColor="@color/black"
                     android:textSize="@dimen/etSignInUserPassSize" />
@@ -47,7 +46,7 @@
                 <LinearLayout
                     android:id="@+id/llBookView"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/llBookViewHeight"
+                    android:layout_height="25dp"
                     android:orientation="horizontal">
 
                     <View
@@ -86,7 +85,6 @@
                     android:gravity="fill"
                     android:hint="@string/to"
                     android:maxLines="1"
-                    android:paddingStart="@dimen/etSignInUserPasswordPaddingStartEnd"
                     android:singleLine="true"
                     android:textColor="@color/black"
                     android:textSize="@dimen/etSignInUserPassSize" />
@@ -258,7 +256,6 @@
             android:gravity="fill"
             android:hint="@string/datetime"
             android:maxLines="1"
-            android:paddingStart="@dimen/etSignInUserPasswordPaddingStartEnd"
             android:textColor="@color/black"
             android:textSize="@dimen/etSignInUserPassSize" />
 
@@ -285,7 +282,6 @@
                 android:gravity="fill"
                 android:hint="@string/luggage"
                 android:maxLines="1"
-                android:paddingStart="@dimen/etSignInUserPasswordPaddingStartEnd"
                 android:singleLine="true"
                 android:textColor="@color/black"
                 android:textSize="@dimen/etSignInUserPassSize" />
@@ -305,7 +301,6 @@
                 android:hint="@string/passengers"
                 android:inputType="text"
                 android:maxLines="1"
-                android:paddingStart="@dimen/tvPopupMarginTop"
                 android:singleLine="true"
                 android:textColor="@color/black"
                 android:textSize="@dimen/etSignInUserPassSize" />

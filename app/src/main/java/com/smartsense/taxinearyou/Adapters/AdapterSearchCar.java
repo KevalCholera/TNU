@@ -89,7 +89,7 @@ public class AdapterSearchCar extends BaseAdapter {
             tvElementSearchCarsChat.setText("taxiType");
             tvElementSearchCarsWaitingTime.setText("(20 to 40 minutes for a taxi)");
         }
-        rbElementSearchCars.setRating(Float.valueOf(test.optString("partnerRating")));
+//        rbElementSearchCars.setRating(Float.valueOf(test.optString("partnerRating")));
 //        rbElementSearchCars.setRating(3);
         tvElementSearchCarsName.setText(test.optString("partnerName"));
         tvElementSearchCarsMoney.setText("£" + test.optString("ETA"));

@@ -3,8 +3,10 @@
     package="com.smartsense.taxinearyou">
 
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
-    <permission android:name="com.smartsense.taxinearyou.permission.C2D_MESSAGE"
+    <permission
+        android:name="com.smartsense.taxinearyou.permission.C2D_MESSAGE"
         android:protectionLevel="signature" />
+
     <uses-permission android:name="com.smartsense.taxinearyou.permission.C2D_MESSAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -57,8 +59,7 @@
             android:name=".SearchCars"
             android:configChanges="orientation|screenSize"
             android:label="@string/searchcars"
-
-            android:theme="@style/AppTheme"
+            android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".BookingInfo"
@@ -200,8 +201,6 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyDslds4uckd0q06CFMQGOKPFCWs8cZOKnI" />
-
-
 
 
         <receiver

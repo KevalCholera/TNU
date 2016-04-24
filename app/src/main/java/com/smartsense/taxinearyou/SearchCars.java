@@ -3,7 +3,9 @@ package com.smartsense.taxinearyou;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -44,15 +46,18 @@ public class SearchCars extends AppCompatActivity implements Response.Listener<J
     String a = "Rating" + (char) 0x2191;
     String b = "Price Range" + (char) 0x2191;
     String c = "Availability" + (char) 0x2191;
-
-    LinearLayout clSearchCars;
+    Toolbar toolbarAll;
+    CoordinatorLayout clSearchCars;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_cars);
+        toolbarAll = (Toolbar) findViewById(R.id.toolbarAll);
+        setSupportActionBar(toolbarAll);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        clSearchCars = (LinearLayout) findViewById(R.id.clSearchCars);
+
+        clSearchCars = (CoordinatorLayout) findViewById(R.id.clSearchCars);
         lvSearchCarsLine1 = (ListView) findViewById(R.id.lvSearchCarsLine1);
         tvSearchCarsFilter = (TextView) findViewById(R.id.tvSearchCarsFilter);
         rbgSearchCars = (RadioGroup) findViewById(R.id.rbgSearchCars);
@@ -78,24 +83,6 @@ public class SearchCars extends AppCompatActivity implements Response.Listener<J
         rbSearchCarsPriceRange.setText("Price Range" + (char) 0x2191);
 
         doPartnerList();
-
-    }
-
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.ratingforsearch, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                finish();
-                break;
-        }
-        return super.onOptionsItemSelected(item);
 
     }
 
@@ -136,7 +123,7 @@ public class SearchCars extends AppCompatActivity implements Response.Listener<J
                 doPartnerList();
                 break;
             case R.id.lySearchCarsDateTime:
-
+                finish();
                 break;
         }
     }
@@ -259,5 +246,22 @@ public class SearchCars extends AppCompatActivity implements Response.Listener<J
         if (resultCode == Activity.RESULT_OK) {
             doPartnerList();
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.ratingforsearch, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+
     }
 }
