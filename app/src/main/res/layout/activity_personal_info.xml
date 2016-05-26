@@ -185,6 +185,7 @@
                         android:padding="@dimen/vPersonalInfoMarginTopBottomAll"
                         android:scrollbars="vertical"
                         android:singleLine="true"
+                        android:textColor="@color/black"
                         android:textColorHint="@color/light_Gray"
                         android:textSize="@dimen/tvTitlesSizeAll"
                         android:textStyle="italic" />

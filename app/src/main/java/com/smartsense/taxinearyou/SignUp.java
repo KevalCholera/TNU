@@ -4,15 +4,25 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
 import com.smartsense.taxinearyou.utill.CommonUtil;
+import com.smartsense.taxinearyou.utill.Constants;
+import com.smartsense.taxinearyou.utill.DataRequest;
 
-public class SignUp extends AppCompatActivity {
+import org.json.JSONException;
+import org.json.JSONObject;
+
+public class SignUp extends AppCompatActivity implements Response.Listener<JSONObject>, Response.ErrorListener {
 
     EditText etSignUpFirstName, etSignUpLastName, etSignUpContact, etSignUpEmail,
             etSignUpPassword, etSignUpConfirmPassword, etSignUpAlternateEmail;
@@ -35,6 +45,43 @@ public class SignUp extends AppCompatActivity {
         btSignUpSaveNext = (Button) findViewById(R.id.btSignUpSaveNext);
         clSignUp = (CoordinatorLayout) findViewById(R.id.clSignUp);
         btSignUpBack = (ImageButton) findViewById(R.id.btSignUpBack);
+
+        etSignUpContact.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (s.length() == 11) {
+                    contactAvailability();
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        etSignUpEmail.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (CommonUtil.isValidEmail(s)) {
+                    emailAvailability();
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
 
         btSignUpSaveNext.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,5 +127,45 @@ public class SignUp extends AppCompatActivity {
         });
     }
 
+    private void contactAvailability() {
+        final String tag = "Contact Availability";
+        StringBuilder builder = new StringBuilder();
+        JSONObject jsonData = new JSONObject();
 
+        try {
+            builder.append(Constants.BASE_URL + Constants.BASE_URL_POSTFIX + Constants.Events.CHECK_MOBILE_AVAILABILITY + "&json=").append(jsonData.put("mobile", etSignUpContact.getText().toString()));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        DataRequest dataRequest = new DataRequest(Request.Method.GET, builder.toString(), null, this, this);
+        TaxiNearYouApp.getInstance().addToRequestQueue(dataRequest, tag);
+    }
+
+    private void emailAvailability() {
+        final String tag = "Email Availability";
+        StringBuilder builder = new StringBuilder();
+        JSONObject jsonData = new JSONObject();
+
+        try {
+            builder.append(Constants.BASE_URL + Constants.BASE_URL_POSTFIX + Constants.Events.CHECK_EMAIL_AVAILABILITY + "&json=").append(jsonData.put("mobile", etSignUpContact.getText().toString()).put("type", "1"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        DataRequest dataRequest = new DataRequest(Request.Method.GET, builder.toString(), null, this, this);
+        TaxiNearYouApp.getInstance().addToRequestQueue(dataRequest, tag);
+    }
+
+    @Override
+    public void onErrorResponse(VolleyError volleyError) {
+        CommonUtil.errorToastShowing(this);
+    }
+
+    @Override
+    public void onResponse(JSONObject jsonObject) {
+
+        if (jsonObject != null && jsonObject.length() > 0 && jsonObject.optInt("status") == Constants.STATUS_SUCCESS && !jsonObject.optJSONObject("json").optString("isAvailable").equalsIgnoreCase("1"))
+            CommonUtil.showSnackBar(this, jsonObject.optString("msg"), clSignUp);
+    }
 }

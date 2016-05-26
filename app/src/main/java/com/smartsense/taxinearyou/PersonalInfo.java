@@ -13,9 +13,18 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.mpt.storage.SharedPreferenceUtil;
 import com.smartsense.taxinearyou.utill.CommonUtil;
+import com.smartsense.taxinearyou.utill.Constants;
+import com.smartsense.taxinearyou.utill.DataRequest;
 
-public class PersonalInfo extends AppCompatActivity {
+import org.json.JSONException;
+import org.json.JSONObject;
+
+public class PersonalInfo extends AppCompatActivity implements Response.Listener<JSONObject>, Response.ErrorListener {
 
     EditText etPersonalInfoName, etPersonalInfolastName, etPersonalInfoNo, etPersonalInfoEmail, etPersonalInfoAddInfo, etInfoSocial;
     CheckBox cbInfoSms;
@@ -57,17 +66,28 @@ public class PersonalInfo extends AppCompatActivity {
                     CommonUtil.showSnackBar(PersonalInfo.this, getString(R.string.enter_email), clPersonalInfo);
                 else if (!CommonUtil.isValidEmail(etPersonalInfoEmail.getText().toString()))
                     CommonUtil.showSnackBar(PersonalInfo.this, getString(R.string.enter_valid_email_id), clPersonalInfo);
-                else
+                else {
+
+                    try {
+                        StringBuilder builder = new StringBuilder();
+                        JSONObject jsonData = new JSONObject();
+                        JSONObject mainData = new JSONObject();
+                        builder.append(Constants.BASE_URL + Constants.BASE_URL_POSTFIX + Constants.Events.PERSONAL_INFO + "&json=").append(mainData.put("bookingInfo", String.valueOf(jsonData.put("hearAboutUs", 0).put("firstName", etPersonalInfoName.getText().toString()).put("mobileNo", etPersonalInfoNo.getText().toString()).put("freeSms", 0).put("paymentMode", 1).put("emailId", etPersonalInfoEmail.getText().toString()).put("addtionalInformation", etPersonalInfoAddInfo.getText().toString()).put("lastName", etPersonalInfolastName.getText().toString()))));
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
                     startActivity(new Intent(PersonalInfo.this, PaymentDetails.class));
+                }
             }
         });
-
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.ratingforsearch, menu);
-        return false;
+//        getMenuInflater().inflate(R.menu.ratingforsearch, menu);
+        return true;
     }
 
     @Override
@@ -81,4 +101,13 @@ public class PersonalInfo extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onErrorResponse(VolleyError volleyError) {
+
+    }
+
+    @Override
+    public void onResponse(JSONObject jsonObject) {
+        CommonUtil.cancelProgressDialog();
+    }
 }

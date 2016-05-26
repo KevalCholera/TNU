@@ -112,33 +112,37 @@
                     android:textColor="@android:color/darker_gray"
                     android:textSize="@dimen/tvHeadingSizeAll" />
 
-                <LinearLayout
+                <RadioGroup
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/lyrlFeedbackImageMarginTop"
-                    android:layout_marginTop="@dimen/lyrlFeedbackImageMarginTop">
+                    android:layout_marginTop="@dimen/lyrlFeedbackImageMarginTop"
+                    android:orientation="horizontal">
 
-                    <ImageView
+                    <RadioButton
                         android:id="@+id/ivFeedbackhappy"
                         android:layout_width="@dimen/ivPopImageWidthHeightAll"
                         android:layout_height="@dimen/ivPopImageWidthHeightAll"
                         android:layout_gravity="start"
-                        android:src="@mipmap/happy_yellow_face" />
+                        android:checked="true"
+                        android:background="@drawable/feedback_happy_radiobutton"
+                        android:button="@null" />
 
-                    <View
+                    <RadioButton
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1" />
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:enabled="false" />
 
-                    <ImageView
+                    <RadioButton
                         android:id="@+id/ivFeedbacksad"
                         android:layout_width="@dimen/ivPopImageWidthHeightAll"
                         android:layout_height="@dimen/ivPopImageWidthHeightAll"
                         android:layout_gravity="end"
-                        android:src="@mipmap/sad_grey_face" />
+                        android:background="@mipmap/sad_grey_face"
+                        android:button="@null" />
 
-
-                </LinearLayout>
+                </RadioGroup>
 
                 <CheckBox
                     android:id="@+id/cbFeedbackCommentForTaxinearu"
@@ -171,7 +175,6 @@
                     android:visibility="gone" />
 
             </LinearLayout>
-
 
         </LinearLayout>
     </ScrollView>

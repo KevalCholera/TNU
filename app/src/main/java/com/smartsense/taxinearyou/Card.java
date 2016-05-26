@@ -58,8 +58,8 @@ public class Card extends AppCompatActivity implements View.OnClickListener {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.ratingforsearch, menu);
-        return false;
+//        getMenuInflater().inflate(R.menu.ratingforsearch, menu);
+        return true;
     }
 
     @Override

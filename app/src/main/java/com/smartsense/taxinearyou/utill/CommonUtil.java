@@ -42,6 +42,7 @@ import com.smartsense.taxinearyou.SignIn;
 import com.smartsense.taxinearyou.SnackBar.TSnackbar;
 
 import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -172,7 +173,14 @@ public class CommonUtil {
         } else {
             return false;
         }
+    }
 
+    public static void errorToastShowing(Activity activity) {
+        Toast.makeText(activity, "Internet Error", Toast.LENGTH_SHORT).show();
+    }
+
+    public static void successToastShowing(Activity activity, JSONObject jsonObject) {
+        Toast.makeText(activity, jsonObject.optString("msg"), Toast.LENGTH_SHORT).show();
     }
 
 //    public Cursor rawQuery(DataBaseHelper dbHelper, String sqlQuery) {

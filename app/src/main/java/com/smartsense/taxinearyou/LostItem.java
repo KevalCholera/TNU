@@ -5,18 +5,28 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RadioButton;
+import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.mpt.storage.SharedPreferenceUtil;
 import com.smartsense.taxinearyou.Adapters.AdapterLostItem;
+import com.smartsense.taxinearyou.utill.CommonUtil;
+import com.smartsense.taxinearyou.utill.Constants;
+import com.smartsense.taxinearyou.utill.DataRequest;
 
-import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
-public class LostItem extends AppCompatActivity implements View.OnClickListener {
+public class LostItem extends AppCompatActivity implements View.OnClickListener, Response.Listener<JSONObject>, Response.ErrorListener {
 
     ListView lvLostItemList;
     RadioButton rbLostItemOpen, rbLostItemInprogress, rbLostItemClosed;
+    LinearLayout llLostItemNoItemAvailable, llLostItemItemsAvailable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,19 +39,32 @@ public class LostItem extends AppCompatActivity implements View.OnClickListener 
         rbLostItemClosed = (RadioButton) findViewById(R.id.rbLostItemClosed);
         rbLostItemOpen = (RadioButton) findViewById(R.id.rbLostItemOpen);
         rbLostItemInprogress = (RadioButton) findViewById(R.id.rbLostItemInprogress);
+        llLostItemNoItemAvailable = (LinearLayout) findViewById(R.id.llLostItemNoItemAvailable);
+        llLostItemItemsAvailable = (LinearLayout) findViewById(R.id.llLostItemItemsAvailable);
 
         rbLostItemClosed.setOnClickListener(this);
         rbLostItemOpen.setOnClickListener(this);
         rbLostItemInprogress.setOnClickListener(this);
 
-        String data = "[{\"from\":\"US\",\"to\":\"Canada\",\"provider\":\"Keval\",\"date_time\":\"10.02.2016 12-06am\",\"status\":\"open\",\"lost_item\":\"bag\",\"tnr\":\"tnu123\"},{\"from\":\"US\",\"to\":\"Canada\",\"provider\":\"Keval\",\"date_time\":\"10.02.2016 12-06am\",\"status\":\"open\",\"lost_item\":\"bag\",\"tnr\":\"tnu123\"},{\"from\":\"US\",\"to\":\"Canada\",\"provider\":\"Keval\",\"date_time\":\"10.02.2016 12-06am\",\"status\":\"open\",\"lost_item\":\"bag\",\"tnr\":\"tnu123\"},{\"from\":\"US\",\"to\":\"Canada\",\"provider\":\"Keval\",\"date_time\":\"10.02.2016 12-06am\",\"status\":\"open\",\"lost_item\":\"bag\",\"tnr\":\"tnu123\"}]";
+        lostItem();
+    }
+
+    private void lostItem() {
+        final String tag = "Lost Item";
+        StringBuilder builder = new StringBuilder();
+        JSONObject jsonData = new JSONObject();
+
         try {
-            JSONArray jsonArray = new JSONArray(data);
-            AdapterLostItem adapterLostItem = new AdapterLostItem(this, jsonArray);
-            lvLostItemList.setAdapter(adapterLostItem);
+            builder.append(Constants.BASE_URL + Constants.BASE_URL_POSTFIX + Constants.Events.LOST_ITEM + "&json=")
+                    .append(jsonData.put("token", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_ACCESS_TOKEN, ""))
+                            .put("userId", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_ID, "")));
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
+        CommonUtil.showProgressDialog(this, "getting data...");
+        DataRequest dataRequest = new DataRequest(Request.Method.GET, builder.toString(), null, this, this);
+        TaxiNearYouApp.getInstance().addToRequestQueue(dataRequest, tag);
     }
 
     @Override
@@ -70,6 +93,32 @@ public class LostItem extends AppCompatActivity implements View.OnClickListener 
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
 
+    @Override
+    public void onErrorResponse(VolleyError volleyError) {
+        llLostItemItemsAvailable.setVisibility(View.GONE);
+        llLostItemNoItemAvailable.setVisibility(View.GONE);
+        CommonUtil.errorToastShowing(this);
+    }
+
+    @Override
+    public void onResponse(JSONObject jsonObject) {
+        CommonUtil.cancelProgressDialog();
+        if (jsonObject.length() > 0 && jsonObject.optInt("status") == Constants.STATUS_SUCCESS) {
+
+            if (jsonObject.optJSONObject("json").optJSONArray("lostItemInfoArray").length() > 0) {
+                llLostItemItemsAvailable.setVisibility(View.VISIBLE);
+                llLostItemNoItemAvailable.setVisibility(View.GONE);
+                AdapterLostItem adapterLostItem = new AdapterLostItem(this, jsonObject.optJSONObject("json").optJSONArray("lostItemInfoArray"));
+                lvLostItemList.setAdapter(adapterLostItem);
+                Toast.makeText(this, jsonObject.optString("msg"), Toast.LENGTH_SHORT).show();
+            } else {
+                llLostItemItemsAvailable.setVisibility(View.GONE);
+                llLostItemNoItemAvailable.setVisibility(View.VISIBLE);
+                Toast.makeText(this, jsonObject.optString("msg"), Toast.LENGTH_SHORT).show();
+            }
+        } else
+            Toast.makeText(this, "Something went wrong, Please try again later", Toast.LENGTH_SHORT).show();
     }
 }

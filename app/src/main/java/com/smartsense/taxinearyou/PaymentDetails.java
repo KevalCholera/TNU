@@ -52,8 +52,8 @@ public class PaymentDetails extends AppCompatActivity implements View.OnClickLis
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.ratingforsearch, menu);
-        return false;
+//        getMenuInflater().inflate(R.menu.ratingforsearch, menu);
+        return true;
     }
 
     @Override

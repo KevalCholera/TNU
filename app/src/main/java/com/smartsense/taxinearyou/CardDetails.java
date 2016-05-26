@@ -74,8 +74,8 @@ public class CardDetails extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.ratingforsearch, menu);
-        return false;
+//        getMenuInflater().inflate(R.menu.ratingforsearch, menu);
+        return true;
     }
 
     @Override

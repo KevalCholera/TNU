@@ -28,8 +28,6 @@ public class PartnerRating extends AppCompatActivity {
     Button btPartnerBookNow;
     TextView tvPartnerMoney;
 
-    private TabLayout tbPartnerRating;
-    private ViewPager vpPartnerRating;
     public FragmentActivity activity;
     public JSONArray jsonArray;
 //    Context context;
@@ -45,10 +43,10 @@ public class PartnerRating extends AppCompatActivity {
         btPartnerBookNow = (Button) findViewById(R.id.btPartnerBookNow);
         tvPartnerMoney = (TextView) findViewById(R.id.tvPartnerMoney);
 
-        vpPartnerRating = (ViewPager) findViewById(R.id.vpPartnerRating);
+        ViewPager vpPartnerRating = (ViewPager) findViewById(R.id.vpPartnerRating);
         setupViewPager(vpPartnerRating);
 
-        tbPartnerRating = (TabLayout) findViewById(R.id.tbPartnerRatingTabLayout);
+        TabLayout tbPartnerRating = (TabLayout) findViewById(R.id.tbPartnerRatingTabLayout);
         tbPartnerRating.setupWithViewPager(vpPartnerRating);
 
         btPartnerBookNow.setOnClickListener(new View.OnClickListener() {
@@ -101,8 +99,8 @@ public class PartnerRating extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.ratingforsearch, menu);
-        return false;
+//        getMenuInflater().inflate(R.menu.ratingforsearch, menu);
+        return true;
     }
 
     @Override

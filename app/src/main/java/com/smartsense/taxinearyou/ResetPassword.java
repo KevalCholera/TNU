@@ -81,7 +81,7 @@ public class ResetPassword extends AppCompatActivity implements Response.Listene
             e.printStackTrace();
         }
 
-        CommonUtil.showProgressDialog(this, "Login...");
+        CommonUtil.showProgressDialog(this, "GETTING DATA...");
         DataRequest dataRequest = new DataRequest(Request.Method.GET, builder.toString(), null, this, this);
         TaxiNearYouApp.getInstance().addToRequestQueue(dataRequest, tag);
     }
@@ -152,8 +152,8 @@ public class ResetPassword extends AppCompatActivity implements Response.Listene
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.ratingforsearch, menu);
-        return false;
+//        getMenuInflater().inflate(R.menu.ratingforsearch, menu);
+        return true;
     }
 
     @Override

@@ -1,5 +1,7 @@
 package com.smartsense.taxinearyou;
 
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
@@ -12,8 +14,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.smartsense.taxinearyou.utill.CommonUtil;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 public class EventBooking extends AppCompatActivity implements View.OnClickListener {
 
@@ -56,6 +64,109 @@ public class EventBooking extends AppCompatActivity implements View.OnClickListe
 
     }
 
+//    final Calendar mCalendar = Calendar.getInstance();
+//
+//    public void datePicker() {
+//        DatePickerDialog DatePicker = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+//            @Override
+//            public void onDateSet(android.widget.DatePicker DatePicker, int year, int month, int dayOfMonth) {
+//                mCalendar.set(Calendar.YEAR, year);
+//                mCalendar.set(Calendar.MONTH, month);
+//                mCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+//
+//                etAddEventDate.setTag(year + "-" + (month + 1) + "-" + dayOfMonth);
+//                etAddEventDate.setText(com.myclasscampus.classroom.utill.CommonUtil.settingFormat.format(mCalendar.getTime()));
+//
+//            }
+//        }, mCalendar.get(Calendar.YEAR), mCalendar.get(Calendar.MONTH), mCalendar.get(Calendar.DAY_OF_MONTH));
+//
+//        DatePicker.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
+//
+//        DatePicker.show();
+//    }
+//
+//    public void Time() {
+//        final Calendar calendar = Calendar.getInstance();
+//        int hour = calendar.get(Calendar.HOUR_OF_DAY);
+//        int minute = calendar.get(Calendar.MINUTE);
+//
+//        TimePickerDialog mTimePicker = new TimePickerDialog(this, TimePickerDialog.THEME_HOLO_LIGHT, new TimePickerDialog.OnTimeSetListener() {
+//            @Override
+//            public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
+//                updateTime(selectedHour, selectedMinute);
+//            }
+//        }, hour, minute, true);
+//
+//        mTimePicker.setTitle("Select Time");
+//
+//        mTimePicker.show();
+//    }
+//
+//    private void updateTime(int hours, int mins) {
+//
+//        int new_hour = hours;
+//        int new_min = mins;
+//
+//        String timeSet;
+//        if (new_hour > 12) {
+//            new_hour -= 12;
+//            timeSet = "PM";
+//        } else if (new_hour == 0) {
+//            new_hour += 12;
+//            timeSet = "AM";
+//        } else if (new_hour == 12)
+//            timeSet = "PM";
+//        else
+//            timeSet = "AM";
+//
+//        String minutes;
+//        if (new_min < 10)
+//            minutes = "0" + new_min;
+//        else
+//            minutes = String.valueOf(new_min);
+//
+//        String hour;
+//        if (new_hour < 10)
+//            hour = "0" + new_hour;
+//        else
+//            hour = String.valueOf(new_hour);
+//
+//        // Append in a StringBuilder
+//        String timepickerTime = hour + ':' + minutes + " " + timeSet;
+//
+//        if (forConstantTime == startTime) {
+//            try {
+//                if ((etAddEventDate.getText().toString()).equalsIgnoreCase(com.myclasscampus.classroom.utill.CommonUtil.settingFormat.format(Long.parseLong(System.currentTimeMillis() + "")) + "")) {
+//                    if (Integer.valueOf(new SimpleDateFormat("HHmm").format(Long.parseLong(System.currentTimeMillis() + ""))) > Integer.valueOf(new SimpleDateFormat("HHmm").format(new SimpleDateFormat("HHm").parse((hours + "") + (mins + "")))))
+//                        Toast.makeText(this, "Select Time Should be Greater than current Time", Toast.LENGTH_SHORT).show();
+//                    else if (new SimpleDateFormat("HHmm").format(Long.parseLong(System.currentTimeMillis() + "")).equalsIgnoreCase(new SimpleDateFormat("HHmm").format(new SimpleDateFormat("HHm").parse((hours + "") + (mins + "")))))
+//                        Toast.makeText(this, "Select Time Should be Greater than current Time", Toast.LENGTH_SHORT).show();
+//                    else {
+//                        etAddEventStartTime.setTag(hours + ":" + mins + ":" + "00");
+//                        etAddEventStartTime.setText(timepickerTime);
+//                    }
+//                } else {
+//                    etAddEventStartTime.setTag(hours + ":" + mins + ":" + "00");
+//                    etAddEventStartTime.setText(timepickerTime);
+//                }
+//            } catch (ParseException e) {
+//                e.printStackTrace();
+//            }
+//        } else if (forConstantTime == endTime) {
+//
+//            try {
+//                if (new SimpleDateFormat("HHmm").format(new SimpleDateFormat("HHm").parse((hours + "") + (mins + ""))).equalsIgnoreCase(new SimpleDateFormat("HHmm").format(new SimpleDateFormat("hh:mm aa").parse(etAddEventStartTime.getText().toString()))) || Integer.valueOf(new SimpleDateFormat("HHmm").format(new SimpleDateFormat("HHm").parse((hours + "") + (mins + "")))) < Integer.valueOf((new SimpleDateFormat("HHmm").format(new SimpleDateFormat("hh:mm aa").parse(etAddEventStartTime.getText().toString())))))
+//                    Toast.makeText(this, "Select Time Should be Greater than Start Time", Toast.LENGTH_SHORT).show();
+//                else {
+//                    etAddEventEndTime.setTag(hours + ":" + mins + ":" + "00");
+//                    etAddEventEndTime.setText(timepickerTime);
+//                }
+//            } catch (ParseException e) {
+//                e.printStackTrace();
+//            }
+//        }
+//    }
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -75,8 +186,8 @@ public class EventBooking extends AppCompatActivity implements View.OnClickListe
     }
         @Override
         public boolean onCreateOptionsMenu(Menu menu) {
-            getMenuInflater().inflate(R.menu.ratingforsearch, menu);
-            return false;
+//            getMenuInflater().inflate(R.menu.ratingforsearch, menu);
+            return true;
         }
 
         @Override

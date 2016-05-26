@@ -267,12 +267,14 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/tvFragmentReview5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="10458250"
                         android:textSize="@dimen/tvHeadingSizeAll" />
 
                     <TextView
+                        android:id="@+id/tvFragmentReview4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
@@ -280,18 +282,21 @@
                         android:textSize="@dimen/tvHeadingSizeAll" />
 
                     <TextView
+                        android:id="@+id/tvFragmentReview3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="52675"
                         android:textSize="@dimen/tvHeadingSizeAll" />
 
                     <TextView
+                        android:id="@+id/tvFragmentReview2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="2332"
                         android:textSize="@dimen/tvHeadingSizeAll" />
 
                     <TextView
+                        android:id="@+id/tvFragmentReview1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="456977"

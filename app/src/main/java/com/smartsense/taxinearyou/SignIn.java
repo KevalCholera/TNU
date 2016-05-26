@@ -126,8 +126,7 @@ public class SignIn extends AppCompatActivity implements Response.Listener<JSONO
         JSONObject jsonData = new JSONObject();
 
         try {
-            builder.append(Constants.BASE_URL + Constants.BASE_URL_POSTFIX + Constants.Events.EVENT_LOGIN + "&json="
-                    + jsonData.put("password", etSignInPassword.getText().toString().trim()).put("username", etSignInUserName.getText().toString().trim()).toString());
+            builder.append(Constants.BASE_URL + Constants.BASE_URL_POSTFIX + Constants.Events.EVENT_LOGIN + "&json=").append(jsonData.put("password", etSignInPassword.getText().toString().trim()).put("username", etSignInUserName.getText().toString().trim()).toString());
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -206,6 +205,8 @@ public class SignIn extends AppCompatActivity implements Response.Listener<JSONO
                     SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_ACCESS_TOKEN, response.optJSONObject("json").optString("token"));
                     SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_USER_ID, response.optJSONObject("json").optJSONObject("user").optString("userId"));
                     SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_USER_FULLNAME, response.optJSONObject("json").optJSONObject("user").optString("firstName") + " " + response.optJSONObject("json").getJSONObject("user").getString("lastName"));
+                    SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_USER_FIRST, response.optJSONObject("json").optJSONObject("user").optString("firstName"));
+                    SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_USER_LAST, response.optJSONObject("json").getJSONObject("user").getString("lastName"));
                     SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_USER_EMAIL, response.optJSONObject("json").optJSONObject("user").optString("primaryEmailId"));
                     SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_USER_MNO, response.optJSONObject("json").optJSONObject("user").optString("mobileNo"));
                     SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_USER_PROIMG, response.optJSONObject("json").optJSONObject("user").optString("profilePic"));

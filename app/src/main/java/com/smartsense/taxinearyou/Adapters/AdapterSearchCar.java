@@ -24,11 +24,13 @@ import org.json.JSONObject;
 public class AdapterSearchCar extends BaseAdapter {
     private JSONArray data;
     private LayoutInflater inflater = null;
+    String object;
     Activity a;
 
-    public AdapterSearchCar(Activity a, JSONArray data) {
+    public AdapterSearchCar(Activity a, JSONArray data, String object) {
         this.data = data;
         this.a = a;
+        this.object = object;
         inflater = (LayoutInflater) a.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
@@ -76,20 +78,21 @@ public class AdapterSearchCar extends BaseAdapter {
             @Override
             public void onClick(View v) {
 
-                a.startActivity(new Intent(a, BookingInfo.class).putExtra("abc", test.toString()));
+                a.startActivity(new Intent(a, BookingInfo.class));
+//                a.startActivity(new Intent(a, BookingInfo.class).putExtra("object", object));
             }
         });
 
         if (test.optInt("isAvailable") == 1) {
             ivElementSearchCarsOnline.setImageResource(android.R.drawable.presence_online);
-            tvElementSearchCarsChat.setText("taxiType");
-            tvElementSearchCarsWaitingTime.setText("(10 to 20 minutes for a taxi)");
+            tvElementSearchCarsChat.setText(test.optJSONObject("taxiType").optString("taxiTypeName"));
+            tvElementSearchCarsWaitingTime.setText("(" + test.optString("fleetSize") + "min left)");
         } else {
             ivElementSearchCarsOnline.setImageResource(android.R.drawable.presence_invisible);
-            tvElementSearchCarsChat.setText("taxiType");
-            tvElementSearchCarsWaitingTime.setText("(20 to 40 minutes for a taxi)");
+            tvElementSearchCarsChat.setText(test.optJSONObject("taxiType").optString("taxiTypeName"));
+            tvElementSearchCarsWaitingTime.setText("(" + test.optString("fleetSize") + "min left)");
         }
-//        rbElementSearchCars.setRating(Float.valueOf(test.optString("partnerRating")));
+        rbElementSearchCars.setRating(Float.valueOf(test.optJSONArray("partnerRating").optJSONObject(5).optString("rate")));
 //        rbElementSearchCars.setRating(3);
         tvElementSearchCarsName.setText(test.optString("partnerName"));
         tvElementSearchCarsMoney.setText("£" + test.optString("ETA"));

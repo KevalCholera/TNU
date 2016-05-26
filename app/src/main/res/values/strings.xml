@@ -350,5 +350,7 @@
     <string name="do_not_remember_alternate_email">Do not remember alternate email?</string>
     <string name="we_may_require_supportive_evidence_in_order_for_us_to_locate_your_account">(We may require supportive evidence in order for us to locate your account)</string>
     <string name="gcm_defaultSenderId">480578202536</string>
+    <string name="no_lost_item">No Lost Item Available</string>
+    <string name="subject">Subject</string>
 
 </resources>

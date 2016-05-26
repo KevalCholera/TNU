@@ -9,12 +9,20 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.mpt.storage.SharedPreferenceUtil;
+import com.smartsense.taxinearyou.utill.Constants;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
 public class BookingInfo extends AppCompatActivity {
 
     TextView tvBookInfoDate, tvBookInfoTime, tvBookInfoFrom, tvBookInfoVia1, tvBookInfoVia2, tvBookInfoTo, tvBookInfoVehicleType,
             tvBookInfoProvider, tvBookInfoPassengers, tvBookInfoLugguages, tvBookInfoETA, tvBookInfoDistance, tvBookInfoRideType,
             tvBookInfoCost;
-
     Button btBookingInfoConfirm;
 
     @Override
@@ -41,6 +49,45 @@ public class BookingInfo extends AppCompatActivity {
 
         tvBookInfoCost.setText((char) 0x00A3 + "406.00");
 
+        try {
+            JSONObject mainData = new JSONObject(SharedPreferenceUtil.getString(Constants.PrefKeys.MAIN_DATA, ""));
+            try {
+                tvBookInfoDate.setText(new SimpleDateFormat("dd/MM/yyyy").format(new SimpleDateFormat("dd-MMM-yyyy hh:mm aa").parse(mainData.optString("journeyDatetime"))));
+                tvBookInfoTime.setText(new SimpleDateFormat("hh:mm aa").format(new SimpleDateFormat("dd-MMM-yyyy hh:mm aa").parse(mainData.optString("journeyDatetime"))));
+                tvBookInfoFrom.setText(mainData.optString("fromAreaAddress"));
+                tvBookInfoFrom.setTag(mainData.optString("fromAreaPlaceid"));
+                tvBookInfoTo.setText(mainData.optString("toAreaAddress"));
+                tvBookInfoTo.setTag(mainData.optString("toAreaPlaceid"));
+
+                if (mainData.optJSONArray("viaArray") != null && mainData.optJSONArray("viaArray").length() > 0) {
+                    tvBookInfoVia1.setText(mainData.optJSONArray("viaArea").optJSONObject(0).optString("viaAreaAddress"));
+                    tvBookInfoVia1.setTag(mainData.optJSONArray("viaArea").optJSONObject(0).optString("viaAreaPlaceid"));
+                    if (mainData.optJSONArray("viaArray").length() == 2) {
+                        tvBookInfoVia2.setText(mainData.optJSONArray("viaArea").optJSONObject(1).optString("viaAreaAddress"));
+                        tvBookInfoVia2.setTag(mainData.optJSONArray("viaArea").optJSONObject(1).optString("viaAreaPlaceid"));
+                    }
+                }
+
+                tvBookInfoVehicleType.setTag(mainData.optJSONObject("filterRequest").optString("vehicleType"));
+                tvBookInfoVehicleType.setText(mainData.optJSONObject("json").optJSONArray("partnerArray").optJSONObject(0).optJSONObject("taxiType").optString("taxiTypeName"));
+                tvBookInfoProvider.setText(mainData.optJSONObject("json").optJSONArray("partnerArray").optJSONObject(0).optString("partnerName"));
+                tvBookInfoPassengers.setText("0" + mainData.optString("passanger"));
+                if (mainData.optInt("luggageId") == 1)
+                    tvBookInfoLugguages.setText("02");
+                else
+                    tvBookInfoLugguages.setText("03");
+                tvBookInfoDistance.setText(mainData.optJSONObject("json").optJSONObject("distanceMatrix").optInt("distance") + " miles");
+                tvBookInfoRideType.setText(mainData.optJSONObject("filterRequest").optString("bookingType").equalsIgnoreCase("0") ? "Single" : "Return");
+                tvBookInfoETA.setText(mainData.optJSONObject("json").optJSONObject("distanceMatrix").optInt("duration") / 3600 + ":" + (mainData.optJSONObject("json").optJSONObject("distanceMatrix").optInt("duration") / 60) % 60);
+                tvBookInfoCost.setText("$" + mainData.optJSONObject("json").optJSONArray("partnerArray").optJSONObject(0).optString("ETA"));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
 
         btBookingInfoConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,8 +100,8 @@ public class BookingInfo extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.ratingforsearch, menu);
-        return false;
+//        getMenuInflater().inflate(R.menu.ratingforsearch, menu);
+        return true;
     }
 
     @Override
@@ -67,5 +114,4 @@ public class BookingInfo extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
 
     }
-
 }

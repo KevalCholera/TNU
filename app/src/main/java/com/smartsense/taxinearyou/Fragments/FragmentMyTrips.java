@@ -3,10 +3,12 @@ package com.smartsense.taxinearyou.Fragments;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import com.android.volley.Request;
@@ -29,6 +31,7 @@ public class FragmentMyTrips extends Fragment implements Response.Listener<JSONO
 
     ImageView ivMyTripsNoTrips;
     ListView lvMyTrips;
+    LinearLayout llFragmentMyTrips;
     private CoordinatorLayout clSearch;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -37,6 +40,7 @@ public class FragmentMyTrips extends Fragment implements Response.Listener<JSONO
 
         ivMyTripsNoTrips = (ImageView) rootView.findViewById(R.id.ivMyTripsNoTrips);
         lvMyTrips = (ListView) rootView.findViewById(R.id.lvMyTrips);
+        llFragmentMyTrips = (LinearLayout) rootView.findViewById(R.id.llFragmentMyTrips);
         clSearch = (CoordinatorLayout) getActivity().findViewById(R.id.clSearch);
 //        String data = "[{\"Amount\":\"$350.00\",\"From\":\"Solihull Rd, Shiral,Sohill, West Midland B90s 3LG, UK\",\"To\":\"Battern Parks Rd, London SW8, UK \",\"Taxi_Provider\":\"Lyft LLC\",\"Date_Time\":\"10.02.2016 10:30am\",\"Status\":\"Cancelled\"},{\"Amount\":\"$350.00\",\"From\":\"Solihull Rd, Shiral,Sohill, West Midland B90s 3LG, UK\",\"To\":\"Battern Parks Rd, London SW8, UK \",\"Taxi_Provider\":\"Lyft LLC\",\"Date_Time\":\"10.02.2016 10:30am\",\"Status\":\"Cancelled\"},{\"Amount\":\"$400.00\",\"From\":\"UK\",\"To\":\"US\",\"Taxi_Provider\":\"LLOUYT\",\"Date_Time\":\"20.02.2016 10:50am\",\"Status\":\"Completed\"},{\"Amount\":\"$350.00\",\"From\":\"Solihull Rd, Shiral,Sohill, West Midland B90s 3LG, UK\",\"To\":\"Battern Parks Rd, London SW8, UK \",\"Taxi_Provider\":\"Lyft LLC\",\"Date_Time\":\"10.02.2016 10:30am\",\"Status\":\"Waiting\"}]";
 
@@ -56,16 +60,23 @@ public class FragmentMyTrips extends Fragment implements Response.Listener<JSONO
         if (response != null) {
             try {
                 if (response.getInt("status") == Constants.STATUS_SUCCESS) {
-//                    switch (response.getInt("__eventid")) {
-//                        case Constants.Events.EVENT_MY_TRIP:
-                    try {
-                        AdapterMyTrips adapterMyTrips = new AdapterMyTrips(getActivity(), response.optJSONObject("json").optJSONArray("rideArray"));
-                        lvMyTrips.setAdapter(adapterMyTrips);
-                    } catch (Exception e) {
-                        e.printStackTrace();
+                    switch (response.getInt("__eventid")) {
+                        case Constants.Events.EVENT_MY_TRIP:
+                            try {
+                                if (response.optJSONObject("json").optJSONArray("rideArray").length() > 0) {
+                                    lvMyTrips.setVisibility(View.VISIBLE);
+                                    llFragmentMyTrips.setVisibility(View.GONE);
+                                    AdapterMyTrips adapterMyTrips = new AdapterMyTrips(getActivity(), response.optJSONObject("json").optJSONArray("rideArray"));
+                                    lvMyTrips.setAdapter(adapterMyTrips);
+                                } else {
+                                    lvMyTrips.setVisibility(View.GONE);
+                                    llFragmentMyTrips.setVisibility(View.VISIBLE);
+                                }
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                            break;
                     }
-//                            break;
-//                    }
                 } else {
                     JsonErrorShow.jsonErrorShow(response, getActivity(), clSearch);
                 }
@@ -77,18 +88,21 @@ public class FragmentMyTrips extends Fragment implements Response.Listener<JSONO
     }
 
     private void doMyTrip() {
-        final String tag = "login";
+        final String tag = "My Trip";
         StringBuilder builder = new StringBuilder();
         JSONObject jsonData = new JSONObject();
 
         try {
-            builder.append(Constants.BASE_URL + Constants.BASE_URL_POSTFIX + Constants.Events.EVENT_MY_TRIP + "&json="
-                    + jsonData.put("pageSize", 10).put("pageNumber", 1).put("token", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_ACCESS_TOKEN, "")).put("userId", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_ID, "")).toString());
+            builder.append(Constants.BASE_URL + Constants.BASE_URL_POSTFIX + Constants.Events.EVENT_MY_TRIP + "&json=")
+                    .append(jsonData.put("pageSize", 10).put("pageNumber", 0)
+                            .put("token", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_ACCESS_TOKEN, ""))
+                            .put("userId", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_ID, ""))
+                            .put("offset", 0));
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-//        CommonUtil.showProgressDialog(this, "Login...");
+        CommonUtil.showProgressDialog(getActivity(), "getting data...");
         DataRequest dataRequest = new DataRequest(Request.Method.GET, builder.toString(), null, this, this);
         TaxiNearYouApp.getInstance().addToRequestQueue(dataRequest, tag);
     }

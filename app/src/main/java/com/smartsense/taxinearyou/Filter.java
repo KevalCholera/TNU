@@ -38,19 +38,19 @@ public class Filter extends AppCompatActivity implements View.OnClickListener {
     RadioGroup rgFilterBookingType, rgFilterDistance, rgFilterVehicleType, rbgFilterRating;
     RadioButton rbFilterRating5, rbFilterRating4, rbFilterRating3, rbFilterRating2, rbFilterRating1, rbFilterRatingAll;
     Button btFilterDone, btFilterResetAll;
-//    ImageView ivFilterCancel;
+    //    ImageView ivFilterCancel;
     CheckBox cbFilterRecommend;
-    private RadioButton rbFilterReturn;
     RatingBar rbFeedbackRatingForDriver5, rbFeedbackRatingForDriver4, rbFeedbackRatingForDriver3, rbFeedbackRatingForDriver2, rbFeedbackRatingForDriver1;
     private RadioButton rbFilterSingle;
     private JSONObject filterObj;
-Toolbar toolbarAll;
+    Toolbar toolbarAll;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_filter);
 
-        toolbarAll = (Toolbar)findViewById(R.id.toolbarAll);
+        toolbarAll = (Toolbar) findViewById(R.id.toolbarAll);
         setSupportActionBar(toolbarAll);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -59,7 +59,7 @@ Toolbar toolbarAll;
         rgFilterDistance = (RadioGroup) findViewById(R.id.rgFilterDistance1);
         rbgFilterRating = (RadioGroup) findViewById(R.id.rbgFilterRating);
         rbFilterSingle = (RadioButton) findViewById(R.id.rbFilterSingle);
-        rbFilterReturn = (RadioButton) findViewById(R.id.rbFilterReturn);
+        RadioButton rbFilterReturn = (RadioButton) findViewById(R.id.rbFilterReturn);
         rbFilterRating5 = (RadioButton) findViewById(R.id.rbFilterRating5);
         rbFilterRating4 = (RadioButton) findViewById(R.id.rbFilterRating4);
         rbFilterRating3 = (RadioButton) findViewById(R.id.rbFilterRating3);
@@ -303,10 +303,11 @@ Toolbar toolbarAll;
             e.printStackTrace();
         }
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.ratingforsearch, menu);
-        return false;
+//        getMenuInflater().inflate(R.menu.ratingforsearch, menu);
+        return true;
     }
 
     @Override

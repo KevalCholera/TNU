@@ -76,6 +76,23 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
+                android:text="@string/subject"
+                android:textColor="@color/background" />
+
+            <EditText
+                android:id="@+id/etContactUsSubject"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/etHeightAll"
+                android:background="@drawable/grayborder"
+                android:imeOptions="actionNext"
+                android:paddingStart="@dimen/etSignUpAllPaddingStartEnd"
+                android:textColor="@color/black"
+                android:textSize="@dimen/etSignUpSizeAll" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
                 android:text="@string/message_"
                 android:textColor="@color/background" />
 
@@ -85,6 +102,7 @@
                 android:layout_height="@dimen/etLongTextHeightAll"
                 android:background="@drawable/grayborder"
                 android:gravity="top"
+                android:imeOptions="actionDone"
                 android:inputType="textLongMessage|textMultiLine|textCapSentences"
                 android:paddingStart="@dimen/etSignUpAllPaddingStartEnd"
                 android:textColor="@color/black"

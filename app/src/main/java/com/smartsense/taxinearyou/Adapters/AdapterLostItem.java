@@ -3,6 +3,7 @@ package com.smartsense.taxinearyou.Adapters;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,12 +13,16 @@ import android.view.ViewTreeObserver;
 import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
 import com.smartsense.taxinearyou.LostItemDetail;
 import com.smartsense.taxinearyou.R;
 import com.smartsense.taxinearyou.utill.CircleImageView1;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 
 public class AdapterLostItem extends BaseAdapter {
@@ -27,7 +32,7 @@ public class AdapterLostItem extends BaseAdapter {
     Activity a;
     //    ListView civElementLostItemCircleLeft;
     private AlertDialog alert;
-    LinearLayout lyElementLostItemStatus, lyElementLostItemMain, lyElementLostItemLeft;
+    LinearLayout lyElementLostItemStatus, lyElementLostItemMain, lyElementLostItemLeft, lyElementLostItemRight;
     CircleImageView1 circleImageView;
 
     public AdapterLostItem(Activity a, JSONArray data) {
@@ -66,6 +71,7 @@ public class AdapterLostItem extends BaseAdapter {
         lyElementLostItemMain = (LinearLayout) vi.findViewById(R.id.lyElementLostItemMain);
         lyElementLostItemStatus = (LinearLayout) vi.findViewById(R.id.lyElementLostItemStatus);
         lyElementLostItemLeft = (LinearLayout) vi.findViewById(R.id.lyElementLostItemLeft);
+        lyElementLostItemRight = (LinearLayout) vi.findViewById(R.id.lyElementLostItemRight);
 //        civElementLostItemCircleLeft = (ListView) vi.findViewById(R.id.civElementLostItemCircleLeft);
 
         ViewTreeObserver vto = lyElementLostItemStatus.getViewTreeObserver();
@@ -73,55 +79,53 @@ public class AdapterLostItem extends BaseAdapter {
             public boolean onPreDraw() {
 
                 lyElementLostItemStatus.getViewTreeObserver().removeOnPreDrawListener(this);
-
                 int finalHeight = lyElementLostItemStatus.getMeasuredHeight();
-                Log.i("Height", String.valueOf(finalHeight));
-
                 int height = finalHeight / 30;
-                Log.i("Height1", String.valueOf(height));
 
-//                for (int i = 0; i < height; i++) {
+                for (int i = 0; i < height; i++)
+                    createNewTextView();
 
-                circleImageView = new CircleImageView1(a);
-                circleImageView.setMaxWidth(10);
-                circleImageView.setMaxHeight(10);
-                circleImageView.setBackgroundColor(a.getResources().getColor(R.color.white));
-                circleImageView.setBorderColor(a.getResources().getColor(R.color.element));
-                circleImageView.setBorderWidth(R.dimen.civTripDetailsBorderWidth);
-
-                lyElementLostItemLeft.addView(circleImageView);
-//                }
                 return true;
             }
         });
 
-        JSONObject test = data.optJSONObject(position);
-        Log.i("Test", test.toString());
+        final JSONObject test = data.optJSONObject(position);
 
-        tvLostItemTNR.setText(test.optString("tnr"));
-        tvLostItemFrom.setText(test.optString("from"));
-        tvLostItemTo.setText(test.optString("to"));
-        tvLostItemProvider.setText(test.optString("provider"));
-        tvLostItemDateTime.setText(test.optString("date_time"));
+        tvLostItemTNR.setText(test.optString("pnr"));
+        tvLostItemFrom.setText(test.optString("fromArea"));
+        tvLostItemTo.setText(test.optString("toArea"));
+        tvLostItemProvider.setText(test.optString("partnerName"));
+        try {
+            tvLostItemDateTime.setText(new SimpleDateFormat("dd.MM.yyyy hh:mm aa").format(new SimpleDateFormat("dd-MMMM-yyyy HH:mm").parse(test.optString("rideDate"))));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         tvLostItemStatus.setText(test.optString("status"));
-        tvLostItemLostItem.setText(test.optString("lost_item"));
+        tvLostItemLostItem.setText(test.optString("color") + " color\n" + test.optString("itemDescription"));
 
         lyElementLostItemMain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                a.startActivity(new Intent(a, LostItemDetail.class));
+                a.startActivity(new Intent(a, LostItemDetail.class).putExtra("lostItemDetails", test.toString()));
             }
         });
         return vi;
     }
 
-    private CircleImageView1 createNewTextView() {
+    public void createNewTextView() {
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(10, 10);
+        lp.setMargins(5, 10, 5, 0);
+
         CircleImageView1 circleImageView = new CircleImageView1(a);
-        circleImageView.setMaxWidth(R.dimen.tvMarginTopBottomStartEndAll);
-        circleImageView.setMaxHeight(R.dimen.tvMarginTopBottomStartEndAll);
-        circleImageView.setBackgroundColor(a.getResources().getColor(R.color.white));
-        circleImageView.setBorderColor(a.getResources().getColor(R.color.element));
-        circleImageView.setBorderWidth(R.dimen.civTripDetailsBorderWidth);
-        return circleImageView;
+        circleImageView.setLayoutParams(lp);
+//        circleImageView.setMaxWidth(R.dimen.tvMarginTopBottomStartEndAll);
+//        circleImageView.setMaxHeight(R.dimen.tvMarginTopBottomStartEndAll);
+        circleImageView.setBackgroundColor(ContextCompat.getColor(a, R.color.white));
+        circleImageView.setBorderColor(ContextCompat.getColor(a, R.color.element));
+//        circleImageView.setBorderWidth((int)R.dimen.civTripDetailsBorderWidth);
+        circleImageView.setBorderWidth(2);
+
+        lyElementLostItemLeft.addView(circleImageView);
+        lyElementLostItemRight.addView(circleImageView);
     }
 }

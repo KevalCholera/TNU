@@ -24,6 +24,7 @@
                 android:src="@mipmap/map" />
 
             <com.smartsense.taxinearyou.utill.CircleImageView1
+                android:id="@+id/cvTripDetailsPartnerLogo"
                 android:layout_width="@dimen/civTripDetailsWidthHeight"
                 android:layout_height="@dimen/civTripDetailsWidthHeight"
                 android:layout_alignParentBottom="true"

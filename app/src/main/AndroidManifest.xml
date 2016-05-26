@@ -110,7 +110,7 @@
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="stateHidden" />
         <activity
-            android:name=".YourDetails"
+            android:name=".AddLostItem"
             android:label="Your Details"
 
             android:theme="@style/AppTheme.NoActionBar"

@@ -9,6 +9,7 @@ import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,6 +37,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -158,20 +160,7 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
                 tvBookDateTime.setTag(finalDateTomorrow + " " + updateTime(hour, minute));
             }
             if (check) {
-                mTimePicker = new TimePickerDialog(getActivity(), new TimePickerDialog.OnTimeSetListener() {
-                    @Override
-                    public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
-                        if (rbBookToday.getId() == id) {
-                            tvBookDateTime.setText(finalDateNow2 + " -- " + updateTime(selectedHour, selectedMinute));
-                            tvBookDateTime.setTag(finalDateNow2 + " " + updateTime(selectedHour, selectedMinute));
-                        } else if (rbBookTomorrow.getId() == id) {
-                            tvBookDateTime.setText(finalDateTomorrow + " -- " + updateTime(selectedHour, selectedMinute));
-                            tvBookDateTime.setTag(finalDateTomorrow + " " + updateTime(selectedHour, selectedMinute));
-                        }
-                    }
-                }, hour, minute, true);//Yes 24 hour time
-                mTimePicker.setTitle("Select Time");
-                mTimePicker.show();
+                timePicker(id, finalDateNow2, finalDateTomorrow, hour, minute);
             }
         } else {
             tvBookDateTime.setText(finalDateNow);
@@ -179,6 +168,22 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
         }
     }
 
+    public void timePicker(final int id, final String finalDateNow2, final String finalDateTomorrow, int hour, int minute) {
+        mTimePicker = new TimePickerDialog(getActivity(), new TimePickerDialog.OnTimeSetListener() {
+            @Override
+            public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
+                if (rbBookToday.getId() == id) {
+                    tvBookDateTime.setText(finalDateNow2 + " -- " + updateTime(selectedHour, selectedMinute));
+                    tvBookDateTime.setTag(finalDateNow2 + " " + updateTime(selectedHour, selectedMinute));
+                } else if (rbBookTomorrow.getId() == id) {
+                    tvBookDateTime.setText(finalDateTomorrow + " -- " + updateTime(selectedHour, selectedMinute));
+                    tvBookDateTime.setTag(finalDateTomorrow + " " + updateTime(selectedHour, selectedMinute));
+                }
+            }
+        }, hour, minute, true);//Yes 24 hour time
+        mTimePicker.setTitle("Select Time");
+        mTimePicker.show();
+    }
 
     @Override
     public void onClick(View v) {
@@ -207,9 +212,10 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
                 else if (TextUtils.isEmpty(tvBookTo.getText().toString()))
                     CommonUtil.showSnackBar(getActivity(), getString(R.string.enter_to), clSearch);
                 else
-                    startActivity(new Intent(getActivity(), SearchCars.class).putExtra("tvBookDateTime", (String) tvBookDateTime.getTag()).putExtra("tvBookLuggage", (String) tvBookLuggage.getTag()).putExtra("tvBookPassenger", (String) tvBookPassenger.getTag()));
-//                doPartnerList();
-//                doSearch();
+                    startActivity(new Intent(getActivity(), SearchCars.class)
+                            .putExtra("tvBookDateTime", (String) tvBookDateTime.getTag())
+                            .putExtra("tvBookLuggage", (String) tvBookLuggage.getTag())
+                            .putExtra("tvBookPassenger", (String) tvBookPassenger.getTag()));
                 break;
 
             case R.id.ivBookVia:
@@ -253,7 +259,7 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
                 if (TextUtils.isEmpty(tvBookFrom.getText().toString()))
                     CommonUtil.showSnackBar(getActivity(), getString(R.string.enter_from), clSearch);
                 else if (TextUtils.isEmpty(tvBookTo.getText().toString()))
-                    startActivity(new Intent(getActivity(), SearchCars.class).putExtra("tvBookDateTime", (String) tvBookDateTime.getTag()).putExtra("tvBookLuggage", (String) tvBookLuggage.getTag()).putExtra("tvBookPassenger", (String) tvBookPassenger.getTag()));
+                    CommonUtil.showSnackBar(getActivity(), getString(R.string.enter_to), clSearch);
                 else {
                     String reverseFrom = tvBookFrom.getText().toString();
                     tvBookFrom.setText(tvBookTo.getText().toString());
@@ -316,8 +322,6 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-
     }
 
     public void openQuestionSelectPopup(Boolean check) {
@@ -447,6 +451,7 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
                             SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_DISTANCE_LIST, response.optJSONObject("json").optJSONArray("distanceList").toString());
                             SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_PARTNER_ARRAY, response.optJSONObject("json").optJSONArray("partnerArray").toString());
                             SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_FILTER_REQUEST, response.optJSONObject("filterRequest").toString());
+                            SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_DISTANCE_MATRIX, response.optJSONObject("json").optJSONObject("distanceMatrix").toString());
                             SharedPreferenceUtil.save();
                             startActivity(new Intent(getActivity(), SearchCars.class));
 
@@ -459,7 +464,6 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
                 e.printStackTrace();
             }
         }
-
     }
 
 

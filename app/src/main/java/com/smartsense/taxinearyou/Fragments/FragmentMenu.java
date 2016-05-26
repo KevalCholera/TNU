@@ -108,13 +108,14 @@ public class FragmentMenu extends Fragment implements Response.Listener<JSONObje
         JSONObject jsonData = new JSONObject();
 
         try {
-            builder.append(Constants.BASE_URL + Constants.BASE_URL_POSTFIX + Constants.Events.EVENT_LOGOUT + "&json="
-                    + jsonData.put("token", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_ACCESS_TOKEN, "")).put("userId", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_ID, "")));
+            builder.append(Constants.BASE_URL + Constants.BASE_URL_POSTFIX + Constants.Events.EVENT_LOGOUT + "&json=")
+                    .append(jsonData.put("token", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_ACCESS_TOKEN, ""))
+                            .put("userId", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_ID, "")));
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        CommonUtil.showProgressDialog(getActivity(), "Login...");
+        CommonUtil.showProgressDialog(getActivity(), "Logging Out ...");
         DataRequest dataRequest = new DataRequest(Request.Method.GET, builder.toString(), null, this, this);
         TaxiNearYouApp.getInstance().addToRequestQueue(dataRequest, tag);
     }
