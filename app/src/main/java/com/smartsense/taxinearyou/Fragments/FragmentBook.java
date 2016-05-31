@@ -78,6 +78,7 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
         ivBookDeleteVia2 = (ImageView) rootView.findViewById(R.id.ivBookDeleteVia2);
         clSearch = (CoordinatorLayout) getActivity().findViewById(R.id.clSearch);
         llBookNowTodayTomorrow = (RadioGroup) rootView.findViewById(R.id.llBookNowTodayTomorrow);
+
         tvBookFrom.setOnClickListener(this);
         tvBookTo.setOnClickListener(this);
         tvBookvia1.setOnClickListener(this);
@@ -95,8 +96,10 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
         llBookVia2.setOnClickListener(this);
         ivBookDeleteVia1.setOnClickListener(this);
         ivBookDeleteVia2.setOnClickListener(this);
+
         setDefaultValues();
         setDateTime(false);
+
         return rootView;
     }
 
@@ -112,7 +115,6 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
             timeSet = "PM";
         else
             timeSet = "AM";
-
 
         String minutes = "";
         if (mins < 10)
@@ -133,12 +135,9 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
 
     public void setDateTime(Boolean check) {
         final int id = llBookNowTodayTomorrow.getCheckedRadioButtonId();
-//        final RadioButton rb1 = (RadioButton) getActivity().findViewById(id);
         SimpleDateFormat timeStampFormat1 = new SimpleDateFormat("dd-MMM-yyyy");
         SimpleDateFormat timeStampFormat2 = new SimpleDateFormat("dd-MMM-yyyy -- hh:mm aa");
         SimpleDateFormat timeStampFormat = new SimpleDateFormat("dd-MMM-yyyy hh:mm aa");
-//        SimpleDateFormat timeStampFormat2 = new SimpleDateFormat("dd-MMM-yyyy");//hh == 12 hours && HH == 24 hours  aa == am/pm
-//        SimpleDateFormat timeStampFormat = new SimpleDateFormat("dd-MM-yyyy");
         Date Now = new Date();
         Calendar calendar = Calendar.getInstance();
         final String finalDateNow = timeStampFormat2.format(Now);
@@ -151,7 +150,7 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
             calendar.add(Calendar.DAY_OF_YEAR, 1);
             Date tomorrow = calendar.getTime();
             final String finalDateTomorrow = timeStampFormat1.format(tomorrow);
-            final String finalDateTomorrow1 = timeStampFormat.format(tomorrow);
+//            final String finalDateTomorrow1 = timeStampFormat.format(tomorrow);
             if (rbBookToday.getId() == id) {
                 tvBookDateTime.setText(finalDateNow2 + " -- " + updateTime(hour, minute));
                 tvBookDateTime.setTag(finalDateNow2 + " " + updateTime(hour, minute));
@@ -180,7 +179,7 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
                     tvBookDateTime.setTag(finalDateTomorrow + " " + updateTime(selectedHour, selectedMinute));
                 }
             }
-        }, hour, minute, true);//Yes 24 hour time
+        }, hour, minute, false);
         mTimePicker.setTitle("Select Time");
         mTimePicker.show();
     }
@@ -215,6 +214,8 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
                     startActivity(new Intent(getActivity(), SearchCars.class)
                             .putExtra("tvBookDateTime", (String) tvBookDateTime.getTag())
                             .putExtra("tvBookLuggage", (String) tvBookLuggage.getTag())
+                            .putExtra("luggageDescription", tvBookLuggage.getText().toString())
+                            .putExtra("passengerDescription", tvBookPassenger.getText().toString())
                             .putExtra("tvBookPassenger", (String) tvBookPassenger.getTag()));
                 break;
 
@@ -255,18 +256,17 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
             case R.id.tvBookLuggage:
                 openQuestionSelectPopup(true);
                 break;
-            case R.id.imgBookFromToReverse:
-                if (TextUtils.isEmpty(tvBookFrom.getText().toString()))
-                    CommonUtil.showSnackBar(getActivity(), getString(R.string.enter_from), clSearch);
-                else if (TextUtils.isEmpty(tvBookTo.getText().toString()))
-                    CommonUtil.showSnackBar(getActivity(), getString(R.string.enter_to), clSearch);
-                else {
-                    String reverseFrom = tvBookFrom.getText().toString();
-                    tvBookFrom.setText(tvBookTo.getText().toString());
-                    tvBookTo.setText(reverseFrom);
-                }
-                break;
-
+//            case R.id.imgBookFromToReverse:
+//                if (TextUtils.isEmpty(tvBookFrom.getText().toString()))
+//                    CommonUtil.showSnackBar(getActivity(), getString(R.string.enter_from), clSearch);
+//                else if (TextUtils.isEmpty(tvBookTo.getText().toString()))
+//                    CommonUtil.showSnackBar(getActivity(), getString(R.string.enter_to), clSearch);
+//                else {
+//                    String reverseFrom = tvBookFrom.getText().toString();
+//                    tvBookFrom.setText(tvBookTo.getText().toString());
+//                    tvBookTo.setText(reverseFrom);
+//                }
+//                break;
         }
     }
 
@@ -300,24 +300,25 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
 
     public void setDefaultValues() {
         String str = "";
-        JSONArray jsonObject;
+        JSONArray jsonArray;
         try {
 
             str = SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_LUGGAGE, "");
-            jsonObject = new JSONArray(str);
-            if (jsonObject.length() > 0) {
-                tvBookLuggage.setTag(jsonObject.optJSONObject(0).optString("luggageId"));
-                tvBookLuggage.setText(jsonObject.optJSONObject(0).optString("name"));
-
+            jsonArray = new JSONArray(str);
+            if (jsonArray.length() > 0) {
+                tvBookLuggage.setTag(jsonArray.optJSONObject(0).optString("luggageId"));
+                tvBookLuggage.setText(jsonArray.optJSONObject(0).optString("name"));
+                SharedPreferenceUtil.putValue(Constants.PrefKeys.LUGGAGE_VALUE, "2");
+                SharedPreferenceUtil.save();
             }
             str = SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_PASSENGER, "");
-            jsonObject = new JSONArray(str);
-            if (jsonObject.length() > 0) {
-                if (jsonObject.optJSONObject(0).optString("name").equalsIgnoreCase("1"))
-                    tvBookPassenger.setText(jsonObject.optJSONObject(0).optString("name") + " passenger");
+            jsonArray = new JSONArray(str);
+            if (jsonArray.length() > 0) {
+                if (jsonArray.optJSONObject(0).optString("name").equalsIgnoreCase("1"))
+                    tvBookPassenger.setText(jsonArray.optJSONObject(0).optString("name") + " passenger");
                 else
-                    tvBookPassenger.setText(jsonObject.optJSONObject(0).optString("name") + " passengers");
-                tvBookPassenger.setTag(jsonObject.optJSONObject(0).optString("passengerCountId"));
+                    tvBookPassenger.setText(jsonArray.optJSONObject(0).optString("name") + " passengers");
+                tvBookPassenger.setTag(jsonArray.optJSONObject(0).optString("passengerCountId"));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -340,9 +341,9 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
                 str = SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_PASSENGER, "");
                 tvCityDialogHead.setText("Select Passenger/Passengers");
             }
-            JSONArray jsonObject = new JSONArray(str);
+            JSONArray jsonArray = new JSONArray(str);
             ListView list_view = (ListView) dialog.findViewById(R.id.list_view);
-            AdapterClass adapterClass = new AdapterClass(getActivity(), jsonObject, check);
+            AdapterClass adapterClass = new AdapterClass(getActivity(), jsonArray, check);
             list_view.setAdapter(adapterClass);
             alertDialogs.setView(dialog);
             alertDialogs.setCancelable(true);
@@ -387,7 +388,7 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
             if (convertView == null)
                 vi = inflater.inflate(R.layout.element_select_question, null);
             final TextView cbElementClassName = (TextView) vi.findViewById(R.id.tvElementQuestionName);
-            JSONObject object = data.optJSONObject(position);
+            final JSONObject object = data.optJSONObject(position);
             if (object.optInt("isEnable") == 1) {
                 if (check) {
                     cbElementClassName.setTag(object.optString("luggageId"));
@@ -404,11 +405,12 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
                     public void onClick(View v) {
                         if (check) {
                             tvBookLuggage.setText(cbElementClassName.getText().toString());
-                            tvBookLuggage.setTag((String) cbElementClassName.getTag());
+                            tvBookLuggage.setTag(cbElementClassName.getTag());
+                            SharedPreferenceUtil.putValue(Constants.PrefKeys.LUGGAGE_VALUE, object.optInt("value"));
+                            SharedPreferenceUtil.save();
                         } else {
                             tvBookPassenger.setText(cbElementClassName.getText().toString());
-                            tvBookPassenger.setTag((String) cbElementClassName.getTag());
-
+                            tvBookPassenger.setTag(cbElementClassName.getTag());
                         }
                         alert.dismiss();
                     }
@@ -447,6 +449,7 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
                 if (response.getInt("status") == Constants.STATUS_SUCCESS) {
                     switch (response.getInt("__eventid")) {
                         case Constants.Events.EVENT_PARTNER_LIST:
+                            SharedPreferenceUtil.putValue(Constants.PrefKeys.DISTANCE_AFTER_CONVERT, response.optJSONObject("json").optJSONObject("distanceMatrix").optInt("duration") / 3600 + ":" + (response.optJSONObject("json").optJSONObject("distanceMatrix").optInt("duration") / 60) % 60 + "hours");
                             SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_TAXI_TYPE, response.optJSONObject("json").optJSONArray("taxiTypeArray").toString());
                             SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_DISTANCE_LIST, response.optJSONObject("json").optJSONArray("distanceList").toString());
                             SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_PARTNER_ARRAY, response.optJSONObject("json").optJSONArray("partnerArray").toString());
@@ -454,7 +457,6 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
                             SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_DISTANCE_MATRIX, response.optJSONObject("json").optJSONObject("distanceMatrix").toString());
                             SharedPreferenceUtil.save();
                             startActivity(new Intent(getActivity(), SearchCars.class));
-
                             break;
                     }
                 } else {
@@ -463,22 +465,6 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-        }
-    }
-
-
-    public void doSearch() {
-        try {
-            String json = "{\"viaArea\":[],\"fromAreaLat\":\"51.5093963\",\"toAreaPostalCode\":\"WC1B 3LH\",\"fromAreaLong\":\"-0.1227355\",\"fromAreaCity\":\"London\",\"bookingduration\":\"1\",\"toAreaPlaceid\":\"ChIJEVMtYzIbdkgRt4AUjvmdeyQ\",\"fromAreaPlaceid\":\"ChIJE6nTVskEdkgRb8S8OkRY_J0\",\"luggageId\":\"1\",\"passanger\":\"1\",\"toAreaLong\":\"-0.128478\",\"sortField\":\"rating\",\"json\":{\"taxiTypeArray\":[{\"isEnable\":1,\"taxiName\":\"Saloon\",\"userId\":1,\"taxiTypeId\":15,\"maxPeopleAllow\":4,\"maxRate\":15,\"createdDate\":1.445150875038E12,\"minRate\":2},{\"isEnable\":1,\"taxiName\":\"Hatchback\",\"userId\":1,\"taxiTypeId\":16,\"maxPeopleAllow\":4,\"maxRate\":15,\"createdDate\":1.445150889203E12,\"minRate\":2},{\"isEnable\":1,\"taxiName\":\"4x4\",\"userId\":1,\"taxiTypeId\":19,\"maxPeopleAllow\":4,\"maxRate\":15,\"createdDate\":1.445177588911E12,\"minRate\":2},{\"isEnable\":1,\"taxiName\":\"9x9\",\"userId\":1,\"taxiTypeId\":22,\"maxPeopleAllow\":15,\"maxRate\":15,\"createdDate\":1.445753052622E12,\"minRate\":2},{\"isEnable\":1,\"taxiName\":\"Sedan\",\"userId\":1,\"taxiTypeId\":24,\"maxPeopleAllow\":5,\"maxRate\":10,\"createdDate\":1.450527196932E12,\"minRate\":1},{\"isEnable\":1,\"taxiName\":\"Luxury Club\",\"userId\":1,\"taxiTypeId\":32,\"maxPeopleAllow\":5,\"maxRate\":15,\"createdDate\":1.452002113783E12,\"minRate\":10},{\"isEnable\":1,\"taxiName\":\"Mini Van\",\"userId\":1,\"taxiTypeId\":33,\"maxPeopleAllow\":10,\"maxRate\":20,\"createdDate\":1.452253793721E12,\"minRate\":10},{\"isEnable\":1,\"taxiName\":\"SUV\",\"userId\":1,\"taxiTypeId\":35,\"maxPeopleAllow\":4,\"maxRate\":15,\"createdDate\":1.452681913177E12,\"minRate\":12}],\"errorCode\":0,\"distanceMatrix\":{\"duration\":923,\"distance\":2449},\"totalRecords\":6,\"distanceList\":[{\"isEnable\":1,\"name\":\"30 Miles\",\"mile\":30,\"distanceId\":1,\"createdDate\":1457768941000},{\"isEnable\":1,\"name\":\"40 Miles\",\"mile\":40,\"distanceId\":2,\"createdDate\":1457768941000},{\"isEnable\":1,\"name\":\"50 Miles\",\"mile\":50,\"distanceId\":3,\"createdDate\":1457768941000},{\"isEnable\":1,\"name\":\"60 Miles\",\"mile\":60,\"distanceId\":4,\"createdDate\":1457768941000},{\"isEnable\":1,\"name\":\"70 Miles\",\"mile\":70,\"distanceId\":5,\"createdDate\":1457768941000}],\"partnerArray\":[{\"placeLat\":\"51.5137959\",\"cityId\":26,\"cityName\":\"London\",\"partnerEmailId\":\"darshanganatra2010@gmail.com\",\"partnerId\":2,\"isAvailable\":1,\"areaId\":6121,\"distance\":7.929246863597007,\"postalCode\":\"e65ta\",\"isRecommended\":0,\"contactPersionEmail\":\"darshanganatra2010@gmail.com\",\"areaPostalCode\":\"e65ta\",\"createDate\":1.451995434734E12,\"partnerContactNo\":\"9033409563\",\"logoPath\":\"1451995434734_a2z_taxi_services_pvt_ltd\",\"partnerRating\":0,\"availability\":0,\"partnerName\":\"a2z taxi services pvt ltd\",\"userBeanUserId\":4,\"partnerCommision\":10,\"partnerIsEnable\":1,\"contactPersionNo\":\"9033409563\",\"contactPersionName\":\"Darshan Ganatra\",\"updateDate\":1.451996452769E12,\"partnerAlias\":\"a2z\",\"areaName\":\"Beckton, London Borough of Newham, United Kingdom\",\"activationToken\":\"1111\",\"address\":\"49 barry road beckton\",\"rating\":0,\"taxiType\":{\"kmRate\":12,\"isEnable\":0,\"partnerTaxiTypeId\":10,\"status\":0,\"partnerId\":2,\"taxiTypeName\":\"HEllo\",\"maxLuggageAllowed\":0,\"taxiTypeId\":14,\"createDate\":1.451995434744E12,\"maxPeopleAllowed\":12,\"updateDate\":1.459222745309E12,\"minRate\":\"0.00\"},\"placeLong\":\"-0.20096190000003844\"}]},\"token\":\"8XAqZ30saLIAb6HEt4jA\",\"userId\":\"42\",\"pageNumber\":\"1\",\"toAreaCity\":\"London\",\"status\":200,\"sortOrder\":\"asc\",\"fromAreaName\":\"The RSA, John Adam Street, London, United Kingdom\",\"pageSize\":\"1\",\"filterRequest\":{\"distance\":-1,\"bookingType\":0,\"vehicleType\":\"14\",\"rating\":-1},\"msg\":\"\",\"toAreaLat\":\"51.5177286\",\"fromAreaPostalCode\":\"WC2N 6EZ\",\"__eventid\":\"5001\",\"toAreaName\":\"FSU London Study Centre, Great Russell Street, London, United Kingdom\",\"journeyDatetime\":\"02-Apr-2016 10:55AM\",\"fromAreaAddress\":\"The RSA, 8 John Adam St, London WC2N 6EZ, UK\",\"toAreaAddress\":\"Florida State University, 99 Great Russell St, London WC1B 3LH, United Kingdom\"}";
-            JSONObject response = new JSONObject(json);
-            SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_TAXI_TYPE, response.optJSONObject("json").optJSONArray("taxiTypeArray").toString());
-            SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_DISTANCE_LIST, response.optJSONObject("json").optJSONArray("distanceList").toString());
-            SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_PARTNER_ARRAY, response.optJSONObject("json").optJSONArray("partnerArray").toString());
-            SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_FILTER_REQUEST, response.optJSONObject("filterRequest").toString());
-            SharedPreferenceUtil.save();
-            startActivity(new Intent(getActivity(), SearchCars.class));
-        } catch (Exception e) {
-            e.printStackTrace();
         }
     }
 }

@@ -146,7 +146,8 @@
     <dimen name="lyLostItemDetailsToMarginTop">10dp</dimen>
     <dimen name="tvLostItemDetailsMarginStart">5dp</dimen>
     <dimen name="lyLostItemDetailsTNRMarginStart">20dp</dimen>
-    <dimen name="ivPartnerRatingImageHeight">170dp</dimen>
+    <dimen name="lyPartnerRatingImageHeight">170dp</dimen>
+    <dimen name="ivPartnerRatingImageHeight">100dp</dimen>
     <dimen name="tvPaymentDetailsDrawableTNUPadding">5dp</dimen>
     <dimen name="tvPaymentDetailsDrawableCashPadding">10dp</dimen>
     <dimen name="tvPaymentDetailsMarginStart">5dp</dimen>
@@ -172,7 +173,7 @@
     <dimen name="lytvTripDetailsHeadingsMarginStartAll">15dp</dimen>
     <dimen name="vTripDetailsView">20dp</dimen>
     <dimen name="btTripDetailsMarginStartEnd">20dp</dimen>
-    <dimen name="civTripDetailsWidthHeight">50dp</dimen>
+    <dimen name="civTripDetailsWidthHeight">70dp</dimen>
     <dimen name="civTripDetailsBorderWidth">2dp</dimen>
     <dimen name="btTripDetailsCancelPaddingStartEnd">40dp</dimen>
     <dimen name="lyYourDetailsEditMarginStartEnd">10dp</dimen>
@@ -287,4 +288,5 @@
     <dimen name="font_14">14sp</dimen>
     <dimen name="padding_10">10dp</dimen>
     <dimen name="margin_5">5dp</dimen>
+    <dimen name="rgDialogAllMargin">80dp</dimen>
 </resources>

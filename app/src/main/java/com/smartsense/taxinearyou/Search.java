@@ -23,7 +23,6 @@ import java.util.List;
 public class Search extends AppCompatActivity {
 
     private TabLayout tbSearchTab;
-    private ViewPager viewPager;
     CoordinatorLayout clSearch;
 
     @Override
@@ -34,7 +33,7 @@ public class Search extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarAll);
         setSupportActionBar(toolbar);
 
-        viewPager = (ViewPager) findViewById(R.id.vpSearchPager);
+        ViewPager viewPager = (ViewPager) findViewById(R.id.vpSearchPager);
         setupViewPager(viewPager);
 
         clSearch = (CoordinatorLayout) findViewById(R.id.clSearch);

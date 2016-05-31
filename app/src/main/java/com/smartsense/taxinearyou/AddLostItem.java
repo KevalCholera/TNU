@@ -24,10 +24,12 @@ import com.smartsense.taxinearyou.utill.DataRequest;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+
 public class AddLostItem extends AppCompatActivity implements View.OnClickListener, Response.Listener<JSONObject>, Response.ErrorListener {
 
     EditText etYourDetailName, etYourDetailNumber, etYourDetailID, etYourDetailAddress, etYourDetailPostcode, etYourDetailColor, etYourDetailDescription;
-    AlertDialog alert;
     Button btYourDetailSubmit;
     CoordinatorLayout clYourDetails;
 
@@ -70,7 +72,6 @@ public class AddLostItem extends AppCompatActivity implements View.OnClickListen
                 else
                     addLostItem();
                 break;
-
         }
     }
 
@@ -78,29 +79,33 @@ public class AddLostItem extends AppCompatActivity implements View.OnClickListen
         final String tag = "Add Lost Item";
         StringBuilder builder = new StringBuilder();
         JSONObject jsonData = new JSONObject();
-
+        String url = "";
         try {
-            builder.append(Constants.BASE_URL + Constants.BASE_URL_POSTFIX + Constants.Events.ADD_LOST_ITEM + "&json=")
-                    .append(jsonData.put("token", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_ACCESS_TOKEN, "")
-                            + jsonData.put("userId", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_ID, "").trim())
-                            + jsonData.put("rideId", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_RIDE_ID, "").trim())
-                            + jsonData.put("color", etYourDetailColor.getText().toString().trim())
-                            + jsonData.put("pinCode", etYourDetailPostcode.getText().toString().trim())
-                            + jsonData.put("itemDescription", etYourDetailDescription.getText().toString().trim())
-                            + jsonData.put("address", etYourDetailAddress.getText().toString().trim())));
+            builder.append(jsonData.put("token", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_ACCESS_TOKEN, ""))
+                    .put("userId", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_ID, "").trim())
+                    .put("rideId", getIntent().getStringExtra("rideId").trim())
+                    .put("color", etYourDetailColor.getText().toString().trim())
+                    .put("pinCode", etYourDetailPostcode.getText().toString().trim())
+                    .put("itemDescription", etYourDetailDescription.getText().toString().trim())
+                    .put("address", etYourDetailAddress.getText().toString().trim()));
+
+            try {
+                url = Constants.BASE_URL + Constants.BASE_URL_POSTFIX + Constants.Events.ADD_LOST_ITEM + "&json="
+                        + URLEncoder.encode(builder.toString(), "UTF8");
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
-        CommonUtil.showProgressDialog(this, "getting data...");
-        DataRequest dataRequest = new DataRequest(Request.Method.GET, builder.toString(), null, this, this);
+        CommonUtil.showProgressDialog(this, "Sending details...");
+        DataRequest dataRequest = new DataRequest(Request.Method.GET, url, null, this, this);
         TaxiNearYouApp.getInstance().addToRequestQueue(dataRequest, tag);
     }
 
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-//        getMenuInflater().inflate(R.menu.ratingforsearch, menu);
         return true;
     }
 
@@ -112,21 +117,22 @@ public class AddLostItem extends AppCompatActivity implements View.OnClickListen
                 break;
         }
         return super.onOptionsItemSelected(item);
-
     }
 
     @Override
     public void onErrorResponse(VolleyError volleyError) {
+        CommonUtil.cancelProgressDialog();
         CommonUtil.errorToastShowing(this);
     }
 
     @Override
     public void onResponse(JSONObject jsonObject) {
         CommonUtil.cancelProgressDialog();
-        if (jsonObject.length() > 0 && jsonObject.optInt("status") == Constants.STATUS_SUCCESS)
-            CommonUtil.successToastShowing(this, jsonObject);
-        else
-            CommonUtil.successToastShowing(this, jsonObject);
-
+        if (jsonObject.length() > 0)
+            if (jsonObject.optInt("status") == Constants.STATUS_SUCCESS) {
+                CommonUtil.successToastShowing(this, jsonObject);
+                finish();
+            } else
+                CommonUtil.successToastShowing(this, jsonObject);
     }
 }

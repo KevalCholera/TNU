@@ -17,7 +17,7 @@
             android:background="@color/white"
             android:gravity="center"
             android:orientation="vertical"
-            android:padding="@dimen/lyPaddingMainAll"
+            android:padding="@dimen/lyPadding10"
             android:visibility="gone">
 
             <TextView
@@ -98,7 +98,7 @@
             android:background="@null"
             android:gravity="center"
             android:orientation="vertical"
-            android:padding="@dimen/lyPaddingMainAll"
+            android:padding="@dimen/lyPadding10"
             android:visibility="gone">
 
             <TextView
@@ -202,15 +202,22 @@
                 android:gravity="center"
                 android:orientation="horizontal">
 
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
+
                 <RadioGroup
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_weight="9"
                     android:orientation="vertical">
 
                     <RadioButton
                         android:id="@+id/rbPopupSecurityOptionsEmail"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_5"
                         android:button="@drawable/radio_button_popup"
                         android:checked="true" />
 
@@ -218,15 +225,17 @@
                         android:id="@+id/rbPopupSecurityOptionsAlternateEmail"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_5"
                         android:button="@drawable/radio_button_popup" />
 
                     <RadioButton
                         android:id="@+id/rbPopupSecurityOptionsQuestions"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="match_parent"
+                        android:layout_marginTop="@dimen/margin_5"
                         android:button="@drawable/radio_button_popup"
-                        android:gravity="center" />
-
+                        android:gravity="center"
+                        android:text="@string/answer_security_question" />
 
                 </RadioGroup>
 
@@ -234,7 +243,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="fill"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:visibility="gone">
 
                     <LinearLayout
                         android:id="@+id/lyPopupSecurityOptionsEmail"
@@ -253,7 +263,6 @@
                             android:id="@+id/tvPopupSecurityOptionsEmail"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/kevalcholeracholera_gmail_com"
                             android:textSize="@dimen/rbRadioTextSize"
                             android:textStyle="bold" />
                     </LinearLayout>
@@ -312,7 +321,7 @@
             android:background="@color/white"
             android:gravity="center"
             android:orientation="vertical"
-            android:padding="@dimen/lyPaddingMainAll"
+            android:padding="@dimen/lyPadding10"
             android:visibility="gone">
 
             <TextView
@@ -393,7 +402,7 @@
             android:background="@color/white"
             android:gravity="center"
             android:orientation="vertical"
-            android:padding="@dimen/lyPaddingMainAll"
+            android:padding="@dimen/lyPadding10"
             android:visibility="gone">
 
             <TextView
@@ -418,7 +427,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Q.)"
+                    android:text="@string/q"
                     android:textSize="@dimen/tvTitlesSizeAll" />
 
                 <TextView
@@ -426,7 +435,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/tvPopupSecurityQuestionMarginStart"
-                    android:text="@string/in_which_city_or_town_was_your_first_job"
                     android:textColor="@android:color/darker_gray"
                     android:textSize="@dimen/tvTitlesSizeAll" />
             </LinearLayout>
@@ -459,7 +467,6 @@
                     android:textStyle="italic" />
             </LinearLayout>
 
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -478,7 +485,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/tvPopupSecurityQuestionMarginStart"
-                    android:text="@string/in_which_city_or_town_did_your_mother_and_father_meet"
                     android:textColor="@android:color/darker_gray"
                     android:textSize="@dimen/tvTitlesSizeAll" />
             </LinearLayout>
@@ -535,7 +541,7 @@
             android:background="@color/white"
             android:gravity="center"
             android:orientation="vertical"
-            android:padding="@dimen/lyPaddingMainAll"
+            android:padding="@dimen/lyPadding10"
             android:visibility="gone">
 
             <TextView
@@ -574,7 +580,6 @@
                     android:drawableEnd="@mipmap/imgdropdown"
                     android:focusable="false"
                     android:padding="@dimen/etPopupSecurityQuestionChangeAnswerPadding"
-                    android:text="@string/in_which_city_or_town_was_your_first_job"
                     android:textColor="@android:color/darker_gray"
                     android:textSize="@dimen/tvTitlesSizeAll"
                     android:textStyle="italic" />
@@ -605,7 +610,6 @@
                     android:textStyle="italic" />
             </LinearLayout>
 
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -629,7 +633,6 @@
                     android:drawableEnd="@mipmap/imgdropdown"
                     android:focusable="false"
                     android:padding="@dimen/etPopupSecurityQuestionChangeAnswerPadding"
-                    android:text="@string/in_which_city_or_town_did_your_mother_and_father_meet"
                     android:textColor="@android:color/darker_gray"
                     android:textSize="@dimen/tvTitlesSizeAll"
                     android:textStyle="italic" />
@@ -688,7 +691,7 @@
             android:background="@color/white"
             android:gravity="center"
             android:orientation="vertical"
-            android:padding="@dimen/lyPaddingMainAll"
+            android:padding="@dimen/lyPadding10"
             android:visibility="gone">
 
             <View
@@ -746,7 +749,7 @@
             android:background="@color/white"
             android:gravity="center"
             android:orientation="vertical"
-            android:padding="@dimen/lyPaddingMainAll"
+            android:padding="@dimen/lyPadding10"
             android:visibility="gone">
 
             <View
@@ -824,7 +827,7 @@
             android:background="@color/white"
             android:gravity="center"
             android:orientation="vertical"
-            android:padding="@dimen/lyPaddingMainAll"
+            android:padding="@dimen/lyPadding10"
             android:visibility="gone">
 
             <View
@@ -881,7 +884,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="vertical"
-            android:padding="@dimen/lyPaddingMainAll"
+            android:padding="@dimen/lyPadding10"
             android:visibility="gone">
 
             <TextView
@@ -905,7 +908,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="An email has been sent to"
                 android:textColor="@android:color/darker_gray"
                 android:textStyle="italic" />
 
@@ -913,7 +915,6 @@
                 android:id="@+id/tvPopupLocatedEmail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/kevalcholeracholera_gmail_com"
                 android:textColor="@color/background"
                 android:textStyle="italic" />
 
@@ -951,7 +952,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="vertical"
-            android:padding="@dimen/lyPaddingMainAll"
+            android:padding="@dimen/lyPadding10"
             android:visibility="gone">
 
             <TextView
@@ -1004,7 +1005,7 @@
             android:background="@color/white"
             android:gravity="center"
             android:orientation="vertical"
-            android:padding="@dimen/lyPaddingMainAll"
+            android:padding="@dimen/lyPadding10"
             android:visibility="gone">
 
             <View

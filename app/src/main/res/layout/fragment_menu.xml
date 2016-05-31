@@ -16,7 +16,6 @@
             android:layout_height="@dimen/rlAccountHeight"
             android:gravity="center">
 
-
             <com.smartsense.taxinearyou.utill.CircleImageView1
                 android:id="@+id/cvAccountPhoto"
                 android:layout_width="@dimen/cvAccountPhotoWidthHeight"
@@ -26,7 +25,6 @@
                 android:src="@mipmap/imgsearchbackground"
                 app:civ_border_color="@color/background"
                 app:civ_border_width="@dimen/civTripDetailsBorderWidth" />
-
 
             <ImageView
                 android:id="@+id/ivEditProfilePhoto"
@@ -100,7 +98,7 @@
             android:drawablePadding="@dimen/tvElementCardListMarginStartEnd5"
             android:drawableStart="@mipmap/acc_security"
             android:gravity="fill"
-            android:text="Account Security"
+            android:text="@string/acc_sec"
             android:textColor="@color/black"
             android:textSize="@dimen/tvAccountAllSize"
             android:textStyle="italic" />
@@ -121,9 +119,10 @@
             android:layout_marginTop="@dimen/tvAccountAllMarginTop"
             android:drawablePadding="@dimen/tvAccountDrawablePaddingAll"
             android:drawableStart="@mipmap/img_payment"
+            android:enabled="false"
             android:gravity="fill"
-            android:text="Payment"
-            android:textColor="@color/black"
+            android:text="@string/payment"
+            android:textColor="@color/dark_gray"
             android:textSize="@dimen/tvAccountAllSize"
             android:textStyle="italic" />
 

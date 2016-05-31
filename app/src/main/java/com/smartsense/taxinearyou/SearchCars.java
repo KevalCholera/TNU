@@ -52,7 +52,7 @@ public class SearchCars extends AppCompatActivity implements Response.Listener<J
     String c = "Availability" + (char) 0x2191;
     Toolbar toolbarAll;
     CoordinatorLayout clSearchCars;
-    private StringBuilder builder;
+    private String bookingduration;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,7 +76,6 @@ public class SearchCars extends AppCompatActivity implements Response.Listener<J
         llSearchCarsFilter = (LinearLayout) findViewById(R.id.llSearchCarsFilter);
         lySearchCarsDateTime = (LinearLayout) findViewById(R.id.lySearchCarsDateTime);
 
-//        String data = "[{\"name\":\"Keval Cholera\",\"time\":\"(pls wait 40 min)\",\"address\":\"Hello Keval\",\"price\":40000,\"submit\":\"Book Now\"},{\"name\":\"Keval Cholera\",\"time\":\"(pls wait 40 min)\",\"address\":\"Hello Keval\",\"price\":40000,\"submit\":\"Book Now\"},{\"name\":\"Keval Cholera\",\"time\":\"(pls wait 40 min)\",\"address\":\"Hello Keval\",\"price\":40000,\"submit\":\"Book Now\"},{\"name\":\"Keval Cholera\",\"time\":\"(pls wait 40 min)\",\"address\":\"Hello Keval\",\"price\":40000,\"submit\":\"Book Now\"}]";
 
         llSearchCarsFilter.setOnClickListener(this);
         rbSearchCarsRating.setOnClickListener(this);
@@ -135,8 +134,9 @@ public class SearchCars extends AppCompatActivity implements Response.Listener<J
 
     private void doPartnerList() {
         final String tag = "doPartnerList";
-        builder = new StringBuilder();
+        StringBuilder builder = new StringBuilder();
         JSONObject jsonData = new JSONObject();
+        JSONObject jsonDataForSet = new JSONObject();
         try {
             JSONObject fromData = new JSONObject(SharedPreferenceUtil.getString(Constants.FROM_ADDRESS, ""));
             JSONObject toData = new JSONObject(SharedPreferenceUtil.getString(Constants.TO_ADDRESS, ""));
@@ -145,7 +145,7 @@ public class SearchCars extends AppCompatActivity implements Response.Listener<J
                 filterRequest = new JSONObject(SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_FILTER_REQUEST, ""));
             else
                 filterRequest = new JSONObject();
-            String sortOrder = "", sortField = "", bookingduration = "0";
+            String sortOrder = "", sortField = "";
             if (filterRequest.has("bookingType"))
                 bookingduration = filterRequest.optString("bookingType");
             else
@@ -197,7 +197,34 @@ public class SearchCars extends AppCompatActivity implements Response.Listener<J
                     .put("filterRequest", filterRequest)
                     .put("token", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_ACCESS_TOKEN, ""))
                     .put("userId", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_ID, ""))
-                    .put("offset", 0).put("pageSize", "10"));
+                    .put("offset", 0)
+                    .put("pageSize", "10"));
+
+            jsonDataForSet.put("fromAreaName", fromData.optString("viaAreaName"))
+                    .put("fromAreaLat", fromData.optString("viaAreaLat"))
+                    .put("fromAreaLong", fromData.optString("viaAreaLong"))
+                    .put("fromAreaPlaceid", fromData.optString("viaAreaPlaceid"))
+                    .put("fromAreaAddress", fromData.optString("viaAreaAddress"))
+                    .put("fromAreaCity", fromData.optString("viaAreaCity"))
+                    .put("fromAreaPostalCode", fromData.optString("viaAreaPostalCode"))
+                    .put("toAreaName", toData.optString("viaAreaName"))
+                    .put("toAreaLat", toData.optString("viaAreaLat"))
+                    .put("toAreaLong", toData.optString("viaAreaLong"))
+                    .put("toAreaPlaceid", toData.optString("viaAreaPlaceid"))
+                    .put("toAreaAddress", toData.optString("viaAreaAddress"))
+                    .put("toAreaCity", toData.optString("viaAreaCity"))
+                    .put("toAreaPostalCode", toData.optString("viaAreaPostalCode"))
+                    .put("viaArea", viaArea)
+                    .put("journeyDatetime", getIntent().getStringExtra("tvBookDateTime"))
+                    .put("luggageId", getIntent().getStringExtra("tvBookLuggage"))
+                    .put("passanger", getIntent().getStringExtra("tvBookPassenger"))
+                    .put("bookingduration", bookingduration)
+                    .put("luggageDescription", getIntent().getStringExtra("luggageDescription"))
+                    .put("passengerDescription", getIntent().getStringExtra("passengerDescription"));
+
+            SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_REQUEST_JSON, jsonDataForSet.toString());
+            SharedPreferenceUtil.save();
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -221,15 +248,16 @@ public class SearchCars extends AppCompatActivity implements Response.Listener<J
                 if (response.getInt("status") == Constants.STATUS_SUCCESS) {
                     switch (response.getInt("__eventid")) {
                         case Constants.Events.EVENT_PARTNER_LIST:
-
                             SharedPreferenceUtil.putValue(Constants.PrefKeys.MAIN_DATA, response.toString());
+                            SharedPreferenceUtil.putValue(Constants.PrefKeys.DISTANCE_AFTER_CONVERT, response.optJSONObject("json").optJSONObject("distanceMatrix").optInt("duration") / 3600 + ":" + (response.optJSONObject("json").optJSONObject("distanceMatrix").optInt("duration") / 60) % 60 + " hours");
                             SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_TAXI_TYPE, response.optJSONObject("json").optJSONArray("taxiTypeArray").toString());
                             SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_DISTANCE_LIST, response.optJSONObject("json").optJSONArray("distanceList").toString());
                             SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_PARTNER_ARRAY, response.optJSONObject("json").optJSONArray("partnerArray").toString());
                             SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_FILTER_REQUEST, response.optJSONObject("filterRequest").toString());
+                            SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_DISTANCE_MATRIX, response.optJSONObject("json").optJSONObject("distanceMatrix").toString());
                             SharedPreferenceUtil.save();
 //                            JSONArray jsonArray = new JSONArray(SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_PARTNER_ARRAY, ""));
-                            AdapterSearchCar adapterSearchCar = new AdapterSearchCar(this, response.optJSONObject("json").optJSONArray("partnerArray"), builder.toString());
+                            AdapterSearchCar adapterSearchCar = new AdapterSearchCar(this, response.optJSONObject("json").optJSONArray("partnerArray"), bookingduration);
                             lvSearchCarsLine1.setAdapter(adapterSearchCar);
                             break;
                     }
@@ -240,7 +268,6 @@ public class SearchCars extends AppCompatActivity implements Response.Listener<J
                 e.printStackTrace();
             }
         }
-
     }
 
     @Override
@@ -280,12 +307,6 @@ public class SearchCars extends AppCompatActivity implements Response.Listener<J
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.ratingforsearch, menu);
-
-        MenuItem search = menu.findItem(R.id.menu_search);
-//        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-//        SearchView searchView = (SearchView) search.getActionView();
-//        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
-
         return true;
     }
 

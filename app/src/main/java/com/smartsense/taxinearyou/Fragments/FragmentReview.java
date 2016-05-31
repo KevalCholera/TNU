@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.mpt.storage.SharedPreferenceUtil;
 import com.smartsense.taxinearyou.Adapters.AdapterReview;
+import com.smartsense.taxinearyou.PartnerDetails;
 import com.smartsense.taxinearyou.R;
 import com.smartsense.taxinearyou.utill.Constants;
 
@@ -27,20 +28,18 @@ public class FragmentReview extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_review, container, false);
 
-        lvReviewListView = (ListView) rootView.findViewById(R.id.lvReviewListView);
-//
-        String data = "[{\"list\":\"Loreum Ipsem is Simply dummy text of the printing and typessetting Industry. loreum ipSum has been the industry's standard dummy text ever since the 1500s\"},{\"list\":\"Loreum Ipsem is Simply dummy text of the printing and typessetting Industry . loreum ipSum has been the industry's standard dummy text ever since the 1500s\"},{\"list\":\"Loreum Ipsem is Simply dummy text of the printing and typessetting Industry . loreum ipSum has been the industry's standard dummy text ever since the 1500s\"},{\"list\":\"Loreum Ipsem is Simply dummy text of the printing and typessetting Industry . loreum ipSum has been the industry's standard dummy text ever since the 1500s\"},{\"list\":\"Loreum Ipsem is Simply dummy text of the printing and typessetting Industry . loreum ipSum has been the industry's standard dummy text ever since the 1500s\"},{\"list\":\"Loreum Ipsem is Simply dummy text of the printing and typessetting Industry . loreum ipSum has been the industry's standard dummy text ever since the 1500s\"},{\"list\":\"Loreum Ipsem is Simply dummy text of the printing and typessetting Industry . loreum ipSum has been the industry's standard dummy text ever since the 1500s\"}]";
-        try {
-            JSONArray jsonArray = new JSONArray(data);
-            AdapterReview adapterReview = new AdapterReview(getActivity(), jsonArray);
-            lvReviewListView.setAdapter(adapterReview);
+        tvFragmentReview1 = (TextView)rootView.findViewById(R.id.tvFragmentReview1);
+        tvFragmentReview2 = (TextView)rootView.findViewById(R.id.tvFragmentReview2);
+        tvFragmentReview3 = (TextView)rootView.findViewById(R.id.tvFragmentReview3);
+        tvFragmentReview4 = (TextView)rootView.findViewById(R.id.tvFragmentReview4);
+        tvFragmentReview5 = (TextView)rootView.findViewById(R.id.tvFragmentReview5);
 
-            JSONArray jsonArray1 = new JSONArray(SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_PARTNER_ARRAY, ""));
-            JSONObject jsonObject = jsonArray1.optJSONObject(0);
+        tvFragmentReview1.setText(PartnerDetails.rating.get(1));
+        tvFragmentReview2.setText(PartnerDetails.rating.get(2));
+        tvFragmentReview3.setText(PartnerDetails.rating.get(3));
+        tvFragmentReview4.setText(PartnerDetails.rating.get(4));
+        tvFragmentReview5.setText(PartnerDetails.rating.get(5));
 
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
         return rootView;
     }
 }

@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,6 +30,7 @@ import com.smartsense.taxinearyou.utill.CommonUtil;
 import com.smartsense.taxinearyou.utill.Constants;
 import com.smartsense.taxinearyou.utill.DataRequest;
 import com.smartsense.taxinearyou.utill.JsonErrorShow;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -60,11 +63,23 @@ public class FragmentMenu extends Fragment implements Response.Listener<JSONObje
         btAccountActivateNow = (Button) rootView.findViewById(R.id.btAccountActivateNow);
         ivEditProfilePhoto = (ImageView) rootView.findViewById(R.id.ivEditProfilePhoto);
         clSearch = (CoordinatorLayout) getActivity().findViewById(R.id.clSearch);
+
+        if (SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_STATUS, "").equalsIgnoreCase("1"))
+            btAccountActivateNow.setVisibility(View.GONE);
+
         if (btAccountActivateNow.getVisibility() == View.VISIBLE) {
-            cvAccountPhoto.setBorderColor(getResources().getColor(R.color.Yellow));
-            ivEditProfilePhoto.setBackground(getResources().getDrawable(R.drawable.circular_view_yellow_colored));
+            cvAccountPhoto.setBorderColor(ContextCompat.getColor(getActivity(), R.color.Yellow));
+            ivEditProfilePhoto.setBackground(ContextCompat.getDrawable(getActivity(), R.drawable.circular_view_yellow_colored));
         }
 
+        if (!TextUtils.isEmpty(SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_PROIMG, "")))
+            Picasso.with(getActivity())
+                    .load(SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_PROIMG, ""))
+                    .error(R.mipmap.imgtnulogo)
+                    .placeholder(R.mipmap.imgtnulogo)
+                    .into(cvAccountPhoto);
+
+        tvAccountPersonName.setText(SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_FULLNAME, ""));
 
         tvAccountLogout.setOnClickListener(this);
         tvAccountAccountSecurity.setOnClickListener(this);

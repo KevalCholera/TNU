@@ -30,7 +30,6 @@ public class AdapterLostItem extends BaseAdapter {
     private LayoutInflater inflater = null;
     TextView tvLostItemFrom, tvLostItemTo, tvLostItemProvider, tvLostItemDateTime, tvLostItemStatus, tvLostItemLostItem, tvLostItemTNR;
     Activity a;
-    //    ListView civElementLostItemCircleLeft;
     private AlertDialog alert;
     LinearLayout lyElementLostItemStatus, lyElementLostItemMain, lyElementLostItemLeft, lyElementLostItemRight;
     CircleImageView1 circleImageView;
@@ -113,19 +112,22 @@ public class AdapterLostItem extends BaseAdapter {
     }
 
     public void createNewTextView() {
-        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(10, 10);
-        lp.setMargins(5, 10, 5, 0);
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(10, 10);
+        layoutParams.setMargins(5, 10, 5, 0);
 
         CircleImageView1 circleImageView = new CircleImageView1(a);
-        circleImageView.setLayoutParams(lp);
-//        circleImageView.setMaxWidth(R.dimen.tvMarginTopBottomStartEndAll);
-//        circleImageView.setMaxHeight(R.dimen.tvMarginTopBottomStartEndAll);
+        circleImageView.setLayoutParams(layoutParams);
         circleImageView.setBackgroundColor(ContextCompat.getColor(a, R.color.white));
         circleImageView.setBorderColor(ContextCompat.getColor(a, R.color.element));
-//        circleImageView.setBorderWidth((int)R.dimen.civTripDetailsBorderWidth);
         circleImageView.setBorderWidth(2);
 
-        lyElementLostItemLeft.addView(circleImageView);
+        CircleImageView1 circleImageView1 = new CircleImageView1(a);
+        circleImageView.setLayoutParams(layoutParams);
+        circleImageView.setBackgroundColor(ContextCompat.getColor(a, R.color.white));
+        circleImageView.setBorderColor(ContextCompat.getColor(a, R.color.element));
+        circleImageView.setBorderWidth(2);
+
         lyElementLostItemRight.addView(circleImageView);
+        lyElementLostItemLeft.addView(circleImageView1);
     }
 }

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="@color/white"
+    android:fillViewport="true">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -28,7 +28,6 @@
             android:focusable="false"
             android:inputType="textEmailAddress"
             android:paddingStart="@dimen/etSignUpAllPaddingStartEnd"
-            android:text="@string/johnsmith_gmail_com"
             android:textColor="@color/black"
             android:textSize="@dimen/etSignInUserPassSize" />
 
@@ -63,7 +62,6 @@
             android:focusable="false"
             android:inputType="textEmailAddress"
             android:paddingStart="@dimen/etSignUpAllPaddingStartEnd"
-            android:text="@string/johnsmith123_gmail_com"
             android:textColor="@color/black"
             android:textSize="@dimen/etSignInUserPassSize" />
 
@@ -104,7 +102,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="0.3"
-                android:text="@string/in_which_city_or_town_did_your_mother_and_father_live"
                 android:textColor="@color/black"
                 android:textSize="@dimen/etSignInUserPassSize" />
 
@@ -133,7 +130,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="0.3"
-                android:text="@string/in_which_city_or_town_did_your_mother_and_father_live"
                 android:textColor="@color/black"
                 android:textSize="@dimen/etSignInUserPassSize" />
 

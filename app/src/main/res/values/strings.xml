@@ -248,6 +248,7 @@
     <string name="enter_confirm_alternate_email">Enter Confirm Alternate Email</string>
     <string name="enter_valid_email">Enter Valid Email</string>
     <string name="enter_pass">Enter Password</string>
+    <string name="enter_req">Enter Any Requirement</string>
     <string name="enter_valid_pass">Password should be between 7 to 15 digit only</string>
     <string name="enter_alternate_email">Enter Alternate Email</string>
     <string name="enter_valid_alternate_email">Enter Valid Alternate Email</string>
@@ -352,5 +353,10 @@
     <string name="gcm_defaultSenderId">480578202536</string>
     <string name="no_lost_item">No Lost Item Available</string>
     <string name="subject">Subject</string>
+    <string name="total_fare">Total Fare</string>
+    <string name="trip_type">Trip type</string>
+    <string name="please_enter_answer">Please Enter Answer</string>
+    <string name="answer_not_same">Given Answer is incorrect</string>
+    <string name="acc_sec">Account Security</string>
 
 </resources>

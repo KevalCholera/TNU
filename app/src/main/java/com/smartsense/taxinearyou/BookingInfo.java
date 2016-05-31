@@ -10,11 +10,14 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.mpt.storage.SharedPreferenceUtil;
+import com.smartsense.taxinearyou.Fragments.FragmentBook;
 import com.smartsense.taxinearyou.utill.Constants;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
@@ -47,12 +50,10 @@ public class BookingInfo extends AppCompatActivity {
         tvBookInfoCost = (TextView) findViewById(R.id.tvBookInfoCost);
         btBookingInfoConfirm = (Button) findViewById(R.id.btBookingInfoConfirm);
 
-        tvBookInfoCost.setText((char) 0x00A3 + "406.00");
-
         try {
             JSONObject mainData = new JSONObject(SharedPreferenceUtil.getString(Constants.PrefKeys.MAIN_DATA, ""));
             try {
-                tvBookInfoDate.setText(new SimpleDateFormat("dd/MM/yyyy").format(new SimpleDateFormat("dd-MMM-yyyy hh:mm aa").parse(mainData.optString("journeyDatetime"))));
+                tvBookInfoDate.setText(new SimpleDateFormat("dd-MMM-yyyy").format(new SimpleDateFormat("dd-MMM-yyyy hh:mm aa").parse(mainData.optString("journeyDatetime"))));
                 tvBookInfoTime.setText(new SimpleDateFormat("hh:mm aa").format(new SimpleDateFormat("dd-MMM-yyyy hh:mm aa").parse(mainData.optString("journeyDatetime"))));
                 tvBookInfoFrom.setText(mainData.optString("fromAreaAddress"));
                 tvBookInfoFrom.setTag(mainData.optString("fromAreaPlaceid"));
@@ -71,15 +72,35 @@ public class BookingInfo extends AppCompatActivity {
                 tvBookInfoVehicleType.setTag(mainData.optJSONObject("filterRequest").optString("vehicleType"));
                 tvBookInfoVehicleType.setText(mainData.optJSONObject("json").optJSONArray("partnerArray").optJSONObject(0).optJSONObject("taxiType").optString("taxiTypeName"));
                 tvBookInfoProvider.setText(mainData.optJSONObject("json").optJSONArray("partnerArray").optJSONObject(0).optString("partnerName"));
-                tvBookInfoPassengers.setText("0" + mainData.optString("passanger"));
-                if (mainData.optInt("luggageId") == 1)
-                    tvBookInfoLugguages.setText("02");
-                else
-                    tvBookInfoLugguages.setText("03");
-                tvBookInfoDistance.setText(mainData.optJSONObject("json").optJSONObject("distanceMatrix").optInt("distance") + " miles");
+                tvBookInfoPassengers.setText(mainData.optString("passanger") + "Passengers");
+                tvBookInfoLugguages.setText("Up to " + SharedPreferenceUtil.getString(Constants.PrefKeys.LUGGAGE_VALUE, "") + " Luggagges");
                 tvBookInfoRideType.setText(mainData.optJSONObject("filterRequest").optString("bookingType").equalsIgnoreCase("0") ? "Single" : "Return");
-                tvBookInfoETA.setText(mainData.optJSONObject("json").optJSONObject("distanceMatrix").optInt("duration") / 3600 + ":" + (mainData.optJSONObject("json").optJSONObject("distanceMatrix").optInt("duration") / 60) % 60);
-                tvBookInfoCost.setText("$" + mainData.optJSONObject("json").optJSONArray("partnerArray").optJSONObject(0).optString("ETA"));
+                tvBookInfoCost.setText("£" + mainData.optJSONObject("json").optJSONArray("partnerArray").optJSONObject(0).optString("ETA"));
+
+                int hours = mainData.optJSONObject("json").optJSONObject("distanceMatrix").optInt("duration") / 3600;
+                String hour;
+                int mins = (mainData.optJSONObject("json").optJSONObject("distanceMatrix").optInt("duration") / 60) % 60;
+                String min;
+
+                if (hours < 10)
+                    hour = "0" + hours;
+                else
+                    hour = "" + hours;
+
+                if (mins < 10)
+                    min = "0" + mins;
+                else
+                    min = "" + mins;
+
+                tvBookInfoETA.setText(hour + ":" + min + " hours");
+                double x = mainData.optJSONObject("json").optJSONObject("distanceMatrix").optInt("distance") * 0.000621371192;
+                DecimalFormat df = new DecimalFormat("#.##");
+                String dx = df.format(x);
+                x = Double.valueOf(dx);
+
+                tvBookInfoDistance.setText(x + " miles");
+                SharedPreferenceUtil.putValue(Constants.PrefKeys.FARE_COST, mainData.optJSONObject("json").optJSONArray("partnerArray").optJSONObject(0).optString("ETA"));
+                SharedPreferenceUtil.save();
             } catch (ParseException e) {
                 e.printStackTrace();
             }
@@ -88,19 +109,16 @@ public class BookingInfo extends AppCompatActivity {
             e.printStackTrace();
         }
 
-
         btBookingInfoConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(BookingInfo.this, PersonalInfo.class));
             }
         });
-
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-//        getMenuInflater().inflate(R.menu.ratingforsearch, menu);
         return true;
     }
 

@@ -13,28 +13,19 @@ import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.android.volley.Request;
 import com.smartsense.taxinearyou.R;
-import com.smartsense.taxinearyou.TaxiNearYouApp;
 import com.smartsense.taxinearyou.TripDetails;
 import com.smartsense.taxinearyou.utill.CircleImageView1;
-import com.smartsense.taxinearyou.utill.CommonUtil;
-import com.smartsense.taxinearyou.utill.Constants;
-import com.smartsense.taxinearyou.utill.DataRequest;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
-
 
 public class AdapterMyTrips extends BaseAdapter {
     private JSONArray data;
     private LayoutInflater inflater = null;
-    int red, green, yellow;
     Activity a;
     LinearLayout lyElementMyTripLeft, lyElementMyTripRight, lyElementMyTripStatusLayout;
     int finalHeight;
-    private int borderWidth;
 
     public AdapterMyTrips(Activity a, JSONArray data) {
         this.data = data;
@@ -46,25 +37,19 @@ public class AdapterMyTrips extends BaseAdapter {
         return data.length();
     }
 
-
     public Object getItem(int position) {
         return position;
     }
 
-
     public long getItemId(int position) {
         return position;
     }
-
 
     public View getView(int position, View convertView, ViewGroup parent) {
         View vi = convertView;
         if (convertView == null)
 
             vi = inflater.inflate(R.layout.element_my_trips, null);
-        red = ContextCompat.getColor(a, R.color.red);
-        green = ContextCompat.getColor(a, R.color.green);
-        yellow = ContextCompat.getColor(a, R.color.Yellow);
 
         TextView tvElementMyTripsAmount = (TextView) vi.findViewById(R.id.tvElementMyTripsAmount);
         TextView tvElementMyTripsFrom = (TextView) vi.findViewById(R.id.tvElementMyTripsFrom);
@@ -80,7 +65,7 @@ public class AdapterMyTrips extends BaseAdapter {
         final JSONObject test = data.optJSONObject(position);
         Log.i("Test", test.toString());
 
-        tvElementMyTripsAmount.setText(test.optString("estimatedAmount"));
+        tvElementMyTripsAmount.setText("£" + test.optString("estimatedAmount"));
         tvElementMyTripsFrom.setText(test.optString("from"));
         tvElementMyTripsTo.setText(test.optString("to"));
         tvElementMyTripsStatus.setText(test.optString("status"));
@@ -88,11 +73,11 @@ public class AdapterMyTrips extends BaseAdapter {
         tvElementMyTripsDateTime.setText(test.optString("bookingTime"));
 
         if (test.optString("status").equals("Cancelled"))
-            tvElementMyTripsStatus.setBackgroundColor(red);
-        else if (tvElementMyTripsStatus.getText().toString().equals("Completed"))
-            tvElementMyTripsStatus.setBackgroundColor(green);
+            tvElementMyTripsStatus.setBackgroundColor(ContextCompat.getColor(a, R.color.red));
+        else if (tvElementMyTripsStatus.getText().toString().equals("Complete"))
+            tvElementMyTripsStatus.setBackgroundColor(ContextCompat.getColor(a, R.color.green));
         else
-            tvElementMyTripsStatus.setBackgroundColor(yellow);
+            tvElementMyTripsStatus.setBackgroundColor(ContextCompat.getColor(a, R.color.Yellow));
 
         ViewTreeObserver vto = lyElementMyTripStatusLayout.getViewTreeObserver();
         vto.addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
@@ -101,8 +86,9 @@ public class AdapterMyTrips extends BaseAdapter {
                 finalHeight = lyElementMyTripStatusLayout.getMeasuredHeight();
                 int height = finalHeight / 30;
 
-                for (int i = 0; i <= height; i++)
+                for (int i = 0; i <= height; i++) {
                     createNewTextView();
+                }
 
                 return true;
             }
@@ -120,19 +106,22 @@ public class AdapterMyTrips extends BaseAdapter {
     }
 
     public void createNewTextView() {
-        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(10, 10);
-        lp.setMargins(5, 10, 5, 0);
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(10, 10);
+        layoutParams.setMargins(5, 10, 5, 0);
 
         CircleImageView1 circleImageView = new CircleImageView1(a);
-        circleImageView.setLayoutParams(lp);
-//        circleImageView.setMaxWidth((int) a.getResources().getDimension(R.dimen.tvMarginTopBottomStartEndAll));
-//        circleImageView.setMaxHeight((int) a.getResources().getDimension(R.dimen.tvMarginTopBottomStartEndAll));
+        circleImageView.setLayoutParams(layoutParams);
         circleImageView.setBackgroundColor(ContextCompat.getColor(a, R.color.white));
-        circleImageView.setBorderColor(ContextCompat.getColor(a, R.color.element));
-//        circleImageView.setBorderWidth((int) a.getResources().getDimension(R.dimen.civTripDetailsBorderWidth));
+        circleImageView.setBorderColor(ContextCompat.getColor(a, R.color.search_car_gray));
+        circleImageView.setBorderWidth(2);
+
+        CircleImageView1 circleImageView1 = new CircleImageView1(a);
+        circleImageView.setLayoutParams(layoutParams);
+        circleImageView.setBackgroundColor(ContextCompat.getColor(a, R.color.white));
+        circleImageView.setBorderColor(ContextCompat.getColor(a, R.color.search_car_gray));
         circleImageView.setBorderWidth(2);
 
         lyElementMyTripLeft.addView(circleImageView);
-        lyElementMyTripRight.addView(circleImageView);
+        lyElementMyTripRight.addView(circleImageView1);
     }
 }

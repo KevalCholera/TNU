@@ -13,92 +13,121 @@ import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.mpt.storage.SharedPreferenceUtil;
 import com.smartsense.taxinearyou.BookingInfo;
-import com.smartsense.taxinearyou.PartnerRating;
+import com.smartsense.taxinearyou.PartnerDetails;
 import com.smartsense.taxinearyou.R;
+import com.smartsense.taxinearyou.utill.Constants;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 
 public class AdapterSearchCar extends BaseAdapter {
     private JSONArray data;
     private LayoutInflater inflater = null;
-    String object;
+    String bookingduration;
     Activity a;
 
-    public AdapterSearchCar(Activity a, JSONArray data, String object) {
+    public AdapterSearchCar(Activity a, JSONArray data, String bookingduration) {
         this.data = data;
         this.a = a;
-        this.object = object;
+        this.bookingduration = bookingduration;
         inflater = (LayoutInflater) a.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
-
 
     public int getCount() {
         return data.length();
     }
 
-
     public Object getItem(int position) {
         return position;
     }
 
-
     public long getItemId(int position) {
         return position;
     }
-
 
     public View getView(int position, final View convertView, ViewGroup parent) {
         View vi = convertView;
         if (convertView == null)
 
             vi = inflater.inflate(R.layout.element_search_cars, null);
+        final JSONObject test = data.optJSONObject(position);
 
-        TextView tvElementSearchCarsName = (TextView) vi.findViewById(R.id.tvElementSearchCarsName);
-        TextView tvElementSearchCarsWaitingTime = (TextView) vi.findViewById(R.id.tvElementSearchCarsWaitingTime);
+
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("partnerTaxiTypeId", test.optJSONObject("taxiType").optInt("partnerTaxiTypeId"));
+            jsonObject.put("partnerName", test.optString("partnerName"));
+            jsonObject.put("distance", test.optString("distance"));
+            jsonObject.put("price", test.optString("ETA"));
+            jsonObject.put("taxiTypeName", test.optJSONObject("taxiType").optString("taxiTypeName"));
+            jsonObject.put("partnerId", test.optJSONObject("taxiType").optString("partnerId"));
+            jsonObject.put("tripType", bookingduration);
+            jsonObject.put("duration", SharedPreferenceUtil.getString(Constants.PrefKeys.DISTANCE_AFTER_CONVERT, ""));
+            jsonObject.put("taxiTypeId", test.optJSONObject("taxiType").optString("taxiTypeId"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_CUSTOMER_SELECTION, jsonObject.toString());
+        SharedPreferenceUtil.save();
+
+        final TextView tvElementSearchCarsName = (TextView) vi.findViewById(R.id.tvElementSearchCarsName);
+        final TextView tvElementSearchCarsWaitingTime = (TextView) vi.findViewById(R.id.tvElementSearchCarsWaitingTime);
         TextView tvElementSearchCarsChat = (TextView) vi.findViewById(R.id.tvElementSearchCarsChat);
-        TextView tvElementSearchCarsMoney = (TextView) vi.findViewById(R.id.tvElementSearchCarsMoney);
+        final TextView tvElementSearchCarsMoney = (TextView) vi.findViewById(R.id.tvElementSearchCarsMoney);
         TextView tvSearchCarsBookNow = (TextView) vi.findViewById(R.id.tvSearchCarsBookNow);
         LinearLayout llElementSearchCarsMain = (LinearLayout) vi.findViewById(R.id.llElementSearchCarsMain);
         ImageView ivElementSearchCarsOnline = (ImageView) vi.findViewById(R.id.ivElementSearchCarsOnline);
         RatingBar rbElementSearchCars = (RatingBar) vi.findViewById(R.id.rbElementSearchCars);
+
+        final ArrayList<String> rating = new ArrayList<>();
+
+        for (int i = 0; i < test.optJSONArray("partnerRating").length(); i++)
+            rating.add(test.optJSONArray("partnerRating").optJSONObject(i).optString("ccount"));
+
         llElementSearchCarsMain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                a.startActivity(new Intent(a, PartnerRating.class));
+                a.startActivity(new Intent(a, PartnerDetails.class).putExtra("customerSelection", SharedPreferenceUtil.getString(Constants.PrefKeys.DISTANCE_AFTER_CONVERT, ""))
+                        .putExtra("ETA", tvElementSearchCarsMoney.getText().toString())
+                        .putExtra("partnerName", tvElementSearchCarsName.getText().toString())
+                        .putExtra("waitingTime", tvElementSearchCarsWaitingTime.getText().toString())
+                        .putExtra("rating", rating)
+                        .putExtra("logoPath", test.optString("logoPath")));
             }
         });
-
-        final JSONObject test = data.optJSONObject(position);
-        Log.i("Test", test.toString());
 
         tvSearchCarsBookNow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 a.startActivity(new Intent(a, BookingInfo.class));
-//                a.startActivity(new Intent(a, BookingInfo.class).putExtra("object", object));
             }
         });
 
-        if (test.optInt("isAvailable") == 1) {
-            ivElementSearchCarsOnline.setImageResource(android.R.drawable.presence_online);
-            tvElementSearchCarsChat.setText(test.optJSONObject("taxiType").optString("taxiTypeName"));
-            tvElementSearchCarsWaitingTime.setText("(" + test.optString("fleetSize") + "min left)");
-        } else {
-            ivElementSearchCarsOnline.setImageResource(android.R.drawable.presence_invisible);
-            tvElementSearchCarsChat.setText(test.optJSONObject("taxiType").optString("taxiTypeName"));
-            tvElementSearchCarsWaitingTime.setText("(" + test.optString("fleetSize") + "min left)");
-        }
-        rbElementSearchCars.setRating(Float.valueOf(test.optJSONArray("partnerRating").optJSONObject(5).optString("rate")));
-//        rbElementSearchCars.setRating(3);
+        if (test.optJSONObject("taxiType").optInt("status") == 0)
+            tvElementSearchCarsWaitingTime.setText("(10 to 20 minutes for a taxi)");
+        else
+            tvElementSearchCarsWaitingTime.setText("(20 to 45 minutes for a taxi)");
+
+        tvElementSearchCarsChat.setText(test.optJSONObject("taxiType").optString("taxiTypeName"));
+        ivElementSearchCarsOnline.setImageResource(android.R.drawable.presence_online);
+
+//        if (test.optInt("isAvailable") == 1) {
+//            tvElementSearchCarsChat.setText(test.optJSONObject("taxiType").optString("taxiTypeName"));
+//
+//        } else {
+//            ivElementSearchCarsOnline.setImageResource(android.R.drawable.presence_invisible);
+//        }
+
+        rbElementSearchCars.setRating(test.optInt("rating"));
         tvElementSearchCarsName.setText(test.optString("partnerName"));
         tvElementSearchCarsMoney.setText("£" + test.optString("ETA"));
 
-
         return vi;
     }
-
 }

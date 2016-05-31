@@ -59,9 +59,9 @@
             android:name=".SearchCars"
             android:configChanges="orientation|screenSize"
             android:label="@string/searchcars"
+            android:launchMode="singleTop"
             android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="stateHidden"
-            android:launchMode="singleTop" >
+            android:windowSoftInputMode="stateHidden">
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
@@ -82,7 +82,7 @@
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="stateHidden" />
         <activity
-            android:name=".PartnerRating"
+            android:name=".PartnerDetails"
             android:configChanges="orientation|screenSize"
             android:label="@string/partner_rating"
 
@@ -111,7 +111,7 @@
             android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".AddLostItem"
-            android:label="Your Details"
+            android:label="Add Lost Item Info"
 
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateHidden" />
@@ -124,7 +124,6 @@
         <activity
             android:name=".LostItemDetail"
             android:label="Lost Item Detail"
-
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="stateHidden" />
         <activity

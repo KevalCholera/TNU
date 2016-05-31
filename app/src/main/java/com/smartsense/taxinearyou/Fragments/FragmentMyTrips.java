@@ -42,7 +42,6 @@ public class FragmentMyTrips extends Fragment implements Response.Listener<JSONO
         lvMyTrips = (ListView) rootView.findViewById(R.id.lvMyTrips);
         llFragmentMyTrips = (LinearLayout) rootView.findViewById(R.id.llFragmentMyTrips);
         clSearch = (CoordinatorLayout) getActivity().findViewById(R.id.clSearch);
-//        String data = "[{\"Amount\":\"$350.00\",\"From\":\"Solihull Rd, Shiral,Sohill, West Midland B90s 3LG, UK\",\"To\":\"Battern Parks Rd, London SW8, UK \",\"Taxi_Provider\":\"Lyft LLC\",\"Date_Time\":\"10.02.2016 10:30am\",\"Status\":\"Cancelled\"},{\"Amount\":\"$350.00\",\"From\":\"Solihull Rd, Shiral,Sohill, West Midland B90s 3LG, UK\",\"To\":\"Battern Parks Rd, London SW8, UK \",\"Taxi_Provider\":\"Lyft LLC\",\"Date_Time\":\"10.02.2016 10:30am\",\"Status\":\"Cancelled\"},{\"Amount\":\"$400.00\",\"From\":\"UK\",\"To\":\"US\",\"Taxi_Provider\":\"LLOUYT\",\"Date_Time\":\"20.02.2016 10:50am\",\"Status\":\"Completed\"},{\"Amount\":\"$350.00\",\"From\":\"Solihull Rd, Shiral,Sohill, West Midland B90s 3LG, UK\",\"To\":\"Battern Parks Rd, London SW8, UK \",\"Taxi_Provider\":\"Lyft LLC\",\"Date_Time\":\"10.02.2016 10:30am\",\"Status\":\"Waiting\"}]";
 
         doMyTrip();
         return rootView;

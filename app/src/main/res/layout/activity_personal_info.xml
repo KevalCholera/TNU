@@ -46,6 +46,7 @@
                         android:layout_marginBottom="@dimen/vPersonalInfoMarginTopBottomAll"
                         android:background="@null"
                         android:hint="@string/firstName"
+                        android:enabled="false"
                         android:inputType="textCapSentences"
                         android:paddingEnd="@dimen/etPersonalInfoPadding"
                         android:textColor="@color/black"
@@ -72,6 +73,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/vPersonalInfoMarginTopBottomAll"
                         android:background="@null"
+                        android:enabled="false"
                         android:hint="@string/lastName"
                         android:inputType="textCapSentences"
                         android:paddingEnd="@dimen/etPersonalInfoPadding"
@@ -102,6 +104,7 @@
                         android:hint="@string/myno"
                         android:inputType="number"
                         android:paddingEnd="@dimen/etPersonalInfoPadding"
+                        android:enabled="false"
                         android:textColor="@color/black"
                         android:textColorHint="@color/light_Black"
                         android:textSize="@dimen/tvTitlesSizeAll"
@@ -129,6 +132,7 @@
                         android:hint="@string/email_address"
                         android:inputType="textEmailAddress"
                         android:paddingEnd="@dimen/etPersonalInfoPadding"
+                        android:enabled="false"
                         android:textColor="@color/black"
                         android:textColorHint="@color/light_Black"
                         android:textSize="@dimen/tvTitlesSizeAll"
@@ -139,24 +143,6 @@
                         android:layout_height="@dimen/vAccountAllHeight"
                         android:background="@color/light_Gray" />
 
-                    <CheckBox
-                        android:id="@+id/cbInfoSms"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
-                        android:button="@drawable/checkbox"
-                        android:checked="false"
-                        android:paddingStart="@dimen/tvMarginTopBottomStartEndAll"
-                        android:text="@string/checkbox_text"
-                        android:textSize="@dimen/cbCheckTextSizeAll"
-                        android:theme="@style/AppTheme" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/checkbox_textdown"
-                        android:textColor="@color/light_Black"
-                        android:textSize="@dimen/cbCheckTextSizeAll" />
 
                     <TextView
                         android:layout_width="match_parent"

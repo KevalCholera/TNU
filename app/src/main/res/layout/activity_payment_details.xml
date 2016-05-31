@@ -62,9 +62,10 @@
                 android:drawableEnd="@mipmap/arrow_right"
                 android:drawablePadding="@dimen/tvPaymentDetailsDrawableCashPadding"
                 android:drawableStart="@mipmap/card_pay"
+                android:enabled="false"
                 android:gravity="fill"
                 android:text="@string/card"
-                android:textColor="@color/black"
+                android:textColor="@android:color/darker_gray"
                 android:textSize="@dimen/tvHeadingSizeAll" />
 
             <View

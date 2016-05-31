@@ -116,7 +116,6 @@ public class LostItem extends AppCompatActivity implements View.OnClickListener,
             } else {
                 llLostItemItemsAvailable.setVisibility(View.GONE);
                 llLostItemNoItemAvailable.setVisibility(View.VISIBLE);
-                Toast.makeText(this, jsonObject.optString("msg"), Toast.LENGTH_SHORT).show();
             }
         } else
             Toast.makeText(this, "Something went wrong, Please try again later", Toast.LENGTH_SHORT).show();

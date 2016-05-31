@@ -57,8 +57,7 @@ public class Feedback extends AppCompatActivity implements View.OnClickListener,
         ivFeedbacksad = (RadioButton) findViewById(R.id.ivFeedbacksad);
         btFeedBackSubmit = (Button) findViewById(R.id.btFeedBackSubmit);
 
-        rbFeedbackRatingForDriver.getProgressDrawable().setColorFilter(ContextCompat.getColor(this, R.color.Yellow), PorterDuff.Mode.SRC_ATOP);
-
+//        rbFeedbackRatingForDriver.getProgressDrawable().setColorFilter(ContextCompat.getColor(this, R.color.Yellow), PorterDuff.Mode.SRC_ATOP);
 
         cbFeedbackCommentForDriver.setOnClickListener(this);
         cbFeedbackCommentForTaxinearu.setOnClickListener(this);
@@ -71,10 +70,9 @@ public class Feedback extends AppCompatActivity implements View.OnClickListener,
             @Override
             public void onRatingChanged(RatingBar ratingBar, float rating,
                                         boolean fromUser) {
-
+//                rbFeedbackRatingForDriver.getProgressDrawable().setColorFilter(ContextCompat.getColor(Feedback.this, R.color.Yellow), PorterDuff.Mode.SRC_ATOP);
                 String ratedValue = String.valueOf(ratingBar.getRating());
                 tvFeedbackRatingForDriver.setText(ratedValue + "/5");
-
             }
         });
     }
@@ -117,10 +115,8 @@ public class Feedback extends AppCompatActivity implements View.OnClickListener,
                 break;
 
             case R.id.btFeedBackSubmit:
-                feedBack();
                 openOccasionsPopup();
                 break;
-
         }
     }
 
@@ -131,13 +127,13 @@ public class Feedback extends AppCompatActivity implements View.OnClickListener,
 
         try {
             builder.append(Constants.BASE_URL + Constants.BASE_URL_POSTFIX + Constants.Events.FEED_BACK
-                    + "&json=").append(jsonData.put("token", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_ACCESS_TOKEN, "")
-                    + jsonData.put("userId", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_ID, ""))
-                    + jsonData.put("rideId", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_RIDE_ID, ""))
-                    + jsonData.put("description", etFeedbackCommentForDriver.getText().toString())
-                    + jsonData.put("rating", rbFeedbackRatingForDriver.getRating() + "")
-                    + jsonData.put("orgDescription", etFeedbackCommentForTaxinearu.getText().toString())
-                    + jsonData.put("orgRating", ivFeedbackhappy.isChecked() ? 1 : 0)));
+                    + "&json=").append(jsonData.put("token", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_ACCESS_TOKEN, ""))
+                    .put("userId", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_ID, ""))
+                    .put("rideId", getIntent().getStringExtra("rideId"))
+                    .put("description", etFeedbackCommentForDriver.getText().toString())
+                    .put("rating", rbFeedbackRatingForDriver.getRating() + "")
+                    .put("orgDescription", etFeedbackCommentForTaxinearu.getText().toString())
+                    .put("orgRating", ivFeedbackhappy.isChecked() ? 1 : 0));
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -155,17 +151,12 @@ public class Feedback extends AppCompatActivity implements View.OnClickListener,
     @Override
     public void onResponse(JSONObject jsonObject) {
         CommonUtil.cancelProgressDialog();
-        if (jsonObject.length() > 0 && jsonObject.optInt("status") == Constants.STATUS_SUCCESS) {
-
-            if (jsonObject.optJSONObject("json").optJSONArray("lostItemInfoArray").length() > 0) {
-                CommonUtil.successToastShowing(this, jsonObject);
-            }
-        }
+        if (jsonObject.length() > 0 && jsonObject.optInt("status") == Constants.STATUS_SUCCESS && jsonObject.optJSONObject("json").optJSONArray("lostItemInfoArray").length() > 0)
+            CommonUtil.successToastShowing(this, jsonObject);
     }
 
     public void openOccasionsPopup() {
         try {
-
             final AlertDialog.Builder alertDialogs = new AlertDialog.Builder(this);
             LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             final View dialog = inflater.inflate(R.layout.dialog_all, null);
@@ -180,12 +171,12 @@ public class Feedback extends AppCompatActivity implements View.OnClickListener,
 
                 @Override
                 public void onClick(View v) {
-
-                    startActivity(new Intent(Feedback.this, Search.class));
+                    feedBack();
+                    finish();
                 }
             });
             alertDialogs.setView(dialog);
-            alertDialogs.setCancelable(true);
+            alertDialogs.setCancelable(false);
             alert = alertDialogs.create();
             alert.show();
 
@@ -196,7 +187,6 @@ public class Feedback extends AppCompatActivity implements View.OnClickListener,
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-//        getMenuInflater().inflate(R.menu.ratingforsearch, menu);
         return true;
     }
 
@@ -208,6 +198,5 @@ public class Feedback extends AppCompatActivity implements View.OnClickListener,
                 break;
         }
         return super.onOptionsItemSelected(item);
-
     }
 }

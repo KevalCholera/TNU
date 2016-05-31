@@ -82,14 +82,13 @@ public class GeneralInformation extends AppCompatActivity implements Response.Li
             e.printStackTrace();
         }
 
-        CommonUtil.showProgressDialog(this, "Login...");
+        CommonUtil.showProgressDialog(this, "Updating Info...");
         DataRequest dataRequest = new DataRequest(Request.Method.GET, builder.toString(), null, this, this);
         TaxiNearYouApp.getInstance().addToRequestQueue(dataRequest, tag);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-//        getMenuInflater().inflate(R.menu.ratingforsearch, menu);
         return true;
     }
 
@@ -105,12 +104,13 @@ public class GeneralInformation extends AppCompatActivity implements Response.Li
 
     @Override
     public void onErrorResponse(VolleyError volleyError) {
+        CommonUtil.cancelProgressDialog();
         CommonUtil.errorToastShowing(this);
     }
 
     @Override
     public void onResponse(JSONObject jsonObject) {
-
+        CommonUtil.cancelProgressDialog();
         if (jsonObject != null)
             if (jsonObject.optInt("status") == Constants.STATUS_SUCCESS)
                 CommonUtil.successToastShowing(this, jsonObject);

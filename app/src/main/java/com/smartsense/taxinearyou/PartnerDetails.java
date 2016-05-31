@@ -9,39 +9,57 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.mpt.storage.SharedPreferenceUtil;
 import com.smartsense.taxinearyou.Fragments.FragmentAvailability;
 import com.smartsense.taxinearyou.Fragments.FragmentReview;
-
-import org.json.JSONArray;
+import com.smartsense.taxinearyou.utill.CircleImageView;
+import com.smartsense.taxinearyou.utill.CircleImageView1;
+import com.smartsense.taxinearyou.utill.Constants;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class PartnerRating extends AppCompatActivity {
+public class PartnerDetails extends AppCompatActivity {
 
     Button btPartnerBookNow;
     TextView tvPartnerMoney;
-
+    CircleImageView1 cvPartnerPic;
     public FragmentActivity activity;
-    public JSONArray jsonArray;
-//    Context context;
-//    AttributeSet attrs;
-//    int defStyle;
+    public static String partnerName;
+    public static String waitingTime;
+    public static ArrayList<String> rating = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_person_details);
+        setContentView(R.layout.activity_partner_details);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         btPartnerBookNow = (Button) findViewById(R.id.btPartnerBookNow);
         tvPartnerMoney = (TextView) findViewById(R.id.tvPartnerMoney);
+        cvPartnerPic = (CircleImageView1) findViewById(R.id.cvPartnerPic);
+
+        getSupportActionBar().setTitle(getIntent().getStringExtra("partnerName"));
+        if (!TextUtils.isEmpty(getIntent().getStringExtra("logoPath")))
+            Picasso.with(this)
+                    .load(getIntent().getStringExtra("logoPath"))
+                    .error(R.mipmap.imgtnulogo)
+                    .placeholder(R.mipmap.imgtnulogo)
+                    .into(cvPartnerPic);
+
+        tvPartnerMoney.setText(getIntent().getStringExtra("ETA"));
+
+        partnerName = getIntent().getStringExtra("partnerName");
+        waitingTime = getIntent().getStringExtra("waitingTime");
+        rating = getIntent().getStringArrayListExtra("rating");
 
         ViewPager vpPartnerRating = (ViewPager) findViewById(R.id.vpPartnerRating);
         setupViewPager(vpPartnerRating);
@@ -52,18 +70,14 @@ public class PartnerRating extends AppCompatActivity {
         btPartnerBookNow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(PartnerRating.this, BookingInfo.class));
+                startActivity(new Intent(PartnerDetails.this, BookingInfo.class));
             }
         });
-
     }
-
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new FragmentAvailability(), "Availability");
-
-
         adapter.addFragment(new FragmentReview(), "Reviews");
         viewPager.setAdapter(adapter);
     }
@@ -99,7 +113,6 @@ public class PartnerRating extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-//        getMenuInflater().inflate(R.menu.ratingforsearch, menu);
         return true;
     }
 
@@ -111,6 +124,5 @@ public class PartnerRating extends AppCompatActivity {
                 break;
         }
         return super.onOptionsItemSelected(item);
-
     }
 }

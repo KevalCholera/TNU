@@ -102,12 +102,14 @@ public class ContactUs extends AppCompatActivity implements Response.Listener<JS
 
     @Override
     public void onErrorResponse(VolleyError volleyError) {
+        CommonUtil.cancelProgressDialog();
         CommonUtil.errorToastShowing(this);
     }
 
     @Override
     public void onResponse(JSONObject jsonObject) {
 
+        CommonUtil.cancelProgressDialog();
         if (jsonObject.length() > 0 && jsonObject.optInt("status") == Constants.STATUS_SUCCESS)
             CommonUtil.successToastShowing(this, jsonObject);
         else CommonUtil.successToastShowing(this, jsonObject);

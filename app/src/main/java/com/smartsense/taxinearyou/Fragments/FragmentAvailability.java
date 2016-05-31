@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.mpt.storage.SharedPreferenceUtil;
+import com.smartsense.taxinearyou.PartnerDetails;
 import com.smartsense.taxinearyou.R;
 import com.smartsense.taxinearyou.utill.Constants;
 
@@ -27,15 +28,8 @@ public class FragmentAvailability extends Fragment {
         tvAvailabilityDriverNmae = (TextView) rootView.findViewById(R.id.tvAvailabilityDriverNmae);
         tvAvailabilityWaitingTime = (TextView) rootView.findViewById(R.id.tvAvailabilityWaitingTime);
 
-        try {
-            JSONArray jsonArray = new JSONArray(SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_PARTNER_ARRAY, ""));
-            JSONObject jsonObject = jsonArray.optJSONObject(0);
-            tvAvailabilityDriverNmae.setText(jsonObject.optString("partnerName"));
-            tvAvailabilityWaitingTime.setText(jsonObject.optString("("+"fleetSize" + "mins to arrive)"));
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+        tvAvailabilityDriverNmae.setText(PartnerDetails.partnerName);
+        tvAvailabilityWaitingTime.setText(PartnerDetails.waitingTime);
 
         return rootView;
 

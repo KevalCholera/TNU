@@ -19,6 +19,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.mpt.storage.SharedPreferenceUtil;
 import com.smartsense.taxinearyou.utill.CircleImageView;
+import com.smartsense.taxinearyou.utill.CircleImageView1;
 import com.smartsense.taxinearyou.utill.CommonUtil;
 import com.smartsense.taxinearyou.utill.Constants;
 import com.smartsense.taxinearyou.utill.DataRequest;
@@ -37,7 +38,7 @@ public class TripDetails extends AppCompatActivity implements View.OnClickListen
             tvTripDetailTNR, tvTripDetailPassengers, tvTripDetailLugguages, tvTripDetailMiles, tvTripDetailPayment, tvTripDetailRideType,
             tvTripDetailRideStatus, tvTripDetailVehicle, tvTripDetailCancle, tvTripDetailInvoice, tvTripDetailFeedback;
     LinearLayout lyTripDetailInvoiceFeedback;
-    CircleImageView cvTripDetailsPartnerLogo;
+    CircleImageView1 cvTripDetailsPartnerLogo;
     AlertDialog alert;
 
     @Override
@@ -69,7 +70,7 @@ public class TripDetails extends AppCompatActivity implements View.OnClickListen
         tvTripDetailInvoice = (TextView) findViewById(R.id.btTripDetailInvoice);
         tvTripDetailFeedback = (TextView) findViewById(R.id.tvTripDetailFeedback);
         lyTripDetailInvoiceFeedback = (LinearLayout) findViewById(R.id.lyTripDetailInvoiceFeedback);
-        cvTripDetailsPartnerLogo = (CircleImageView) findViewById(R.id.cvTripDetailsPartnerLogo);
+        cvTripDetailsPartnerLogo = (CircleImageView1) findViewById(R.id.cvTripDetailsPartnerLogo);
 
         try {
             JSONObject tripDetails = new JSONObject(getIntent().getStringExtra("key"));
@@ -77,7 +78,7 @@ public class TripDetails extends AppCompatActivity implements View.OnClickListen
 
             if (tvTripDetailRideStatus.getText().toString().equalsIgnoreCase("waiting")) {
                 tvTripDetailCancle.setVisibility(View.VISIBLE);
-            } else if (tvTripDetailRideStatus.getText().toString().equalsIgnoreCase("completed")) {
+            } else if (tvTripDetailRideStatus.getText().toString().equalsIgnoreCase("complete")) {
                 tvTripDetailLost.setVisibility(View.VISIBLE);
                 lyTripDetailInvoiceFeedback.setVisibility(View.VISIBLE);
             }
@@ -87,23 +88,22 @@ public class TripDetails extends AppCompatActivity implements View.OnClickListen
                     .error(R.mipmap.imgtnulogo)
                     .placeholder(R.mipmap.imgtnulogo)
                     .into(cvTripDetailsPartnerLogo);
+
             tvTripDetailBookingDate.setText(new SimpleDateFormat("dd.MM.yyyy").format(new SimpleDateFormat("dd-MMMM-yyyy HH:mm").parse(tripDetails.optString("bookingTime").trim())));
             tvTripDetailBookingTime.setText(new SimpleDateFormat("hh:mm aa").format(new SimpleDateFormat("dd-MMMM-yyyy HH:mm").parse(tripDetails.optString("bookingTime").trim())));
             tvTripDetailPickUpDate.setText(new SimpleDateFormat("dd.MM.yyyy").format(new SimpleDateFormat("dd-MMMM-yyyy HH:mm").parse(tripDetails.optString("pickTime").trim())));
             tvTripDetailPickUpTime.setText(new SimpleDateFormat("hh:mm aa").format(new SimpleDateFormat("dd-MMMM-yyyy HH:mm").parse(tripDetails.optString("pickTime").trim())));
 
             tvTripDetailTaxiProvider.setText(tripDetails.optString("partner"));
-            SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_RIDE_ID, tripDetails.optString("rideId"));
-            tvTripDetailFare.setText("$" + tripDetails.optInt("estimatedAmount"));
+            tvTripDetailTaxiProvider.setTag(tripDetails.optString("rideId"));
+            tvTripDetailFare.setText("£" + tripDetails.optInt("estimatedAmount"));
             tvTripDetailFrom.setText(tripDetails.optString("from"));
             tvTripDetailTo.setText(tripDetails.optString("to"));
 
             if (tripDetails.optJSONArray("viaArray").length() > 0) {
                 tvTripDetailVia1.setText(tripDetails.optJSONArray("viaArea").optJSONObject(0).optString("viaAreaAddress"));
-//                tvTripDetailVia1.setTag(tripDetails.optJSONArray("viaArea").optJSONObject(0).optString("viaAreaPlaceid"));
                 if (tripDetails.optJSONArray("viaArray").length() == 2) {
                     tvTripDetailVia2.setText(tripDetails.optJSONArray("viaArea").optJSONObject(1).optString("viaAreaAddress"));
-//                    tvTripDetailVia2.setTag(tripDetails.optJSONArray("viaArea").optJSONObject(1).optString("viaAreaPlaceid"));
                 }
             }
             tvTripDetailTNR.setText(tripDetails.optString("pnr"));
@@ -132,10 +132,10 @@ public class TripDetails extends AppCompatActivity implements View.OnClickListen
                 openOccasionsPopup();
                 break;
             case R.id.tvTripDetailLost:
-                startActivity(new Intent(TripDetails.this, AddLostItem.class));
+                startActivity(new Intent(TripDetails.this, AddLostItem.class).putExtra("rideId", (String) tvTripDetailTaxiProvider.getTag()));
                 break;
             case R.id.tvTripDetailFeedback:
-                startActivity(new Intent(TripDetails.this, Feedback.class));
+                startActivity(new Intent(TripDetails.this, Feedback.class).putExtra("rideId", (String) tvTripDetailTaxiProvider.getTag()));
                 break;
             case R.id.btTripDetailInvoice:
                 tripDetails();
@@ -149,12 +149,15 @@ public class TripDetails extends AppCompatActivity implements View.OnClickListen
         JSONObject jsonData = new JSONObject();
 
         try {
-            builder.append(Constants.BASE_URL + Constants.BASE_URL_POSTFIX + Constants.Events.RESEND_INVOICE + "&json=").append(jsonData.put("token", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_ACCESS_TOKEN, "") + jsonData.put("userId", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_ID, "")) + jsonData.put("rideId", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_RIDE_ID, ""))));
+            builder.append(Constants.BASE_URL + Constants.BASE_URL_POSTFIX + Constants.Events.RESEND_INVOICE + "&json=")
+                    .append(jsonData.put("token", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_ACCESS_TOKEN, ""))
+                            .put("userId", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_ID, ""))
+                            .put("rideId", (String) tvTripDetailTaxiProvider.getTag()));
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        CommonUtil.showProgressDialog(this, "getting data...");
+        CommonUtil.showProgressDialog(this, "Sending invoice...");
         DataRequest dataRequest = new DataRequest(Request.Method.GET, builder.toString(), null, this, this);
         TaxiNearYouApp.getInstance().addToRequestQueue(dataRequest, tag);
     }
@@ -168,7 +171,7 @@ public class TripDetails extends AppCompatActivity implements View.OnClickListen
             builder.append(Constants.BASE_URL + Constants.BASE_URL_POSTFIX + Constants.Events.CANCEL_RIDE + "&json=")
                     .append(jsonData.put("token", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_ACCESS_TOKEN, ""))
                             .put("userId", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_ID, ""))
-                            .put("rideId", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_RIDE_ID, "")));
+                            .put("rideId", (String) tvTripDetailTaxiProvider.getTag()));
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -219,7 +222,6 @@ public class TripDetails extends AppCompatActivity implements View.OnClickListen
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-//        getMenuInflater().inflate(R.menu.ratingforsearch, menu);
         return true;
     }
 

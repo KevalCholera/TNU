@@ -79,7 +79,6 @@
                                 android:id="@+id/tvElementMyTripsFrom"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Solihull Rd, Shiral,Sohill, West Midland B90s 3LG, UK "
                                 android:textSize="@dimen/etSignUpSizeAll" />
 
                         </LinearLayout>
@@ -102,7 +101,6 @@
                                 android:id="@+id/tvElementMyTripsTo"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Battern Parks Rd, London SW8, UK "
                                 android:textSize="@dimen/etSignUpSizeAll" />
 
                         </LinearLayout>
@@ -141,7 +139,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:text="Lyft LLC"
                             android:textSize="@dimen/etSignUpSizeAll" />
 
                         <TextView
@@ -173,7 +170,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:text="10.02.2016 10:30am"
                             android:textSize="@dimen/etSignUpSizeAll" />
 
                         <TextView
@@ -205,14 +201,13 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:text="$350.00"
                             android:textSize="@dimen/etSignUpSizeAll" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:text="Total Fare"
+                            android:text="@string/total_fare"
                             android:textColor="@color/background"
                             android:textSize="@dimen/etSignUpSizeAll" />
 

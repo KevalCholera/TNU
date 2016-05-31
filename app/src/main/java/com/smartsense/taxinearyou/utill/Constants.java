@@ -39,6 +39,7 @@ public class Constants {
         public static final String PREF_USER_LAST = "user_last_name";
         public static final String PREF_USER_MNO = "user_mno";
         public static final String PREF_USER_EMAIL = "user_email";
+        public static final String PREF_USER_ALTERNATE_EMAIL = "alternateEmailId";
         public static final String PREF_USER_PROIMG = "user_proimg";
         public static final String PREF_USER_STATUS = "user_status";
         public static final String MAIN_DATA_JSON = "main_data_json";
@@ -67,13 +68,27 @@ public class Constants {
         public static final String MIN_ORDER = "min_order";
         public static final String DELIVERY_CHARGES = "del_charges";
         public static final String PREF_LUGGAGE = "luggageArray";
+        public static final String PREF_EVENT_DURATION = "eventDuration";
+        public static final String PREF_EVENT_VEHICLE_TYPE = "eventVehicalType";
+        public static final String PREF_EVENT_PASSENGER_LIST = "eventPassengerList";
+        public static final String PREF_EVENT_lUGGAGE_LIST = "eventLuggageList";
         public static final String PREF_PASSENGER = "passengerArray";
         public static final String PREF_TAXI_TYPE = "taxiTypeArray";
         public static final String MAIN_DATA = "mainData";
-        public static final String PREF_DISTANCE_MATRIX = "distanceMatrix";
+        public static final String PREF_DISTANCE_MATRIX = "distanceMatrix1";
         public static final String PREF_DISTANCE_LIST = "distanceList";
         public static final String PREF_PARTNER_ARRAY = "partnerArray";
         public static final String PREF_FILTER_REQUEST = "filterRequest";
+        public static final String PREF_QUESTION1 = "secQ1";
+        public static final String PREF_QUESTION2 = "secQ2";
+        public static final String PREF_ANSWER1 = "ans1";
+        public static final String PREF_ANSWER2 = "ans2";
+        public static final String PREF_REQUEST_JSON = "requestJson";
+        public static final String LUGGAGE_VALUE = "luggageValue";
+        public static final String DISTANCE_AFTER_CONVERT = "distanceAfterConvert";
+        public static final String PREF_CUSTOMER_SELECTION = "customerSelection";
+        public static final String BOOKING_INFO = "bookingInfo";
+        public static final String FARE_COST = "fareCost";
     }
 
     public class NavigationItems {
@@ -98,13 +113,15 @@ public class Constants {
         public static final int FEED_BACK = 1122;
         public static final int ADD_LOST_ITEM = 1115;
         public static final int CANCEL_RIDE = 4009;
-        public static final int PERSONAL_INFO = 1102;
+        public static final int BookRide = 1102;
         public static final int EVENT_FORGOT_PASS = 4013;
         public static final int EVENT_FORGOT_EMAIL = 1129;
         public static final int EVENT_FORGOT_EMAIL_WITHOUT = 1130;
         public static final int UPDATE_GENERAL_INFO = 1105;
-        public static final int UPDATE_EMAIL = 1118;
+        public static final int SEND_UPDATE_EMAIL = 1118;
         public static final int GET_USER_DETAILS = 5005;
+        public static final int UPDATE_PASSWORD = 1106;
+        public static final int UPDATE_EMAIL = 1120;
         public static final int EVENT_SIGNUP = 4003;
         public static final int EVENT_PARTNER_LIST = 5001;
         public static final int CHECK_MOBILE_AVAILABILITY = 5009;
