@@ -77,7 +77,7 @@ public class AdapterSearchCar extends BaseAdapter {
 
         final TextView tvElementSearchCarsName = (TextView) vi.findViewById(R.id.tvElementSearchCarsName);
         final TextView tvElementSearchCarsWaitingTime = (TextView) vi.findViewById(R.id.tvElementSearchCarsWaitingTime);
-        TextView tvElementSearchCarsChat = (TextView) vi.findViewById(R.id.tvElementSearchCarsChat);
+        final TextView tvElementSearchCarsChat = (TextView) vi.findViewById(R.id.tvElementSearchCarsChat);
         final TextView tvElementSearchCarsMoney = (TextView) vi.findViewById(R.id.tvElementSearchCarsMoney);
         TextView tvSearchCarsBookNow = (TextView) vi.findViewById(R.id.tvSearchCarsBookNow);
         LinearLayout llElementSearchCarsMain = (LinearLayout) vi.findViewById(R.id.llElementSearchCarsMain);
@@ -97,6 +97,7 @@ public class AdapterSearchCar extends BaseAdapter {
                         .putExtra("partnerName", tvElementSearchCarsName.getText().toString())
                         .putExtra("waitingTime", tvElementSearchCarsWaitingTime.getText().toString())
                         .putExtra("rating", rating)
+                        .putExtra("partnerId", (String) tvElementSearchCarsChat.getTag())
                         .putExtra("logoPath", test.optString("logoPath")));
             }
         });
@@ -115,6 +116,7 @@ public class AdapterSearchCar extends BaseAdapter {
             tvElementSearchCarsWaitingTime.setText("(20 to 45 minutes for a taxi)");
 
         tvElementSearchCarsChat.setText(test.optJSONObject("taxiType").optString("taxiTypeName"));
+        tvElementSearchCarsChat.setTag(test.optJSONObject("taxiType").optString("partnerId"));
         ivElementSearchCarsOnline.setImageResource(android.R.drawable.presence_online);
 
 //        if (test.optInt("isAvailable") == 1) {

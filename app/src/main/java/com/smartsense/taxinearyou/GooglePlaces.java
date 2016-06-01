@@ -174,7 +174,7 @@ public class GooglePlaces extends FragmentActivity implements OnItemClickListene
                         if (jsonArray.optJSONObject(i).optJSONArray("types").optString(0).equalsIgnoreCase("postal_code")) {
                             AreaPostalCode = jsonArray.optJSONObject(i).optString("long_name");
                         }
-                        if (jsonArray.optJSONObject(i).optJSONArray("types").optString(0).equalsIgnoreCase("postal_town")||jsonArray.optJSONObject(i).optJSONArray("types").optString(0).equalsIgnoreCase("locality")) {
+                        if (jsonArray.optJSONObject(i).optJSONArray("types").optString(0).equalsIgnoreCase("postal_town") || jsonArray.optJSONObject(i).optJSONArray("types").optString(0).equalsIgnoreCase("locality")) {
                             AreaCity = jsonArray.optJSONObject(i).optString("long_name");
                         }
 
@@ -356,7 +356,7 @@ public class GooglePlaces extends FragmentActivity implements OnItemClickListene
     }
 
     class GooglePlacesAutocompleteAdapter extends ArrayAdapter<String> implements Filterable {
-        private ArrayList<String> resultList;
+        private ArrayList<String> resultList = new ArrayList<>();
 
         public GooglePlacesAutocompleteAdapter(Context context, int textViewResourceId) {
             super(context, textViewResourceId);
@@ -505,6 +505,7 @@ public class GooglePlaces extends FragmentActivity implements OnItemClickListene
     public void onConnectionSuspended(int i) {
         Log.e(LOG_TAG, "Google Places API connection suspended.");
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 //        getMenuInflater().inflate(R.menu.ratingforsearch, menu);

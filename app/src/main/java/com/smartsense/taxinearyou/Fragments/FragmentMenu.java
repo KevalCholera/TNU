@@ -1,11 +1,17 @@
 package com.smartsense.taxinearyou.Fragments;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,13 +41,17 @@ import com.squareup.picasso.Picasso;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+import java.util.HashMap;
+
 public class FragmentMenu extends Fragment implements Response.Listener<JSONObject>, Response.ErrorListener, View.OnClickListener {
 
     CircleImageView1 cvAccountPhoto;
     TextView tvAccountPersonName;
     TextView tvAccountGeneralInfo, tvAccountAccountSecurity, tvAccountPayment,
             tvAccountCredits, tvAccountLostItems, tvAccountLogout, tvAccountMore;
-
+    private int image = 1;
     ImageView ivEditProfilePhoto;
     Button btAccountActivateNow;
     CoordinatorLayout clSearch;
@@ -87,8 +97,8 @@ public class FragmentMenu extends Fragment implements Response.Listener<JSONObje
         tvAccountGeneralInfo.setOnClickListener(this);
         tvAccountPayment.setOnClickListener(this);
         tvAccountMore.setOnClickListener(this);
+        ivEditProfilePhoto.setOnClickListener(this);
         return rootView;
-
     }
 
     @Override
@@ -114,6 +124,11 @@ public class FragmentMenu extends Fragment implements Response.Listener<JSONObje
             case R.id.tvAccountMore:
                 startActivity(new Intent(getActivity(), More.class));
                 break;
+            case R.id.ivEditProfilePhoto:
+                Intent intImage = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                intImage.setType("image/*");
+                startActivityForResult(intImage, image);
+                break;
         }
     }
 
@@ -135,10 +150,51 @@ public class FragmentMenu extends Fragment implements Response.Listener<JSONObje
         TaxiNearYouApp.getInstance().addToRequestQueue(dataRequest, tag);
     }
 
+    private void doUpload(Intent data) {
+        final String tag = "Do Upload";
+        Uri uri = data.getData();
+        InputStream inputStream;
+
+        try {
+            inputStream = getActivity().getContentResolver().openInputStream(uri);
+            Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
+            String imageBase64 = CommonUtil.BitMapToString(bitmap);
+
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("userProfilePic", imageBase64);
+            jsonObject.put("token", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_ACCESS_TOKEN, ""));
+            jsonObject.put("userId", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_ID, ""));
+
+            String urlType = Constants.BASE_URL_PHOTO;
+            HashMap<String, String> params = new HashMap<>();
+            params.put("userProfilePic", imageBase64);
+            params.put("token", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_ACCESS_TOKEN, ""));
+            params.put("userId", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_ID, ""));
+            params.put("__eventid", Constants.Events.UPDATE_PROFILE_PIC + "");
+            params.put("json", jsonObject.toString());
+            Log.i("params", params.toString());
+
+            CommonUtil.showProgressDialog(getActivity(), "updating...");
+            DataRequest loginRequest = new DataRequest(Request.Method.POST, urlType, params, this, this);
+            TaxiNearYouApp.getInstance().addToRequestQueue(loginRequest, tag);
+
+        } catch (FileNotFoundException | JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == image && resultCode == Activity.RESULT_OK) {
+            doUpload(data);
+        }
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
     @Override
     public void onErrorResponse(VolleyError volleyError) {
-        CommonUtil.alertBox(getActivity(), "", getResources().getString(R.string.nointernet_try_again_msg));
         CommonUtil.cancelProgressDialog();
+        CommonUtil.errorToastShowing(getActivity());
     }
 
     @Override
@@ -154,6 +210,19 @@ public class FragmentMenu extends Fragment implements Response.Listener<JSONObje
                             startActivity(new Intent(getActivity(), SignIn.class));
                             getActivity().finish();
                             break;
+                        case Constants.Events.UPDATE_PROFILE_PIC:
+
+                            if (!TextUtils.isEmpty(Constants.BASE_URL_IMAGE_POSTFIX + response.optJSONObject("json").optJSONObject("user").optString("profilePic")))
+                                Picasso.with(getActivity())
+                                        .load(response.optJSONObject("json").optJSONObject("user").optString("profilePic"))
+                                        .error(R.mipmap.imgtnulogo)
+                                        .placeholder(R.mipmap.imgtnulogo)
+                                        .into(cvAccountPhoto);
+
+                            CommonUtil.successToastShowing(getActivity(), response);
+                            SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_USER_PROIMG, Constants.BASE_URL_IMAGE_POSTFIX + response.optJSONObject("json").optJSONObject("user").optString("profilePic"));
+                            SharedPreferenceUtil.save();
+                            break;
                     }
                 } else {
                     JsonErrorShow.jsonErrorShow(response, getActivity(), clSearch);
@@ -162,6 +231,5 @@ public class FragmentMenu extends Fragment implements Response.Listener<JSONObje
                 e.printStackTrace();
             }
         }
-
     }
 }

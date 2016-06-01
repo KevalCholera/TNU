@@ -20,6 +20,9 @@ import com.smartsense.taxinearyou.utill.CircleImageView1;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
 public class AdapterMyTrips extends BaseAdapter {
     private JSONArray data;
     private LayoutInflater inflater = null;
@@ -70,7 +73,11 @@ public class AdapterMyTrips extends BaseAdapter {
         tvElementMyTripsTo.setText(test.optString("to"));
         tvElementMyTripsStatus.setText(test.optString("status"));
         tvElementMyTripsTaxiProvider.setText(test.optString("partner"));
-        tvElementMyTripsDateTime.setText(test.optString("bookingTime"));
+        try {
+            tvElementMyTripsDateTime.setText(new SimpleDateFormat("dd-MM-yyyy hh:mm aa").format(new SimpleDateFormat("dd-MMM-yyyy HH:mm").parse(test.optString("bookingTime"))));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
 
         if (test.optString("status").equals("Cancelled"))
             tvElementMyTripsStatus.setBackgroundColor(ContextCompat.getColor(a, R.color.red));
@@ -79,20 +86,20 @@ public class AdapterMyTrips extends BaseAdapter {
         else
             tvElementMyTripsStatus.setBackgroundColor(ContextCompat.getColor(a, R.color.Yellow));
 
-        ViewTreeObserver vto = lyElementMyTripStatusLayout.getViewTreeObserver();
-        vto.addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
-            public boolean onPreDraw() {
-                lyElementMyTripStatusLayout.getViewTreeObserver().removeOnPreDrawListener(this);
-                finalHeight = lyElementMyTripStatusLayout.getMeasuredHeight();
-                int height = finalHeight / 30;
-
-                for (int i = 0; i <= height; i++) {
-                    createNewTextView();
-                }
-
-                return true;
-            }
-        });
+//        ViewTreeObserver vto = lyElementMyTripStatusLayout.getViewTreeObserver();
+//        vto.addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
+//            public boolean onPreDraw() {
+//                lyElementMyTripStatusLayout.getViewTreeObserver().removeOnPreDrawListener(this);
+//                finalHeight = lyElementMyTripStatusLayout.getMeasuredHeight();
+//                int height = finalHeight / 30;
+//
+//                for (int i = 0; i <= height; i++) {
+//                    createNewTextView();
+//                }
+//
+//                return true;
+//            }
+//        });
 
         lyElementMyTripMain.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -105,23 +112,23 @@ public class AdapterMyTrips extends BaseAdapter {
         return vi;
     }
 
-    public void createNewTextView() {
-        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(10, 10);
-        layoutParams.setMargins(5, 10, 5, 0);
-
-        CircleImageView1 circleImageView = new CircleImageView1(a);
-        circleImageView.setLayoutParams(layoutParams);
-        circleImageView.setBackgroundColor(ContextCompat.getColor(a, R.color.white));
-        circleImageView.setBorderColor(ContextCompat.getColor(a, R.color.search_car_gray));
-        circleImageView.setBorderWidth(2);
-
-        CircleImageView1 circleImageView1 = new CircleImageView1(a);
-        circleImageView.setLayoutParams(layoutParams);
-        circleImageView.setBackgroundColor(ContextCompat.getColor(a, R.color.white));
-        circleImageView.setBorderColor(ContextCompat.getColor(a, R.color.search_car_gray));
-        circleImageView.setBorderWidth(2);
-
-        lyElementMyTripLeft.addView(circleImageView);
-        lyElementMyTripRight.addView(circleImageView1);
-    }
+//    public void createNewTextView() {
+//        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(10, 10);
+//        layoutParams.setMargins(5, 10, 5, 0);
+//
+//        CircleImageView1 circleImageView = new CircleImageView1(a);
+//        circleImageView.setLayoutParams(layoutParams);
+//        circleImageView.setBackgroundColor(ContextCompat.getColor(a, R.color.white));
+//        circleImageView.setBorderColor(ContextCompat.getColor(a, R.color.search_car_gray));
+//        circleImageView.setBorderWidth(2);
+//
+//        CircleImageView1 circleImageView1 = new CircleImageView1(a);
+//        circleImageView.setLayoutParams(layoutParams);
+//        circleImageView.setBackgroundColor(ContextCompat.getColor(a, R.color.white));
+//        circleImageView.setBorderColor(ContextCompat.getColor(a, R.color.search_car_gray));
+//        circleImageView.setBorderWidth(2);
+//
+//        lyElementMyTripLeft.addView(circleImageView);
+//        lyElementMyTripRight.addView(circleImageView1);
+//    }
 }

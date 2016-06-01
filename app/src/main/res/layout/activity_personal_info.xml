@@ -45,8 +45,8 @@
                         android:layout_height="match_parent"
                         android:layout_marginBottom="@dimen/vPersonalInfoMarginTopBottomAll"
                         android:background="@null"
-                        android:hint="@string/firstName"
                         android:enabled="false"
+                        android:hint="@string/firstName"
                         android:inputType="textCapSentences"
                         android:paddingEnd="@dimen/etPersonalInfoPadding"
                         android:textColor="@color/black"
@@ -101,10 +101,10 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/vPersonalInfoMarginTopBottomAll"
                         android:background="@null"
+                        android:enabled="false"
                         android:hint="@string/myno"
                         android:inputType="number"
                         android:paddingEnd="@dimen/etPersonalInfoPadding"
-                        android:enabled="false"
                         android:textColor="@color/black"
                         android:textColorHint="@color/light_Black"
                         android:textSize="@dimen/tvTitlesSizeAll"
@@ -129,10 +129,10 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/vPersonalInfoMarginTopBottomAll"
                         android:background="@null"
+                        android:enabled="false"
                         android:hint="@string/email_address"
                         android:inputType="textEmailAddress"
                         android:paddingEnd="@dimen/etPersonalInfoPadding"
-                        android:enabled="false"
                         android:textColor="@color/black"
                         android:textColorHint="@color/light_Black"
                         android:textSize="@dimen/tvTitlesSizeAll"
@@ -183,22 +183,26 @@
                         android:text="@string/how_did_you_hear_about_us"
                         android:textColor="@color/background" />
 
-                    <EditText
+                    <LinearLayout
                         android:id="@+id/etInfoSocial"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/etHeightAll"
+                        android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
                         android:background="@drawable/grayborder2"
-                        android:clickable="true"
-                        android:cursorVisible="false"
-                        android:drawableEnd="@mipmap/imgdropdown"
-                        android:focusable="false"
-                        android:padding="@dimen/etInfoSocialPadding"
-                        android:text="@string/google"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/tvTitlesSizeAll"
-                        android:textStyle="italic" />
+                        android:orientation="horizontal">
 
+                        <Spinner
+                            android:id="@+id/spPersonalInfoAd"
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/etHeightAll"
+                            android:layout_weight="1" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@mipmap/imgdropdown" />
+
+                    </LinearLayout>
                 </LinearLayout>
             </ScrollView>
 

@@ -99,6 +99,7 @@
     <string name="add_info">Additional Information</string>
     <string name="e.g">e.g. Flight number, luggage details, door number, child seat, wheelchair, promotional code</string>
     <string name="google">Google</string>
+    <string name="ad">Ad</string>
     <string name="title_activity_partner_rating">PartnerRating</string>
     <string name="title_activity_maps">Map_hi</string>
     <string name="sundaytime">12:00PM - 04:00PM</string>
@@ -114,6 +115,8 @@
     <string name="rating_no">1500</string>
     <string name="review_text">Loreum Ipsem is Simply dummy text of the printing and typessetting Industry . loreum ipSum has been the industry\'s standard dummy text ever since the 1500s</string>
     <string name="done">Done</string>
+    <string name="please_answer_for_security_question">Please Answer for Security Question</string>
+    <string name="terms_conditions_error">You must agree with Terms of Services &amp; Privacy Policy</string>
     <string name="via1">Via1</string>
     <string name="via2">Via2</string>
     <string name="providername">Keval Cholera</string>
@@ -358,5 +361,8 @@
     <string name="please_enter_answer">Please Enter Answer</string>
     <string name="answer_not_same">Given Answer is incorrect</string>
     <string name="acc_sec">Account Security</string>
+    <string name="error_large_image">Image should be less than 100kb</string>
+    <string name="error_in_load_image">something went wrong, please try again later</string>
+    <string name="enter_fields_below">Enter fields below</string>
 
 </resources>

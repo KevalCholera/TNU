@@ -12,13 +12,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.mpt.storage.SharedPreferenceUtil;
-import com.smartsense.taxinearyou.utill.CircleImageView;
 import com.smartsense.taxinearyou.utill.CircleImageView1;
 import com.smartsense.taxinearyou.utill.CommonUtil;
 import com.smartsense.taxinearyou.utill.Constants;
@@ -40,6 +38,7 @@ public class TripDetails extends AppCompatActivity implements View.OnClickListen
     LinearLayout lyTripDetailInvoiceFeedback;
     CircleImageView1 cvTripDetailsPartnerLogo;
     AlertDialog alert;
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MMMM-yyyy HH:mm");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,15 +83,15 @@ public class TripDetails extends AppCompatActivity implements View.OnClickListen
             }
 
             Picasso.with(this)
-                    .load(tripDetails.optString("partnerLogo"))
+                    .load(Constants.BASE_URL_IMAGE_POSTFIX + tripDetails.optString("partnerLogo"))
                     .error(R.mipmap.imgtnulogo)
                     .placeholder(R.mipmap.imgtnulogo)
                     .into(cvTripDetailsPartnerLogo);
 
-            tvTripDetailBookingDate.setText(new SimpleDateFormat("dd.MM.yyyy").format(new SimpleDateFormat("dd-MMMM-yyyy HH:mm").parse(tripDetails.optString("bookingTime").trim())));
-            tvTripDetailBookingTime.setText(new SimpleDateFormat("hh:mm aa").format(new SimpleDateFormat("dd-MMMM-yyyy HH:mm").parse(tripDetails.optString("bookingTime").trim())));
-            tvTripDetailPickUpDate.setText(new SimpleDateFormat("dd.MM.yyyy").format(new SimpleDateFormat("dd-MMMM-yyyy HH:mm").parse(tripDetails.optString("pickTime").trim())));
-            tvTripDetailPickUpTime.setText(new SimpleDateFormat("hh:mm aa").format(new SimpleDateFormat("dd-MMMM-yyyy HH:mm").parse(tripDetails.optString("pickTime").trim())));
+            tvTripDetailBookingDate.setText(new SimpleDateFormat("dd-MM-yyyy").format(simpleDateFormat.parse(tripDetails.optString("bookingTime").trim())));
+            tvTripDetailBookingTime.setText(new SimpleDateFormat("hh:mm aa").format(simpleDateFormat.parse(tripDetails.optString("bookingTime").trim())));
+            tvTripDetailPickUpDate.setText(new SimpleDateFormat("dd-MM-yyyy").format(simpleDateFormat.parse(tripDetails.optString("pickTime").trim())));
+            tvTripDetailPickUpTime.setText(new SimpleDateFormat("hh:mm aa").format(simpleDateFormat.parse(tripDetails.optString("pickTime").trim())));
 
             tvTripDetailTaxiProvider.setText(tripDetails.optString("partner"));
             tvTripDetailTaxiProvider.setTag(tripDetails.optString("rideId"));
@@ -238,6 +237,7 @@ public class TripDetails extends AppCompatActivity implements View.OnClickListen
 
     @Override
     public void onErrorResponse(VolleyError volleyError) {
+        CommonUtil.cancelProgressDialog();
         CommonUtil.errorToastShowing(this);
     }
 

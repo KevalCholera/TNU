@@ -19,7 +19,83 @@
             android:layout_height="match_parent"
             android:layout_marginRight="@dimen/lyElementMyTripCircularViewMarginLeftRight"
             android:background="@color/white"
-            android:orientation="vertical" />
+            android:orientation="vertical">
+
+            <com.smartsense.taxinearyou.utill.CircleImageView1
+                android:id="@+id/civElementMyTripCircleLeft"
+                android:layout_width="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_height="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_marginLeft="@dimen/tvPopupCancelRidePadding"
+                android:layout_marginRight="@dimen/tvPopupCancelRidePadding"
+                android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_weight="1"
+                android:src="@color/element"
+                app:civ_border_color="#d2d2d2"
+                app:civ_border_width="@dimen/civTripDetailsBorderWidth" />
+
+            <com.smartsense.taxinearyou.utill.CircleImageView1
+                android:layout_width="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_height="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_marginLeft="@dimen/tvPopupCancelRidePadding"
+                android:layout_marginRight="@dimen/tvPopupCancelRidePadding"
+                android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_weight="1"
+                android:src="@color/element"
+                android:visibility="visible"
+                app:civ_border_color="#d2d2d2"
+                app:civ_border_width="@dimen/civTripDetailsBorderWidth" />
+
+            <com.smartsense.taxinearyou.utill.CircleImageView1
+                android:layout_width="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_height="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_marginLeft="@dimen/tvPopupCancelRidePadding"
+                android:layout_marginRight="@dimen/tvPopupCancelRidePadding"
+                android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_weight="1"
+                android:src="@color/element"
+                android:visibility="visible"
+                app:civ_border_color="#d2d2d2"
+                app:civ_border_width="@dimen/civTripDetailsBorderWidth" />
+
+            <com.smartsense.taxinearyou.utill.CircleImageView1
+                android:layout_width="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_height="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_marginLeft="@dimen/tvPopupCancelRidePadding"
+                android:layout_marginRight="@dimen/tvPopupCancelRidePadding"
+                android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_weight="1"
+                android:src="@color/element"
+                android:visibility="visible"
+                app:civ_border_color="#d2d2d2"
+                app:civ_border_width="@dimen/civTripDetailsBorderWidth" />
+
+            <com.smartsense.taxinearyou.utill.CircleImageView1
+                android:layout_width="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_height="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_marginLeft="@dimen/tvPopupCancelRidePadding"
+                android:layout_marginRight="@dimen/tvPopupCancelRidePadding"
+                android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_weight="1"
+                android:src="@color/element"
+                android:visibility="visible"
+                app:civ_border_color="#d2d2d2"
+                app:civ_border_width="@dimen/civTripDetailsBorderWidth" />
+
+
+            <com.smartsense.taxinearyou.utill.CircleImageView1
+                android:layout_width="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_height="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_marginBottom="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_marginLeft="@dimen/tvPopupCancelRidePadding"
+                android:layout_marginRight="@dimen/tvPopupCancelRidePadding"
+                android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_weight="1"
+                android:src="@color/element"
+                android:visibility="visible"
+                app:civ_border_color="#d2d2d2"
+                app:civ_border_width="@dimen/civTripDetailsBorderWidth" />
+
+        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/lyElementMyTripStatusLayout"
@@ -43,7 +119,6 @@
                 android:gravity="center"
                 android:paddingLeft="@dimen/etPaddingAll"
                 android:paddingRight="@dimen/etPaddingAll"
-                android:text="cancelled"
                 android:textColor="@color/white" />
 
             <LinearLayout
@@ -71,7 +146,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="From : "
+                                android:text="@string/from_"
                                 android:textColor="@color/background"
                                 android:textSize="@dimen/etSignUpSizeAll" />
 
@@ -93,7 +168,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="To : "
+                                android:text="@string/to_"
                                 android:textColor="@color/background"
                                 android:textSize="@dimen/etSignUpSizeAll" />
 
@@ -145,7 +220,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:text="Taxi Provider"
+                            android:text="@string/taxi_provider"
                             android:textColor="@color/background"
                             android:textSize="@dimen/etSignUpSizeAll" />
 
@@ -176,7 +251,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:text="Date &amp; Time"
+                            android:text="@string/datetime"
                             android:textColor="@color/background"
                             android:textSize="@dimen/etSignUpSizeAll" />
 
@@ -222,6 +297,82 @@
             android:layout_height="match_parent"
             android:layout_marginLeft="@dimen/lyElementMyTripCircularViewMarginLeftRight"
             android:background="@color/white"
-            android:orientation="vertical" />
+            android:orientation="vertical">
+
+            <com.smartsense.taxinearyou.utill.CircleImageView1
+                android:id="@+id/civElementMyTripCircleRight"
+                android:layout_width="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_height="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_marginLeft="@dimen/tvPopupCancelRidePadding"
+                android:layout_marginRight="@dimen/tvPopupCancelRidePadding"
+                android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_weight="1"
+                android:src="@color/element"
+                app:civ_border_color="#d2d2d2"
+                app:civ_border_width="@dimen/civTripDetailsBorderWidth" />
+
+
+            <com.smartsense.taxinearyou.utill.CircleImageView1
+                android:layout_width="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_height="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_marginLeft="@dimen/tvPopupCancelRidePadding"
+                android:layout_marginRight="@dimen/tvPopupCancelRidePadding"
+                android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_weight="1"
+                android:src="@color/element"
+                android:visibility="visible"
+                app:civ_border_color="#d2d2d2"
+                app:civ_border_width="@dimen/civTripDetailsBorderWidth" />
+
+            <com.smartsense.taxinearyou.utill.CircleImageView1
+                android:layout_width="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_height="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_marginLeft="@dimen/tvPopupCancelRidePadding"
+                android:layout_marginRight="@dimen/tvPopupCancelRidePadding"
+                android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_weight="1"
+                android:src="@color/element"
+                android:visibility="visible"
+                app:civ_border_color="#d2d2d2"
+                app:civ_border_width="@dimen/civTripDetailsBorderWidth" />
+
+            <com.smartsense.taxinearyou.utill.CircleImageView1
+                android:layout_width="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_height="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_marginLeft="@dimen/tvPopupCancelRidePadding"
+                android:layout_marginRight="@dimen/tvPopupCancelRidePadding"
+                android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_weight="1"
+                android:src="@color/element"
+                android:visibility="visible"
+                app:civ_border_color="#d2d2d2"
+                app:civ_border_width="@dimen/civTripDetailsBorderWidth" />
+
+            <com.smartsense.taxinearyou.utill.CircleImageView1
+                android:layout_width="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_height="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_marginLeft="@dimen/tvPopupCancelRidePadding"
+                android:layout_marginRight="@dimen/tvPopupCancelRidePadding"
+                android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_weight="1"
+                android:src="@color/element"
+                android:visibility="visible"
+                app:civ_border_color="#d2d2d2"
+                app:civ_border_width="@dimen/civTripDetailsBorderWidth" />
+
+            <com.smartsense.taxinearyou.utill.CircleImageView1
+                android:layout_width="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_height="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_marginBottom="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_marginLeft="@dimen/tvPopupCancelRidePadding"
+                android:layout_marginRight="@dimen/tvPopupCancelRidePadding"
+                android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_weight="1"
+                android:src="@color/element"
+                android:visibility="visible"
+                app:civ_border_color="#d2d2d2"
+                app:civ_border_width="@dimen/civTripDetailsBorderWidth" />
+
+        </LinearLayout>
     </LinearLayout>
 </LinearLayout>

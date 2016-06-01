@@ -138,7 +138,7 @@ public class RecoverEmailAddress extends AppCompatActivity implements Response.L
 
     @Override
     public void onErrorResponse(VolleyError volleyError) {
-        CommonUtil.alertBox(this, "", getResources().getString(R.string.nointernet_try_again_msg));
+        CommonUtil.errorToastShowing(this);
         CommonUtil.cancelProgressDialog();
     }
 
@@ -157,7 +157,7 @@ public class RecoverEmailAddress extends AppCompatActivity implements Response.L
 //                            finish();
                             break;
                         case Constants.Events.EVENT_FORGOT_EMAIL_WITHOUT:
-                            CommonUtil.openDialogs(RecoverEmailAddress.this, "Recover Email", R.id.lyPopUpAfterRecovery, R.id.btPopupThankingRecoveryBack);
+                            CommonUtil.openDialogs(RecoverEmailAddress.this, "Recover Email", R.id.lyPopUpAfterRecovery, R.id.btPopupThankingRecoveryBack, response.optString("msg"));
 //                            SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_USER_ID, response.getJSONObject("data").getString("userId"));
 //                            SharedPreferenceUtil.save();
 //                            startActivity(new Intent(this, OTPActivity.class).putExtra("mobile", etMobileNo.getText().toString()).putExtra("code", etCountryCode.getText().toString()).putExtra("tag", (String) etCountryCode.getTag()));
@@ -171,7 +171,6 @@ public class RecoverEmailAddress extends AppCompatActivity implements Response.L
                 e.printStackTrace();
             }
         }
-
     }
 
     public void openDialog() {

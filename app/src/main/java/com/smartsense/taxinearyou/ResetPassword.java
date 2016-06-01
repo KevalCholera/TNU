@@ -88,7 +88,7 @@ public class ResetPassword extends AppCompatActivity implements Response.Listene
 
     @Override
     public void onErrorResponse(VolleyError volleyError) {
-        CommonUtil.alertBox(this, "", getResources().getString(R.string.nointernet_try_again_msg));
+        CommonUtil.errorToastShowing(this);
         CommonUtil.cancelProgressDialog();
     }
 

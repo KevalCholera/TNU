@@ -71,12 +71,11 @@ public class SecurityQuestion extends AppCompatActivity implements View.OnClickL
         switch (v.getId()) {
             case R.id.btSecuritySave:
                 if (TextUtils.isEmpty(etSecurityAnswer1.getText().toString()) || TextUtils.isEmpty(etSecurityAnswer2.getText().toString()))
-                    CommonUtil.showSnackBar(SecurityQuestion.this, "Please Answer for Security Question", clSecurityQuestion);
+                    CommonUtil.showSnackBar(SecurityQuestion.this, getResources().getString(R.string.enter_fields_below), clSecurityQuestion);
                 else if (!cbSecurityFromPrivacyPolicy.isChecked())
-                    CommonUtil.showSnackBar(SecurityQuestion.this, "Please Agree to Terms and Conditions ", clSecurityQuestion);
+                    CommonUtil.showSnackBar(SecurityQuestion.this, getResources().getString(R.string.terms_conditions_error), clSecurityQuestion);
                 else
                     doSignUp();
-//                    startActivity(new Intent(SecurityQuestion.this, SignIn.class));
                 break;
             case R.id.btSecurityBack:
                 finish();
@@ -127,7 +126,7 @@ public class SecurityQuestion extends AppCompatActivity implements View.OnClickL
 
     @Override
     public void onErrorResponse(VolleyError volleyError) {
-        CommonUtil.alertBox(this, "", getResources().getString(R.string.nointernet_try_again_msg));
+        CommonUtil.errorToastShowing(this);
         CommonUtil.cancelProgressDialog();
     }
 
@@ -157,17 +156,17 @@ public class SecurityQuestion extends AppCompatActivity implements View.OnClickL
                             break;
                         case Constants.Events.EVENT_GET_SECURITY_QES:
                             if (response.optJSONObject("json").has("questionList")) {
-                                    for (int i = 0; i < response.optJSONObject("json").optJSONArray("questionList").length(); i++) {
-                                        if (i == 0) {
-                                            etSecurityQuestion1.setText(response.optJSONObject("json").optJSONArray("questionList").optJSONObject(i).optString("name"));
-                                            etSecurityQuestion1.setTag(response.optJSONObject("json").optJSONArray("questionList").optJSONObject(i).optString("id"));
-                                        }
-                                        if (i == response.optJSONObject("json").optJSONArray("questionList").length() / 2) {
-                                            etSecurityQuestion2.setText(response.optJSONObject("json").optJSONArray("questionList").optJSONObject(i).optString("name"));
-                                            etSecurityQuestion2.setTag(response.optJSONObject("json").optJSONArray("questionList").optJSONObject(i).optString("id"));
-                                            break;
-                                        }
+                                for (int i = 0; i < response.optJSONObject("json").optJSONArray("questionList").length(); i++) {
+                                    if (i == 0) {
+                                        etSecurityQuestion1.setText(response.optJSONObject("json").optJSONArray("questionList").optJSONObject(i).optString("name"));
+                                        etSecurityQuestion1.setTag(response.optJSONObject("json").optJSONArray("questionList").optJSONObject(i).optString("id"));
                                     }
+                                    if (i == response.optJSONObject("json").optJSONArray("questionList").length() / 2) {
+                                        etSecurityQuestion2.setText(response.optJSONObject("json").optJSONArray("questionList").optJSONObject(i).optString("name"));
+                                        etSecurityQuestion2.setTag(response.optJSONObject("json").optJSONArray("questionList").optJSONObject(i).optString("id"));
+                                        break;
+                                    }
+                                }
                             }
                             jsonObject = response;
                             break;
@@ -199,8 +198,8 @@ public class SecurityQuestion extends AppCompatActivity implements View.OnClickL
             LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             View dialog = inflater.inflate(R.layout.dialog_select_question, null);
             ListView list_view = (ListView) dialog.findViewById(R.id.list_view);
-            AdapterClass adapterClass = new AdapterClass(this, question1, question2, check);
-            list_view.setAdapter(adapterClass);
+            AdapterQuestionSelection adapterQuestionSelection = new AdapterQuestionSelection(this, question1, question2, check);
+            list_view.setAdapter(adapterQuestionSelection);
             alertDialogs.setView(dialog);
             alertDialogs.setCancelable(true);
             alert = alertDialogs.create();
@@ -211,13 +210,13 @@ public class SecurityQuestion extends AppCompatActivity implements View.OnClickL
         }
     }
 
-    public class AdapterClass extends BaseAdapter {
+    public class AdapterQuestionSelection extends BaseAdapter {
         private final Boolean check;
         private JSONArray data;
         private LayoutInflater inflater = null;
         Activity a;
 
-        public AdapterClass(Activity a, JSONArray data, JSONArray data2, Boolean check) {
+        public AdapterQuestionSelection(Activity a, JSONArray data, JSONArray data2, Boolean check) {
             this.check = check;
             if (check)
                 this.data = data;

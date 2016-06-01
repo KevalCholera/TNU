@@ -37,7 +37,6 @@ import org.json.JSONObject;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
-
 public class SearchCars extends AppCompatActivity implements Response.Listener<JSONObject>, Response.ErrorListener, View.OnClickListener {
 
     ListView lvSearchCarsLine1;
@@ -76,6 +75,7 @@ public class SearchCars extends AppCompatActivity implements Response.Listener<J
         llSearchCarsFilter = (LinearLayout) findViewById(R.id.llSearchCarsFilter);
         lySearchCarsDateTime = (LinearLayout) findViewById(R.id.lySearchCarsDateTime);
 
+        tvSearchCarsDateTime.setText(getIntent().getStringExtra("tvBookDateTime"));
 
         llSearchCarsFilter.setOnClickListener(this);
         rbSearchCarsRating.setOnClickListener(this);
@@ -191,7 +191,7 @@ public class SearchCars extends AppCompatActivity implements Response.Listener<J
                     .put("journeyDatetime", getIntent().getStringExtra("tvBookDateTime"))
                     .put("luggageId", getIntent().getStringExtra("tvBookLuggage"))
                     .put("passanger", getIntent().getStringExtra("tvBookPassenger"))
-                    .put("bookingduration", bookingduration)
+                    .put("bookingduration", getIntent().getStringExtra("duration"))
                     .put("sortField", sortField)
                     .put("sortOrder", sortOrder)
                     .put("filterRequest", filterRequest)
@@ -218,7 +218,7 @@ public class SearchCars extends AppCompatActivity implements Response.Listener<J
                     .put("journeyDatetime", getIntent().getStringExtra("tvBookDateTime"))
                     .put("luggageId", getIntent().getStringExtra("tvBookLuggage"))
                     .put("passanger", getIntent().getStringExtra("tvBookPassenger"))
-                    .put("bookingduration", bookingduration)
+                    .put("bookingduration", getIntent().getStringExtra("duration"))
                     .put("luggageDescription", getIntent().getStringExtra("luggageDescription"))
                     .put("passengerDescription", getIntent().getStringExtra("passengerDescription"));
 
@@ -272,7 +272,7 @@ public class SearchCars extends AppCompatActivity implements Response.Listener<J
 
     @Override
     public void onErrorResponse(VolleyError volleyError) {
-        CommonUtil.alertBox(SearchCars.this, "", getResources().getString(R.string.nointernet_try_again_msg));
+        CommonUtil.errorToastShowing(this);
         CommonUtil.cancelProgressDialog();
 //        NetworkResponse response = error.networkResponse;
 //        if (error instanceof ServerError && response != null) {

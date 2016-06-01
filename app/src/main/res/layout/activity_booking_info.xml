@@ -40,7 +40,6 @@
                         android:layout_height="match_parent"
                         android:layout_marginStart="@dimen/tvBookingInfoMarginStartAll"
                         android:gravity="center"
-                        android:text="@string/_03_02_2016"
                         android:textSize="@dimen/etSignInUserPassSize" />
 
                 </LinearLayout>
@@ -62,7 +61,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/tvBookingInfoMarginStartAll"
-                        android:text="@string/_16_20am"
                         android:textSize="@dimen/etSignInUserPassSize" />
 
                 </LinearLayout>
@@ -103,7 +101,6 @@
                             android:id="@+id/tvBookInfoFrom"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/solihull_rd_shiral_sohill_west_midland_b90s_3lg_uk"
                             android:textSize="@dimen/etSignInUserPassSize" />
 
                         <LinearLayout
@@ -123,7 +120,6 @@
                                 android:id="@+id/tvBookInfoVia1"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="@string/hull_uk"
                                 android:textSize="@dimen/etSignInUserPassSize" />
 
                         </LinearLayout>
@@ -145,7 +141,6 @@
                                 android:id="@+id/tvBookInfoVia2"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="@string/hampshire_uk"
                                 android:textSize="@dimen/etSignInUserPassSize" />
 
                         </LinearLayout>
@@ -172,7 +167,6 @@
                         android:id="@+id/tvBookInfoTo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/battern_parks_rd_london_sw8_uk"
                         android:textSize="@dimen/etSignInUserPassSize" />
 
                 </LinearLayout>
@@ -218,7 +212,6 @@
                                 android:id="@+id/tvBookInfoVehicleType"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="@string/sedan"
                                 android:textSize="@dimen/etSignInUserPassSize" />
 
                             <TextView
@@ -254,7 +247,6 @@
                                 android:id="@+id/tvBookInfoPassengers"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="@string/_02"
                                 android:textSize="@dimen/etSignInUserPassSize" />
 
                             <TextView
@@ -302,7 +294,6 @@
                                 android:id="@+id/tvBookInfoProvider"
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
-                                android:text="@string/lyft_llc"
                                 android:textSize="@dimen/etSignInUserPassSize" />
 
                             <TextView
@@ -337,7 +328,6 @@
                                 android:id="@+id/tvBookInfoLugguages"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="@string/_02"
                                 android:textSize="@dimen/etSignInUserPassSize" />
 
                             <TextView
@@ -379,7 +369,6 @@
                         android:id="@+id/tvBookInfoETA"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/_01_46_hrs"
                         android:textSize="@dimen/etSignInUserPassSize" />
 
                     <LinearLayout
@@ -417,7 +406,6 @@
                         android:id="@+id/tvBookInfoDistance"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/_230_miles"
                         android:textSize="@dimen/etSignInUserPassSize" />
 
                     <TextView
@@ -445,7 +433,6 @@
                         android:id="@+id/tvBookInfoRideType"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/single"
                         android:textSize="@dimen/etSignInUserPassSize" />
 
                     <TextView
@@ -481,7 +468,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="@string/_350_00"
                 android:textColor="@color/black"
                 android:textSize="@dimen/tvFareMoneySizeAll" />
 
@@ -494,7 +480,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/Yellow"
-        android:text="@string/confirm"
+        android:text="@string/confirm_next"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="@dimen/btSizeAll" />

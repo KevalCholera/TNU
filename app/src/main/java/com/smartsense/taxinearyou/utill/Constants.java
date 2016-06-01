@@ -10,8 +10,9 @@ public class Constants {
 
     //    public static final String BASE_URL = "http://13.76.228.139:8080";
     public static final String BASE_URL = "http://fmcgfinal.cloudapp.net:8080";
+    public static final String BASE_URL_IMAGE_POSTFIX = "http://fmcgfinal.cloudapp.net:8080/tnu";
     public static final String BASE_URL_POSTFIX = "/tnu/m?__eventid=";
-    public static final String BASE_URL_PHOTO = BASE_URL + "/tnu";
+    public static final String BASE_URL_PHOTO = BASE_URL + "/tnu/m?";
     public static final String BASE_URL_PHOTO_THUMB = BASE_URL + "/images/products/";
     public static final String BASE_IMAGE_URL = "http://104.43.15.1:8025";
     public static final String PRO_TITLE = "Please Wait";
@@ -114,10 +115,13 @@ public class Constants {
         public static final int ADD_LOST_ITEM = 1115;
         public static final int CANCEL_RIDE = 4009;
         public static final int BookRide = 1102;
+        public static final int GET_SERVER_DATE_TIME = 1141;
+        public static final int GET_FEED_BACK = 5002;
         public static final int EVENT_FORGOT_PASS = 4013;
         public static final int EVENT_FORGOT_EMAIL = 1129;
         public static final int EVENT_FORGOT_EMAIL_WITHOUT = 1130;
         public static final int UPDATE_GENERAL_INFO = 1105;
+        public static final int UPDATE_PROFILE_PIC = 1126;
         public static final int SEND_UPDATE_EMAIL = 1118;
         public static final int GET_USER_DETAILS = 5005;
         public static final int UPDATE_PASSWORD = 1106;

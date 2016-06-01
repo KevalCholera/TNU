@@ -59,21 +59,8 @@
             android:name=".SearchCars"
             android:configChanges="orientation|screenSize"
             android:label="@string/searchcars"
-            android:launchMode="singleTop"
             android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="stateHidden">
-            <intent-filter>
-                <action android:name="android.intent.action.SEARCH" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-            </intent-filter>
-
-            <meta-data
-                android:name="android.app.searchable"
-                android:resource="@xml/searchable" />
-
-        </activity>
+            android:windowSoftInputMode="stateHidden"/>
         <activity
             android:name=".BookingInfo"
             android:configChanges="orientation|screenSize"
@@ -96,29 +83,24 @@
         <activity
             android:name=".PaymentDetails"
             android:label="Payment Details"
-
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".TripDetails"
             android:label="Trip Details"
-            android:parentActivityName=".Search"
             android:theme="@style/AppTheme" />
         <activity
             android:name=".Feedback"
             android:label="Feedback"
-
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".AddLostItem"
             android:label="Add Lost Item Info"
-
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".GeneralInformation"
             android:label="General Information"
-
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateHidden" />
         <activity
@@ -203,7 +185,6 @@
         <activity
             android:name=".More"
             android:label="More"
-
             android:theme="@style/AppTheme" />
 
         <meta-data
@@ -214,7 +195,6 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyDslds4uckd0q06CFMQGOKPFCWs8cZOKnI" />
 
-
         <receiver
             android:name="com.onesignal.NotificationOpenedReceiver"
             android:exported="false">
@@ -222,10 +202,6 @@
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
             </intent-filter>
         </receiver>
-
-
-        <!--<receiver android:exported="false" android:name="com.onesignal.NotificationOpenedReceiver" />-->
-        <!--<service android:name="com.onesignal.GcmIntentService" />-->
 
         <receiver
             android:name=".push.GcmBroadcastReceiver"
@@ -235,6 +211,7 @@
                 <category android:name="com.smartsense.taxinearyou" />
             </intent-filter>
         </receiver>
+
         <service android:name=".push.GcmIntentService" />
     </application>
 

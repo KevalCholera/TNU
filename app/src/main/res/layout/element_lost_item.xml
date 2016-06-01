@@ -21,7 +21,125 @@
             android:layout_height="match_parent"
             android:layout_marginRight="@dimen/lyElementMyTripCircularViewMarginLeftRight"
             android:background="@color/white"
-            android:orientation="vertical" />
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/vHeightWidthAll"
+                android:background="@color/background" />
+
+            <com.smartsense.taxinearyou.utill.CircleImageView1
+                android:layout_width="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_height="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_marginLeft="@dimen/tvPopupCancelRidePadding"
+                android:layout_marginRight="@dimen/tvPopupCancelRidePadding"
+                android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_weight="1"
+                android:src="@color/element"
+                app:civ_border_color="#d2d2d2"
+                app:civ_border_width="@dimen/civTripDetailsBorderWidth" />
+
+            <com.smartsense.taxinearyou.utill.CircleImageView1
+                android:layout_width="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_height="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_marginLeft="@dimen/tvPopupCancelRidePadding"
+                android:layout_marginRight="@dimen/tvPopupCancelRidePadding"
+                android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_weight="1"
+                android:src="@color/element"
+                app:civ_border_color="#d2d2d2"
+                app:civ_border_width="@dimen/civTripDetailsBorderWidth" />
+
+            <com.smartsense.taxinearyou.utill.CircleImageView1
+                android:layout_width="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_height="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_marginLeft="@dimen/tvPopupCancelRidePadding"
+                android:layout_marginRight="@dimen/tvPopupCancelRidePadding"
+                android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_weight="1"
+                android:src="@color/element"
+                app:civ_border_color="#d2d2d2"
+                app:civ_border_width="@dimen/civTripDetailsBorderWidth" />
+
+            <com.smartsense.taxinearyou.utill.CircleImageView1
+                android:layout_width="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_height="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_marginLeft="@dimen/tvPopupCancelRidePadding"
+                android:layout_marginRight="@dimen/tvPopupCancelRidePadding"
+                android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_weight="1"
+                android:src="@color/element"
+                app:civ_border_color="#d2d2d2"
+                app:civ_border_width="@dimen/civTripDetailsBorderWidth" />
+
+            <com.smartsense.taxinearyou.utill.CircleImageView1
+                android:layout_width="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_height="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_marginLeft="@dimen/tvPopupCancelRidePadding"
+                android:layout_marginRight="@dimen/tvPopupCancelRidePadding"
+                android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_weight="1"
+                android:src="@color/element"
+                app:civ_border_color="#d2d2d2"
+                app:civ_border_width="@dimen/civTripDetailsBorderWidth" />
+
+            <com.smartsense.taxinearyou.utill.CircleImageView1
+                android:layout_width="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_height="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_marginLeft="@dimen/tvPopupCancelRidePadding"
+                android:layout_marginRight="@dimen/tvPopupCancelRidePadding"
+                android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_weight="1"
+                android:src="@color/element"
+                app:civ_border_color="#d2d2d2"
+                app:civ_border_width="@dimen/civTripDetailsBorderWidth" />
+
+            <com.smartsense.taxinearyou.utill.CircleImageView1
+                android:layout_width="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_height="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_marginLeft="@dimen/tvPopupCancelRidePadding"
+                android:layout_marginRight="@dimen/tvPopupCancelRidePadding"
+                android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_weight="1"
+                android:src="@color/element"
+                app:civ_border_color="#d2d2d2"
+                app:civ_border_width="@dimen/civTripDetailsBorderWidth" />
+
+            <com.smartsense.taxinearyou.utill.CircleImageView1
+                android:layout_width="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_height="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_marginLeft="@dimen/tvPopupCancelRidePadding"
+                android:layout_marginRight="@dimen/tvPopupCancelRidePadding"
+                android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_weight="1"
+                android:src="@color/element"
+                app:civ_border_color="#d2d2d2"
+                app:civ_border_width="@dimen/civTripDetailsBorderWidth" />
+
+            <com.smartsense.taxinearyou.utill.CircleImageView1
+                android:layout_width="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_height="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_marginLeft="@dimen/tvPopupCancelRidePadding"
+                android:layout_marginRight="@dimen/tvPopupCancelRidePadding"
+                android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_weight="1"
+                android:src="@color/element"
+                app:civ_border_color="#d2d2d2"
+                app:civ_border_width="@dimen/civTripDetailsBorderWidth" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/vHeightWidthAll"
+                android:layout_marginTop="@dimen/vMarginTopBottomAll"
+                android:background="@color/background" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/vElementLostItemHeight"
+                android:background="@color/element" />
+
+        </LinearLayout>
+
 
         <LinearLayout
             android:id="@+id/lyElementLostItemStatus"
@@ -58,7 +176,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="From : "
+                            android:text="@string/from_"
                             android:textColor="@color/background"
                             android:textSize="@dimen/etSignUpSizeAll" />
 
@@ -66,7 +184,6 @@
                             android:id="@+id/tvLostItemFrom"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Solihull Rd, Shiral,Sohill, West Midland B90s 3LG, UK "
                             android:textSize="@dimen/etSignUpSizeAll" />
 
                     </LinearLayout>
@@ -82,7 +199,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="To : "
+                            android:text="@string/to_"
                             android:textColor="@color/background"
                             android:textSize="@dimen/etSignUpSizeAll" />
 
@@ -90,7 +207,6 @@
                             android:id="@+id/tvLostItemTo"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Battern Parks Rd, London SW8, UK "
                             android:textSize="@dimen/etSignUpSizeAll" />
 
                     </LinearLayout>
@@ -123,14 +239,13 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="Lyft LLC"
                         android:textSize="@dimen/etSignUpSizeAll" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:gravity="center|bottom"
-                        android:text="Taxi Provider"
+                        android:text="@string/taxi_provider"
                         android:textColor="@color/background"
                         android:textSize="@dimen/etSignUpSizeAll" />
 
@@ -153,14 +268,13 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="10.02.2016 10:30am"
                         android:textSize="@dimen/etSignUpSizeAll" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:gravity="center|bottom"
-                        android:text="Date &amp; Time"
+                        android:text="@string/datetime"
                         android:textColor="@color/background"
                         android:textSize="@dimen/etSignUpSizeAll" />
 
@@ -183,14 +297,13 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="Open"
                         android:textSize="@dimen/etSignUpSizeAll" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:gravity="center|bottom"
-                        android:text="Status"
+                        android:text="@string/status"
                         android:textColor="@color/background"
                         android:textSize="@dimen/etSignUpSizeAll" />
 
@@ -214,7 +327,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Lost Item : "
+                    android:text="@string/lost_item"
                     android:textColor="@color/background"
                     android:textSize="@dimen/etSignUpSizeAll" />
 
@@ -224,7 +337,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/tvElementLostItemMarginStart"
                     android:gravity="center"
-                    android:text="White color Handbag and Black color wallet "
                     android:textSize="@dimen/etSignUpSizeAll" />
 
             </LinearLayout>
@@ -236,7 +348,6 @@
                 android:layout_marginTop="@dimen/vMarginTopBottomAll"
                 android:background="@android:color/darker_gray" />
 
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -246,7 +357,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="TNR : "
+                    android:text="@string/tnr"
                     android:textColor="@color/background"
                     android:textSize="@dimen/etSignUpSizeAll" />
 
@@ -255,7 +366,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/tvElementLostItemMarginStart"
-                    android:text=""
                     android:textSize="@dimen/etSignUpSizeAll" />
 
             </LinearLayout>
@@ -278,7 +388,124 @@
             android:layout_height="match_parent"
             android:layout_marginLeft="@dimen/lyElementMyTripCircularViewMarginLeftRight"
             android:background="@color/white"
-            android:orientation="vertical" />
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/vHeightWidthAll"
+                android:background="@color/background" />
+
+            <com.smartsense.taxinearyou.utill.CircleImageView1
+                android:layout_width="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_height="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_marginLeft="@dimen/tvPopupCancelRidePadding"
+                android:layout_marginRight="@dimen/tvPopupCancelRidePadding"
+                android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_weight="1"
+                android:src="@color/element"
+                app:civ_border_color="#d2d2d2"
+                app:civ_border_width="@dimen/civTripDetailsBorderWidth" />
+
+            <com.smartsense.taxinearyou.utill.CircleImageView1
+                android:layout_width="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_height="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_marginLeft="@dimen/tvPopupCancelRidePadding"
+                android:layout_marginRight="@dimen/tvPopupCancelRidePadding"
+                android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_weight="1"
+                android:src="@color/element"
+                app:civ_border_color="#d2d2d2"
+                app:civ_border_width="@dimen/civTripDetailsBorderWidth" />
+
+            <com.smartsense.taxinearyou.utill.CircleImageView1
+                android:layout_width="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_height="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_marginLeft="@dimen/tvPopupCancelRidePadding"
+                android:layout_marginRight="@dimen/tvPopupCancelRidePadding"
+                android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_weight="1"
+                android:src="@color/element"
+                app:civ_border_color="#d2d2d2"
+                app:civ_border_width="@dimen/civTripDetailsBorderWidth" />
+
+            <com.smartsense.taxinearyou.utill.CircleImageView1
+                android:layout_width="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_height="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_marginLeft="@dimen/tvPopupCancelRidePadding"
+                android:layout_marginRight="@dimen/tvPopupCancelRidePadding"
+                android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_weight="1"
+                android:src="@color/element"
+                app:civ_border_color="#d2d2d2"
+                app:civ_border_width="@dimen/civTripDetailsBorderWidth" />
+
+            <com.smartsense.taxinearyou.utill.CircleImageView1
+                android:layout_width="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_height="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_marginLeft="@dimen/tvPopupCancelRidePadding"
+                android:layout_marginRight="@dimen/tvPopupCancelRidePadding"
+                android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_weight="1"
+                android:src="@color/element"
+                app:civ_border_color="#d2d2d2"
+                app:civ_border_width="@dimen/civTripDetailsBorderWidth" />
+
+            <com.smartsense.taxinearyou.utill.CircleImageView1
+                android:layout_width="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_height="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_marginLeft="@dimen/tvPopupCancelRidePadding"
+                android:layout_marginRight="@dimen/tvPopupCancelRidePadding"
+                android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_weight="1"
+                android:src="@color/element"
+                app:civ_border_color="#d2d2d2"
+                app:civ_border_width="@dimen/civTripDetailsBorderWidth" />
+
+            <com.smartsense.taxinearyou.utill.CircleImageView1
+                android:layout_width="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_height="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_marginLeft="@dimen/tvPopupCancelRidePadding"
+                android:layout_marginRight="@dimen/tvPopupCancelRidePadding"
+                android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_weight="1"
+                android:src="@color/element"
+                app:civ_border_color="#d2d2d2"
+                app:civ_border_width="@dimen/civTripDetailsBorderWidth" />
+
+            <com.smartsense.taxinearyou.utill.CircleImageView1
+                android:layout_width="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_height="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_marginLeft="@dimen/tvPopupCancelRidePadding"
+                android:layout_marginRight="@dimen/tvPopupCancelRidePadding"
+                android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_weight="1"
+                android:src="@color/element"
+                app:civ_border_color="#d2d2d2"
+                app:civ_border_width="@dimen/civTripDetailsBorderWidth" />
+
+            <com.smartsense.taxinearyou.utill.CircleImageView1
+                android:layout_width="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_height="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_marginLeft="@dimen/tvPopupCancelRidePadding"
+                android:layout_marginRight="@dimen/tvPopupCancelRidePadding"
+                android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_weight="1"
+                android:src="@color/element"
+                app:civ_border_color="#d2d2d2"
+                app:civ_border_width="@dimen/civTripDetailsBorderWidth" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/vHeightWidthAll"
+                android:layout_marginTop="@dimen/vMarginTopBottomAll"
+                android:background="@color/background" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/vElementLostItemHeight"
+                android:background="@color/element" />
+
+        </LinearLayout>
 
     </LinearLayout>
 </LinearLayout>

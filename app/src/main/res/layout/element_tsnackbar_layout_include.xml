@@ -9,7 +9,8 @@
         android:layout_weight="1"
         android:ellipsize="end"
         android:gravity="center"
-        android:textAppearance="@style/TextAppearance.Design.Snackbar.Message"
+        android:maxLines="2"
+        android:textColor="@color/black"
         android:textSize="@dimen/snackbarSize"
         android:textStyle="italic" />
 

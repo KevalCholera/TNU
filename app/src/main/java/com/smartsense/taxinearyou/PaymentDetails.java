@@ -28,7 +28,6 @@ import java.net.URLEncoder;
 public class PaymentDetails extends AppCompatActivity implements View.OnClickListener, Response.Listener<JSONObject>, Response.ErrorListener {
 
     TextView tvPaymentTNUCredit, tvPaymentCard, tvPaymentCash, tvPaymentAmount;
-    AlertDialog alert;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,7 +121,7 @@ public class PaymentDetails extends AppCompatActivity implements View.OnClickLis
     public void onResponse(JSONObject jsonObject) {
         CommonUtil.cancelProgressDialog();
         if (jsonObject != null && jsonObject.optInt("status") == Constants.STATUS_SUCCESS)
-            CommonUtil.openDialogs(PaymentDetails.this, "Payment Details", R.id.lyPopupBookSuccess, R.id.btPopupBookSuccessOk);
+            CommonUtil.openDialogs(PaymentDetails.this, "Payment Details", R.id.lyPopupBookSuccess, R.id.btPopupBookSuccessOk, jsonObject.optString("msg"));
         else CommonUtil.successToastShowing(this, jsonObject);
     }
 }

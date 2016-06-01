@@ -43,6 +43,7 @@ import java.net.URLEncoder;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.logging.SimpleFormatter;
 
 public class EventBooking extends AppCompatActivity implements Response.Listener<JSONObject>, Response.ErrorListener, View.OnClickListener {
@@ -58,6 +59,10 @@ public class EventBooking extends AppCompatActivity implements Response.Listener
     String passenger = "passenger";
     String vehicleType = "vehicleType";
     String duration = "duration";
+    boolean check;
+    SimpleDateFormat timeStampFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm aa");
+    SimpleDateFormat timeSetFormat = new SimpleDateFormat("dd-MM-yyyy");
+    String jsonDate, jsonTimeHour, jsonTimeMin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,29 +102,9 @@ public class EventBooking extends AppCompatActivity implements Response.Listener
         rbEventBookingReturn.setOnClickListener(this);
         rbEventBookingOneWay.setOnClickListener(this);
         etEventBookingEventDuration.setOnClickListener(null);
+        check = true;
         setValue();
-    }
-
-    final Calendar mCalendar = Calendar.getInstance();
-    Boolean once = true;
-
-    public void datePicker() {
-        DatePickerDialog DatePicker = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(android.widget.DatePicker DatePicker, int year, int month, int dayOfMonth) {
-                mCalendar.set(Calendar.YEAR, year);
-                mCalendar.set(Calendar.MONTH, month);
-                mCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-                if (once) {
-                    Time(new SimpleDateFormat("dd-MMM-yyyy").format(mCalendar.getTime()));
-                    once = false;
-                }
-            }
-        }, mCalendar.get(Calendar.YEAR), mCalendar.get(Calendar.MONTH), mCalendar.get(Calendar.DAY_OF_MONTH));
-
-        DatePicker.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
-
-        DatePicker.show();
+        getServerDateTime();
     }
 
     public void setValue() {
@@ -141,12 +126,53 @@ public class EventBooking extends AppCompatActivity implements Response.Listener
             etEventBookingVehicleType.setText(jsonVehicleType.optJSONObject(0).optString("name"));
             etEventBookingVehicleType.setTag(jsonLuggage.optJSONObject(0).optString("id"));
 
-            etEventBookingDateTime.setText(new SimpleDateFormat("dd-MM-yyyy -- hh:mm aa").format(System.currentTimeMillis()));
-            etEventBookingDateTime.setTag(new SimpleDateFormat("dd-MM-yyyy hh:mm aa").format(System.currentTimeMillis()));
-
         } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
+
+    private void getServerDateTime() {
+        final String tag = "Get Server Date Time";
+        StringBuilder builder = new StringBuilder();
+        JSONObject jsonData = new JSONObject();
+
+        try {
+            builder.append(Constants.BASE_URL + Constants.BASE_URL_POSTFIX + Constants.Events.GET_SERVER_DATE_TIME + "&json=")
+                    .append(jsonData.put("token", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_ACCESS_TOKEN, ""))
+                            .put("userId", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_ID, "")));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        DataRequest dataRequest = new DataRequest(Request.Method.GET, builder.toString(), null, this, this);
+        TaxiNearYouApp.getInstance().addToRequestQueue(dataRequest, tag);
+    }
+
+    Calendar mCalendar = Calendar.getInstance();
+    Boolean once = false;
+
+    public void datePicker(String dateTime) {
+        DatePickerDialog DatePicker = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(android.widget.DatePicker DatePicker, int year, int month, int dayOfMonth) {
+                mCalendar.set(Calendar.YEAR, year);
+                mCalendar.set(Calendar.MONTH, month);
+                mCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                if (once) {
+                    Time(timeSetFormat.format(mCalendar.getTime()));
+                    once = false;
+                }
+            }
+        }, mCalendar.get(Calendar.YEAR), mCalendar.get(Calendar.MONTH), mCalendar.get(Calendar.DAY_OF_MONTH));
+
+        try {
+            long newDate = timeSetFormat.parse(dateTime.substring(0, dateTime.indexOf(' '))).getTime();
+            DatePicker.getDatePicker().setMinDate(newDate);
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        DatePicker.show();
     }
 
     public void Time(final String date) {
@@ -159,9 +185,10 @@ public class EventBooking extends AppCompatActivity implements Response.Listener
             public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
                 updateTime(selectedHour, selectedMinute, date);
             }
-        }, hour, minute, true);
+        }, hour, minute, false);
 
         mTimePicker.setTitle("Select Time");
+        mTimePicker.updateTime(Integer.valueOf(jsonTimeHour), Integer.valueOf(jsonTimeMin));
 
         mTimePicker.show();
     }
@@ -194,22 +221,53 @@ public class EventBooking extends AppCompatActivity implements Response.Listener
         else
             hour = String.valueOf(new_hour);
 
-        String timepickerTime = hour + ':' + minutes + " " + timeSet;
+        String hrs = null, minute = null, timeSlice = null;
+        String daTime = etEventBookingDateTime.getText().toString();
 
         try {
-            if (date.equalsIgnoreCase(new SimpleDateFormat("dd-MMM-yyyy").format(Long.parseLong(System.currentTimeMillis() + "")) + "")) {
-                if (Integer.valueOf(new SimpleDateFormat("HHmm").format(Long.parseLong(System.currentTimeMillis() + ""))) > Integer.valueOf(new SimpleDateFormat("HHmm").format(new SimpleDateFormat("HHm").parse((hours + "") + (mins + "")))))
-                    Toast.makeText(this, "Select Time Should be Greater than current Time", Toast.LENGTH_SHORT).show();
-                else if (new SimpleDateFormat("HHmm").format(Long.parseLong(System.currentTimeMillis() + "")).equalsIgnoreCase(new SimpleDateFormat("HHmm").format(new SimpleDateFormat("HHm").parse((hours + "") + (mins + "")))))
-                    Toast.makeText(this, "Select Time Should be Greater than current Time", Toast.LENGTH_SHORT).show();
-                else {
-                    etEventBookingDateTime.setTag(date + " " + timepickerTime);
-                    etEventBookingDateTime.setText(date + " -- " + timepickerTime);
-                }
+            long longDate = timeSetFormat.parse(date).getTime();
+            long longJsonDate = timeSetFormat.parse(jsonDate).getTime();
+
+            if (longDate > longJsonDate) {
+                hrs = hour;
+                minute = minutes;
+                timeSlice = timeSet;
             } else {
-                etEventBookingDateTime.setTag(date + " " + timepickerTime);
-                etEventBookingDateTime.setText(date + " -- " + timepickerTime);
+                try {
+                    hrs = new SimpleDateFormat("hh").format(timeStampFormat.parse(daTime));
+                    minute = new SimpleDateFormat("mm").format(timeStampFormat.parse(daTime));
+                    timeSlice = new SimpleDateFormat("aa").format(timeStampFormat.parse(daTime));
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
             }
+
+            if (longDate == longJsonDate) {
+                Date dateSet, dateGet;
+                try {
+                    dateSet = timeStampFormat.parse(daTime);
+                    dateGet = timeStampFormat.parse((daTime.substring(0, daTime.indexOf(' '))) + " " + hour + ':' + minutes + " " + timeSet);
+                    long millisecondSet = dateSet.getTime();
+                    long millisecondGet = dateGet.getTime();
+                    if (millisecondGet < millisecondSet) {
+                        Toast.makeText(this, "Invalid Time", Toast.LENGTH_SHORT).show();
+                    } else {
+                        hrs = hour;
+                        minute = minutes;
+                        timeSlice = timeSet;
+                    }
+
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+            }
+            String timePickerTime = hrs + ':' + minute + " " + timeSlice;
+
+            jsonTimeHour = new SimpleDateFormat("HH").format(new SimpleDateFormat("hh:mm aa").parse(timePickerTime));
+            jsonTimeMin = new SimpleDateFormat("mm").format(new SimpleDateFormat("hh:mm aa").parse(timePickerTime));
+
+            etEventBookingDateTime.setText(date + " " + timePickerTime);
+            etEventBookingDateTime.setTag(date + " " + timePickerTime);
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -242,7 +300,7 @@ public class EventBooking extends AppCompatActivity implements Response.Listener
                 break;
             case R.id.etEventBookingDateTime:
                 once = true;
-                datePicker();
+                getServerDateTime();
                 break;
             case R.id.rbEventBookingOneWay:
                 etEventBookingEventDuration.setOnClickListener(null);
@@ -295,8 +353,8 @@ public class EventBooking extends AppCompatActivity implements Response.Listener
             }
             JSONArray jsonArray = new JSONArray(str);
             ListView list_view = (ListView) dialog.findViewById(R.id.list_view);
-            AdapterClass adapterClass = new AdapterClass(this, jsonArray, check);
-            list_view.setAdapter(adapterClass);
+            AdapterSelectOption adapterSelectOption = new AdapterSelectOption(this, jsonArray, check);
+            list_view.setAdapter(adapterSelectOption);
             alertDialogs.setView(dialog);
             alertDialogs.setCancelable(true);
             alert = alertDialogs.create();
@@ -326,29 +384,13 @@ public class EventBooking extends AppCompatActivity implements Response.Listener
         }
     }
 
-    @Override
-    public void onErrorResponse(VolleyError volleyError) {
-        CommonUtil.cancelProgressDialog();
-        CommonUtil.errorToastShowing(this);
-    }
-
-    @Override
-    public void onResponse(JSONObject jsonObject) {
-        CommonUtil.cancelProgressDialog();
-        if (jsonObject != null) {
-            CommonUtil.successToastShowing(this, jsonObject);
-            if (jsonObject.optInt("status") == Constants.STATUS_SUCCESS)
-                finish();
-        }
-    }
-
-    public class AdapterClass extends BaseAdapter {
+    public class AdapterSelectOption extends BaseAdapter {
         private final String check;
         private JSONArray data;
         private LayoutInflater inflater = null;
         Activity a;
 
-        public AdapterClass(Activity a, JSONArray data, String check) {
+        public AdapterSelectOption(Activity a, JSONArray data, String check) {
             this.data = data;
             this.a = a;
             this.check = check;
@@ -457,4 +499,41 @@ public class EventBooking extends AppCompatActivity implements Response.Listener
         DataRequest dataRequest = new DataRequest(Request.Method.GET, url, null, this, this);
         TaxiNearYouApp.getInstance().addToRequestQueue(dataRequest, tag);
     }
+
+    @Override
+    public void onErrorResponse(VolleyError volleyError) {
+        CommonUtil.cancelProgressDialog();
+        CommonUtil.errorToastShowing(this);
+    }
+
+    @Override
+    public void onResponse(JSONObject jsonObject) {
+        CommonUtil.cancelProgressDialog();
+        if (jsonObject != null) {
+            if (jsonObject.optString("__eventid").equalsIgnoreCase((Constants.Events.EVENT_BOOKING) + "")) {
+                CommonUtil.successToastShowing(this, jsonObject);
+                if (jsonObject.optInt("status") == Constants.STATUS_SUCCESS)
+                    finish();
+            } else if (jsonObject.optString("__eventid").equalsIgnoreCase((Constants.Events.GET_SERVER_DATE_TIME) + "")) {
+
+                try {
+                    String dateTime = timeStampFormat.format(new SimpleDateFormat("dd MM yyyy HH mm ss").parse(jsonObject.optJSONObject("json").optString("serverTime")));
+                    jsonDate = timeSetFormat.format(timeStampFormat.parse(dateTime));
+                    if (check) {
+                        jsonTimeHour = new SimpleDateFormat("HH").format(timeStampFormat.parse(dateTime));
+                        jsonTimeMin = new SimpleDateFormat("mm").format(timeStampFormat.parse(dateTime));
+                        etEventBookingDateTime.setText(dateTime);
+                        etEventBookingDateTime.setTag(dateTime);
+                        check = false;
+                    }
+                    if (once)
+                        datePicker(dateTime);
+
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
 }

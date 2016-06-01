@@ -53,8 +53,8 @@ public class BookingInfo extends AppCompatActivity {
         try {
             JSONObject mainData = new JSONObject(SharedPreferenceUtil.getString(Constants.PrefKeys.MAIN_DATA, ""));
             try {
-                tvBookInfoDate.setText(new SimpleDateFormat("dd-MMM-yyyy").format(new SimpleDateFormat("dd-MMM-yyyy hh:mm aa").parse(mainData.optString("journeyDatetime"))));
-                tvBookInfoTime.setText(new SimpleDateFormat("hh:mm aa").format(new SimpleDateFormat("dd-MMM-yyyy hh:mm aa").parse(mainData.optString("journeyDatetime"))));
+                tvBookInfoDate.setText(new SimpleDateFormat("dd-MM-yyyy").format(new SimpleDateFormat("dd-MM-yyyy hh:mm aa").parse(mainData.optString("journeyDatetime"))));
+                tvBookInfoTime.setText(new SimpleDateFormat("hh:mm aa").format(new SimpleDateFormat("dd-MM-yyyy hh:mm aa").parse(mainData.optString("journeyDatetime"))));
                 tvBookInfoFrom.setText(mainData.optString("fromAreaAddress"));
                 tvBookInfoFrom.setTag(mainData.optString("fromAreaPlaceid"));
                 tvBookInfoTo.setText(mainData.optString("toAreaAddress"));
@@ -68,7 +68,6 @@ public class BookingInfo extends AppCompatActivity {
                         tvBookInfoVia2.setTag(mainData.optJSONArray("viaArea").optJSONObject(1).optString("viaAreaPlaceid"));
                     }
                 }
-
                 tvBookInfoVehicleType.setTag(mainData.optJSONObject("filterRequest").optString("vehicleType"));
                 tvBookInfoVehicleType.setText(mainData.optJSONObject("json").optJSONArray("partnerArray").optJSONObject(0).optJSONObject("taxiType").optString("taxiTypeName"));
                 tvBookInfoProvider.setText(mainData.optJSONObject("json").optJSONArray("partnerArray").optJSONObject(0).optString("partnerName"));

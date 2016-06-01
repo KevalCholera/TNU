@@ -1,6 +1,8 @@
 package com.smartsense.taxinearyou;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -11,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.smartsense.taxinearyou.Fragments.FragmentBook;
 import com.smartsense.taxinearyou.Fragments.FragmentCredit;
@@ -24,6 +27,8 @@ public class Search extends AppCompatActivity {
 
     private TabLayout tbSearchTab;
     CoordinatorLayout clSearch;
+    private final List<Fragment> mFragmentList = new ArrayList<>();
+    private final List<String> mFragmentTitleList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,11 +42,32 @@ public class Search extends AppCompatActivity {
         setupViewPager(viewPager);
 
         clSearch = (CoordinatorLayout) findViewById(R.id.clSearch);
-
         tbSearchTab = (TabLayout) findViewById(R.id.tbSearchTab);
         tbSearchTab.setupWithViewPager(viewPager);
         setupTabIcons();
 
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+
+            @Override
+            public void onPageSelected(int position) {
+                // TODO Auto-generated method stub
+
+
+                getSupportActionBar().setTitle(mFragmentTitleList.get(position));
+            }
+
+            @Override
+            public void onPageScrolled(int arg0, float arg1, int arg2) {
+                // TODO Auto-generated method stub
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int pos) {
+                // TODO Auto-generated method stub
+
+            }
+        });
     }
 
     private void setupViewPager(ViewPager viewPager) {
@@ -50,7 +76,6 @@ public class Search extends AppCompatActivity {
         adapter.addFragment(new FragmentMyTrips(), getResources().getString(R.string.my_trip));
         adapter.addFragment(new FragmentCredit(), getResources().getString(R.string.credit));
         adapter.addFragment(new FragmentMenu(), getResources().getString(R.string.menu));
-
         viewPager.setAdapter(adapter);
     }
 
@@ -78,8 +103,6 @@ public class Search extends AppCompatActivity {
     }
 
     class ViewPagerAdapter extends FragmentPagerAdapter {
-        private final List<Fragment> mFragmentList = new ArrayList<>();
-        private final List<String> mFragmentTitleList = new ArrayList<>();
 
         public ViewPagerAdapter(FragmentManager manager) {
             super(manager);
@@ -104,5 +127,13 @@ public class Search extends AppCompatActivity {
         public CharSequence getPageTitle(int position) {
             return mFragmentTitleList.get(position);
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.addCategory(Intent.CATEGORY_HOME);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
     }
 }

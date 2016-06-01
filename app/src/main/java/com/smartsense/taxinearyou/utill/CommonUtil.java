@@ -19,6 +19,7 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.StrictMode;
 import android.provider.MediaStore;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -84,7 +85,7 @@ public class CommonUtil {
 //        alert.setMessage(msg);
 //        alert.setPositiveButton("OK", null);
 //        alert.show();
-        Toast.makeText(context, msg, Toast.LENGTH_LONG).show();
+        Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
     }
 
     static public ActionBar getActionBar(Activity a) {
@@ -221,7 +222,7 @@ public class CommonUtil {
 //        return sqLiteDatabase.insert(table, nullColumnHack, values);
 //    }
 
-    public String BitMapToString(Bitmap bitmap) {
+    public static String BitMapToString(Bitmap bitmap) {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
         byte[] b = baos.toByteArray();
@@ -404,13 +405,13 @@ public class CommonUtil {
         TSnackbar snackbar = TSnackbar.make(view, msg, TSnackbar.LENGTH_SHORT);
         snackbar.setActionTextColor(Color.WHITE);
         View snackbarView = snackbar.getView();
-        snackbarView.setBackgroundColor(activity.getResources().getColor(R.color.white));
+        snackbarView.setBackgroundColor(ContextCompat.getColor(activity, R.color.white));
         TextView textView = (TextView) snackbarView.findViewById(R.id.snackbar_text);
         textView.setTextColor(Color.RED);
         snackbar.show();
     }
 
-    public static void openDialogs(final Activity activity, final String buton_click, int layout, int button) {
+    public static void openDialogs(final Activity activity, final String buton_click, int layout, int button, String successText) {
 
         try {
             final AlertDialog.Builder alertDialogs = new AlertDialog.Builder(activity);
@@ -419,6 +420,9 @@ public class CommonUtil {
             final View dialog = inflater.inflate(R.layout.dialog_all, null);
             LinearLayout linearLayout = (LinearLayout) dialog.findViewById(layout);
             Button button1 = (Button) dialog.findViewById(button);
+
+            TextView tvDialogAllSuccess = (TextView) dialog.findViewById(R.id.tvDialogAllSuccess);
+            tvDialogAllSuccess.setText(successText);
 
             linearLayout.setVisibility(View.VISIBLE);
 
@@ -431,10 +435,11 @@ public class CommonUtil {
                         activity.startActivity(new Intent(activity, SignIn.class));
                     else
                         alert.dismiss();
+                    activity.finish();
                 }
             });
             alertDialogs.setView(dialog);
-            alertDialogs.setCancelable(true);
+            alertDialogs.setCancelable(false);
             alert = alertDialogs.create();
             alert.show();
 

@@ -95,8 +95,6 @@ public class SignIn extends AppCompatActivity implements Response.Listener<JSONO
                 else if (etSignInPassword.length() < 7 || etSignInPassword.length() > 15)
                     CommonUtil.showSnackBar(SignIn.this, getString(R.string.enter_valid_pass), rlSignInMain);
                 else {
-//                    startActivity(new Intent(SignIn.this, Search.class));
-//                    null_all();
                     doLogin();
                 }
                 break;
@@ -140,7 +138,7 @@ public class SignIn extends AppCompatActivity implements Response.Listener<JSONO
 
     @Override
     public void onErrorResponse(VolleyError volleyError) {
-        CommonUtil.alertBox(this, "", getResources().getString(R.string.nointernet_try_again_msg));
+        CommonUtil.errorToastShowing(this);
         CommonUtil.cancelProgressDialog();
     }
 
@@ -157,7 +155,7 @@ public class SignIn extends AppCompatActivity implements Response.Listener<JSONO
                             "sub-c-8e406cea-57aa-11e5-b316-0619f8945a4f"  // SUBSCRIBE_KEY (Required)
                     );
                     try {
-                        pubnub.subscribe("PUBNUB_mukundsonaiya@gmail.com", new Callback() {
+                        pubnub.subscribe(response.optJSONObject("json").optJSONObject("user").optString("pubnubChannel"), new Callback() {
                                     @Override
                                     public void connectCallback(String channel, Object message) {
                                         pubnub.publish("my_channel", "Hello from the PubNub Java SDK", new Callback() {
@@ -203,7 +201,7 @@ public class SignIn extends AppCompatActivity implements Response.Listener<JSONO
                         }
                     };
                     pubnub.time(callback);
-                    pubnub.publish("PUBNUB_mukundsonaiya@gmail.com", "Hello from the PubNub Java SDK!", callback);
+                    pubnub.publish(response.optJSONObject("json").optJSONObject("user").optString("pubnubChannel"), "Hello from the PubNub Java SDK!", callback);
                     SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_ACCESS_TOKEN, response.optJSONObject("json").optString("token"));
                     SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_USER_ID, response.optJSONObject("json").optJSONObject("user").optString("userId"));
                     SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_USER_FULLNAME, response.optJSONObject("json").optJSONObject("user").optString("firstName") + " " + response.optJSONObject("json").getJSONObject("user").getString("lastName"));
@@ -212,7 +210,7 @@ public class SignIn extends AppCompatActivity implements Response.Listener<JSONO
                     SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_USER_EMAIL, response.optJSONObject("json").optJSONObject("user").optString("primaryEmailId"));
                     SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_USER_ALTERNATE_EMAIL, response.optJSONObject("json").optJSONObject("user").optString("alternateEmailId"));
                     SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_USER_MNO, response.optJSONObject("json").optJSONObject("user").optString("mobileNo"));
-                    SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_USER_PROIMG, response.optJSONObject("json").optJSONObject("user").optString("profilePic"));
+                    SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_USER_PROIMG, Constants.BASE_URL_IMAGE_POSTFIX + response.optJSONObject("json").optJSONObject("user").optString("profilePic"));
                     SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_USER_STATUS, response.optJSONObject("json").optJSONObject("user").optString("isActivated"));
 
                     SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_QUESTION1, response.optJSONObject("json").optJSONObject("user").optString("secQ1"));
@@ -239,6 +237,13 @@ public class SignIn extends AppCompatActivity implements Response.Listener<JSONO
                 e.printStackTrace();
             }
         }
+    }
 
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.addCategory(Intent.CATEGORY_HOME);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
     }
 }

@@ -9,9 +9,13 @@ import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.ListAdapter;
+import android.widget.Spinner;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -24,10 +28,15 @@ import com.smartsense.taxinearyou.utill.DataRequest;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class PersonalInfo extends AppCompatActivity {
 
-    EditText etPersonalInfoName, etPersonalInfolastName, etPersonalInfoNo, etPersonalInfoEmail, etPersonalInfoAddInfo, etInfoSocial;
+    EditText etPersonalInfoName, etPersonalInfolastName, etPersonalInfoNo, etPersonalInfoEmail, etPersonalInfoAddInfo;
+    LinearLayout etInfoSocial;
     CoordinatorLayout clPersonalInfo;
+    Spinner spPersonalInfoAd;
     Button btInfoConfirmNext;
 
     @Override
@@ -45,13 +54,21 @@ public class PersonalInfo extends AppCompatActivity {
         etPersonalInfoNo = (EditText) findViewById(R.id.etPersonalInfoNo);
         etPersonalInfoEmail = (EditText) findViewById(R.id.etPersonalInfoEmail);
         etPersonalInfoAddInfo = (EditText) findViewById(R.id.etPersonalInfoAddInfo);
-        etInfoSocial = (EditText) findViewById(R.id.etInfoSocial);
+        etInfoSocial = (LinearLayout) findViewById(R.id.etInfoSocial);
         clPersonalInfo = (CoordinatorLayout) findViewById(R.id.clPersonalInfo);
+        spPersonalInfoAd = (Spinner) findViewById(R.id.spPersonalInfoAd);
 
         etPersonalInfoName.setText(SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_FIRST, ""));
         etPersonalInfolastName.setText(SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_LAST, ""));
         etPersonalInfoNo.setText(SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_MNO, ""));
         etPersonalInfoEmail.setText(SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_EMAIL, ""));
+
+        List<String> categories = new ArrayList<>();
+        categories.add(getResources().getString(R.string.google));
+        categories.add(getResources().getString(R.string.ad));
+
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, categories);
+        spPersonalInfoAd.setAdapter(dataAdapter);
 
         btInfoConfirmNext.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,11 +87,9 @@ public class PersonalInfo extends AppCompatActivity {
                 else if (!CommonUtil.isValidEmail(etPersonalInfoEmail.getText().toString()))
                     CommonUtil.showSnackBar(PersonalInfo.this, getString(R.string.enter_valid_email_id), clPersonalInfo);
                 else {
-
                     try {
                         JSONObject jsonData = new JSONObject();
-
-                        jsonData.put("hearAboutUs", "1")
+                        jsonData.put("hearAboutUs", spPersonalInfoAd.getSelectedItemPosition() + "")
                                 .put("firstName", etPersonalInfoName.getText().toString())
                                 .put("mobileNo", etPersonalInfoNo.getText().toString())
                                 .put("freeSms", 0)

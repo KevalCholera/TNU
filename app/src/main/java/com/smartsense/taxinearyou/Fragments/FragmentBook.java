@@ -23,14 +23,17 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.mpt.storage.SharedPreferenceUtil;
 import com.smartsense.taxinearyou.GooglePlaces;
 import com.smartsense.taxinearyou.R;
 import com.smartsense.taxinearyou.SearchCars;
+import com.smartsense.taxinearyou.TaxiNearYouApp;
 import com.smartsense.taxinearyou.utill.CommonUtil;
 import com.smartsense.taxinearyou.utill.Constants;
+import com.smartsense.taxinearyou.utill.DataRequest;
 import com.smartsense.taxinearyou.utill.JsonErrorShow;
 
 import org.json.JSONArray;
@@ -44,7 +47,6 @@ import java.util.Date;
 
 public class FragmentBook extends Fragment implements Response.Listener<JSONObject>, Response.ErrorListener, View.OnClickListener {
 
-
     TextView tvBookDateTime, tvBookLuggage, tvBookPassenger, tvBookFrom, tvBookTo, tvBookvia1, tvBookvia2, tvBookSearchCars;
     RadioButton rbBookNow, rbBookToday, rbBookTomorrow;
     ImageView imgBookFromToReverse, ivBookVia, ivBookDeleteVia1, ivBookDeleteVia2;
@@ -53,6 +55,9 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
     CoordinatorLayout clSearch;
     TimePickerDialog mTimePicker;
     private AlertDialog alert;
+    Boolean check = false;
+    Boolean timeChange;
+    SimpleDateFormat timeStampFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm aa");
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -96,14 +101,15 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
         llBookVia2.setOnClickListener(this);
         ivBookDeleteVia1.setOnClickListener(this);
         ivBookDeleteVia2.setOnClickListener(this);
-
+        timeChange = true;
         setDefaultValues();
-        setDateTime(false);
+        getServerDateTime();
 
         return rootView;
     }
 
     private String updateTime(int hours, int mins) {
+
         String timeSet = "";
         if (hours > 12) {
             hours -= 12;
@@ -128,41 +134,77 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
         else
             hour = String.valueOf(hours);
 
-        // Append in a StringBuilder
-        return new StringBuilder().append(hour).append(':')
-                .append(minutes).append(" ").append(timeSet).toString();
+        String hrs = null, minute = null, timeSlice = null;
+        String daTime = tvBookDateTime.getText().toString();
+
+        if (rbBookTomorrow.isChecked()) {
+            hrs = hour;
+            minute = minutes;
+            timeSlice = timeSet;
+        } else {
+            try {
+                hrs = new SimpleDateFormat("hh").format(timeStampFormat.parse(daTime));
+                minute = new SimpleDateFormat("mm").format(timeStampFormat.parse(daTime));
+                timeSlice = new SimpleDateFormat("aa").format(timeStampFormat.parse(daTime));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
+
+        if (rbBookToday.isChecked()) {
+            Date dateSet, dateGet;
+            try {
+                dateSet = timeStampFormat.parse(daTime);
+                dateGet = timeStampFormat.parse((daTime.substring(0, daTime.indexOf(' '))) + " " + hour + ':' + minutes + " " + timeSet);
+                long millisecondSet = dateSet.getTime();
+                long millisecondGet = dateGet.getTime();
+                if (millisecondGet < millisecondSet) {
+                    Toast.makeText(getActivity(), "Invalid Time", Toast.LENGTH_SHORT).show();
+                } else {
+                    hrs = hour;
+                    minute = minutes;
+                    timeSlice = timeSet;
+                }
+
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return hrs + ':' + minute + " " + timeSlice;
     }
 
-    public void setDateTime(Boolean check) {
+    public void setDateTime(Boolean check, String dateTime) {
         final int id = llBookNowTodayTomorrow.getCheckedRadioButtonId();
-        SimpleDateFormat timeStampFormat1 = new SimpleDateFormat("dd-MMM-yyyy");
-        SimpleDateFormat timeStampFormat2 = new SimpleDateFormat("dd-MMM-yyyy -- hh:mm aa");
-        SimpleDateFormat timeStampFormat = new SimpleDateFormat("dd-MMM-yyyy hh:mm aa");
+        SimpleDateFormat timeStampFormat1 = new SimpleDateFormat("dd-MM-yyyy");
         Date Now = new Date();
-        Calendar calendar = Calendar.getInstance();
-        final String finalDateNow = timeStampFormat2.format(Now);
+        Calendar calendar;
         final String finalDateNow1 = timeStampFormat.format(Now);
         if (rbBookNow.getId() != id) {
-            final int hour = calendar.get(Calendar.HOUR_OF_DAY);
-            final int minute = calendar.get(Calendar.MINUTE);
+            int hour = 0, minute = 0;
+            try {
+                hour = Integer.valueOf(new SimpleDateFormat("HH").format(timeStampFormat.parse(dateTime)));
+                minute = Integer.valueOf(new SimpleDateFormat("mm").format(timeStampFormat.parse(dateTime)));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
             final String finalDateNow2 = timeStampFormat1.format(Now);
             calendar = Calendar.getInstance();
             calendar.add(Calendar.DAY_OF_YEAR, 1);
             Date tomorrow = calendar.getTime();
             final String finalDateTomorrow = timeStampFormat1.format(tomorrow);
-//            final String finalDateTomorrow1 = timeStampFormat.format(tomorrow);
             if (rbBookToday.getId() == id) {
-                tvBookDateTime.setText(finalDateNow2 + " -- " + updateTime(hour, minute));
+                tvBookDateTime.setText(finalDateNow2 + " " + updateTime(hour, minute));
                 tvBookDateTime.setTag(finalDateNow2 + " " + updateTime(hour, minute));
             } else if (rbBookTomorrow.getId() == id) {
-                tvBookDateTime.setText(finalDateTomorrow + " -- " + updateTime(hour, minute));
+                tvBookDateTime.setText(finalDateTomorrow + " " + updateTime(hour, minute));
                 tvBookDateTime.setTag(finalDateTomorrow + " " + updateTime(hour, minute));
             }
             if (check) {
                 timePicker(id, finalDateNow2, finalDateTomorrow, hour, minute);
             }
         } else {
-            tvBookDateTime.setText(finalDateNow);
+            tvBookDateTime.setText(finalDateNow1);
             tvBookDateTime.setTag(finalDateNow1);
         }
     }
@@ -172,10 +214,10 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
             @Override
             public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
                 if (rbBookToday.getId() == id) {
-                    tvBookDateTime.setText(finalDateNow2 + " -- " + updateTime(selectedHour, selectedMinute));
+                    tvBookDateTime.setText(finalDateNow2 + " " + updateTime(selectedHour, selectedMinute));
                     tvBookDateTime.setTag(finalDateNow2 + " " + updateTime(selectedHour, selectedMinute));
                 } else if (rbBookTomorrow.getId() == id) {
-                    tvBookDateTime.setText(finalDateTomorrow + " -- " + updateTime(selectedHour, selectedMinute));
+                    tvBookDateTime.setText(finalDateTomorrow + " " + updateTime(selectedHour, selectedMinute));
                     tvBookDateTime.setTag(finalDateTomorrow + " " + updateTime(selectedHour, selectedMinute));
                 }
             }
@@ -184,38 +226,62 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
         mTimePicker.show();
     }
 
+    private void getServerDateTime() {
+        final String tag = "Get Server Date Time";
+        StringBuilder builder = new StringBuilder();
+        JSONObject jsonData = new JSONObject();
+
+        try {
+            builder.append(Constants.BASE_URL + Constants.BASE_URL_POSTFIX + Constants.Events.GET_SERVER_DATE_TIME + "&json=")
+                    .append(jsonData.put("token", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_ACCESS_TOKEN, ""))
+                            .put("userId", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_ID, "")));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        DataRequest dataRequest = new DataRequest(Request.Method.GET, builder.toString(), null, this, this);
+        TaxiNearYouApp.getInstance().addToRequestQueue(dataRequest, tag);
+    }
+
+
     @Override
     public void onClick(View v) {
 
         switch (v.getId()) {
 
             case R.id.rbBookNow:
-                setDateTime(false);
+                check = false;
+                timeChange = true;
+                getServerDateTime();
                 break;
 
             case R.id.rbBookToday:
-                setDateTime(false);
+                check = false;
+                getServerDateTime();
                 break;
 
             case R.id.rbBookTomorrow:
-                setDateTime(false);
+                getServerDateTime();
+                check = false;
                 break;
 
             case R.id.tvBookDateTime:
-                setDateTime(true);
+                getServerDateTime();
+                check = true;
                 break;
 
             case R.id.tvBookSearchCars:
                 if (TextUtils.isEmpty(tvBookFrom.getText().toString()))
-                    CommonUtil.showSnackBar(getActivity(), getString(R.string.enter_from), clSearch);
+                    CommonUtil.showSnackBar(getActivity(), getString(R.string.enter_fields_below), clSearch);
                 else if (TextUtils.isEmpty(tvBookTo.getText().toString()))
-                    CommonUtil.showSnackBar(getActivity(), getString(R.string.enter_to), clSearch);
+                    CommonUtil.showSnackBar(getActivity(), getString(R.string.enter_fields_below), clSearch);
                 else
                     startActivity(new Intent(getActivity(), SearchCars.class)
-                            .putExtra("tvBookDateTime", (String) tvBookDateTime.getTag())
+                            .putExtra("tvBookDateTime", tvBookDateTime.getText().toString())
                             .putExtra("tvBookLuggage", (String) tvBookLuggage.getTag())
                             .putExtra("luggageDescription", tvBookLuggage.getText().toString())
                             .putExtra("passengerDescription", tvBookPassenger.getText().toString())
+                            .putExtra("duration", rbBookNow.isChecked() ? "1" : rbBookToday.isChecked() ? "2" : "3")
                             .putExtra("tvBookPassenger", (String) tvBookPassenger.getTag()));
                 break;
 
@@ -336,15 +402,15 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
             String str = "";
             if (check) {
                 str = SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_LUGGAGE, "");
-                tvCityDialogHead.setText("Select Luggages");
+                tvCityDialogHead.setText("Select Luggage");
             } else {
                 str = SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_PASSENGER, "");
                 tvCityDialogHead.setText("Select Passenger/Passengers");
             }
             JSONArray jsonArray = new JSONArray(str);
             ListView list_view = (ListView) dialog.findViewById(R.id.list_view);
-            AdapterClass adapterClass = new AdapterClass(getActivity(), jsonArray, check);
-            list_view.setAdapter(adapterClass);
+            AdapterSelectionPassengerOrLuggage adapterSelectionPassengerOrLuggage = new AdapterSelectionPassengerOrLuggage(getActivity(), jsonArray, check);
+            list_view.setAdapter(adapterSelectionPassengerOrLuggage);
             alertDialogs.setView(dialog);
             alertDialogs.setCancelable(true);
             alert = alertDialogs.create();
@@ -355,13 +421,13 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
         }
     }
 
-    public class AdapterClass extends BaseAdapter {
+    public class AdapterSelectionPassengerOrLuggage extends BaseAdapter {
         private final Boolean check;
         private JSONArray data;
         private LayoutInflater inflater = null;
         Activity a;
 
-        public AdapterClass(Activity a, JSONArray data, Boolean check) {
+        public AdapterSelectionPassengerOrLuggage(Activity a, JSONArray data, Boolean check) {
             this.data = data;
             this.a = a;
             this.check = check;
@@ -420,51 +486,34 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
         }
     }
 
+
     @Override
     public void onErrorResponse(VolleyError volleyError) {
-        CommonUtil.alertBox(getActivity(), "", getResources().getString(R.string.nointernet_try_again_msg));
         CommonUtil.cancelProgressDialog();
-//        NetworkResponse response = error.networkResponse;
-//        if (error instanceof ServerError && response != null) {
-//            try {
-//                String res = new String(response.data,
-//                        HttpHeaderParser.parseCharset(response.headers, "utf-8"));
-//                // Now you can use any deserializer to make sense of data
-//                JSONObject obj = new JSONObject(res);
-//            } catch (UnsupportedEncodingException e1) {
-//                // Couldn't properly decode data to string
-//                e1.printStackTrace();
-//            } catch (JSONException e2) {
-//                // returned data is not JSONObject?
-//                e2.printStackTrace();
-//            }
-//        }
+        CommonUtil.errorToastShowing(getActivity());
     }
 
     @Override
-    public void onResponse(JSONObject response) {
+    public void onResponse(JSONObject jsonObject) {
         CommonUtil.cancelProgressDialog();
-        if (response != null) {
-            try {
-                if (response.getInt("status") == Constants.STATUS_SUCCESS) {
-                    switch (response.getInt("__eventid")) {
-                        case Constants.Events.EVENT_PARTNER_LIST:
-                            SharedPreferenceUtil.putValue(Constants.PrefKeys.DISTANCE_AFTER_CONVERT, response.optJSONObject("json").optJSONObject("distanceMatrix").optInt("duration") / 3600 + ":" + (response.optJSONObject("json").optJSONObject("distanceMatrix").optInt("duration") / 60) % 60 + "hours");
-                            SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_TAXI_TYPE, response.optJSONObject("json").optJSONArray("taxiTypeArray").toString());
-                            SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_DISTANCE_LIST, response.optJSONObject("json").optJSONArray("distanceList").toString());
-                            SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_PARTNER_ARRAY, response.optJSONObject("json").optJSONArray("partnerArray").toString());
-                            SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_FILTER_REQUEST, response.optJSONObject("filterRequest").toString());
-                            SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_DISTANCE_MATRIX, response.optJSONObject("json").optJSONObject("distanceMatrix").toString());
-                            SharedPreferenceUtil.save();
-                            startActivity(new Intent(getActivity(), SearchCars.class));
-                            break;
+        if (jsonObject != null) {
+            if (jsonObject.optInt("status") == Constants.STATUS_SUCCESS) {
+                try {
+                    String dateTime = timeStampFormat.format(new SimpleDateFormat("dd MM yyyy HH mm ss").parse(jsonObject.optJSONObject("json").optString("serverTime")));
+                    if (timeChange) {
+                        tvBookDateTime.setText(dateTime);
+                        tvBookDateTime.setTag(dateTime);
+                        timeChange = false;
                     }
-                } else {
-                    JsonErrorShow.jsonErrorShow(response, getActivity(), clSearch);
+                    if (!rbBookNow.isChecked())
+                        setDateTime(check, dateTime);
+                } catch (ParseException e) {
+                    e.printStackTrace();
                 }
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
+
+            } else
+                CommonUtil.successToastShowing(getActivity(), jsonObject);
         }
     }
+
 }

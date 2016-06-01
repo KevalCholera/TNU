@@ -16,10 +16,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.mpt.storage.SharedPreferenceUtil;
 import com.smartsense.taxinearyou.Fragments.FragmentAvailability;
 import com.smartsense.taxinearyou.Fragments.FragmentReview;
-import com.smartsense.taxinearyou.utill.CircleImageView;
 import com.smartsense.taxinearyou.utill.CircleImageView1;
 import com.smartsense.taxinearyou.utill.Constants;
 import com.squareup.picasso.Picasso;
@@ -35,6 +33,7 @@ public class PartnerDetails extends AppCompatActivity {
     public FragmentActivity activity;
     public static String partnerName;
     public static String waitingTime;
+    public static String partnerId;
     public static ArrayList<String> rating = new ArrayList<>();
 
     @Override
@@ -48,9 +47,10 @@ public class PartnerDetails extends AppCompatActivity {
         cvPartnerPic = (CircleImageView1) findViewById(R.id.cvPartnerPic);
 
         getSupportActionBar().setTitle(getIntent().getStringExtra("partnerName"));
+
         if (!TextUtils.isEmpty(getIntent().getStringExtra("logoPath")))
             Picasso.with(this)
-                    .load(getIntent().getStringExtra("logoPath"))
+                    .load(Constants.BASE_URL_IMAGE_POSTFIX + getIntent().getStringExtra("logoPath"))
                     .error(R.mipmap.imgtnulogo)
                     .placeholder(R.mipmap.imgtnulogo)
                     .into(cvPartnerPic);
@@ -60,6 +60,7 @@ public class PartnerDetails extends AppCompatActivity {
         partnerName = getIntent().getStringExtra("partnerName");
         waitingTime = getIntent().getStringExtra("waitingTime");
         rating = getIntent().getStringArrayListExtra("rating");
+        partnerId = getIntent().getStringExtra("partnerId");
 
         ViewPager vpPartnerRating = (ViewPager) findViewById(R.id.vpPartnerRating);
         setupViewPager(vpPartnerRating);

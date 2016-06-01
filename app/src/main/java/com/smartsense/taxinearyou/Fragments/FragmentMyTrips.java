@@ -49,7 +49,7 @@ public class FragmentMyTrips extends Fragment implements Response.Listener<JSONO
 
     @Override
     public void onErrorResponse(VolleyError volleyError) {
-        CommonUtil.alertBox(getActivity(), "", getResources().getString(R.string.nointernet_try_again_msg));
+        CommonUtil.errorToastShowing(getActivity());
         CommonUtil.cancelProgressDialog();
     }
 
