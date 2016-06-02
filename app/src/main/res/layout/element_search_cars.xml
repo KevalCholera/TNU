@@ -11,8 +11,8 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:padding="10dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="10dp">
 
         <TextView
             android:id="@+id/tvElementSearchCarsName"
@@ -22,40 +22,6 @@
             android:textSize="@dimen/tvTitlesSizeAll"
             android:textStyle="bold" />
 
-        <!--<LinearLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:layout_marginTop="@dimen/lyElementSearchCarsStarsImage"-->
-        <!--android:orientation="horizontal"-->
-        <!--android:visibility="visible">-->
-
-        <!--<ImageView-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:src="@mipmap/imgstarfilled" />-->
-
-        <!--<ImageView-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:src="@mipmap/imgstarfilled" />-->
-
-        <!--<ImageView-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:src="@mipmap/imgstarfilled" />-->
-
-        <!--<ImageView-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:src="@mipmap/imgstarfilled" />-->
-
-        <!--<ImageView-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:src="@mipmap/imgstarfilled" />-->
-
-        <!--</LinearLayout>-->
-
         <RatingBar
             android:id="@+id/rbElementSearchCars"
             style="?attr/ratingBarStyleSmall"
@@ -63,14 +29,14 @@
             android:layout_height="wrap_content"
             android:max="5"
             android:numStars="5"
-            android:rating="0.0"
-            android:stepSize="0.0" />
+            android:rating="0"
+            android:stepSize="1" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical"
             android:layout_marginTop="@dimen/lyElementSearchCarsWaitingTimeMarginTopRight"
+            android:gravity="center_vertical"
             android:orientation="horizontal">
 
             <ImageView
@@ -85,19 +51,19 @@
             <TextView
                 android:id="@+id/tvElementSearchCarsChat"
                 android:layout_width="wrap_content"
-                android:layout_marginRight="@dimen/margin_5"
                 android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/margin_5"
+                android:singleLine="true"
                 android:text="@string/hello"
                 android:textColor="@color/black"
-                android:singleLine="true"
                 android:textSize="@dimen/tvTitlesSizeAll" />
 
             <TextView
                 android:id="@+id/tvElementSearchCarsWaitingTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="right"
                 android:ellipsize="end"
+                android:gravity="right"
                 android:singleLine="true"
                 android:text="@string/waitingTime"
                 android:textSize="@dimen/lyElementSearchCarsWaitingTimeSize" />

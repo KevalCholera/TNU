@@ -13,6 +13,7 @@ public class Constants {
     public static final String BASE_URL_IMAGE_POSTFIX = "http://fmcgfinal.cloudapp.net:8080/tnu";
     public static final String BASE_URL_POSTFIX = "/tnu/m?__eventid=";
     public static final String BASE_URL_PHOTO = BASE_URL + "/tnu/m?";
+    public static final String BASE_TERMS_AND_CONDITION = "/termsAndConditions.html";
     public static final String BASE_URL_PHOTO_THUMB = BASE_URL + "/images/products/";
     public static final String BASE_IMAGE_URL = "http://104.43.15.1:8025";
     public static final String PRO_TITLE = "Please Wait";
@@ -20,6 +21,7 @@ public class Constants {
     public static final String FROM_ADDRESS = "from_add";
     public static final String TO_ADDRESS = "to_add";
     public static final String VIA_ADDRESS = "via_add";
+    public static final String REVERSE_FROM_TO = "reverse_from_to";
     public static final String VIA2_ADDRESS = "via2_add";
 
     public class PrefKeys {
@@ -127,6 +129,7 @@ public class Constants {
         public static final int UPDATE_PASSWORD = 1106;
         public static final int UPDATE_EMAIL = 1120;
         public static final int EVENT_SIGNUP = 4003;
+        public static final int UPDATE_PROMOTIONS = 1127;
         public static final int EVENT_PARTNER_LIST = 5001;
         public static final int CHECK_MOBILE_AVAILABILITY = 5009;
         public static final int EVENT_BOOKING = 1101;
@@ -135,13 +138,16 @@ public class Constants {
         public static final int EVENT_MY_TRIP = 5003;
         public static final int EVENT_LOGOUT = 5004;
         public static final int EVENT_GET_SECURITY_QES = 5008;
+        public static final int ACTIVE_ACCOUNT = 1121;
     }
 
     public class ErrorCode {
         public static final int INVALID_CREDENTIALS = 501;
         public static final int PARAM_MISSING = 1001;
+        public static final int SOMETHING_WRONG = 0;
         public static final int UNAUTHORIZED = 1002;
         public static final int SERVER_ERROR = 1004;
+        public static final int UNAUTHENTICATED_OPERATION = 504;
     }
 
     public class ScreenCode {

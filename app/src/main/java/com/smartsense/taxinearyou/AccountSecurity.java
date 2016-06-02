@@ -20,13 +20,11 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
-import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.mpt.storage.SharedPreferenceUtil;
 import com.smartsense.taxinearyou.utill.CommonUtil;
 import com.smartsense.taxinearyou.utill.Constants;
-import com.smartsense.taxinearyou.utill.DataRequest;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -47,7 +45,7 @@ public class AccountSecurity extends AppCompatActivity implements View.OnClickLi
             etPopupSecurityConfirmEmail, etPopupSecurityPassword, etPopupSecurityConfirmPassword,
             etPopupSecurityQuestionAnswer1, etPopupSecurityQuestionAnswer2, etPopupSecurityQuestionChangeAnswer1,
             etPopupSecurityQuestionChangeAnswer2, etPopupSecurityQuestionChangeQuestion1, etPopupSecurityQuestionChangeQuestion2;
-    Button btAccountSecurityChangeEmail, btAccountSecurityChangeAlternateEmail, btAccountSecurityChangePassword, btAccountSecurityChangeQuestion;
+    Button btAccountSecurityChangeEmail, btAccountSecurityUpdate, btAccountSecurityChangeAlternateEmail, btAccountSecurityChangePassword, btAccountSecurityChangeQuestion;
     RadioButton rbPopupSecurityOptionsEmail, rbPopupSecurityOptionsAlternateEmail, rbPopupSecurityOptionsQuestions;
     Button btPopupSecurityAlternateEmailSubmit, btPopupSecurityEmailSubmit, btPopupSecurityOptionsSubmit, btPopupSecurityQuestionChangeConfirm,
             btPopupSecurityPasswordSubmit, btPopupSecurityQuestionConfirm;
@@ -68,6 +66,7 @@ public class AccountSecurity extends AppCompatActivity implements View.OnClickLi
         tvAccountSecurityQuestion2 = (TextView) findViewById(R.id.tvAccountSecurityQuestion2);
         btAccountSecurityChangeQuestion = (Button) findViewById(R.id.btAccountSecurityChangeQuestion);
         btAccountSecurityChangePassword = (Button) findViewById(R.id.btAccountSecurityChangePassword);
+        btAccountSecurityUpdate = (Button) findViewById(R.id.btAccountSecurityUpdate);
         cbAccountSecurityOrganization = (CheckBox) findViewById(R.id.cbAccountSecurityOrganization);
         cbAccountSecurityTaxinearu = (CheckBox) findViewById(R.id.cbAccountSecurityTaxinearu);
         etAccountSecurityEmail = (EditText) findViewById(R.id.etAccountSecurityEmail);
@@ -82,6 +81,7 @@ public class AccountSecurity extends AppCompatActivity implements View.OnClickLi
         btAccountSecurityChangeAlternateEmail.setOnClickListener(this);
         btAccountSecurityChangeQuestion.setOnClickListener(this);
         btAccountSecurityChangePassword.setOnClickListener(this);
+        btAccountSecurityUpdate.setOnClickListener(this);
 
         setValue();
     }
@@ -193,6 +193,9 @@ public class AccountSecurity extends AppCompatActivity implements View.OnClickLi
             case R.id.btPopupSecurityPasswordSubmit:
                 passwordChanged();
                 break;
+            case R.id.btAccountSecurityUpdate:
+                updatePromotions();
+                break;
         }
     }
 
@@ -211,9 +214,25 @@ public class AccountSecurity extends AppCompatActivity implements View.OnClickLi
             e.printStackTrace();
         }
 
-        CommonUtil.showProgressDialog(this, "getting data...");
-        DataRequest dataRequest = new DataRequest(Request.Method.GET, builder.toString(), null, this, this);
-        TaxiNearYouApp.getInstance().addToRequestQueue(dataRequest, tag);
+        CommonUtil.jsonRequestGET(this, getResources().getString(R.string.get_data), builder.toString(), tag, this, this);
+    }
+
+    private void updatePromotions() {
+        final String tag = "Account Security";
+        StringBuilder builder = new StringBuilder();
+        JSONObject jsonData = new JSONObject();
+
+        try {
+            builder.append(Constants.BASE_URL + Constants.BASE_URL_POSTFIX + Constants.Events.UPDATE_PROMOTIONS + "&json=")
+                    .append(jsonData.put("token", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_ACCESS_TOKEN, ""))
+                            .put("userId", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_ID, ""))
+                            .put("promotionStatus", cbAccountSecurityTaxinearu.isChecked() ? 1 : 0)
+                            .put("thirdPartyPomotionStatus", cbAccountSecurityOrganization.isChecked() ? 1 : 0));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        CommonUtil.jsonRequestGET(this, getResources().getString(R.string.get_data), builder.toString(), tag, this, this);
     }
 
     private void changeEmailAPI() {
@@ -232,9 +251,7 @@ public class AccountSecurity extends AppCompatActivity implements View.OnClickLi
             e.printStackTrace();
         }
 
-        CommonUtil.showProgressDialog(this, "getting data...");
-        DataRequest dataRequest = new DataRequest(Request.Method.GET, builder.toString(), null, this, this);
-        TaxiNearYouApp.getInstance().addToRequestQueue(dataRequest, tag);
+        CommonUtil.jsonRequestGET(this, getResources().getString(R.string.get_data), builder.toString(), tag, this, this);
     }
 
     private void changePasswordAPI() {
@@ -252,16 +269,14 @@ public class AccountSecurity extends AppCompatActivity implements View.OnClickLi
             e.printStackTrace();
         }
 
-        CommonUtil.showProgressDialog(this, "getting data...");
-        DataRequest dataRequest = new DataRequest(Request.Method.GET, builder.toString(), null, this, this);
-        TaxiNearYouApp.getInstance().addToRequestQueue(dataRequest, tag);
+        CommonUtil.jsonRequestGET(this, getResources().getString(R.string.get_data), builder.toString(), tag, this, this);
     }
 
     public void setValue() {
         etAccountSecurityEmail.setText(SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_EMAIL, ""));
         etAccountSecurityAlternateEmail.setText(SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_ALTERNATE_EMAIL, ""));
-        tvAccountSecurityQuestion1.setText(SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_QUESTION1, ""));
-        tvAccountSecurityQuestion2.setText(SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_QUESTION2, ""));
+        tvAccountSecurityQuestion1.setText("Q1)  " + SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_QUESTION1, ""));
+        tvAccountSecurityQuestion2.setText("Q2)  " + SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_QUESTION2, ""));
     }
 
     public void securityQuestionConfirm() {
@@ -377,21 +392,23 @@ public class AccountSecurity extends AppCompatActivity implements View.OnClickLi
     @Override
     public void onResponse(JSONObject jsonObject) {
         CommonUtil.cancelProgressDialog();
-        if (jsonObject.length() > 0 && jsonObject.optInt("status") == Constants.STATUS_SUCCESS) {
-            alert.dismiss();
-            CommonUtil.successToastShowing(this, jsonObject);
+        if (jsonObject != null) {
+            if (jsonObject.optInt("status") == Constants.STATUS_SUCCESS) {
+                alert.dismiss();
+                CommonUtil.alertBox(this, jsonObject.optString("msg"), false, false);
 
-            if (jsonObject.optString("__eventId").equalsIgnoreCase((Constants.Events.UPDATE_EMAIL) + "")) {
+                if (jsonObject.optString("__eventId").equalsIgnoreCase((Constants.Events.UPDATE_EMAIL) + "")) {
+                    if (clicked == 1)
+                        SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_USER_EMAIL, etPopupSecurityEmail.getText().toString());
+                    else if (clicked == 2)
+                        SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_USER_ALTERNATE_EMAIL, etPopupSecurityAlternateEmail.getText().toString());
+                }
+                SharedPreferenceUtil.save();
+                setValue();
 
-                if (clicked == 1)
-                    SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_USER_EMAIL, etPopupSecurityEmail.getText().toString());
-                else if (clicked == 2)
-                    SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_USER_ALTERNATE_EMAIL, etPopupSecurityAlternateEmail.getText().toString());
-            }
-            SharedPreferenceUtil.save();
-            setValue();
-
+            } else
+                CommonUtil.conditionAuthentication(this, jsonObject);
         } else
-            CommonUtil.successToastShowing(this, jsonObject);
+            CommonUtil.jsonNullError(this);
     }
 }

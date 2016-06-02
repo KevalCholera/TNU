@@ -17,13 +17,10 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.smartsense.taxinearyou.utill.CommonUtil;
 import com.smartsense.taxinearyou.utill.Constants;
-import com.smartsense.taxinearyou.utill.DataRequest;
-import com.smartsense.taxinearyou.utill.JsonErrorShow;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -57,8 +54,10 @@ public class ResetPassword extends AppCompatActivity implements Response.Listene
                     CommonUtil.showSnackBar(ResetPassword.this, getString(R.string.enter_email_id), clResetPassword);
                 else if (!CommonUtil.isValidEmail(etResetPasswordEmailAddress.getText().toString()))
                     CommonUtil.showSnackBar(ResetPassword.this, getString(R.string.enter_valid_email_id), clResetPassword);
-                else
+                else {
+                    CommonUtil.closeKeyboard(ResetPassword.this);
                     doResetPass();
+                }
             }
         });
         tvResetPasswordForgotEmail.setOnClickListener(new View.OnClickListener() {
@@ -80,41 +79,7 @@ public class ResetPassword extends AppCompatActivity implements Response.Listene
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
-        CommonUtil.showProgressDialog(this, "GETTING DATA...");
-        DataRequest dataRequest = new DataRequest(Request.Method.GET, builder.toString(), null, this, this);
-        TaxiNearYouApp.getInstance().addToRequestQueue(dataRequest, tag);
-    }
-
-    @Override
-    public void onErrorResponse(VolleyError volleyError) {
-        CommonUtil.errorToastShowing(this);
-        CommonUtil.cancelProgressDialog();
-    }
-
-    @Override
-    public void onResponse(JSONObject response) {
-        CommonUtil.cancelProgressDialog();
-        if (response != null) {
-            try {
-                if (response.getInt("status") == Constants.STATUS_SUCCESS) {
-//                    switch (response.getInt("__eventid")) {
-//                        case Constants.Events.EVENT_FORGOT_PASS:
-                    openDialog();
-// SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_USER_ID, response.getJSONObject("data").getString("userId"));
-//                            SharedPreferenceUtil.save();
-//                            startActivity(new Intent(this, OTPActivity.class).putExtra("mobile", etMobileNo.getText().toString()).putExtra("code", etCountryCode.getText().toString()).putExtra("tag", (String) etCountryCode.getTag()));
-//                            finish();
-//                            break;
-//                    }
-                } else {
-                    JsonErrorShow.jsonErrorShow(response, this, clResetPassword);
-                }
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }
-
+        CommonUtil.jsonRequestGET(this, getResources().getString(R.string.get_data), builder.toString(), tag, this, this);
     }
 
     public void openDialog() {
@@ -152,7 +117,6 @@ public class ResetPassword extends AppCompatActivity implements Response.Listene
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-//        getMenuInflater().inflate(R.menu.ratingforsearch, menu);
         return true;
     }
 
@@ -160,10 +124,28 @@ public class ResetPassword extends AppCompatActivity implements Response.Listene
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
+                CommonUtil.closeKeyboard(ResetPassword.this);
                 finish();
                 break;
         }
         return super.onOptionsItemSelected(item);
 
+    }
+
+    @Override
+    public void onErrorResponse(VolleyError volleyError) {
+        CommonUtil.errorToastShowing(this);
+        CommonUtil.cancelProgressDialog();
+    }
+
+    @Override
+    public void onResponse(JSONObject response) {
+        CommonUtil.cancelProgressDialog();
+        if (response != null) {
+            if (response.optInt("status") == Constants.STATUS_SUCCESS) {
+                openDialog();
+            } else
+                CommonUtil.conditionAuthentication(this, response);
+        } else CommonUtil.jsonNullError(this);
     }
 }

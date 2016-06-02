@@ -12,7 +12,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.mpt.storage.SharedPreferenceUtil;
@@ -22,8 +21,6 @@ import com.pubnub.api.PubnubError;
 import com.pubnub.api.PubnubException;
 import com.smartsense.taxinearyou.utill.CommonUtil;
 import com.smartsense.taxinearyou.utill.Constants;
-import com.smartsense.taxinearyou.utill.DataRequest;
-import com.smartsense.taxinearyou.utill.JsonErrorShow;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -130,10 +127,8 @@ public class SignIn extends AppCompatActivity implements Response.Listener<JSONO
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        CommonUtil.jsonRequestGET(this, getResources().getString(R.string.login_in), builder.toString(), tag, this, this);
 
-        CommonUtil.showProgressDialog(this, "Login...");
-        DataRequest dataRequest = new DataRequest(Request.Method.GET, builder.toString(), null, this, this);
-        TaxiNearYouApp.getInstance().addToRequestQueue(dataRequest, tag);
     }
 
     @Override
@@ -231,12 +226,16 @@ public class SignIn extends AppCompatActivity implements Response.Listener<JSONO
 //                            break;
 //                    }
                 } else {
-                    JsonErrorShow.jsonErrorShow(response, this, rlSignInMain);
+                    if (response.has("json") && response.optJSONObject("json").has("errorCode") && response.optJSONObject("json").optInt("errorCode") == Constants.ErrorCode.INVALID_CREDENTIALS) {
+                        CommonUtil.showSnackBar(this, response.optString("msg"), rlSignInMain);
+                    } else
+                        CommonUtil.conditionAuthentication(this, response);
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-        }
+        } else
+            CommonUtil.jsonNullError(this);
     }
 
     @Override

@@ -1,316 +1,476 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/clSearchCars"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@mipmap/taxi"
-    android:orientation="vertical">
+    android:background="@color/white"
+    android:fitsSystemWindows="true">
 
-    <android.support.design.widget.AppBarLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#99008fff">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbarAll"
+        <include layout="@layout/element_appbar" />
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@null"
-            app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
-    </android.support.design.widget.AppBarLayout>
+            android:layout_height="match_parent"
+            android:background="@mipmap/taxi"
+            android:orientation="vertical">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:background="#99008fff">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingEnd="@dimen/lyPaddingMainAll"
-            android:paddingStart="@dimen/lyPaddingMainAll">
-
-            <TextView
+            <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/vehicle_type"
-                android:textColor="@color/white"
-                android:textSize="@dimen/tvHeadingSizeAll" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/vHeightWidthAll"
-                android:layout_marginTop="@dimen/vMarginTopBottomAll"
-                android:background="@color/white" />
-
-            <RadioGroup
-                android:id="@+id/rgFilterVehicleType1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/rgFilterMarginTopAll">
-
-            </RadioGroup>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/tvFilterMarginTopAll"
-                android:text="@string/booking_type"
-                android:textColor="@color/white"
-                android:textSize="@dimen/tvHeadingSizeAll" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/vHeightWidthAll"
-                android:layout_marginTop="@dimen/vMarginTopBottomAll"
-                android:background="@color/white" />
-
-            <RadioGroup
-                android:id="@+id/rgFilterBookingType"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/rgFilterMarginTopAll"
-                android:orientation="horizontal">
-
-                <RadioButton
-                    android:id="@+id/rbFilterSingle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@drawable/radio_button"
-                    android:button="@color/white"
-                    android:checked="true"
-                    android:gravity="center"
-                    android:padding="@dimen/rbPaddingAll"
-                    android:text="@string/single"
-                    android:textColor="@drawable/radio_button"
-                    android:textSize="@dimen/btSizeAll" />
-
-                <RadioButton
-                    android:id="@+id/rbFilterReturn"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@drawable/radio_button"
-                    android:button="@color/white"
-                    android:gravity="center"
-                    android:padding="@dimen/rbPaddingAll"
-                    android:text="@string/return_"
-                    android:textColor="@drawable/radio_button"
-                    android:textSize="@dimen/btSizeAll" />
-
-            </RadioGroup>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/tvFilterMarginTopAll"
-                android:text="@string/distance"
-                android:textColor="@color/white"
-                android:textSize="@dimen/tvHeadingSizeAll" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/vHeightWidthAll"
-                android:layout_marginTop="@dimen/vMarginTopBottomAll"
-                android:background="@color/white" />
-
-            <RadioGroup
-                android:id="@+id/rgFilterDistance1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-            </RadioGroup>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/tvFilterMarginTopAll"
-                android:text="@string/operator_rating"
-                android:textColor="@color/white"
-                android:textSize="@dimen/tvHeadingSizeAll" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/vHeightWidthAll"
-                android:layout_marginTop="@dimen/vMarginTopBottomAll"
-                android:background="@color/white" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <RadioGroup
-                    android:id="@+id/rbgFilterRating"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <RadioButton
-                        android:id="@+id/rbFilterRatingAll"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/tvSearchCarsBookNowPaddingTopBottom"
-                        android:button="@drawable/radio_button_filter"
-                        android:checked="true" />
-
-
-                    <RadioButton
-                        android:id="@+id/rbFilterRating5"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_marginTop="@dimen/lyElementSearchCarsBookNowMarginEnd"
-                        android:button="@drawable/radio_button_filter" />
-
-                    <RadioButton
-                        android:id="@+id/rbFilterRating4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/lyElementSearchCarsBookNowMarginEnd"
-                        android:button="@drawable/radio_button_filter" />
-
-                    <RadioButton
-                        android:id="@+id/rbFilterRating3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/btAccountActivateNowPaddingStartEnd"
-                        android:button="@drawable/radio_button_filter" />
-
-                    <RadioButton
-                        android:id="@+id/rbFilterRating2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/btAccountActivateNowPaddingStartEnd"
-                        android:button="@drawable/radio_button_filter" />
-
-                    <RadioButton
-                        android:id="@+id/rbFilterRating1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/btAccountActivateNowPaddingStartEnd"
-                        android:button="@drawable/radio_button_filter" />
-                </RadioGroup>
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="#99008fff">
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/lyPaddingMainAll"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:paddingEnd="@dimen/lyPaddingMainAll"
+                    android:paddingStart="@dimen/lyPaddingMainAll">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/vehicle_type"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/tvHeadingSizeAll" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/vHeightWidthAll"
+                        android:layout_marginTop="@dimen/vMarginTopBottomAll"
+                        android:background="@color/white" />
+
+                    <RadioGroup
+                        android:id="@+id/rgFilterVehicleType1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/rgFilterMarginTopAll">
+
+                    </RadioGroup>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/tvFilterRadioTextMarginTop"
-                        android:text="@string/all"
+                        android:layout_marginTop="@dimen/tvFilterMarginTopAll"
+                        android:text="@string/booking_type"
                         android:textColor="@color/white"
-                        android:textSize="@dimen/tvTitlesSizeAll" />
+                        android:textSize="@dimen/tvHeadingSizeAll" />
 
-                    <RatingBar
-                        android:id="@+id/rbFeedbackRatingForDriver5"
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/vHeightWidthAll"
+                        android:layout_marginTop="@dimen/vMarginTopBottomAll"
+                        android:background="@color/white" />
+
+                    <RadioGroup
+                        android:id="@+id/rgFilterBookingType"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/rgFilterMarginTopAll"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/rbFilterSingle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@drawable/radio_button"
+                            android:button="@color/white"
+                            android:checked="true"
+                            android:gravity="center"
+                            android:padding="@dimen/rbPaddingAll"
+                            android:text="@string/single"
+                            android:textColor="@drawable/radio_button"
+                            android:textSize="@dimen/btSizeAll" />
+
+                        <RadioButton
+                            android:id="@+id/rbFilterReturn"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@drawable/radio_button"
+                            android:button="@color/white"
+                            android:gravity="center"
+                            android:padding="@dimen/rbPaddingAll"
+                            android:text="@string/return_"
+                            android:textColor="@drawable/radio_button"
+                            android:textSize="@dimen/btSizeAll" />
+
+                    </RadioGroup>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/tvFilterMarginTopAll"
+                        android:text="@string/distance"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/tvHeadingSizeAll" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/vHeightWidthAll"
+                        android:layout_marginTop="@dimen/vMarginTopBottomAll"
+                        android:background="@color/white" />
+
+                    <RadioGroup
+                        android:id="@+id/rgFilterDistance1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                    </RadioGroup>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/tvFilterMarginTopAll"
+                        android:text="@string/operator_rating"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/tvHeadingSizeAll" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/vHeightWidthAll"
+                        android:layout_marginTop="@dimen/vMarginTopBottomAll"
+                        android:background="@color/white" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <RadioGroup
+                            android:id="@+id/rbgFilterRating"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <RadioButton
+                                android:id="@+id/rbFilterRatingAll"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/tvSearchCarsBookNowPaddingTopBottom"
+                                android:button="@drawable/radio_button_filter"
+                                android:checked="true" />
+
+
+                            <RadioButton
+                                android:id="@+id/rbFilterRating5"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_marginTop="@dimen/rbReviewMarginEnd"
+                                android:button="@drawable/radio_button_filter" />
+
+                            <RadioButton
+                                android:id="@+id/rbFilterRating4"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/rbReviewMarginEnd"
+                                android:button="@drawable/radio_button_filter" />
+
+                            <RadioButton
+                                android:id="@+id/rbFilterRating3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/rbReviewMarginEnd"
+                                android:button="@drawable/radio_button_filter" />
+
+                            <RadioButton
+                                android:id="@+id/rbFilterRating2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/rbReviewMarginEnd"
+                                android:button="@drawable/radio_button_filter" />
+
+                            <RadioButton
+                                android:id="@+id/rbFilterRating1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/rbReviewMarginEnd"
+                                android:button="@drawable/radio_button_filter" />
+                        </RadioGroup>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/lyPaddingMainAll"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/tvFilterRadioTextMarginTop"
+                                android:text="@string/all"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/tvTitlesSizeAll" />
+
+                            <!--<RatingBar
+                                android:id="@+id/rbFeedbackRatingForDriver5"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
+                                android:isIndicator="true"
+                                android:maxHeight="@dimen/ratingStarSIze"
+                                android:minHeight="@dimen/ratingStarSIze"
+                                android:numStars="5"
+                                android:progress="@color/Yellow"
+                                android:rating="5"
+                                android:stepSize="1" />
+
+                            <RatingBar
+                                android:id="@+id/rbFeedbackRatingForDriver4"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:isIndicator="true"
+                                android:maxHeight="@dimen/ratingStarSIze"
+                                android:minHeight="@dimen/ratingStarSIze"
+                                android:numStars="5"
+                                android:rating="4"
+                                android:stepSize="1" />
+
+                            <RatingBar
+                                android:id="@+id/rbFeedbackRatingForDriver3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:isIndicator="true"
+                                android:maxHeight="@dimen/ratingStarSIze"
+                                android:minHeight="@dimen/ratingStarSIze"
+                                android:numStars="5"
+                                android:rating="3"
+                                android:stepSize="1" />
+
+                            <RatingBar
+                                android:id="@+id/rbFeedbackRatingForDriver2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:isIndicator="true"
+                                android:maxHeight="@dimen/ratingStarSIze"
+                                android:minHeight="@dimen/ratingStarSIze"
+                                android:numStars="5"
+                                android:rating="2"
+                                android:stepSize="1" />
+
+                            <RatingBar
+                                android:id="@+id/rbFeedbackRatingForDriver1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:isIndicator="true"
+                                android:maxHeight="@dimen/ratingStarSIze"
+                                android:minHeight="@dimen/ratingStarSIze"
+                                android:numStars="5"
+                                android:rating="1"
+                                android:stepSize="1" />-->
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/lyReviewMarginTop">
+
+
+                                <ImageView
+                                    android:layout_width="@dimen/ratingStarWidthHeight"
+                                    android:layout_height="@dimen/ratingStarWidthHeight"
+                                    android:background="@mipmap/imgstarfilled" />
+
+                                <ImageView
+                                    android:layout_width="@dimen/ratingStarWidthHeight"
+                                    android:layout_height="@dimen/ratingStarWidthHeight"
+                                    android:background="@mipmap/imgstarfilled" />
+
+                                <ImageView
+                                    android:layout_width="@dimen/ratingStarWidthHeight"
+                                    android:layout_height="@dimen/ratingStarWidthHeight"
+                                    android:background="@mipmap/imgstarfilled" />
+
+                                <ImageView
+                                    android:layout_width="@dimen/ratingStarWidthHeight"
+                                    android:layout_height="@dimen/ratingStarWidthHeight"
+                                    android:background="@mipmap/imgstarfilled" />
+
+                                <ImageView
+                                    android:layout_width="@dimen/ratingStarWidthHeight"
+                                    android:layout_height="@dimen/ratingStarWidthHeight"
+                                    android:background="@mipmap/imgstarfilled" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/lyReviewMarginTop">
+
+
+                                <ImageView
+                                    android:layout_width="@dimen/ratingStarWidthHeight"
+                                    android:layout_height="@dimen/ratingStarWidthHeight"
+                                    android:background="@mipmap/imgstarfilled" />
+
+                                <ImageView
+                                    android:layout_width="@dimen/ratingStarWidthHeight"
+                                    android:layout_height="@dimen/ratingStarWidthHeight"
+                                    android:background="@mipmap/imgstarfilled" />
+
+                                <ImageView
+                                    android:layout_width="@dimen/ratingStarWidthHeight"
+                                    android:layout_height="@dimen/ratingStarWidthHeight"
+                                    android:background="@mipmap/imgstarfilled" />
+
+                                <ImageView
+                                    android:layout_width="@dimen/ratingStarWidthHeight"
+                                    android:layout_height="@dimen/ratingStarWidthHeight"
+                                    android:background="@mipmap/imgstarfilled" />
+
+                                <ImageView
+                                    android:layout_width="@dimen/ratingStarWidthHeight"
+                                    android:layout_height="@dimen/ratingStarWidthHeight"
+                                    android:background="@mipmap/imgstarunfilled" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/lyReviewMarginTop">
+
+
+                                <ImageView
+                                    android:layout_width="@dimen/ratingStarWidthHeight"
+                                    android:layout_height="@dimen/ratingStarWidthHeight"
+                                    android:background="@mipmap/imgstarfilled" />
+
+                                <ImageView
+                                    android:layout_width="@dimen/ratingStarWidthHeight"
+                                    android:layout_height="@dimen/ratingStarWidthHeight"
+                                    android:background="@mipmap/imgstarfilled" />
+
+                                <ImageView
+                                    android:layout_width="@dimen/ratingStarWidthHeight"
+                                    android:layout_height="@dimen/ratingStarWidthHeight"
+                                    android:background="@mipmap/imgstarfilled" />
+
+                                <ImageView
+                                    android:layout_width="@dimen/ratingStarWidthHeight"
+                                    android:layout_height="@dimen/ratingStarWidthHeight"
+                                    android:background="@mipmap/imgstarunfilled" />
+
+                                <ImageView
+                                    android:layout_width="@dimen/ratingStarWidthHeight"
+                                    android:layout_height="@dimen/ratingStarWidthHeight"
+                                    android:background="@mipmap/imgstarunfilled" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/lyReviewMarginTop">
+
+
+                                <ImageView
+                                    android:layout_width="@dimen/ratingStarWidthHeight"
+                                    android:layout_height="@dimen/ratingStarWidthHeight"
+                                    android:background="@mipmap/imgstarfilled" />
+
+                                <ImageView
+                                    android:layout_width="@dimen/ratingStarWidthHeight"
+                                    android:layout_height="@dimen/ratingStarWidthHeight"
+                                    android:background="@mipmap/imgstarfilled" />
+
+                                <ImageView
+                                    android:layout_width="@dimen/ratingStarWidthHeight"
+                                    android:layout_height="@dimen/ratingStarWidthHeight"
+                                    android:background="@mipmap/imgstarunfilled" />
+
+                                <ImageView
+                                    android:layout_width="@dimen/ratingStarWidthHeight"
+                                    android:layout_height="@dimen/ratingStarWidthHeight"
+                                    android:background="@mipmap/imgstarunfilled" />
+
+                                <ImageView
+                                    android:layout_width="@dimen/ratingStarWidthHeight"
+                                    android:layout_height="@dimen/ratingStarWidthHeight"
+                                    android:background="@mipmap/imgstarunfilled" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/lyReviewMarginTop">
+
+
+                                <ImageView
+                                    android:layout_width="@dimen/ratingStarWidthHeight"
+                                    android:layout_height="@dimen/ratingStarWidthHeight"
+                                    android:background="@mipmap/imgstarfilled" />
+
+                                <ImageView
+                                    android:layout_width="@dimen/ratingStarWidthHeight"
+                                    android:layout_height="@dimen/ratingStarWidthHeight"
+                                    android:background="@mipmap/imgstarunfilled" />
+
+                                <ImageView
+                                    android:layout_width="@dimen/ratingStarWidthHeight"
+                                    android:layout_height="@dimen/ratingStarWidthHeight"
+                                    android:background="@mipmap/imgstarunfilled" />
+
+                                <ImageView
+                                    android:layout_width="@dimen/ratingStarWidthHeight"
+                                    android:layout_height="@dimen/ratingStarWidthHeight"
+                                    android:background="@mipmap/imgstarunfilled" />
+
+                                <ImageView
+                                    android:layout_width="@dimen/ratingStarWidthHeight"
+                                    android:layout_height="@dimen/ratingStarWidthHeight"
+                                    android:background="@mipmap/imgstarunfilled" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/vHeightWidthAll"
+                        android:layout_marginTop="@dimen/vMarginTopBottomAll"
+                        android:background="@color/white" />
+
+                    <CheckBox
+                        android:id="@+id/cbFilterRecommend"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
-                        android:isIndicator="true"
-                        android:maxHeight="@dimen/ratingStarSIze"
-                        android:minHeight="@dimen/ratingStarSIze"
-                        android:numStars="5"
-                        android:progress="@color/Yellow"
-                        android:rating="5"
-                        android:stepSize="1" />
-
-                    <RatingBar
-                        android:id="@+id/rbFeedbackRatingForDriver4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:isIndicator="true"
-                        android:maxHeight="@dimen/ratingStarSIze"
-                        android:minHeight="@dimen/ratingStarSIze"
-                        android:numStars="5"
-                        android:rating="4"
-                        android:stepSize="1" />
-
-                    <RatingBar
-                        android:id="@+id/rbFeedbackRatingForDriver3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:isIndicator="true"
-                        android:maxHeight="@dimen/ratingStarSIze"
-                        android:minHeight="@dimen/ratingStarSIze"
-                        android:numStars="5"
-                        android:rating="3"
-                        android:stepSize="1" />
-
-                    <RatingBar
-                        android:id="@+id/rbFeedbackRatingForDriver2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:isIndicator="true"
-                        android:maxHeight="@dimen/ratingStarSIze"
-                        android:minHeight="@dimen/ratingStarSIze"
-                        android:numStars="5"
-                        android:rating="2"
-                        android:stepSize="1" />
-
-                    <RatingBar
-                        android:id="@+id/rbFeedbackRatingForDriver1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:isIndicator="true"
-                        android:maxHeight="@dimen/ratingStarSIze"
-                        android:minHeight="@dimen/ratingStarSIze"
-                        android:numStars="5"
-                        android:rating="1"
-                        android:stepSize="1" />
-
+                        android:layout_marginTop="@dimen/cbMarginTopStartPaddingTopAll"
+                        android:paddingStart="@dimen/cbMarginTopStartPaddingTopAll"
+                        android:text="@string/recommend"
+                        android:textColor="@color/white" />
                 </LinearLayout>
-            </LinearLayout>
+            </ScrollView>
 
-            <View
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/vHeightWidthAll"
-                android:layout_marginTop="@dimen/vMarginTopBottomAll"
-                android:background="@color/white" />
+                android:layout_height="wrap_content">
 
-            <CheckBox
-                android:id="@+id/cbFilterRecommend"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/cbMarginTopStartPaddingTopAll"
-                android:paddingStart="@dimen/cbMarginTopStartPaddingTopAll"
-                android:text="@string/recommend"
-                android:textColor="@color/white" />
+                <Button
+                    android:id="@+id/btFilterDone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/Yellow"
+                    android:text="@string/done"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/btSizeAll" />
+
+                <Button
+                    android:id="@+id/btFilterResetAll"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/white"
+                    android:text="@string/reset_all"
+                    android:textAllCaps="false"
+                    android:textColor="@color/Yellow"
+                    android:textSize="@dimen/btSizeAll" />
+            </LinearLayout>
         </LinearLayout>
-    </ScrollView>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <Button
-            android:id="@+id/btFilterDone"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@color/Yellow"
-            android:text="@string/done"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:textSize="@dimen/btSizeAll" />
-
-        <Button
-            android:id="@+id/btFilterResetAll"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@color/white"
-            android:text="@string/reset_all"
-            android:textAllCaps="false"
-            android:textColor="@color/Yellow"
-            android:textSize="@dimen/btSizeAll" />
     </LinearLayout>
-
-</LinearLayout>
+</android.support.design.widget.CoordinatorLayout>

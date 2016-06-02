@@ -20,13 +20,10 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.smartsense.taxinearyou.utill.CommonUtil;
 import com.smartsense.taxinearyou.utill.Constants;
-import com.smartsense.taxinearyou.utill.DataRequest;
-import com.smartsense.taxinearyou.utill.JsonErrorShow;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -82,12 +79,14 @@ public class SecurityQuestion extends AppCompatActivity implements View.OnClickL
                 CommonUtil.closeKeyboard(this);
                 break;
             case R.id.etSecurityQuestion1:
+                CommonUtil.closeKeyboard(this);
                 if (jsonObject != null) {
                     openQuestionSelectPopup(true, jsonObject);
                 } else
                     getSecurityQuestion();
                 break;
             case R.id.etSecurityQuestion2:
+                CommonUtil.closeKeyboard(this);
                 if (jsonObject != null) {
                     openQuestionSelectPopup(false, jsonObject);
                 } else
@@ -102,88 +101,35 @@ public class SecurityQuestion extends AppCompatActivity implements View.OnClickL
         JSONObject jsonData = new JSONObject();
 
         try {
-            builder.append(Constants.BASE_URL + Constants.BASE_URL_POSTFIX + Constants.Events.EVENT_SIGNUP + "&json="
-                    + jsonData.put("firstName", getIntent().getStringExtra("firstName")).put("lastName", getIntent().getStringExtra("lastName")).put("contactNo", getIntent().getStringExtra("contactNo")).put("emailId", getIntent().getStringExtra("emailId")).put("password", getIntent().getStringExtra("password")).put("confPassword", getIntent().getStringExtra("confPassword")).put("altEmailId", getIntent().getStringExtra("altEmailId")).put("secQ1", (String) etSecurityQuestion1.getTag()).put("secQ2", (String) etSecurityQuestion2.getTag()).put("ans1", etSecurityAnswer1.getText().toString().trim()).put("ans2", etSecurityAnswer2.getText().toString().trim()).put("termsCond", cbSecurityFromPrivacyPolicy.isChecked() ? "1" : "0").put("condition2", cbSecurityFromOrganization.isChecked() ? "1" : "0").put("condition3", cbSecurityAboutTaxinearu.isChecked() ? "1" : "0").toString());
+            builder.append(Constants.BASE_URL + Constants.BASE_URL_POSTFIX + Constants.Events.EVENT_SIGNUP + "&json=")
+                    .append(jsonData.put("firstName", getIntent().getStringExtra("firstName"))
+                            .put("lastName", getIntent().getStringExtra("lastName"))
+                            .put("contactNo", getIntent().getStringExtra("contactNo"))
+                            .put("emailId", getIntent().getStringExtra("emailId"))
+                            .put("password", getIntent().getStringExtra("password"))
+                            .put("confPassword", getIntent().getStringExtra("confPassword"))
+                            .put("altEmailId", getIntent().getStringExtra("altEmailId"))
+                            .put("secQ1", (String) etSecurityQuestion1.getTag())
+                            .put("secQ2", (String) etSecurityQuestion2.getTag())
+                            .put("ans1", etSecurityAnswer1.getText().toString().trim())
+                            .put("ans2", etSecurityAnswer2.getText().toString().trim())
+                            .put("termsCond", cbSecurityFromPrivacyPolicy.isChecked() ? "1" : "0")
+                            .put("condition2", cbSecurityFromOrganization.isChecked() ? "1" : "0")
+                            .put("condition3", cbSecurityAboutTaxinearu.isChecked() ? "1" : "0").toString());
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        CommonUtil.showProgressDialog(this, "Login...");
-        DataRequest dataRequest = new DataRequest(Request.Method.GET, builder.toString(), null, this, this);
-        TaxiNearYouApp.getInstance().addToRequestQueue(dataRequest, tag);
+        CommonUtil.jsonRequestGET(this, getResources().getString(R.string.signing_up), builder.toString(), tag, this, this);
     }
 
     private void getSecurityQuestion() {
-        final String tag = "getSecurityQuestion";
-        StringBuilder builder = new StringBuilder();
-
-        builder.append(Constants.BASE_URL + Constants.BASE_URL_POSTFIX + Constants.Events.EVENT_GET_SECURITY_QES);
-
-//        CommonUtil.showProgressDialog(this, "Wait...");
-        DataRequest dataRequest = new DataRequest(Request.Method.GET, builder.toString(), null, this, this);
-        TaxiNearYouApp.getInstance().addToRequestQueue(dataRequest, tag);
-    }
-
-    @Override
-    public void onErrorResponse(VolleyError volleyError) {
-        CommonUtil.errorToastShowing(this);
-        CommonUtil.cancelProgressDialog();
-    }
-
-    @Override
-    public void onResponse(JSONObject response) {
-        CommonUtil.cancelProgressDialog();
-        if (response != null) {
-            try {
-                if (response.getInt("status") == Constants.STATUS_SUCCESS) {
-                    switch (response.getInt("__eventid")) {
-                        case Constants.Events.EVENT_SIGNUP:
-                            AlertDialog.Builder alert = new AlertDialog.Builder(this);
-//                            alert.setTitle("Empty Cart?");
-                            alert.setMessage(response.optString("msg"));
-                            alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int whichButton) {
-                                    //Do something here where "ok" clicked
-                                    startActivity(new Intent(SecurityQuestion.this, SignIn.class));
-                                    finish();
-                                }
-                            });
-                            alert.show();
-// SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_USER_ID, response.getJSONObject("data").getString("userId"));
-//                            SharedPreferenceUtil.save();
-//                            startActivity(new Intent(this, OTPActivity.class).putExtra("mobile", etMobileNo.getText().toString()).putExtra("code", etCountryCode.getText().toString()).putExtra("tag", (String) etCountryCode.getTag()));
-//                            finish();
-                            break;
-                        case Constants.Events.EVENT_GET_SECURITY_QES:
-                            if (response.optJSONObject("json").has("questionList")) {
-                                for (int i = 0; i < response.optJSONObject("json").optJSONArray("questionList").length(); i++) {
-                                    if (i == 0) {
-                                        etSecurityQuestion1.setText(response.optJSONObject("json").optJSONArray("questionList").optJSONObject(i).optString("name"));
-                                        etSecurityQuestion1.setTag(response.optJSONObject("json").optJSONArray("questionList").optJSONObject(i).optString("id"));
-                                    }
-                                    if (i == response.optJSONObject("json").optJSONArray("questionList").length() / 2) {
-                                        etSecurityQuestion2.setText(response.optJSONObject("json").optJSONArray("questionList").optJSONObject(i).optString("name"));
-                                        etSecurityQuestion2.setTag(response.optJSONObject("json").optJSONArray("questionList").optJSONObject(i).optString("id"));
-                                        break;
-                                    }
-                                }
-                            }
-                            jsonObject = response;
-                            break;
-                    }
-                } else {
-                    JsonErrorShow.jsonErrorShow(response, this, clSecurityQuestion);
-                }
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }
-
+        final String tag = "Get Security Question";
+        CommonUtil.jsonRequestGET(this, getResources().getString(R.string.get_data), (Constants.BASE_URL + Constants.BASE_URL_POSTFIX + Constants.Events.EVENT_GET_SECURITY_QES), tag, this, this);
     }
 
     public void openQuestionSelectPopup(Boolean check, JSONObject jsonObject1) {
         try {
-//            String str = "    { \"eventId\" : 123 ,   \"errorCode\" : 0,   \"status\" : 200,   \"message\" : \"country list.\",   \"data\" : { \"countries\" : [ { \"id\" : \"1\",   \"name\" : \"In which city or town did your mother and father meet ?\",   \"code\" : \"+92\" } , { \"id\" : \"2\",   \"name\" : \"What was the last name of your third grade teacher ?\" ,   \"code\" : \"+93\" }, { \"id\" : \"3\",   \"name\" : \"In Which city or town was your first job ?\" ,   \"code\" : \"+93\" }, { \"id\" : \"4\",   \"name\" : \"what was the name of your first stuffed animal ?\" ,   \"code\" : \"+93\" } ]  } }";
             jsonObject = jsonObject1;
             JSONArray question1 = new JSONArray();
             JSONArray question2 = new JSONArray();
@@ -264,5 +210,56 @@ public class SecurityQuestion extends AppCompatActivity implements View.OnClickL
             });
             return vi;
         }
+    }
+
+    @Override
+    public void onErrorResponse(VolleyError volleyError) {
+        CommonUtil.errorToastShowing(this);
+        CommonUtil.cancelProgressDialog();
+    }
+
+    @Override
+    public void onResponse(JSONObject response) {
+        CommonUtil.cancelProgressDialog();
+        if (response != null) {
+            try {
+                if (response.getInt("status") == Constants.STATUS_SUCCESS) {
+                    switch (response.getInt("__eventid")) {
+                        case Constants.Events.EVENT_SIGNUP:
+                            AlertDialog.Builder alert = new AlertDialog.Builder(this);
+                            alert.setMessage(response.optString("msg"));
+                            alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int whichButton) {
+                                    startActivity(new Intent(SecurityQuestion.this, SignIn.class));
+                                    finish();
+                                }
+                            });
+                            alert.show();
+                            break;
+                        case Constants.Events.EVENT_GET_SECURITY_QES:
+                            if (response.optJSONObject("json").has("questionList")) {
+                                for (int i = 0; i < response.optJSONObject("json").optJSONArray("questionList").length(); i++) {
+                                    if (i == 0) {
+                                        etSecurityQuestion1.setText(response.optJSONObject("json").optJSONArray("questionList").optJSONObject(i).optString("name"));
+                                        etSecurityQuestion1.setTag(response.optJSONObject("json").optJSONArray("questionList").optJSONObject(i).optString("id"));
+                                    }
+                                    if (i == response.optJSONObject("json").optJSONArray("questionList").length() / 2) {
+                                        etSecurityQuestion2.setText(response.optJSONObject("json").optJSONArray("questionList").optJSONObject(i).optString("name"));
+                                        etSecurityQuestion2.setTag(response.optJSONObject("json").optJSONArray("questionList").optJSONObject(i).optString("id"));
+                                        break;
+                                    }
+                                }
+                            }
+                            jsonObject = response;
+                            break;
+                    }
+                } else {
+                    CommonUtil.conditionAuthentication(this, response);
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        } else
+            CommonUtil.jsonNullError(this);
     }
 }

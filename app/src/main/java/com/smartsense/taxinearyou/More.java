@@ -44,6 +44,12 @@ public class More extends AppCompatActivity implements View.OnClickListener {
                 startActivity(new Intent(this, ContactUs.class));
                 break;
             case R.id.tvMoreAboutUs:
+                startActivity(new Intent(this, AboutUs.class).putExtra("about", "about"));
+                break;
+            case R.id.tvMorePrivacyPolicy:
+                startActivity(new Intent(this, AboutUs.class).putExtra("privacy", "privacy"));
+                break;
+            case R.id.tvMoreTermsConditions:
                 startActivity(new Intent(this, AboutUs.class));
                 break;
         }
@@ -51,7 +57,6 @@ public class More extends AppCompatActivity implements View.OnClickListener {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-//        getMenuInflater().inflate(R.menu.ratingforsearch, menu);
         return true;
     }
 
@@ -63,6 +68,5 @@ public class More extends AppCompatActivity implements View.OnClickListener {
                 break;
         }
         return super.onOptionsItemSelected(item);
-
     }
 }

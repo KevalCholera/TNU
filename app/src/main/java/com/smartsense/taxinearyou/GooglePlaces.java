@@ -60,7 +60,6 @@ public class GooglePlaces extends FragmentActivity implements OnItemClickListene
     ImageButton ibGooglePlaceEmpty;
     EditText autoCompView;
     ListView lvGoogleSearch;
-    private GoogleApiClient mGoogleApiClient;
     //------------ make your specific key ------------
 //    private static final String API_KEY = "AIzaSyDi0RWt263vcR_s6MAjN_3Lq4DIPCrW7JI";
     private static final String API_KEY = "AIzaSyCp1vbSHgiC1lsNUYb-PuDs3kJ4wYEKu3I";
@@ -73,7 +72,7 @@ public class GooglePlaces extends FragmentActivity implements OnItemClickListene
         setContentView(R.layout.activity_google_places);
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
-        mGoogleApiClient = new GoogleApiClient.Builder(GooglePlaces.this)
+        GoogleApiClient mGoogleApiClient = new GoogleApiClient.Builder(GooglePlaces.this)
                 .addApi(Places.GEO_DATA_API)
                 .enableAutoManage(this, 0, this)
                 .addConnectionCallbacks(this)
@@ -441,7 +440,7 @@ public class GooglePlaces extends FragmentActivity implements OnItemClickListene
 
 
             JSONObject test = resultList11.optJSONObject(position);
-            Log.i("Test", test.toString());
+//            Log.i("Test", test.toString());
             String[] str = test.optString("description").split(",", 1);
             tvElementGoogle.setText(str[0]);
             tvElementGoogle1.setText(str[1]);

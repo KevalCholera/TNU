@@ -23,18 +23,14 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.mpt.storage.SharedPreferenceUtil;
 import com.smartsense.taxinearyou.GooglePlaces;
 import com.smartsense.taxinearyou.R;
 import com.smartsense.taxinearyou.SearchCars;
-import com.smartsense.taxinearyou.TaxiNearYouApp;
 import com.smartsense.taxinearyou.utill.CommonUtil;
 import com.smartsense.taxinearyou.utill.Constants;
-import com.smartsense.taxinearyou.utill.DataRequest;
-import com.smartsense.taxinearyou.utill.JsonErrorShow;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -122,7 +118,7 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
         else
             timeSet = "AM";
 
-        String minutes = "";
+        String minutes;
         if (mins < 10)
             minutes = "0" + mins;
         else
@@ -239,10 +235,8 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
             e.printStackTrace();
         }
 
-        DataRequest dataRequest = new DataRequest(Request.Method.GET, builder.toString(), null, this, this);
-        TaxiNearYouApp.getInstance().addToRequestQueue(dataRequest, tag);
+        CommonUtil.jsonRequestGET(getActivity(), getResources().getString(R.string.get_data), builder.toString(), tag, this, this);
     }
-
 
     @Override
     public void onClick(View v) {
@@ -266,15 +260,29 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
                 break;
 
             case R.id.tvBookDateTime:
+                if (rbBookNow.isChecked())
+                    timeChange = true;
                 getServerDateTime();
                 check = true;
                 break;
 
             case R.id.tvBookSearchCars:
-                if (TextUtils.isEmpty(tvBookFrom.getText().toString()))
-                    CommonUtil.showSnackBar(getActivity(), getString(R.string.enter_fields_below), clSearch);
+                if (TextUtils.isEmpty(tvBookFrom.getText().toString()) && TextUtils.isEmpty(tvBookTo.getText().toString()))
+                    CommonUtil.showSnackBar(getActivity(), getResources().getString(R.string.enter_fields_below), clSearch);
+                else if (TextUtils.isEmpty(tvBookFrom.getText().toString()))
+                    CommonUtil.showSnackBar(getActivity(), getResources().getString(R.string.pls_enter_pick), clSearch);
                 else if (TextUtils.isEmpty(tvBookTo.getText().toString()))
-                    CommonUtil.showSnackBar(getActivity(), getString(R.string.enter_fields_below), clSearch);
+                    CommonUtil.showSnackBar(getActivity(), getResources().getString(R.string.pls_enter_drop), clSearch);
+                else if (llBookVia1.getVisibility() == View.VISIBLE && llBookVia2.getVisibility() == View.VISIBLE && TextUtils.isEmpty(tvBookvia1.getText().toString()) && TextUtils.isEmpty(tvBookvia2.getText().toString()))
+                    CommonUtil.showSnackBar(getActivity(), getResources().getString(R.string.pls_ent_via_fields), clSearch);
+                else if (llBookVia1.getVisibility() == View.VISIBLE && llBookVia2.getVisibility() == View.VISIBLE && TextUtils.isEmpty(tvBookvia1.getText().toString()))
+                    CommonUtil.showSnackBar(getActivity(), getResources().getString(R.string.pls_ent_via1_loc), clSearch);
+                else if (llBookVia1.getVisibility() == View.VISIBLE && llBookVia2.getVisibility() == View.VISIBLE && TextUtils.isEmpty(tvBookvia2.getText().toString()))
+                    CommonUtil.showSnackBar(getActivity(), getResources().getString(R.string.pls_ent_via2_loc), clSearch);
+                else if (llBookVia1.getVisibility() == View.VISIBLE && TextUtils.isEmpty(tvBookvia1.getText().toString()))
+                    CommonUtil.showSnackBar(getActivity(), getResources().getString(R.string.pls_ent_via1_loc), clSearch);
+                else if (llBookVia2.getVisibility() == View.VISIBLE && TextUtils.isEmpty(tvBookvia2.getText().toString()))
+                    CommonUtil.showSnackBar(getActivity(), getResources().getString(R.string.pls_ent_via2_loc), clSearch);
                 else
                     startActivity(new Intent(getActivity(), SearchCars.class)
                             .putExtra("tvBookDateTime", tvBookDateTime.getText().toString())
@@ -294,11 +302,13 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
             case R.id.ivBookDeleteVia1:
                 llBookVia1.setVisibility(View.GONE);
                 tvBookvia1.setText("");
+                SharedPreferenceUtil.putValue(Constants.VIA_ADDRESS, "");
                 break;
 
             case R.id.ivBookDeleteVia2:
                 llBookVia2.setVisibility(View.GONE);
                 tvBookvia2.setText("");
+                SharedPreferenceUtil.putValue(Constants.VIA2_ADDRESS, "");
                 break;
 
             case R.id.tvBookFrom:
@@ -322,42 +332,60 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
             case R.id.tvBookLuggage:
                 openQuestionSelectPopup(true);
                 break;
-//            case R.id.imgBookFromToReverse:
-//                if (TextUtils.isEmpty(tvBookFrom.getText().toString()))
-//                    CommonUtil.showSnackBar(getActivity(), getString(R.string.enter_from), clSearch);
-//                else if (TextUtils.isEmpty(tvBookTo.getText().toString()))
-//                    CommonUtil.showSnackBar(getActivity(), getString(R.string.enter_to), clSearch);
-//                else {
-//                    String reverseFrom = tvBookFrom.getText().toString();
-//                    tvBookFrom.setText(tvBookTo.getText().toString());
-//                    tvBookTo.setText(reverseFrom);
-//                }
-//                break;
+            case R.id.imgBookFromToReverse:
+                if (TextUtils.isEmpty(tvBookFrom.getText().toString()) || TextUtils.isEmpty(tvBookTo.getText().toString()))
+                    CommonUtil.showSnackBar(getActivity(), getString(R.string.enter_fields_below), clSearch);
+                else {
+                    String reverseFrom = tvBookFrom.getText().toString();
+                    tvBookFrom.setText(tvBookTo.getText().toString());
+                    tvBookTo.setText(reverseFrom);
+                    SharedPreferenceUtil.putValue(Constants.REVERSE_FROM_TO, SharedPreferenceUtil.getString(Constants.FROM_ADDRESS, ""));
+                    SharedPreferenceUtil.putValue(Constants.FROM_ADDRESS, SharedPreferenceUtil.getString(Constants.TO_ADDRESS, ""));
+                    SharedPreferenceUtil.putValue(Constants.TO_ADDRESS, SharedPreferenceUtil.getString(Constants.REVERSE_FROM_TO, ""));
+                    SharedPreferenceUtil.save();
+                }
+                break;
         }
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         // check if the request code is same as what is passed  here it is 2
-        String message = null;
+        String message;
         if (resultCode == Activity.RESULT_OK) {
             message = data.getStringExtra("AreaName");
             switch (data.getIntExtra("typeAddress", 0)) {
                 case 1:
-                    tvBookFrom.setText(message);
-                    SharedPreferenceUtil.putValue(Constants.FROM_ADDRESS, data.getStringExtra("address"));
+                    if (tvBookTo.getText().toString().equalsIgnoreCase(message) || tvBookvia1.getText().toString().equalsIgnoreCase(message) || tvBookvia2.getText().toString().equalsIgnoreCase(message))
+                        CommonUtil.showSnackBar(getActivity(), getString(R.string.enter_fields_below), clSearch);
+                    else {
+                        tvBookFrom.setText(message);
+                        SharedPreferenceUtil.putValue(Constants.FROM_ADDRESS, data.getStringExtra("address"));
+                    }
                     break;
                 case 2:
-                    tvBookTo.setText(message);
-                    SharedPreferenceUtil.putValue(Constants.TO_ADDRESS, data.getStringExtra("address"));
+                    if (tvBookFrom.getText().toString().equalsIgnoreCase(message) || tvBookvia1.getText().toString().equalsIgnoreCase(message) || tvBookvia2.getText().toString().equalsIgnoreCase(message))
+                        CommonUtil.showSnackBar(getActivity(), getString(R.string.enter_fields_below), clSearch);
+                    else {
+                        tvBookTo.setText(message);
+                        SharedPreferenceUtil.putValue(Constants.TO_ADDRESS, data.getStringExtra("address"));
+                    }
                     break;
                 case 3:
-                    tvBookvia1.setText(message);
-                    SharedPreferenceUtil.putValue(Constants.VIA_ADDRESS, data.getStringExtra("address"));
+                    if (tvBookTo.getText().toString().equalsIgnoreCase(message) || tvBookFrom.getText().toString().equalsIgnoreCase(message) || tvBookvia2.getText().toString().equalsIgnoreCase(message))
+                        CommonUtil.showSnackBar(getActivity(), getString(R.string.enter_fields_below), clSearch);
+                    else {
+                        tvBookvia1.setText(message);
+                        SharedPreferenceUtil.putValue(Constants.VIA_ADDRESS, data.getStringExtra("address"));
+                    }
                     break;
                 case 4:
-                    tvBookvia2.setText(message);
-                    SharedPreferenceUtil.putValue(Constants.VIA2_ADDRESS, data.getStringExtra("address"));
+                    if (tvBookTo.getText().toString().equalsIgnoreCase(message) || tvBookvia1.getText().toString().equalsIgnoreCase(message) || tvBookFrom.getText().toString().equalsIgnoreCase(message))
+                        CommonUtil.showSnackBar(getActivity(), getString(R.string.enter_fields_below), clSearch);
+                    else {
+                        tvBookvia2.setText(message);
+                        SharedPreferenceUtil.putValue(Constants.VIA2_ADDRESS, data.getStringExtra("address"));
+                    }
                     break;
             }
             SharedPreferenceUtil.save();
@@ -512,8 +540,8 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
                 }
 
             } else
-                CommonUtil.successToastShowing(getActivity(), jsonObject);
-        }
+                CommonUtil.conditionAuthentication(getActivity(), jsonObject);
+        } else
+            CommonUtil.jsonNullError(getActivity());
     }
-
 }

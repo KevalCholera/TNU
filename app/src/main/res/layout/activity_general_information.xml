@@ -23,7 +23,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/first_name"
-                android:textColor="@android:color/darker_gray"
+                android:textColor="@color/colorPrimaryDark"
                 android:textSize="@dimen/tvHeadingSizeAll" />
 
             <EditText
@@ -34,7 +34,6 @@
                 android:background="@drawable/grayborder"
                 android:inputType="textCapSentences"
                 android:paddingStart="@dimen/etSignUpAllPaddingStartEnd"
-                android:text="@string/john"
                 android:textColor="@color/black"
                 android:textSize="@dimen/etSignInUserPassSize" />
 
@@ -43,7 +42,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/tvbtGeneralInfoMarginTopAll"
                 android:text="@string/last_name"
-                android:textColor="@android:color/darker_gray"
+                android:textColor="@color/colorPrimaryDark"
                 android:textSize="@dimen/tvHeadingSizeAll" />
 
             <EditText
@@ -54,7 +53,6 @@
                 android:background="@drawable/grayborder"
                 android:inputType="textCapSentences"
                 android:paddingStart="@dimen/etSignUpAllPaddingStartEnd"
-                android:text="@string/smith"
                 android:textColor="@color/black"
                 android:textSize="@dimen/etSignInUserPassSize" />
 
@@ -62,8 +60,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/tvbtGeneralInfoMarginTopAll"
-                android:text="@string/mobile"
-                android:textColor="@android:color/darker_gray"
+                android:text="@string/contact_no"
+                android:textColor="@color/colorPrimaryDark"
                 android:textSize="@dimen/tvHeadingSizeAll" />
 
             <EditText
@@ -73,8 +71,8 @@
                 android:layout_marginEnd="@dimen/etSignUpPersonNameMarginEnd"
                 android:background="@drawable/grayborder"
                 android:inputType="phone"
+                android:maxLength="10"
                 android:paddingStart="@dimen/etSignUpAllPaddingStartEnd"
-                android:text="@string/_987896542"
                 android:textColor="@color/black"
                 android:textSize="@dimen/etSignInUserPassSize" />
 

@@ -11,7 +11,6 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -26,13 +25,11 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.mpt.storage.SharedPreferenceUtil;
 import com.smartsense.taxinearyou.utill.CommonUtil;
 import com.smartsense.taxinearyou.utill.Constants;
-import com.smartsense.taxinearyou.utill.DataRequest;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -44,7 +41,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.logging.SimpleFormatter;
 
 public class EventBooking extends AppCompatActivity implements Response.Listener<JSONObject>, Response.ErrorListener, View.OnClickListener {
 
@@ -144,8 +140,7 @@ public class EventBooking extends AppCompatActivity implements Response.Listener
             e.printStackTrace();
         }
 
-        DataRequest dataRequest = new DataRequest(Request.Method.GET, builder.toString(), null, this, this);
-        TaxiNearYouApp.getInstance().addToRequestQueue(dataRequest, tag);
+        CommonUtil.jsonRequestGET(this, getResources().getString(R.string.get_data), builder.toString(), tag, this, this);
     }
 
     Calendar mCalendar = Calendar.getInstance();
@@ -275,10 +270,13 @@ public class EventBooking extends AppCompatActivity implements Response.Listener
 
     @Override
     public void onClick(View v) {
+        CommonUtil.closeKeyboard(EventBooking.this);
         switch (v.getId()) {
             case R.id.btEventBookingBookNow:
 
-                if (TextUtils.isEmpty(etEventBookingFirstName.getText().toString()))
+                if (TextUtils.isEmpty(etEventBookingFirstName.getText().toString()) && TextUtils.isEmpty(etEventBookingLastName.getText().toString()) && TextUtils.isEmpty(etEventBookingEmailAddress.getText().toString()) && TextUtils.isEmpty(etEventBookingContactNumber.getText().toString()) && TextUtils.isEmpty(etEventBookingPickUp.getText().toString()) && TextUtils.isEmpty(etEventBookingEventDropOff.getText().toString()) && TextUtils.isEmpty(etEventBookingReq.getText().toString()))
+                    CommonUtil.showSnackBar(EventBooking.this, getResources().getString(R.string.enter_fields_below), clEventBooking);
+                else if (TextUtils.isEmpty(etEventBookingFirstName.getText().toString()))
                     CommonUtil.showSnackBar(EventBooking.this, getResources().getString(R.string.enter_first_name), clEventBooking);
                 else if (TextUtils.isEmpty(etEventBookingLastName.getText().toString()))
                     CommonUtil.showSnackBar(EventBooking.this, getResources().getString(R.string.enter_last_name), clEventBooking);
@@ -288,11 +286,11 @@ public class EventBooking extends AppCompatActivity implements Response.Listener
                     CommonUtil.showSnackBar(EventBooking.this, getResources().getString(R.string.enter_contact_no), clEventBooking);
                 else if (etEventBookingContactNumber.length() < 7 || etEventBookingContactNumber.length() > 13)
                     CommonUtil.showSnackBar(EventBooking.this, getResources().getString(R.string.enter_valid_contact_no), clEventBooking);
-                else if (CommonUtil.isValidEmail((etEventBookingPickUp.getText().toString())))
-                    CommonUtil.showSnackBar(EventBooking.this, getResources().getString(R.string.enter_from), clEventBooking);
-                else if (CommonUtil.isValidEmail((etEventBookingEventDropOff.getText().toString())))
-                    CommonUtil.showSnackBar(EventBooking.this, getResources().getString(R.string.enter_to), clEventBooking);
-                else if (CommonUtil.isValidEmail((etEventBookingReq.getText().toString())))
+                else if (TextUtils.isEmpty(etEventBookingPickUp.getText().toString()))
+                    CommonUtil.showSnackBar(EventBooking.this, getResources().getString(R.string.pls_enter_pick), clEventBooking);
+                else if (TextUtils.isEmpty(etEventBookingEventDropOff.getText().toString()))
+                    CommonUtil.showSnackBar(EventBooking.this, getResources().getString(R.string.pls_enter_drop), clEventBooking);
+                else if (TextUtils.isEmpty(etEventBookingReq.getText().toString()))
                     CommonUtil.showSnackBar(EventBooking.this, getResources().getString(R.string.enter_req), clEventBooking);
                 else
                     eventBooking();
@@ -470,20 +468,20 @@ public class EventBooking extends AppCompatActivity implements Response.Listener
             if (rbEventBookingReturn.isChecked())
                 jsonData.put("eventduration", etEventBookingEventDuration.getText().toString());
 
-            builder.append(jsonData.put("noofpeople", etEventBookingPassengers.getTag())
+            builder.append(jsonData.put("noofpeople", ((String) etEventBookingPassengers.getTag()).trim())
                     .put("token", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_ACCESS_TOKEN, ""))
-                    .put("otherrequirement", etEventBookingReq.getText().toString())
-                    .put("coaches", etEventBookingVehicleType.getText().toString())
-                    .put("luggage", etEventBookingEventLuggage.getTag())
-                    .put("firstname", etEventBookingFirstName.getText().toString())
+                    .put("otherrequirement", etEventBookingReq.getText().toString().trim())
+                    .put("coaches", etEventBookingVehicleType.getText().toString().trim())
+                    .put("luggage", ((String) etEventBookingEventLuggage.getTag()).trim())
+                    .put("firstname", etEventBookingFirstName.getText().toString().trim())
                     .put("userId", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_ID, ""))
-                    .put("email", etEventBookingEmailAddress.getText().toString())
-                    .put("eventdate", etEventBookingDateTime.getTag())
-                    .put("phoneno", etEventBookingContactNumber.getText().toString())
-                    .put("pickuparea", etEventBookingPickUp.getText().toString())
-                    .put("droparea", etEventBookingEventDropOff.getText().toString())
+                    .put("email", etEventBookingEmailAddress.getText().toString().trim())
+                    .put("eventdate", ((String) etEventBookingDateTime.getTag()).trim())
+                    .put("phoneno", etEventBookingContactNumber.getText().toString().trim())
+                    .put("pickuparea", etEventBookingPickUp.getText().toString().trim())
+                    .put("droparea", etEventBookingEventDropOff.getText().toString().trim())
                     .put("type", rbEventBookingOneWay.isChecked() ? "0" : "1")
-                    .put("lastname", etEventBookingLastName.getText().toString()));
+                    .put("lastname", etEventBookingLastName.getText().toString().trim()));
 
             try {
                 url = Constants.BASE_URL + Constants.BASE_URL_POSTFIX + Constants.Events.EVENT_BOOKING + "&json="
@@ -495,9 +493,7 @@ public class EventBooking extends AppCompatActivity implements Response.Listener
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        CommonUtil.showProgressDialog(this, "getting data...");
-        DataRequest dataRequest = new DataRequest(Request.Method.GET, url, null, this, this);
-        TaxiNearYouApp.getInstance().addToRequestQueue(dataRequest, tag);
+        CommonUtil.jsonRequestGET(this, getResources().getString(R.string.get_data), url, tag, this, this);
     }
 
     @Override
@@ -510,30 +506,31 @@ public class EventBooking extends AppCompatActivity implements Response.Listener
     public void onResponse(JSONObject jsonObject) {
         CommonUtil.cancelProgressDialog();
         if (jsonObject != null) {
-            if (jsonObject.optString("__eventid").equalsIgnoreCase((Constants.Events.EVENT_BOOKING) + "")) {
-                CommonUtil.successToastShowing(this, jsonObject);
-                if (jsonObject.optInt("status") == Constants.STATUS_SUCCESS)
-                    finish();
-            } else if (jsonObject.optString("__eventid").equalsIgnoreCase((Constants.Events.GET_SERVER_DATE_TIME) + "")) {
+            if (jsonObject.optInt("status") == Constants.STATUS_SUCCESS) {
+                if (jsonObject.optString("__eventid").equalsIgnoreCase((Constants.Events.EVENT_BOOKING) + "")) {
+                    CommonUtil.alertBox(this, getResources().getString(R.string.event_complete), false, true);
 
-                try {
-                    String dateTime = timeStampFormat.format(new SimpleDateFormat("dd MM yyyy HH mm ss").parse(jsonObject.optJSONObject("json").optString("serverTime")));
-                    jsonDate = timeSetFormat.format(timeStampFormat.parse(dateTime));
-                    if (check) {
-                        jsonTimeHour = new SimpleDateFormat("HH").format(timeStampFormat.parse(dateTime));
-                        jsonTimeMin = new SimpleDateFormat("mm").format(timeStampFormat.parse(dateTime));
-                        etEventBookingDateTime.setText(dateTime);
-                        etEventBookingDateTime.setTag(dateTime);
-                        check = false;
+                } else if (jsonObject.optString("__eventid").equalsIgnoreCase((Constants.Events.GET_SERVER_DATE_TIME) + "")) {
+
+                    try {
+                        String dateTime = timeStampFormat.format(new SimpleDateFormat("dd MM yyyy HH mm ss").parse(jsonObject.optJSONObject("json").optString("serverTime")));
+                        jsonDate = timeSetFormat.format(timeStampFormat.parse(dateTime));
+                        if (check) {
+                            jsonTimeHour = new SimpleDateFormat("HH").format(timeStampFormat.parse(dateTime));
+                            jsonTimeMin = new SimpleDateFormat("mm").format(timeStampFormat.parse(dateTime));
+                            etEventBookingDateTime.setText(dateTime);
+                            etEventBookingDateTime.setTag(dateTime);
+                            check = false;
+                        }
+                        if (once)
+                            datePicker(dateTime);
+
+                    } catch (ParseException e) {
+                        e.printStackTrace();
                     }
-                    if (once)
-                        datePicker(dateTime);
-
-                } catch (ParseException e) {
-                    e.printStackTrace();
                 }
-            }
-        }
+            } else
+                CommonUtil.conditionAuthentication(this, jsonObject);
+        } else CommonUtil.jsonNullError(this);
     }
-
 }

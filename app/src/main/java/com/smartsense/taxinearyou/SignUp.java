@@ -12,12 +12,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
-import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.smartsense.taxinearyou.utill.CommonUtil;
 import com.smartsense.taxinearyou.utill.Constants;
-import com.smartsense.taxinearyou.utill.DataRequest;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -29,6 +27,7 @@ public class SignUp extends AppCompatActivity implements Response.Listener<JSONO
     CoordinatorLayout clSignUp;
     Button btSignUpSaveNext;
     ImageButton btSignUpBack;
+    int whichEmail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +53,7 @@ public class SignUp extends AppCompatActivity implements Response.Listener<JSONO
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (s.length() == 11) {
+                if (s.length() >= 7) {
                     contactAvailability();
                 }
             }
@@ -73,6 +72,26 @@ public class SignUp extends AppCompatActivity implements Response.Listener<JSONO
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (CommonUtil.isValidEmail(s)) {
+                    whichEmail = 1;
+                    emailAvailability();
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        etSignUpAlternateEmail.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (CommonUtil.isValidEmail(s)) {
+                    whichEmail = 2;
                     emailAvailability();
                 }
             }
@@ -86,7 +105,9 @@ public class SignUp extends AppCompatActivity implements Response.Listener<JSONO
         btSignUpSaveNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (TextUtils.isEmpty(etSignUpFirstName.getText().toString()))
+                if (TextUtils.isEmpty(etSignUpFirstName.getText().toString()) && TextUtils.isEmpty(etSignUpLastName.getText().toString()) && TextUtils.isEmpty(etSignUpContact.getText().toString()) && TextUtils.isEmpty(etSignUpEmail.getText().toString()) && TextUtils.isEmpty(etSignUpAlternateEmail.getText().toString()) && TextUtils.isEmpty(etSignUpPassword.getText().toString()) && TextUtils.isEmpty(etSignUpConfirmPassword.getText().toString()))
+                    CommonUtil.showSnackBar(SignUp.this, getResources().getString(R.string.enter_fields_below), clSignUp);
+                else if (TextUtils.isEmpty(etSignUpFirstName.getText().toString()))
                     CommonUtil.showSnackBar(SignUp.this, getString(R.string.enter_first_name), clSignUp);
                 else if (TextUtils.isEmpty(etSignUpLastName.getText().toString()))
                     CommonUtil.showSnackBar(SignUp.this, getString(R.string.enter_last_name), clSignUp);
@@ -133,13 +154,15 @@ public class SignUp extends AppCompatActivity implements Response.Listener<JSONO
         JSONObject jsonData = new JSONObject();
 
         try {
-            builder.append(Constants.BASE_URL + Constants.BASE_URL_POSTFIX + Constants.Events.CHECK_MOBILE_AVAILABILITY + "&json=").append(jsonData.put("mobile", etSignUpContact.getText().toString()));
+            builder.append(Constants.BASE_URL + Constants.BASE_URL_POSTFIX + Constants.Events.CHECK_MOBILE_AVAILABILITY + "&json=")
+                    .append(jsonData.put("mobileNo", etSignUpContact.getText().toString()));
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        DataRequest dataRequest = new DataRequest(Request.Method.GET, builder.toString(), null, this, this);
-        TaxiNearYouApp.getInstance().addToRequestQueue(dataRequest, tag);
+//        CommonUtil.jsonRequestGET(this, getResources().getString(R.string.get_data), builder.toString(), tag, this, this);
+        CommonUtil.jsonRequestNoProgressBar(builder.toString(), tag, this, this);
+
     }
 
     private void emailAvailability() {
@@ -148,13 +171,15 @@ public class SignUp extends AppCompatActivity implements Response.Listener<JSONO
         JSONObject jsonData = new JSONObject();
 
         try {
-            builder.append(Constants.BASE_URL + Constants.BASE_URL_POSTFIX + Constants.Events.CHECK_EMAIL_AVAILABILITY + "&json=").append(jsonData.put("mobile", etSignUpContact.getText().toString()).put("type", "1"));
+            builder.append(Constants.BASE_URL + Constants.BASE_URL_POSTFIX + Constants.Events.CHECK_EMAIL_AVAILABILITY + "&json=")
+                    .append(jsonData.put("emailId", etSignUpEmail.getText().toString())
+                            .put("type", whichEmail + ""));
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        DataRequest dataRequest = new DataRequest(Request.Method.GET, builder.toString(), null, this, this);
-        TaxiNearYouApp.getInstance().addToRequestQueue(dataRequest, tag);
+//        CommonUtil.jsonRequestGET(this, getResources().getString(R.string.get_data), builder.toString(), tag, this, this);
+        CommonUtil.jsonRequestNoProgressBar(builder.toString(), tag, this, this);
     }
 
     @Override
@@ -164,8 +189,13 @@ public class SignUp extends AppCompatActivity implements Response.Listener<JSONO
 
     @Override
     public void onResponse(JSONObject jsonObject) {
-
-        if (jsonObject != null && jsonObject.length() > 0 && jsonObject.optInt("status") == Constants.STATUS_SUCCESS && !jsonObject.optJSONObject("json").optString("isAvailable").equalsIgnoreCase("1"))
-            CommonUtil.showSnackBar(this, jsonObject.optString("msg"), clSignUp);
+        if (jsonObject != null) {
+            if (jsonObject.optInt("status") == Constants.STATUS_SUCCESS) {
+                if (!jsonObject.optJSONObject("json").optString("isAvailable").equalsIgnoreCase("1"))
+                    CommonUtil.showSnackBar(this, jsonObject.optString("msg"), clSignUp);
+            } else
+                CommonUtil.conditionAuthentication(this, jsonObject);
+        } else
+            CommonUtil.jsonNullError(this);
     }
 }

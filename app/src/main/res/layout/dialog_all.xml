@@ -692,7 +692,7 @@
             android:gravity="center"
             android:orientation="vertical"
             android:padding="@dimen/lyPadding10"
-            android:visibility="visible">
+            android:visibility="gone">
 
             <View
                 android:layout_width="match_parent"

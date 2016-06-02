@@ -8,7 +8,6 @@
         android:id="@+id/tvElementGoogle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Card 1"
         android:textColor="@color/black"
         android:padding="@dimen/tvElementCardListMarginStartEnd5"
         android:textSize="@dimen/btSignInSignInSize" />
@@ -18,7 +17,6 @@
         android:id="@+id/tvElementGoogle1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Card 1"
         android:textColor="@color/dark_gray"
         android:padding="@dimen/tvElementCardListMarginStartEnd5"
         android:textSize="@dimen/btSignInSignInSize" />

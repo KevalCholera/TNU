@@ -3,8 +3,7 @@
     android:id="@+id/tvElementGoogle"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:drawableLeft="@mipmap/imgfromto"
-    android:textColor="@color/black"
+    android:drawableLeft="@android:drawable/ic_menu_search"
     android:gravity="center_vertical"
-    android:text="Ronak Thacker"
+    android:textColor="@color/black"
     android:textSize="@dimen/tvHeadingSizeAll" />

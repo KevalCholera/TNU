@@ -5,22 +5,19 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.mpt.storage.SharedPreferenceUtil;
 import com.smartsense.taxinearyou.Adapters.AdapterFragmentReview;
 import com.smartsense.taxinearyou.PartnerDetails;
 import com.smartsense.taxinearyou.R;
-import com.smartsense.taxinearyou.TaxiNearYouApp;
 import com.smartsense.taxinearyou.utill.CommonUtil;
 import com.smartsense.taxinearyou.utill.Constants;
-import com.smartsense.taxinearyou.utill.DataRequest;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -51,6 +48,26 @@ public class FragmentReview extends Fragment implements Response.Listener<JSONOb
         return rootView;
     }
 
+
+    public void setListViewHeightBasedOnChildren(ListView listView) {
+        ListAdapter listAdapter = listView.getAdapter();
+        if (listAdapter == null) {
+            return;
+        }
+
+        int totalHeight = 0;
+        for (int i = 0; i < listAdapter.getCount(); i++) {
+            View listItem = listAdapter.getView(i, null, listView);
+            listItem.measure(0, 0);
+            totalHeight += listItem.getMeasuredHeight();
+        }
+
+        ViewGroup.LayoutParams params = listView.getLayoutParams();
+        params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
+        listView.setLayoutParams(params);
+        listView.requestLayout();
+    }
+
     private void feedBack() {
         final String tag = "Feed Back";
         StringBuilder builder = new StringBuilder();
@@ -65,9 +82,8 @@ public class FragmentReview extends Fragment implements Response.Listener<JSONOb
             e.printStackTrace();
         }
 
-        CommonUtil.showProgressDialog(getActivity(), "getting data...");
-        DataRequest dataRequest = new DataRequest(Request.Method.GET, builder.toString(), null, this, this);
-        TaxiNearYouApp.getInstance().addToRequestQueue(dataRequest, tag);
+        CommonUtil.jsonRequestGET(getActivity(), getResources().getString(R.string.get_data), builder.toString(), tag, this, this);
+
     }
 
     @Override
@@ -79,9 +95,19 @@ public class FragmentReview extends Fragment implements Response.Listener<JSONOb
     @Override
     public void onResponse(JSONObject jsonObject) {
         CommonUtil.cancelProgressDialog();
-        if (jsonObject != null && jsonObject.optInt("status") == Constants.STATUS_SUCCESS && jsonObject.optJSONObject("json") != null && jsonObject.optJSONObject("json").optJSONArray("feedbackArray") != null && jsonObject.optJSONObject("json").optJSONArray("feedbackArray").length() > 0) {
-            AdapterFragmentReview adapterFragmentReview = new AdapterFragmentReview(getActivity(), jsonObject.optJSONObject("json").optJSONArray("feedbackArray"));
-            lvReviewListView.setAdapter(adapterFragmentReview);
-        }
+        if (jsonObject != null) {
+            if (jsonObject.optInt("status") == Constants.STATUS_SUCCESS)
+                if (jsonObject.optJSONObject("json") != null && jsonObject.optJSONObject("json").optJSONArray("feedbackArray") != null && jsonObject.optJSONObject("json").optJSONArray("feedbackArray").length() > 0) {
+                    AdapterFragmentReview adapterFragmentReview = new AdapterFragmentReview(getActivity(), jsonObject.optJSONObject("json").optJSONArray("feedbackArray"));
+                    lvReviewListView.setAdapter(adapterFragmentReview);
+                    setListViewHeightBasedOnChildren(lvReviewListView);
+                }
+                else {
+
+                }
+            else
+                CommonUtil.conditionAuthentication(getActivity(), jsonObject);
+        } else
+            CommonUtil.jsonNullError(getActivity());
     }
 }

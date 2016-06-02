@@ -34,5 +34,4 @@ public class FragmentAvailability extends Fragment {
         return rootView;
 
     }
-
 }

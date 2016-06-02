@@ -2,22 +2,18 @@ package com.smartsense.taxinearyou;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
-import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.mpt.storage.SharedPreferenceUtil;
 import com.smartsense.taxinearyou.utill.CommonUtil;
 import com.smartsense.taxinearyou.utill.Constants;
-import com.smartsense.taxinearyou.utill.DataRequest;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -91,9 +87,7 @@ public class PaymentDetails extends AppCompatActivity implements View.OnClickLis
             e.printStackTrace();
         }
 
-        CommonUtil.showProgressDialog(this, "Booking your ride...");
-        DataRequest dataRequest = new DataRequest(Request.Method.GET, url, null, this, this);
-        TaxiNearYouApp.getInstance().addToRequestQueue(dataRequest, tag);
+        CommonUtil.jsonRequestGET(this, getResources().getString(R.string.get_data), url, tag, this, this);
     }
 
     @Override
@@ -120,8 +114,13 @@ public class PaymentDetails extends AppCompatActivity implements View.OnClickLis
     @Override
     public void onResponse(JSONObject jsonObject) {
         CommonUtil.cancelProgressDialog();
-        if (jsonObject != null && jsonObject.optInt("status") == Constants.STATUS_SUCCESS)
-            CommonUtil.openDialogs(PaymentDetails.this, "Payment Details", R.id.lyPopupBookSuccess, R.id.btPopupBookSuccessOk, jsonObject.optString("msg"));
-        else CommonUtil.successToastShowing(this, jsonObject);
+        if (jsonObject != null)
+            if (jsonObject.optInt("status") == Constants.STATUS_SUCCESS)
+//                CommonUtil.openDialogs(PaymentDetails.this, "Payment Details", R.id.lyPopupBookSuccess, R.id.btPopupBookSuccessOk, jsonObject.optString("msg"));
+                CommonUtil.alertBox(this, jsonObject.optString("msg"), true, false);
+            else
+                CommonUtil.conditionAuthentication(this, jsonObject);
+        else
+            CommonUtil.jsonNullError(this);
     }
 }

@@ -193,6 +193,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/cbCheckboxMarginTopAll"
             android:button="@drawable/checkbox"
+            android:checked="true"
             android:paddingStart="@dimen/lyAccountSecurityCheckTextMarginStartTop"
             android:text="@string/ReceiveOffersFromOrganization"
             android:textSize="@dimen/tvAccountSecurityCheckTextSizeAll" />
@@ -204,9 +205,23 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/lyAccountSecurityCheckTextMarginStartTop"
             android:button="@drawable/checkbox"
+            android:checked="true"
             android:paddingStart="@dimen/lyAccountSecurityCheckTextMarginStartTop"
             android:text="@string/yes_i_would_like_to_receive_offers_and_infromation_about_products_and_services_about_taxinearu"
             android:textSize="@dimen/tvAccountSecurityCheckTextSizeAll" />
+
+        <Button
+            android:id="@+id/btAccountSecurityUpdate"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/btSignUpAllheight"
+            android:layout_marginTop="@dimen/btSignUpAllMarginTop"
+            android:background="@drawable/yellow"
+            android:paddingEnd="@dimen/btAccountSecurityUpdatePadding"
+            android:paddingStart="@dimen/btAccountSecurityUpdatePadding"
+            android:text="@string/update"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/btSizeAll" />
 
     </LinearLayout>
 </ScrollView>

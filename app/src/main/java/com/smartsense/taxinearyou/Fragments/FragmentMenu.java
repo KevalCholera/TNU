@@ -35,7 +35,6 @@ import com.smartsense.taxinearyou.utill.CircleImageView1;
 import com.smartsense.taxinearyou.utill.CommonUtil;
 import com.smartsense.taxinearyou.utill.Constants;
 import com.smartsense.taxinearyou.utill.DataRequest;
-import com.smartsense.taxinearyou.utill.JsonErrorShow;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
@@ -98,6 +97,7 @@ public class FragmentMenu extends Fragment implements Response.Listener<JSONObje
         tvAccountPayment.setOnClickListener(this);
         tvAccountMore.setOnClickListener(this);
         ivEditProfilePhoto.setOnClickListener(this);
+        btAccountActivateNow.setOnClickListener(this);
         return rootView;
     }
 
@@ -129,6 +129,9 @@ public class FragmentMenu extends Fragment implements Response.Listener<JSONObje
                 intImage.setType("image/*");
                 startActivityForResult(intImage, image);
                 break;
+            case R.id.btAccountActivateNow:
+                activeAccount();
+                break;
         }
     }
 
@@ -145,9 +148,23 @@ public class FragmentMenu extends Fragment implements Response.Listener<JSONObje
             e.printStackTrace();
         }
 
-        CommonUtil.showProgressDialog(getActivity(), "Logging Out ...");
-        DataRequest dataRequest = new DataRequest(Request.Method.GET, builder.toString(), null, this, this);
-        TaxiNearYouApp.getInstance().addToRequestQueue(dataRequest, tag);
+        CommonUtil.jsonRequestGET(getActivity(), getResources().getString(R.string.login_out), builder.toString(), tag, this, this);
+    }
+
+    private void activeAccount() {
+        final String tag = "Active Account";
+        StringBuilder builder = new StringBuilder();
+        JSONObject jsonData = new JSONObject();
+
+        try {
+            builder.append(Constants.BASE_URL + Constants.BASE_URL_POSTFIX + Constants.Events.ACTIVE_ACCOUNT + "&json=")
+                    .append(jsonData.put("token", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_ACCESS_TOKEN, ""))
+                            .put("userId", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_ID, "")));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        CommonUtil.jsonRequestGET(getActivity(), getResources().getString(R.string.send_data), builder.toString(), tag, this, this);
     }
 
     private void doUpload(Intent data) {
@@ -174,9 +191,7 @@ public class FragmentMenu extends Fragment implements Response.Listener<JSONObje
             params.put("json", jsonObject.toString());
             Log.i("params", params.toString());
 
-            CommonUtil.showProgressDialog(getActivity(), "updating...");
-            DataRequest loginRequest = new DataRequest(Request.Method.POST, urlType, params, this, this);
-            TaxiNearYouApp.getInstance().addToRequestQueue(loginRequest, tag);
+            CommonUtil.jsonRequestPOST(getActivity(), getResources().getString(R.string.updating), urlType, params, tag, this, this);
 
         } catch (FileNotFoundException | JSONException e) {
             e.printStackTrace();
@@ -223,13 +238,16 @@ public class FragmentMenu extends Fragment implements Response.Listener<JSONObje
                             SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_USER_PROIMG, Constants.BASE_URL_IMAGE_POSTFIX + response.optJSONObject("json").optJSONObject("user").optString("profilePic"));
                             SharedPreferenceUtil.save();
                             break;
+                        case Constants.Events.ACTIVE_ACCOUNT:
+                            CommonUtil.successToastShowing(getActivity(), response);
+                            break;
                     }
                 } else {
-                    JsonErrorShow.jsonErrorShow(response, getActivity(), clSearch);
+                    CommonUtil.conditionAuthentication(getActivity(), response);
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-        }
+        } else CommonUtil.jsonNullError(getActivity());
     }
 }

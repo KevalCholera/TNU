@@ -16,9 +16,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.mpt.storage.SharedPreferenceUtil;
 import com.smartsense.taxinearyou.Fragments.FragmentAvailability;
 import com.smartsense.taxinearyou.Fragments.FragmentReview;
 import com.smartsense.taxinearyou.utill.CircleImageView1;
+import com.smartsense.taxinearyou.utill.CommonUtil;
 import com.smartsense.taxinearyou.utill.Constants;
 import com.squareup.picasso.Picasso;
 
@@ -71,7 +73,10 @@ public class PartnerDetails extends AppCompatActivity {
         btPartnerBookNow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(PartnerDetails.this, BookingInfo.class));
+                if (SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_STATUS, "").equalsIgnoreCase("1"))
+                    startActivity(new Intent(PartnerDetails.this, BookingInfo.class));
+                else
+                    CommonUtil.alertBox(PartnerDetails.this, getResources().getString(R.string.msg_activate_account), false, false);
             }
         });
     }

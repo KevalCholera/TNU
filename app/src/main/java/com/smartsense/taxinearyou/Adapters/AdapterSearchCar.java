@@ -17,6 +17,7 @@ import com.mpt.storage.SharedPreferenceUtil;
 import com.smartsense.taxinearyou.BookingInfo;
 import com.smartsense.taxinearyou.PartnerDetails;
 import com.smartsense.taxinearyou.R;
+import com.smartsense.taxinearyou.utill.CommonUtil;
 import com.smartsense.taxinearyou.utill.Constants;
 
 import org.json.JSONArray;
@@ -106,7 +107,10 @@ public class AdapterSearchCar extends BaseAdapter {
             @Override
             public void onClick(View v) {
 
-                a.startActivity(new Intent(a, BookingInfo.class));
+                if (SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_STATUS, "").equalsIgnoreCase("1"))
+                    a.startActivity(new Intent(a, BookingInfo.class));
+                else
+                    CommonUtil.alertBox(a, a.getResources().getString(R.string.msg_activate_account), false, false);
             }
         });
 

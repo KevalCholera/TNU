@@ -5,6 +5,7 @@ import android.app.ActivityManager;
 import android.app.ProgressDialog;
 import android.content.ComponentName;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.ResolveInfo;
@@ -19,6 +20,7 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.StrictMode;
 import android.provider.MediaStore;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
@@ -36,11 +38,15 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.Request;
+import com.android.volley.Response;
 import com.mpt.storage.SharedPreferenceUtil;
 import com.smartsense.taxinearyou.R;
 import com.smartsense.taxinearyou.Search;
 import com.smartsense.taxinearyou.SignIn;
 import com.smartsense.taxinearyou.SnackBar.TSnackbar;
+import com.smartsense.taxinearyou.TaxiNearYouApp;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -49,6 +55,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.List;
 
 //import org.apache.http.HttpStatus;
@@ -70,7 +77,6 @@ public class CommonUtil {
 
 
     public static void cancelProgressDialog() {
-        // pDialog = new ProgressDialog(activity);
         if (pDialog != null)
             pDialog.cancel();
     }
@@ -79,13 +85,24 @@ public class CommonUtil {
         return !TextUtils.isEmpty(strEmail) && android.util.Patterns.EMAIL_ADDRESS.matcher(strEmail).matches();
     }
 
-    public static void alertBox(Context context, String title, String msg) {
-//        Builder alert = new AlertDialog.Builder(context);
-//        alert.setTitle(title);
-//        alert.setMessage(msg);
-//        alert.setPositiveButton("OK", null);
-//        alert.show();
-        Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
+    public static void alertBox(final Activity context, final String msg, final boolean check, final boolean canFinish) {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setCancelable(false);
+        builder.setMessage(msg);
+        if (check)
+            builder.setIcon(ContextCompat.getDrawable(context, android.R.drawable.progress_horizontal));
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                if (check)
+                    context.startActivity(new Intent(context, Search.class));
+                else {
+                    if (canFinish)
+                        context.finish();
+                }
+            }
+        });
+        builder.create();
+        builder.show();
     }
 
     static public ActionBar getActionBar(Activity a) {
@@ -182,6 +199,41 @@ public class CommonUtil {
 
     public static void successToastShowing(Activity activity, JSONObject jsonObject) {
         Toast.makeText(activity, jsonObject.optString("msg"), Toast.LENGTH_SHORT).show();
+    }
+
+    public static void jsonNullError(Activity activity) {
+        Toast.makeText(activity, activity.getResources().getString(R.string.something_wrong), Toast.LENGTH_SHORT).show();
+    }
+
+    public static void conditionAuthentication(Activity activity, JSONObject jsonObject) {
+//    public static void conditionAuthentication(Activity activity, JSONObject jsonObject, CoordinatorLayout coordinatorLayout) {
+        successToastShowing(activity, jsonObject);
+        if (jsonObject.has("json") && jsonObject.optJSONObject("json").has("errorCode") && jsonObject.optJSONObject("json").optInt("errorCode") == Constants.ErrorCode.UNAUTHENTICATED_OPERATION) {
+            successToastShowing(activity, jsonObject);
+            activity.startActivity(new Intent(activity, SignIn.class));
+            SharedPreferenceUtil.clear();
+            SharedPreferenceUtil.save();
+        }
+    }
+
+    public static void jsonRequestPOST(Activity activity, String msg, String urlType, HashMap<String, String> params, String tag, Response.Listener<JSONObject> requestListener, Response.ErrorListener errorListener) {
+        CommonUtil.showProgressDialog(activity, msg);
+        DataRequest dataRequest = new DataRequest(Request.Method.POST, urlType, params, requestListener, errorListener);
+        dataRequest.setRetryPolicy(new DefaultRetryPolicy(20000, 0, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        TaxiNearYouApp.getInstance().addToRequestQueue(dataRequest, tag);
+    }
+
+    public static void jsonRequestGET(Activity activity, String msg, String builder, String tag, Response.Listener<JSONObject> requestListener, Response.ErrorListener errorListener) {
+        CommonUtil.showProgressDialog(activity, msg);
+        DataRequest dataRequest = new DataRequest(Request.Method.GET, builder, null, requestListener, errorListener);
+        dataRequest.setRetryPolicy(new DefaultRetryPolicy(20000, 0, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        TaxiNearYouApp.getInstance().addToRequestQueue(dataRequest, tag);
+    }
+
+    public static void jsonRequestNoProgressBar(String builder, String tag, Response.Listener<JSONObject> requestListener, Response.ErrorListener errorListener) {
+        DataRequest dataRequest = new DataRequest(Request.Method.GET, builder, null, requestListener, errorListener);
+        dataRequest.setRetryPolicy(new DefaultRetryPolicy(20000, 0, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        TaxiNearYouApp.getInstance().addToRequestQueue(dataRequest, tag);
     }
 
 //    public Cursor rawQuery(DataBaseHelper dbHelper, String sqlQuery) {

@@ -2,7 +2,6 @@ package com.smartsense.taxinearyou;
 
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
@@ -11,15 +10,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
-import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.mpt.storage.SharedPreferenceUtil;
 import com.smartsense.taxinearyou.utill.CommonUtil;
 import com.smartsense.taxinearyou.utill.Constants;
-import com.smartsense.taxinearyou.utill.DataRequest;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -99,9 +95,7 @@ public class AddLostItem extends AppCompatActivity implements View.OnClickListen
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        CommonUtil.showProgressDialog(this, "Sending details...");
-        DataRequest dataRequest = new DataRequest(Request.Method.GET, url, null, this, this);
-        TaxiNearYouApp.getInstance().addToRequestQueue(dataRequest, tag);
+        CommonUtil.jsonRequestGET(this, getResources().getString(R.string.send_data), url, tag, this, this);
     }
 
     @Override
@@ -128,11 +122,15 @@ public class AddLostItem extends AppCompatActivity implements View.OnClickListen
     @Override
     public void onResponse(JSONObject jsonObject) {
         CommonUtil.cancelProgressDialog();
-        if (jsonObject.length() > 0)
+        if (jsonObject != null)
             if (jsonObject.optInt("status") == Constants.STATUS_SUCCESS) {
                 CommonUtil.successToastShowing(this, jsonObject);
+                setResult(RESULT_OK);
                 finish();
-            } else
-                CommonUtil.successToastShowing(this, jsonObject);
+            } else {
+                CommonUtil.conditionAuthentication(this, jsonObject);
+            }
+        else
+            CommonUtil.jsonNullError(this);
     }
 }

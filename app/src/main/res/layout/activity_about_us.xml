@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="@color/white"
+    android:fillViewport="true">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -12,23 +13,38 @@
         android:padding="@dimen/lyPaddingMainAll"
         tools:context="com.smartsense.taxinearyou.AboutUs">
 
-        <TextView
+        <LinearLayout
+            android:id="@+id/lyAboutUs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/tvMarginTopBottomStartEndAll"
-            android:gravity="center"
-            android:text="@string/who_are_taxinearu"
-            android:textColor="@color/Yellow"
-            android:textSize="@dimen/tvHeadingSizeAll" />
+            android:orientation="vertical"
+            android:visibility="gone">
 
-        <TextView
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/tvMarginTopBottomStartEndAll"
+                android:gravity="center"
+                android:text="@string/who_are_taxinearu"
+                android:textColor="@color/Yellow"
+                android:textSize="@dimen/tvHeadingSizeAll" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
+                android:gravity="center"
+                android:text="@string/we_are_a_online_taxi_booking_firm_that_provides_access_to_bespoke_taxi_services_nearby_we_are_partnered_with_more_than_500_taxi_companies_and_this_is_just_beginning_as_we_are_growing_all_over_the_uk_n_n_as_a_professional_sophisticated_company_we_can_provide_our_customers_with_a_vast_range_of_vehicles_that_scope_from_7_seated_motors_the_luxury_vehicles_that_one_desires_n_n_no_only_do_we_provide_a_taxi_service_we_also_can_provide_you_with_coaches_buses_and_other_mode_of_transport_for_your_special_events_even_if_you_are_booking_only_one_day_in_advance_rest_assured_we_will_cater_to_your_needs_n_n_better_still_if_you_need_more_than_one_vehicle_then_do_not_hesitate_to_get_in_touch_with_taxinearu_as_we_will_be_sure_to_provide_you_with_more_than_one_vehicle_as_and_when_needed_n_n_our_partnered_companies_are_here_to_make_your_journey_safe_and_enjoyable_all_the_companies_that_we_are_connected_with_are_profoundly_prepared_and_have_all_the_relevant_information_along_with_client_s_abilities_to_guarantee_you_a_pleasing_way_to_destination"
+                android:textColor="@color/black"
+                android:textSize="@dimen/tvTitlesSizeAll" />
+        </LinearLayout>
+
+
+        <WebView
+            android:id="@+id/wvPrivacyPolicy"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
-            android:gravity="center"
-            android:text="@string/we_are_a_online_taxi_booking_firm_that_provides_access_to_bespoke_taxi_services_nearby_we_are_partnered_with_more_than_500_taxi_companies_and_this_is_just_beginning_as_we_are_growing_all_over_the_uk_n_n_as_a_professional_sophisticated_company_we_can_provide_our_customers_with_a_vast_range_of_vehicles_that_scope_from_7_seated_motors_the_luxury_vehicles_that_one_desires_n_n_no_only_do_we_provide_a_taxi_service_we_also_can_provide_you_with_coaches_buses_and_other_mode_of_transport_for_your_special_events_even_if_you_are_booking_only_one_day_in_advance_rest_assured_we_will_cater_to_your_needs_n_n_better_still_if_you_need_more_than_one_vehicle_then_do_not_hesitate_to_get_in_touch_with_taxinearu_as_we_will_be_sure_to_provide_you_with_more_than_one_vehicle_as_and_when_needed_n_n_our_partnered_companies_are_here_to_make_your_journey_safe_and_enjoyable_all_the_companies_that_we_are_connected_with_are_profoundly_prepared_and_have_all_the_relevant_information_along_with_client_s_abilities_to_guarantee_you_a_pleasing_way_to_destination"
-            android:textColor="@color/black"
-            android:textSize="@dimen/tvTitlesSizeAll" />
+            android:visibility="gone" />
 
     </LinearLayout>
 </ScrollView>

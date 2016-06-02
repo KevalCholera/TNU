@@ -1,5 +1,6 @@
 package com.smartsense.taxinearyou;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,14 +14,13 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.mpt.storage.SharedPreferenceUtil;
 import com.smartsense.taxinearyou.utill.CircleImageView1;
 import com.smartsense.taxinearyou.utill.CommonUtil;
 import com.smartsense.taxinearyou.utill.Constants;
-import com.smartsense.taxinearyou.utill.DataRequest;
+import com.smartsense.taxinearyou.utill.LocationSettingsHelper;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
@@ -39,6 +39,9 @@ public class TripDetails extends AppCompatActivity implements View.OnClickListen
     CircleImageView1 cvTripDetailsPartnerLogo;
     AlertDialog alert;
     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MMMM-yyyy HH:mm");
+    final int requestFeedBack = 1;
+    final int requestLostItem = 2;
+    private JSONObject tripDetails;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,14 +75,19 @@ public class TripDetails extends AppCompatActivity implements View.OnClickListen
         cvTripDetailsPartnerLogo = (CircleImageView1) findViewById(R.id.cvTripDetailsPartnerLogo);
 
         try {
-            JSONObject tripDetails = new JSONObject(getIntent().getStringExtra("key"));
+            tripDetails = new JSONObject(getIntent().getStringExtra("key"));
             tvTripDetailRideStatus.setText(tripDetails.optString("status"));
 
-            if (tvTripDetailRideStatus.getText().toString().equalsIgnoreCase("waiting")) {
-                tvTripDetailCancle.setVisibility(View.VISIBLE);
-            } else if (tvTripDetailRideStatus.getText().toString().equalsIgnoreCase("complete")) {
+            if (tripDetails.optInt("feedbackSts") == 1)
+                tvTripDetailFeedback.setVisibility(View.GONE);
+            if (tripDetails.optInt("lostFoundExists") == 1)
+                tvTripDetailLost.setVisibility(View.GONE);
+
+            if (tvTripDetailRideStatus.getText().toString().equalsIgnoreCase("complete")) {
                 tvTripDetailLost.setVisibility(View.VISIBLE);
                 lyTripDetailInvoiceFeedback.setVisibility(View.VISIBLE);
+            } else if (tvTripDetailRideStatus.getText().toString().equalsIgnoreCase("Open") || tvTripDetailRideStatus.getText().toString().equalsIgnoreCase("Assigned")) {
+                tvTripDetailCancle.setVisibility(View.VISIBLE);
             }
 
             Picasso.with(this)
@@ -131,10 +139,10 @@ public class TripDetails extends AppCompatActivity implements View.OnClickListen
                 openOccasionsPopup();
                 break;
             case R.id.tvTripDetailLost:
-                startActivity(new Intent(TripDetails.this, AddLostItem.class).putExtra("rideId", (String) tvTripDetailTaxiProvider.getTag()));
+                startActivityForResult(new Intent(TripDetails.this, AddLostItem.class).putExtra("rideId", (String) tvTripDetailTaxiProvider.getTag()), requestLostItem);
                 break;
             case R.id.tvTripDetailFeedback:
-                startActivity(new Intent(TripDetails.this, Feedback.class).putExtra("rideId", (String) tvTripDetailTaxiProvider.getTag()));
+                startActivityForResult(new Intent(TripDetails.this, Feedback.class).putExtra("rideId", (String) tvTripDetailTaxiProvider.getTag()), requestFeedBack);
                 break;
             case R.id.btTripDetailInvoice:
                 tripDetails();
@@ -156,9 +164,8 @@ public class TripDetails extends AppCompatActivity implements View.OnClickListen
             e.printStackTrace();
         }
 
-        CommonUtil.showProgressDialog(this, "Sending invoice...");
-        DataRequest dataRequest = new DataRequest(Request.Method.GET, builder.toString(), null, this, this);
-        TaxiNearYouApp.getInstance().addToRequestQueue(dataRequest, tag);
+        CommonUtil.jsonRequestGET(this, getResources().getString(R.string.sending_invoice), builder.toString(), tag, this, this);
+
     }
 
     private void cancelRide() {
@@ -175,9 +182,8 @@ public class TripDetails extends AppCompatActivity implements View.OnClickListen
             e.printStackTrace();
         }
 
-        CommonUtil.showProgressDialog(this, "getting data...");
-        DataRequest dataRequest = new DataRequest(Request.Method.GET, builder.toString(), null, this, this);
-        TaxiNearYouApp.getInstance().addToRequestQueue(dataRequest, tag);
+        CommonUtil.jsonRequestGET(this, getResources().getString(R.string.get_data), builder.toString(), tag, this, this);
+
     }
 
     public void openOccasionsPopup() {
@@ -220,6 +226,23 @@ public class TripDetails extends AppCompatActivity implements View.OnClickListen
     }
 
     @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == Activity.RESULT_OK) {
+            switch (requestCode) {
+                case requestFeedBack:
+                    if (tripDetails.optInt("feedbackSts") == 1)
+                        tvTripDetailFeedback.setVisibility(View.GONE);
+                    break;
+                case requestLostItem:
+                    if (tripDetails.optInt("lostFoundExists") == 1)
+                        tvTripDetailLost.setVisibility(View.GONE);
+                    break;
+            }
+        }
+    }
+
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         return true;
     }
@@ -244,9 +267,12 @@ public class TripDetails extends AppCompatActivity implements View.OnClickListen
     @Override
     public void onResponse(JSONObject jsonObject) {
         CommonUtil.cancelProgressDialog();
-        if (jsonObject.length() > 0 && jsonObject.optInt("status") == Constants.STATUS_SUCCESS)
-            CommonUtil.successToastShowing(this, jsonObject);
+        if (jsonObject != null)
+            if (jsonObject.optInt("status") == Constants.STATUS_SUCCESS)
+                CommonUtil.successToastShowing(this, jsonObject);
+            else
+                CommonUtil.conditionAuthentication(this, jsonObject);
         else
-            CommonUtil.successToastShowing(this, jsonObject);
+            CommonUtil.jsonNullError(this);
     }
 }

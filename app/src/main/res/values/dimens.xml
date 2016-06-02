@@ -174,7 +174,7 @@
     <dimen name="vTripDetailsView">20dp</dimen>
     <dimen name="btTripDetailsMarginStartEnd">20dp</dimen>
     <dimen name="civTripDetailsWidthHeight">70dp</dimen>
-    <dimen name="civTripDetailsBorderWidth">2dp</dimen>
+    <dimen name="civTripDetailsBorderWidth">0.5dp</dimen>
     <dimen name="btTripDetailsCancelPaddingStartEnd">40dp</dimen>
     <dimen name="lyYourDetailsEditMarginStartEnd">10dp</dimen>
     <dimen name="lyYourDetailsEditMarginTop">15dp</dimen>
@@ -217,6 +217,7 @@
     <dimen name="llBookVia2MarginTop">10dp</dimen>
     <dimen name="ivCreditImage">100dp</dimen>
     <dimen name="tvReviewMarginEnd">5dp</dimen>
+    <dimen name="rbReviewMarginEnd">10dp</dimen>
     <dimen name="lyReviewMarginTop">5dp</dimen>
     <dimen name="tvReviewWidth">150dp</dimen>
     <dimen name="lvReviewListViewMarginTop">10dp</dimen>
@@ -293,4 +294,6 @@
     <dimen name="tvElementReviewTextSize">15sp</dimen>
     <dimen name="tvElementReviewTextMargin">10dp</dimen>
     <dimen name="lyElementReviewPaddingEnd">30dp</dimen>
+    <dimen name="ratingStarWidthHeight">30dp</dimen>
+    <dimen name="btAccountSecurityUpdatePadding">30dp</dimen>
 </resources>

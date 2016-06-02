@@ -4,20 +4,43 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.webkit.WebView;
+import android.widget.LinearLayout;
+
+import com.smartsense.taxinearyou.utill.Constants;
 
 public class AboutUs extends AppCompatActivity {
+
+    LinearLayout lyAboutUs;
+    WebView wvPrivacyPolicy;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about_us);
-
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        lyAboutUs = (LinearLayout) findViewById(R.id.lyAboutUs);
+        wvPrivacyPolicy = (WebView) findViewById(R.id.wvPrivacyPolicy);
+
+
+        if (getIntent() != null && getIntent().hasExtra("about") && getIntent().getStringExtra("about").equalsIgnoreCase("about")) {
+            getSupportActionBar().setTitle("About Us");
+            lyAboutUs.setVisibility(View.VISIBLE);
+        } else if (getIntent() != null && getIntent().hasExtra("privacy") && getIntent().getStringExtra("privacy").equalsIgnoreCase("privacy")) {
+            getSupportActionBar().setTitle("Privacy Policy");
+            wvPrivacyPolicy.setVisibility(View.VISIBLE);
+            wvPrivacyPolicy.loadUrl(Constants.BASE_URL_PHOTO + Constants.BASE_TERMS_AND_CONDITION);
+        } else {
+            getSupportActionBar().setTitle("Terms and Conditions");
+            wvPrivacyPolicy.setVisibility(View.VISIBLE);
+            wvPrivacyPolicy.loadUrl(Constants.BASE_URL_PHOTO + Constants.BASE_TERMS_AND_CONDITION);
+        }
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-//        getMenuInflater().inflate(R.menu.ratingforsearch, menu);
         return true;
     }
 
@@ -29,6 +52,5 @@ public class AboutUs extends AppCompatActivity {
                 break;
         }
         return super.onOptionsItemSelected(item);
-
     }
 }

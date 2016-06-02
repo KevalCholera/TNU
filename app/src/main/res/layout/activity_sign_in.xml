@@ -98,7 +98,7 @@
                 android:inputType="textPassword"
                 android:paddingEnd="@dimen/etSignInUserPasswordPaddingStartEnd"
                 android:paddingStart="@dimen/etSignInUserPasswordPaddingStartEnd"
-                android:text="1234567"
+                android:text="Abcd123"
                 android:textColor="@color/black"
                 android:textColorHint="@color/light_Gray"
                 android:textSize="@dimen/etSignInUserPassSize"

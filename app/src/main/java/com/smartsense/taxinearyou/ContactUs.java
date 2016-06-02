@@ -10,15 +10,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
-import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.mpt.storage.SharedPreferenceUtil;
 import com.smartsense.taxinearyou.utill.CommonUtil;
 import com.smartsense.taxinearyou.utill.Constants;
-import com.smartsense.taxinearyou.utill.DataRequest;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -69,23 +66,20 @@ public class ContactUs extends AppCompatActivity implements Response.Listener<JS
             builder.append(Constants.BASE_URL + Constants.BASE_URL_POSTFIX + Constants.Events.CONTACT_US + "&json=")
                     .append(jsonData.put("token", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_ACCESS_TOKEN, ""))
                             .put("userId", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_ID, ""))
-                            .put("mobileNo", etContactUsMobile.getText().toString())
-                            .put("subject", etContactUsSubject.getText().toString())
-                            .put("message", etContactUsMessage.getText().toString())
-                            .put("emailId", etContactUsEmail.getText().toString())
-                            .put("name", etContactUsName.getText().toString()));
+                            .put("mobileNo", etContactUsMobile.getText().toString().trim())
+                            .put("subject", etContactUsSubject.getText().toString().trim())
+                            .put("message", etContactUsMessage.getText().toString().trim())
+                            .put("emailId", etContactUsEmail.getText().toString().trim())
+                            .put("name", etContactUsName.getText().toString().trim()));
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        CommonUtil.showProgressDialog(this, "getting data...");
-        DataRequest dataRequest = new DataRequest(Request.Method.GET, builder.toString(), null, this, this);
-        TaxiNearYouApp.getInstance().addToRequestQueue(dataRequest, tag);
+        CommonUtil.jsonRequestGET(this, getResources().getString(R.string.get_data), builder.toString(), tag, this, this);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-//        getMenuInflater().inflate(R.menu.ratingforsearch, menu);
         return true;
     }
 
@@ -110,8 +104,15 @@ public class ContactUs extends AppCompatActivity implements Response.Listener<JS
     public void onResponse(JSONObject jsonObject) {
 
         CommonUtil.cancelProgressDialog();
-        if (jsonObject.length() > 0 && jsonObject.optInt("status") == Constants.STATUS_SUCCESS)
-            CommonUtil.successToastShowing(this, jsonObject);
-        else CommonUtil.successToastShowing(this, jsonObject);
+        if (jsonObject != null)
+            if (jsonObject.optInt("status") == Constants.STATUS_SUCCESS) {
+                if (!jsonObject.optJSONObject("json").optString("isAvailable").equalsIgnoreCase("1"))
+                    CommonUtil.showSnackBar(this, jsonObject.optString("msg"), clContactUs);
+                else if (jsonObject.optString("__eventId").equalsIgnoreCase(Constants.Events.CONTACT_US + ""))
+                    CommonUtil.showSnackBar(this, jsonObject.optString("msg"), clContactUs);
+            } else
+                CommonUtil.conditionAuthentication(this, jsonObject);
+        else
+            CommonUtil.jsonNullError(this);
     }
 }

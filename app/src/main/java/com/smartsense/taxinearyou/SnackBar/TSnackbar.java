@@ -198,7 +198,7 @@ public final class TSnackbar {
                 @Override
                 public void onClick(View view) {
                     listener.onClick(view);
-                    
+
                     dispatchDismiss(Callback.DISMISS_EVENT_ACTION);
                 }
             });

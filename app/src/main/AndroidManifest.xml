@@ -3,6 +3,7 @@
     package="com.smartsense.taxinearyou">
 
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+
     <permission
         android:name="com.smartsense.taxinearyou.permission.C2D_MESSAGE"
         android:protectionLevel="signature" />
@@ -58,21 +59,19 @@
         <activity
             android:name=".SearchCars"
             android:configChanges="orientation|screenSize"
-            android:label="@string/searchcars"
+            android:label="@string/providers"
             android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="stateHidden"/>
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".BookingInfo"
             android:configChanges="orientation|screenSize"
             android:label="@string/title_activity_booking_info"
-
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".PartnerDetails"
             android:configChanges="orientation|screenSize"
             android:label="@string/partner_rating"
-
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="stateHidden" />
         <activity
@@ -111,54 +110,45 @@
         <activity
             android:name=".LostItem"
             android:label="Lost Item"
-
             android:theme="@style/AppTheme" />
         <activity
             android:name=".AccountSecurity"
             android:label="Account Security"
-
             android:theme="@style/AppTheme" />
         <activity
             android:name=".PersonalInfo"
             android:configChanges="orientation|screenSize"
             android:label="Personal Info"
-
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".ResetPassword"
             android:label="Reset Password"
-
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".RecoverEmailAddress"
             android:label="Recover Email Address"
-
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".AddCard"
             android:label="Add Card"
-
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".Card"
             android:label="Card"
-
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".CardList"
             android:label="CardList"
-
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".CardDetails"
             android:label="Card Details"
-
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateHidden" />
         <activity
@@ -168,19 +158,16 @@
         <activity
             android:name=".EventBooking"
             android:label="Event Booking"
-
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".ContactUs"
             android:label="Contact Us"
-
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".AboutUs"
             android:label="About Us"
-
             android:theme="@style/AppTheme" />
         <activity
             android:name=".More"
@@ -190,7 +177,6 @@
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
-
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyDslds4uckd0q06CFMQGOKPFCWs8cZOKnI" />
@@ -202,17 +188,18 @@
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
             </intent-filter>
         </receiver>
-
         <receiver
             android:name=".push.GcmBroadcastReceiver"
             android:permission="com.google.android.c2dm.permission.SEND">
             <intent-filter>
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+
                 <category android:name="com.smartsense.taxinearyou" />
             </intent-filter>
         </receiver>
 
         <service android:name=".push.GcmIntentService" />
+
     </application>
 
 </manifest>

@@ -1,10 +1,7 @@
 package com.smartsense.taxinearyou;
 
 import android.content.Context;
-import android.content.Intent;
-import android.graphics.PorterDuff;
 import android.os.Bundle;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
@@ -18,15 +15,12 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RatingBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.mpt.storage.SharedPreferenceUtil;
 import com.smartsense.taxinearyou.utill.CommonUtil;
 import com.smartsense.taxinearyou.utill.Constants;
-import com.smartsense.taxinearyou.utill.DataRequest;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -70,13 +64,11 @@ public class Feedback extends AppCompatActivity implements View.OnClickListener,
             @Override
             public void onRatingChanged(RatingBar ratingBar, float rating,
                                         boolean fromUser) {
-//                rbFeedbackRatingForDriver.getProgressDrawable().setColorFilter(ContextCompat.getColor(Feedback.this, R.color.Yellow), PorterDuff.Mode.SRC_ATOP);
                 String ratedValue = String.valueOf(ratingBar.getRating());
                 tvFeedbackRatingForDriver.setText(ratedValue + "/5");
             }
         });
     }
-
 
     @Override
     public void onClick(View v) {
@@ -138,22 +130,9 @@ public class Feedback extends AppCompatActivity implements View.OnClickListener,
             e.printStackTrace();
         }
 
-        CommonUtil.showProgressDialog(this, "getting data...");
-        DataRequest dataRequest = new DataRequest(Request.Method.GET, builder.toString(), null, this, this);
-        TaxiNearYouApp.getInstance().addToRequestQueue(dataRequest, tag);
+        CommonUtil.jsonRequestGET(this, getResources().getString(R.string.get_data), builder.toString(), tag, this, this);
     }
 
-    @Override
-    public void onErrorResponse(VolleyError volleyError) {
-        CommonUtil.errorToastShowing(this);
-    }
-
-    @Override
-    public void onResponse(JSONObject jsonObject) {
-        CommonUtil.cancelProgressDialog();
-        if (jsonObject.length() > 0 && jsonObject.optInt("status") == Constants.STATUS_SUCCESS && jsonObject.optJSONObject("json").optJSONArray("lostItemInfoArray").length() > 0)
-            CommonUtil.successToastShowing(this, jsonObject);
-    }
 
     public void openOccasionsPopup() {
         try {
@@ -198,5 +177,25 @@ public class Feedback extends AppCompatActivity implements View.OnClickListener,
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onErrorResponse(VolleyError volleyError) {
+        CommonUtil.cancelProgressDialog();
+        CommonUtil.errorToastShowing(this);
+    }
+
+    @Override
+    public void onResponse(JSONObject jsonObject) {
+        CommonUtil.cancelProgressDialog();
+        if (jsonObject != null) {
+            if (jsonObject.optInt("status") == Constants.STATUS_SUCCESS) {
+                CommonUtil.successToastShowing(this, jsonObject);
+                setResult(RESULT_OK);
+                finish();
+            } else
+                CommonUtil.conditionAuthentication(this, jsonObject);
+        } else
+            CommonUtil.jsonNullError(this);
     }
 }

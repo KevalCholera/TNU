@@ -28,7 +28,7 @@
                 android:checked="true"
                 android:gravity="center"
                 android:padding="@dimen/rbPaddingAll"
-                android:text="Open"
+                android:text="@string/on_going"
                 android:textColor="@drawable/radio_yellow_border_lost_item_open"
                 android:textSize="@dimen/btSizeAll" />
 
@@ -41,7 +41,7 @@
                 android:button="@color/white"
                 android:gravity="center"
                 android:padding="@dimen/rbPaddingAll"
-                android:text="@string/inprogress"
+                android:text="@string/found"
                 android:textColor="@drawable/radio_yellow_border_lost_item_inprogress"
                 android:textSize="@dimen/btSizeAll" />
 
@@ -54,7 +54,7 @@
                 android:button="@color/white"
                 android:gravity="center"
                 android:padding="@dimen/rbPaddingAll"
-                android:text="Closed"
+                android:text="@string/not_found"
                 android:textColor="@drawable/radio_yellow_border_lost_item_closed"
                 android:textSize="@dimen/btSizeAll" />
 

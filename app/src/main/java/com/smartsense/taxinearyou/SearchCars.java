@@ -1,13 +1,10 @@
 package com.smartsense.taxinearyou;
 
 import android.app.Activity;
-import android.app.SearchManager;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
@@ -20,15 +17,12 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
-import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.mpt.storage.SharedPreferenceUtil;
 import com.smartsense.taxinearyou.Adapters.AdapterSearchCar;
 import com.smartsense.taxinearyou.utill.CommonUtil;
 import com.smartsense.taxinearyou.utill.Constants;
-import com.smartsense.taxinearyou.utill.DataRequest;
-import com.smartsense.taxinearyou.utill.JsonErrorShow;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -87,7 +81,6 @@ public class SearchCars extends AppCompatActivity implements Response.Listener<J
         rbSearchCarsPriceRange.setText("Price Range" + (char) 0x2191);
 
         doPartnerList();
-
     }
 
     @Override
@@ -222,6 +215,7 @@ public class SearchCars extends AppCompatActivity implements Response.Listener<J
                     .put("luggageDescription", getIntent().getStringExtra("luggageDescription"))
                     .put("passengerDescription", getIntent().getStringExtra("passengerDescription"));
 
+            Log.i("params", jsonDataForSet.toString());
             SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_REQUEST_JSON, jsonDataForSet.toString());
             SharedPreferenceUtil.save();
 
@@ -235,9 +229,7 @@ public class SearchCars extends AppCompatActivity implements Response.Listener<J
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
-        CommonUtil.showProgressDialog(SearchCars.this, "Wait...");
-        DataRequest dataRequest = new DataRequest(Request.Method.GET, url, null, this, this);
-        TaxiNearYouApp.getInstance().addToRequestQueue(dataRequest, tag);
+        CommonUtil.jsonRequestGET(this, getResources().getString(R.string.get_data), url, tag, this, this);
     }
 
     @Override
@@ -262,12 +254,12 @@ public class SearchCars extends AppCompatActivity implements Response.Listener<J
                             break;
                     }
                 } else {
-                    JsonErrorShow.jsonErrorShow(response, SearchCars.this, clSearchCars);
+                    CommonUtil.conditionAuthentication(this, response);
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-        }
+        } else CommonUtil.jsonNullError(this);
     }
 
     @Override
@@ -294,10 +286,10 @@ public class SearchCars extends AppCompatActivity implements Response.Listener<J
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == Activity.RESULT_OK) {
-            rbSearchCarsPriceRange.setText("Price Range");
+            rbSearchCarsPriceRange.setText("Price Range" + (char) 0x2193);
             rbSearchCarsAvailability.setText("Availability");
             rbSearchCarsRating.setText("Rating");
-            rbSearchCarsPriceRange.setChecked(false);
+            rbSearchCarsPriceRange.setChecked(true);
             rbSearchCarsAvailability.setChecked(false);
             rbSearchCarsRating.setChecked(false);
             doPartnerList();
@@ -306,7 +298,6 @@ public class SearchCars extends AppCompatActivity implements Response.Listener<J
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.ratingforsearch, menu);
         return true;
     }
 

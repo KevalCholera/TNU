@@ -17,13 +17,10 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
-import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.smartsense.taxinearyou.utill.CommonUtil;
 import com.smartsense.taxinearyou.utill.Constants;
-import com.smartsense.taxinearyou.utill.DataRequest;
-import com.smartsense.taxinearyou.utill.JsonErrorShow;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -131,46 +128,8 @@ public class RecoverEmailAddress extends AppCompatActivity implements Response.L
             }
         }
 
-        CommonUtil.showProgressDialog(this, "Login...");
-        DataRequest dataRequest = new DataRequest(Request.Method.GET, builder.toString(), null, this, this);
-        TaxiNearYouApp.getInstance().addToRequestQueue(dataRequest, tag);
-    }
+        CommonUtil.jsonRequestGET(this, getResources().getString(R.string.get_data), builder.toString(), tag, this, this);
 
-    @Override
-    public void onErrorResponse(VolleyError volleyError) {
-        CommonUtil.errorToastShowing(this);
-        CommonUtil.cancelProgressDialog();
-    }
-
-    @Override
-    public void onResponse(JSONObject response) {
-        CommonUtil.cancelProgressDialog();
-        if (response != null) {
-            try {
-                if (response.getInt("status") == Constants.STATUS_SUCCESS) {
-                    switch (response.getInt("__eventid")) {
-                        case Constants.Events.EVENT_FORGOT_EMAIL:
-                            openDialog();
-//                            SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_USER_ID, response.getJSONObject("data").getString("userId"));
-//                            SharedPreferenceUtil.save();
-//                            startActivity(new Intent(this, OTPActivity.class).putExtra("mobile", etMobileNo.getText().toString()).putExtra("code", etCountryCode.getText().toString()).putExtra("tag", (String) etCountryCode.getTag()));
-//                            finish();
-                            break;
-                        case Constants.Events.EVENT_FORGOT_EMAIL_WITHOUT:
-                            CommonUtil.openDialogs(RecoverEmailAddress.this, "Recover Email", R.id.lyPopUpAfterRecovery, R.id.btPopupThankingRecoveryBack, response.optString("msg"));
-//                            SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_USER_ID, response.getJSONObject("data").getString("userId"));
-//                            SharedPreferenceUtil.save();
-//                            startActivity(new Intent(this, OTPActivity.class).putExtra("mobile", etMobileNo.getText().toString()).putExtra("code", etCountryCode.getText().toString()).putExtra("tag", (String) etCountryCode.getTag()));
-//                            finish();
-                            break;
-                    }
-                } else {
-                    JsonErrorShow.jsonErrorShow(response, this, clRecoverEmail);
-                }
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }
     }
 
     public void openDialog() {
@@ -207,7 +166,6 @@ public class RecoverEmailAddress extends AppCompatActivity implements Response.L
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-//        getMenuInflater().inflate(R.menu.ratingforsearch, menu);
         return true;
     }
 
@@ -219,6 +177,43 @@ public class RecoverEmailAddress extends AppCompatActivity implements Response.L
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
 
+    @Override
+    public void onErrorResponse(VolleyError volleyError) {
+        CommonUtil.errorToastShowing(this);
+        CommonUtil.cancelProgressDialog();
+    }
+
+    @Override
+    public void onResponse(JSONObject response) {
+        CommonUtil.cancelProgressDialog();
+        if (response != null) {
+            try {
+                if (response.getInt("status") == Constants.STATUS_SUCCESS) {
+                    switch (response.getInt("__eventid")) {
+                        case Constants.Events.EVENT_FORGOT_EMAIL:
+                            openDialog();
+//                            SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_USER_ID, response.getJSONObject("data").getString("userId"));
+//                            SharedPreferenceUtil.save();
+//                            startActivity(new Intent(this, OTPActivity.class).putExtra("mobile", etMobileNo.getText().toString()).putExtra("code", etCountryCode.getText().toString()).putExtra("tag", (String) etCountryCode.getTag()));
+//                            finish();
+                            break;
+                        case Constants.Events.EVENT_FORGOT_EMAIL_WITHOUT:
+//                            CommonUtil.openDialogs(RecoverEmailAddress.this, "Recover Email", R.id.lyPopUpAfterRecovery, R.id.btPopupThankingRecoveryBack, response.optString("msg"));
+//                            SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_USER_ID, response.getJSONObject("data").getString("userId"));
+//                            SharedPreferenceUtil.save();
+//                            startActivity(new Intent(this, OTPActivity.class).putExtra("mobile", etMobileNo.getText().toString()).putExtra("code", etCountryCode.getText().toString()).putExtra("tag", (String) etCountryCode.getTag()));
+//                            finish();
+                            break;
+                    }
+                } else {
+                    CommonUtil.conditionAuthentication(this, response);
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        } else
+            CommonUtil.jsonNullError(this);
     }
 }

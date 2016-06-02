@@ -189,19 +189,21 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
                         android:background="@drawable/grayborder2"
+                        android:gravity="center"
                         android:orientation="horizontal">
 
                         <Spinner
                             android:id="@+id/spPersonalInfoAd"
                             android:layout_width="0dp"
-                            android:layout_height="@dimen/etHeightAll"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/margin_5"
                             android:layout_weight="1" />
 
                         <ImageView
+                            android:id="@+id/ivPersonalInfoSpinner"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:src="@mipmap/imgdropdown" />
-
                     </LinearLayout>
                 </LinearLayout>
             </ScrollView>

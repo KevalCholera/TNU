@@ -40,7 +40,7 @@ public class Filter extends AppCompatActivity implements View.OnClickListener {
     Button btFilterDone, btFilterResetAll;
     //    ImageView ivFilterCancel;
     CheckBox cbFilterRecommend;
-    RatingBar rbFeedbackRatingForDriver5, rbFeedbackRatingForDriver4, rbFeedbackRatingForDriver3, rbFeedbackRatingForDriver2, rbFeedbackRatingForDriver1;
+//    RatingBar rbFeedbackRatingForDriver5, rbFeedbackRatingForDriver4, rbFeedbackRatingForDriver3, rbFeedbackRatingForDriver2, rbFeedbackRatingForDriver1;
     private RadioButton rbFilterSingle;
     private JSONObject filterObj;
     Toolbar toolbarAll;
@@ -66,21 +66,21 @@ public class Filter extends AppCompatActivity implements View.OnClickListener {
         rbFilterRating2 = (RadioButton) findViewById(R.id.rbFilterRating2);
         rbFilterRating1 = (RadioButton) findViewById(R.id.rbFilterRating1);
         rbFilterRatingAll = (RadioButton) findViewById(R.id.rbFilterRatingAll);
-        rbFeedbackRatingForDriver5 = (RatingBar) findViewById(R.id.rbFeedbackRatingForDriver5);
-        rbFeedbackRatingForDriver4 = (RatingBar) findViewById(R.id.rbFeedbackRatingForDriver4);
-        rbFeedbackRatingForDriver3 = (RatingBar) findViewById(R.id.rbFeedbackRatingForDriver3);
-        rbFeedbackRatingForDriver2 = (RatingBar) findViewById(R.id.rbFeedbackRatingForDriver2);
-        rbFeedbackRatingForDriver1 = (RatingBar) findViewById(R.id.rbFeedbackRatingForDriver1);
+//        rbFeedbackRatingForDriver5 = (RatingBar) findViewById(R.id.rbFeedbackRatingForDriver5);
+//        rbFeedbackRatingForDriver4 = (RatingBar) findViewById(R.id.rbFeedbackRatingForDriver4);
+//        rbFeedbackRatingForDriver3 = (RatingBar) findViewById(R.id.rbFeedbackRatingForDriver3);
+//        rbFeedbackRatingForDriver2 = (RatingBar) findViewById(R.id.rbFeedbackRatingForDriver2);
+//        rbFeedbackRatingForDriver1 = (RatingBar) findViewById(R.id.rbFeedbackRatingForDriver1);
         cbFilterRecommend = (CheckBox) findViewById(R.id.cbFilterRecommend);
         btFilterDone = (Button) findViewById(R.id.btFilterDone);
         btFilterResetAll = (Button) findViewById(R.id.btFilterResetAll);
 //        ivFilterCancel = (ImageView) findViewById(R.id.ivFilterCancel);
 
-        rbFeedbackRatingForDriver5.getProgressDrawable().setColorFilter(ContextCompat.getColor(this, R.color.Yellow), PorterDuff.Mode.SRC_ATOP);
-        rbFeedbackRatingForDriver4.getProgressDrawable().setColorFilter(ContextCompat.getColor(this, R.color.Yellow), PorterDuff.Mode.SRC_ATOP);
-        rbFeedbackRatingForDriver3.getProgressDrawable().setColorFilter(ContextCompat.getColor(this, R.color.Yellow), PorterDuff.Mode.SRC_ATOP);
-        rbFeedbackRatingForDriver2.getProgressDrawable().setColorFilter(ContextCompat.getColor(this, R.color.Yellow), PorterDuff.Mode.SRC_ATOP);
-        rbFeedbackRatingForDriver1.getProgressDrawable().setColorFilter(ContextCompat.getColor(this, R.color.Yellow), PorterDuff.Mode.SRC_ATOP);
+//        rbFeedbackRatingForDriver5.getProgressDrawable().setColorFilter(ContextCompat.getColor(this, R.color.Yellow), PorterDuff.Mode.SRC_ATOP);
+//        rbFeedbackRatingForDriver4.getProgressDrawable().setColorFilter(ContextCompat.getColor(this, R.color.Yellow), PorterDuff.Mode.SRC_ATOP);
+//        rbFeedbackRatingForDriver3.getProgressDrawable().setColorFilter(ContextCompat.getColor(this, R.color.Yellow), PorterDuff.Mode.SRC_ATOP);
+//        rbFeedbackRatingForDriver2.getProgressDrawable().setColorFilter(ContextCompat.getColor(this, R.color.Yellow), PorterDuff.Mode.SRC_ATOP);
+//        rbFeedbackRatingForDriver1.getProgressDrawable().setColorFilter(ContextCompat.getColor(this, R.color.Yellow), PorterDuff.Mode.SRC_ATOP);
 
         cbFilterRecommend.setOnClickListener(this);
         rbFilterSingle.setOnClickListener(this);
@@ -209,14 +209,12 @@ public class Filter extends AppCompatActivity implements View.OnClickListener {
             JSONArray taxiTypeArray = new JSONArray(SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_TAXI_TYPE, ""));
             RadioButton[] radioButton = new RadioButton[taxiTypeArray.length() % 2 == 0 ? taxiTypeArray.length() : taxiTypeArray.length() + 1];
             int typeLen = (int) Math.floor(taxiTypeArray.length() / 2);
-            Log.i("typeLen", taxiTypeArray.length() + " " + typeLen);
             TableRow[] tableRow = new TableRow[typeLen + 1];
             int j = -1;
             Boolean check = false;
             for (int i = 0; i < taxiTypeArray.length(); i++) {
                 if ((i + 1) % 2 != 0) {
                     j++;
-                    Log.i("Yes", j + " " + i);
                     tableRow[j] = new TableRow(this);
                     tableRow[j].setId(taxiTypeArray.optJSONObject(i).getInt("taxiTypeId"));
                     tableRow[j].setLayoutParams(params1);

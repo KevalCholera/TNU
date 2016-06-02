@@ -2,7 +2,6 @@ package com.smartsense.taxinearyou;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -13,7 +12,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.smartsense.taxinearyou.Fragments.FragmentBook;
 import com.smartsense.taxinearyou.Fragments.FragmentCredit;
