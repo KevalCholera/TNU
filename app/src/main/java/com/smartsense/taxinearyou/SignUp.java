@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -27,6 +28,7 @@ public class SignUp extends AppCompatActivity implements Response.Listener<JSONO
     CoordinatorLayout clSignUp;
     Button btSignUpSaveNext;
     ImageButton btSignUpBack;
+    ImageView ivSignUpAvailableNumber, ivSignUpUnAvailableNumber, ivSignUpAvailableEmail, ivSignUpUnAvailableEmail, ivSignUpUnAvailableAlternateEmail, ivSignUpAvailableAlternateEmail;
     int whichEmail;
 
     @Override
@@ -44,6 +46,12 @@ public class SignUp extends AppCompatActivity implements Response.Listener<JSONO
         btSignUpSaveNext = (Button) findViewById(R.id.btSignUpSaveNext);
         clSignUp = (CoordinatorLayout) findViewById(R.id.clSignUp);
         btSignUpBack = (ImageButton) findViewById(R.id.btSignUpBack);
+        ivSignUpUnAvailableEmail = (ImageView) findViewById(R.id.ivSignUpUnAvailableEmail);
+        ivSignUpAvailableEmail = (ImageView) findViewById(R.id.ivSignUpAvailableEmail);
+        ivSignUpUnAvailableNumber = (ImageView) findViewById(R.id.ivSignUpUnAvailableNumber);
+        ivSignUpAvailableNumber = (ImageView) findViewById(R.id.ivSignUpAvailableNumber);
+        ivSignUpAvailableAlternateEmail = (ImageView) findViewById(R.id.ivSignUpAvailableAlternateEmail);
+        ivSignUpUnAvailableAlternateEmail = (ImageView) findViewById(R.id.ivSignUpUnAvailableAlternateEmail);
 
         etSignUpContact.addTextChangedListener(new TextWatcher() {
             @Override
@@ -53,9 +61,11 @@ public class SignUp extends AppCompatActivity implements Response.Listener<JSONO
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (s.length() >= 7) {
+                if (s.length() == 10) {
+                    whichEmail = 3;
                     contactAvailability();
-                }
+                } else
+                    imageVisibility();
             }
 
             @Override
@@ -63,6 +73,7 @@ public class SignUp extends AppCompatActivity implements Response.Listener<JSONO
 
             }
         });
+
         etSignUpEmail.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -74,7 +85,8 @@ public class SignUp extends AppCompatActivity implements Response.Listener<JSONO
                 if (CommonUtil.isValidEmail(s)) {
                     whichEmail = 1;
                     emailAvailability();
-                }
+                } else
+                    imageVisibility();
             }
 
             @Override
@@ -82,6 +94,7 @@ public class SignUp extends AppCompatActivity implements Response.Listener<JSONO
 
             }
         });
+
         etSignUpAlternateEmail.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -93,7 +106,8 @@ public class SignUp extends AppCompatActivity implements Response.Listener<JSONO
                 if (CommonUtil.isValidEmail(s)) {
                     whichEmail = 2;
                     emailAvailability();
-                }
+                } else
+                    imageVisibility();
             }
 
             @Override
@@ -105,38 +119,7 @@ public class SignUp extends AppCompatActivity implements Response.Listener<JSONO
         btSignUpSaveNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (TextUtils.isEmpty(etSignUpFirstName.getText().toString()) && TextUtils.isEmpty(etSignUpLastName.getText().toString()) && TextUtils.isEmpty(etSignUpContact.getText().toString()) && TextUtils.isEmpty(etSignUpEmail.getText().toString()) && TextUtils.isEmpty(etSignUpAlternateEmail.getText().toString()) && TextUtils.isEmpty(etSignUpPassword.getText().toString()) && TextUtils.isEmpty(etSignUpConfirmPassword.getText().toString()))
-                    CommonUtil.showSnackBar(SignUp.this, getResources().getString(R.string.enter_fields_below), clSignUp);
-                else if (TextUtils.isEmpty(etSignUpFirstName.getText().toString()))
-                    CommonUtil.showSnackBar(SignUp.this, getString(R.string.enter_first_name), clSignUp);
-                else if (TextUtils.isEmpty(etSignUpLastName.getText().toString()))
-                    CommonUtil.showSnackBar(SignUp.this, getString(R.string.enter_last_name), clSignUp);
-                else if (TextUtils.isEmpty(etSignUpContact.getText().toString()))
-                    CommonUtil.showSnackBar(SignUp.this, getString(R.string.enter_contact_no), clSignUp);
-                else if (etSignUpContact.length() < 7 || etSignUpContact.length() > 13)
-                    CommonUtil.showSnackBar(SignUp.this, getString(R.string.enter_valid_contact_no), clSignUp);
-                else if (TextUtils.isEmpty(etSignUpEmail.getText().toString()))
-                    CommonUtil.showSnackBar(SignUp.this, getString(R.string.enter_email_id), clSignUp);
-                else if (!CommonUtil.isValidEmail(etSignUpEmail.getText().toString()))
-                    CommonUtil.showSnackBar(SignUp.this, getString(R.string.enter_valid_email_id), clSignUp);
-                else if (TextUtils.isEmpty(etSignUpAlternateEmail.getText().toString()))
-                    CommonUtil.showSnackBar(SignUp.this, getString(R.string.enter_alternate_email), clSignUp);
-                else if (!CommonUtil.isValidEmail(etSignUpAlternateEmail.getText().toString()))
-                    CommonUtil.showSnackBar(SignUp.this, getString(R.string.enter_valid_alternate_email), clSignUp);
-                else if (TextUtils.equals(etSignUpAlternateEmail.getText().toString(), etSignUpEmail.getText().toString()))
-                    CommonUtil.showSnackBar(SignUp.this, getString(R.string.alternate_email_not_same), clSignUp);
-                else if (TextUtils.isEmpty(etSignUpPassword.getText().toString()))
-                    CommonUtil.showSnackBar(SignUp.this, getString(R.string.enter_pass), clSignUp);
-                else if (etSignUpPassword.length() < 7 || etSignUpPassword.length() > 15)
-                    CommonUtil.showSnackBar(SignUp.this, getString(R.string.enter_valid_pass), clSignUp);
-                else if (TextUtils.isEmpty(etSignUpConfirmPassword.getText().toString()))
-                    CommonUtil.showSnackBar(SignUp.this, getString(R.string.enter_confirm_pass), clSignUp);
-                else if (etSignUpConfirmPassword.length() < 7 || etSignUpPassword.length() > 15)
-                    CommonUtil.showSnackBar(SignUp.this, getString(R.string.enter_valid_confirm_pass), clSignUp);
-                else if (!TextUtils.equals(etSignUpConfirmPassword.getText().toString(), etSignUpPassword.getText().toString()))
-                    CommonUtil.showSnackBar(SignUp.this, getString(R.string.conpass_pass_same), clSignUp);
-                else
-                    startActivity(new Intent(SignUp.this, SecurityQuestion.class).putExtra("firstName", etSignUpFirstName.getText().toString().trim()).putExtra("lastName", etSignUpLastName.getText().toString().trim()).putExtra("contactNo", etSignUpContact.getText().toString().trim()).putExtra("emailId", etSignUpEmail.getText().toString().trim()).putExtra("password", etSignUpPassword.getText().toString().trim()).putExtra("confPassword", etSignUpConfirmPassword.getText().toString().trim()).putExtra("altEmailId", etSignUpAlternateEmail.getText().toString().trim()));
+                submitConditions();
             }
         });
         btSignUpBack.setOnClickListener(new View.OnClickListener() {
@@ -146,6 +129,44 @@ public class SignUp extends AppCompatActivity implements Response.Listener<JSONO
                 CommonUtil.closeKeyboard(SignUp.this);
             }
         });
+
+        imageVisibility();
+    }
+
+    public void submitConditions() {
+        if (TextUtils.isEmpty(etSignUpFirstName.getText().toString()) && TextUtils.isEmpty(etSignUpLastName.getText().toString()) && TextUtils.isEmpty(etSignUpContact.getText().toString()) && TextUtils.isEmpty(etSignUpEmail.getText().toString()) && TextUtils.isEmpty(etSignUpAlternateEmail.getText().toString()) && TextUtils.isEmpty(etSignUpPassword.getText().toString()) && TextUtils.isEmpty(etSignUpConfirmPassword.getText().toString()))
+            CommonUtil.showSnackBar(SignUp.this, getResources().getString(R.string.enter_fields_below), clSignUp);
+        else if (TextUtils.isEmpty(etSignUpFirstName.getText().toString()))
+            CommonUtil.showSnackBar(SignUp.this, getString(R.string.enter_first_name), clSignUp);
+        else if (TextUtils.isEmpty(etSignUpLastName.getText().toString()))
+            CommonUtil.showSnackBar(SignUp.this, getString(R.string.enter_last_name), clSignUp);
+        else if (TextUtils.isEmpty(etSignUpContact.getText().toString()))
+            CommonUtil.showSnackBar(SignUp.this, getString(R.string.enter_contact_no), clSignUp);
+        else if (etSignUpContact.length() != 10)
+            CommonUtil.showSnackBar(SignUp.this, getString(R.string.enter_valid_contact), clSignUp);
+        else if (TextUtils.isEmpty(etSignUpEmail.getText().toString()))
+            CommonUtil.showSnackBar(SignUp.this, getString(R.string.enter_email_id), clSignUp);
+        else if (!CommonUtil.isValidEmail(etSignUpEmail.getText().toString()))
+            CommonUtil.showSnackBar(SignUp.this, getString(R.string.enter_valid_email_id), clSignUp);
+        else if (TextUtils.isEmpty(etSignUpAlternateEmail.getText().toString()))
+            CommonUtil.showSnackBar(SignUp.this, getString(R.string.enter_alternate_email), clSignUp);
+        else if (!CommonUtil.isValidEmail(etSignUpAlternateEmail.getText().toString()))
+            CommonUtil.showSnackBar(SignUp.this, getString(R.string.enter_valid_alternate_email), clSignUp);
+        else if (TextUtils.equals(etSignUpAlternateEmail.getText().toString(), etSignUpEmail.getText().toString()))
+            CommonUtil.showSnackBar(SignUp.this, getString(R.string.alternate_email_not_same), clSignUp);
+        else if (TextUtils.isEmpty(etSignUpPassword.getText().toString()))
+            CommonUtil.showSnackBar(SignUp.this, getString(R.string.enter_pass), clSignUp);
+        else if (etSignUpPassword.length() < 7 || etSignUpPassword.length() > 15)
+            CommonUtil.showSnackBar(SignUp.this, getString(R.string.enter_valid_pass), clSignUp);
+        else if (TextUtils.isEmpty(etSignUpConfirmPassword.getText().toString()))
+            CommonUtil.showSnackBar(SignUp.this, getString(R.string.enter_confirm_pass), clSignUp);
+        else if (etSignUpConfirmPassword.length() < 7 || etSignUpPassword.length() > 15)
+            CommonUtil.showSnackBar(SignUp.this, getString(R.string.enter_valid_confirm_pass), clSignUp);
+        else if (!TextUtils.equals(etSignUpConfirmPassword.getText().toString(), etSignUpPassword.getText().toString()))
+            CommonUtil.showSnackBar(SignUp.this, getString(R.string.conpass_pass_same), clSignUp);
+        else
+            startActivity(new Intent(SignUp.this, SecurityQuestion.class).putExtra("firstName", etSignUpFirstName.getText().toString().trim()).putExtra("lastName", etSignUpLastName.getText().toString().trim()).putExtra("contactNo", etSignUpContact.getText().toString().trim()).putExtra("emailId", etSignUpEmail.getText().toString().trim()).putExtra("password", etSignUpPassword.getText().toString().trim()).putExtra("confPassword", etSignUpConfirmPassword.getText().toString().trim()).putExtra("altEmailId", etSignUpAlternateEmail.getText().toString().trim()));
+
     }
 
     private void contactAvailability() {
@@ -160,9 +181,16 @@ public class SignUp extends AppCompatActivity implements Response.Listener<JSONO
             e.printStackTrace();
         }
 
-//        CommonUtil.jsonRequestGET(this, getResources().getString(R.string.get_data), builder.toString(), tag, this, this);
         CommonUtil.jsonRequestNoProgressBar(builder.toString(), tag, this, this);
+    }
 
+    public void imageVisibility() {
+        ivSignUpAvailableNumber.setVisibility(View.GONE);
+        ivSignUpAvailableEmail.setVisibility(View.GONE);
+        ivSignUpUnAvailableNumber.setVisibility(View.INVISIBLE);
+        ivSignUpUnAvailableEmail.setVisibility(View.INVISIBLE);
+        ivSignUpUnAvailableAlternateEmail.setVisibility(View.INVISIBLE);
+        ivSignUpAvailableAlternateEmail.setVisibility(View.GONE);
     }
 
     private void emailAvailability() {
@@ -177,8 +205,6 @@ public class SignUp extends AppCompatActivity implements Response.Listener<JSONO
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
-//        CommonUtil.jsonRequestGET(this, getResources().getString(R.string.get_data), builder.toString(), tag, this, this);
         CommonUtil.jsonRequestNoProgressBar(builder.toString(), tag, this, this);
     }
 
@@ -191,8 +217,30 @@ public class SignUp extends AppCompatActivity implements Response.Listener<JSONO
     public void onResponse(JSONObject jsonObject) {
         if (jsonObject != null) {
             if (jsonObject.optInt("status") == Constants.STATUS_SUCCESS) {
-                if (!jsonObject.optJSONObject("json").optString("isAvailable").equalsIgnoreCase("1"))
+                if (!jsonObject.optJSONObject("json").optString("isAvailable").equalsIgnoreCase("1")) {
                     CommonUtil.showSnackBar(this, jsonObject.optString("msg"), clSignUp);
+                    if (whichEmail == 1) {
+                        ivSignUpUnAvailableEmail.setVisibility(View.VISIBLE);
+                        ivSignUpAvailableEmail.setVisibility(View.GONE);
+                    } else if (whichEmail == 2) {
+                        ivSignUpUnAvailableAlternateEmail.setVisibility(View.VISIBLE);
+                        ivSignUpAvailableAlternateEmail.setVisibility(View.GONE);
+                    } else {
+                        ivSignUpUnAvailableNumber.setVisibility(View.VISIBLE);
+                        ivSignUpAvailableNumber.setVisibility(View.GONE);
+                    }
+                } else {
+                    if (whichEmail == 1) {
+                        ivSignUpUnAvailableEmail.setVisibility(View.GONE);
+                        ivSignUpAvailableEmail.setVisibility(View.VISIBLE);
+                    } else if (whichEmail == 2) {
+                        ivSignUpUnAvailableAlternateEmail.setVisibility(View.GONE);
+                        ivSignUpAvailableAlternateEmail.setVisibility(View.VISIBLE);
+                    } else {
+                        ivSignUpUnAvailableNumber.setVisibility(View.GONE);
+                        ivSignUpAvailableNumber.setVisibility(View.VISIBLE);
+                    }
+                }
             } else
                 CommonUtil.conditionAuthentication(this, jsonObject);
         } else

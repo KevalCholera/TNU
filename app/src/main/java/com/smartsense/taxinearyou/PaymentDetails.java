@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -75,6 +76,8 @@ public class PaymentDetails extends AppCompatActivity implements View.OnClickLis
                     .put("token", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_ACCESS_TOKEN, ""))
                     .put("requestJson", jsonObject3)
                     .put("customerSelection", jsonObject4));
+
+            Log.i("params", builder.toString());
 
             try {
                 url = Constants.BASE_URL + Constants.BASE_URL_POSTFIX + Constants.Events.BookRide + "&json="

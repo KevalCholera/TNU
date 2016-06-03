@@ -5,6 +5,7 @@ public class Constants {
     public static final int STATUS_FAIL = 500;
     public static final int STATUS_CHECK = 201;
     public static final String DB_PATH = "/data/data/com.smartsense.taxiNearU/databases/";
+    public static final String GOOGLE_TRIP_PATH_API = "https://maps.googleapis.com/maps/api/staticmap?";
 //    public static final String DB_PATH = "/data/data/com.smartsense.gifkar/databases/";
 
 
@@ -13,7 +14,8 @@ public class Constants {
     public static final String BASE_URL_IMAGE_POSTFIX = "http://fmcgfinal.cloudapp.net:8080/tnu";
     public static final String BASE_URL_POSTFIX = "/tnu/m?__eventid=";
     public static final String BASE_URL_PHOTO = BASE_URL + "/tnu/m?";
-    public static final String BASE_TERMS_AND_CONDITION = "/termsAndConditions.html";
+    public static final String BASE_TERMS_AND_CONDITION = "/customer/termsAndConditions.html";
+    public static final String BASE_PRIVACY_POLICY = "/customer/privacyPolicy.html";
     public static final String BASE_URL_PHOTO_THUMB = BASE_URL + "/images/products/";
     public static final String BASE_IMAGE_URL = "http://104.43.15.1:8025";
     public static final String PRO_TITLE = "Please Wait";
@@ -24,6 +26,8 @@ public class Constants {
     public static final String REVERSE_FROM_TO = "reverse_from_to";
     public static final String VIA2_ADDRESS = "via2_add";
     public static final String EXTRAS = "extras";
+    public static final String GOOGLE_TRIP_API = "AIzaSyDrWeTlPdYv-p9IfH6kHawV6s-cffgBQPI";
+
     public class PrefKeys {
 
         public static final String PREF_CITY_ID = "city_id";

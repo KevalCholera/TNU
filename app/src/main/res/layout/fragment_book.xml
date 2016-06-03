@@ -14,8 +14,8 @@
             android:id="@+id/rlBookFromTo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/lySearchAllMarginStartEnd"
-            android:layout_marginStart="@dimen/lySearchAllMarginStartEnd"
+            android:layout_marginLeft="@dimen/lySearchAllMarginStartEnd"
+            android:layout_marginRight="@dimen/lySearchAllMarginStartEnd"
             android:layout_marginTop="@dimen/lySearchFromToMarginTop">
 
             <LinearLayout
@@ -31,8 +31,8 @@
                     android:layout_height="@dimen/etHeightAll"
                     android:background="@null"
                     android:clickable="true"
+                    android:drawableLeft="@mipmap/imgfromto"
                     android:drawablePadding="@dimen/tvMarginTopBottomStartEndAll"
-                    android:drawableStart="@mipmap/imgfromto"
                     android:focusable="false"
                     android:gravity="fill"
                     android:hint="@string/from"
@@ -78,8 +78,8 @@
                     android:layout_height="@dimen/etHeightAll"
                     android:background="@null"
                     android:clickable="true"
+                    android:drawableLeft="@mipmap/imgfromto"
                     android:drawablePadding="@dimen/tvMarginTopBottomStartEndAll"
-                    android:drawableStart="@mipmap/imgfromto"
                     android:focusable="false"
                     android:gravity="fill"
                     android:hint="@string/to"
@@ -97,7 +97,7 @@
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentRight="true"
                 android:layout_gravity="fill_vertical"
-                android:layout_marginEnd="@dimen/ivBookViaMarginEnd"
+                android:layout_marginRight="@dimen/ivBookViaMarginEnd"
                 android:layout_marginTop="@dimen/ivBookViaMarginTop"
                 android:src="@mipmap/imgbtnvia"
                 tools:ignore="ContentDescription,RtlHardcoded" />
@@ -115,8 +115,8 @@
             android:id="@+id/llBookVia1"
             android:layout_width="match_parent"
             android:layout_height="@dimen/etHeightAll"
-            android:layout_marginEnd="@dimen/tvSearchAllMarginStartEnd"
-            android:layout_marginStart="@dimen/tvSearchAllMarginStartEnd"
+            android:layout_marginLeft="@dimen/tvSearchAllMarginStartEnd"
+            android:layout_marginRight="@dimen/tvSearchAllMarginStartEnd"
             android:background="@drawable/grayborder"
             android:orientation="horizontal"
             android:visibility="gone">
@@ -128,8 +128,8 @@
                 android:layout_weight="0.15"
                 android:background="@null"
                 android:clickable="true"
+                android:drawableLeft="@mipmap/imgvia"
                 android:drawablePadding="@dimen/tvMarginTopBottomStartEndAll"
-                android:drawableStart="@mipmap/imgvia"
                 android:focusable="false"
                 android:gravity="fill"
                 android:hint="@string/via1"
@@ -153,8 +153,8 @@
             android:id="@+id/llBookVia2"
             android:layout_width="match_parent"
             android:layout_height="@dimen/etHeightAll"
-            android:layout_marginEnd="@dimen/tvSearchAllMarginStartEnd"
-            android:layout_marginStart="@dimen/tvSearchAllMarginStartEnd"
+            android:layout_marginLeft="@dimen/tvSearchAllMarginStartEnd"
+            android:layout_marginRight="@dimen/tvSearchAllMarginStartEnd"
             android:layout_marginTop="@dimen/llBookVia2MarginTop"
             android:background="@drawable/grayborder"
             android:orientation="horizontal"
@@ -167,8 +167,8 @@
                 android:layout_weight="0.15"
                 android:background="@null"
                 android:clickable="true"
+                android:drawableLeft="@mipmap/imgvia"
                 android:drawablePadding="@dimen/etBookviaDrawablePadding"
-                android:drawableStart="@mipmap/imgvia"
                 android:focusable="false"
                 android:gravity="fill"
                 android:hint="@string/via2"
@@ -192,10 +192,12 @@
             android:id="@+id/llBookNowTodayTomorrow"
             android:layout_width="match_parent"
             android:layout_height="@dimen/etHeightAll"
-            android:layout_marginEnd="@dimen/lySearchAllMarginStartEnd"
-            android:layout_marginStart="@dimen/lySearchAllMarginStartEnd"
+            android:layout_marginLeft="@dimen/lySearchAllMarginStartEnd"
+            android:layout_marginRight="@dimen/lySearchAllMarginStartEnd"
             android:layout_marginTop="@dimen/lySearchNowTodayTomorrowMaginTop"
-            android:orientation="horizontal">
+            android:background="@drawable/blueborder"
+            android:orientation="horizontal"
+            android:padding="@dimen/llBookNowTodayTomorrow">
 
             <RadioButton
                 android:id="@+id/rbBookNow"
@@ -207,7 +209,7 @@
                 android:checked="true"
                 android:gravity="center"
                 android:text="@string/now"
-                android:textColor="@drawable/radio_book"
+                android:textColor="@color/black"
                 android:textSize="@dimen/etSignInUserPassSize"
                 tools:ignore="NestedWeights" />
 
@@ -220,7 +222,7 @@
                 android:button="@drawable/radio_book"
                 android:gravity="center"
                 android:text="@string/today"
-                android:textColor="@drawable/radio_book"
+                android:textColor="@color/black"
                 android:textSize="@dimen/etSignInUserPassSize" />
 
             <RadioButton
@@ -232,7 +234,7 @@
                 android:button="@drawable/radio_book"
                 android:gravity="center"
                 android:text="@string/tomorrow"
-                android:textColor="@drawable/radio_book"
+                android:textColor="@color/black"
                 android:textSize="@dimen/etSignInUserPassSize" />
 
         </RadioGroup>
@@ -241,8 +243,8 @@
             android:id="@+id/tvBookDateTime"
             android:layout_width="match_parent"
             android:layout_height="@dimen/etHeightAll"
-            android:layout_marginEnd="@dimen/lySearchAllMarginStartEnd"
-            android:layout_marginStart="@dimen/lySearchAllMarginStartEnd"
+            android:layout_marginLeft="@dimen/lySearchAllMarginStartEnd"
+            android:layout_marginRight="@dimen/lySearchAllMarginStartEnd"
             android:layout_marginTop="@dimen/lySearchDateTimeMaginTop"
             android:background="@drawable/grayborder"
             android:clickable="true"
@@ -259,8 +261,8 @@
             android:id="@+id/llBookLuggagePassenger"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/lySearchAllMarginStartEnd"
-            android:layout_marginStart="@dimen/lySearchAllMarginStartEnd"
+            android:layout_marginLeft="@dimen/lySearchAllMarginStartEnd"
+            android:layout_marginRight="@dimen/lySearchAllMarginStartEnd"
             android:layout_marginTop="@dimen/lySearchLuggagePassengerMarginTop"
             android:orientation="horizontal">
 
@@ -268,7 +270,7 @@
                 android:id="@+id/tvBookLuggage"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/etHeightAll"
-                android:layout_marginEnd="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_marginRight="@dimen/tvMarginTopBottomStartEndAll"
                 android:layout_weight="1"
                 android:background="@drawable/grayborder"
                 android:clickable="true"
@@ -286,7 +288,7 @@
                 android:id="@+id/tvBookPassenger"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/etHeightAll"
-                android:layout_marginStart="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_marginLeft="@dimen/tvMarginTopBottomStartEndAll"
                 android:layout_weight="1"
                 android:background="@drawable/grayborder"
                 android:clickable="true"
@@ -295,7 +297,6 @@
                 android:focusable="false"
                 android:gravity="fill"
                 android:hint="@string/passengers"
-                android:inputType="text"
                 android:maxLines="1"
                 android:singleLine="true"
                 android:textColor="@color/black"

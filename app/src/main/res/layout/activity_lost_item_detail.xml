@@ -10,7 +10,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/lyLostItemDetailsTNRMarginStart"
+        android:layout_marginLeft="@dimen/lyLostItemDetailsTNRMarginStart"
         android:orientation="horizontal">
 
         <TextView
@@ -24,8 +24,7 @@
             android:id="@+id/tvLostItemDetailTNR"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/tvLostItemDetailsMarginStart"
-            android:text="@string/tnu123456789"
+            android:layout_marginLeft="@dimen/tvLostItemDetailsMarginStart"
             android:textSize="@dimen/tvTitlesSizeAll" />
 
     </LinearLayout>
@@ -45,7 +44,7 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/lyLostItemDetailsFromMarginStart"
+            android:layout_marginLeft="@dimen/lyLostItemDetailsFromMarginStart"
             android:layout_weight="1"
             android:orientation="vertical">
 
@@ -65,7 +64,6 @@
                     android:id="@+id/tvLostItemDetailFrom"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/solihull_rd_shiral_sohill_west_midland_b90s_3lg_uk"
                     android:textSize="@dimen/tvTitlesSizeAll" />
 
             </LinearLayout>
@@ -73,7 +71,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginStart="@dimen/lyLostItemDetailsToMarginStart"
+                android:layout_marginLeft="@dimen/lyLostItemDetailsToMarginStart"
                 android:layout_marginTop="@dimen/lyLostItemDetailsToMarginTop"
                 android:orientation="horizontal">
 
@@ -88,7 +86,6 @@
                     android:id="@+id/tvLostItemDetailTo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/battern_parks_rd_london_sw8_uk"
                     android:textSize="@dimen/tvTitlesSizeAll" />
 
             </LinearLayout>
@@ -126,7 +123,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="@string/lytfllc"
                 android:textSize="@dimen/tvTitlesSizeAll" />
 
             <TextView
@@ -156,7 +152,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="@string/_10_02_2016_10_30am"
                 android:textSize="@dimen/tvTitlesSizeAll" />
 
             <TextView
@@ -186,7 +181,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="@string/open"
                 android:textSize="@dimen/tvTitlesSizeAll" />
 
             <TextView
@@ -215,7 +209,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0.2"
-        android:layout_marginStart="@dimen/lyLostItemDetailsMarginTopStart"
+        android:layout_marginLeft="@dimen/lyLostItemDetailsMarginTopStart"
         android:layout_marginTop="@dimen/lyLostItemDetailsMarginTopStart"
         android:orientation="horizontal">
 
@@ -230,9 +224,8 @@
             android:id="@+id/tvLostItemDetailLostItem"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/tvLostItemDetailsMarginStart"
+            android:layout_marginLeft="@dimen/tvLostItemDetailsMarginStart"
             android:gravity="center"
-            android:text="@string/white_color_handbag_and_black_color_wallet"
             android:textSize="@dimen/tvTitlesSizeAll" />
 
     </LinearLayout>

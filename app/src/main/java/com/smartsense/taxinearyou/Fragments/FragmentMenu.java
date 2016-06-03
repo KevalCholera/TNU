@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -77,8 +78,8 @@ public class FragmentMenu extends Fragment implements Response.Listener<JSONObje
             btAccountActivateNow.setVisibility(View.GONE);
 
         if (btAccountActivateNow.getVisibility() == View.VISIBLE) {
-            cvAccountPhoto.setBorderColor(ContextCompat.getColor(getActivity(), R.color.Yellow));
-            ivEditProfilePhoto.setBackground(ContextCompat.getDrawable(getActivity(), R.drawable.circular_view_yellow_colored));
+            cvAccountPhoto.setBorderColor(ContextCompat.getColor(getActivity(), Color.GREEN));
+            ivEditProfilePhoto.setBackgroundResource(R.drawable.circular_view_yellow_colored);
         }
 
         if (!TextUtils.isEmpty(SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_PROIMG, "")))

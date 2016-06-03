@@ -44,6 +44,7 @@
     <dimen name="tvSignUpSignUpMarginBottom">50dp</dimen>
     <dimen name="btSignUpAllheight">40dp</dimen>
     <dimen name="etBookingInfoPaddingStart">20dp</dimen>
+    <dimen name="signUpMargin">30dp</dimen>
     <!-- Default screen margins, per the Android Design guidelines. -->
 
     <dimen name="cbForgotAllMarginTop">10dp</dimen>
@@ -60,7 +61,7 @@
 
     <dimen name="vSearchNowTodayHeight">40dp</dimen>
     <dimen name="vSearchNowTodayWidth">0.7dp</dimen>
-    <dimen name="lySearchFromToMarginTop">40dp</dimen>
+    <dimen name="lySearchFromToMarginTop">20dp</dimen>
     <dimen name="lySearchLuggagePassengerMarginTop">10dp</dimen>
     <dimen name="lySearchAllMarginStartEnd">20dp</dimen>
     <dimen name="lySearchNowTodayTomorrowMaginTop">18dp</dimen>
@@ -87,7 +88,7 @@
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="appbar_padding_top">8dp</dimen>
     <dimen name="ivAccountPersonPhotoBigHeightWidth">115dp</dimen>
-    <dimen name="ivAccountPersonPhotoSmallHeightWidth">35dp</dimen>
+    <dimen name="ivAccountPersonPhotoSmallHeightWidth">25dp</dimen>
     <dimen name="tvAccountAllMarginTop">10dp</dimen>
     <dimen name="tvAccountAllSize">20sp</dimen>
     <dimen name="tvAccountAllPadding">10dp</dimen>
@@ -100,6 +101,7 @@
     <dimen name="etInfoSocialPadding">10dp</dimen>
     <dimen name="vReviewTextAllMargin">2dp</dimen>
     <dimen name="tvHeadingSizeAll">20sp</dimen>
+    <dimen name="tvElementGoogle">17sp</dimen>
     <dimen name="btAccountSecurityPaddingEndStartAll">15dp</dimen>
     <dimen name="vtvAccountSecurityMarginTopBottomAll">15dp</dimen>
     <dimen name="tvAccountSecurityCheckTextSizeAll">13sp</dimen>
@@ -122,6 +124,7 @@
     <dimen name="lyBookingInfoMarginStartFromTo">15dp</dimen>
     <dimen name="tvFareCostSizeAll">25sp</dimen>
     <dimen name="tvFareMoneySizeAll">30sp</dimen>
+    <dimen name="btPopupFeedbackOk">30dp</dimen>
     <dimen name="ivFeedbackWidthHeightAll">70dp</dimen>
     <dimen name="lyrlFeedbackImageMarginTop">20dp</dimen>
     <dimen name="etFeedbackImageMarginTop">20dp</dimen>
@@ -148,6 +151,7 @@
     <dimen name="lyLostItemDetailsTNRMarginStart">20dp</dimen>
     <dimen name="lyPartnerRatingImageHeight">170dp</dimen>
     <dimen name="ivPartnerRatingImageHeight">100dp</dimen>
+    <dimen name="ivTripDetailsMap">150dp</dimen>
     <dimen name="tvPaymentDetailsDrawableTNUPadding">5dp</dimen>
     <dimen name="tvPaymentDetailsDrawableCashPadding">10dp</dimen>
     <dimen name="tvPaymentDetailsMarginStart">5dp</dimen>
@@ -175,6 +179,7 @@
     <dimen name="btTripDetailsMarginStartEnd">20dp</dimen>
     <dimen name="civTripDetailsWidthHeight">70dp</dimen>
     <dimen name="civTripDetailsBorderWidth">0.5dp</dimen>
+    <dimen name="cvAccountPhoto">2dp</dimen>
     <dimen name="btTripDetailsCancelPaddingStartEnd">40dp</dimen>
     <dimen name="lyYourDetailsEditMarginStartEnd">10dp</dimen>
     <dimen name="lyYourDetailsEditMarginTop">15dp</dimen>
@@ -198,7 +203,7 @@
     <dimen name="tvSearchCarsBookNowMarginTop">10dp</dimen>
     <dimen name="tvSearchCarsBookNowPaddingTopBottom">5dp</dimen>
     <dimen name="tvSearchCarsBookNowPaddingStartEnd">10dp</dimen>
-    <dimen name="cvAccountPhotoWidthHeight">130dp</dimen>
+    <dimen name="cvAccountPhotoWidthHeight">80dp</dimen>
     <dimen name="btAccountActivateNowPaddingStartEnd">15dp</dimen>
     <dimen name="tvAccountMarginStartAll">15dp</dimen>
     <dimen name="ivAccountMarginStartAll">5dp</dimen>
@@ -237,11 +242,11 @@
     <dimen name="etPopupSecurityQuestionChangeQuestionMarginStart">5dp</dimen>
     <dimen name="lyPopupSecurityQuestionChangeQuestionMarginTop">10dp</dimen>
     <dimen name="lyPopupSecurityQuestionChangeAnswerMarginTop">5dp</dimen>
-    <dimen name="ivPopImageWidthHeightAll">100dp</dimen>
+    <dimen name="ivPopImageWidthHeightAll">60dp</dimen>
     <dimen name="vPopupMarginTopBottom">20dp</dimen>
     <dimen name="lyPopupCancelRideOkCancelMarginTop">20dp</dimen>
     <dimen name="lyPopupCancelRideOkCancelMarginBottom">10dp</dimen>
-    <dimen name="tvPopupCancelRideMarginStartEnd">50dp</dimen>
+    <dimen name="tvPopupCancelRideMarginStartEnd">30dp</dimen>
     <dimen name="tvPopupCancelRideCancelMarginStart">10dp</dimen>
     <dimen name="tvPopupCancelRidePadding">5dp</dimen>
     <dimen name="vGoogleHeight">2dp</dimen>
@@ -296,4 +301,12 @@
     <dimen name="lyElementReviewPaddingEnd">30dp</dimen>
     <dimen name="ratingStarWidthHeight">30dp</dimen>
     <dimen name="btAccountSecurityUpdatePadding">30dp</dimen>
+    <dimen name="cvPartnerPicMargin">30dp</dimen>
+    <dimen name="llBookNowTodayTomorrow">1dp</dimen>
+    <dimen name="ivBackWidthSize">20dp</dimen>
+    <dimen name="ivBackWidthMargin">10dp</dimen>
+    <dimen name="drawablePaddingMore">13dp</dimen>
+    <dimen name="paddingLeft">10dp</dimen>
+    <dimen name="tvMorePrivacyPolicy">5dp</dimen>
+    <dimen name="ivEditProfilePhoto">25dp</dimen>
 </resources>

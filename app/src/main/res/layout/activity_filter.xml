@@ -29,8 +29,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:paddingEnd="@dimen/lyPaddingMainAll"
-                    android:paddingStart="@dimen/lyPaddingMainAll">
+                    android:paddingRight="@dimen/lyPaddingMainAll"
+                    android:paddingLeft="@dimen/lyPaddingMainAll">
 
                     <TextView
                         android:layout_width="match_parent"
@@ -197,7 +197,7 @@
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/lyPaddingMainAll"
+                            android:layout_marginLeft="@dimen/lyPaddingMainAll"
                             android:orientation="vertical">
 
                             <TextView
@@ -439,7 +439,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/cbMarginTopStartPaddingTopAll"
-                        android:paddingStart="@dimen/cbMarginTopStartPaddingTopAll"
+                        android:paddingLeft="@dimen/cbMarginTopStartPaddingTopAll"
                         android:text="@string/recommend"
                         android:textColor="@color/white" />
                 </LinearLayout>

@@ -1,222 +1,230 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:weightSum="1">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:weightSum="1">
+        android:gravity="center">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/rlAccountHeight"
-            android:gravity="center">
+        <com.smartsense.taxinearyou.utill.CircleImageView1
+            android:id="@+id/cvAccountPhoto"
+            android:layout_width="@dimen/cvAccountPhotoWidthHeight"
+            android:layout_height="@dimen/cvAccountPhotoWidthHeight"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_marginBottom="@dimen/font_20"
+            android:src="@mipmap/imgsearchbackground"
+            app:civ_border_color="@color/background"
+            app:civ_border_width="@dimen/cvAccountPhoto" />
 
-            <com.smartsense.taxinearyou.utill.CircleImageView1
-                android:id="@+id/cvAccountPhoto"
-                android:layout_width="@dimen/cvAccountPhotoWidthHeight"
-                android:layout_height="@dimen/cvAccountPhotoWidthHeight"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                android:src="@mipmap/imgsearchbackground"
-                app:civ_border_color="@color/background"
-                app:civ_border_width="@dimen/civTripDetailsBorderWidth" />
+        <ImageView
+            android:id="@+id/ivEditProfilePhoto"
+            android:layout_width="@dimen/ivAccountPersonPhotoSmallHeightWidth"
+            android:layout_height="@dimen/ivAccountPersonPhotoSmallHeightWidth"
+            android:layout_alignRight="@+id/cvAccountPhoto"
+            android:layout_alignTop="@+id/cvAccountPhoto"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/ivEditProfilePhoto"
+            android:background="@drawable/circular_view_blue_colored" />
 
-            <ImageView
-                android:id="@+id/ivEditProfilePhoto"
-                android:layout_width="@dimen/ivAccountPersonPhotoSmallHeightWidth"
-                android:layout_height="@dimen/ivAccountPersonPhotoSmallHeightWidth"
-                android:layout_alignEnd="@+id/cvAccountPhoto"
-                android:layout_alignTop="@+id/cvAccountPhoto"
-                android:layout_gravity="center_horizontal"
-                android:background="@drawable/circular_view_blue_colored" />
-
-            <TextView
-                android:id="@+id/tvAccountPersonName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/cvAccountPhoto"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="@dimen/tvAccountPersonNameMarginTop"
-                android:gravity="center"
-                android:text="@string/person_name"
-                android:textColor="@color/black"
-                android:textSize="@dimen/tvAccountAllSize"
-                android:textStyle="bold" />
-
-        </RelativeLayout>
-
-
-        <Button
-            android:id="@+id/btAccountActivateNow"
+        <TextView
+            android:id="@+id/tvAccountPersonName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:background="@drawable/yellowborderaccount"
-            android:paddingEnd="@dimen/btAccountActivateNowPaddingStartEnd"
-            android:paddingStart="@dimen/btAccountActivateNowPaddingStartEnd"
-            android:text="Activate Now"
-            android:textAllCaps="false"
+            android:layout_below="@+id/cvAccountPhoto"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/tvAccountPersonNameMarginTop"
+            android:gravity="center"
             android:textColor="@color/black"
-            android:textSize="@dimen/tvTitlesSizeAll"
-            android:visibility="visible" />
+            android:textSize="@dimen/tvAccountAllSize"
+            android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/tvAccountGeneralInfo"
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/btAccountActivateNow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/yellowborderaccount"
+        android:paddingEnd="@dimen/btAccountActivateNowPaddingStartEnd"
+        android:paddingStart="@dimen/btAccountActivateNowPaddingStartEnd"
+        android:text="@string/active_now"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textSize="@dimen/tvTitlesSizeAll"
+        android:visibility="visible" />
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/tvAccountAllMarginStartEnd"
-            android:layout_marginStart="@dimen/lyAccountMarginTopAll"
-            android:layout_marginTop="@dimen/tvAccountAllMarginTop"
-            android:drawablePadding="@dimen/tvElementCardListMarginStartEnd5"
-            android:drawableStart="@mipmap/genreal_info"
-            android:gravity="fill"
-            android:text="@string/general_info"
-            android:textColor="@color/black"
-            android:textSize="@dimen/tvAccountAllSize"
-            android:textStyle="italic" />
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvAccountGeneralInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/lyAccountMarginTopAll"
+                android:layout_marginRight="@dimen/tvAccountAllMarginStartEnd"
+                android:layout_marginTop="@dimen/tvAccountAllMarginTop"
+                android:drawableLeft="@mipmap/genreal_info"
+                android:drawablePadding="@dimen/tvElementCardListMarginStartEnd5"
+                android:gravity="fill"
+                android:text="@string/general_info"
+                android:textColor="@color/black"
+                android:textSize="@dimen/tvAccountAllSize"
+                android:textStyle="italic" />
 
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/vAccountAllHeight"
-            android:layout_marginEnd="@dimen/vAccountAllStartEnd"
-            android:layout_marginStart="@dimen/vAccountAllStartEnd"
-            android:background="@color/light_Gray" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/vAccountAllHeight"
+                android:layout_marginLeft="@dimen/vAccountAllStartEnd"
+                android:layout_marginRight="@dimen/vAccountAllStartEnd"
+                android:background="@color/light_Gray" />
 
-        <TextView
-            android:id="@+id/tvAccountAccountSecurity"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/tvAccountAllMarginStartEnd"
-            android:layout_marginStart="@dimen/lyAccountMarginTopAll"
-            android:layout_marginTop="@dimen/tvAccountAllMarginTop"
-            android:drawablePadding="@dimen/tvElementCardListMarginStartEnd5"
-            android:drawableStart="@mipmap/acc_security"
-            android:gravity="fill"
-            android:text="@string/acc_sec"
-            android:textColor="@color/black"
-            android:textSize="@dimen/tvAccountAllSize"
-            android:textStyle="italic" />
+            <TextView
+                android:id="@+id/tvAccountAccountSecurity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/lyAccountMarginTopAll"
+                android:layout_marginRight="@dimen/tvAccountAllMarginStartEnd"
+                android:layout_marginTop="@dimen/tvAccountAllMarginTop"
+                android:drawableLeft="@mipmap/acc_security"
+                android:drawablePadding="@dimen/tvElementCardListMarginStartEnd5"
+                android:gravity="fill"
+                android:text="@string/acc_sec"
+                android:textColor="@color/black"
+                android:textSize="@dimen/tvAccountAllSize"
+                android:textStyle="italic" />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/vAccountAllHeight"
-            android:layout_marginEnd="@dimen/vAccountAllStartEnd"
-            android:layout_marginStart="@dimen/vAccountAllStartEnd"
-            android:background="@color/light_Gray" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/vAccountAllHeight"
+                android:layout_marginLeft="@dimen/vAccountAllStartEnd"
+                android:layout_marginRight="@dimen/vAccountAllStartEnd"
+                android:background="@color/light_Gray" />
 
-        <TextView
-            android:id="@+id/tvAccountPayment"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/tvAccountAllMarginStartEnd"
-            android:layout_marginStart="@dimen/lyAccountMarginTopAll"
-            android:layout_marginTop="@dimen/tvAccountAllMarginTop"
-            android:drawablePadding="@dimen/tvAccountDrawablePaddingAll"
-            android:drawableStart="@mipmap/img_payment"
-            android:enabled="false"
-            android:gravity="fill"
-            android:text="@string/payment"
-            android:textColor="@color/dark_gray"
-            android:textSize="@dimen/tvAccountAllSize"
-            android:textStyle="italic" />
-
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/vAccountAllHeight"
-            android:layout_marginEnd="@dimen/vAccountAllStartEnd"
-            android:layout_marginStart="@dimen/vAccountAllStartEnd"
-            android:background="#90cacaca" />
-
-        <TextView
-            android:id="@+id/tvAccountCredits"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/tvAccountAllMarginStartEnd"
-            android:layout_marginStart="@dimen/lyAccountMarginTopAll"
-            android:layout_marginTop="@dimen/tvAccountAllMarginTop"
-            android:drawablePadding="@dimen/tvAccountDrawablePaddingAll"
-            android:drawableStart="@mipmap/coins_coming"
-            android:gravity="fill"
-            android:text="@string/Credits"
-            android:textColor="@color/dark_gray"
-            android:textSize="@dimen/tvAccountAllSize"
-            android:textStyle="italic" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/vAccountAllHeight"
-            android:layout_marginEnd="@dimen/vAccountAllStartEnd"
-            android:layout_marginStart="@dimen/vAccountAllStartEnd"
-            android:background="@color/light_Gray"
-            android:textColor="#90cacaca" />
-
-        <TextView
-            android:id="@+id/tvAccountLostItems"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/etHeightAll"
-            android:layout_marginEnd="@dimen/tvAccountAllMarginStartEnd"
-            android:layout_marginStart="@dimen/lyAccountMarginTopAll"
-            android:layout_marginTop="@dimen/tvAccountAllMarginTop"
-            android:drawablePadding="@dimen/tvAccountDrawablePaddingAll"
-            android:drawableStart="@mipmap/imglostitems"
-            android:gravity="fill"
-            android:text="@string/lostitems"
-            android:textColor="@color/black"
-            android:textSize="@dimen/tvAccountAllSize"
-            android:textStyle="italic" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/vAccountAllHeight"
-            android:layout_marginEnd="@dimen/vAccountAllStartEnd"
-            android:layout_marginStart="@dimen/vAccountAllStartEnd"
-            android:background="@color/light_Gray"
-            android:textColor="#90cacaca" />
+            <TextView
+                android:id="@+id/tvAccountPayment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/lyAccountMarginTopAll"
+                android:layout_marginRight="@dimen/tvAccountAllMarginStartEnd"
+                android:layout_marginTop="@dimen/tvAccountAllMarginTop"
+                android:drawableLeft="@mipmap/img_payment"
+                android:drawablePadding="@dimen/tvAccountDrawablePaddingAll"
+                android:enabled="false"
+                android:gravity="fill"
+                android:text="@string/payment"
+                android:textColor="@color/dark_gray"
+                android:textSize="@dimen/tvAccountAllSize"
+                android:textStyle="italic" />
 
 
-        <TextView
-            android:id="@+id/tvAccountMore"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/etHeightAll"
-            android:layout_marginEnd="@dimen/tvAccountAllMarginStartEnd"
-            android:layout_marginStart="@dimen/lyAccountMarginTopAll"
-            android:layout_marginTop="@dimen/tvAccountAllMarginTop"
-            android:drawablePadding="@dimen/tvAccountDrawablePaddingAll"
-            android:drawableStart="@mipmap/ic_more"
-            android:gravity="fill"
-            android:text="@string/more"
-            android:textColor="@color/black"
-            android:textSize="@dimen/tvAccountAllSize"
-            android:textStyle="italic" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/vAccountAllHeight"
+                android:layout_marginLeft="@dimen/vAccountAllStartEnd"
+                android:layout_marginRight="@dimen/vAccountAllStartEnd"
+                android:background="#90cacaca" />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/vAccountAllHeight"
-            android:layout_marginEnd="@dimen/vAccountAllStartEnd"
-            android:layout_marginStart="@dimen/vAccountAllStartEnd"
-            android:background="@color/light_Gray" />
+            <TextView
+                android:id="@+id/tvAccountCredits"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/lyAccountMarginTopAll"
+                android:layout_marginRight="@dimen/tvAccountAllMarginStartEnd"
+                android:layout_marginTop="@dimen/tvAccountAllMarginTop"
+                android:drawableLeft="@mipmap/coins_coming"
+                android:drawablePadding="@dimen/tvAccountDrawablePaddingAll"
+                android:gravity="fill"
+                android:text="@string/Credits"
+                android:textColor="@color/dark_gray"
+                android:textSize="@dimen/tvAccountAllSize"
+                android:textStyle="italic" />
 
-        <TextView
-            android:id="@+id/tvAccountLogout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/tvAccountAllMarginStartEnd"
-            android:layout_marginStart="@dimen/lyAccountMarginTopAll"
-            android:layout_marginTop="@dimen/tvAccountAllMarginTop"
-            android:drawablePadding="@dimen/tvElementCardListMarginStartEnd10"
-            android:drawableStart="@mipmap/img_login_logout"
-            android:gravity="fill"
-            android:text="@string/logout"
-            android:textColor="@color/black"
-            android:textSize="@dimen/tvAccountAllSize"
-            android:textStyle="italic" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/vAccountAllHeight"
+                android:layout_marginLeft="@dimen/vAccountAllStartEnd"
+                android:layout_marginRight="@dimen/vAccountAllStartEnd"
+                android:background="@color/light_Gray"
+                android:textColor="#90cacaca" />
 
-    </LinearLayout>
-</ScrollView>
+            <TextView
+                android:id="@+id/tvAccountLostItems"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/etHeightAll"
+                android:layout_marginLeft="@dimen/lyAccountMarginTopAll"
+                android:layout_marginRight="@dimen/tvAccountAllMarginStartEnd"
+                android:layout_marginTop="@dimen/tvAccountAllMarginTop"
+                android:drawableLeft="@mipmap/imglostitems"
+                android:drawablePadding="@dimen/tvAccountDrawablePaddingAll"
+                android:gravity="fill"
+                android:text="@string/lostitems"
+                android:textColor="@color/black"
+                android:textSize="@dimen/tvAccountAllSize"
+                android:textStyle="italic" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/vAccountAllHeight"
+                android:layout_marginLeft="@dimen/vAccountAllStartEnd"
+                android:layout_marginRight="@dimen/vAccountAllStartEnd"
+                android:background="@color/light_Gray"
+                android:textColor="#90cacaca" />
+
+            <TextView
+                android:id="@+id/tvAccountMore"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/etHeightAll"
+                android:layout_marginLeft="@dimen/lyAccountMarginTopAll"
+                android:layout_marginRight="@dimen/tvAccountAllMarginStartEnd"
+                android:layout_marginTop="@dimen/tvAccountAllMarginTop"
+                android:drawableLeft="@mipmap/ic_more"
+                android:drawablePadding="@dimen/tvAccountDrawablePaddingAll"
+                android:gravity="fill"
+                android:text="@string/more"
+                android:textColor="@color/black"
+                android:textSize="@dimen/tvAccountAllSize"
+                android:textStyle="italic" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/vAccountAllHeight"
+                android:layout_marginLeft="@dimen/vAccountAllStartEnd"
+                android:layout_marginRight="@dimen/vAccountAllStartEnd"
+                android:background="@color/light_Gray" />
+
+            <TextView
+                android:id="@+id/tvAccountLogout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/lyAccountMarginTopAll"
+                android:layout_marginRight="@dimen/tvAccountAllMarginStartEnd"
+                android:layout_marginTop="@dimen/tvAccountAllMarginTop"
+                android:drawableLeft="@mipmap/img_login_logout"
+                android:drawablePadding="@dimen/tvElementCardListMarginStartEnd10"
+                android:gravity="fill"
+                android:text="@string/logout"
+                android:textColor="@color/black"
+                android:textSize="@dimen/tvAccountAllSize"
+                android:textStyle="italic" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

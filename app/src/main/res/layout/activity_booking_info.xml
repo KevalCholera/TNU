@@ -38,7 +38,7 @@
                         android:id="@+id/tvBookInfoDate"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:layout_marginStart="@dimen/tvBookingInfoMarginStartAll"
+                        android:layout_marginLeft="@dimen/tvBookingInfoMarginStartAll"
                         android:gravity="center"
                         android:textSize="@dimen/etSignInUserPassSize" />
 
@@ -60,7 +60,7 @@
                         android:id="@+id/tvBookInfoTime"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/tvBookingInfoMarginStartAll"
+                        android:layout_marginLeft="@dimen/tvBookingInfoMarginStartAll"
                         android:textSize="@dimen/etSignInUserPassSize" />
 
                 </LinearLayout>
@@ -156,7 +156,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="@dimen/lyBookingInfoMarginStartFromTo"
+                    android:layout_marginLeft="@dimen/lyBookingInfoMarginStartFromTo"
                     android:layout_marginTop="@dimen/lyBookingInfoMarginTopAll"
                     android:orientation="horizontal">
 
@@ -208,7 +208,7 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/lyBookingInfoMarginStartAll"
+                            android:layout_marginLeft="@dimen/lyBookingInfoMarginStartAll"
                             android:layout_marginTop="@dimen/tvBookingInfoMarginTop"
                             android:orientation="vertical">
 
@@ -243,7 +243,7 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/lyBookingInfoMarginStartAll"
+                            android:layout_marginLeft="@dimen/lyBookingInfoMarginStartAll"
                             android:layout_marginTop="@dimen/tvBookingInfoPaddingMarginTopAll"
                             android:orientation="vertical">
 
@@ -273,7 +273,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/lyBookingInfoMarginStartAll"
+                    android:layout_marginLeft="@dimen/lyBookingInfoMarginStartAll"
                     android:layout_weight="1"
                     android:orientation="vertical">
 
@@ -290,7 +290,7 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/lyBookingInfoMarginStartAll"
+                            android:layout_marginLeft="@dimen/lyBookingInfoMarginStartAll"
                             android:layout_marginTop="@dimen/tvBookingInfoMarginTop"
                             android:orientation="vertical">
 
@@ -324,7 +324,7 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/lyBookingInfoMarginStartAll"
+                            android:layout_marginLeft="@dimen/lyBookingInfoMarginStartAll"
                             android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
                             android:orientation="vertical">
 

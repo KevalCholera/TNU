@@ -8,13 +8,14 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/lyPartnerRatingImageHeight"
+        android:layout_height="wrap_content"
         android:gravity="center">
 
         <com.smartsense.taxinearyou.utill.CircleImageView1
             android:id="@+id/cvPartnerPic"
             android:layout_width="@dimen/cvAccountPhotoWidthHeight"
             android:layout_height="@dimen/cvAccountPhotoWidthHeight"
+            android:layout_margin="@dimen/cvPartnerPicMargin"
             android:src="@mipmap/imgsearchbackground"
             app:civ_border_color="@color/background"
             app:civ_border_width="@dimen/civTripDetailsBorderWidth" />
@@ -51,7 +52,6 @@
             android:layout_weight="1"
             android:background="@color/colorAccent"
             android:gravity="center"
-            android:text="@string/money"
             android:textColor="@color/white"
             android:textSize="@dimen/btSizeAll" />
 

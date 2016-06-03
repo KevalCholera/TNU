@@ -2,8 +2,11 @@ package com.smartsense.taxinearyou;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -25,6 +28,9 @@ import com.smartsense.taxinearyou.utill.Constants;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+
 public class Feedback extends AppCompatActivity implements View.OnClickListener, Response.Listener<JSONObject>, Response.ErrorListener {
 
     RatingBar rbFeedbackRatingForDriver;
@@ -32,13 +38,18 @@ public class Feedback extends AppCompatActivity implements View.OnClickListener,
     CheckBox cbFeedbackCommentForDriver, cbFeedbackCommentForTaxinearu;
     EditText etFeedbackCommentForDriver, etFeedbackCommentForTaxinearu;
     RadioButton ivFeedbackhappy, ivFeedbacksad;
+    CoordinatorLayout clFeedback;
     Button btFeedBackSubmit;
     AlertDialog alert;
+    private String ratedValue = "3";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_feedback);
+
+        Toolbar toolbarAll = (Toolbar) findViewById(R.id.toolbarAll);
+        setSupportActionBar(toolbarAll);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         rbFeedbackRatingForDriver = (RatingBar) findViewById(R.id.rbFeedbackRatingForDriver);
@@ -50,8 +61,7 @@ public class Feedback extends AppCompatActivity implements View.OnClickListener,
         ivFeedbackhappy = (RadioButton) findViewById(R.id.ivFeedbackhappy);
         ivFeedbacksad = (RadioButton) findViewById(R.id.ivFeedbacksad);
         btFeedBackSubmit = (Button) findViewById(R.id.btFeedBackSubmit);
-
-//        rbFeedbackRatingForDriver.getProgressDrawable().setColorFilter(ContextCompat.getColor(this, R.color.Yellow), PorterDuff.Mode.SRC_ATOP);
+        clFeedback = (CoordinatorLayout) findViewById(R.id.clFeedback);
 
         cbFeedbackCommentForDriver.setOnClickListener(this);
         cbFeedbackCommentForTaxinearu.setOnClickListener(this);
@@ -62,9 +72,9 @@ public class Feedback extends AppCompatActivity implements View.OnClickListener,
         rbFeedbackRatingForDriver.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
 
             @Override
-            public void onRatingChanged(RatingBar ratingBar, float rating,
-                                        boolean fromUser) {
-                String ratedValue = String.valueOf(ratingBar.getRating());
+            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+                ratedValue = String.valueOf(ratingBar.getRating());
+                ratedValue = ratedValue.split("\\.")[0];
                 tvFeedbackRatingForDriver.setText(ratedValue + "/5");
             }
         });
@@ -107,7 +117,10 @@ public class Feedback extends AppCompatActivity implements View.OnClickListener,
                 break;
 
             case R.id.btFeedBackSubmit:
-                openOccasionsPopup();
+                if (etFeedbackCommentForDriver.getVisibility() == View.VISIBLE && TextUtils.isEmpty(etFeedbackCommentForDriver.getText().toString()) || etFeedbackCommentForTaxinearu.getVisibility() == View.VISIBLE && TextUtils.isEmpty(etFeedbackCommentForTaxinearu.getText().toString()))
+                    CommonUtil.showSnackBar(this, getResources().getString(R.string.enter_fields_below), clFeedback);
+                else
+                    feedBack();
                 break;
         }
     }
@@ -116,21 +129,29 @@ public class Feedback extends AppCompatActivity implements View.OnClickListener,
         final String tag = "Feed Back";
         StringBuilder builder = new StringBuilder();
         JSONObject jsonData = new JSONObject();
-
+        String url = null;
         try {
-            builder.append(Constants.BASE_URL + Constants.BASE_URL_POSTFIX + Constants.Events.FEED_BACK
-                    + "&json=").append(jsonData.put("token", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_ACCESS_TOKEN, ""))
+            builder.append(jsonData.put("token", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_ACCESS_TOKEN, ""))
                     .put("userId", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_ID, ""))
                     .put("rideId", getIntent().getStringExtra("rideId"))
                     .put("description", etFeedbackCommentForDriver.getText().toString())
-                    .put("rating", rbFeedbackRatingForDriver.getRating() + "")
+                    .put("rating", Integer.valueOf(ratedValue))
                     .put("orgDescription", etFeedbackCommentForTaxinearu.getText().toString())
-                    .put("orgRating", ivFeedbackhappy.isChecked() ? 1 : 0));
+                    .put("orgRating", ivFeedbacksad.isChecked() ? 1 : 0));
+
+
+            try {
+                url = Constants.BASE_URL + Constants.BASE_URL_POSTFIX + Constants.Events.FEED_BACK + "&json="
+                        + URLEncoder.encode(builder.toString(), "UTF8");
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        CommonUtil.jsonRequestGET(this, getResources().getString(R.string.get_data), builder.toString(), tag, this, this);
+        CommonUtil.jsonRequestGET(this, getResources().getString(R.string.get_data), url, tag, this, this);
     }
 
 
@@ -142,15 +163,14 @@ public class Feedback extends AppCompatActivity implements View.OnClickListener,
             LinearLayout lyPopUpFeedback = (LinearLayout) dialog.findViewById(R.id.lyPopUpFeedback);
             lyPopUpFeedback.setVisibility(View.VISIBLE);
 
-            Button btPopupFeedbackOk;
-
-            btPopupFeedbackOk = (Button) dialog.findViewById(R.id.btPopupFeedbackOk);
+            Button btPopupFeedbackOk = (Button) dialog.findViewById(R.id.btPopupFeedbackOk);
 
             btPopupFeedbackOk.setOnClickListener(new Button.OnClickListener() {
 
                 @Override
                 public void onClick(View v) {
-                    feedBack();
+                    setResult(RESULT_OK);
+                    alert.dismiss();
                     finish();
                 }
             });
@@ -190,9 +210,7 @@ public class Feedback extends AppCompatActivity implements View.OnClickListener,
         CommonUtil.cancelProgressDialog();
         if (jsonObject != null) {
             if (jsonObject.optInt("status") == Constants.STATUS_SUCCESS) {
-                CommonUtil.successToastShowing(this, jsonObject);
-                setResult(RESULT_OK);
-                finish();
+                openOccasionsPopup();
             } else
                 CommonUtil.conditionAuthentication(this, jsonObject);
         } else

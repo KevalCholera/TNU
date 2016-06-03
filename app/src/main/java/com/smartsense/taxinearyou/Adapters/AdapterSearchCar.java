@@ -58,24 +58,6 @@ public class AdapterSearchCar extends BaseAdapter {
             vi = inflater.inflate(R.layout.element_search_cars, null);
         final JSONObject test = data.optJSONObject(position);
 
-
-        JSONObject jsonObject = new JSONObject();
-        try {
-            jsonObject.put("partnerTaxiTypeId", test.optJSONObject("taxiType").optInt("partnerTaxiTypeId"));
-            jsonObject.put("partnerName", test.optString("partnerName"));
-            jsonObject.put("distance", test.optString("distance"));
-            jsonObject.put("price", test.optString("ETA"));
-            jsonObject.put("taxiTypeName", test.optJSONObject("taxiType").optString("taxiTypeName"));
-            jsonObject.put("partnerId", test.optJSONObject("taxiType").optString("partnerId"));
-            jsonObject.put("tripType", bookingduration);
-            jsonObject.put("duration", SharedPreferenceUtil.getString(Constants.PrefKeys.DISTANCE_AFTER_CONVERT, ""));
-            jsonObject.put("taxiTypeId", test.optJSONObject("taxiType").optString("taxiTypeId"));
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_CUSTOMER_SELECTION, jsonObject.toString());
-        SharedPreferenceUtil.save();
-
         final TextView tvElementSearchCarsName = (TextView) vi.findViewById(R.id.tvElementSearchCarsName);
         final TextView tvElementSearchCarsWaitingTime = (TextView) vi.findViewById(R.id.tvElementSearchCarsWaitingTime);
         final TextView tvElementSearchCarsChat = (TextView) vi.findViewById(R.id.tvElementSearchCarsChat);
@@ -106,6 +88,25 @@ public class AdapterSearchCar extends BaseAdapter {
         tvSearchCarsBookNow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                JSONObject jsonObject = new JSONObject();
+                try {
+                    jsonObject.put("partnerTaxiTypeId", test.optJSONObject("taxiType").optInt("partnerTaxiTypeId"));
+                    jsonObject.put("partnerName", test.optString("partnerName"));
+                    jsonObject.put("distance", test.optString("distance"));
+                    jsonObject.put("price", test.optString("ETA"));
+                    jsonObject.put("taxiTypeName", test.optJSONObject("taxiType").optString("taxiTypeName"));
+                    jsonObject.put("partnerId", test.optJSONObject("taxiType").optString("partnerId"));
+                    jsonObject.put("tripType", bookingduration);
+                    jsonObject.put("duration", SharedPreferenceUtil.getString(Constants.PrefKeys.DISTANCE_AFTER_CONVERT, ""));
+                    jsonObject.put("taxiTypeId", test.optJSONObject("taxiType").optString("taxiTypeId"));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                Log.i("Partner",jsonObject.toString());
+
+                SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_CUSTOMER_SELECTION, jsonObject.toString());
+                SharedPreferenceUtil.save();
 
                 if (SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_STATUS, "").equalsIgnoreCase("1"))
                     a.startActivity(new Intent(a, BookingInfo.class));

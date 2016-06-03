@@ -48,7 +48,7 @@ public class EventBooking extends AppCompatActivity implements Response.Listener
     EditText etEventBookingFirstName, etEventBookingLastName, etEventBookingEmailAddress, etEventBookingDateTime,
             etEventBookingEventDuration, etEventBookingContactNumber, etEventBookingVehicleType, etEventBookingPickUp,
             etEventBookingEventDropOff, etEventBookingPassengers, etEventBookingEventLuggage, etEventBookingReq;
-    Button btEventBookingBookNow, btEventBookingCancel;
+    Button btEventBookingBookNow;
     RadioButton rbEventBookingOneWay, rbEventBookingReturn;
     private AlertDialog alert;
     String luggage = "luggage";
@@ -73,7 +73,6 @@ public class EventBooking extends AppCompatActivity implements Response.Listener
         rbEventBookingOneWay = (RadioButton) findViewById(R.id.rbEventBookingOneWay);
         rbEventBookingReturn = (RadioButton) findViewById(R.id.rbEventBookingReturn);
         btEventBookingBookNow = (Button) findViewById(R.id.btEventBookingBookNow);
-        btEventBookingCancel = (Button) findViewById(R.id.btEventBookingCancel);
         etEventBookingFirstName = (EditText) findViewById(R.id.etEventBookingFirstName);
         etEventBookingLastName = (EditText) findViewById(R.id.etEventBookingLastName);
         etEventBookingEmailAddress = (EditText) findViewById(R.id.etEventBookingEmailAddress);
@@ -94,7 +93,6 @@ public class EventBooking extends AppCompatActivity implements Response.Listener
         etEventBookingPickUp.setOnClickListener(this);
         etEventBookingVehicleType.setOnClickListener(this);
         etEventBookingEventDropOff.setOnClickListener(this);
-        btEventBookingCancel.setOnClickListener(this);
         rbEventBookingReturn.setOnClickListener(this);
         rbEventBookingOneWay.setOnClickListener(this);
         etEventBookingEventDuration.setOnClickListener(null);
@@ -147,7 +145,7 @@ public class EventBooking extends AppCompatActivity implements Response.Listener
     Boolean once = false;
 
     public void datePicker(String dateTime) {
-        DatePickerDialog DatePicker = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+        DatePickerDialog DatePicker = new DatePickerDialog(this, android.R.style.Theme_DeviceDefault_Dialog, new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(android.widget.DatePicker DatePicker, int year, int month, int dayOfMonth) {
                 mCalendar.set(Calendar.YEAR, year);
@@ -163,6 +161,10 @@ public class EventBooking extends AppCompatActivity implements Response.Listener
         try {
             long newDate = timeSetFormat.parse(dateTime.substring(0, dateTime.indexOf(' '))).getTime();
             DatePicker.getDatePicker().setMinDate(newDate);
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(new Date(newDate));
+            calendar.add(Calendar.YEAR, 1);
+            DatePicker.getDatePicker().setMaxDate(calendar.getTimeInMillis());
 
         } catch (ParseException e) {
             e.printStackTrace();
@@ -175,7 +177,7 @@ public class EventBooking extends AppCompatActivity implements Response.Listener
         int hour = calendar.get(Calendar.HOUR_OF_DAY);
         int minute = calendar.get(Calendar.MINUTE);
 
-        TimePickerDialog mTimePicker = new TimePickerDialog(this, TimePickerDialog.THEME_HOLO_LIGHT, new TimePickerDialog.OnTimeSetListener() {
+        TimePickerDialog mTimePicker = new TimePickerDialog(this, android.R.style.Theme_DeviceDefault_Dialog, new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
                 updateTime(selectedHour, selectedMinute, date);

@@ -1,194 +1,214 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/clFeedback"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    android:orientation="vertical">
+    tools:context="com.smartsense.taxinearyou.EventBooking">
 
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <LinearLayout
+        <include
+            layout="@layout/element_appbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="@dimen/lyPaddingMainAll">
+            android:layout_height="wrap_content" />
 
-            <LinearLayout
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+            <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:layout_marginTop="@dimen/lyrlFeedbackImageMarginTop"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:text="@string/how_was_your_trip"
-                    android:textColor="@android:color/darker_gray"
-                    android:textSize="@dimen/tvHeadingSizeAll" />
+                android:layout_height="0dp"
+                android:layout_weight="1">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="vertical"
+                    android:padding="@dimen/lyPaddingMainAll">
 
-                    <RatingBar
-                        android:id="@+id/rbFeedbackRatingForDriver"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:numStars="5"
-                        android:rating="3"
-                        android:stepSize="1" />
-
-                    <TextView
-                        android:id="@+id/tvFeedbackRatingForDriver"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
                         android:layout_gravity="center"
-                        android:layout_marginStart="@dimen/lytvFeedbackMarginTopStartAll"
-                        android:text="@string/_3_5"
-                        android:textSize="@dimen/tvFeedbackTextAll" />
+                        android:layout_marginTop="@dimen/lyrlFeedbackImageMarginTop"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:text="@string/how_was_your_trip"
+                            android:textColor="@android:color/darker_gray"
+                            android:textSize="@dimen/tvHeadingSizeAll" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <RatingBar
+                                android:id="@+id/rbFeedbackRatingForDriver"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:numStars="5"
+                                android:rating="3"
+                                android:stepSize="1" />
+
+                            <TextView
+                                android:id="@+id/tvFeedbackRatingForDriver"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="@dimen/lytvFeedbackMarginTopStartAll"
+                                android:text="@string/_3_5"
+                                android:textSize="@dimen/tvFeedbackTextAll" />
+
+                        </LinearLayout>
+
+                        <CheckBox
+                            android:id="@+id/cbFeedbackCommentForDriver"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/tvMarginTopBottomStartEndAll"
+                            android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
+                            android:button="@drawable/checkbox"
+                            android:checked="false"
+                            android:paddingLeft="@dimen/tvMarginTopBottomStartEndAll"
+                            android:text="@string/do_you_wish_to_leave_a_comment"
+                            android:textColor="@android:color/darker_gray"
+                            android:theme="@style/AppTheme" />
+
+                        <EditText
+                            android:id="@+id/etFeedbackCommentForDriver"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/etLongTextHeightAll"
+                            android:layout_marginLeft="@dimen/etFeedbackImageMarginTop"
+                            android:layout_marginRight="@dimen/etFeedbackImageMarginTop"
+                            android:layout_marginTop="@dimen/etFeedbackImageMarginTop"
+                            android:background="@drawable/grayborder2"
+                            android:gravity="top"
+                            android:hint="@string/really_enjoyed_the_trip"
+                            android:inputType="textLongMessage|textMultiLine|textCapSentences"
+                            android:padding="@dimen/etPaddingAll"
+                            android:scrollbars="vertical"
+                            android:textColor="@color/black"
+                            android:textColorHint="@android:color/darker_gray"
+                            android:textStyle="italic"
+                            android:visibility="gone" />
+
+
+                    </LinearLayout>
+
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/vHeightWidthAll"
+                        android:layout_marginTop="20dp"
+                        android:background="@android:color/darker_gray" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:padding="@dimen/lyPaddingMainAll">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="@string/are_you_happy_with_this_service_that_taxinearu_provided"
+                            android:textColor="@android:color/darker_gray"
+                            android:textSize="@dimen/tvHeadingSizeAll" />
+
+                        <RadioGroup
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/lyrlFeedbackImageMarginTop"
+                            android:layout_marginTop="@dimen/lyrlFeedbackImageMarginTop"
+                            android:orientation="horizontal">
+
+                            <RadioButton
+                                android:id="@+id/ivFeedbackhappy"
+                                android:layout_width="@dimen/ivPopImageWidthHeightAll"
+                                android:layout_height="@dimen/ivPopImageWidthHeightAll"
+                                android:layout_gravity="start"
+                                android:background="@drawable/feedback_happy_radiobutton"
+                                android:button="@null"
+                                android:checked="true" />
+
+                            <RadioButton
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:button="@null"
+                                android:enabled="false" />
+
+                            <RadioButton
+                                android:id="@+id/ivFeedbacksad"
+                                android:layout_width="@dimen/ivPopImageWidthHeightAll"
+                                android:layout_height="@dimen/ivPopImageWidthHeightAll"
+                                android:layout_gravity="end"
+                                android:background="@drawable/feedback_sad_radiobutton"
+                                android:button="@null" />
+
+                        </RadioGroup>
+
+                        <CheckBox
+                            android:id="@+id/cbFeedbackCommentForTaxinearu"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/lyFeedbackCheckboxMarginTopBottom"
+                            android:layout_marginLeft="@dimen/tvMarginTopBottomStartEndAll"
+                            android:button="@drawable/checkbox"
+                            android:checked="false"
+                            android:paddingLeft="@dimen/tvMarginTopBottomStartEndAll"
+                            android:text="@string/do_you_wish_to_leave_a_comment"
+                            android:textColor="@android:color/darker_gray"
+                            android:theme="@style/AppTheme"
+                            android:visibility="gone" />
+
+                        <EditText
+                            android:id="@+id/etFeedbackCommentForTaxinearu"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/etLongTextHeightAll"
+                            android:layout_marginBottom="@dimen/etFeedbackImageMarginTop"
+                            android:background="@drawable/grayborder2"
+                            android:gravity="top"
+                            android:hint="@string/really_enjoyed_the_trip"
+                            android:inputType="textLongMessage|textMultiLine|textCapSentences"
+                            android:padding="@dimen/etPaddingAll"
+                            android:scrollbars="vertical"
+                            android:textColor="@color/black"
+                            android:textColorHint="@android:color/darker_gray"
+                            android:textStyle="italic"
+                            android:visibility="gone" />
+
+                    </LinearLayout>
 
                 </LinearLayout>
+            </ScrollView>
 
-                <CheckBox
-                    android:id="@+id/cbFeedbackCommentForDriver"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/tvMarginTopBottomStartEndAll"
-                    android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
-                    android:button="@drawable/checkbox"
-                    android:checked="false"
-                    android:paddingStart="@dimen/tvMarginTopBottomStartEndAll"
-                    android:text="@string/do_you_wish_to_leave_a_comment"
-                    android:textColor="@android:color/darker_gray"
-                    android:theme="@style/AppTheme" />
-
-                <EditText
-                    android:id="@+id/etFeedbackCommentForDriver"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/etLongTextHeightAll"
-                    android:layout_marginEnd="@dimen/etFeedbackImageMarginTop"
-                    android:layout_marginStart="@dimen/etFeedbackImageMarginTop"
-                    android:layout_marginTop="@dimen/etFeedbackImageMarginTop"
-                    android:background="@drawable/grayborder2"
-                    android:gravity="top"
-                    android:hint="@string/really_enjoyed_the_trip"
-                    android:inputType="textLongMessage|textMultiLine|textCapSentences"
-                    android:padding="@dimen/etPaddingAll"
-                    android:scrollbars="vertical"
-                    android:textColor="@color/black"
-                    android:textColorHint="@android:color/darker_gray"
-                    android:textStyle="italic"
-                    android:visibility="gone" />
-
-
-            </LinearLayout>
-
-
-            <View
+            <Button
+                android:id="@+id/btFeedBackSubmit"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/vHeightWidthAll"
-                android:layout_marginTop="20dp"
-                android:background="@android:color/darker_gray" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:padding="@dimen/lyPaddingMainAll">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="@string/are_you_happy_with_this_service_that_taxinearu_provided"
-                    android:textColor="@android:color/darker_gray"
-                    android:textSize="@dimen/tvHeadingSizeAll" />
-
-                <RadioGroup
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/lyrlFeedbackImageMarginTop"
-                    android:layout_marginTop="@dimen/lyrlFeedbackImageMarginTop"
-                    android:orientation="horizontal">
-
-                    <RadioButton
-                        android:id="@+id/ivFeedbackhappy"
-                        android:layout_width="@dimen/ivPopImageWidthHeightAll"
-                        android:layout_height="@dimen/ivPopImageWidthHeightAll"
-                        android:layout_gravity="start"
-                        android:background="@drawable/feedback_happy_radiobutton"
-                        android:button="@null"
-                        android:checked="true" />
-
-                    <RadioButton
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:button="@null"
-                        android:enabled="false" />
-
-                    <RadioButton
-                        android:id="@+id/ivFeedbacksad"
-                        android:layout_width="@dimen/ivPopImageWidthHeightAll"
-                        android:layout_height="@dimen/ivPopImageWidthHeightAll"
-                        android:layout_gravity="end"
-                        android:background="@drawable/feedback_sad_radiobutton"
-                        android:button="@null" />
-
-                </RadioGroup>
-
-                <CheckBox
-                    android:id="@+id/cbFeedbackCommentForTaxinearu"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/lyFeedbackCheckboxMarginTopBottom"
-                    android:layout_marginStart="@dimen/tvMarginTopBottomStartEndAll"
-                    android:button="@drawable/checkbox"
-                    android:checked="false"
-                    android:paddingStart="@dimen/tvMarginTopBottomStartEndAll"
-                    android:text="@string/do_you_wish_to_leave_a_comment"
-                    android:textColor="@android:color/darker_gray"
-                    android:theme="@style/AppTheme"
-                    android:visibility="gone" />
-
-                <EditText
-                    android:id="@+id/etFeedbackCommentForTaxinearu"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/etLongTextHeightAll"
-                    android:layout_marginBottom="@dimen/etFeedbackImageMarginTop"
-                    android:background="@drawable/grayborder2"
-                    android:gravity="top"
-                    android:hint="@string/really_enjoyed_the_trip"
-                    android:inputType="textLongMessage|textMultiLine|textCapSentences"
-                    android:padding="@dimen/etPaddingAll"
-                    android:scrollbars="vertical"
-                    android:textColor="@color/black"
-                    android:textColorHint="@android:color/darker_gray"
-                    android:textStyle="italic"
-                    android:visibility="gone" />
-
-            </LinearLayout>
-
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@color/Yellow"
+                android:text="@string/confirm_next"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="@dimen/btSizeAll" />
         </LinearLayout>
-    </ScrollView>
-
-    <Button
-        android:id="@+id/btFeedBackSubmit"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:background="@color/Yellow"
-        android:text="@string/confirm_next"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textSize="@dimen/btSizeAll" />
-</LinearLayout>
+    </LinearLayout>
+</android.support.design.widget.CoordinatorLayout>
 

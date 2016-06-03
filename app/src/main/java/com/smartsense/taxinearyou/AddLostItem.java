@@ -49,12 +49,18 @@ public class AddLostItem extends AppCompatActivity implements View.OnClickListen
         clYourDetails = (CoordinatorLayout) findViewById(R.id.clYourDetails);
 
         btYourDetailSubmit.setOnClickListener(this);
+
+        etYourDetailName.setText(SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_FULLNAME, ""));
+        etYourDetailNumber.setText(SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_MNO, ""));
+        etYourDetailID.setText(SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_EMAIL, ""));
+
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btYourDetailSubmit:
+                CommonUtil.closeKeyboard(this);
                 if (TextUtils.isEmpty(etYourDetailAddress.getText().toString()))
                     CommonUtil.showSnackBar(AddLostItem.this, getString(R.string.enter_item_add), clYourDetails);
                 else if (TextUtils.isEmpty(etYourDetailPostcode.getText().toString()))
@@ -124,9 +130,8 @@ public class AddLostItem extends AppCompatActivity implements View.OnClickListen
         CommonUtil.cancelProgressDialog();
         if (jsonObject != null)
             if (jsonObject.optInt("status") == Constants.STATUS_SUCCESS) {
-                CommonUtil.successToastShowing(this, jsonObject);
+                CommonUtil.alertBox(this, jsonObject.optString("msg"), false, true);
                 setResult(RESULT_OK);
-                finish();
             } else {
                 CommonUtil.conditionAuthentication(this, jsonObject);
             }

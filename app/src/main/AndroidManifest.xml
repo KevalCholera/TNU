@@ -90,11 +90,11 @@
         <activity
             android:name=".Feedback"
             android:label="Feedback"
-            android:theme="@style/AppTheme"
+            android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".AddLostItem"
-            android:label="Add Lost Item Info"
+            android:label="Add Lost Item"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateHidden" />
         <activity

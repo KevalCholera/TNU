@@ -41,7 +41,7 @@
                     android:layout_height="@dimen/etHeightAll"
                     android:background="@drawable/grayborder"
                     android:inputType="textCapSentences"
-                    android:paddingStart="@dimen/etSignUpAllPaddingStartEnd"
+                    android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
                     android:textColor="@color/black"
                     android:textSize="@dimen/etSignUpSizeAll" />
 
@@ -58,7 +58,7 @@
                     android:layout_height="@dimen/etHeightAll"
                     android:background="@drawable/grayborder"
                     android:inputType="textCapSentences"
-                    android:paddingStart="@dimen/etSignUpAllPaddingStartEnd"
+                    android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
                     android:textColor="@color/black"
                     android:textSize="@dimen/etSignUpSizeAll" />
 
@@ -75,7 +75,7 @@
                     android:layout_height="@dimen/etHeightAll"
                     android:background="@drawable/grayborder"
                     android:inputType="textEmailAddress"
-                    android:paddingStart="@dimen/etSignUpAllPaddingStartEnd"
+                    android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
                     android:textColor="@color/black"
                     android:textSize="@dimen/etSignUpSizeAll" />
 
@@ -93,7 +93,7 @@
                     android:background="@drawable/grayborder"
                     android:imeOptions="actionNext"
                     android:inputType="phone"
-                    android:paddingStart="@dimen/etSignUpAllPaddingStartEnd"
+                    android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
                     android:textColor="@color/black"
                     android:textSize="@dimen/etSignUpSizeAll" />
 
@@ -112,7 +112,7 @@
                     android:clickable="true"
                     android:cursorVisible="false"
                     android:focusable="false"
-                    android:paddingStart="@dimen/etSignUpAllPaddingStartEnd"
+                    android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
                     android:textColor="@color/black"
                     android:textSize="@dimen/etSignUpSizeAll" />
 
@@ -131,7 +131,7 @@
                     android:clickable="true"
                     android:cursorVisible="false"
                     android:focusable="false"
-                    android:paddingStart="@dimen/etSignUpAllPaddingStartEnd"
+                    android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
                     android:textColor="@color/black"
                     android:textSize="@dimen/etSignUpSizeAll" />
 
@@ -161,7 +161,7 @@
                         android:id="@+id/rbEventBookingReturn"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/rbMarginTopBottomStartEndAll"
+                        android:layout_marginLeft="@dimen/rbMarginTopBottomStartEndAll"
                         android:layout_weight="1"
                         android:button="@drawable/radio_button_popup"
                         android:text="@string/returns"
@@ -178,7 +178,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/tvMarginTopBottomStartEndAll"
+                        android:layout_marginRight="@dimen/tvMarginTopBottomStartEndAll"
                         android:layout_weight="1"
                         android:orientation="vertical">
 
@@ -196,7 +196,7 @@
                             android:clickable="true"
                             android:cursorVisible="false"
                             android:focusable="false"
-                            android:paddingStart="@dimen/etSignUpAllPaddingStartEnd"
+                            android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
                             android:textColor="@color/black"
                             android:textSize="@dimen/etSignUpSizeAll" />
 
@@ -205,7 +205,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/tvMarginTopBottomStartEndAll"
+                        android:layout_marginLeft="@dimen/tvMarginTopBottomStartEndAll"
                         android:layout_weight="1.5"
                         android:orientation="vertical">
 
@@ -223,7 +223,7 @@
                             android:clickable="true"
                             android:cursorVisible="false"
                             android:focusable="false"
-                            android:paddingStart="@dimen/etSignUpAllPaddingStartEnd"
+                            android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
                             android:textColor="@color/black"
                             android:textSize="@dimen/etSignUpSizeAll" />
 
@@ -239,7 +239,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/tvMarginTopBottomStartEndAll"
+                        android:layout_marginRight="@dimen/tvMarginTopBottomStartEndAll"
                         android:layout_weight="1"
                         android:orientation="vertical">
 
@@ -257,7 +257,7 @@
                             android:clickable="true"
                             android:cursorVisible="false"
                             android:focusable="false"
-                            android:paddingStart="@dimen/etSignUpAllPaddingStartEnd"
+                            android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
                             android:textColor="@color/black"
                             android:textSize="@dimen/etSignUpSizeAll" />
 
@@ -266,7 +266,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/tvMarginTopBottomStartEndAll"
+                        android:layout_marginLeft="@dimen/tvMarginTopBottomStartEndAll"
                         android:layout_weight="1"
                         android:orientation="vertical">
 
@@ -284,7 +284,7 @@
                             android:clickable="true"
                             android:cursorVisible="false"
                             android:focusable="false"
-                            android:paddingStart="@dimen/etSignUpAllPaddingStartEnd"
+                            android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
                             android:textColor="@color/black"
                             android:textSize="@dimen/etSignUpSizeAll" />
 
@@ -311,7 +311,7 @@
                         android:clickable="true"
                         android:cursorVisible="false"
                         android:focusable="false"
-                        android:paddingStart="@dimen/etSignUpAllPaddingStartEnd"
+                        android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
                         android:textColor="@color/black"
                         android:textSize="@dimen/etSignUpSizeAll" />
 
@@ -331,7 +331,6 @@
                     android:background="@drawable/grayborder"
                     android:gravity="top"
                     android:imeOptions="actionDone"
-                    android:inputType="textLongMessage|textMultiLine|textCapSentences"
                     android:textColor="@color/black"
                     android:textSize="@dimen/etSignUpSizeAll" />
             </LinearLayout>
@@ -344,24 +343,13 @@
 
             <Button
                 android:id="@+id/btEventBookingBookNow"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@drawable/yellow_without_corner"
-                android:text="@string/booknow"
+                android:text="@string/submit"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
-                android:textSize="@dimen/btSizeAll" />
-
-            <Button
-                android:id="@+id/btEventBookingCancel"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/yellowborder_without_corner"
-                android:text="@string/cancel"
-                android:textAllCaps="false"
-                android:textColor="@color/Yellow"
                 android:textSize="@dimen/btSizeAll" />
         </LinearLayout>
 

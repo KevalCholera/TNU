@@ -110,7 +110,7 @@ public class LostItem extends AppCompatActivity implements View.OnClickListener,
                     llLostItemNoItemAvailable.setVisibility(View.GONE);
                     AdapterLostItem adapterLostItem = new AdapterLostItem(this, jsonObject.optJSONObject("json").optJSONArray("lostItemInfoArray"));
                     lvLostItemList.setAdapter(adapterLostItem);
-                    CommonUtil.successToastShowing(this, jsonObject);
+//                    CommonUtil.successToastShowing(this, jsonObject);
                 } else {
                     llLostItemItemsAvailable.setVisibility(View.GONE);
                     llLostItemNoItemAvailable.setVisibility(View.VISIBLE);

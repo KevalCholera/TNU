@@ -32,7 +32,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/lyYourDetailsEditMarginStartEnd"
+                        android:layout_marginRight="@dimen/lyYourDetailsEditMarginStartEnd"
                         android:layout_weight="1"
                         android:orientation="vertical">
 
@@ -53,9 +53,8 @@
                             android:cursorVisible="false"
                             android:focusable="false"
                             android:inputType="textCapSentences"
-                            android:paddingStart="@dimen/etSignUpAllPaddingStartEnd"
+                            android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
                             android:singleLine="true"
-                            android:text="@string/john_smith"
                             android:textColor="@color/black"
                             android:textColorHint="@android:color/darker_gray"
                             android:textSize="@dimen/etSignInUserPassSize"
@@ -66,7 +65,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/lyYourDetailsEditMarginStartEnd"
+                        android:layout_marginLeft="@dimen/lyYourDetailsEditMarginStartEnd"
                         android:layout_weight="1"
                         android:orientation="vertical">
 
@@ -87,9 +86,8 @@
                             android:cursorVisible="false"
                             android:focusable="false"
                             android:inputType="phone"
-                            android:paddingStart="@dimen/etSignUpAllPaddingStartEnd"
+                            android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
                             android:singleLine="true"
-                            android:text="@string/_8545696325"
                             android:textColor="@color/black"
                             android:textColorHint="@android:color/darker_gray"
                             android:textSize="@dimen/etSignInUserPassSize"
@@ -123,9 +121,8 @@
                         android:cursorVisible="false"
                         android:focusable="false"
                         android:inputType="textEmailAddress"
-                        android:paddingStart="@dimen/etSignUpAllPaddingStartEnd"
+                        android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
                         android:singleLine="true"
-                        android:text="johnsmith@gmail.com"
                         android:textColor="@color/black"
                         android:textColorHint="@android:color/darker_gray"
                         android:textSize="@dimen/etSignInUserPassSize"
@@ -153,7 +150,7 @@
                         android:layout_height="@dimen/etLongTextHeightAll"
                         android:background="@drawable/grayborder"
                         android:gravity="top"
-                        android:inputType="textLongMessage|textMultiLine|textCapSentences"
+                        android:imeOptions="actionNext"
                         android:maxLines="4"
                         android:padding="@dimen/etPaddingAll"
                         android:scrollbars="vertical"
@@ -173,7 +170,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/lyYourDetailsEditMarginStartEnd"
+                        android:layout_marginRight="@dimen/lyYourDetailsEditMarginStartEnd"
                         android:layout_weight="1"
                         android:orientation="vertical">
 
@@ -190,7 +187,7 @@
                             android:layout_height="@dimen/etHeightAll"
                             android:background="@drawable/grayborder"
                             android:inputType="number"
-                            android:paddingStart="@dimen/etPaddingAll"
+                            android:paddingLeft="@dimen/etPaddingAll"
                             android:textColor="@color/black"
                             android:textSize="@dimen/etSignInUserPassSize"
                             android:textStyle="italic" />
@@ -200,7 +197,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/lyYourDetailsEditMarginStartEnd"
+                        android:layout_marginLeft="@dimen/lyYourDetailsEditMarginStartEnd"
                         android:layout_weight="1"
                         android:orientation="vertical">
 
@@ -217,7 +214,7 @@
                             android:layout_height="@dimen/etHeightAll"
                             android:background="@drawable/grayborder"
                             android:inputType="textCapSentences"
-                            android:paddingStart="@dimen/etPaddingAll"
+                            android:paddingLeft="@dimen/etPaddingAll"
                             android:textColor="@color/black"
                             android:textSize="@dimen/etSignInUserPassSize"
                             android:textStyle="italic" />
@@ -246,7 +243,7 @@
                         android:layout_height="@dimen/etLongTextHeightAll"
                         android:background="@drawable/grayborder"
                         android:gravity="top"
-                        android:inputType="textLongMessage|textMultiLine|textCapSentences"
+                        android:imeOptions="actionDone"
                         android:maxLines="4"
                         android:padding="@dimen/etPaddingAll"
                         android:scrollbars="vertical"

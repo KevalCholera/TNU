@@ -232,7 +232,7 @@
     <string name="ok">OK</string>
     <string name="are_you_sure_you_want_to_cancel_the_ride">Are you sure you want to Cancel the Ride?</string>
     <string name="cancel">Cancel</string>
-    <string name="thank_you_for_submitting_your_feedback_this_will_help_us_to_improve_our_service">Thank you for submitting your feedback this will help us to improve our Service</string>
+    <string name="thank_you_for_submitting_your_feedback_this_will_help_us_to_improve_our_service">Thank you for submitting your feedback this will help us to improve our Services.</string>
     <string name="we_have_located_your_account">we have located your account !</string>
     <string name="please_follow_the_instructions_to_recover_your_email_address_if_you_can_t_find_the_email_we_have_send_you_in_your_inbox_check_your_junk_mail">Please follow the instructions to recover your email address.If you can\'t find the email we have send you in your inbox, check your junk mail</string>
     <string name="back">Back</string>
@@ -262,6 +262,7 @@
     <string name="enter_contact_no">Enter Contact Number</string>
     <string name="enter_message">Please Enter Message you want </string>
     <string name="enter_valid_contact_no">Contact Number should be between 7 to 13 only</string>
+    <string name="enter_valid_contact">Enter 10 digit UK number</string>
     <string name="alternate_email_not_same">Alternate Email ID and Email ID should not be same!</string>
     <string name="conpass_pass_same">Confirm Password and Password Should be same!</string>
     <string name="enter_first_name">Enter First Name</string>
@@ -389,4 +390,25 @@
     <string name="event_complete">Your event booking request has been sent to our Taxinearu team.</string>
     <string name="contact_reply">We aim to reply all enquires within 24/48 hours of receiving your email. We will get back to you as soon as we can.</string>
     <string name="contact_no">Contact Number</string>
+    <string name="cancel_ride">Cancel Ride</string>
+    <string name="feed_back">Feedback</string>
+    <string name="re_invoice">Resend Invoice</string>
+    <string name="ride_status">Ride Status</string>
+    <string name="mile_jour">Miles of Journey</string>
+    <string name="pick_up">PickUp Time</string>
+    <string name="taxi_recipt">Taxinearu Receipt</string>
+    <string name="lost_som">Lost Something</string>
+    <string name="cancel_msg">You may incur charges if you cancel your booking please see </string>
+    <string name="cancel_title">Do you still wish to cancel your booking?</string>
+    <string name="half_cancel_msg">Terms and Conditions</string>
+    <string name="cancellation">Cancellation</string>
+    <string name="add_lost">Lost Item</string>
+    <string name="cnl_msg">Your ride had been cancelled.</string>
+    <string name="_5">5</string>
+    <string name="_4">4</string>
+    <string name="_3">3</string>
+    <string name="_2">2</string>
+    <string name="_1">1</string>
+    <string name="active_now">Activate Now</string>
+
 </resources>

@@ -6,8 +6,8 @@
     android:layout_height="fill_parent"
     android:background="@color/element"
     android:orientation="vertical"
-    android:paddingEnd="@dimen/lyPaddingMainAll"
-    android:paddingStart="@dimen/lyPaddingMainAll"
+    android:paddingRight="@dimen/lyPaddingMainAll"
+    android:paddingLeft="@dimen/lyPaddingMainAll"
     android:paddingTop="@dimen/tvPopupMarginTop">
 
     <LinearLayout
@@ -163,14 +163,14 @@
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/lyElementLostItemFromToMarginStart"
+                    android:layout_marginLeft="@dimen/lyElementLostItemFromToMarginStart"
                     android:layout_weight="1"
                     android:orientation="vertical">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginEnd="@dimen/lyElementLostItemFromToMarginEnd"
+                        android:layout_marginRight="@dimen/lyElementLostItemFromToMarginEnd"
                         android:orientation="horizontal">
 
                         <TextView
@@ -191,8 +191,8 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginEnd="@dimen/lyElementLostItemFromToMarginEnd"
-                        android:layout_marginStart="@dimen/lyElementLostItemToMarginStart"
+                        android:layout_marginRight="@dimen/lyElementLostItemFromToMarginEnd"
+                        android:layout_marginLeft="@dimen/lyElementLostItemToMarginStart"
                         android:layout_marginTop="@dimen/lyElementLostItemLostMarginStartTop"
                         android:orientation="horizontal">
 
@@ -320,8 +320,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/lyElementLostItemLostItemMarginEnd"
-                android:layout_marginStart="@dimen/lyElementLostItemLostMarginStartTop"
+                android:layout_marginRight="@dimen/lyElementLostItemLostItemMarginEnd"
+                android:layout_marginLeft="@dimen/lyElementLostItemLostMarginStartTop"
                 android:orientation="horizontal">
 
                 <TextView
@@ -335,7 +335,7 @@
                     android:id="@+id/tvLostItemLostItem"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/tvElementLostItemMarginStart"
+                    android:layout_marginLeft="@dimen/tvElementLostItemMarginStart"
                     android:gravity="center"
                     android:textSize="@dimen/etSignUpSizeAll" />
 
@@ -351,7 +351,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/lyElementLostItemFromToMarginStart"
+                android:layout_marginLeft="@dimen/lyElementLostItemFromToMarginStart"
                 android:orientation="horizontal">
 
                 <TextView
@@ -365,7 +365,7 @@
                     android:id="@+id/tvLostItemTNR"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/tvElementLostItemMarginStart"
+                    android:layout_marginLeft="@dimen/tvElementLostItemMarginStart"
                     android:textSize="@dimen/etSignUpSizeAll" />
 
             </LinearLayout>

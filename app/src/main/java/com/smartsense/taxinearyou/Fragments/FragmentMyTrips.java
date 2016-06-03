@@ -1,5 +1,6 @@
 package com.smartsense.taxinearyou.Fragments;
 
+import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -10,6 +11,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -19,12 +21,16 @@ import com.android.volley.VolleyError;
 import com.mpt.storage.SharedPreferenceUtil;
 import com.smartsense.taxinearyou.Adapters.AdapterMyTrips;
 import com.smartsense.taxinearyou.R;
+import com.smartsense.taxinearyou.TripDetails;
 import com.smartsense.taxinearyou.utill.CommonUtil;
 import com.smartsense.taxinearyou.utill.Constants;
+import com.smartsense.taxinearyou.utill.LocationSettingsHelper;
 import com.smartsense.taxinearyou.utill.WakeLocker;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import javax.xml.transform.Result;
 
 
 public class FragmentMyTrips extends Fragment implements Response.Listener<JSONObject>, Response.ErrorListener {
@@ -32,6 +38,7 @@ public class FragmentMyTrips extends Fragment implements Response.Listener<JSONO
     ImageView ivMyTripsNoTrips;
     ListView lvMyTrips;
     LinearLayout llFragmentMyTrips;
+    final int request = 1;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -72,7 +79,17 @@ public class FragmentMyTrips extends Fragment implements Response.Listener<JSONO
     }
 
     @Override
-    public void onResponse(JSONObject response) {
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == Activity.RESULT_OK)
+            switch (requestCode) {
+                case request:
+                    doMyTrip();
+                    break;
+            }
+    }
+
+    @Override
+    public void onResponse(final JSONObject response) {
         CommonUtil.cancelProgressDialog();
         if (response != null) {
             try {
@@ -85,6 +102,14 @@ public class FragmentMyTrips extends Fragment implements Response.Listener<JSONO
                                     llFragmentMyTrips.setVisibility(View.GONE);
                                     AdapterMyTrips adapterMyTrips = new AdapterMyTrips(getActivity(), response.optJSONObject("json").optJSONArray("rideArray"));
                                     lvMyTrips.setAdapter(adapterMyTrips);
+
+                                    lvMyTrips.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                                        @Override
+                                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                            startActivityForResult(new Intent(getActivity(), TripDetails.class).putExtra("key", response.optJSONObject("json").optJSONArray("rideArray").optJSONObject(position).toString()), request);
+                                        }
+                                    });
+
                                 } else {
                                     lvMyTrips.setVisibility(View.GONE);
                                     llFragmentMyTrips.setVisibility(View.VISIBLE);

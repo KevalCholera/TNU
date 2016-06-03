@@ -67,10 +67,12 @@ public class SecurityQuestion extends AppCompatActivity implements View.OnClickL
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btSecuritySave:
-                if (TextUtils.isEmpty(etSecurityAnswer1.getText().toString()) || TextUtils.isEmpty(etSecurityAnswer2.getText().toString()))
+                if (TextUtils.isEmpty(etSecurityAnswer1.getText().toString()) && TextUtils.isEmpty(etSecurityAnswer2.getText().toString()))
                     CommonUtil.showSnackBar(SecurityQuestion.this, getResources().getString(R.string.enter_fields_below), clSecurityQuestion);
+                else if (TextUtils.isEmpty(etSecurityAnswer1.getText().toString()) || TextUtils.isEmpty(etSecurityAnswer2.getText().toString()))
+                    CommonUtil.showSnackBar(SecurityQuestion.this, "Please Answer for Security Question", clSecurityQuestion);
                 else if (!cbSecurityFromPrivacyPolicy.isChecked())
-                    CommonUtil.showSnackBar(SecurityQuestion.this, getResources().getString(R.string.terms_conditions_error), clSecurityQuestion);
+                    CommonUtil.showSnackBar(SecurityQuestion.this, "Please Agree to Terms and Conditions ", clSecurityQuestion);
                 else
                     doSignUp();
                 break;

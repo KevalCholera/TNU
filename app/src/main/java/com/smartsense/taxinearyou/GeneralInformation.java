@@ -51,35 +51,18 @@ public class GeneralInformation extends AppCompatActivity implements Response.Li
             @Override
             public void onClick(View v) {
                 CommonUtil.closeKeyboard(GeneralInformation.this);
-                if (TextUtils.isEmpty(etGeneralFirstName.getText().toString()))
+                if (TextUtils.isEmpty(etGeneralFirstName.getText().toString()) || TextUtils.isEmpty(etGeneralLastName.getText().toString()) || TextUtils.isEmpty(etGeneralMobile.getText().toString()))
+                    CommonUtil.showSnackBar(GeneralInformation.this, getResources().getString(R.string.enter_fields_below), clGeneralInfo);
+                else if (TextUtils.isEmpty(etGeneralFirstName.getText().toString()))
                     CommonUtil.showSnackBar(GeneralInformation.this, getString(R.string.enter_first_name), clGeneralInfo);
                 else if (TextUtils.isEmpty(etGeneralLastName.getText().toString()))
                     CommonUtil.showSnackBar(GeneralInformation.this, getString(R.string.enter_last_name), clGeneralInfo);
                 else if (TextUtils.isEmpty(etGeneralMobile.getText().toString()))
                     CommonUtil.showSnackBar(GeneralInformation.this, getString(R.string.enter_contact_no), clGeneralInfo);
-                else if (etGeneralMobile.length() < 7 || etGeneralMobile.length() > 13)
-                    CommonUtil.showSnackBar(GeneralInformation.this, getString(R.string.enter_valid_contact_no), clGeneralInfo);
-                else {
-                    generalInfo();
-                }
-            }
-        });
-        etGeneralMobile.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (s.length() >= 7) {
+                else if (etGeneralMobile.length() != 10)
+                    CommonUtil.showSnackBar(GeneralInformation.this, getString(R.string.enter_valid_contact), clGeneralInfo);
+                else
                     contactAvailability();
-                }
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
             }
         });
     }
@@ -96,7 +79,6 @@ public class GeneralInformation extends AppCompatActivity implements Response.Li
             e.printStackTrace();
         }
 
-//        CommonUtil.jsonRequestGET(this, getResources().getString(R.string.get_data), builder.toString(), tag, this, this);
         CommonUtil.jsonRequestNoProgressBar(builder.toString(), tag, this, this);
 
     }
@@ -147,11 +129,19 @@ public class GeneralInformation extends AppCompatActivity implements Response.Li
         CommonUtil.cancelProgressDialog();
         if (jsonObject != null)
             if (jsonObject.optInt("status") == Constants.STATUS_SUCCESS) {
-                CommonUtil.successToastShowing(this, jsonObject);
-                SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_USER_FIRST, etGeneralFirstName.getText().toString());
-                SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_USER_LAST, etGeneralLastName.getText().toString());
-                SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_USER_MNO, etGeneralMobile.getText().toString());
-                SharedPreferenceUtil.save();
+                if (jsonObject.optString("__eventid").equalsIgnoreCase(Constants.Events.CHECK_MOBILE_AVAILABILITY + ""))
+                    if (!jsonObject.optJSONObject("json").optString("isAvailable").equalsIgnoreCase("1")) {
+                        CommonUtil.successToastShowing(this, jsonObject);
+                    } else {
+                        generalInfo();
+                    }
+                else {
+                    CommonUtil.successToastShowing(this, jsonObject);
+                    SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_USER_FIRST, etGeneralFirstName.getText().toString());
+                    SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_USER_LAST, etGeneralLastName.getText().toString());
+                    SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_USER_MNO, etGeneralMobile.getText().toString());
+                    SharedPreferenceUtil.save();
+                }
             } else
                 CommonUtil.conditionAuthentication(this, jsonObject);
         else CommonUtil.jsonNullError(this);

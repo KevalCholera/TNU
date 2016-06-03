@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffffff">
+    android:background="@color/white">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -19,9 +19,8 @@
             <ImageView
                 android:id="@+id/ivTripDetailsMap"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/ivPartnerRatingImageHeight"
-                android:scaleType="fitXY"
-                android:src="@mipmap/map" />
+                android:layout_height="@dimen/ivTripDetailsMap"
+                android:scaleType="fitXY" />
 
             <com.smartsense.taxinearyou.utill.CircleImageView1
                 android:id="@+id/cvTripDetailsPartnerLogo"
@@ -77,7 +76,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/tvTripDetailsTitlesMarginTop"
-                        android:text="10.02.2016"
                         android:textColor="@color/black"
                         android:textSize="@dimen/tvTitlesSizeAll" />
 
@@ -86,7 +84,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/tvTripDetailsTitlesMarginTop"
-                        android:text="10:30 am"
                         android:textColor="@color/black"
                         android:textSize="@dimen/tvTitlesSizeAll" />
 
@@ -96,7 +93,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/lytvTripDetailsHeadingsMarginTopAll"
                         android:gravity="end"
-                        android:text="Taxi Provider"
+                        android:text="@string/taxi_provider"
                         android:textColor="@color/background"
                         android:textSize="@dimen/tvTitlesSizeAll" />
 
@@ -105,7 +102,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/tvTripDetailsTitlesMarginTop"
-                        android:text="LYft LLC"
                         android:textColor="@color/black"
                         android:textSize="@dimen/tvTitlesSizeAll" />
 
@@ -124,7 +120,7 @@
                         android:layout_height="@dimen/btSignUpAllheight"
                         android:background="@drawable/yellow"
                         android:gravity="center"
-                        android:text="Lost Something"
+                        android:text="@string/lost_som"
                         android:textAllCaps="false"
                         android:textColor="@color/white"
                         android:textSize="@dimen/tvSearchAllSize"
@@ -142,7 +138,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="PickUp Time"
+                        android:text="@string/pick_up"
                         android:textColor="@color/background"
                         android:textSize="@dimen/tvTitlesSizeAll" />
 
@@ -151,7 +147,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/tvTripDetailsTitlesMarginTop"
-                        android:text="10.02.2016"
                         android:textColor="@color/black"
                         android:textSize="@dimen/tvTitlesSizeAll" />
 
@@ -160,7 +155,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/tvTripDetailsTitlesMarginTop"
-                        android:text="10:30 am"
                         android:textColor="@color/black"
                         android:textSize="@dimen/tvTitlesSizeAll" />
 
@@ -168,7 +162,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/lytvTripDetailsHeadingsMarginTopAll"
-                        android:text="Total Fare"
+                        android:text="@string/total_fare"
                         android:textColor="@color/background"
                         android:textSize="@dimen/tvTitlesSizeAll" />
 
@@ -203,7 +197,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="From : "
+                        android:text="@string/from_"
                         android:textColor="@color/background"
                         android:textSize="@dimen/tvTitlesSizeAll" />
 
@@ -216,20 +210,21 @@
                             android:id="@+id/tvTripDetailFrom"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Solihull Rd, Shiral,Sohill, West Midland B90s 3LG, UK "
                             android:textColor="@color/black"
                             android:textSize="@dimen/tvTitlesSizeAll" />
 
                         <LinearLayout
+                            android:id="@+id/lyTripDetailsVia1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/lytvTripDetailsHeadingsMarginTopAll"
-                            android:orientation="horizontal">
+                            android:orientation="horizontal"
+                            android:visibility="gone">
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Via 1 : "
+                                android:text="@string/via_1"
                                 android:textColor="@color/background"
                                 android:textSize="@dimen/tvTitlesSizeAll" />
 
@@ -237,23 +232,24 @@
                                 android:id="@+id/tvTripDetailVia1"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="Hull, UK"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/tvTitlesSizeAll" />
 
                         </LinearLayout>
 
                         <LinearLayout
+                            android:id="@+id/lyTripDetailsVia2"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="@dimen/lytvTripDetailsHeadingsMarginTopAll"
                             android:layout_marginTop="@dimen/lytvTripDetailsHeadingsMarginTopAll"
-                            android:orientation="horizontal">
+                            android:orientation="horizontal"
+                            android:visibility="gone">
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Via 2 : "
+                                android:text="@string/via_2"
                                 android:textColor="@color/background"
                                 android:textSize="@dimen/tvTitlesSizeAll" />
 
@@ -261,7 +257,6 @@
                                 android:id="@+id/tvTripDetailVia2"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="Hampshire, UK"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/tvTitlesSizeAll" />
 
@@ -274,13 +269,15 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="@dimen/lytvTripDetailsHeadingsMarginStartAll"
+                    android:layout_marginLeft="@dimen/lytvTripDetailsHeadingsMarginStartAll"
+                    android:layout_marginTop="@dimen/padding_10"
+
                     android:orientation="horizontal">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="To : "
+                        android:text="@string/to_"
                         android:textColor="@color/background"
                         android:textSize="@dimen/tvTitlesSizeAll" />
 
@@ -288,7 +285,6 @@
                         android:id="@+id/tvTripDetailTo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Battern Parks Rd, London SW8, UK "
                         android:textColor="@color/black"
                         android:textSize="@dimen/tvTitlesSizeAll" />
 
@@ -307,7 +303,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Taxinearu Receipt"
+                android:text="@string/taxi_recipt"
                 android:textColor="@color/Yellow"
                 android:textSize="@dimen/tvHeadingSizeAll" />
 
@@ -320,7 +316,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="TNR"
+                    android:text="@string/tnr"
                     android:textColor="@color/background"
                     android:textSize="@dimen/tvTitlesSizeAll" />
 
@@ -330,7 +326,6 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="end"
-                    android:text="tnu123456789"
                     android:textColor="@color/black"
                     android:textSize="@dimen/tvTitlesSizeAll" />
 
@@ -345,7 +340,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Passengers"
+                    android:text="@string/passengers"
                     android:textColor="@color/background"
                     android:textSize="@dimen/tvTitlesSizeAll" />
 
@@ -355,7 +350,6 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="end"
-                    android:text="02"
                     android:textColor="@color/black"
                     android:textSize="@dimen/tvTitlesSizeAll" />
 
@@ -370,7 +364,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Lugguages"
+                    android:text="@string/luggage"
                     android:textColor="@color/background"
                     android:textSize="@dimen/tvTitlesSizeAll" />
 
@@ -380,7 +374,6 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="end"
-                    android:text="02"
                     android:textColor="@color/black"
                     android:textSize="@dimen/tvTitlesSizeAll" />
 
@@ -395,7 +388,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Miles of Journey"
+                    android:text="@string/mile_jour"
                     android:textColor="@color/background"
                     android:textSize="@dimen/tvTitlesSizeAll" />
 
@@ -405,7 +398,6 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="end"
-                    android:text="109.00"
                     android:textColor="@color/black"
                     android:textSize="@dimen/tvTitlesSizeAll" />
 
@@ -420,7 +412,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Payment"
+                    android:text="@string/payment"
                     android:textColor="@color/background"
                     android:textSize="@dimen/tvTitlesSizeAll" />
 
@@ -430,7 +422,6 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="end"
-                    android:text="Cash"
                     android:textColor="@color/black"
                     android:textSize="@dimen/tvTitlesSizeAll" />
 
@@ -445,7 +436,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Ride Type"
+                    android:text="@string/ride_type"
                     android:textColor="@color/background"
                     android:textSize="@dimen/tvTitlesSizeAll" />
 
@@ -455,7 +446,6 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="end"
-                    android:text="Single"
                     android:textColor="@color/black"
                     android:textSize="@dimen/tvTitlesSizeAll" />
 
@@ -470,7 +460,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Ride Status"
+                    android:text="@string/ride_status"
                     android:textColor="@color/background"
                     android:textSize="@dimen/tvTitlesSizeAll" />
 
@@ -480,7 +470,6 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="end"
-                    android:text="Waiting"
                     android:textColor="@color/black"
                     android:textSize="@dimen/tvTitlesSizeAll" />
 
@@ -495,7 +484,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Vehicle Type"
+                    android:text="@string/vehicle_type"
                     android:textColor="@color/background"
                     android:textSize="@dimen/tvTitlesSizeAll" />
 
@@ -505,7 +494,30 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="end"
-                    android:text="Sedan"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/tvTitlesSizeAll" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/lytvTripDetailsHeadingsMarginTopAll">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/add_info"
+                    android:textColor="@color/background"
+                    android:textSize="@dimen/tvTitlesSizeAll" />
+
+                <TextView
+                    android:id="@+id/tvTripDetailAdditionsInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="end"
                     android:textColor="@color/black"
                     android:textSize="@dimen/tvTitlesSizeAll" />
 
@@ -530,10 +542,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/btSignUpAllheight"
                     android:layout_gravity="center"
-                    android:layout_marginEnd="@dimen/btTripDetailsMarginStartEnd"
+                    android:layout_marginRight="@dimen/btTripDetailsMarginStartEnd"
                     android:layout_weight="1"
                     android:background="@drawable/yellow"
-                    android:text="Resend Invoice"
+                    android:text="@string/re_invoice"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
                     android:textSize="@dimen/btSizeAll" />
@@ -543,10 +555,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/btSignUpAllheight"
                     android:layout_gravity="center"
-                    android:layout_marginStart="@dimen/btTripDetailsMarginStartEnd"
+                    android:layout_marginLeft="@dimen/btTripDetailsMarginStartEnd"
                     android:layout_weight="1"
                     android:background="@drawable/yellow"
-                    android:text="Feedback"
+                    android:text="@string/feed_back"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
                     android:textSize="@dimen/btSizeAll" />
@@ -561,7 +573,7 @@
                 android:background="@drawable/yellow"
                 android:paddingEnd="@dimen/btTripDetailsCancelPaddingStartEnd"
                 android:paddingStart="@dimen/btTripDetailsCancelPaddingStartEnd"
-                android:text="Cancel"
+                android:text="@string/cancel_ride"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="@dimen/btSizeAll"

@@ -105,6 +105,20 @@ public class CommonUtil {
         builder.show();
     }
 
+    public static void alertBoxTwice(final Activity context, final String msg, final String title, final TextView textView) {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setCancelable(false);
+        builder.setMessage(msg);
+        builder.setTitle(title);
+        builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                textView.setVisibility(View.GONE);
+            }
+        });
+        builder.create();
+        builder.show();
+    }
+
     static public ActionBar getActionBar(Activity a) {
         return ((AppCompatActivity) a).getSupportActionBar();
     }

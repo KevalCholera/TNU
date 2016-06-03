@@ -3,6 +3,7 @@ package com.smartsense.taxinearyou;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -28,7 +29,7 @@ public class BookingInfo extends AppCompatActivity {
             tvBookInfoProvider, tvBookInfoPassengers, tvBookInfoLugguages, tvBookInfoETA, tvBookInfoDistance, tvBookInfoRideType,
             tvBookInfoCost;
     Button btBookingInfoConfirm;
-    LinearLayout lyBookingInfoVia1,lyBookingInfoVia2;
+    LinearLayout lyBookingInfoVia1, lyBookingInfoVia2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,8 +52,8 @@ public class BookingInfo extends AppCompatActivity {
         tvBookInfoRideType = (TextView) findViewById(R.id.tvBookInfoRideType);
         tvBookInfoCost = (TextView) findViewById(R.id.tvBookInfoCost);
         btBookingInfoConfirm = (Button) findViewById(R.id.btBookingInfoConfirm);
-        lyBookingInfoVia2 = (LinearLayout)findViewById(R.id.lyBookingInfoVia2);
-        lyBookingInfoVia1 = (LinearLayout)findViewById(R.id.lyBookingInfoVia1);
+        lyBookingInfoVia2 = (LinearLayout) findViewById(R.id.lyBookingInfoVia2);
+        lyBookingInfoVia1 = (LinearLayout) findViewById(R.id.lyBookingInfoVia1);
 
         try {
             JSONObject mainData = new JSONObject(SharedPreferenceUtil.getString(Constants.PrefKeys.MAIN_DATA, ""));
@@ -64,16 +65,23 @@ public class BookingInfo extends AppCompatActivity {
                 tvBookInfoTo.setText(mainData.optString("toAreaAddress"));
                 tvBookInfoTo.setTag(mainData.optString("toAreaPlaceid"));
 
-                if (mainData.optJSONArray("viaArray") != null && mainData.optJSONArray("viaArray").length() == 1) {
-                    lyBookingInfoVia1.setVisibility(View.VISIBLE);
-                    tvBookInfoVia1.setText(mainData.optJSONArray("viaArea").optJSONObject(0).optString("viaAreaAddress"));
-//                    tvBookInfoVia1.setTag(mainData.optJSONArray("viaArea").optJSONObject(0).optString("viaAreaPlaceid"));
+                JSONArray jsonArray = mainData.optJSONArray("viaArray");
+                if (mainData.has("viaArray") && jsonArray.length() > 0) {
+
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        JSONObject jsonObject = jsonArray.optJSONObject(i);
+
+                        if (i == 0) {
+                            lyBookingInfoVia1.setVisibility(View.VISIBLE);
+                            tvBookInfoVia1.setText(jsonObject.optString("viaAreaAddress"));
+                        }
+                        if (i == 1) {
+                            lyBookingInfoVia2.setVisibility(View.VISIBLE);
+                            tvBookInfoVia2.setText(jsonObject.optString("viaAreaAddress"));
+                        }
+                    }
                 }
-                if (mainData.optJSONArray("viaArray") != null && mainData.optJSONArray("viaArray").length() == 2) {
-                    lyBookingInfoVia2.setVisibility(View.VISIBLE);
-                    tvBookInfoVia2.setText(mainData.optJSONArray("viaArea").optJSONObject(1).optString("viaAreaAddress"));
-//                    tvBookInfoVia2.setTag(mainData.optJSONArray("viaArea").optJSONObject(1).optString("viaAreaPlaceid"));
-                }
+
                 tvBookInfoVehicleType.setTag(mainData.optJSONObject("filterRequest").optString("vehicleType"));
                 tvBookInfoVehicleType.setText(mainData.optJSONObject("json").optJSONArray("partnerArray").optJSONObject(0).optJSONObject("taxiType").optString("taxiTypeName"));
                 tvBookInfoProvider.setText(mainData.optJSONObject("json").optJSONArray("partnerArray").optJSONObject(0).optString("partnerName"));

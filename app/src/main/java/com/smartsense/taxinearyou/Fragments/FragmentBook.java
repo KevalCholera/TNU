@@ -206,7 +206,7 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
     }
 
     public void timePicker(final int id, final String finalDateNow2, final String finalDateTomorrow, int hour, int minute) {
-        mTimePicker = new TimePickerDialog(getActivity(), new TimePickerDialog.OnTimeSetListener() {
+        mTimePicker = new TimePickerDialog(getActivity(), android.R.style.Theme_DeviceDefault_Dialog, new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
                 if (rbBookToday.getId() == id) {
@@ -357,7 +357,7 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
             switch (data.getIntExtra("typeAddress", 0)) {
                 case 1:
                     if (tvBookTo.getText().toString().equalsIgnoreCase(message) || tvBookvia1.getText().toString().equalsIgnoreCase(message) || tvBookvia2.getText().toString().equalsIgnoreCase(message))
-                        CommonUtil.showSnackBar(getActivity(), getString(R.string.enter_fields_below), clSearch);
+                        CommonUtil.showSnackBar(getActivity(), getString(R.string.same_filled_error), clSearch);
                     else {
                         tvBookFrom.setText(message);
                         SharedPreferenceUtil.putValue(Constants.FROM_ADDRESS, data.getStringExtra("address"));
@@ -365,7 +365,7 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
                     break;
                 case 2:
                     if (tvBookFrom.getText().toString().equalsIgnoreCase(message) || tvBookvia1.getText().toString().equalsIgnoreCase(message) || tvBookvia2.getText().toString().equalsIgnoreCase(message))
-                        CommonUtil.showSnackBar(getActivity(), getString(R.string.enter_fields_below), clSearch);
+                        CommonUtil.showSnackBar(getActivity(), getString(R.string.same_filled_error), clSearch);
                     else {
                         tvBookTo.setText(message);
                         SharedPreferenceUtil.putValue(Constants.TO_ADDRESS, data.getStringExtra("address"));
@@ -373,7 +373,7 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
                     break;
                 case 3:
                     if (tvBookTo.getText().toString().equalsIgnoreCase(message) || tvBookFrom.getText().toString().equalsIgnoreCase(message) || tvBookvia2.getText().toString().equalsIgnoreCase(message))
-                        CommonUtil.showSnackBar(getActivity(), getString(R.string.enter_fields_below), clSearch);
+                        CommonUtil.showSnackBar(getActivity(), getString(R.string.same_filled_error), clSearch);
                     else {
                         tvBookvia1.setText(message);
                         SharedPreferenceUtil.putValue(Constants.VIA_ADDRESS, data.getStringExtra("address"));
@@ -381,7 +381,7 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
                     break;
                 case 4:
                     if (tvBookTo.getText().toString().equalsIgnoreCase(message) || tvBookvia1.getText().toString().equalsIgnoreCase(message) || tvBookFrom.getText().toString().equalsIgnoreCase(message))
-                        CommonUtil.showSnackBar(getActivity(), getString(R.string.enter_fields_below), clSearch);
+                        CommonUtil.showSnackBar(getActivity(), getString(R.string.same_filled_error), clSearch);
                     else {
                         tvBookvia2.setText(message);
                         SharedPreferenceUtil.putValue(Constants.VIA2_ADDRESS, data.getStringExtra("address"));
@@ -393,7 +393,7 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
     }
 
     public void setDefaultValues() {
-        String str = "";
+        String str;
         JSONArray jsonArray;
         try {
 
@@ -500,7 +500,7 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
                         if (check) {
                             tvBookLuggage.setText(cbElementClassName.getText().toString());
                             tvBookLuggage.setTag(cbElementClassName.getTag());
-                            SharedPreferenceUtil.putValue(Constants.PrefKeys.LUGGAGE_VALUE, object.optInt("value"));
+                            SharedPreferenceUtil.putValue(Constants.PrefKeys.LUGGAGE_VALUE, object.optInt("value") + "");
                             SharedPreferenceUtil.save();
                         } else {
                             tvBookPassenger.setText(cbElementClassName.getText().toString());

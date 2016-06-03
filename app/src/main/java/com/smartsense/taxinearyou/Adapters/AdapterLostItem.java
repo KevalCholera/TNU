@@ -71,22 +71,6 @@ public class AdapterLostItem extends BaseAdapter {
         lyElementLostItemStatus = (LinearLayout) vi.findViewById(R.id.lyElementLostItemStatus);
         lyElementLostItemLeft = (LinearLayout) vi.findViewById(R.id.lyElementLostItemLeft);
         lyElementLostItemRight = (LinearLayout) vi.findViewById(R.id.lyElementLostItemRight);
-//        civElementLostItemCircleLeft = (ListView) vi.findViewById(R.id.civElementLostItemCircleLeft);
-
-        ViewTreeObserver vto = lyElementLostItemStatus.getViewTreeObserver();
-        vto.addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
-            public boolean onPreDraw() {
-
-                lyElementLostItemStatus.getViewTreeObserver().removeOnPreDrawListener(this);
-                int finalHeight = lyElementLostItemStatus.getMeasuredHeight();
-                int height = finalHeight / 30;
-
-                for (int i = 0; i < height; i++)
-                    createNewTextView();
-
-                return true;
-            }
-        });
 
         final JSONObject test = data.optJSONObject(position);
 
@@ -95,7 +79,7 @@ public class AdapterLostItem extends BaseAdapter {
         tvLostItemTo.setText(test.optString("toArea"));
         tvLostItemProvider.setText(test.optString("partnerName"));
         try {
-            tvLostItemDateTime.setText(new SimpleDateFormat("dd.MM.yyyy hh:mm aa").format(new SimpleDateFormat("dd-MMMM-yyyy HH:mm").parse(test.optString("rideDate"))));
+            tvLostItemDateTime.setText(new SimpleDateFormat("dd.MM.yyyy \n hh:mm aa").format(new SimpleDateFormat("dd-MMMM-yyyy HH:mm").parse(test.optString("rideDate"))));
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -109,25 +93,5 @@ public class AdapterLostItem extends BaseAdapter {
             }
         });
         return vi;
-    }
-
-    public void createNewTextView() {
-        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(10, 10);
-        layoutParams.setMargins(5, 10, 5, 0);
-
-        CircleImageView1 circleImageView = new CircleImageView1(a);
-        circleImageView.setLayoutParams(layoutParams);
-        circleImageView.setBackgroundColor(ContextCompat.getColor(a, R.color.white));
-        circleImageView.setBorderColor(ContextCompat.getColor(a, R.color.element));
-        circleImageView.setBorderWidth(2);
-
-        CircleImageView1 circleImageView1 = new CircleImageView1(a);
-        circleImageView.setLayoutParams(layoutParams);
-        circleImageView.setBackgroundColor(ContextCompat.getColor(a, R.color.white));
-        circleImageView.setBorderColor(ContextCompat.getColor(a, R.color.element));
-        circleImageView.setBorderWidth(2);
-
-        lyElementLostItemRight.addView(circleImageView);
-        lyElementLostItemLeft.addView(circleImageView1);
     }
 }

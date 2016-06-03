@@ -54,7 +54,7 @@
                     android:imeOptions="actionNext"
                     android:inputType="textCapSentences"
                     android:maxLines="1"
-                    android:paddingStart="@dimen/tvMarginTopBottomStartEndAll"
+                    android:paddingLeft="@dimen/tvMarginTopBottomStartEndAll"
                     android:singleLine="true"
                     android:textColor="@color/black" />
 
@@ -68,7 +68,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/tvMarginTopBottomStartEndAll"
+                        android:layout_marginRight="@dimen/tvMarginTopBottomStartEndAll"
                         android:layout_weight="1"
                         android:orientation="vertical">
 
@@ -85,9 +85,9 @@
                             android:background="@drawable/grayborder"
                             android:clickable="true"
                             android:cursorVisible="false"
-                            android:drawableEnd="@mipmap/imgdropdown"
+                            android:drawableLeft="@mipmap/imgdropdown"
                             android:focusable="false"
-                            android:paddingStart="@dimen/tvMarginTopBottomStartEndAll"
+                            android:paddingLeft="@dimen/tvMarginTopBottomStartEndAll"
                             android:textColor="@color/black" />
 
                     </LinearLayout>
@@ -95,7 +95,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/tvMarginTopBottomStartEndAll"
+                        android:layout_marginLeft="@dimen/tvMarginTopBottomStartEndAll"
                         android:layout_weight="1"
                         android:orientation="vertical">
 
@@ -114,7 +114,7 @@
                             android:inputType="number"
                             android:maxLines="1"
                             android:nextFocusDown="@+id/etAddCardSecurityNumber"
-                            android:paddingStart="@dimen/tvMarginTopBottomStartEndAll"
+                            android:paddingLeft="@dimen/tvMarginTopBottomStartEndAll"
                             android:singleLine="true"
                             android:textColor="@color/black" />
 
@@ -138,16 +138,16 @@
                         android:id="@+id/etAddCardExpiryDateMonth"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/etHeightAll"
-                        android:layout_marginEnd="@dimen/tvMarginTopBottomStartEndAll"
+                        android:layout_marginRight="@dimen/tvMarginTopBottomStartEndAll"
                         android:layout_weight="0.6"
                         android:background="@drawable/grayborder"
                         android:clickable="true"
                         android:cursorVisible="false"
-                        android:drawableEnd="@mipmap/imgdropdown"
+                        android:drawableLeft="@mipmap/imgdropdown"
                         android:focusable="false"
                         android:hint="@string/month"
                         android:maxLines="1"
-                        android:paddingStart="@dimen/tvMarginTopBottomStartEndAll"
+                        android:paddingLeft="@dimen/tvMarginTopBottomStartEndAll"
                         android:textColor="@color/black"
                         android:textColorHint="@color/light_Gray" />
 
@@ -155,16 +155,16 @@
                         android:id="@+id/etAddCardExpiryDateYear"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/etHeightAll"
-                        android:layout_marginStart="@dimen/tvMarginTopBottomStartEndAll"
+                        android:layout_marginLeft="@dimen/tvMarginTopBottomStartEndAll"
                         android:layout_weight="0.8"
                         android:background="@drawable/grayborder"
                         android:clickable="true"
                         android:cursorVisible="false"
-                        android:drawableEnd="@mipmap/imgdropdown"
+                        android:drawableLeft="@mipmap/imgdropdown"
                         android:focusable="false"
                         android:hint="@string/year"
                         android:maxLines="1"
-                        android:paddingStart="@dimen/tvMarginTopBottomStartEndAll"
+                        android:paddingLeft="@dimen/tvMarginTopBottomStartEndAll"
                         android:textColor="@color/black"
                         android:textColorHint="@color/light_Gray" />
 
@@ -192,23 +192,23 @@
                         android:id="@+id/etAddCardSecurityNumber"
                         android:layout_width="0dp"
                         android:layout_height="@dimen/etHeightAll"
-                        android:layout_marginEnd="@dimen/tvMarginTopBottomStartEndAll"
+                        android:layout_marginRight="@dimen/tvMarginTopBottomStartEndAll"
                         android:layout_weight="1"
                         android:background="@drawable/grayborder"
-                        android:drawableEnd="@mipmap/bank_cards"
+                        android:drawableLeft="@mipmap/bank_cards"
                         android:inputType="numberPassword"
                         android:maxLines="1"
-                        android:paddingStart="@dimen/tvMarginTopBottomStartEndAll"
+                        android:paddingLeft="@dimen/tvMarginTopBottomStartEndAll"
                         android:textColor="@color/black" />
 
                     <CheckBox
                         android:id="@+id/cbAddCardFutureUse"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/tvMarginTopBottomStartEndAll"
+                        android:layout_marginLeft="@dimen/tvMarginTopBottomStartEndAll"
                         android:button="@drawable/checkbox"
                         android:checked="false"
-                        android:paddingStart="@dimen/tvMarginTopBottomStartEndAll"
+                        android:paddingLeft="@dimen/tvMarginTopBottomStartEndAll"
                         android:text="@string/use_card_for_future_payment"
                         android:textSize="@dimen/cbCheckTextSizeAll"
                         android:theme="@style/AppTheme" />
@@ -243,7 +243,7 @@
                     android:background="@drawable/grayborder"
                     android:inputType="textCapSentences"
                     android:maxLines="1"
-                    android:paddingStart="@dimen/tvMarginTopBottomStartEndAll"
+                    android:paddingLeft="@dimen/tvMarginTopBottomStartEndAll"
                     android:singleLine="true"
                     android:textColor="@color/black" />
 
@@ -260,7 +260,7 @@
                     android:layout_height="@dimen/etHeightAll"
                     android:background="@drawable/grayborder"
                     android:inputType="textCapSentences"
-                    android:paddingStart="@dimen/tvMarginTopBottomStartEndAll"
+                    android:paddingLeft="@dimen/tvMarginTopBottomStartEndAll"
                     android:textColor="@color/black" />
 
                 <TextView
@@ -277,7 +277,7 @@
                     android:background="@drawable/grayborder"
                     android:inputType="textPostalAddress|textCapSentences"
                     android:maxLines="1"
-                    android:paddingStart="@dimen/tvMarginTopBottomStartEndAll"
+                    android:paddingLeft="@dimen/tvMarginTopBottomStartEndAll"
                     android:singleLine="true"
                     android:textColor="@color/black" />
 
@@ -295,7 +295,7 @@
                     android:background="@drawable/grayborder"
                     android:inputType="textPostalAddress|textCapSentences"
                     android:maxLines="1"
-                    android:paddingStart="@dimen/tvMarginTopBottomStartEndAll"
+                    android:paddingLeft="@dimen/tvMarginTopBottomStartEndAll"
                     android:singleLine="true"
                     android:textColor="@color/black" />
 
@@ -309,7 +309,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/tvMarginTopBottomStartEndAll"
+                        android:layout_marginRight="@dimen/tvMarginTopBottomStartEndAll"
                         android:layout_weight="1"
                         android:orientation="vertical">
 
@@ -330,7 +330,7 @@
                             android:imeOptions="actionNext"
                             android:inputType="text"
                             android:maxLines="1"
-                            android:paddingStart="@dimen/tvMarginTopBottomStartEndAll"
+                            android:paddingLeft="@dimen/tvMarginTopBottomStartEndAll"
                             android:singleLine="true"
                             android:textColor="@color/black" />
 
@@ -339,7 +339,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/tvMarginTopBottomStartEndAll"
+                        android:layout_marginLeft="@dimen/tvMarginTopBottomStartEndAll"
                         android:layout_weight="1"
                         android:orientation="vertical">
 
@@ -359,7 +359,7 @@
                             android:focusable="false"
                             android:inputType="text"
                             android:maxLines="1"
-                            android:paddingStart="@dimen/tvMarginTopBottomStartEndAll"
+                            android:paddingLeft="@dimen/tvMarginTopBottomStartEndAll"
                             android:singleLine="true"
                             android:textColor="@color/black" />
 
@@ -382,7 +382,7 @@
                     android:background="@drawable/grayborder"
                     android:inputType="number"
                     android:maxLines="1"
-                    android:paddingStart="@dimen/tvMarginTopBottomStartEndAll"
+                    android:paddingLeft="@dimen/tvMarginTopBottomStartEndAll"
                     android:singleLine="true"
                     android:textColor="@color/black" />
 

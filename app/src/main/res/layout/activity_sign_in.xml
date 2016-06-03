@@ -23,8 +23,8 @@
             android:layout_height="wrap_content"
 
             android:layout_gravity="center"
-            android:layout_marginEnd="@dimen/lySignInUserPasswordMarginStartEnd"
-            android:layout_marginStart="@dimen/lySignInUserPasswordMarginStartEnd"
+            android:layout_marginRight="@dimen/lySignInUserPasswordMarginStartEnd"
+            android:layout_marginLeft="@dimen/lySignInUserPasswordMarginStartEnd"
             android:layout_marginTop="@dimen/lySignInUserMarginTop"
             android:background="@drawable/grayborder"
             android:orientation="horizontal">
@@ -33,14 +33,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
-                android:layout_marginStart="@dimen/imgSignInUserPassMarginStart"
+                android:layout_marginLeft="@dimen/imgSignInUserPassMarginStart"
                 android:src="@mipmap/imgusername" />
 
             <View
                 android:layout_width="@dimen/vSignInUserPasswordWidth"
                 android:layout_height="@dimen/vSignInUserPasswordHeight"
                 android:layout_marginBottom="@dimen/vSignInUserPasswordMarginTopBottom"
-                android:layout_marginStart="@dimen/vSignInUserMarginStart"
+                android:layout_marginLeft="@dimen/vSignInUserMarginStart"
                 android:layout_marginTop="@dimen/vSignInUserPasswordMarginTopBottom"
                 android:background="@android:color/darker_gray" />
 
@@ -67,8 +67,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginEnd="@dimen/lySignInUserPasswordMarginStartEnd"
-            android:layout_marginStart="@dimen/lySignInUserPasswordMarginStartEnd"
+            android:layout_marginRight="@dimen/lySignInUserPasswordMarginStartEnd"
+            android:layout_marginLeft="@dimen/lySignInUserPasswordMarginStartEnd"
             android:layout_marginTop="@dimen/lySignInUserPasswordMarginTop"
             android:background="@drawable/grayborder"
             android:orientation="horizontal">
@@ -77,14 +77,14 @@
                 android:id="@+id/imgPassword"
                 android:layout_width="@dimen/imgSignInUserPasswordWidth"
                 android:layout_height="match_parent"
-                android:layout_marginStart="@dimen/imgSignInUserPassMarginStart"
+                android:layout_marginLeft="@dimen/imgSignInUserPassMarginStart"
                 android:src="@mipmap/imgpassword" />
 
             <View
                 android:layout_width="@dimen/vSignInUserPasswordWidth"
                 android:layout_height="@dimen/vSignInUserPasswordHeight"
                 android:layout_marginBottom="@dimen/vSignInUserPasswordMarginTopBottom"
-                android:layout_marginStart="@dimen/vSignInPasswordMarginStart"
+                android:layout_marginLeft="@dimen/vSignInPasswordMarginStart"
                 android:layout_marginTop="@dimen/vSignInUserPasswordMarginTopBottom"
                 android:background="@android:color/darker_gray" />
 
@@ -110,8 +110,8 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/btSignInSignUpHeight"
             android:layout_gravity="center_horizontal"
-            android:layout_marginEnd="@dimen/lySignInUserPasswordMarginStartEnd"
-            android:layout_marginStart="@dimen/lySignInUserPasswordMarginStartEnd"
+            android:layout_marginRight="@dimen/lySignInUserPasswordMarginStartEnd"
+            android:layout_marginLeft="@dimen/lySignInUserPasswordMarginStartEnd"
             android:layout_marginTop="@dimen/btSignInSignInMarginTop"
             android:background="@drawable/gray_blue"
             android:text="@string/sign_in"
@@ -139,8 +139,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginEnd="@dimen/tvSignInOrMarginStartEnd"
-                android:layout_marginStart="@dimen/tvSignInOrMarginStartEnd"
+                android:layout_marginRight="@dimen/tvSignInOrMarginStartEnd"
+                android:layout_marginLeft="@dimen/tvSignInOrMarginStartEnd"
                 android:text="@string/or"
                 android:textColor="@color/dark_gray" />
 
@@ -168,8 +168,8 @@
             android:layout_height="@dimen/btSignInSignUpHeight"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="@dimen/tvSignInSignUpMarginBottom"
-            android:layout_marginEnd="@dimen/lySignInUserPasswordMarginStartEnd"
-            android:layout_marginStart="@dimen/lySignInUserPasswordMarginStartEnd"
+            android:layout_marginRight="@dimen/lySignInUserPasswordMarginStartEnd"
+            android:layout_marginLeft="@dimen/lySignInUserPasswordMarginStartEnd"
             android:layout_marginTop="@dimen/btSignInSignUpMarginTop"
             android:background="@drawable/yellow"
             android:text="@string/sign_up"
