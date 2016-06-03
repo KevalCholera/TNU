@@ -23,7 +23,7 @@ public class Constants {
     public static final String VIA_ADDRESS = "via_add";
     public static final String REVERSE_FROM_TO = "reverse_from_to";
     public static final String VIA2_ADDRESS = "via2_add";
-
+    public static final String EXTRAS = "extras";
     public class PrefKeys {
 
         public static final String PREF_CITY_ID = "city_id";
@@ -156,5 +156,9 @@ public class Constants {
         public static final int SCREEN_MYADDRESS = 3;
         public static final int SCREEN_MYREMINDER = 4;
         public static final int SCREEN_LOGIN = 5;
+    }
+
+    public class PushList {
+        public static final String PUSH_MY_TRIP = "myTrip";
     }
 }

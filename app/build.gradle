@@ -6,8 +6,8 @@ android {
     useLibrary 'org.apache.http.legacy'
     defaultConfig {
         applicationId "com.smartsense.taxinearyou"
-        minSdkVersion 17
-        targetSdkVersion 23
+        minSdkVersion 14
+        targetSdkVersion 22
         versionCode 1
         versionName "1.0"
         multiDexEnabled true

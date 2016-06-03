@@ -12,6 +12,8 @@ import android.util.Log;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 import com.smartsense.taxinearyou.ActivitySplash;
 import com.smartsense.taxinearyou.R;
+import com.smartsense.taxinearyou.TaxiNearYouApp;
+import com.smartsense.taxinearyou.utill.Constants;
 
 public class GcmIntentService extends IntentService {
     public static final int NOTIFICATION_ID = 1;
@@ -31,6 +33,10 @@ public class GcmIntentService extends IntentService {
         String messageType = gcm.getMessageType(intent);
 
         if (!extras.isEmpty()) {
+            Intent intentBroadCast;
+            intentBroadCast = new Intent(Constants.PushList.PUSH_MY_TRIP);
+            intentBroadCast.putExtra(Constants.EXTRAS, extras);
+            TaxiNearYouApp.getAppContext().sendBroadcast(intentBroadCast);
 
 //            if (GoogleCloudMessaging.MESSAGE_TYPE_SEND_ERROR.equals(messageType)) {
 //                sendNotification("Send error: " + extras.toString());
@@ -41,7 +47,7 @@ public class GcmIntentService extends IntentService {
 
 //                sendNotification(extras.getString("alert"));
 
-                Log.i(TAG, "Received: " + extras.toString());
+            Log.i(TAG, "Received: " + extras.toString());
 //            }
         }
         // Release the wake lock provided by the WakefulBroadcastReceiver.

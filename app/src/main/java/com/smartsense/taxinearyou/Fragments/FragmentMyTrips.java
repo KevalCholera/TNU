@@ -1,5 +1,9 @@
 package com.smartsense.taxinearyou.Fragments;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.app.Fragment;
@@ -17,6 +21,7 @@ import com.smartsense.taxinearyou.Adapters.AdapterMyTrips;
 import com.smartsense.taxinearyou.R;
 import com.smartsense.taxinearyou.utill.CommonUtil;
 import com.smartsense.taxinearyou.utill.Constants;
+import com.smartsense.taxinearyou.utill.WakeLocker;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -35,7 +40,8 @@ public class FragmentMyTrips extends Fragment implements Response.Listener<JSONO
         ivMyTripsNoTrips = (ImageView) rootView.findViewById(R.id.ivMyTripsNoTrips);
         lvMyTrips = (ListView) rootView.findViewById(R.id.lvMyTrips);
         llFragmentMyTrips = (LinearLayout) rootView.findViewById(R.id.llFragmentMyTrips);
-
+        getActivity().registerReceiver(tripMessageReceiver, new IntentFilter(
+                Constants.PushList.PUSH_MY_TRIP));
         doMyTrip();
         return rootView;
     }
@@ -96,5 +102,28 @@ public class FragmentMyTrips extends Fragment implements Response.Listener<JSONO
             }
         } else
             CommonUtil.jsonNullError(getActivity());
+    }
+
+    private final BroadcastReceiver tripMessageReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String newMessage = intent.getExtras().getString(
+                    Constants.EXTRAS);
+            // Waking up mobile if it is sleeping
+            WakeLocker.acquire(getActivity());
+            // ConstantClass.logPrint("msg rcv from gcm ", newMessage);
+            // Releasing wake lock
+            WakeLocker.release();
+        }
+    };
+
+    @Override
+    public void onDestroy() {
+        try {
+            getActivity().unregisterReceiver(tripMessageReceiver);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        super.onDestroy();
     }
 }
