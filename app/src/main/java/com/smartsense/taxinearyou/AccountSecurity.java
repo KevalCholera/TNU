@@ -394,7 +394,8 @@ public class AccountSecurity extends AppCompatActivity implements View.OnClickLi
         CommonUtil.cancelProgressDialog();
         if (jsonObject != null) {
             if (jsonObject.optInt("status") == Constants.STATUS_SUCCESS) {
-                alert.dismiss();
+                if (alert != null)
+                    alert.dismiss();
                 CommonUtil.alertBox(this, jsonObject.optString("msg"), false, false);
 
                 if (jsonObject.optString("__eventId").equalsIgnoreCase((Constants.Events.UPDATE_EMAIL) + "")) {
