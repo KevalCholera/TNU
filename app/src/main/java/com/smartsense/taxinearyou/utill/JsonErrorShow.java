@@ -10,9 +10,9 @@ import org.json.JSONObject;
  * Created by Ronak on 10/15/2015.
  */
 public class JsonErrorShow {
-    public static void jsonErrorShow(JSONObject response, Activity a, View v) {
+    public static void jsonErrorShow(JSONObject response, View v) {
         String msg = response.optString("msg");
-        CommonUtil.showSnackBar(a, msg, v);
+        CommonUtil.showSnackBar(msg, v);
 //        switch (response.optJSONObject("json").optInt("errorCode")) {
 //            case 0:
 //                diloagMsgShow(a, msg);

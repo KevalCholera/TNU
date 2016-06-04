@@ -1,16 +1,28 @@
 package com.smartsense.taxinearyou.Fragments;
 
+import android.Manifest;
+import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.ActivityNotFoundException;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.design.widget.CoordinatorLayout;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -19,6 +31,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -41,6 +54,8 @@ import com.squareup.picasso.Picasso;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.HashMap;
@@ -51,7 +66,9 @@ public class FragmentMenu extends Fragment implements Response.Listener<JSONObje
     TextView tvAccountPersonName;
     TextView tvAccountGeneralInfo, tvAccountAccountSecurity, tvAccountPayment,
             tvAccountCredits, tvAccountLostItems, tvAccountLogout, tvAccountMore;
-    private int image = 1;
+    private final int REQUEST_CAMERA = 0;
+    private final int SELECT_FILE = 1;
+    public int whichSelect;
     ImageView ivEditProfilePhoto;
     Button btAccountActivateNow;
     CoordinatorLayout clSearch;
@@ -77,9 +94,8 @@ public class FragmentMenu extends Fragment implements Response.Listener<JSONObje
         if (SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_STATUS, "").equalsIgnoreCase("1"))
             btAccountActivateNow.setVisibility(View.GONE);
 
-        if (btAccountActivateNow.getVisibility() == View.VISIBLE) {
-            cvAccountPhoto.setBorderColor(ContextCompat.getColor(getActivity(), Color.GREEN));
-            ivEditProfilePhoto.setBackgroundResource(R.drawable.circular_view_yellow_colored);
+        if (btAccountActivateNow.getVisibility() != View.VISIBLE) {
+            cvAccountPhoto.setBorderColor(ContextCompat.getColor(getActivity(), R.color.green));
         }
 
         if (!TextUtils.isEmpty(SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_PROIMG, "")))
@@ -108,11 +124,9 @@ public class FragmentMenu extends Fragment implements Response.Listener<JSONObje
             case R.id.tvAccountLogout:
                 doLogout();
                 break;
-
             case R.id.tvAccountAccountSecurity:
                 startActivity(new Intent(getActivity(), AccountSecurity.class));
                 break;
-
             case R.id.tvAccountLostItems:
                 startActivity(new Intent(getActivity(), LostItem.class));
                 break;
@@ -126,9 +140,7 @@ public class FragmentMenu extends Fragment implements Response.Listener<JSONObje
                 startActivity(new Intent(getActivity(), More.class));
                 break;
             case R.id.ivEditProfilePhoto:
-                Intent intImage = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                intImage.setType("image/*");
-                startActivityForResult(intImage, image);
+                images();
                 break;
             case R.id.btAccountActivateNow:
                 activeAccount();
@@ -137,7 +149,7 @@ public class FragmentMenu extends Fragment implements Response.Listener<JSONObje
     }
 
     private void doLogout() {
-        final String tag = "doLogout";
+        final String tag = "do Logout";
         StringBuilder builder = new StringBuilder();
         JSONObject jsonData = new JSONObject();
 
@@ -170,42 +182,97 @@ public class FragmentMenu extends Fragment implements Response.Listener<JSONObje
 
     private void doUpload(Intent data) {
         final String tag = "Do Upload";
-        Uri uri = data.getData();
-        InputStream inputStream;
+        long lengthBitmap;
+        Bitmap bitmap;
 
-        try {
-            inputStream = getActivity().getContentResolver().openInputStream(uri);
-            Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
-            String imageBase64 = CommonUtil.BitMapToString(bitmap);
-
-            JSONObject jsonObject = new JSONObject();
-            jsonObject.put("userProfilePic", imageBase64);
-            jsonObject.put("token", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_ACCESS_TOKEN, ""));
-            jsonObject.put("userId", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_ID, ""));
-
-            String urlType = Constants.BASE_URL_PHOTO;
-            HashMap<String, String> params = new HashMap<>();
-            params.put("userProfilePic", imageBase64);
-            params.put("token", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_ACCESS_TOKEN, ""));
-            params.put("userId", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_ID, ""));
-            params.put("__eventid", Constants.Events.UPDATE_PROFILE_PIC + "");
-            params.put("json", jsonObject.toString());
-            Log.i("params", params.toString());
-
-            CommonUtil.jsonRequestPOST(getActivity(), getResources().getString(R.string.updating), urlType, params, tag, this, this);
-
-        } catch (FileNotFoundException | JSONException e) {
-            e.printStackTrace();
+        if (whichSelect == REQUEST_CAMERA) {
+            bitmap = (Bitmap) data.getExtras().get("data");
+            lengthBitmap = 100;
+        } else {
+            Uri uri = data.getData();
+            InputStream inputStream = null;
+            try {
+                inputStream = getActivity().getContentResolver().openInputStream(uri);
+            } catch (NullPointerException | FileNotFoundException e) {
+                e.printStackTrace();
+            }
+            bitmap = BitmapFactory.decodeStream(inputStream);
+            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+            byte[] imageInByte = stream.toByteArray();
+            lengthBitmap = imageInByte.length / 3000;
         }
+
+        if (lengthBitmap <= 500) {
+
+            try {
+                String imageBase64 = CommonUtil.BitMapToString(bitmap);
+
+                JSONObject jsonObject = new JSONObject();
+                jsonObject.put("userProfilePic", imageBase64);
+                jsonObject.put("token", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_ACCESS_TOKEN, ""));
+                jsonObject.put("userId", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_ID, ""));
+
+                String urlType = Constants.BASE_URL_PHOTO;
+                HashMap<String, String> params = new HashMap<>();
+                params.put("userProfilePic", imageBase64);
+                params.put("token", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_ACCESS_TOKEN, ""));
+                params.put("userId", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_ID, ""));
+                params.put("__eventid", Constants.Events.UPDATE_PROFILE_PIC + "");
+                params.put("json", jsonObject.toString());
+                Log.i("params", params.toString());
+
+                CommonUtil.jsonRequestPOST(getActivity(), getResources().getString(R.string.updating), urlType, params, tag, this, this);
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        } else
+            Toast.makeText(getActivity(), getResources().getString(R.string.less_100), Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == image && resultCode == Activity.RESULT_OK) {
-            doUpload(data);
-        }
+        if (resultCode == Activity.RESULT_OK && data != null)
+            switch (requestCode) {
+                case SELECT_FILE:
+                    doUpload(data);
+                    break;
+                case REQUEST_CAMERA:
+                    doUpload(data);
+                    break;
+            }
+        else
+            Toast.makeText(getContext(), getResources().getString(R.string.something_wrong), Toast.LENGTH_SHORT).show();
         super.onActivityResult(requestCode, resultCode, data);
     }
+
+
+    public void images() {
+        final CharSequence[] items = {getResources().getString(R.string.take_photo), getResources().getString(R.string.select_pic), getResources().getString(R.string.cancel)};
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setTitle(getResources().getString(R.string.select_source));
+        builder.setCancelable(false);
+        builder.setItems(items, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int item) {
+                if (items[item].equals(getResources().getString(R.string.take_photo))) {
+                    whichSelect = REQUEST_CAMERA;
+                    Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+                    startActivityForResult(intent, REQUEST_CAMERA);
+                } else if (items[item].equals(getResources().getString(R.string.select_pic))) {
+                    whichSelect = SELECT_FILE;
+                    Intent intImage = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                    intImage.setType("image/*");
+                    startActivityForResult(intImage, SELECT_FILE);
+                } else if (items[item].equals(getResources().getString(R.string.cancel))) {
+                    dialog.dismiss();
+                }
+            }
+        });
+        builder.show();
+    }
+
 
     @Override
     public void onErrorResponse(VolleyError volleyError) {
@@ -219,6 +286,7 @@ public class FragmentMenu extends Fragment implements Response.Listener<JSONObje
         if (response != null) {
             try {
                 if (response.getInt("status") == Constants.STATUS_SUCCESS) {
+                    CommonUtil.successToastShowing(getActivity(), response);
                     switch (response.getInt("__eventid")) {
                         case Constants.Events.EVENT_LOGOUT:
                             SharedPreferenceUtil.clear();
@@ -227,20 +295,14 @@ public class FragmentMenu extends Fragment implements Response.Listener<JSONObje
                             getActivity().finish();
                             break;
                         case Constants.Events.UPDATE_PROFILE_PIC:
+                            Picasso.with(getActivity())
+                                    .load(response.optJSONObject("json").optJSONObject("user").optString("profilePic"))
+                                    .error(R.mipmap.imgtnulogo)
+                                    .placeholder(R.mipmap.imgtnulogo)
+                                    .into(cvAccountPhoto);
 
-                            if (!TextUtils.isEmpty(Constants.BASE_URL_IMAGE_POSTFIX + response.optJSONObject("json").optJSONObject("user").optString("profilePic")))
-                                Picasso.with(getActivity())
-                                        .load(response.optJSONObject("json").optJSONObject("user").optString("profilePic"))
-                                        .error(R.mipmap.imgtnulogo)
-                                        .placeholder(R.mipmap.imgtnulogo)
-                                        .into(cvAccountPhoto);
-
-                            CommonUtil.successToastShowing(getActivity(), response);
                             SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_USER_PROIMG, Constants.BASE_URL_IMAGE_POSTFIX + response.optJSONObject("json").optJSONObject("user").optString("profilePic"));
                             SharedPreferenceUtil.save();
-                            break;
-                        case Constants.Events.ACTIVE_ACCOUNT:
-                            CommonUtil.successToastShowing(getActivity(), response);
                             break;
                     }
                 } else {

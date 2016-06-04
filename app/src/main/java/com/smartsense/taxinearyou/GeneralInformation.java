@@ -4,9 +4,7 @@ import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.text.Editable;
 import android.text.TextUtils;
-import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -52,15 +50,13 @@ public class GeneralInformation extends AppCompatActivity implements Response.Li
             public void onClick(View v) {
                 CommonUtil.closeKeyboard(GeneralInformation.this);
                 if (TextUtils.isEmpty(etGeneralFirstName.getText().toString()) || TextUtils.isEmpty(etGeneralLastName.getText().toString()) || TextUtils.isEmpty(etGeneralMobile.getText().toString()))
-                    CommonUtil.showSnackBar(GeneralInformation.this, getResources().getString(R.string.enter_fields_below), clGeneralInfo);
+                    CommonUtil.showSnackBar(getResources().getString(R.string.enter_fields_below), clGeneralInfo);
                 else if (TextUtils.isEmpty(etGeneralFirstName.getText().toString()))
-                    CommonUtil.showSnackBar(GeneralInformation.this, getString(R.string.enter_first_name), clGeneralInfo);
+                    CommonUtil.showSnackBar(getString(R.string.enter_first_name), clGeneralInfo);
                 else if (TextUtils.isEmpty(etGeneralLastName.getText().toString()))
-                    CommonUtil.showSnackBar(GeneralInformation.this, getString(R.string.enter_last_name), clGeneralInfo);
-                else if (TextUtils.isEmpty(etGeneralMobile.getText().toString()))
-                    CommonUtil.showSnackBar(GeneralInformation.this, getString(R.string.enter_contact_no), clGeneralInfo);
+                    CommonUtil.showSnackBar(getString(R.string.enter_last_name), clGeneralInfo);
                 else if (etGeneralMobile.length() != 10)
-                    CommonUtil.showSnackBar(GeneralInformation.this, getString(R.string.enter_valid_contact), clGeneralInfo);
+                    CommonUtil.showSnackBar(getString(R.string.enter_valid_contact), clGeneralInfo);
                 else
                     contactAvailability();
             }
@@ -79,8 +75,7 @@ public class GeneralInformation extends AppCompatActivity implements Response.Li
             e.printStackTrace();
         }
 
-        CommonUtil.jsonRequestNoProgressBar(builder.toString(), tag, this, this);
-
+        CommonUtil.jsonRequestGET(this, getResources().getString(R.string.get_data), builder.toString(), tag, this, this);
     }
 
     private void generalInfo() {

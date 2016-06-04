@@ -303,6 +303,7 @@
     <dimen name="btAccountSecurityUpdatePadding">30dp</dimen>
     <dimen name="cvPartnerPicMargin">30dp</dimen>
     <dimen name="llBookNowTodayTomorrow">1dp</dimen>
+    <dimen name="cvPartnerPic">1dp</dimen>
     <dimen name="ivBackWidthSize">20dp</dimen>
     <dimen name="ivBackWidthMargin">10dp</dimen>
     <dimen name="drawablePaddingMore">13dp</dimen>

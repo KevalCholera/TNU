@@ -9,7 +9,6 @@ import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,7 +36,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -53,12 +51,11 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
     private AlertDialog alert;
     Boolean check = false;
     Boolean timeChange;
-    SimpleDateFormat timeStampFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm aa");
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_book, container, false);
+
         tvBookFrom = (TextView) rootView.findViewById(R.id.tvBookFrom);
         tvBookTo = (TextView) rootView.findViewById(R.id.tvBookTo);
         tvBookvia1 = (TextView) rootView.findViewById(R.id.tvBookvia1);
@@ -97,6 +94,7 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
         llBookVia2.setOnClickListener(this);
         ivBookDeleteVia1.setOnClickListener(this);
         ivBookDeleteVia2.setOnClickListener(this);
+
         timeChange = true;
         setDefaultValues();
         getServerDateTime();
@@ -106,7 +104,7 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
 
     private String updateTime(int hours, int mins) {
 
-        String timeSet = "";
+        String timeSet;
         if (hours > 12) {
             hours -= 12;
             timeSet = "PM";
@@ -139,9 +137,9 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
             timeSlice = timeSet;
         } else {
             try {
-                hrs = new SimpleDateFormat("hh").format(timeStampFormat.parse(daTime));
-                minute = new SimpleDateFormat("mm").format(timeStampFormat.parse(daTime));
-                timeSlice = new SimpleDateFormat("aa").format(timeStampFormat.parse(daTime));
+                hrs = Constants.DATE_FORMAT_SMALL_TIME_HOUR.format(Constants.DATE_FORMAT_SET.parse(daTime));
+                minute = Constants.DATE_FORMAT_TIME_MIN.format(Constants.DATE_FORMAT_SET.parse(daTime));
+                timeSlice = Constants.DATE_FORMAT_TIME_AM_PM.format(Constants.DATE_FORMAT_SET.parse(daTime));
             } catch (ParseException e) {
                 e.printStackTrace();
             }
@@ -150,8 +148,8 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
         if (rbBookToday.isChecked()) {
             Date dateSet, dateGet;
             try {
-                dateSet = timeStampFormat.parse(daTime);
-                dateGet = timeStampFormat.parse((daTime.substring(0, daTime.indexOf(' '))) + " " + hour + ':' + minutes + " " + timeSet);
+                dateSet = Constants.DATE_FORMAT_SET.parse(daTime);
+                dateGet = Constants.DATE_FORMAT_SET.parse((daTime.substring(0, daTime.indexOf(' '))) + " " + hour + ':' + minutes + " " + timeSet);
                 long millisecondSet = dateSet.getTime();
                 long millisecondGet = dateGet.getTime();
                 if (millisecondGet < millisecondSet) {
@@ -172,23 +170,22 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
 
     public void setDateTime(Boolean check, String dateTime) {
         final int id = llBookNowTodayTomorrow.getCheckedRadioButtonId();
-        SimpleDateFormat timeStampFormat1 = new SimpleDateFormat("dd-MM-yyyy");
         Date Now = new Date();
         Calendar calendar;
-        final String finalDateNow1 = timeStampFormat.format(Now);
+        final String finalDateNow1 = Constants.DATE_FORMAT_SET.format(Now);
         if (rbBookNow.getId() != id) {
             int hour = 0, minute = 0;
             try {
-                hour = Integer.valueOf(new SimpleDateFormat("HH").format(timeStampFormat.parse(dateTime)));
-                minute = Integer.valueOf(new SimpleDateFormat("mm").format(timeStampFormat.parse(dateTime)));
+                hour = Integer.valueOf(Constants.DATE_FORMAT_BIG_TIME_HOUR.format(Constants.DATE_FORMAT_SET.parse(dateTime)));
+                minute = Integer.valueOf(Constants.DATE_FORMAT_TIME_MIN.format(Constants.DATE_FORMAT_SET.parse(dateTime)));
             } catch (ParseException e) {
                 e.printStackTrace();
             }
-            final String finalDateNow2 = timeStampFormat1.format(Now);
+            final String finalDateNow2 = Constants.DATE_FORMAT_ONLY_DATE.format(Now);
             calendar = Calendar.getInstance();
             calendar.add(Calendar.DAY_OF_YEAR, 1);
             Date tomorrow = calendar.getTime();
-            final String finalDateTomorrow = timeStampFormat1.format(tomorrow);
+            final String finalDateTomorrow = Constants.DATE_FORMAT_ONLY_DATE.format(tomorrow);
             if (rbBookToday.getId() == id) {
                 tvBookDateTime.setText(finalDateNow2 + " " + updateTime(hour, minute));
                 tvBookDateTime.setTag(finalDateNow2 + " " + updateTime(hour, minute));
@@ -267,30 +264,7 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
                 break;
 
             case R.id.tvBookSearchCars:
-                if (TextUtils.isEmpty(tvBookFrom.getText().toString()) && TextUtils.isEmpty(tvBookTo.getText().toString()))
-                    CommonUtil.showSnackBar(getActivity(), getResources().getString(R.string.enter_fields_below), clSearch);
-                else if (TextUtils.isEmpty(tvBookFrom.getText().toString()))
-                    CommonUtil.showSnackBar(getActivity(), getResources().getString(R.string.pls_enter_pick), clSearch);
-                else if (TextUtils.isEmpty(tvBookTo.getText().toString()))
-                    CommonUtil.showSnackBar(getActivity(), getResources().getString(R.string.pls_enter_drop), clSearch);
-                else if (llBookVia1.getVisibility() == View.VISIBLE && llBookVia2.getVisibility() == View.VISIBLE && TextUtils.isEmpty(tvBookvia1.getText().toString()) && TextUtils.isEmpty(tvBookvia2.getText().toString()))
-                    CommonUtil.showSnackBar(getActivity(), getResources().getString(R.string.pls_ent_via_fields), clSearch);
-                else if (llBookVia1.getVisibility() == View.VISIBLE && llBookVia2.getVisibility() == View.VISIBLE && TextUtils.isEmpty(tvBookvia1.getText().toString()))
-                    CommonUtil.showSnackBar(getActivity(), getResources().getString(R.string.pls_ent_via1_loc), clSearch);
-                else if (llBookVia1.getVisibility() == View.VISIBLE && llBookVia2.getVisibility() == View.VISIBLE && TextUtils.isEmpty(tvBookvia2.getText().toString()))
-                    CommonUtil.showSnackBar(getActivity(), getResources().getString(R.string.pls_ent_via2_loc), clSearch);
-                else if (llBookVia1.getVisibility() == View.VISIBLE && TextUtils.isEmpty(tvBookvia1.getText().toString()))
-                    CommonUtil.showSnackBar(getActivity(), getResources().getString(R.string.pls_ent_via1_loc), clSearch);
-                else if (llBookVia2.getVisibility() == View.VISIBLE && TextUtils.isEmpty(tvBookvia2.getText().toString()))
-                    CommonUtil.showSnackBar(getActivity(), getResources().getString(R.string.pls_ent_via2_loc), clSearch);
-                else
-                    startActivity(new Intent(getActivity(), SearchCars.class)
-                            .putExtra("tvBookDateTime", tvBookDateTime.getText().toString())
-                            .putExtra("tvBookLuggage", (String) tvBookLuggage.getTag())
-                            .putExtra("luggageDescription", tvBookLuggage.getText().toString())
-                            .putExtra("passengerDescription", tvBookPassenger.getText().toString())
-                            .putExtra("duration", rbBookNow.isChecked() ? "1" : rbBookToday.isChecked() ? "2" : "3")
-                            .putExtra("tvBookPassenger", (String) tvBookPassenger.getTag()));
+                checkCondition();
                 break;
 
             case R.id.ivBookVia:
@@ -334,7 +308,7 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
                 break;
             case R.id.imgBookFromToReverse:
                 if (TextUtils.isEmpty(tvBookFrom.getText().toString()) || TextUtils.isEmpty(tvBookTo.getText().toString()))
-                    CommonUtil.showSnackBar(getActivity(), getString(R.string.enter_fields_below), clSearch);
+                    CommonUtil.showSnackBar(getString(R.string.enter_fields_below), clSearch);
                 else {
                     String reverseFrom = tvBookFrom.getText().toString();
                     tvBookFrom.setText(tvBookTo.getText().toString());
@@ -348,16 +322,46 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
         }
     }
 
+    public void checkCondition() {
+        if (TextUtils.isEmpty(tvBookFrom.getText().toString()) && TextUtils.isEmpty(tvBookTo.getText().toString()))
+            CommonUtil.showSnackBar(getResources().getString(R.string.enter_fields_below), clSearch);
+        else if (TextUtils.isEmpty(tvBookFrom.getText().toString()))
+            CommonUtil.showSnackBar(getResources().getString(R.string.pls_enter_pick), clSearch);
+        else if (TextUtils.isEmpty(tvBookTo.getText().toString()))
+            CommonUtil.showSnackBar(getResources().getString(R.string.pls_enter_drop), clSearch);
+        else if (llBookVia1.getVisibility() == View.VISIBLE && llBookVia2.getVisibility() == View.VISIBLE && TextUtils.isEmpty(tvBookvia1.getText().toString()) && TextUtils.isEmpty(tvBookvia2.getText().toString()))
+            CommonUtil.showSnackBar(getResources().getString(R.string.pls_ent_via_fields), clSearch);
+        else if (llBookVia1.getVisibility() == View.VISIBLE && llBookVia2.getVisibility() == View.VISIBLE && TextUtils.isEmpty(tvBookvia1.getText().toString()))
+            CommonUtil.showSnackBar(getResources().getString(R.string.pls_ent_via1_loc), clSearch);
+        else if (llBookVia1.getVisibility() == View.VISIBLE && llBookVia2.getVisibility() == View.VISIBLE && TextUtils.isEmpty(tvBookvia2.getText().toString()))
+            CommonUtil.showSnackBar(getResources().getString(R.string.pls_ent_via2_loc), clSearch);
+        else if (llBookVia1.getVisibility() == View.VISIBLE && TextUtils.isEmpty(tvBookvia1.getText().toString()))
+            CommonUtil.showSnackBar(getResources().getString(R.string.pls_ent_via1_loc), clSearch);
+        else if (llBookVia2.getVisibility() == View.VISIBLE && TextUtils.isEmpty(tvBookvia2.getText().toString()))
+            CommonUtil.showSnackBar(getResources().getString(R.string.pls_ent_via2_loc), clSearch);
+        else
+            try {
+                startActivity(new Intent(getActivity(), SearchCars.class)
+                        .putExtra("tvBookDateTime", Constants.DATE_FORMAT_SEND.format(Constants.DATE_FORMAT_SET.parse(tvBookDateTime.getText().toString())))
+                        .putExtra("tvBookLuggage", (String) tvBookLuggage.getTag())
+                        .putExtra("luggageDescription", tvBookLuggage.getText().toString())
+                        .putExtra("passengerDescription", tvBookPassenger.getText().toString())
+                        .putExtra("duration", rbBookNow.isChecked() ? "1" : rbBookToday.isChecked() ? "2" : "3")
+                        .putExtra("tvBookPassenger", (String) tvBookPassenger.getTag()));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+    }
+
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        // check if the request code is same as what is passed  here it is 2
         String message;
         if (resultCode == Activity.RESULT_OK) {
             message = data.getStringExtra("AreaName");
             switch (data.getIntExtra("typeAddress", 0)) {
                 case 1:
                     if (tvBookTo.getText().toString().equalsIgnoreCase(message) || tvBookvia1.getText().toString().equalsIgnoreCase(message) || tvBookvia2.getText().toString().equalsIgnoreCase(message))
-                        CommonUtil.showSnackBar(getActivity(), getString(R.string.same_filled_error), clSearch);
+                        CommonUtil.showSnackBar(getString(R.string.same_filled_error), clSearch);
                     else {
                         tvBookFrom.setText(message);
                         SharedPreferenceUtil.putValue(Constants.FROM_ADDRESS, data.getStringExtra("address"));
@@ -365,7 +369,7 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
                     break;
                 case 2:
                     if (tvBookFrom.getText().toString().equalsIgnoreCase(message) || tvBookvia1.getText().toString().equalsIgnoreCase(message) || tvBookvia2.getText().toString().equalsIgnoreCase(message))
-                        CommonUtil.showSnackBar(getActivity(), getString(R.string.same_filled_error), clSearch);
+                        CommonUtil.showSnackBar(getString(R.string.same_filled_error), clSearch);
                     else {
                         tvBookTo.setText(message);
                         SharedPreferenceUtil.putValue(Constants.TO_ADDRESS, data.getStringExtra("address"));
@@ -373,7 +377,7 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
                     break;
                 case 3:
                     if (tvBookTo.getText().toString().equalsIgnoreCase(message) || tvBookFrom.getText().toString().equalsIgnoreCase(message) || tvBookvia2.getText().toString().equalsIgnoreCase(message))
-                        CommonUtil.showSnackBar(getActivity(), getString(R.string.same_filled_error), clSearch);
+                        CommonUtil.showSnackBar(getString(R.string.same_filled_error), clSearch);
                     else {
                         tvBookvia1.setText(message);
                         SharedPreferenceUtil.putValue(Constants.VIA_ADDRESS, data.getStringExtra("address"));
@@ -381,7 +385,7 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
                     break;
                 case 4:
                     if (tvBookTo.getText().toString().equalsIgnoreCase(message) || tvBookvia1.getText().toString().equalsIgnoreCase(message) || tvBookFrom.getText().toString().equalsIgnoreCase(message))
-                        CommonUtil.showSnackBar(getActivity(), getString(R.string.same_filled_error), clSearch);
+                        CommonUtil.showSnackBar(getString(R.string.same_filled_error), clSearch);
                     else {
                         tvBookvia2.setText(message);
                         SharedPreferenceUtil.putValue(Constants.VIA2_ADDRESS, data.getStringExtra("address"));
@@ -527,7 +531,7 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
         if (jsonObject != null) {
             if (jsonObject.optInt("status") == Constants.STATUS_SUCCESS) {
                 try {
-                    String dateTime = timeStampFormat.format(new SimpleDateFormat("dd MM yyyy HH mm ss").parse(jsonObject.optJSONObject("json").optString("serverTime")));
+                    String dateTime = Constants.DATE_FORMAT_SET.format(Constants.DATE_FORMAT_GET.parse(jsonObject.optJSONObject("json").optString("serverTime")));
                     if (timeChange) {
                         tvBookDateTime.setText(dateTime);
                         tvBookDateTime.setTag(dateTime);

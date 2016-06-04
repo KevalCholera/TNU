@@ -18,9 +18,8 @@
             android:id="@+id/tvElementSearchCarsName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/lytfllc"
-            android:textSize="@dimen/tvTitlesSizeAll"
-            android:textStyle="bold" />
+            android:textColor="@color/black"
+            android:textSize="@dimen/tvTitlesSizeAll" />
 
         <RatingBar
             android:id="@+id/rbElementSearchCars"
@@ -44,8 +43,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginRight="@dimen/lyElementSearchCarsWaitingTimeMarginTopRight"
-                android:src="@android:drawable/presence_invisible" />
+                android:layout_marginRight="@dimen/lyElementSearchCarsWaitingTimeMarginTopRight" />
 
 
             <TextView
@@ -54,7 +52,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="@dimen/margin_5"
                 android:singleLine="true"
-                android:text="@string/hello"
                 android:textColor="@color/black"
                 android:textSize="@dimen/tvTitlesSizeAll" />
 
@@ -65,7 +62,6 @@
                 android:ellipsize="end"
                 android:gravity="right"
                 android:singleLine="true"
-                android:text="@string/waitingTime"
                 android:textSize="@dimen/lyElementSearchCarsWaitingTimeSize" />
 
         </LinearLayout>
@@ -84,9 +80,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="@string/textvalue1"
-            android:textSize="@dimen/tvElementSearchCarsMoneySize"
-            android:textStyle="bold" />
+            android:textColor="@color/black"
+            android:textSize="@dimen/tvElementSearchCarsMoneySize" />
 
         <TextView
             android:id="@+id/tvSearchCarsBookNow"

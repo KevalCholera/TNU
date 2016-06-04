@@ -1,5 +1,7 @@
 package com.smartsense.taxinearyou.utill;
 
+import java.text.SimpleDateFormat;
+
 public class Constants {
     public static final int STATUS_SUCCESS = 200;
     public static final int STATUS_FAIL = 500;
@@ -27,7 +29,18 @@ public class Constants {
     public static final String VIA2_ADDRESS = "via2_add";
     public static final String EXTRAS = "extras";
     public static final String GOOGLE_TRIP_API = "AIzaSyDrWeTlPdYv-p9IfH6kHawV6s-cffgBQPI";
-
+    public static final SimpleDateFormat DATE_FORMAT_SET = new SimpleDateFormat("dd-MM-yyyy hh:mm aa");
+    public static final SimpleDateFormat DATE_FORMAT_GET = new SimpleDateFormat("dd MM yyyy HH mm ss");
+    public static final SimpleDateFormat DATE_FORMAT_SEND = new SimpleDateFormat("dd-MM-yyyy HH:mm");
+    public static final SimpleDateFormat DATE_FORMAT_ONLY_DATE = new SimpleDateFormat("dd-MM-yyyy");
+    public static final SimpleDateFormat DATE_FORMAT_ONLY_TIME = new SimpleDateFormat("hh:mm aa");
+    public static final SimpleDateFormat DATE_FORMAT_DATE_TIME = new SimpleDateFormat("dd-MM-yyyy \n hh:mm aa");
+    public static final SimpleDateFormat DATE_FORMAT_FULL_DATE_TIME = new SimpleDateFormat("dd-MMMM-yyyy HH:mm");
+    public static final SimpleDateFormat DATE_FORMAT_TIME_MIN = new SimpleDateFormat("mm");
+    public static final SimpleDateFormat DATE_FORMAT_SMALL_TIME_HOUR = new SimpleDateFormat("hh");
+    public static final SimpleDateFormat DATE_FORMAT_BIG_TIME_HOUR = new SimpleDateFormat("HH");
+    public static final SimpleDateFormat DATE_FORMAT_TIME_AM_PM = new SimpleDateFormat("aa");
+    public static final SimpleDateFormat DATE_FORMAT_EXTRA = new SimpleDateFormat("dd-MMM-yyyy HH:mm");
     public class PrefKeys {
 
         public static final String PREF_CITY_ID = "city_id";

@@ -57,7 +57,7 @@ public class PartnerDetails extends AppCompatActivity {
                     .placeholder(R.mipmap.imgtnulogo)
                     .into(cvPartnerPic);
 
-        tvPartnerMoney.setText(getIntent().getStringExtra("ETA"));
+        tvPartnerMoney.setText(getIntent().getStringExtra("ETA") + ".00");
 
         partnerName = getIntent().getStringExtra("partnerName");
         waitingTime = getIntent().getStringExtra("waitingTime");

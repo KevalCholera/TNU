@@ -14,7 +14,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="@dimen/lyPaddingMainAll">
+            android:padding="@dimen/vMarginTopBottomAll">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -26,7 +26,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="1"
-                    android:gravity="center"
+                    android:gravity="start"
                     android:orientation="horizontal">
 
                     <ImageView
@@ -71,7 +71,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/vHeightWidthAll"
-                android:layout_marginBottom="@dimen/vtvBookingInfoMarginTopBottomAll"
+                android:layout_marginBottom="@dimen/vMarginTopBottomAll"
                 android:layout_marginTop="@dimen/vMarginTopBottomAll"
                 android:background="@android:color/darker_gray" />
 
@@ -180,8 +180,8 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/vHeightWidthAll"
-                android:layout_marginBottom="@dimen/vtvBookingInfoMarginTopBottomAll"
-                android:layout_marginTop="@dimen/vtvBookingInfoMarginTopBottomAll"
+                android:layout_marginBottom="@dimen/vMarginTopBottomAll"
+                android:layout_marginTop="@dimen/vMarginTopBottomAll"
                 android:background="@android:color/darker_gray" />
 
             <LinearLayout
@@ -353,8 +353,8 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/vHeightWidthAll"
-                android:layout_marginBottom="@dimen/vtvBookingInfoMarginTopBottomAll"
-                android:layout_marginTop="@dimen/vtvBookingInfoMarginTopBottomAll"
+                android:layout_marginBottom="@dimen/vMarginTopBottomAll"
+                android:layout_marginTop="@dimen/vMarginTopBottomAll"
                 android:background="@android:color/darker_gray" />
 
             <LinearLayout
@@ -363,6 +363,7 @@
                 android:orientation="horizontal">
 
                 <LinearLayout
+                    android:id="@+id/lyBookingInfoETA"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -454,7 +455,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/vHeightWidthAll"
-                android:layout_marginTop="@dimen/vtvBookingInfoMarginTopBottomAll"
+                android:layout_marginTop="@dimen/vMarginTopBottomAll"
                 android:background="@android:color/darker_gray" />
 
 

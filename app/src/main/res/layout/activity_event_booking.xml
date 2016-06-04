@@ -145,6 +145,8 @@
                 <RadioGroup
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/lyPadding10"
+                    android:layout_marginTop="@dimen/lyPadding10"
                     android:orientation="horizontal">
 
                     <RadioButton
@@ -152,7 +154,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:button="@drawable/radio_button_popup"
+                        android:button="@drawable/radio_button_event_booking"
                         android:checked="true"
                         android:text="@string/one_way"
                         android:textColor="@color/background" />
@@ -163,7 +165,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/rbMarginTopBottomStartEndAll"
                         android:layout_weight="1"
-                        android:button="@drawable/radio_button_popup"
+                        android:button="@drawable/radio_button_event_booking"
                         android:text="@string/returns"
                         android:textColor="@color/background" />
 
@@ -206,7 +208,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/tvMarginTopBottomStartEndAll"
-                        android:layout_weight="1.5"
+                        android:layout_weight="1"
                         android:orientation="vertical">
 
                         <TextView

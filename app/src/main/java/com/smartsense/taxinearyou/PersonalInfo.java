@@ -1,7 +1,6 @@
 package com.smartsense.taxinearyou;
 
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -87,17 +86,17 @@ public class PersonalInfo extends AppCompatActivity implements View.OnClickListe
 
     public void checkCondition() {
         if (TextUtils.isEmpty(etPersonalInfoName.getText().toString()))
-            CommonUtil.showSnackBar(PersonalInfo.this, getString(R.string.enter_first_name), clPersonalInfo);
+            CommonUtil.showSnackBar(getString(R.string.enter_first_name), clPersonalInfo);
         else if (TextUtils.isEmpty(etPersonalInfolastName.getText().toString()))
-            CommonUtil.showSnackBar(PersonalInfo.this, getString(R.string.enter_last_name), clPersonalInfo);
+            CommonUtil.showSnackBar(getString(R.string.enter_last_name), clPersonalInfo);
         else if (TextUtils.isEmpty(etPersonalInfoNo.getText().toString()))
-            CommonUtil.showSnackBar(PersonalInfo.this, getString(R.string.enter_contact_no), clPersonalInfo);
+            CommonUtil.showSnackBar(getString(R.string.enter_contact_no), clPersonalInfo);
         else if (etPersonalInfoNo.length() < 7 || etPersonalInfoNo.length() > 13)
-            CommonUtil.showSnackBar(PersonalInfo.this, getString(R.string.enter_valid_contact_no), clPersonalInfo);
+            CommonUtil.showSnackBar(getString(R.string.enter_valid_contact_no), clPersonalInfo);
         else if (TextUtils.isEmpty(etPersonalInfoEmail.getText().toString()))
-            CommonUtil.showSnackBar(PersonalInfo.this, getString(R.string.enter_email), clPersonalInfo);
+            CommonUtil.showSnackBar(getString(R.string.enter_email), clPersonalInfo);
         else if (!CommonUtil.isValidEmail(etPersonalInfoEmail.getText().toString()))
-            CommonUtil.showSnackBar(PersonalInfo.this, getString(R.string.enter_valid_email_id), clPersonalInfo);
+            CommonUtil.showSnackBar(getString(R.string.enter_valid_email_id), clPersonalInfo);
         else {
             try {
                 JSONObject jsonData = new JSONObject();

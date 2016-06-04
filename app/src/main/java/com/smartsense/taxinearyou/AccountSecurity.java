@@ -187,9 +187,6 @@ public class AccountSecurity extends AppCompatActivity implements View.OnClickLi
             case R.id.btPopupSecurityAlternateEmailSubmit:
                 alternateEmailChanged();
                 break;
-            case R.id.btPopupSecurityQuestionChangeConfirm:
-                securityQuestionChanged();
-                break;
             case R.id.btPopupSecurityPasswordSubmit:
                 passwordChanged();
                 break;
@@ -307,62 +304,39 @@ public class AccountSecurity extends AppCompatActivity implements View.OnClickLi
     }
 
     public void emailChanged() {
-        if (TextUtils.isEmpty(etPopupSecurityEmail.getText().toString())) {
-            CommonUtil.showSnackBar(AccountSecurity.this, getString(R.string.enter_email_id), clPopUpMain);
-        } else if (CommonUtil.isValidEmail(etPopupSecurityEmail.getText().toString())) {
-            CommonUtil.showSnackBar(AccountSecurity.this, getString(R.string.enter_valid_email_id), clPopUpMain);
-        } else if (TextUtils.isEmpty(etPopupSecurityConfirmEmail.getText().toString())) {
-            CommonUtil.showSnackBar(AccountSecurity.this, getString(R.string.enter_confirm_email_id), clPopUpMain);
+        if (CommonUtil.isValidEmail(etPopupSecurityEmail.getText().toString())) {
+            CommonUtil.showSnackBar(getString(R.string.pls_email), clPopUpMain);
         } else if (!CommonUtil.isValidEmail(etPopupSecurityConfirmEmail.getText().toString())) {
-            CommonUtil.showSnackBar(AccountSecurity.this, getString(R.string.enter_valid_confirm_email_id), clPopUpMain);
+            CommonUtil.showSnackBar(getString(R.string.enter_not_same), clPopUpMain);
         } else
             changeEmailAPI();
     }
 
     public void alternateEmailChanged() {
-        if (TextUtils.isEmpty(etPopupSecurityAlternateEmail.getText().toString())) {
-            CommonUtil.showSnackBar(AccountSecurity.this, getString(R.string.enter_alternate_email), clPopUpMain);
-        } else if (CommonUtil.isValidEmail(etPopupSecurityAlternateEmail.getText().toString())) {
-            CommonUtil.showSnackBar(AccountSecurity.this, getString(R.string.enter_valid_alternate_email), clPopUpMain);
-        } else if (TextUtils.isEmpty(etPopupSecurityConfirmAlternateEmail.getText().toString())) {
-            CommonUtil.showSnackBar(AccountSecurity.this, getString(R.string.enter_confirm_alternate_email), clPopUpMain);
+        if (CommonUtil.isValidEmail(etPopupSecurityAlternateEmail.getText().toString())) {
+            CommonUtil.showSnackBar(getString(R.string.pls_ent_alt), clPopUpMain);
         } else if (!CommonUtil.isValidEmail(etPopupSecurityConfirmAlternateEmail.getText().toString())) {
-            CommonUtil.showSnackBar(AccountSecurity.this, getString(R.string.enter_valid_confirm_alternate_email), clPopUpMain);
+            CommonUtil.showSnackBar(getString(R.string.enter_alt_not_same), clPopUpMain);
         } else
             changeEmailAPI();
     }
 
-    public void securityQuestionChanged() {
-        if (TextUtils.isEmpty(etPopupSecurityQuestionChangeAnswer1.getText().toString())) {
-            CommonUtil.showSnackBar(AccountSecurity.this, getString(R.string.enter_alternate_email), clPopUpMain);
-        } else if (TextUtils.isEmpty(etPopupSecurityQuestionChangeAnswer1.getText().toString())) {
-            CommonUtil.showSnackBar(AccountSecurity.this, getString(R.string.enter_confirm_alternate_email), clPopUpMain);
-        } else
-            changeByLinkAPI();
-    }
-
     public void passwordChanged() {
-        if (TextUtils.isEmpty(etPopupSecurityPassword.getText().toString())) {
-            CommonUtil.showSnackBar(AccountSecurity.this, getString(R.string.enter_pass), clPopUpMain);
-        } else if (etPopupSecurityPassword.length() < 7 || etPopupSecurityPassword.length() > 13) {
-            CommonUtil.showSnackBar(AccountSecurity.this, getString(R.string.enter_valid_pass), clPopUpMain);
-        } else if (TextUtils.isEmpty(etPopupSecurityConfirmPassword.getText().toString())) {
-            CommonUtil.showSnackBar(AccountSecurity.this, getString(R.string.enter_confirm_pass), clPopUpMain);
-        } else if (etPopupSecurityConfirmPassword.length() < 7 || etPopupSecurityConfirmPassword.length() > 13) {
-            CommonUtil.showSnackBar(AccountSecurity.this, getString(R.string.enter_valid_confirm_pass), clPopUpMain);
+        if (etPopupSecurityPassword.length() < 7 || etPopupSecurityPassword.length() > 13) {
+            CommonUtil.showSnackBar(getString(R.string.enter_valid_pass), clPopUpMain);
+        } else if (!etPopupSecurityConfirmPassword.getText().toString().equalsIgnoreCase(etPopupSecurityPassword.getText().toString())) {
+            CommonUtil.showSnackBar(getString(R.string.conpass_pass_same), clPopUpMain);
         } else
             changePasswordAPI();
     }
 
     public void verifyingAnswers() {
-        if (TextUtils.isEmpty(etPopupSecurityQuestionAnswer1.getText().toString()))
-            CommonUtil.showSnackBar(this, getResources().getString(R.string.please_enter_answer), clPopUpMain);
-        else if (TextUtils.isEmpty(etPopupSecurityQuestionAnswer2.getText().toString()))
-            CommonUtil.showSnackBar(this, getResources().getString(R.string.please_enter_answer), clPopUpMain);
+        if (TextUtils.isEmpty(etPopupSecurityQuestionAnswer1.getText().toString()) || TextUtils.isEmpty(etPopupSecurityQuestionAnswer2.getText().toString()))
+            CommonUtil.showSnackBar(getResources().getString(R.string.enter_fields_below), clPopUpMain);
         else if (!etPopupSecurityQuestionAnswer1.getText().toString().equalsIgnoreCase(SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_ANSWER1, "")))
-            CommonUtil.showSnackBar(this, getResources().getString(R.string.answer_not_same), clPopUpMain);
+            CommonUtil.showSnackBar(getResources().getString(R.string.answer_not_same), clPopUpMain);
         else if (!etPopupSecurityQuestionAnswer2.getText().toString().equalsIgnoreCase(SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_ANSWER2, "")))
-            CommonUtil.showSnackBar(this, getResources().getString(R.string.answer_not_same), clPopUpMain);
+            CommonUtil.showSnackBar(getResources().getString(R.string.answer_not_same), clPopUpMain);
         else
             securityQuestionConfirm();
     }

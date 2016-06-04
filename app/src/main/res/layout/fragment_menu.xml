@@ -31,7 +31,7 @@
             android:layout_alignTop="@+id/cvAccountPhoto"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="@dimen/ivEditProfilePhoto"
-            android:background="@drawable/circular_view_blue_colored" />
+            android:src="@mipmap/img_edit" />
 
         <TextView
             android:id="@+id/tvAccountPersonName"

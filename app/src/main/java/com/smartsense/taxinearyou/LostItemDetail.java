@@ -6,6 +6,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.smartsense.taxinearyou.utill.Constants;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -38,7 +40,7 @@ public class LostItemDetail extends AppCompatActivity {
             tvLostItemDetailTo.setText(lostItemDetails.optString("toArea"));
             tvLostItemDetailProvider.setText(lostItemDetails.optString("partnerName"));
             tvLostItemDetailStatusDescription.setText(lostItemDetails.optString("statusMsg"));
-            tvLostItemDetailDateTime.setText(new SimpleDateFormat("dd.MM.yyyy \n hh:mm aa").format(new SimpleDateFormat("dd-MMMM-yyyy HH:mm").parse(lostItemDetails.optString("rideDate"))));
+            tvLostItemDetailDateTime.setText(Constants.DATE_FORMAT_DATE_TIME.format(Constants.DATE_FORMAT_FULL_DATE_TIME.parse(lostItemDetails.optString("rideDate"))));
             tvLostItemDetailStatus.setText(lostItemDetails.optString("status"));
             tvLostItemDetailLostItem.setText(lostItemDetails.optString("color") + " color\n" + lostItemDetails.optString("itemDescription"));
         } catch (JSONException | ParseException e) {

@@ -9,6 +9,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/light_Gray"
         android:gravity="center">
 
         <com.smartsense.taxinearyou.utill.CircleImageView1
@@ -16,9 +17,8 @@
             android:layout_width="@dimen/cvAccountPhotoWidthHeight"
             android:layout_height="@dimen/cvAccountPhotoWidthHeight"
             android:layout_margin="@dimen/cvPartnerPicMargin"
-            android:src="@mipmap/imgsearchbackground"
             app:civ_border_color="@color/background"
-            app:civ_border_width="@dimen/civTripDetailsBorderWidth" />
+            app:civ_border_width="@dimen/cvPartnerPic" />
 
     </LinearLayout>
 

@@ -64,8 +64,11 @@ public class SignUp extends AppCompatActivity implements Response.Listener<JSONO
                 if (s.length() == 10) {
                     whichEmail = 3;
                     contactAvailability();
-                } else
-                    imageVisibility();
+                } else {
+                    ivSignUpAvailableNumber.setVisibility(View.GONE);
+                    ivSignUpUnAvailableNumber.setVisibility(View.INVISIBLE);
+//                    imageVisibility();
+                }
             }
 
             @Override
@@ -85,8 +88,11 @@ public class SignUp extends AppCompatActivity implements Response.Listener<JSONO
                 if (CommonUtil.isValidEmail(s)) {
                     whichEmail = 1;
                     emailAvailability();
-                } else
-                    imageVisibility();
+                } else {
+                    ivSignUpAvailableEmail.setVisibility(View.GONE);
+                    ivSignUpUnAvailableEmail.setVisibility(View.INVISIBLE);
+//                    imageVisibility();
+                }
             }
 
             @Override
@@ -106,8 +112,12 @@ public class SignUp extends AppCompatActivity implements Response.Listener<JSONO
                 if (CommonUtil.isValidEmail(s)) {
                     whichEmail = 2;
                     emailAvailability();
-                } else
-                    imageVisibility();
+                } else {
+//                    imageVisibility();
+                    ivSignUpAvailableAlternateEmail.setVisibility(View.GONE);
+                    ivSignUpUnAvailableAlternateEmail.setVisibility(View.INVISIBLE);
+                }
+
             }
 
             @Override
@@ -135,35 +145,31 @@ public class SignUp extends AppCompatActivity implements Response.Listener<JSONO
 
     public void submitConditions() {
         if (TextUtils.isEmpty(etSignUpFirstName.getText().toString()) && TextUtils.isEmpty(etSignUpLastName.getText().toString()) && TextUtils.isEmpty(etSignUpContact.getText().toString()) && TextUtils.isEmpty(etSignUpEmail.getText().toString()) && TextUtils.isEmpty(etSignUpAlternateEmail.getText().toString()) && TextUtils.isEmpty(etSignUpPassword.getText().toString()) && TextUtils.isEmpty(etSignUpConfirmPassword.getText().toString()))
-            CommonUtil.showSnackBar(SignUp.this, getResources().getString(R.string.enter_fields_below), clSignUp);
+            CommonUtil.showSnackBar(getResources().getString(R.string.enter_fields_below), clSignUp);
         else if (TextUtils.isEmpty(etSignUpFirstName.getText().toString()))
-            CommonUtil.showSnackBar(SignUp.this, getString(R.string.enter_first_name), clSignUp);
+            CommonUtil.showSnackBar(getString(R.string.enter_first_name), clSignUp);
         else if (TextUtils.isEmpty(etSignUpLastName.getText().toString()))
-            CommonUtil.showSnackBar(SignUp.this, getString(R.string.enter_last_name), clSignUp);
-        else if (TextUtils.isEmpty(etSignUpContact.getText().toString()))
-            CommonUtil.showSnackBar(SignUp.this, getString(R.string.enter_contact_no), clSignUp);
-        else if (etSignUpContact.length() != 10)
-            CommonUtil.showSnackBar(SignUp.this, getString(R.string.enter_valid_contact), clSignUp);
-        else if (TextUtils.isEmpty(etSignUpEmail.getText().toString()))
-            CommonUtil.showSnackBar(SignUp.this, getString(R.string.enter_email_id), clSignUp);
+            CommonUtil.showSnackBar(getString(R.string.enter_last_name), clSignUp);
+        else if (TextUtils.isEmpty(etSignUpContact.getText().toString()) || etSignUpContact.length() != 10)
+            CommonUtil.showSnackBar(getString(R.string.enter_valid_contact), clSignUp);
+        else if (ivSignUpUnAvailableNumber.getVisibility() == View.VISIBLE)
+            CommonUtil.showSnackBar(getResources().getString(R.string.alred_exist), clSignUp);
         else if (!CommonUtil.isValidEmail(etSignUpEmail.getText().toString()))
-            CommonUtil.showSnackBar(SignUp.this, getString(R.string.enter_valid_email_id), clSignUp);
-        else if (TextUtils.isEmpty(etSignUpAlternateEmail.getText().toString()))
-            CommonUtil.showSnackBar(SignUp.this, getString(R.string.enter_alternate_email), clSignUp);
-        else if (!CommonUtil.isValidEmail(etSignUpAlternateEmail.getText().toString()))
-            CommonUtil.showSnackBar(SignUp.this, getString(R.string.enter_valid_alternate_email), clSignUp);
-        else if (TextUtils.equals(etSignUpAlternateEmail.getText().toString(), etSignUpEmail.getText().toString()))
-            CommonUtil.showSnackBar(SignUp.this, getString(R.string.alternate_email_not_same), clSignUp);
+            CommonUtil.showSnackBar(getString(R.string.enter_email_id), clSignUp);
+        else if (ivSignUpUnAvailableEmail.getVisibility() == View.VISIBLE)
+            CommonUtil.showSnackBar(getResources().getString(R.string.email_alred_exist), clSignUp);
         else if (TextUtils.isEmpty(etSignUpPassword.getText().toString()))
-            CommonUtil.showSnackBar(SignUp.this, getString(R.string.enter_pass), clSignUp);
+            CommonUtil.showSnackBar(getString(R.string.enter_pass), clSignUp);
         else if (etSignUpPassword.length() < 7 || etSignUpPassword.length() > 15)
-            CommonUtil.showSnackBar(SignUp.this, getString(R.string.enter_valid_pass), clSignUp);
-        else if (TextUtils.isEmpty(etSignUpConfirmPassword.getText().toString()))
-            CommonUtil.showSnackBar(SignUp.this, getString(R.string.enter_confirm_pass), clSignUp);
-        else if (etSignUpConfirmPassword.length() < 7 || etSignUpPassword.length() > 15)
-            CommonUtil.showSnackBar(SignUp.this, getString(R.string.enter_valid_confirm_pass), clSignUp);
+            CommonUtil.showSnackBar(getString(R.string.enter_valid_pass), clSignUp);
         else if (!TextUtils.equals(etSignUpConfirmPassword.getText().toString(), etSignUpPassword.getText().toString()))
-            CommonUtil.showSnackBar(SignUp.this, getString(R.string.conpass_pass_same), clSignUp);
+            CommonUtil.showSnackBar(getString(R.string.conpass_pass_same), clSignUp);
+        else if (!CommonUtil.isValidEmail(etSignUpAlternateEmail.getText().toString()))
+            CommonUtil.showSnackBar(getString(R.string.enter_alternate_email), clSignUp);
+        else if (ivSignUpUnAvailableAlternateEmail.getVisibility() == View.VISIBLE)
+            CommonUtil.showSnackBar(getResources().getString(R.string.alt_email_alred_exist), clSignUp);
+        else if (TextUtils.equals(etSignUpAlternateEmail.getText().toString(), etSignUpEmail.getText().toString()))
+            CommonUtil.showSnackBar(getString(R.string.alternate_email_not_same), clSignUp);
         else
             startActivity(new Intent(SignUp.this, SecurityQuestion.class).putExtra("firstName", etSignUpFirstName.getText().toString().trim()).putExtra("lastName", etSignUpLastName.getText().toString().trim()).putExtra("contactNo", etSignUpContact.getText().toString().trim()).putExtra("emailId", etSignUpEmail.getText().toString().trim()).putExtra("password", etSignUpPassword.getText().toString().trim()).putExtra("confPassword", etSignUpConfirmPassword.getText().toString().trim()).putExtra("altEmailId", etSignUpAlternateEmail.getText().toString().trim()));
 
@@ -218,7 +224,7 @@ public class SignUp extends AppCompatActivity implements Response.Listener<JSONO
         if (jsonObject != null) {
             if (jsonObject.optInt("status") == Constants.STATUS_SUCCESS) {
                 if (!jsonObject.optJSONObject("json").optString("isAvailable").equalsIgnoreCase("1")) {
-                    CommonUtil.showSnackBar(this, jsonObject.optString("msg"), clSignUp);
+                    CommonUtil.showSnackBar(jsonObject.optString("msg"), clSignUp);
                     if (whichEmail == 1) {
                         ivSignUpUnAvailableEmail.setVisibility(View.VISIBLE);
                         ivSignUpAvailableEmail.setVisibility(View.GONE);

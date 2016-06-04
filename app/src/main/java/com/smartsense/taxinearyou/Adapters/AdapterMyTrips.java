@@ -16,6 +16,7 @@ import android.widget.TextView;
 import com.smartsense.taxinearyou.R;
 import com.smartsense.taxinearyou.TripDetails;
 import com.smartsense.taxinearyou.utill.CircleImageView1;
+import com.smartsense.taxinearyou.utill.Constants;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -28,7 +29,6 @@ public class AdapterMyTrips extends BaseAdapter {
     private LayoutInflater inflater = null;
     Activity a;
     LinearLayout lyElementMyTripLeft, lyElementMyTripRight, lyElementMyTripStatusLayout;
-    int finalHeight;
 
     public AdapterMyTrips(Activity a, JSONArray data) {
         this.data = data;
@@ -60,7 +60,6 @@ public class AdapterMyTrips extends BaseAdapter {
         final TextView tvElementMyTripsStatus = (TextView) vi.findViewById(R.id.tvElementMyTripsStatus);
         TextView tvElementMyTripsTaxiProvider = (TextView) vi.findViewById(R.id.tvElementMyTripsTaxiProvider);
         TextView tvElementMyTripsDateTime = (TextView) vi.findViewById(R.id.tvElementMyTripsDateTime);
-        LinearLayout lyElementMyTripMain = (LinearLayout) vi.findViewById(R.id.lyElementMyTripMain);
 
         lyElementMyTripStatusLayout = (LinearLayout) vi.findViewById(R.id.lyElementMyTripStatusLayout);
         lyElementMyTripLeft = (LinearLayout) vi.findViewById(R.id.lyElementMyTripLeft);
@@ -68,13 +67,13 @@ public class AdapterMyTrips extends BaseAdapter {
         final JSONObject test = data.optJSONObject(position);
         Log.i("Test", test.toString());
 
-        tvElementMyTripsAmount.setText("£" + test.optString("estimatedAmount"));
+        tvElementMyTripsAmount.setText("£" + test.optInt("estimatedAmount") + ".00");
         tvElementMyTripsFrom.setText(test.optString("from"));
         tvElementMyTripsTo.setText(test.optString("to"));
         tvElementMyTripsStatus.setText(test.optString("status"));
         tvElementMyTripsTaxiProvider.setText(test.optString("partner"));
         try {
-            tvElementMyTripsDateTime.setText(new SimpleDateFormat("dd-MM-yyyy \n hh:mm aa").format(new SimpleDateFormat("dd-MMM-yyyy HH:mm").parse(test.optString("bookingTime"))));
+            tvElementMyTripsDateTime.setText(Constants.DATE_FORMAT_DATE_TIME.format(Constants.DATE_FORMAT_EXTRA.parse(test.optString("pickTime"))));
         } catch (ParseException e) {
             e.printStackTrace();
         }

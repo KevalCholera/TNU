@@ -29,7 +29,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Please Select from the option below to recover your email address."
+                    android:text="@string/email_chane"
                     android:textColor="@color/dark_gray" />
 
                 <View
@@ -62,7 +62,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="(Please enter your alternate email which you have provided when creating your account)"
+                            android:text="@string/alt_msg"
                             android:textColor="@android:color/darker_gray" />
 
                         <TextView
@@ -168,6 +168,7 @@
                             android:background="@drawable/grayborder"
                             android:hint="@string/contact"
                             android:inputType="phone"
+                            android:maxLength="10"
                             android:nextFocusForward="@+id/etSignUpLastName"
                             android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
                             android:textColor="@color/black"

@@ -58,27 +58,27 @@ public class AddCard extends AppCompatActivity implements View.OnClickListener {
         switch (v.getId()) {
             case R.id.btAddCardSubmit:
                 if (TextUtils.isEmpty(etAddCardCardHolderName.getText().toString()))
-                    CommonUtil.showSnackBar(AddCard.this, getString(R.string.enter_card_holder_name), clAddCard);
+                    CommonUtil.showSnackBar(getString(R.string.enter_card_holder_name), clAddCard);
                 else if (TextUtils.isEmpty(etAddCardCardType.getText().toString()))
-                    CommonUtil.showSnackBar(AddCard.this, getString(R.string.enter_card_type), clAddCard);
+                    CommonUtil.showSnackBar(getString(R.string.enter_card_type), clAddCard);
                 else if (TextUtils.isEmpty(etAddCardCardNumber.getText().toString()))
-                    CommonUtil.showSnackBar(AddCard.this, getString(R.string.enter_card_no), clAddCard);
+                    CommonUtil.showSnackBar(getString(R.string.enter_card_no), clAddCard);
                 else if (TextUtils.isEmpty(etAddCardSecurityNumber.getText().toString()))
-                    CommonUtil.showSnackBar(AddCard.this, getString(R.string.enter_security_no), clAddCard);
+                    CommonUtil.showSnackBar(getString(R.string.enter_security_no), clAddCard);
                 else if (TextUtils.isEmpty(etAddCardCardFirstName.getText().toString()))
-                    CommonUtil.showSnackBar(AddCard.this, getString(R.string.enter_first_name), clAddCard);
+                    CommonUtil.showSnackBar(getString(R.string.enter_first_name), clAddCard);
                 else if (TextUtils.isEmpty(etAddCardCardLastName.getText().toString()))
-                    CommonUtil.showSnackBar(AddCard.this, getString(R.string.enter_last_name), clAddCard);
+                    CommonUtil.showSnackBar(getString(R.string.enter_last_name), clAddCard);
                 else if (TextUtils.isEmpty(etAddCardCardAddress1.getText().toString()))
-                    CommonUtil.showSnackBar(AddCard.this, getString(R.string.enter_add), clAddCard);
+                    CommonUtil.showSnackBar(getString(R.string.enter_add), clAddCard);
                 else if (TextUtils.isEmpty(etAddCardCardAddress2.getText().toString()))
-                    CommonUtil.showSnackBar(AddCard.this, getString(R.string.enter_add), clAddCard);
+                    CommonUtil.showSnackBar(getString(R.string.enter_add), clAddCard);
                 else if (TextUtils.isEmpty(etAddCardTown.getText().toString()))
-                    CommonUtil.showSnackBar(AddCard.this, getString(R.string.enter_town), clAddCard);
+                    CommonUtil.showSnackBar(getString(R.string.enter_town), clAddCard);
                 else if (TextUtils.isEmpty(etAddCardCity.getText().toString()))
-                    CommonUtil.showSnackBar(AddCard.this, getString(R.string.enter_city), clAddCard);
+                    CommonUtil.showSnackBar(getString(R.string.enter_city), clAddCard);
                 else if (TextUtils.isEmpty(etAddCardCardPostCode.getText().toString()))
-                    CommonUtil.showSnackBar(AddCard.this, getString(R.string.enter_postcode), clAddCard);
+                    CommonUtil.showSnackBar(getString(R.string.enter_postcode), clAddCard);
                 else
                     startActivity(new Intent(AddCard.this, Card.class));
                 break;

@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.smartsense.taxinearyou.LostItemDetail;
 import com.smartsense.taxinearyou.R;
 import com.smartsense.taxinearyou.utill.CircleImageView1;
+import com.smartsense.taxinearyou.utill.Constants;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -30,9 +31,7 @@ public class AdapterLostItem extends BaseAdapter {
     private LayoutInflater inflater = null;
     TextView tvLostItemFrom, tvLostItemTo, tvLostItemProvider, tvLostItemDateTime, tvLostItemStatus, tvLostItemLostItem, tvLostItemTNR;
     Activity a;
-    private AlertDialog alert;
     LinearLayout lyElementLostItemStatus, lyElementLostItemMain, lyElementLostItemLeft, lyElementLostItemRight;
-    CircleImageView1 circleImageView;
 
     public AdapterLostItem(Activity a, JSONArray data) {
         this.data = data;
@@ -79,7 +78,7 @@ public class AdapterLostItem extends BaseAdapter {
         tvLostItemTo.setText(test.optString("toArea"));
         tvLostItemProvider.setText(test.optString("partnerName"));
         try {
-            tvLostItemDateTime.setText(new SimpleDateFormat("dd.MM.yyyy \n hh:mm aa").format(new SimpleDateFormat("dd-MMMM-yyyy HH:mm").parse(test.optString("rideDate"))));
+            tvLostItemDateTime.setText(Constants.DATE_FORMAT_DATE_TIME.format(Constants.DATE_FORMAT_FULL_DATE_TIME.parse(test.optString("rideDate"))));
         } catch (ParseException e) {
             e.printStackTrace();
         }

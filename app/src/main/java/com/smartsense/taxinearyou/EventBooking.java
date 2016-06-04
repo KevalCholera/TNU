@@ -38,7 +38,6 @@ import org.json.JSONObject;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -56,8 +55,6 @@ public class EventBooking extends AppCompatActivity implements Response.Listener
     String vehicleType = "vehicleType";
     String duration = "duration";
     boolean check;
-    SimpleDateFormat timeStampFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm aa");
-    SimpleDateFormat timeSetFormat = new SimpleDateFormat("dd-MM-yyyy");
     String jsonDate, jsonTimeHour, jsonTimeMin;
 
     @Override
@@ -152,14 +149,14 @@ public class EventBooking extends AppCompatActivity implements Response.Listener
                 mCalendar.set(Calendar.MONTH, month);
                 mCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
                 if (once) {
-                    Time(timeSetFormat.format(mCalendar.getTime()));
+                    Time(Constants.DATE_FORMAT_ONLY_DATE.format(mCalendar.getTime()));
                     once = false;
                 }
             }
         }, mCalendar.get(Calendar.YEAR), mCalendar.get(Calendar.MONTH), mCalendar.get(Calendar.DAY_OF_MONTH));
 
         try {
-            long newDate = timeSetFormat.parse(dateTime.substring(0, dateTime.indexOf(' '))).getTime();
+            long newDate = Constants.DATE_FORMAT_ONLY_DATE.parse(dateTime.substring(0, dateTime.indexOf(' '))).getTime();
             DatePicker.getDatePicker().setMinDate(newDate);
             Calendar calendar = Calendar.getInstance();
             calendar.setTime(new Date(newDate));
@@ -222,8 +219,8 @@ public class EventBooking extends AppCompatActivity implements Response.Listener
         String daTime = etEventBookingDateTime.getText().toString();
 
         try {
-            long longDate = timeSetFormat.parse(date).getTime();
-            long longJsonDate = timeSetFormat.parse(jsonDate).getTime();
+            long longDate = Constants.DATE_FORMAT_ONLY_DATE.parse(date).getTime();
+            long longJsonDate = Constants.DATE_FORMAT_ONLY_DATE.parse(jsonDate).getTime();
 
             if (longDate > longJsonDate) {
                 hrs = hour;
@@ -231,9 +228,9 @@ public class EventBooking extends AppCompatActivity implements Response.Listener
                 timeSlice = timeSet;
             } else {
                 try {
-                    hrs = new SimpleDateFormat("hh").format(timeStampFormat.parse(daTime));
-                    minute = new SimpleDateFormat("mm").format(timeStampFormat.parse(daTime));
-                    timeSlice = new SimpleDateFormat("aa").format(timeStampFormat.parse(daTime));
+                    hrs = Constants.DATE_FORMAT_SMALL_TIME_HOUR.format(Constants.DATE_FORMAT_SET.parse(daTime));
+                    minute = Constants.DATE_FORMAT_TIME_MIN.format(Constants.DATE_FORMAT_SET.parse(daTime));
+                    timeSlice = Constants.DATE_FORMAT_TIME_AM_PM.format(Constants.DATE_FORMAT_SET.parse(daTime));
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
@@ -242,8 +239,8 @@ public class EventBooking extends AppCompatActivity implements Response.Listener
             if (longDate == longJsonDate) {
                 Date dateSet, dateGet;
                 try {
-                    dateSet = timeStampFormat.parse(daTime);
-                    dateGet = timeStampFormat.parse((daTime.substring(0, daTime.indexOf(' '))) + " " + hour + ':' + minutes + " " + timeSet);
+                    dateSet = Constants.DATE_FORMAT_SET.parse(daTime);
+                    dateGet = Constants.DATE_FORMAT_SET.parse((daTime.substring(0, daTime.indexOf(' '))) + " " + hour + ':' + minutes + " " + timeSet);
                     long millisecondSet = dateSet.getTime();
                     long millisecondGet = dateGet.getTime();
                     if (millisecondGet < millisecondSet) {
@@ -260,8 +257,8 @@ public class EventBooking extends AppCompatActivity implements Response.Listener
             }
             String timePickerTime = hrs + ':' + minute + " " + timeSlice;
 
-            jsonTimeHour = new SimpleDateFormat("HH").format(new SimpleDateFormat("hh:mm aa").parse(timePickerTime));
-            jsonTimeMin = new SimpleDateFormat("mm").format(new SimpleDateFormat("hh:mm aa").parse(timePickerTime));
+            jsonTimeHour = Constants.DATE_FORMAT_BIG_TIME_HOUR.format(Constants.DATE_FORMAT_ONLY_TIME.parse(timePickerTime));
+            jsonTimeMin = Constants.DATE_FORMAT_TIME_MIN.format(Constants.DATE_FORMAT_ONLY_TIME.parse(timePickerTime));
 
             etEventBookingDateTime.setText(date + " " + timePickerTime);
             etEventBookingDateTime.setTag(date + " " + timePickerTime);
@@ -277,23 +274,19 @@ public class EventBooking extends AppCompatActivity implements Response.Listener
             case R.id.btEventBookingBookNow:
 
                 if (TextUtils.isEmpty(etEventBookingFirstName.getText().toString()) && TextUtils.isEmpty(etEventBookingLastName.getText().toString()) && TextUtils.isEmpty(etEventBookingEmailAddress.getText().toString()) && TextUtils.isEmpty(etEventBookingContactNumber.getText().toString()) && TextUtils.isEmpty(etEventBookingPickUp.getText().toString()) && TextUtils.isEmpty(etEventBookingEventDropOff.getText().toString()) && TextUtils.isEmpty(etEventBookingReq.getText().toString()))
-                    CommonUtil.showSnackBar(EventBooking.this, getResources().getString(R.string.enter_fields_below), clEventBooking);
+                    CommonUtil.showSnackBar(getResources().getString(R.string.enter_fields_below), clEventBooking);
                 else if (TextUtils.isEmpty(etEventBookingFirstName.getText().toString()))
-                    CommonUtil.showSnackBar(EventBooking.this, getResources().getString(R.string.enter_first_name), clEventBooking);
+                    CommonUtil.showSnackBar(getResources().getString(R.string.enter_first_name), clEventBooking);
                 else if (TextUtils.isEmpty(etEventBookingLastName.getText().toString()))
-                    CommonUtil.showSnackBar(EventBooking.this, getResources().getString(R.string.enter_last_name), clEventBooking);
+                    CommonUtil.showSnackBar(getResources().getString(R.string.enter_last_name), clEventBooking);
                 else if (TextUtils.isEmpty(etEventBookingEmailAddress.getText().toString()))
-                    CommonUtil.showSnackBar(EventBooking.this, getResources().getString(R.string.enter_email_id), clEventBooking);
-                else if (CommonUtil.isValidEmail((etEventBookingContactNumber.getText().toString())))
-                    CommonUtil.showSnackBar(EventBooking.this, getResources().getString(R.string.enter_contact_no), clEventBooking);
-                else if (etEventBookingContactNumber.length() < 7 || etEventBookingContactNumber.length() > 13)
-                    CommonUtil.showSnackBar(EventBooking.this, getResources().getString(R.string.enter_valid_contact_no), clEventBooking);
+                    CommonUtil.showSnackBar(getResources().getString(R.string.enter_email_id), clEventBooking);
+                else if (etEventBookingContactNumber.length() !=10)
+                    CommonUtil.showSnackBar(getResources().getString(R.string.enter_con), clEventBooking);
                 else if (TextUtils.isEmpty(etEventBookingPickUp.getText().toString()))
-                    CommonUtil.showSnackBar(EventBooking.this, getResources().getString(R.string.pls_enter_pick), clEventBooking);
+                    CommonUtil.showSnackBar(getResources().getString(R.string.event_bookin_pick), clEventBooking);
                 else if (TextUtils.isEmpty(etEventBookingEventDropOff.getText().toString()))
-                    CommonUtil.showSnackBar(EventBooking.this, getResources().getString(R.string.pls_enter_drop), clEventBooking);
-                else if (TextUtils.isEmpty(etEventBookingReq.getText().toString()))
-                    CommonUtil.showSnackBar(EventBooking.this, getResources().getString(R.string.enter_req), clEventBooking);
+                    CommonUtil.showSnackBar(getResources().getString(R.string.event_bookin_drop), clEventBooking);
                 else
                     eventBooking();
 
@@ -478,7 +471,7 @@ public class EventBooking extends AppCompatActivity implements Response.Listener
                     .put("firstname", etEventBookingFirstName.getText().toString().trim())
                     .put("userId", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_ID, ""))
                     .put("email", etEventBookingEmailAddress.getText().toString().trim())
-                    .put("eventdate", ((String) etEventBookingDateTime.getTag()).trim())
+                    .put("eventdate", Constants.DATE_FORMAT_SEND.format(Constants.DATE_FORMAT_SET.parse(((String) etEventBookingDateTime.getTag()).trim())))
                     .put("phoneno", etEventBookingContactNumber.getText().toString().trim())
                     .put("pickuparea", etEventBookingPickUp.getText().toString().trim())
                     .put("droparea", etEventBookingEventDropOff.getText().toString().trim())
@@ -492,7 +485,7 @@ public class EventBooking extends AppCompatActivity implements Response.Listener
                 e.printStackTrace();
             }
 
-        } catch (JSONException e) {
+        } catch (JSONException | ParseException e) {
             e.printStackTrace();
         }
         CommonUtil.jsonRequestGET(this, getResources().getString(R.string.get_data), url, tag, this, this);
@@ -515,11 +508,11 @@ public class EventBooking extends AppCompatActivity implements Response.Listener
                 } else if (jsonObject.optString("__eventid").equalsIgnoreCase((Constants.Events.GET_SERVER_DATE_TIME) + "")) {
 
                     try {
-                        String dateTime = timeStampFormat.format(new SimpleDateFormat("dd MM yyyy HH mm ss").parse(jsonObject.optJSONObject("json").optString("serverTime")));
-                        jsonDate = timeSetFormat.format(timeStampFormat.parse(dateTime));
+                        String dateTime = Constants.DATE_FORMAT_SET.format(Constants.DATE_FORMAT_GET.parse(jsonObject.optJSONObject("json").optString("serverTime")));
+                        jsonDate = Constants.DATE_FORMAT_ONLY_DATE.format(Constants.DATE_FORMAT_SET.parse(dateTime));
                         if (check) {
-                            jsonTimeHour = new SimpleDateFormat("HH").format(timeStampFormat.parse(dateTime));
-                            jsonTimeMin = new SimpleDateFormat("mm").format(timeStampFormat.parse(dateTime));
+                            jsonTimeHour = Constants.DATE_FORMAT_BIG_TIME_HOUR.format(Constants.DATE_FORMAT_SET.parse(dateTime));
+                            jsonTimeMin = Constants.DATE_FORMAT_TIME_MIN.format(Constants.DATE_FORMAT_SET.parse(dateTime));
                             etEventBookingDateTime.setText(dateTime);
                             etEventBookingDateTime.setTag(dateTime);
                             check = false;

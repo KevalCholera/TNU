@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.mpt.storage.SharedPreferenceUtil;
 import com.smartsense.taxinearyou.Fragments.FragmentBook;
+import com.smartsense.taxinearyou.utill.CommonUtil;
 import com.smartsense.taxinearyou.utill.Constants;
 
 import org.json.JSONArray;
@@ -29,7 +30,7 @@ public class BookingInfo extends AppCompatActivity {
             tvBookInfoProvider, tvBookInfoPassengers, tvBookInfoLugguages, tvBookInfoETA, tvBookInfoDistance, tvBookInfoRideType,
             tvBookInfoCost;
     Button btBookingInfoConfirm;
-    LinearLayout lyBookingInfoVia1, lyBookingInfoVia2;
+    LinearLayout lyBookingInfoVia1, lyBookingInfoVia2, lyBookingInfoETA;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,16 +55,22 @@ public class BookingInfo extends AppCompatActivity {
         btBookingInfoConfirm = (Button) findViewById(R.id.btBookingInfoConfirm);
         lyBookingInfoVia2 = (LinearLayout) findViewById(R.id.lyBookingInfoVia2);
         lyBookingInfoVia1 = (LinearLayout) findViewById(R.id.lyBookingInfoVia1);
+        lyBookingInfoETA = (LinearLayout) findViewById(R.id.lyBookingInfoETA);
+
+        lyBookingInfoETA.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CommonUtil.alertBox(BookingInfo.this, getResources().getString(R.string.eta_err), false, false);
+            }
+        });
 
         try {
             JSONObject mainData = new JSONObject(SharedPreferenceUtil.getString(Constants.PrefKeys.MAIN_DATA, ""));
             try {
-                tvBookInfoDate.setText(new SimpleDateFormat("dd-MM-yyyy").format(new SimpleDateFormat("dd-MM-yyyy hh:mm aa").parse(mainData.optString("journeyDatetime"))));
-                tvBookInfoTime.setText(new SimpleDateFormat("hh:mm aa").format(new SimpleDateFormat("dd-MM-yyyy hh:mm aa").parse(mainData.optString("journeyDatetime"))));
+                tvBookInfoDate.setText(Constants.DATE_FORMAT_ONLY_DATE.format(Constants.DATE_FORMAT_SEND.parse(mainData.optString("journeyDatetime"))));
+                tvBookInfoTime.setText(Constants.DATE_FORMAT_ONLY_TIME.format(Constants.DATE_FORMAT_SEND.parse(mainData.optString("journeyDatetime"))));
                 tvBookInfoFrom.setText(mainData.optString("fromAreaAddress"));
-                tvBookInfoFrom.setTag(mainData.optString("fromAreaPlaceid"));
                 tvBookInfoTo.setText(mainData.optString("toAreaAddress"));
-                tvBookInfoTo.setTag(mainData.optString("toAreaPlaceid"));
 
                 JSONArray jsonArray = mainData.optJSONArray("viaArray");
                 if (mainData.has("viaArray") && jsonArray.length() > 0) {
@@ -88,7 +95,7 @@ public class BookingInfo extends AppCompatActivity {
                 tvBookInfoPassengers.setText(mainData.optString("passanger") + "Passengers");
                 tvBookInfoLugguages.setText("Up to " + SharedPreferenceUtil.getString(Constants.PrefKeys.LUGGAGE_VALUE, "") + " Luggagges");
                 tvBookInfoRideType.setText(mainData.optJSONObject("filterRequest").optString("bookingType").equalsIgnoreCase("0") ? "Single" : "Return");
-                tvBookInfoCost.setText("£" + mainData.optJSONObject("json").optJSONArray("partnerArray").optJSONObject(0).optString("ETA"));
+                tvBookInfoCost.setText("£" + mainData.optJSONObject("json").optJSONArray("partnerArray").optJSONObject(0).optString("ETA") + ".00");
 
                 int hours = mainData.optJSONObject("json").optJSONObject("distanceMatrix").optInt("duration") / 3600;
                 String hour;

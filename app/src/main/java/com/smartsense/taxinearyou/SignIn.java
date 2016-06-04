@@ -83,14 +83,12 @@ public class SignIn extends AppCompatActivity implements Response.Listener<JSONO
         switch (v.getId()) {
             case R.id.btSignInSignIn:
 
-                if (TextUtils.isEmpty(etSignInUserName.getText().toString()))
-                    CommonUtil.showSnackBar(SignIn.this, getString(R.string.enter_email_id), rlSignInMain);
+                if (!CommonUtil.isValidEmail(etSignInUserName.getText().toString()) && TextUtils.isEmpty(etSignInPassword.getText().toString()))
+                    CommonUtil.showSnackBar(getResources().getString(R.string.enter_fields_below), rlSignInMain);
                 else if (!CommonUtil.isValidEmail(etSignInUserName.getText().toString()))
-                    CommonUtil.showSnackBar(SignIn.this, getString(R.string.enter_valid_email_id), rlSignInMain);
+                    CommonUtil.showSnackBar(getResources().getString(R.string.enter_user), rlSignInMain);
                 else if (TextUtils.isEmpty(etSignInPassword.getText().toString()))
-                    CommonUtil.showSnackBar(SignIn.this, getString(R.string.enter_pass), rlSignInMain);
-                else if (etSignInPassword.length() < 7 || etSignInPassword.length() > 15)
-                    CommonUtil.showSnackBar(SignIn.this, getString(R.string.enter_valid_pass), rlSignInMain);
+                    CommonUtil.showSnackBar(getResources().getString(R.string.enter_pass), rlSignInMain);
                 else {
                     doLogin();
                 }
@@ -227,7 +225,7 @@ public class SignIn extends AppCompatActivity implements Response.Listener<JSONO
 //                    }
                 } else {
                     if (response.has("json") && response.optJSONObject("json").has("errorCode") && response.optJSONObject("json").optInt("errorCode") == Constants.ErrorCode.INVALID_CREDENTIALS) {
-                        CommonUtil.showSnackBar(this, response.optString("msg"), rlSignInMain);
+                        CommonUtil.showSnackBar(response.optString("msg"), rlSignInMain);
                     } else
                         CommonUtil.conditionAuthentication(this, response);
                 }

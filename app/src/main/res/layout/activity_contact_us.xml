@@ -33,8 +33,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/etHeightAll"
                 android:background="@drawable/grayborder"
+                android:hint="@string/enter_name"
                 android:inputType="textCapSentences"
-                android:paddingStart="@dimen/etSignUpAllPaddingStartEnd"
+                android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
                 android:textColor="@color/black"
                 android:textSize="@dimen/etSignUpSizeAll" />
 
@@ -50,8 +51,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/etHeightAll"
                 android:background="@drawable/grayborder"
+                android:hint="@string/enter_contact_no"
                 android:inputType="phone"
-                android:paddingStart="@dimen/etSignUpAllPaddingStartEnd"
+                android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
                 android:textColor="@color/black"
                 android:textSize="@dimen/etSignUpSizeAll" />
 
@@ -67,8 +69,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/etHeightAll"
                 android:background="@drawable/grayborder"
+                android:hint="@string/enter_email_id_"
                 android:inputType="textEmailAddress"
-                android:paddingStart="@dimen/etSignUpAllPaddingStartEnd"
+                android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
                 android:textColor="@color/black"
                 android:textSize="@dimen/etSignUpSizeAll" />
 
@@ -84,7 +87,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/etHeightAll"
                 android:background="@drawable/grayborder"
-                android:paddingStart="@dimen/etSignUpAllPaddingStartEnd"
+                android:hint="@string/enter_sub"
+                android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
                 android:textColor="@color/black"
                 android:textSize="@dimen/etSignUpSizeAll" />
 
@@ -102,7 +106,7 @@
                 android:background="@drawable/grayborder"
                 android:gravity="top"
                 android:imeOptions="actionDone"
-                android:paddingStart="@dimen/etSignUpAllPaddingStartEnd"
+                android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
                 android:textColor="@color/black"
                 android:textSize="@dimen/etSignUpSizeAll" />
         </LinearLayout>

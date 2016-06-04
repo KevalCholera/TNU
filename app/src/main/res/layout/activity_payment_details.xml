@@ -115,10 +115,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="@string/_406_00"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/tvPaymentDetailsFareMoneySize"
-                    android:textStyle="italic" />
+                    android:textSize="@dimen/tvPaymentDetailsFareMoneySize" />
 
             </LinearLayout>
         </LinearLayout>

@@ -47,7 +47,6 @@ public class TripDetails extends AppCompatActivity implements View.OnClickListen
     CircleImageView1 cvTripDetailsPartnerLogo;
     AlertDialog alert;
     ImageView ivTripDetailsMap;
-    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MMMM-yyyy HH:mm");
     final int requestFeedBack = 1;
     final int requestLostItem = 2;
 
@@ -108,18 +107,17 @@ public class TripDetails extends AppCompatActivity implements View.OnClickListen
                     .placeholder(R.mipmap.imgtnulogo)
                     .into(cvTripDetailsPartnerLogo);
 
-            tvTripDetailBookingDate.setText(new SimpleDateFormat("dd-MM-yyyy").format(simpleDateFormat.parse(tripDetails.optString("bookingTime").trim())));
-            tvTripDetailBookingTime.setText(new SimpleDateFormat("hh:mm aa").format(simpleDateFormat.parse(tripDetails.optString("bookingTime").trim())));
-            tvTripDetailPickUpDate.setText(new SimpleDateFormat("dd-MM-yyyy").format(simpleDateFormat.parse(tripDetails.optString("pickTime").trim())));
-            tvTripDetailPickUpTime.setText(new SimpleDateFormat("hh:mm aa").format(simpleDateFormat.parse(tripDetails.optString("pickTime").trim())));
+            tvTripDetailBookingDate.setText(Constants.DATE_FORMAT_ONLY_DATE.format(Constants.DATE_FORMAT_FULL_DATE_TIME.parse(tripDetails.optString("bookingTime").trim())));
+            tvTripDetailBookingTime.setText(Constants.DATE_FORMAT_ONLY_TIME.format(Constants.DATE_FORMAT_FULL_DATE_TIME.parse(tripDetails.optString("bookingTime").trim())));
+            tvTripDetailPickUpDate.setText(Constants.DATE_FORMAT_ONLY_DATE.format(Constants.DATE_FORMAT_FULL_DATE_TIME.parse(tripDetails.optString("pickTime").trim())));
+            tvTripDetailPickUpTime.setText(Constants.DATE_FORMAT_ONLY_TIME.format(Constants.DATE_FORMAT_FULL_DATE_TIME.parse(tripDetails.optString("pickTime").trim())));
 
             tvTripDetailTaxiProvider.setText(tripDetails.optString("partner"));
             tvTripDetailTaxiProvider.setTag(tripDetails.optString("rideId"));
-            tvTripDetailFare.setText("£" + tripDetails.optInt("estimatedAmount"));
+            tvTripDetailFare.setText("£" + tripDetails.optInt("estimatedAmount") + ".00");
             tvTripDetailFrom.setText(tripDetails.optString("from"));
             tvTripDetailTo.setText(tripDetails.optString("to"));
             tvTripDetailAdditionsInfo.setText(tripDetails.optString("addtionalInformation"));
-
 
             ViewTreeObserver vto = ivTripDetailsMap.getViewTreeObserver();
             vto.addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {

@@ -44,11 +44,11 @@ public class CardDetails extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (TextUtils.isEmpty(etCardDetailsExpiryDate.getText().toString()))
-                    CommonUtil.showSnackBar(CardDetails.this, getString(R.string.enter_expiry), clCardDetails);
+                    CommonUtil.showSnackBar(getString(R.string.enter_expiry), clCardDetails);
                 else if (TextUtils.isEmpty(etCardDetailsCSC.getText().toString()))
-                    CommonUtil.showSnackBar(CardDetails.this, getString(R.string.enter_csc), clCardDetails);
+                    CommonUtil.showSnackBar(getString(R.string.enter_csc), clCardDetails);
                 else if (TextUtils.isEmpty(etCardDetailsBillingAddress.getText().toString()))
-                    CommonUtil.showSnackBar(CardDetails.this, getString(R.string.enter_billing_add), clCardDetails);
+                    CommonUtil.showSnackBar(getString(R.string.enter_billing_add), clCardDetails);
                 else {
                     AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
                             CardDetails.this);

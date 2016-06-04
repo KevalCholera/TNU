@@ -51,9 +51,7 @@ public class ResetPassword extends AppCompatActivity implements Response.Listene
             @Override
             public void onClick(View v) {
                 if (TextUtils.isEmpty(etResetPasswordEmailAddress.getText().toString()))
-                    CommonUtil.showSnackBar(ResetPassword.this, getString(R.string.enter_email_id), clResetPassword);
-                else if (!CommonUtil.isValidEmail(etResetPasswordEmailAddress.getText().toString()))
-                    CommonUtil.showSnackBar(ResetPassword.this, getString(R.string.enter_valid_email_id), clResetPassword);
+                    CommonUtil.showSnackBar(getString(R.string.enter_email_id), clResetPassword);
                 else {
                     CommonUtil.closeKeyboard(ResetPassword.this);
                     doResetPass();
@@ -66,7 +64,6 @@ public class ResetPassword extends AppCompatActivity implements Response.Listene
                 startActivity(new Intent(ResetPassword.this, RecoverEmailAddress.class));
             }
         });
-
     }
 
     private void doResetPass() {

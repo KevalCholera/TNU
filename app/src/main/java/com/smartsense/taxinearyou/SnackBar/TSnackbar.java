@@ -455,9 +455,9 @@ public final class TSnackbar {
             }
             a.recycle();
             setClickable(true);
-            
-            
-            
+
+
+
             LayoutInflater.from(context).inflate(R.layout.element_tsnackbar_layout_include, this);
         }
 

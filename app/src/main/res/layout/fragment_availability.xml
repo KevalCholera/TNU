@@ -52,7 +52,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Please Check with the availability of a Taxi with traffic information before you proceed to booking" />
+            android:text="@string/availability_text_1" />
 
         <View
             android:layout_width="match_parent"
@@ -65,7 +65,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="ETA may differ at anytime due to unexpected circumstances e.g. traffic, weather changes, road works or any other events." />
+            android:text="@string/availability_text_2" />
 
 
         <View

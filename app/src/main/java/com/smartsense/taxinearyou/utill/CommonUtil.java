@@ -467,11 +467,19 @@ public class CommonUtil {
         return false;
     }
 
-    public static void showSnackBar(Activity activity, String msg, View view) {
-        TSnackbar snackbar = TSnackbar.make(view, msg, TSnackbar.LENGTH_SHORT);
+    public static void showSnackBar(String msg, View view) {
+//        TSnackbar snackbar = TSnackbar.make(view, msg, TSnackbar.LENGTH_SHORT);
+//        View snackbarView = snackbar.getView();
+//        snackbarView.setBackgroundColor(ContextCompat.getColor(activity, R.color.white));
+//        TextView textView = (TextView) snackbarView.findViewById(R.id.snackbar_text);
+//        textView.setTextColor(Color.RED);
+//        snackbar.show();
+
+        TSnackbar snackbar = TSnackbar
+                .make(view, msg, TSnackbar.LENGTH_LONG);
         snackbar.setActionTextColor(Color.WHITE);
         View snackbarView = snackbar.getView();
-        snackbarView.setBackgroundColor(ContextCompat.getColor(activity, R.color.white));
+        snackbarView.setBackgroundColor(Color.WHITE);
         TextView textView = (TextView) snackbarView.findViewById(R.id.snackbar_text);
         textView.setTextColor(Color.RED);
         snackbar.show();

@@ -30,6 +30,7 @@ import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.text.ParseException;
 
 public class SearchCars extends AppCompatActivity implements Response.Listener<JSONObject>, Response.ErrorListener, View.OnClickListener {
 
@@ -69,7 +70,11 @@ public class SearchCars extends AppCompatActivity implements Response.Listener<J
         llSearchCarsFilter = (LinearLayout) findViewById(R.id.llSearchCarsFilter);
         lySearchCarsDateTime = (LinearLayout) findViewById(R.id.lySearchCarsDateTime);
 
-        tvSearchCarsDateTime.setText(getIntent().getStringExtra("tvBookDateTime"));
+        try {
+            tvSearchCarsDateTime.setText(Constants.DATE_FORMAT_SET.format(Constants.DATE_FORMAT_SEND.parse(getIntent().getStringExtra("tvBookDateTime"))));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
 
         llSearchCarsFilter.setOnClickListener(this);
         rbSearchCarsRating.setOnClickListener(this);
@@ -80,6 +85,8 @@ public class SearchCars extends AppCompatActivity implements Response.Listener<J
         rbSearchCarsPriceRange.setChecked(true);
         rbSearchCarsPriceRange.setText("Price Range" + (char) 0x2191);
 
+        SharedPreferenceUtil.remove(Constants.PrefKeys.PREF_FILTER_REQUEST);
+        SharedPreferenceUtil.save();
         doPartnerList();
     }
 

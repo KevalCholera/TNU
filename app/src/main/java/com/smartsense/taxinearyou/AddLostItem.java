@@ -62,15 +62,13 @@ public class AddLostItem extends AppCompatActivity implements View.OnClickListen
             case R.id.btYourDetailSubmit:
                 CommonUtil.closeKeyboard(this);
                 if (TextUtils.isEmpty(etYourDetailAddress.getText().toString()))
-                    CommonUtil.showSnackBar(AddLostItem.this, getString(R.string.enter_item_add), clYourDetails);
+                    CommonUtil.showSnackBar(getString(R.string.enter_add), clYourDetails);
                 else if (TextUtils.isEmpty(etYourDetailPostcode.getText().toString()))
-                    CommonUtil.showSnackBar(AddLostItem.this, getString(R.string.enter_postcode), clYourDetails);
+                    CommonUtil.showSnackBar(getString(R.string.enter_postcode), clYourDetails);
                 else if (TextUtils.isEmpty(etYourDetailColor.getText().toString()))
-                    CommonUtil.showSnackBar(AddLostItem.this, getString(R.string.enter_color), clYourDetails);
-                else if (TextUtils.isEmpty(etYourDetailColor.getText().toString()))
-                    CommonUtil.showSnackBar(AddLostItem.this, getString(R.string.enter_color), clYourDetails);
+                    CommonUtil.showSnackBar(getString(R.string.enter_color), clYourDetails);
                 else if (TextUtils.isEmpty(etYourDetailDescription.getText().toString()))
-                    CommonUtil.showSnackBar(AddLostItem.this, getString(R.string.enter_item_dec), clYourDetails);
+                    CommonUtil.showSnackBar(getString(R.string.enter_item_dec), clYourDetails);
                 else
                     addLostItem();
                 break;

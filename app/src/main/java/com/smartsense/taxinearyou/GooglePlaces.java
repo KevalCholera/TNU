@@ -46,6 +46,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class GooglePlaces extends FragmentActivity implements OnItemClickListener, View.OnClickListener, GoogleApiClient.OnConnectionFailedListener,
         GoogleApiClient.ConnectionCallbacks {
@@ -83,7 +84,7 @@ public class GooglePlaces extends FragmentActivity implements OnItemClickListene
         lvGoogleSearch = (ListView) findViewById(R.id.lvGooglePlaces);
         dataAdapter = new GooglePlacesAutocompleteAdapter(this, R.layout.element_google);
         dataAdapter1 = new GooglePlacesAutocompleteAdapter1(this, new JSONArray());
-        lvGoogleSearch.setAdapter(dataAdapter1);
+        lvGoogleSearch.setAdapter(dataAdapter);
         lvGoogleSearch.setTextFilterEnabled(true);
         lvGoogleSearch.setOnItemClickListener(this);
         tvGooglePlacesCancel.setOnClickListener(this);
@@ -101,7 +102,7 @@ public class GooglePlaces extends FragmentActivity implements OnItemClickListene
                     ibGooglePlaceEmpty.setVisibility(View.VISIBLE);
                 else
                     ibGooglePlaceEmpty.setVisibility(View.GONE);
-                dataAdapter1.getFilter().filter(s.toString());
+                dataAdapter.getFilter().filter(s.toString());
             }
 
             @Override
@@ -168,7 +169,7 @@ public class GooglePlaces extends FragmentActivity implements OnItemClickListene
                     AreaLong = jsonObj1.optJSONObject("geometry").optJSONObject("location").optString("lng");
                 }
                 if (jsonObj1.has("address_components")) {
-                    JSONArray jsonArray = jsonObj1.getJSONArray("address_components");
+                    JSONArray jsonArray = jsonObj1.optJSONArray("address_components");
                     for (int i = 0; i < jsonArray.length(); i++) {
                         if (jsonArray.optJSONObject(i).optJSONArray("types").optString(0).equalsIgnoreCase("postal_code")) {
                             AreaPostalCode = jsonArray.optJSONObject(i).optString("long_name");
@@ -263,16 +264,17 @@ public class GooglePlaces extends FragmentActivity implements OnItemClickListene
 
             // Create a JSON object hierarchy from the results
             JSONObject jsonObj = new JSONObject(jsonResults.toString());
-            JSONArray predsJsonArray = jsonObj.getJSONArray("predictions");
+            JSONArray predsJsonArray = jsonObj.optJSONArray("predictions");
 
             // Extract the Place descriptions from the results
             resultList = new ArrayList<>(predsJsonArray.length());
             resultList1 = new ArrayList<>(predsJsonArray.length());
             for (int i = 0; i < predsJsonArray.length(); i++) {
-                System.out.println(predsJsonArray.getJSONObject(i));
+                System.out.println(predsJsonArray.optJSONObject(i));
                 System.out.println("============================================================");
-                resultList.add(predsJsonArray.getJSONObject(i).getString("description"));
-                resultList1.add(predsJsonArray.getJSONObject(i).getString("place_id"));
+                resultList.add(predsJsonArray.optJSONObject(i).optString("description"));
+                resultList1.add(predsJsonArray.optJSONObject(i).optString("place_id"));
+
             }
         } catch (JSONException e) {
             Log.e(LOG_TAG, "Cannot process JSON results", e);
@@ -322,7 +324,7 @@ public class GooglePlaces extends FragmentActivity implements OnItemClickListene
 
             // Create a JSON object hierarchy from the results
             JSONObject jsonObj = new JSONObject(jsonResults.toString());
-            predsJsonArray = jsonObj.getJSONArray("predictions");
+            predsJsonArray = jsonObj.optJSONArray("predictions");
 
             // Extract the Place descriptions from the results
 //            resultList = new ArrayList<>(predsJsonArray.length());

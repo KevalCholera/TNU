@@ -103,7 +103,7 @@ public class AdapterSearchCar extends BaseAdapter {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                Log.i("Partner",jsonObject.toString());
+                Log.i("Partner", jsonObject.toString());
 
                 SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_CUSTOMER_SELECTION, jsonObject.toString());
                 SharedPreferenceUtil.save();
@@ -122,18 +122,15 @@ public class AdapterSearchCar extends BaseAdapter {
 
         tvElementSearchCarsChat.setText(test.optJSONObject("taxiType").optString("taxiTypeName"));
         tvElementSearchCarsChat.setTag(test.optJSONObject("taxiType").optString("partnerId"));
-        ivElementSearchCarsOnline.setImageResource(android.R.drawable.presence_online);
 
-//        if (test.optInt("isAvailable") == 1) {
-//            tvElementSearchCarsChat.setText(test.optJSONObject("taxiType").optString("taxiTypeName"));
-//
-//        } else {
-//            ivElementSearchCarsOnline.setImageResource(android.R.drawable.presence_invisible);
-//        }
+        if (test.optInt("availability") == 0)
+            ivElementSearchCarsOnline.setImageResource(android.R.drawable.presence_online);
+        else
+            ivElementSearchCarsOnline.setImageResource(android.R.drawable.presence_invisible);
 
         rbElementSearchCars.setRating(test.optInt("rating"));
         tvElementSearchCarsName.setText(test.optString("partnerName"));
-        tvElementSearchCarsMoney.setText("£" + test.optString("ETA"));
+        tvElementSearchCarsMoney.setText("£" + test.optString("ETA") + ".00");
 
         return vi;
     }

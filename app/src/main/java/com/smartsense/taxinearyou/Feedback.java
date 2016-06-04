@@ -118,7 +118,7 @@ public class Feedback extends AppCompatActivity implements View.OnClickListener,
 
             case R.id.btFeedBackSubmit:
                 if (etFeedbackCommentForDriver.getVisibility() == View.VISIBLE && TextUtils.isEmpty(etFeedbackCommentForDriver.getText().toString()) || etFeedbackCommentForTaxinearu.getVisibility() == View.VISIBLE && TextUtils.isEmpty(etFeedbackCommentForTaxinearu.getText().toString()))
-                    CommonUtil.showSnackBar(this, getResources().getString(R.string.enter_fields_below), clFeedback);
+                    CommonUtil.showSnackBar(getResources().getString(R.string.enter_fields_below), clFeedback);
                 else
                     feedBack();
                 break;

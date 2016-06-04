@@ -16,6 +16,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -81,28 +82,20 @@ public class RecoverEmailAddress extends AppCompatActivity implements Response.L
             case R.id.btRecoverEmailSubmit:
                 if (rbRecoverEmailAlternateEmail.isChecked()) {
                     if (TextUtils.isEmpty(etRecoverEmailAlternateEmail.getText().toString()))
-                        CommonUtil.showSnackBar(RecoverEmailAddress.this, getString(R.string.enter_alternate_email), clRecoverEmail);
-                    else if (!CommonUtil.isValidEmail(etRecoverEmailAlternateEmail.getText().toString()))
-                        CommonUtil.showSnackBar(RecoverEmailAddress.this, getString(R.string.enter_valid_alternate_email), clRecoverEmail);
+                        CommonUtil.showSnackBar(getString(R.string.enter_alternate), clRecoverEmail);
                     else
-//                        CommonUtil.openDialogs(RecoverEmailAddress.this, "Recover Email", R.id.lyPopUpAfterRecovery, R.id.btPopupThankingRecoveryBack);
                         doResetEmail();
                 } else {
                     if (TextUtils.isEmpty(etRecoverEmailFirstName.getText().toString()))
-                        CommonUtil.showSnackBar(RecoverEmailAddress.this, getString(R.string.enter_first_name), clRecoverEmail);
+                        CommonUtil.showSnackBar(getString(R.string.enter_first_name), clRecoverEmail);
                     else if (TextUtils.isEmpty(etRecoverEmailLastName.getText().toString()))
-                        CommonUtil.showSnackBar(RecoverEmailAddress.this, getString(R.string.enter_last_name), clRecoverEmail);
-                    else if (TextUtils.isEmpty(etRecoverEmailContact.getText().toString()))
-                        CommonUtil.showSnackBar(RecoverEmailAddress.this, getString(R.string.enter_contact_no), clRecoverEmail);
-                    else if (etRecoverEmailContact.length() < 7 || etRecoverEmailContact.length() > 13)
-                        CommonUtil.showSnackBar(RecoverEmailAddress.this, getString(R.string.enter_valid_contact_no), clRecoverEmail);
-                    else if (TextUtils.isEmpty(etRecoverEmailAddress.getText().toString()))
-                        CommonUtil.showSnackBar(RecoverEmailAddress.this, getString(R.string.enter_email), clRecoverEmail);
+                        CommonUtil.showSnackBar(getString(R.string.enter_last_name), clRecoverEmail);
+                    else if (etRecoverEmailContact.length() != 10)
+                        CommonUtil.showSnackBar(getString(R.string.enter_con), clRecoverEmail);
                     else if (!CommonUtil.isValidEmail(etRecoverEmailAddress.getText().toString()))
-                        CommonUtil.showSnackBar(RecoverEmailAddress.this, getString(R.string.enter_valid_email), clRecoverEmail);
+                        CommonUtil.showSnackBar(getString(R.string.enter_email_id), clRecoverEmail);
                     else
                         doResetEmail();
-//                        CommonUtil.openDialogs(RecoverEmailAddress.this, "Recover Email", R.id.lyPopUpAfterRecovery, R.id.btPopupThankingRecoveryBack);
                 }
                 break;
         }
@@ -194,17 +187,10 @@ public class RecoverEmailAddress extends AppCompatActivity implements Response.L
                     switch (response.getInt("__eventid")) {
                         case Constants.Events.EVENT_FORGOT_EMAIL:
                             openDialog();
-//                            SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_USER_ID, response.getJSONObject("data").getString("userId"));
-//                            SharedPreferenceUtil.save();
-//                            startActivity(new Intent(this, OTPActivity.class).putExtra("mobile", etMobileNo.getText().toString()).putExtra("code", etCountryCode.getText().toString()).putExtra("tag", (String) etCountryCode.getTag()));
-//                            finish();
                             break;
                         case Constants.Events.EVENT_FORGOT_EMAIL_WITHOUT:
-//                            CommonUtil.openDialogs(RecoverEmailAddress.this, "Recover Email", R.id.lyPopUpAfterRecovery, R.id.btPopupThankingRecoveryBack, response.optString("msg"));
-//                            SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_USER_ID, response.getJSONObject("data").getString("userId"));
-//                            SharedPreferenceUtil.save();
-//                            startActivity(new Intent(this, OTPActivity.class).putExtra("mobile", etMobileNo.getText().toString()).putExtra("code", etCountryCode.getText().toString()).putExtra("tag", (String) etCountryCode.getTag()));
-//                            finish();
+                            Toast.makeText(this, getResources().getString(R.string.your_detail_send), Toast.LENGTH_SHORT).show();
+                            finish();
                             break;
                     }
                 } else {

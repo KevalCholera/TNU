@@ -69,7 +69,6 @@ public class FragmentMyTrips extends Fragment implements Response.Listener<JSONO
         }
 
         CommonUtil.jsonRequestNoProgressBar(builder.toString(), tag, this, this);
-//        CommonUtil.jsonRequestGET(getActivity(), getResources().getString(R.string.get_data), builder.toString(), tag, this, this);
     }
 
     @Override
@@ -92,39 +91,34 @@ public class FragmentMyTrips extends Fragment implements Response.Listener<JSONO
     public void onResponse(final JSONObject response) {
         CommonUtil.cancelProgressDialog();
         if (response != null) {
-            try {
-                if (response.getInt("status") == Constants.STATUS_SUCCESS) {
-                    switch (response.getInt("__eventid")) {
-                        case Constants.Events.EVENT_MY_TRIP:
-                            try {
-                                if (response.optJSONObject("json").optJSONArray("rideArray").length() > 0) {
-                                    lvMyTrips.setVisibility(View.VISIBLE);
-                                    llFragmentMyTrips.setVisibility(View.GONE);
-                                    AdapterMyTrips adapterMyTrips = new AdapterMyTrips(getActivity(), response.optJSONObject("json").optJSONArray("rideArray"));
-                                    lvMyTrips.setAdapter(adapterMyTrips);
+            if (response.optInt("status") == Constants.STATUS_SUCCESS) {
+                switch (response.optInt("__eventid")) {
+                    case Constants.Events.EVENT_MY_TRIP:
+                        try {
+                            if (response.optJSONObject("json").optJSONArray("rideArray").length() > 0) {
+                                lvMyTrips.setVisibility(View.VISIBLE);
+                                llFragmentMyTrips.setVisibility(View.GONE);
+                                AdapterMyTrips adapterMyTrips = new AdapterMyTrips(getActivity(), response.optJSONObject("json").optJSONArray("rideArray"));
+                                lvMyTrips.setAdapter(adapterMyTrips);
 
-                                    lvMyTrips.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                                        @Override
-                                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                                            startActivityForResult(new Intent(getActivity(), TripDetails.class).putExtra("key", response.optJSONObject("json").optJSONArray("rideArray").optJSONObject(position).toString()), request);
-                                        }
-                                    });
+                                lvMyTrips.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                                    @Override
+                                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                        startActivityForResult(new Intent(getActivity(), TripDetails.class).putExtra("key", response.optJSONObject("json").optJSONArray("rideArray").optJSONObject(position).toString()), request);
+                                    }
+                                });
 
-                                } else {
-                                    lvMyTrips.setVisibility(View.GONE);
-                                    llFragmentMyTrips.setVisibility(View.VISIBLE);
-                                }
-                            } catch (Exception e) {
-                                e.printStackTrace();
+                            } else {
+                                lvMyTrips.setVisibility(View.GONE);
+                                llFragmentMyTrips.setVisibility(View.VISIBLE);
                             }
-                            break;
-                    }
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                        break;
                 }
-//                else
-//                    CommonUtil.conditionAuthentication(getActivity(), response);
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
+            } else
+                CommonUtil.conditionAuthentication(getActivity(), response);
         } else
             CommonUtil.jsonNullError(getActivity());
     }
