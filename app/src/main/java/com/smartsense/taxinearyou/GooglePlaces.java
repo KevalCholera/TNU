@@ -83,7 +83,7 @@ public class GooglePlaces extends FragmentActivity implements OnItemClickListene
         lvGoogleSearch = (ListView) findViewById(R.id.lvGooglePlaces);
         dataAdapter = new GooglePlacesAutocompleteAdapter(this, R.layout.element_google);
         dataAdapter1 = new GooglePlacesAutocompleteAdapter1(this, new JSONArray());
-        lvGoogleSearch.setAdapter(dataAdapter);
+        lvGoogleSearch.setAdapter(dataAdapter1);
         lvGoogleSearch.setTextFilterEnabled(true);
         lvGoogleSearch.setOnItemClickListener(this);
         tvGooglePlacesCancel.setOnClickListener(this);
@@ -101,7 +101,7 @@ public class GooglePlaces extends FragmentActivity implements OnItemClickListene
                     ibGooglePlaceEmpty.setVisibility(View.VISIBLE);
                 else
                     ibGooglePlaceEmpty.setVisibility(View.GONE);
-                dataAdapter.getFilter().filter(s.toString());
+                dataAdapter1.getFilter().filter(s.toString());
             }
 
             @Override
@@ -325,14 +325,14 @@ public class GooglePlaces extends FragmentActivity implements OnItemClickListene
             predsJsonArray = jsonObj.getJSONArray("predictions");
 
             // Extract the Place descriptions from the results
-            resultList = new ArrayList<>(predsJsonArray.length());
-            resultList1 = new ArrayList<>(predsJsonArray.length());
-            for (int i = 0; i < predsJsonArray.length(); i++) {
-                System.out.println(predsJsonArray.getJSONObject(i));
-                System.out.println("============================================================");
-                resultList.add(predsJsonArray.getJSONObject(i).getString("description"));
-                resultList1.add(predsJsonArray.getJSONObject(i).getString("place_id"));
-            }
+//            resultList = new ArrayList<>(predsJsonArray.length());
+//            resultList1 = new ArrayList<>(predsJsonArray.length());
+//            for (int i = 0; i < predsJsonArray.length(); i++) {
+//                System.out.println(predsJsonArray.getJSONObject(i));
+//                System.out.println("============================================================");
+//                resultList.add(predsJsonArray.getJSONObject(i).getString("description"));
+//                resultList1.add(predsJsonArray.getJSONObject(i).getString("place_id"));
+//            }
         } catch (JSONException e) {
             Log.e(LOG_TAG, "Cannot process JSON results", e);
         }
@@ -440,11 +440,13 @@ public class GooglePlaces extends FragmentActivity implements OnItemClickListene
 
 
             JSONObject test = resultList11.optJSONObject(position);
-//            Log.i("Test", test.toString());
-            String[] str = test.optString("description").split(",", 1);
-            tvElementGoogle.setText(str[0]);
-            tvElementGoogle1.setText(str[1]);
-
+            try {
+                String[] str = test.optString("description").split(",", 2);
+                tvElementGoogle.setText(str[0].trim());
+                tvElementGoogle1.setText(str[1].trim());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             return vi;
         }
 
