@@ -188,17 +188,14 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
             final String finalDateTomorrow = Constants.DATE_FORMAT_ONLY_DATE.format(tomorrow);
             if (rbBookToday.getId() == id) {
                 tvBookDateTime.setText(finalDateNow2 + " " + updateTime(hour, minute));
-                tvBookDateTime.setTag(finalDateNow2 + " " + updateTime(hour, minute));
             } else if (rbBookTomorrow.getId() == id) {
                 tvBookDateTime.setText(finalDateTomorrow + " " + updateTime(hour, minute));
-                tvBookDateTime.setTag(finalDateTomorrow + " " + updateTime(hour, minute));
             }
             if (check) {
                 timePicker(id, finalDateNow2, finalDateTomorrow, hour, minute);
             }
         } else {
             tvBookDateTime.setText(finalDateNow1);
-            tvBookDateTime.setTag(finalDateNow1);
         }
     }
 
@@ -208,10 +205,8 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
             public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
                 if (rbBookToday.getId() == id) {
                     tvBookDateTime.setText(finalDateNow2 + " " + updateTime(selectedHour, selectedMinute));
-                    tvBookDateTime.setTag(finalDateNow2 + " " + updateTime(selectedHour, selectedMinute));
                 } else if (rbBookTomorrow.getId() == id) {
                     tvBookDateTime.setText(finalDateTomorrow + " " + updateTime(selectedHour, selectedMinute));
-                    tvBookDateTime.setTag(finalDateTomorrow + " " + updateTime(selectedHour, selectedMinute));
                 }
             }
         }, hour, minute, false);
@@ -225,14 +220,13 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
         JSONObject jsonData = new JSONObject();
 
         try {
-            builder.append(Constants.BASE_URL + Constants.BASE_URL_POSTFIX + Constants.Events.GET_SERVER_DATE_TIME + "&json=")
-                    .append(jsonData.put("token", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_ACCESS_TOKEN, ""))
-                            .put("userId", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_ID, "")));
+            builder.append(jsonData.put("token", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_ACCESS_TOKEN, ""))
+                    .put("userId", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_ID, "")));
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        CommonUtil.jsonRequestGET(getActivity(), getResources().getString(R.string.get_data), builder.toString(), tag, this, this);
+        CommonUtil.jsonRequestGET(getActivity(), getResources().getString(R.string.get_data), CommonUtil.utf8Convert(builder, Constants.Events.GET_SERVER_DATE_TIME), tag, this, this);
     }
 
     @Override

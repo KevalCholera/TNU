@@ -69,19 +69,18 @@ public class ContactUs extends AppCompatActivity implements Response.Listener<JS
         JSONObject jsonData = new JSONObject();
 
         try {
-            builder.append(Constants.BASE_URL + Constants.BASE_URL_POSTFIX + Constants.Events.CONTACT_US + "&json=")
-                    .append(jsonData.put("token", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_ACCESS_TOKEN, ""))
-                            .put("userId", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_ID, ""))
-                            .put("mobileNo", etContactUsMobile.getText().toString().trim())
-                            .put("subject", etContactUsSubject.getText().toString().trim())
-                            .put("message", etContactUsMessage.getText().toString().trim())
-                            .put("emailId", etContactUsEmail.getText().toString().trim())
-                            .put("name", etContactUsName.getText().toString().trim()));
+            builder.append(jsonData.put("token", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_ACCESS_TOKEN, ""))
+                    .put("userId", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_ID, ""))
+                    .put("mobileNo", etContactUsMobile.getText().toString().trim())
+                    .put("subject", etContactUsSubject.getText().toString().trim())
+                    .put("message", etContactUsMessage.getText().toString().trim())
+                    .put("emailId", etContactUsEmail.getText().toString().trim())
+                    .put("name", etContactUsName.getText().toString().trim()));
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        CommonUtil.jsonRequestGET(this, getResources().getString(R.string.get_data), builder.toString(), tag, this, this);
+        CommonUtil.jsonRequestGET(this, getResources().getString(R.string.get_data), CommonUtil.utf8Convert(builder, Constants.Events.CONTACT_US), tag, this, this);
     }
 
     @Override

@@ -71,7 +71,7 @@ public class SearchCars extends AppCompatActivity implements Response.Listener<J
         lySearchCarsDateTime = (LinearLayout) findViewById(R.id.lySearchCarsDateTime);
 
         try {
-            tvSearchCarsDateTime.setText(Constants.DATE_FORMAT_SET.format(Constants.DATE_FORMAT_SEND.parse(getIntent().getStringExtra("tvBookDateTime"))));
+            tvSearchCarsDateTime.setText(Constants.DATE_FORMAT_SET.format(Constants.DATE_FORMAT_SEND.parse(getIntent().getStringExtra("tvBookDateTime"))) + " " + (getIntent().getStringExtra("duration").equalsIgnoreCase("1") ? "Now" : getIntent().getStringExtra("duration").equalsIgnoreCase("2") ? "Today" : "Tomorrow"));
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -229,14 +229,7 @@ public class SearchCars extends AppCompatActivity implements Response.Listener<J
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        String url = "";
-        try {
-            url = Constants.BASE_URL + Constants.BASE_URL_POSTFIX + Constants.Events.EVENT_PARTNER_LIST + "&json="
-                    + URLEncoder.encode(builder.toString(), "UTF8");
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
-        CommonUtil.jsonRequestGET(this, getResources().getString(R.string.get_data), url, tag, this, this);
+        CommonUtil.jsonRequestGET(this, getResources().getString(R.string.get_data), CommonUtil.utf8Convert(builder, Constants.Events.EVENT_PARTNER_LIST), tag, this, this);
     }
 
     @Override

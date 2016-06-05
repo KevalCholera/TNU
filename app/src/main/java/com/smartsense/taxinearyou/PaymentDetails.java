@@ -62,7 +62,6 @@ public class PaymentDetails extends AppCompatActivity implements View.OnClickLis
         final String tag = "Final Booking";
         StringBuilder builder = new StringBuilder();
         JSONObject mainData = new JSONObject();
-        String url = "";
 
         try {
             JSONObject jsonObject1 = new JSONObject(SharedPreferenceUtil.getString(Constants.PrefKeys.BOOKING_INFO, ""));
@@ -77,20 +76,11 @@ public class PaymentDetails extends AppCompatActivity implements View.OnClickLis
                     .put("requestJson", jsonObject3)
                     .put("customerSelection", jsonObject4));
 
-            Log.i("params", builder.toString());
-
-            try {
-                url = Constants.BASE_URL + Constants.BASE_URL_POSTFIX + Constants.Events.BookRide + "&json="
-                        + URLEncoder.encode(builder.toString(), "UTF8");
-            } catch (UnsupportedEncodingException e) {
-                e.printStackTrace();
-            }
-
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        CommonUtil.jsonRequestGET(this, getResources().getString(R.string.get_data), url, tag, this, this);
+        CommonUtil.jsonRequestGET(this, getResources().getString(R.string.get_data), CommonUtil.utf8Convert(builder, Constants.Events.BookRide), tag, this, this);
     }
 
     @Override

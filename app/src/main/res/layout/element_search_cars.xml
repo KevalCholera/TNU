@@ -40,11 +40,10 @@
 
             <ImageView
                 android:id="@+id/ivElementSearchCarsOnline"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="@dimen/ivElementSearchCarsOnlineSize"
+                android:layout_height="@dimen/ivElementSearchCarsOnlineSize"
                 android:layout_gravity="center"
                 android:layout_marginRight="@dimen/lyElementSearchCarsWaitingTimeMarginTopRight" />
-
 
             <TextView
                 android:id="@+id/tvElementSearchCarsChat"

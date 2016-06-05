@@ -197,7 +197,7 @@
             android:layout_marginTop="@dimen/lySearchNowTodayTomorrowMaginTop"
             android:background="@drawable/blueborder"
             android:orientation="horizontal"
-            android:padding="@dimen/llBookNowTodayTomorrow">
+            android:padding="@dimen/llBookNowTodayTomorrowPadding">
 
             <RadioButton
                 android:id="@+id/rbBookNow"
@@ -205,7 +205,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@drawable/radio_book"
-                android:button="@drawable/radio_book"
+                android:button="@null"
                 android:checked="true"
                 android:gravity="center"
                 android:text="@string/now"
@@ -219,7 +219,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@drawable/radio_book"
-                android:button="@drawable/radio_book"
+                android:button="@null"
                 android:gravity="center"
                 android:text="@string/today"
                 android:textColor="@color/black"
@@ -231,7 +231,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@drawable/radio_book"
-                android:button="@drawable/radio_book"
+                android:button="@null"
                 android:gravity="center"
                 android:text="@string/tomorrow"
                 android:textColor="@color/black"

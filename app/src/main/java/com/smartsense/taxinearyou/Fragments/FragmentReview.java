@@ -74,15 +74,14 @@ public class FragmentReview extends Fragment implements Response.Listener<JSONOb
         JSONObject jsonData = new JSONObject();
 
         try {
-            builder.append(Constants.BASE_URL + Constants.BASE_URL_POSTFIX + Constants.Events.GET_FEED_BACK + "&json=")
-                    .append(jsonData.put("token", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_ACCESS_TOKEN, ""))
-                            .put("userId", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_ID, ""))
-                            .put("partnerId", PartnerDetails.partnerId));
+            builder.append(jsonData.put("token", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_ACCESS_TOKEN, ""))
+                    .put("userId", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_ID, ""))
+                    .put("partnerId", PartnerDetails.partnerId));
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        CommonUtil.jsonRequestGET(getActivity(), getResources().getString(R.string.get_data), builder.toString(), tag, this, this);
+        CommonUtil.jsonRequestGET(getActivity(), getResources().getString(R.string.get_data), CommonUtil.utf8Convert(builder, Constants.Events.GET_FEED_BACK), tag, this, this);
 
     }
 
@@ -101,8 +100,7 @@ public class FragmentReview extends Fragment implements Response.Listener<JSONOb
                     AdapterFragmentReview adapterFragmentReview = new AdapterFragmentReview(getActivity(), jsonObject.optJSONObject("json").optJSONArray("feedbackArray"));
                     lvReviewListView.setAdapter(adapterFragmentReview);
                     setListViewHeightBasedOnChildren(lvReviewListView);
-                }
-                else {
+                } else {
 
                 }
             else

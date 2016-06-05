@@ -129,7 +129,6 @@ public class Feedback extends AppCompatActivity implements View.OnClickListener,
         final String tag = "Feed Back";
         StringBuilder builder = new StringBuilder();
         JSONObject jsonData = new JSONObject();
-        String url = null;
         try {
             builder.append(jsonData.put("token", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_ACCESS_TOKEN, ""))
                     .put("userId", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_ID, ""))
@@ -139,19 +138,11 @@ public class Feedback extends AppCompatActivity implements View.OnClickListener,
                     .put("orgDescription", etFeedbackCommentForTaxinearu.getText().toString())
                     .put("orgRating", ivFeedbacksad.isChecked() ? 1 : 0));
 
-
-            try {
-                url = Constants.BASE_URL + Constants.BASE_URL_POSTFIX + Constants.Events.FEED_BACK + "&json="
-                        + URLEncoder.encode(builder.toString(), "UTF8");
-            } catch (UnsupportedEncodingException e) {
-                e.printStackTrace();
-            }
-
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        CommonUtil.jsonRequestGET(this, getResources().getString(R.string.get_data), url, tag, this, this);
+        CommonUtil.jsonRequestGET(this, getResources().getString(R.string.get_data), CommonUtil.utf8Convert(builder, Constants.Events.FEED_BACK), tag, this, this);
     }
 
 

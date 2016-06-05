@@ -43,10 +43,10 @@
                         android:id="@+id/etPersonalInfoName"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginBottom="@dimen/vPersonalInfoMarginTopBottomAll"
                         android:background="@null"
                         android:enabled="false"
                         android:inputType="textCapSentences"
+                        android:paddingBottom="@dimen/vPersonalInfoMarginTopBottomAll"
                         android:paddingRight="@dimen/etPersonalInfoPadding"
                         android:textColor="@color/black"
                         android:textColorHint="@color/light_Black"
@@ -70,10 +70,10 @@
                         android:id="@+id/etPersonalInfolastName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="@dimen/vPersonalInfoMarginTopBottomAll"
                         android:background="@null"
                         android:enabled="false"
                         android:inputType="textCapSentences"
+                        android:paddingBottom="@dimen/vPersonalInfoMarginTopBottomAll"
                         android:paddingRight="@dimen/etPersonalInfoPadding"
                         android:textColor="@color/black"
                         android:textColorHint="@color/light_Black"
@@ -97,10 +97,10 @@
                         android:id="@+id/etPersonalInfoNo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="@dimen/vPersonalInfoMarginTopBottomAll"
                         android:background="@null"
                         android:enabled="false"
                         android:inputType="number"
+                        android:paddingBottom="@dimen/vPersonalInfoMarginTopBottomAll"
                         android:paddingRight="@dimen/etPersonalInfoPadding"
                         android:textColor="@color/black"
                         android:textColorHint="@color/light_Black"
@@ -124,10 +124,10 @@
                         android:id="@+id/etPersonalInfoEmail"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="@dimen/vPersonalInfoMarginTopBottomAll"
                         android:background="@null"
                         android:enabled="false"
                         android:inputType="textEmailAddress"
+                        android:paddingBottom="@dimen/vPersonalInfoMarginTopBottomAll"
                         android:paddingRight="@dimen/etPersonalInfoPadding"
                         android:textColor="@color/black"
                         android:textColorHint="@color/light_Black"
@@ -192,13 +192,15 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/margin_5"
-                            android:layout_weight="1" />
+                            android:layout_weight="1"
+                            android:padding="@dimen/lyPadding10" />
 
                         <ImageView
                             android:id="@+id/ivPersonalInfoSpinner"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:src="@mipmap/imgdropdown" />
+                            android:src="@mipmap/imgdropdown"
+                            android:visibility="gone" />
                     </LinearLayout>
                 </LinearLayout>
             </ScrollView>

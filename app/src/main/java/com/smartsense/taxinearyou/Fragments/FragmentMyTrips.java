@@ -8,9 +8,11 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -30,6 +32,8 @@ import com.smartsense.taxinearyou.utill.WakeLocker;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+
 import javax.xml.transform.Result;
 
 
@@ -39,6 +43,11 @@ public class FragmentMyTrips extends Fragment implements Response.Listener<JSONO
     ListView lvMyTrips;
     LinearLayout llFragmentMyTrips;
     final int request = 1;
+    private boolean flag_loading;
+    int pageNumber = 0;
+    int pageSize = 10;
+    ArrayList<Integer> arrayList;
+    int selected = 0;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -47,34 +56,53 @@ public class FragmentMyTrips extends Fragment implements Response.Listener<JSONO
         ivMyTripsNoTrips = (ImageView) rootView.findViewById(R.id.ivMyTripsNoTrips);
         lvMyTrips = (ListView) rootView.findViewById(R.id.lvMyTrips);
         llFragmentMyTrips = (LinearLayout) rootView.findViewById(R.id.llFragmentMyTrips);
-        getActivity().registerReceiver(tripMessageReceiver, new IntentFilter(
-                Constants.PushList.PUSH_MY_TRIP));
-        doMyTrip();
+
+        getActivity().registerReceiver(tripMessageReceiver, new IntentFilter(Constants.PushList.PUSH_MY_TRIP));
+        arrayList = new ArrayList<>();
+        doMyTrip(pageNumber, pageSize);
+
+        lvMyTrips.setOnScrollListener(new AbsListView.OnScrollListener() {
+
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+            }
+
+            public void onScroll(AbsListView view, int firstVisibleItem,
+                                 int visibleItemCount, int totalItemCount) {
+
+                if (firstVisibleItem + visibleItemCount == totalItemCount && totalItemCount != 0 && !flag_loading) {
+                    flag_loading = true;
+                    pageNumber++;
+                    pageSize += 10;
+                    doMyTrip(pageNumber, pageSize);
+                }
+            }
+        });
+
         return rootView;
     }
 
-    private void doMyTrip() {
+    private void doMyTrip(int pageNumber, int pageSize) {
         final String tag = "My Trip";
         StringBuilder builder = new StringBuilder();
         JSONObject jsonData = new JSONObject();
 
         try {
-            builder.append(Constants.BASE_URL + Constants.BASE_URL_POSTFIX + Constants.Events.EVENT_MY_TRIP + "&json=")
-                    .append(jsonData.put("pageSize", 10).put("pageNumber", 0)
-                            .put("token", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_ACCESS_TOKEN, ""))
-                            .put("userId", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_ID, ""))
-                            .put("offset", 0));
+            builder.append(jsonData.put("pageSize", pageSize).put("pageNumber", pageNumber)
+                    .put("token", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_ACCESS_TOKEN, ""))
+                    .put("userId", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_ID, ""))
+                    .put("offset", 1));
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        CommonUtil.jsonRequestNoProgressBar(builder.toString(), tag, this, this);
+        CommonUtil.jsonRequestNoProgressBar(CommonUtil.utf8Convert(builder, Constants.Events.EVENT_MY_TRIP), tag, this, this);
     }
 
     @Override
     public void onErrorResponse(VolleyError volleyError) {
         CommonUtil.errorToastShowing(getActivity());
         CommonUtil.cancelProgressDialog();
+        flag_loading = true;
     }
 
     @Override
@@ -82,9 +110,17 @@ public class FragmentMyTrips extends Fragment implements Response.Listener<JSONO
         if (resultCode == Activity.RESULT_OK)
             switch (requestCode) {
                 case request:
-                    doMyTrip();
+                    arrayList = new ArrayList<>();
+                    doMyTrip(pageNumber, pageSize);
+                    lvMyTrips.setSelection(selected);
                     break;
             }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        arrayList = new ArrayList<>();
     }
 
     @Override
@@ -95,23 +131,30 @@ public class FragmentMyTrips extends Fragment implements Response.Listener<JSONO
                 switch (response.optInt("__eventid")) {
                     case Constants.Events.EVENT_MY_TRIP:
                         try {
-                            if (response.optJSONObject("json").optJSONArray("rideArray").length() > 0) {
-                                lvMyTrips.setVisibility(View.VISIBLE);
-                                llFragmentMyTrips.setVisibility(View.GONE);
-                                AdapterMyTrips adapterMyTrips = new AdapterMyTrips(getActivity(), response.optJSONObject("json").optJSONArray("rideArray"));
-                                lvMyTrips.setAdapter(adapterMyTrips);
+                            int length = response.optJSONObject("json").optJSONArray("rideArray").length();
 
-                                lvMyTrips.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                                    @Override
-                                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                                        startActivityForResult(new Intent(getActivity(), TripDetails.class).putExtra("key", response.optJSONObject("json").optJSONArray("rideArray").optJSONObject(position).toString()), request);
-                                    }
-                                });
+                            if (!arrayList.contains(length)) {
+                                arrayList.add(length);
 
-                            } else {
-                                lvMyTrips.setVisibility(View.GONE);
-                                llFragmentMyTrips.setVisibility(View.VISIBLE);
-                            }
+                                if (response.optJSONObject("json").optJSONArray("rideArray").length() > 0) {
+                                    flag_loading = false;
+                                    lvMyTrips.setVisibility(View.VISIBLE);
+                                    llFragmentMyTrips.setVisibility(View.GONE);
+                                    AdapterMyTrips adapterMyTrips = new AdapterMyTrips(getActivity(), response.optJSONObject("json").optJSONArray("rideArray"));
+                                    lvMyTrips.setAdapter(adapterMyTrips);
+
+                                    lvMyTrips.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                                        @Override
+                                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                            selected = position;
+                                            startActivityForResult(new Intent(getActivity(), TripDetails.class).putExtra("key", response.optJSONObject("json").optJSONArray("rideArray").optJSONObject(position).toString()), request);
+                                        }
+                                    });
+                                } else {
+                                    lvMyTrips.setVisibility(View.GONE);
+                                    llFragmentMyTrips.setVisibility(View.VISIBLE);
+                                }
+                            } else CommonUtil.alertBox(getActivity(), "All data set", false, false);
                         } catch (Exception e) {
                             e.printStackTrace();
                         }

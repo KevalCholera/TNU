@@ -6,8 +6,8 @@
     android:layout_height="fill_parent"
     android:background="@color/element"
     android:orientation="vertical"
-    android:paddingRight="@dimen/lyPaddingMainAll"
     android:paddingLeft="@dimen/lyPaddingMainAll"
+    android:paddingRight="@dimen/lyPaddingMainAll"
     android:paddingTop="@dimen/tvPopupMarginTop">
 
     <LinearLayout
@@ -184,6 +184,7 @@
                             android:id="@+id/tvLostItemFrom"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:maxLines="2"
                             android:textSize="@dimen/etSignUpSizeAll" />
 
                     </LinearLayout>
@@ -191,8 +192,8 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginRight="@dimen/lyElementLostItemFromToMarginEnd"
                         android:layout_marginLeft="@dimen/lyElementLostItemToMarginStart"
+                        android:layout_marginRight="@dimen/lyElementLostItemFromToMarginEnd"
                         android:layout_marginTop="@dimen/lyElementLostItemLostMarginStartTop"
                         android:orientation="horizontal">
 
@@ -207,6 +208,7 @@
                             android:id="@+id/tvLostItemTo"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:maxLines="2"
                             android:textSize="@dimen/etSignUpSizeAll" />
 
                     </LinearLayout>
@@ -320,8 +322,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="@dimen/lyElementLostItemLostItemMarginEnd"
                 android:layout_marginLeft="@dimen/lyElementLostItemLostMarginStartTop"
+                android:layout_marginRight="@dimen/lyElementLostItemLostItemMarginEnd"
                 android:orientation="horizontal">
 
                 <TextView

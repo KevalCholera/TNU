@@ -10,7 +10,8 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center">
+        android:gravity="center"
+        android:padding="@dimen/lyPadding10">
 
         <com.smartsense.taxinearyou.utill.CircleImageView1
             android:id="@+id/cvAccountPhoto"
@@ -18,8 +19,7 @@
             android:layout_height="@dimen/cvAccountPhotoWidthHeight"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:layout_marginBottom="@dimen/font_20"
-            android:src="@mipmap/imgsearchbackground"
+            android:layout_marginBottom="@dimen/lyPadding10"
             app:civ_border_color="@color/background"
             app:civ_border_width="@dimen/cvAccountPhoto" />
 
@@ -33,19 +33,18 @@
             android:layout_marginTop="@dimen/ivEditProfilePhoto"
             android:src="@mipmap/img_edit" />
 
-        <TextView
-            android:id="@+id/tvAccountPersonName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/cvAccountPhoto"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/tvAccountPersonNameMarginTop"
-            android:gravity="center"
-            android:textColor="@color/black"
-            android:textSize="@dimen/tvAccountAllSize"
-            android:textStyle="bold" />
-
     </RelativeLayout>
+
+
+    <TextView
+        android:id="@+id/tvAccountPersonName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="@dimen/lyPadding10"
+        android:textColor="@color/black"
+        android:textSize="@dimen/tvAccountAllSize"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/btAccountActivateNow"
@@ -148,9 +147,12 @@
                 android:layout_marginLeft="@dimen/lyAccountMarginTopAll"
                 android:layout_marginRight="@dimen/tvAccountAllMarginStartEnd"
                 android:layout_marginTop="@dimen/tvAccountAllMarginTop"
-                android:drawableLeft="@mipmap/coins_coming"
-                android:drawablePadding="@dimen/tvAccountDrawablePaddingAll"
+                android:drawableLeft="@mipmap/img_free_rides"
+                android:drawablePadding="@dimen/tvAccountCredits"
                 android:gravity="fill"
+                android:paddingBottom="@dimen/margin_5"
+                android:paddingLeft="@dimen/lyPadding10"
+                android:paddingTop="@dimen/margin_5"
                 android:text="@string/Credits"
                 android:textColor="@color/dark_gray"
                 android:textSize="@dimen/tvAccountAllSize"
@@ -194,7 +196,7 @@
                 android:layout_marginLeft="@dimen/lyAccountMarginTopAll"
                 android:layout_marginRight="@dimen/tvAccountAllMarginStartEnd"
                 android:layout_marginTop="@dimen/tvAccountAllMarginTop"
-                android:drawableLeft="@mipmap/ic_more"
+                android:drawableLeft="@mipmap/ic_more_"
                 android:drawablePadding="@dimen/tvAccountDrawablePaddingAll"
                 android:gravity="fill"
                 android:text="@string/more"

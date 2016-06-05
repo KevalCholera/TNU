@@ -19,7 +19,7 @@
             android:padding="@dimen/lyPaddingMainAll">
 
             <RadioButton
-                android:id="@+id/rbLostItemOpen"
+                android:id="@+id/rbLostItemOnGoing"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -33,7 +33,7 @@
                 android:textSize="@dimen/btSizeAll" />
 
             <RadioButton
-                android:id="@+id/rbLostItemInprogress"
+                android:id="@+id/rbLostItemFound"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -46,7 +46,7 @@
                 android:textSize="@dimen/btSizeAll" />
 
             <RadioButton
-                android:id="@+id/rbLostItemClosed"
+                android:id="@+id/rbLostItemNotFound"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

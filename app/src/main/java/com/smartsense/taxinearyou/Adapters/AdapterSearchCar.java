@@ -78,6 +78,7 @@ public class AdapterSearchCar extends BaseAdapter {
                 a.startActivity(new Intent(a, PartnerDetails.class).putExtra("customerSelection", SharedPreferenceUtil.getString(Constants.PrefKeys.DISTANCE_AFTER_CONVERT, ""))
                         .putExtra("ETA", tvElementSearchCarsMoney.getText().toString())
                         .putExtra("partnerName", tvElementSearchCarsName.getText().toString())
+                        .putExtra("taxiTypeName",test.optJSONObject("taxiType").optString("taxiTypeName"))
                         .putExtra("waitingTime", tvElementSearchCarsWaitingTime.getText().toString())
                         .putExtra("rating", rating)
                         .putExtra("partnerId", (String) tvElementSearchCarsChat.getTag())
@@ -126,7 +127,7 @@ public class AdapterSearchCar extends BaseAdapter {
         if (test.optInt("availability") == 0)
             ivElementSearchCarsOnline.setImageResource(android.R.drawable.presence_online);
         else
-            ivElementSearchCarsOnline.setImageResource(android.R.drawable.presence_invisible);
+            ivElementSearchCarsOnline.setImageResource(R.mipmap.ic_image_brightness_1);
 
         rbElementSearchCars.setRating(test.optInt("rating"));
         tvElementSearchCarsName.setText(test.optString("partnerName"));

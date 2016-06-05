@@ -28,7 +28,7 @@ public class FragmentAvailability extends Fragment {
         tvAvailabilityDriverNmae = (TextView) rootView.findViewById(R.id.tvAvailabilityDriverNmae);
         tvAvailabilityWaitingTime = (TextView) rootView.findViewById(R.id.tvAvailabilityWaitingTime);
 
-        tvAvailabilityDriverNmae.setText(PartnerDetails.partnerName);
+        tvAvailabilityDriverNmae.setText(PartnerDetails.taxiTypeName);
         tvAvailabilityWaitingTime.setText(PartnerDetails.waitingTime);
 
         return rootView;

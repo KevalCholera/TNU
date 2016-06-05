@@ -154,14 +154,13 @@ public class FragmentMenu extends Fragment implements Response.Listener<JSONObje
         JSONObject jsonData = new JSONObject();
 
         try {
-            builder.append(Constants.BASE_URL + Constants.BASE_URL_POSTFIX + Constants.Events.EVENT_LOGOUT + "&json=")
-                    .append(jsonData.put("token", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_ACCESS_TOKEN, ""))
-                            .put("userId", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_ID, "")));
+            builder.append(jsonData.put("token", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_ACCESS_TOKEN, ""))
+                    .put("userId", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_ID, "")));
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        CommonUtil.jsonRequestGET(getActivity(), getResources().getString(R.string.login_out), builder.toString(), tag, this, this);
+        CommonUtil.jsonRequestGET(getActivity(), getResources().getString(R.string.login_out), CommonUtil.utf8Convert(builder, Constants.Events.EVENT_LOGOUT), tag, this, this);
     }
 
     private void activeAccount() {
@@ -170,14 +169,13 @@ public class FragmentMenu extends Fragment implements Response.Listener<JSONObje
         JSONObject jsonData = new JSONObject();
 
         try {
-            builder.append(Constants.BASE_URL + Constants.BASE_URL_POSTFIX + Constants.Events.ACTIVE_ACCOUNT + "&json=")
-                    .append(jsonData.put("token", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_ACCESS_TOKEN, ""))
-                            .put("userId", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_ID, "")));
+            builder.append(jsonData.put("token", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_ACCESS_TOKEN, ""))
+                    .put("userId", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_ID, "")));
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        CommonUtil.jsonRequestGET(getActivity(), getResources().getString(R.string.send_data), builder.toString(), tag, this, this);
+        CommonUtil.jsonRequestGET(getActivity(), getResources().getString(R.string.send_data), CommonUtil.utf8Convert(builder, Constants.Events.ACTIVE_ACCOUNT), tag, this, this);
     }
 
     private void doUpload(Intent data) {
@@ -243,7 +241,7 @@ public class FragmentMenu extends Fragment implements Response.Listener<JSONObje
                     break;
             }
         else
-            Toast.makeText(getContext(), getResources().getString(R.string.something_wrong), Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), getResources().getString(R.string.cancel_camera), Toast.LENGTH_SHORT).show();
         super.onActivityResult(requestCode, resultCode, data);
     }
 
@@ -286,7 +284,6 @@ public class FragmentMenu extends Fragment implements Response.Listener<JSONObje
         if (response != null) {
             try {
                 if (response.getInt("status") == Constants.STATUS_SUCCESS) {
-                    CommonUtil.successToastShowing(getActivity(), response);
                     switch (response.getInt("__eventid")) {
                         case Constants.Events.EVENT_LOGOUT:
                             SharedPreferenceUtil.clear();
@@ -295,14 +292,18 @@ public class FragmentMenu extends Fragment implements Response.Listener<JSONObje
                             getActivity().finish();
                             break;
                         case Constants.Events.UPDATE_PROFILE_PIC:
+
+                            CommonUtil.alertBox(getActivity(), response.optString("msg"), false, false);
+
+                            SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_USER_PROIMG, Constants.BASE_URL_IMAGE_POSTFIX + response.optJSONObject("json").optJSONObject("user").optString("profilePic"));
+                            SharedPreferenceUtil.save();
+
                             Picasso.with(getActivity())
-                                    .load(response.optJSONObject("json").optJSONObject("user").optString("profilePic"))
+                                    .load(SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_PROIMG, ""))
                                     .error(R.mipmap.imgtnulogo)
                                     .placeholder(R.mipmap.imgtnulogo)
                                     .into(cvAccountPhoto);
 
-                            SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_USER_PROIMG, Constants.BASE_URL_IMAGE_POSTFIX + response.optJSONObject("json").optJSONObject("user").optString("profilePic"));
-                            SharedPreferenceUtil.save();
                             break;
                     }
                 } else {

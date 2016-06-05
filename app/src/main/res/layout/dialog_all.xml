@@ -410,7 +410,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/tvPopupMarginTop"
                 android:gravity="center"
-                android:text="@string/answer_security_question"
+                android:text="@string/ans_sec_qus"
                 android:textSize="@dimen/tvTitlesSizeAll" />
 
             <View
@@ -427,7 +427,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/q"
+                    android:text="@string/q1"
                     android:textSize="@dimen/tvTitlesSizeAll" />
 
                 <TextView
@@ -459,6 +459,7 @@
                     android:layout_gravity="center"
                     android:layout_marginLeft="@dimen/etPopupSecurityQuestionChangeAnswerMarginStart"
                     android:background="@drawable/grayborder"
+                    android:hint="@string/enter_ans"
                     android:inputType="text"
                     android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
                     android:textColor="@color/black"
@@ -476,7 +477,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/q"
+                    android:text="@string/q2"
                     android:textSize="@dimen/tvTitlesSizeAll" />
 
 
@@ -509,6 +510,7 @@
                     android:layout_gravity="center"
                     android:layout_marginLeft="@dimen/etPopupSecurityQuestionChangeAnswerMarginStart"
                     android:background="@drawable/grayborder"
+                    android:hint="@string/enter_ans"
                     android:inputType="text"
                     android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
                     android:textColor="@color/black"
@@ -528,7 +530,7 @@
                 android:gravity="center"
                 android:paddingLeft="@dimen/btPopupSubmitPaddingLeftRight"
                 android:paddingRight="@dimen/btPopupSubmitPaddingLeftRight"
-                android:text="@string/submit"
+                android:text="@string/confirm"
                 android:textColor="@color/white"
                 android:textSize="@dimen/tvTitlesSizeAll" />
 
@@ -796,7 +798,7 @@
                     android:background="@color/background"
                     android:gravity="center"
                     android:padding="@dimen/tvPopupCancelRidePadding"
-                    android:text="@string/cancel"
+                    android:text="@string/no"
                     android:textColor="@color/white"
                     android:textSize="@dimen/tvTitlesSizeAll" />
 
@@ -810,7 +812,7 @@
                     android:background="@color/Yellow"
                     android:gravity="center"
                     android:padding="@dimen/tvPopupCancelRidePadding"
-                    android:text="@string/ok"
+                    android:text="@string/ye"
                     android:textColor="@color/white"
                     android:textSize="@dimen/tvTitlesSizeAll" />
             </LinearLayout>

@@ -119,13 +119,12 @@ public class SignIn extends AppCompatActivity implements Response.Listener<JSONO
         JSONObject jsonData = new JSONObject();
 
         try {
-            builder.append(Constants.BASE_URL + Constants.BASE_URL_POSTFIX + Constants.Events.EVENT_LOGIN + "&json=")
-                    .append(jsonData.put("password", etSignInPassword.getText().toString().trim())
-                            .put("username", etSignInUserName.getText().toString().trim()).toString());
+            builder.append(jsonData.put("password", etSignInPassword.getText().toString().trim())
+                    .put("username", etSignInUserName.getText().toString().trim()).toString());
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        CommonUtil.jsonRequestGET(this, getResources().getString(R.string.login_in), builder.toString(), tag, this, this);
+        CommonUtil.jsonRequestGET(this, getResources().getString(R.string.login_in), CommonUtil.utf8Convert(builder, Constants.Events.EVENT_LOGIN), tag, this, this);
 
     }
 

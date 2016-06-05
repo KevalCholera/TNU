@@ -202,16 +202,15 @@ public class AccountSecurity extends AppCompatActivity implements View.OnClickLi
         JSONObject jsonData = new JSONObject();
 
         try {
-            builder.append(Constants.BASE_URL + Constants.BASE_URL_POSTFIX + Constants.Events.SEND_UPDATE_EMAIL + "&json=")
-                    .append(jsonData.put("token", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_ACCESS_TOKEN, ""))
-                            .put("userId", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_ID, ""))
-                            .put("actionType", rbPopupSecurityOptionsEmail.isChecked() ? 1 : 2)
-                            .put("reqType", clicked));
+            builder.append(jsonData.put("token", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_ACCESS_TOKEN, ""))
+                    .put("userId", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_ID, ""))
+                    .put("actionType", rbPopupSecurityOptionsEmail.isChecked() ? 1 : 2)
+                    .put("reqType", clicked));
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        CommonUtil.jsonRequestGET(this, getResources().getString(R.string.get_data), builder.toString(), tag, this, this);
+        CommonUtil.jsonRequestGET(this, getResources().getString(R.string.get_data), CommonUtil.utf8Convert(builder, Constants.Events.SEND_UPDATE_EMAIL), tag, this, this);
     }
 
     private void updatePromotions() {
@@ -220,16 +219,15 @@ public class AccountSecurity extends AppCompatActivity implements View.OnClickLi
         JSONObject jsonData = new JSONObject();
 
         try {
-            builder.append(Constants.BASE_URL + Constants.BASE_URL_POSTFIX + Constants.Events.UPDATE_PROMOTIONS + "&json=")
-                    .append(jsonData.put("token", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_ACCESS_TOKEN, ""))
-                            .put("userId", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_ID, ""))
-                            .put("promotionStatus", cbAccountSecurityTaxinearu.isChecked() ? 1 : 0)
-                            .put("thirdPartyPomotionStatus", cbAccountSecurityOrganization.isChecked() ? 1 : 0));
+            builder.append(jsonData.put("token", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_ACCESS_TOKEN, ""))
+                    .put("userId", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_ID, ""))
+                    .put("promotionStatus", cbAccountSecurityTaxinearu.isChecked() ? 1 : 0)
+                    .put("thirdPartyPomotionStatus", cbAccountSecurityOrganization.isChecked() ? 1 : 0));
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        CommonUtil.jsonRequestGET(this, getResources().getString(R.string.get_data), builder.toString(), tag, this, this);
+        CommonUtil.jsonRequestGET(this, getResources().getString(R.string.get_data), CommonUtil.utf8Convert(builder, Constants.Events.UPDATE_PROMOTIONS), tag, this, this);
     }
 
     private void changeEmailAPI() {
@@ -238,17 +236,16 @@ public class AccountSecurity extends AppCompatActivity implements View.OnClickLi
         JSONObject jsonData = new JSONObject();
 
         try {
-            builder.append(Constants.BASE_URL + Constants.BASE_URL_POSTFIX + Constants.Events.UPDATE_EMAIL + "&json=")
-                    .append(jsonData.put("token", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_ACCESS_TOKEN, ""))
-                            .put("userId", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_ID, ""))
-                            .put("reqType", clicked)
-                            .put("emailId", clicked == 1 ? etPopupSecurityEmail.getText().toString() : etPopupSecurityAlternateEmail.getText().toString())
-                            .put("confirmEmailId", clicked == 1 ? etPopupSecurityConfirmEmail.getText().toString() : etPopupSecurityConfirmAlternateEmail.getText().toString()));
+            builder.append(jsonData.put("token", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_ACCESS_TOKEN, ""))
+                    .put("userId", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_ID, ""))
+                    .put("reqType", clicked)
+                    .put("emailId", clicked == 1 ? etPopupSecurityEmail.getText().toString() : etPopupSecurityAlternateEmail.getText().toString())
+                    .put("confirmEmailId", clicked == 1 ? etPopupSecurityConfirmEmail.getText().toString() : etPopupSecurityConfirmAlternateEmail.getText().toString()));
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        CommonUtil.jsonRequestGET(this, getResources().getString(R.string.get_data), builder.toString(), tag, this, this);
+        CommonUtil.jsonRequestGET(this, getResources().getString(R.string.get_data), CommonUtil.utf8Convert(builder, Constants.Events.UPDATE_EMAIL), tag, this, this);
     }
 
     private void changePasswordAPI() {
@@ -257,16 +254,15 @@ public class AccountSecurity extends AppCompatActivity implements View.OnClickLi
         JSONObject jsonData = new JSONObject();
 
         try {
-            builder.append(Constants.BASE_URL + Constants.BASE_URL_POSTFIX + Constants.Events.UPDATE_PASSWORD + "&json=")
-                    .append(jsonData.put("token", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_ACCESS_TOKEN, ""))
-                            .put("userId", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_ID, ""))
-                            .put("confPassword", etPopupSecurityPassword.getText().toString())
-                            .put("newPassword", etPopupSecurityConfirmPassword.getText().toString()));
+            builder.append(jsonData.put("token", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_ACCESS_TOKEN, ""))
+                    .put("userId", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_ID, ""))
+                    .put("confPassword", etPopupSecurityPassword.getText().toString())
+                    .put("newPassword", etPopupSecurityConfirmPassword.getText().toString()));
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        CommonUtil.jsonRequestGET(this, getResources().getString(R.string.get_data), builder.toString(), tag, this, this);
+        CommonUtil.jsonRequestGET(this, getResources().getString(R.string.get_data), CommonUtil.utf8Convert(builder, Constants.Events.UPDATE_PASSWORD), tag, this, this);
     }
 
     public void setValue() {

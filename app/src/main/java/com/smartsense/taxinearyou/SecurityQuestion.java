@@ -101,26 +101,25 @@ public class SecurityQuestion extends AppCompatActivity implements View.OnClickL
         JSONObject jsonData = new JSONObject();
 
         try {
-            builder.append(Constants.BASE_URL + Constants.BASE_URL_POSTFIX + Constants.Events.EVENT_SIGNUP + "&json=")
-                    .append(jsonData.put("firstName", getIntent().getStringExtra("firstName"))
-                            .put("lastName", getIntent().getStringExtra("lastName"))
-                            .put("contactNo", getIntent().getStringExtra("contactNo"))
-                            .put("emailId", getIntent().getStringExtra("emailId"))
-                            .put("password", getIntent().getStringExtra("password"))
-                            .put("confPassword", getIntent().getStringExtra("confPassword"))
-                            .put("altEmailId", getIntent().getStringExtra("altEmailId"))
-                            .put("secQ1", (String) etSecurityQuestion1.getTag())
-                            .put("secQ2", (String) etSecurityQuestion2.getTag())
-                            .put("ans1", etSecurityAnswer1.getText().toString().trim())
-                            .put("ans2", etSecurityAnswer2.getText().toString().trim())
-                            .put("termsCond", cbSecurityFromPrivacyPolicy.isChecked() ? "1" : "0")
-                            .put("condition2", cbSecurityFromOrganization.isChecked() ? "1" : "0")
-                            .put("condition3", cbSecurityAboutTaxinearu.isChecked() ? "1" : "0").toString());
+            builder.append(jsonData.put("firstName", getIntent().getStringExtra("firstName"))
+                    .put("lastName", getIntent().getStringExtra("lastName"))
+                    .put("contactNo", getIntent().getStringExtra("contactNo"))
+                    .put("emailId", getIntent().getStringExtra("emailId"))
+                    .put("password", getIntent().getStringExtra("password"))
+                    .put("confPassword", getIntent().getStringExtra("confPassword"))
+                    .put("altEmailId", getIntent().getStringExtra("altEmailId"))
+                    .put("secQ1", etSecurityQuestion1.getTag())
+                    .put("secQ2", etSecurityQuestion2.getTag())
+                    .put("ans1", etSecurityAnswer1.getText().toString().trim())
+                    .put("ans2", etSecurityAnswer2.getText().toString().trim())
+                    .put("termsCond", cbSecurityFromPrivacyPolicy.isChecked() ? "1" : "0")
+                    .put("condition2", cbSecurityFromOrganization.isChecked() ? "1" : "0")
+                    .put("condition3", cbSecurityAboutTaxinearu.isChecked() ? "1" : "0").toString());
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        CommonUtil.jsonRequestGET(this, getResources().getString(R.string.signing_up), builder.toString(), tag, this, this);
+        CommonUtil.jsonRequestGET(this, getResources().getString(R.string.signing_up), CommonUtil.utf8Convert(builder, Constants.Events.EVENT_SIGNUP), tag, this, this);
     }
 
     private void getSecurityQuestion() {

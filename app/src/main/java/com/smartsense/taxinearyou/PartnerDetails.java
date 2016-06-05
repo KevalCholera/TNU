@@ -34,6 +34,7 @@ public class PartnerDetails extends AppCompatActivity {
     CircleImageView1 cvPartnerPic;
     public FragmentActivity activity;
     public static String partnerName;
+    public static String taxiTypeName;
     public static String waitingTime;
     public static String partnerId;
     public static ArrayList<String> rating = new ArrayList<>();
@@ -57,9 +58,10 @@ public class PartnerDetails extends AppCompatActivity {
                     .placeholder(R.mipmap.imgtnulogo)
                     .into(cvPartnerPic);
 
-        tvPartnerMoney.setText(getIntent().getStringExtra("ETA") + ".00");
+        tvPartnerMoney.setText(getIntent().getStringExtra("ETA"));
 
         partnerName = getIntent().getStringExtra("partnerName");
+        taxiTypeName = getIntent().getStringExtra("taxiTypeName");
         waitingTime = getIntent().getStringExtra("waitingTime");
         rating = getIntent().getStringArrayListExtra("rating");
         partnerId = getIntent().getStringExtra("partnerId");

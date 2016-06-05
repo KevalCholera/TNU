@@ -34,6 +34,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
@@ -117,7 +118,11 @@ public class TripDetails extends AppCompatActivity implements View.OnClickListen
             tvTripDetailFare.setText("£" + tripDetails.optInt("estimatedAmount") + ".00");
             tvTripDetailFrom.setText(tripDetails.optString("from"));
             tvTripDetailTo.setText(tripDetails.optString("to"));
-            tvTripDetailAdditionsInfo.setText(tripDetails.optString("addtionalInformation"));
+
+            if (tripDetails.optString("addtionalInformation").equalsIgnoreCase(""))
+                tvTripDetailAdditionsInfo.setText("-");
+            else
+                tvTripDetailAdditionsInfo.setText(tripDetails.optString("addtionalInformation"));
 
             ViewTreeObserver vto = ivTripDetailsMap.getViewTreeObserver();
             vto.addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
@@ -156,10 +161,16 @@ public class TripDetails extends AppCompatActivity implements View.OnClickListen
             tvTripDetailTNR.setText(tripDetails.optString("pnr"));
             tvTripDetailPassengers.setText(tripDetails.optInt("totalPassenger") + "");
             tvTripDetailLugguages.setText(tripDetails.optString("totalLuggage"));
-            tvTripDetailMiles.setText(tripDetails.optInt("estimatedKm") + "");
             tvTripDetailPayment.setText(tripDetails.optString("paymentType"));
             tvTripDetailRideType.setText(tripDetails.optString("bookingType"));
             tvTripDetailVehicle.setText(tripDetails.optString("vehicleType"));
+
+            double x = Double.valueOf(tripDetails.optString("estimatedKm"));
+            DecimalFormat df = new DecimalFormat("#.##");
+            String dx = df.format(x);
+            x = Double.valueOf(dx);
+
+            tvTripDetailMiles.setText(x + " miles");
 
         } catch (JSONException | ParseException e) {
             e.printStackTrace();
@@ -186,26 +197,25 @@ public class TripDetails extends AppCompatActivity implements View.OnClickListen
                 startActivityForResult(new Intent(TripDetails.this, Feedback.class).putExtra("rideId", (String) tvTripDetailTaxiProvider.getTag()), requestFeedBack);
                 break;
             case R.id.btTripDetailInvoice:
-                tripDetails();
+                resendInvoice();
                 break;
         }
     }
 
-    private void tripDetails() {
+    private void resendInvoice() {
         final String tag = "Resend Invoice";
         StringBuilder builder = new StringBuilder();
         JSONObject jsonData = new JSONObject();
 
         try {
-            builder.append(Constants.BASE_URL + Constants.BASE_URL_POSTFIX + Constants.Events.RESEND_INVOICE + "&json=")
-                    .append(jsonData.put("token", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_ACCESS_TOKEN, ""))
-                            .put("userId", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_ID, ""))
-                            .put("rideId", tvTripDetailTaxiProvider.getTag()));
+            builder.append(jsonData.put("token", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_ACCESS_TOKEN, ""))
+                    .put("userId", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_ID, ""))
+                    .put("rideId", tvTripDetailTaxiProvider.getTag()));
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        CommonUtil.jsonRequestGET(this, getResources().getString(R.string.sending_invoice), builder.toString(), tag, this, this);
+        CommonUtil.jsonRequestGET(this, getResources().getString(R.string.sending_invoice), CommonUtil.utf8Convert(builder, Constants.Events.RESEND_INVOICE), tag, this, this);
 
     }
 
@@ -215,15 +225,14 @@ public class TripDetails extends AppCompatActivity implements View.OnClickListen
         JSONObject jsonData = new JSONObject();
 
         try {
-            builder.append(Constants.BASE_URL + Constants.BASE_URL_POSTFIX + Constants.Events.CANCEL_RIDE + "&json=")
-                    .append(jsonData.put("token", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_ACCESS_TOKEN, ""))
-                            .put("userId", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_ID, ""))
-                            .put("rideId", tvTripDetailTaxiProvider.getTag()));
+            builder.append(jsonData.put("token", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_ACCESS_TOKEN, ""))
+                    .put("userId", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_ID, ""))
+                    .put("rideId", tvTripDetailTaxiProvider.getTag()));
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        CommonUtil.jsonRequestGET(this, getResources().getString(R.string.get_data), builder.toString(), tag, this, this);
+        CommonUtil.jsonRequestGET(this, getResources().getString(R.string.get_data), CommonUtil.utf8Convert(builder, Constants.Events.CANCEL_RIDE), tag, this, this);
     }
 
     public void cancelRideDialog() {
@@ -241,7 +250,7 @@ public class TripDetails extends AppCompatActivity implements View.OnClickListen
             tvPopupCancelRideCancel = (TextView) dialog.findViewById(R.id.tvPopupCancelRideCancel);
             tvDialogCancelText = (TextView) dialog.findViewById(R.id.tvDialogCancelText);
 
-            String important = "<font color='#3468D6'>" + getResources().getString(R.string.half_cancel_msg) + "</font>";
+            String important = "<font color='#3468D6'>" + dialog.getResources().getString(R.string.half_cancel_msg) + "</font>";
             tvDialogCancelText.setText(getResources().getString(R.string.cancel_msg) + Html.fromHtml(important));
 
             tvPopupCancelRideOk.setOnClickListener(new Button.OnClickListener() {
@@ -322,7 +331,6 @@ public class TripDetails extends AppCompatActivity implements View.OnClickListen
                     alert.dismiss();
                     CommonUtil.alertBoxTwice(this, jsonObject.optString("msg"), getResources().getString(R.string.cancellation), tvTripDetailCancle);
                 } else if (jsonObject.optInt("__eventid") == Constants.Events.RESEND_INVOICE) {
-                    alert.dismiss();
                     CommonUtil.alertBox(this, jsonObject.optString("msg"), false, false);
                 }
             } else

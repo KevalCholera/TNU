@@ -84,17 +84,16 @@ public class GeneralInformation extends AppCompatActivity implements Response.Li
         JSONObject jsonData = new JSONObject();
 
         try {
-            builder.append(Constants.BASE_URL + Constants.BASE_URL_POSTFIX + Constants.Events.UPDATE_GENERAL_INFO + "&json=")
-                    .append(jsonData.put("firstName", etGeneralFirstName.getText().toString().trim())
-                            .put("lastName", etGeneralLastName.getText().toString().trim())
-                            .put("contactNo", etGeneralMobile.getText().toString().trim())
-                            .put("userId", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_ID, ""))
-                            .put("token", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_ACCESS_TOKEN, "")));
+            builder.append(jsonData.put("firstName", etGeneralFirstName.getText().toString().trim())
+                    .put("lastName", etGeneralLastName.getText().toString().trim())
+                    .put("contactNo", etGeneralMobile.getText().toString().trim())
+                    .put("userId", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_ID, ""))
+                    .put("token", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_ACCESS_TOKEN, "")));
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        CommonUtil.jsonRequestGET(this, getResources().getString(R.string.upload_info), builder.toString(), tag, this, this);
+        CommonUtil.jsonRequestGET(this, getResources().getString(R.string.upload_info), CommonUtil.utf8Convert(builder, Constants.Events.UPDATE_GENERAL_INFO), tag, this, this);
     }
 
     @Override
@@ -126,12 +125,12 @@ public class GeneralInformation extends AppCompatActivity implements Response.Li
             if (jsonObject.optInt("status") == Constants.STATUS_SUCCESS) {
                 if (jsonObject.optString("__eventid").equalsIgnoreCase(Constants.Events.CHECK_MOBILE_AVAILABILITY + ""))
                     if (!jsonObject.optJSONObject("json").optString("isAvailable").equalsIgnoreCase("1")) {
-                        CommonUtil.successToastShowing(this, jsonObject);
+                        CommonUtil.showSnackBar(jsonObject.optString("msg"), clGeneralInfo);
                     } else {
                         generalInfo();
                     }
                 else {
-                    CommonUtil.successToastShowing(this, jsonObject);
+                    CommonUtil.alertBox(this, jsonObject.optString("msg"), false, false);
                     SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_USER_FIRST, etGeneralFirstName.getText().toString());
                     SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_USER_LAST, etGeneralLastName.getText().toString());
                     SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_USER_MNO, etGeneralMobile.getText().toString());

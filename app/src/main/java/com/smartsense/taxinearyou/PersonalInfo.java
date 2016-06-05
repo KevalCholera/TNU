@@ -70,15 +70,6 @@ public class PersonalInfo extends AppCompatActivity implements View.OnClickListe
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spPersonalInfoAd.setAdapter(dataAdapter);
 
-        spPersonalInfoAd.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                spPersonalInfoAd.performClick();
-                CommonUtil.closeKeyboard(PersonalInfo.this);
-                return true;
-            }
-        });
-
         ivPersonalInfoSpinner.setOnClickListener(this);
         etInfoSocial.setOnClickListener(this);
         btInfoConfirmNext.setOnClickListener(this);

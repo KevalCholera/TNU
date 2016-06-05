@@ -128,14 +128,13 @@ public class EventBooking extends AppCompatActivity implements Response.Listener
         JSONObject jsonData = new JSONObject();
 
         try {
-            builder.append(Constants.BASE_URL + Constants.BASE_URL_POSTFIX + Constants.Events.GET_SERVER_DATE_TIME + "&json=")
-                    .append(jsonData.put("token", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_ACCESS_TOKEN, ""))
-                            .put("userId", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_ID, "")));
+            builder.append(jsonData.put("token", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_ACCESS_TOKEN, ""))
+                    .put("userId", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_ID, "")));
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        CommonUtil.jsonRequestGET(this, getResources().getString(R.string.get_data), builder.toString(), tag, this, this);
+        CommonUtil.jsonRequestGET(this, getResources().getString(R.string.get_data), CommonUtil.utf8Convert(builder, Constants.Events.GET_SERVER_DATE_TIME), tag, this, this);
     }
 
     Calendar mCalendar = Calendar.getInstance();
@@ -281,7 +280,7 @@ public class EventBooking extends AppCompatActivity implements Response.Listener
                     CommonUtil.showSnackBar(getResources().getString(R.string.enter_last_name), clEventBooking);
                 else if (TextUtils.isEmpty(etEventBookingEmailAddress.getText().toString()))
                     CommonUtil.showSnackBar(getResources().getString(R.string.enter_email_id), clEventBooking);
-                else if (etEventBookingContactNumber.length() !=10)
+                else if (etEventBookingContactNumber.length() != 10)
                     CommonUtil.showSnackBar(getResources().getString(R.string.enter_con), clEventBooking);
                 else if (TextUtils.isEmpty(etEventBookingPickUp.getText().toString()))
                     CommonUtil.showSnackBar(getResources().getString(R.string.event_bookin_pick), clEventBooking);
@@ -457,7 +456,6 @@ public class EventBooking extends AppCompatActivity implements Response.Listener
         final String tag = "Event Booking";
         StringBuilder builder = new StringBuilder();
         JSONObject jsonData = new JSONObject();
-        String url = "";
 
         try {
             if (rbEventBookingReturn.isChecked())
@@ -478,17 +476,10 @@ public class EventBooking extends AppCompatActivity implements Response.Listener
                     .put("type", rbEventBookingOneWay.isChecked() ? "0" : "1")
                     .put("lastname", etEventBookingLastName.getText().toString().trim()));
 
-            try {
-                url = Constants.BASE_URL + Constants.BASE_URL_POSTFIX + Constants.Events.EVENT_BOOKING + "&json="
-                        + URLEncoder.encode(builder.toString(), "UTF8");
-            } catch (UnsupportedEncodingException e) {
-                e.printStackTrace();
-            }
-
         } catch (JSONException | ParseException e) {
             e.printStackTrace();
         }
-        CommonUtil.jsonRequestGET(this, getResources().getString(R.string.get_data), url, tag, this, this);
+        CommonUtil.jsonRequestGET(this, getResources().getString(R.string.get_data), CommonUtil.utf8Convert(builder, Constants.Events.EVENT_BOOKING), tag, this, this);
     }
 
     @Override

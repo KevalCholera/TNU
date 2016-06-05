@@ -79,7 +79,6 @@ public class AddLostItem extends AppCompatActivity implements View.OnClickListen
         final String tag = "Add Lost Item";
         StringBuilder builder = new StringBuilder();
         JSONObject jsonData = new JSONObject();
-        String url = "";
         try {
             builder.append(jsonData.put("token", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_ACCESS_TOKEN, ""))
                     .put("userId", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_ID, "").trim())
@@ -89,17 +88,10 @@ public class AddLostItem extends AppCompatActivity implements View.OnClickListen
                     .put("itemDescription", etYourDetailDescription.getText().toString().trim())
                     .put("address", etYourDetailAddress.getText().toString().trim()));
 
-            try {
-                url = Constants.BASE_URL + Constants.BASE_URL_POSTFIX + Constants.Events.ADD_LOST_ITEM + "&json="
-                        + URLEncoder.encode(builder.toString(), "UTF8");
-            } catch (UnsupportedEncodingException e) {
-                e.printStackTrace();
-            }
-
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        CommonUtil.jsonRequestGET(this, getResources().getString(R.string.send_data), url, tag, this, this);
+        CommonUtil.jsonRequestGET(this, getResources().getString(R.string.send_data), CommonUtil.utf8Convert(builder, Constants.Events.ADD_LOST_ITEM), tag, this, this);
     }
 
     @Override

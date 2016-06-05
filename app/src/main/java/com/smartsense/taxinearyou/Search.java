@@ -44,14 +44,19 @@ public class Search extends AppCompatActivity {
         tbSearchTab.setupWithViewPager(viewPager);
         setupTabIcons();
 
+        final ArrayList<String> arrayList = new ArrayList<>();
+        arrayList.add("Search");
+        arrayList.add("My Trips");
+        arrayList.add("Credit");
+        arrayList.add("Menu");
+
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 
             @Override
             public void onPageSelected(int position) {
                 // TODO Auto-generated method stub
 
-
-                getSupportActionBar().setTitle(mFragmentTitleList.get(position));
+                getSupportActionBar().setTitle(arrayList.get(position));
             }
 
             @Override

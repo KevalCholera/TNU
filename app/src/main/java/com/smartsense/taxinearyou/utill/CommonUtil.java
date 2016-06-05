@@ -53,8 +53,10 @@ import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.List;
 
@@ -467,13 +469,18 @@ public class CommonUtil {
         return false;
     }
 
+    public static String utf8Convert(StringBuilder builder, int apiKey) {
+        String url = "";
+        try {
+            url = Constants.BASE_URL + Constants.BASE_URL_POSTFIX + apiKey + "&json="
+                    + URLEncoder.encode(builder.toString(), "UTF8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        return url;
+    }
+
     public static void showSnackBar(String msg, View view) {
-//        TSnackbar snackbar = TSnackbar.make(view, msg, TSnackbar.LENGTH_SHORT);
-//        View snackbarView = snackbar.getView();
-//        snackbarView.setBackgroundColor(ContextCompat.getColor(activity, R.color.white));
-//        TextView textView = (TextView) snackbarView.findViewById(R.id.snackbar_text);
-//        textView.setTextColor(Color.RED);
-//        snackbar.show();
 
         TSnackbar snackbar = TSnackbar
                 .make(view, msg, TSnackbar.LENGTH_LONG);

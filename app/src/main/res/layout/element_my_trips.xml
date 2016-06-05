@@ -22,7 +22,28 @@
             android:orientation="vertical">
 
             <com.smartsense.taxinearyou.utill.CircleImageView1
-                android:id="@+id/civElementMyTripCircleLeft"
+                android:layout_width="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_height="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_marginLeft="@dimen/tvPopupCancelRidePadding"
+                android:layout_marginRight="@dimen/tvPopupCancelRidePadding"
+                android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_weight="1"
+                android:src="@color/element"
+                app:civ_border_color="#d2d2d2"
+                app:civ_border_width="@dimen/civTripDetailsBorderWidth" />
+
+            <com.smartsense.taxinearyou.utill.CircleImageView1
+                android:layout_width="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_height="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_marginLeft="@dimen/tvPopupCancelRidePadding"
+                android:layout_marginRight="@dimen/tvPopupCancelRidePadding"
+                android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_weight="1"
+                android:src="@color/element"
+                app:civ_border_color="#d2d2d2"
+                app:civ_border_width="@dimen/civTripDetailsBorderWidth" />
+
+            <com.smartsense.taxinearyou.utill.CircleImageView1
                 android:layout_width="@dimen/tvMarginTopBottomStartEndAll"
                 android:layout_height="@dimen/tvMarginTopBottomStartEndAll"
                 android:layout_marginLeft="@dimen/tvPopupCancelRidePadding"
@@ -154,6 +175,7 @@
                                 android:id="@+id/tvElementMyTripsFrom"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:maxLines="2"
                                 android:textSize="@dimen/etSignUpSizeAll" />
 
                         </LinearLayout>
@@ -176,6 +198,7 @@
                                 android:id="@+id/tvElementMyTripsTo"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:maxLines="2"
                                 android:textSize="@dimen/etSignUpSizeAll" />
 
                         </LinearLayout>
@@ -300,7 +323,6 @@
             android:orientation="vertical">
 
             <com.smartsense.taxinearyou.utill.CircleImageView1
-                android:id="@+id/civElementMyTripCircleRight"
                 android:layout_width="@dimen/tvMarginTopBottomStartEndAll"
                 android:layout_height="@dimen/tvMarginTopBottomStartEndAll"
                 android:layout_marginLeft="@dimen/tvPopupCancelRidePadding"
@@ -311,6 +333,27 @@
                 app:civ_border_color="#d2d2d2"
                 app:civ_border_width="@dimen/civTripDetailsBorderWidth" />
 
+            <com.smartsense.taxinearyou.utill.CircleImageView1
+                android:layout_width="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_height="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_marginLeft="@dimen/tvPopupCancelRidePadding"
+                android:layout_marginRight="@dimen/tvPopupCancelRidePadding"
+                android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_weight="1"
+                android:src="@color/element"
+                app:civ_border_color="#d2d2d2"
+                app:civ_border_width="@dimen/civTripDetailsBorderWidth" />
+
+            <com.smartsense.taxinearyou.utill.CircleImageView1
+                android:layout_width="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_height="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_marginLeft="@dimen/tvPopupCancelRidePadding"
+                android:layout_marginRight="@dimen/tvPopupCancelRidePadding"
+                android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_weight="1"
+                android:src="@color/element"
+                app:civ_border_color="#d2d2d2"
+                app:civ_border_width="@dimen/civTripDetailsBorderWidth" />
 
             <com.smartsense.taxinearyou.utill.CircleImageView1
                 android:layout_width="@dimen/tvMarginTopBottomStartEndAll"

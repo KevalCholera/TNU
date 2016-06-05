@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AbsListView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RadioButton;
@@ -16,14 +17,18 @@ import com.smartsense.taxinearyou.Adapters.AdapterLostItem;
 import com.smartsense.taxinearyou.utill.CommonUtil;
 import com.smartsense.taxinearyou.utill.Constants;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 public class LostItem extends AppCompatActivity implements View.OnClickListener, Response.Listener<JSONObject>, Response.ErrorListener {
 
     ListView lvLostItemList;
-    RadioButton rbLostItemOpen, rbLostItemInprogress, rbLostItemClosed;
+    RadioButton rbLostItemOnGoing, rbLostItemFound, rbLostItemNotFound;
     LinearLayout llLostItemNoItemAvailable, llLostItemItemsAvailable;
+    int which_clicked;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,17 +38,18 @@ public class LostItem extends AppCompatActivity implements View.OnClickListener,
 
         lvLostItemList = (ListView) findViewById(R.id.lvLostItemList);
 
-        rbLostItemClosed = (RadioButton) findViewById(R.id.rbLostItemClosed);
-        rbLostItemOpen = (RadioButton) findViewById(R.id.rbLostItemOpen);
-        rbLostItemInprogress = (RadioButton) findViewById(R.id.rbLostItemInprogress);
+        rbLostItemNotFound = (RadioButton) findViewById(R.id.rbLostItemNotFound);
+        rbLostItemOnGoing = (RadioButton) findViewById(R.id.rbLostItemOnGoing);
+        rbLostItemFound = (RadioButton) findViewById(R.id.rbLostItemFound);
         llLostItemNoItemAvailable = (LinearLayout) findViewById(R.id.llLostItemNoItemAvailable);
         llLostItemItemsAvailable = (LinearLayout) findViewById(R.id.llLostItemItemsAvailable);
 
-        rbLostItemClosed.setOnClickListener(this);
-        rbLostItemOpen.setOnClickListener(this);
-        rbLostItemInprogress.setOnClickListener(this);
+        rbLostItemNotFound.setOnClickListener(this);
+        rbLostItemOnGoing.setOnClickListener(this);
+        rbLostItemFound.setOnClickListener(this);
 
-        lostItem();
+        rbLostItemOnGoing.performClick();
+
     }
 
     private void lostItem() {
@@ -52,31 +58,35 @@ public class LostItem extends AppCompatActivity implements View.OnClickListener,
         JSONObject jsonData = new JSONObject();
 
         try {
-            builder.append(Constants.BASE_URL + Constants.BASE_URL_POSTFIX + Constants.Events.LOST_ITEM + "&json=")
-                    .append(jsonData.put("token", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_ACCESS_TOKEN, ""))
-                            .put("userId", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_ID, "")));
+            builder.append(jsonData.put("token", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_ACCESS_TOKEN, ""))
+                    .put("userId", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_ID, "")));
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        CommonUtil.jsonRequestGET(this, getResources().getString(R.string.get_data), builder.toString(), tag, this, this);
+        CommonUtil.jsonRequestGET(this, getResources().getString(R.string.get_data), CommonUtil.utf8Convert(builder, Constants.Events.LOST_ITEM), tag, this, this);
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.rbLostItemOpen:
+            case R.id.rbLostItemOnGoing:
+                which_clicked = 1;
+                lostItem();
                 break;
-            case R.id.rbLostItemInprogress:
+            case R.id.rbLostItemFound:
+                which_clicked = 2;
+                lostItem();
                 break;
-            case R.id.rbLostItemClosed:
+            case R.id.rbLostItemNotFound:
+                which_clicked = 3;
+                lostItem();
                 break;
         }
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-//        getMenuInflater().inflate(R.menu.ratingforsearch, menu);
         return true;
     }
 
@@ -103,19 +113,32 @@ public class LostItem extends AppCompatActivity implements View.OnClickListener,
         CommonUtil.cancelProgressDialog();
         if (jsonObject != null) {
 
-            if (jsonObject.optInt("status") == Constants.STATUS_SUCCESS)
-
-                if (jsonObject.optJSONObject("json").optJSONArray("lostItemInfoArray").length() > 0) {
+            if (jsonObject.optInt("status") == Constants.STATUS_SUCCESS) {
+                JSONArray jsonArray = jsonObject.optJSONObject("json").optJSONArray("lostItemInfoArray");
+                if (jsonArray.length() > 0) {
                     llLostItemItemsAvailable.setVisibility(View.VISIBLE);
                     llLostItemNoItemAvailable.setVisibility(View.GONE);
-                    AdapterLostItem adapterLostItem = new AdapterLostItem(this, jsonObject.optJSONObject("json").optJSONArray("lostItemInfoArray"));
+                    JSONArray jsonArray1 = new JSONArray();
+
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        JSONObject jsonObject1 = jsonArray.optJSONObject(i);
+
+                        if (which_clicked == 1 && jsonObject1.optJSONObject("rideInfo").optJSONObject("lostItem").optString("status").equalsIgnoreCase("On Going"))
+                            jsonArray1.put(jsonObject1);
+                        else if (which_clicked == 2 && jsonObject1.optJSONObject("rideInfo").optJSONObject("lostItem").optString("status").equalsIgnoreCase("Item Found"))
+                            jsonArray1.put(jsonObject1);
+                        else if (which_clicked == 3 && jsonObject1.optJSONObject("rideInfo").optJSONObject("lostItem").optString("status").equalsIgnoreCase("Item Not Found"))
+                            jsonArray1.put(jsonObject1);
+                    }
+
+                    AdapterLostItem adapterLostItem = new AdapterLostItem(this, jsonArray1);
                     lvLostItemList.setAdapter(adapterLostItem);
-//                    CommonUtil.successToastShowing(this, jsonObject);
+
                 } else {
                     llLostItemItemsAvailable.setVisibility(View.GONE);
                     llLostItemNoItemAvailable.setVisibility(View.VISIBLE);
                 }
-            else
+            } else
                 CommonUtil.conditionAuthentication(this, jsonObject);
         } else
             CommonUtil.jsonNullError(this);
