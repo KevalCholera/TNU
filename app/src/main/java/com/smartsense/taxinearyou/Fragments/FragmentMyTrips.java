@@ -8,21 +8,24 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
+import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.mpt.storage.SharedPreferenceUtil;
-import com.smartsense.taxinearyou.Adapters.AdapterMyTrips;
+
 import com.smartsense.taxinearyou.R;
 import com.smartsense.taxinearyou.TripDetails;
 import com.smartsense.taxinearyou.utill.CommonUtil;
@@ -30,9 +33,11 @@ import com.smartsense.taxinearyou.utill.Constants;
 import com.smartsense.taxinearyou.utill.LocationSettingsHelper;
 import com.smartsense.taxinearyou.utill.WakeLocker;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 
 import javax.xml.transform.Result;
@@ -43,47 +48,56 @@ public class FragmentMyTrips extends Fragment implements Response.Listener<JSONO
     ListView lvMyTrips;
     LinearLayout llFragmentMyTrips;
     final int request = 1;
-    private boolean flag_loading;
+
     int pageNumber = 0;
+    int totalRecord = 0;
     int pageSize = 10;
-    ArrayList<Integer> arrayList;
     int selected = 0;
+    AdapterMyTrips adapterMyTrips = null;
     ProgressBar pbMyTrips;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_my_trips, container, false);
-
+        pageNumber = 0;
+        totalRecord = 0;
         ivMyTripsNoTrips = (ImageView) rootView.findViewById(R.id.ivMyTripsNoTrips);
         lvMyTrips = (ListView) rootView.findViewById(R.id.lvMyTrips);
         pbMyTrips = (ProgressBar) rootView.findViewById(R.id.pbMyTrips);
         llFragmentMyTrips = (LinearLayout) rootView.findViewById(R.id.llFragmentMyTrips);
-
-        getActivity().registerReceiver(tripMessageReceiver, new IntentFilter(Constants.PushList.PUSH_MY_TRIP));
-        arrayList = new ArrayList<>();
-        doMyTrip(pageNumber, pageSize);
-
-        lvMyTrips.setOnScrollListener(new AbsListView.OnScrollListener() {
-
-            public void onScrollStateChanged(AbsListView view, int scrollState) {
-            }
-
-            public void onScroll(AbsListView view, int firstVisibleItem,
-                                 int visibleItemCount, int totalItemCount) {
-
-                if (firstVisibleItem + visibleItemCount == totalItemCount && totalItemCount != 0 && !flag_loading) {
-                    flag_loading = true;
-                    pageNumber++;
-                    pageSize += 10;
-                    doMyTrip(pageNumber, pageSize);
-                }
+        lvMyTrips.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                selected = position;
+                JSONObject obj = new JSONObject();
+                startActivityForResult(new Intent(getActivity(), TripDetails.class).putExtra("key", obj.toString()), request);
             }
         });
+        getActivity().registerReceiver(tripMessageReceiver, new IntentFilter(Constants.PushList.PUSH_MY_TRIP));
+
+        doMyTrip(pageNumber);
+
+//        lvMyTrips.setOnScrollListener(new AbsListView.OnScrollListener() {
+//
+//            public void onScrollStateChanged(AbsListView view, int scrollState) {
+//            }
+//
+//            public void onScroll(AbsListView view, int firstVisibleItem,
+//                                 int visibleItemCount, int totalItemCount) {
+//
+//                if (firstVisibleItem + visibleItemCount == totalItemCount && totalItemCount != 0 && !flag_loading) {
+//                    flag_loading = true;
+//                    pageNumber++;
+//
+//                    doMyTrip(pageNumber);
+//                }
+//            }
+//        });
 
         return rootView;
     }
 
-    private void doMyTrip(int pageNumber, int pageSize) {
+    private void doMyTrip(int pageNumber) {
         final String tag = "My Trip";
         StringBuilder builder = new StringBuilder();
         JSONObject jsonData = new JSONObject();
@@ -92,11 +106,12 @@ public class FragmentMyTrips extends Fragment implements Response.Listener<JSONO
             builder.append(jsonData.put("pageSize", pageSize).put("pageNumber", pageNumber)
                     .put("token", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_ACCESS_TOKEN, ""))
                     .put("userId", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_ID, ""))
-                    .put("offset", 1));
+                    .put("offset", pageNumber));
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
+        Log.i("URL", builder.toString());
         CommonUtil.jsonRequestNoProgressBar(CommonUtil.utf8Convert(builder, Constants.Events.EVENT_MY_TRIP), tag, this, this);
     }
 
@@ -104,7 +119,7 @@ public class FragmentMyTrips extends Fragment implements Response.Listener<JSONO
     public void onErrorResponse(VolleyError volleyError) {
         CommonUtil.errorToastShowing(getActivity());
         CommonUtil.cancelProgressDialog();
-        flag_loading = true;
+
     }
 
     @Override
@@ -112,8 +127,7 @@ public class FragmentMyTrips extends Fragment implements Response.Listener<JSONO
         if (resultCode == Activity.RESULT_OK)
             switch (requestCode) {
                 case request:
-                    arrayList = new ArrayList<>();
-                    doMyTrip(pageNumber, pageSize);
+                    doMyTrip(pageNumber);
                     lvMyTrips.setSelection(selected);
                     break;
             }
@@ -122,40 +136,27 @@ public class FragmentMyTrips extends Fragment implements Response.Listener<JSONO
     @Override
     public void onResume() {
         super.onResume();
-        arrayList = new ArrayList<>();
+        adapterMyTrips = null;
+
     }
 
     @Override
     public void onResponse(final JSONObject response) {
         CommonUtil.cancelProgressDialog();
         if (response != null) {
+            Log.i("response", response.toString());
             if (response.optInt("status") == Constants.STATUS_SUCCESS) {
                 switch (response.optInt("__eventid")) {
                     case Constants.Events.EVENT_MY_TRIP:
                         try {
-                            int length = response.optJSONObject("json").optJSONArray("rideArray").length();
-
-                            if (!arrayList.contains(length)) {
-                                arrayList.add(length);
-
-                                if (response.optJSONObject("json").optJSONArray("rideArray").length() > 0) {
-                                    flag_loading = false;
-                                    lvMyTrips.setVisibility(View.VISIBLE);
-                                    llFragmentMyTrips.setVisibility(View.GONE);
-                                    AdapterMyTrips adapterMyTrips = new AdapterMyTrips(getActivity(), response.optJSONObject("json").optJSONArray("rideArray"));
-                                    lvMyTrips.setAdapter(adapterMyTrips);
-
-                                    lvMyTrips.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                                        @Override
-                                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                                            selected = position;
-                                            startActivityForResult(new Intent(getActivity(), TripDetails.class).putExtra("key", response.optJSONObject("json").optJSONArray("rideArray").optJSONObject(position).toString()), request);
-                                        }
-                                    });
-                                } else {
-                                    lvMyTrips.setVisibility(View.GONE);
-                                    llFragmentMyTrips.setVisibility(View.VISIBLE);
-                                }
+                            if (response.optJSONObject("json").optJSONArray("rideArray").length() > 0) {
+                                totalRecord = response.optJSONObject("json").optInt("totalRecord");
+                                lvMyTrips.setVisibility(View.VISIBLE);
+                                llFragmentMyTrips.setVisibility(View.GONE);
+                                fillMyTrips(response.optJSONObject("json").optJSONArray("rideArray"));
+                            } else {
+                                lvMyTrips.setVisibility(View.GONE);
+                                llFragmentMyTrips.setVisibility(View.VISIBLE);
                             }
 //                            else CommonUtil.alertBox(getActivity(), "All data set", false, false);
                         } catch (Exception e) {
@@ -190,5 +191,89 @@ public class FragmentMyTrips extends Fragment implements Response.Listener<JSONO
             e.printStackTrace();
         }
         super.onDestroy();
+    }
+
+    public void fillMyTrips(JSONArray jsonArray) {
+        if (adapterMyTrips == null) {
+            adapterMyTrips = new AdapterMyTrips(getActivity(), jsonArray);
+            lvMyTrips.setAdapter(adapterMyTrips);
+        } else {
+            adapterMyTrips.adapterMyTrips(jsonArray);
+        }
+    }
+
+    public class AdapterMyTrips extends BaseAdapter {
+        private JSONArray data;
+        private LayoutInflater inflater = null;
+        Activity a;
+        LinearLayout lyElementMyTripLeft, lyElementMyTripRight, lyElementMyTripStatusLayout;
+
+        public AdapterMyTrips(Activity a, JSONArray data) {
+            this.data = data;
+            this.a = a;
+            inflater = (LayoutInflater) a.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        }
+
+        public void adapterMyTrips(JSONArray data) {
+            for (int i = 0; i < data.length(); i++) {
+                this.data.put(data.optJSONObject(i));
+            }
+            notifyDataSetChanged();
+        }
+
+        public int getCount() {
+            return data.length();
+        }
+
+        public Object getItem(int position) {
+            return position;
+        }
+
+        public long getItemId(int position) {
+            return position;
+        }
+
+        public View getView(int position, View convertView, ViewGroup parent) {
+            View vi = convertView;
+            if (convertView == null)
+
+                vi = inflater.inflate(R.layout.element_my_trips, null);
+
+            TextView tvElementMyTripsAmount = (TextView) vi.findViewById(R.id.tvElementMyTripsAmount);
+            TextView tvElementMyTripsFrom = (TextView) vi.findViewById(R.id.tvElementMyTripsFrom);
+            TextView tvElementMyTripsTo = (TextView) vi.findViewById(R.id.tvElementMyTripsTo);
+            final TextView tvElementMyTripsStatus = (TextView) vi.findViewById(R.id.tvElementMyTripsStatus);
+            TextView tvElementMyTripsTaxiProvider = (TextView) vi.findViewById(R.id.tvElementMyTripsTaxiProvider);
+            TextView tvElementMyTripsDateTime = (TextView) vi.findViewById(R.id.tvElementMyTripsDateTime);
+
+            lyElementMyTripStatusLayout = (LinearLayout) vi.findViewById(R.id.lyElementMyTripStatusLayout);
+            lyElementMyTripLeft = (LinearLayout) vi.findViewById(R.id.lyElementMyTripLeft);
+            lyElementMyTripRight = (LinearLayout) vi.findViewById(R.id.lyElementMyTripRight);
+            final JSONObject test = data.optJSONObject(position);
+//            Log.i("Test", test.toString());
+
+            tvElementMyTripsAmount.setText("£" + test.optInt("estimatedAmount") + ".00");
+            tvElementMyTripsFrom.setText(test.optString("from"));
+            tvElementMyTripsTo.setText(test.optString("to"));
+            tvElementMyTripsStatus.setText(test.optString("status"));
+            tvElementMyTripsTaxiProvider.setText(test.optString("partner"));
+            try {
+                tvElementMyTripsDateTime.setText(Constants.DATE_FORMAT_DATE_TIME.format(Constants.DATE_FORMAT_EXTRA.parse(test.optString("pickTime"))));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+            if (test.optString("status").equals("Cancelled"))
+                tvElementMyTripsStatus.setBackgroundColor(ContextCompat.getColor(a, R.color.red));
+            else if (tvElementMyTripsStatus.getText().toString().equals("Complete"))
+                tvElementMyTripsStatus.setBackgroundColor(ContextCompat.getColor(a, R.color.dark_green));
+            else
+                tvElementMyTripsStatus.setBackgroundColor(ContextCompat.getColor(a, R.color.Yellow));
+            Log.i("Yes", totalRecord + " " + data.length());
+            if ((position + 1) == data.length()&&totalRecord != data.length()) {
+                    doMyTrip(data.length());
+            }
+            return vi;
+        }
     }
 }
