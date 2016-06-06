@@ -65,13 +65,30 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/vReviewTextAllMargin"
-
         android:background="@color/background" />
+
+    <TextView
+        android:id="@+id/tvGooglePlacesCurrentLocation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@mipmap/img_current_location"
+        android:drawablePadding="@dimen/lyPadding10"
+        android:gravity="center|left"
+        android:padding="@dimen/lyPadding10"
+        android:text="@string/crnt_lct"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/font_20"
+        android:textStyle="bold" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/vReviewTextAllMargin"
+        android:background="@color/dark_gray" />
 
     <ListView
         android:id="@+id/lvGooglePlaces"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         android:layout_weight="1" />
 
     <ImageView

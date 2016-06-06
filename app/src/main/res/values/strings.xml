@@ -444,5 +444,6 @@
     <string name="cancel_camera">Oops! seems you had cancelled process…</string>
     <string name="no">NO</string>
     <string name="ye">Yes</string>
+    <string name="crnt_lct">Current Location</string>
 
 </resources>

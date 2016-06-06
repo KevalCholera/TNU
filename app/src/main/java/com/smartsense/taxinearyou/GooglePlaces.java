@@ -57,7 +57,7 @@ public class GooglePlaces extends FragmentActivity implements OnItemClickListene
     private static final String TYPE_AUTOCOMPLETE = "/autocomplete";
     private static final String OUT_JSON = "/json";
     private static ArrayList<String> resultList1;
-    TextView tvGooglePlacesCancel;
+    TextView tvGooglePlacesCancel, tvGooglePlacesCurrentLocation;
     ImageButton ibGooglePlaceEmpty;
     EditText autoCompView;
     ListView lvGoogleSearch;
@@ -80,6 +80,7 @@ public class GooglePlaces extends FragmentActivity implements OnItemClickListene
                 .build();
         autoCompView = (EditText) findViewById(R.id.atv_places);
         tvGooglePlacesCancel = (TextView) findViewById(R.id.tvGooglePlacesCancel);
+        tvGooglePlacesCurrentLocation = (TextView) findViewById(R.id.tvGooglePlacesCurrentLocation);
         ibGooglePlaceEmpty = (ImageButton) findViewById(R.id.ibGooglePlaceEmpty);
         lvGoogleSearch = (ListView) findViewById(R.id.lvGooglePlaces);
         dataAdapter = new GooglePlacesAutocompleteAdapter(this, R.layout.element_google);
@@ -89,6 +90,7 @@ public class GooglePlaces extends FragmentActivity implements OnItemClickListene
         lvGoogleSearch.setOnItemClickListener(this);
         tvGooglePlacesCancel.setOnClickListener(this);
         ibGooglePlaceEmpty.setOnClickListener(this);
+        tvGooglePlacesCurrentLocation.setOnClickListener(this);
 
         autoCompView.addTextChangedListener(new TextWatcher() {
             @Override
@@ -283,7 +285,6 @@ public class GooglePlaces extends FragmentActivity implements OnItemClickListene
         return resultList;
     }
 
-
     public static JSONArray autocomplete1(String input) {
         ArrayList<String> resultList = null;
         JSONArray predsJsonArray = null;
@@ -352,6 +353,9 @@ public class GooglePlaces extends FragmentActivity implements OnItemClickListene
             case R.id.tvGooglePlacesCancel:
                 finish();
                 CommonUtil.closeKeyboard(this);
+                break;
+            case R.id.tvGooglePlacesCurrentLocation:
+//                https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8670522,151.1957362&radius=500&types=food&name=cruise&key=AIzaSyCp1vbSHgiC1lsNUYb-PuDs3kJ4wYEKu3I
                 break;
         }
     }
