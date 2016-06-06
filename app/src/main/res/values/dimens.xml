@@ -290,6 +290,7 @@
     <dimen name="snackbarHeight">80dp</dimen>
     <dimen name="snackbarSize">15sp</dimen>
     <dimen name="font_20">20sp</dimen>
+    <dimen name="_20_margin_padding">20dp</dimen>
     <dimen name="ratingStarSIze">40dp</dimen>
     <dimen name="padding_16">16dp</dimen>
     <dimen name="font_14">14sp</dimen>
@@ -304,7 +305,7 @@
     <dimen name="btAccountSecurityUpdatePadding">30dp</dimen>
     <dimen name="cvPartnerPicMargin">30dp</dimen>
     <dimen name="llBookNowTodayTomorrow">1dp</dimen>
-    <dimen name="cvPartnerPic">1dp</dimen>
+    <dimen name="cvPartnerPic">2dp</dimen>
     <dimen name="ivBackWidthSize">20dp</dimen>
     <dimen name="ivBackWidthMargin">10dp</dimen>
     <dimen name="drawablePaddingMore">13dp</dimen>

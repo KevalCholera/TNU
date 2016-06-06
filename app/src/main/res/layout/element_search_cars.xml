@@ -51,7 +51,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="@dimen/margin_5"
                 android:singleLine="true"
-                android:textColor="@color/black"
+                android:textColor="@color/heading"
                 android:textSize="@dimen/tvTitlesSizeAll" />
 
             <TextView

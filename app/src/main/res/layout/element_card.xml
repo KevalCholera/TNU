@@ -12,8 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/btSignUpAllheight"
         android:background="@drawable/gray_full"
-        android:text="Card 1"
-        android:textColor="@color/dark_gray"
+        android:textColor="@color/heading"
         android:textSize="@dimen/btSignInSignInSize" />
 
 </LinearLayout>

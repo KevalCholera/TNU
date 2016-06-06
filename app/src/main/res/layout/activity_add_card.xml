@@ -44,6 +44,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/cardholder_s_name"
+                    android:textColor="@color/heading"
                     android:textSize="@dimen/tvTitlesSizeAll" />
 
                 <EditText
@@ -51,82 +52,65 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/etHeightAll"
                     android:background="@drawable/grayborder"
+                    android:hint="@string/enter_card_holder_name"
                     android:imeOptions="actionNext"
                     android:inputType="textCapSentences"
                     android:maxLines="1"
                     android:paddingLeft="@dimen/tvMarginTopBottomStartEndAll"
                     android:singleLine="true"
-                    android:textColor="@color/black" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/tvMarginTopBottomStartEndAll"
-                    android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
-                    android:orientation="horizontal">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="@dimen/tvMarginTopBottomStartEndAll"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/card_type"
-                            android:textSize="@dimen/tvTitlesSizeAll" />
-
-                        <EditText
-                            android:id="@+id/etAddCardCardType"
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/etHeightAll"
-                            android:background="@drawable/grayborder"
-                            android:clickable="true"
-                            android:cursorVisible="false"
-                            android:drawableLeft="@mipmap/imgdropdown"
-                            android:focusable="false"
-                            android:paddingLeft="@dimen/tvMarginTopBottomStartEndAll"
-                            android:textColor="@color/black" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/tvMarginTopBottomStartEndAll"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/card_number"
-                            android:textSize="@dimen/tvTitlesSizeAll" />
-
-                        <EditText
-                            android:id="@+id/etAddCardCardNumber"
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/etHeightAll"
-                            android:background="@drawable/grayborder"
-                            android:imeOptions="actionNext"
-                            android:inputType="number"
-                            android:maxLines="1"
-                            android:nextFocusDown="@+id/etAddCardSecurityNumber"
-                            android:paddingLeft="@dimen/tvMarginTopBottomStartEndAll"
-                            android:singleLine="true"
-                            android:textColor="@color/black" />
-
-                    </LinearLayout>
-
-
-                </LinearLayout>
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/hintColor" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/lyPadding10"
+                    android:text="@string/card_number"
+                    android:textColor="@color/heading"
+                    android:textSize="@dimen/tvTitlesSizeAll" />
+
+                <EditText
+                    android:id="@+id/etAddCardCardNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/etHeightAll"
+                    android:background="@drawable/grayborder"
+                    android:hint="@string/enter_card_number"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:maxLines="1"
+                    android:nextFocusDown="@+id/etAddCardSecurityNumber"
+                    android:paddingLeft="@dimen/tvMarginTopBottomStartEndAll"
+                    android:singleLine="true"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/hintColor" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/lyPadding10"
+                    android:text="@string/card_type"
+                    android:textColor="@color/heading"
+                    android:textSize="@dimen/tvTitlesSizeAll" />
+
+                <EditText
+                    android:id="@+id/etAddCardCardType"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/etHeightAll"
+                    android:background="@drawable/grayborder"
+                    android:clickable="true"
+                    android:cursorVisible="false"
+                    android:focusable="false"
+                    android:hint="@string/select_card_type"
+                    android:paddingLeft="@dimen/tvMarginTopBottomStartEndAll"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/hintColor" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/lyPadding10"
                     android:text="@string/expiry_date_"
+                    android:textColor="@color/heading"
                     android:textSize="@dimen/tvTitlesSizeAll" />
 
                 <LinearLayout
@@ -143,13 +127,12 @@
                         android:background="@drawable/grayborder"
                         android:clickable="true"
                         android:cursorVisible="false"
-                        android:drawableLeft="@mipmap/imgdropdown"
                         android:focusable="false"
-                        android:hint="@string/month"
+                        android:hint="@string/enter_month"
                         android:maxLines="1"
                         android:paddingLeft="@dimen/tvMarginTopBottomStartEndAll"
                         android:textColor="@color/black"
-                        android:textColorHint="@color/light_Gray" />
+                        android:textColorHint="@color/hintColor" />
 
                     <EditText
                         android:id="@+id/etAddCardExpiryDateYear"
@@ -160,13 +143,12 @@
                         android:background="@drawable/grayborder"
                         android:clickable="true"
                         android:cursorVisible="false"
-                        android:drawableLeft="@mipmap/imgdropdown"
                         android:focusable="false"
-                        android:hint="@string/year"
+                        android:hint="@string/enter_year"
                         android:maxLines="1"
                         android:paddingLeft="@dimen/tvMarginTopBottomStartEndAll"
                         android:textColor="@color/black"
-                        android:textColorHint="@color/light_Gray" />
+                        android:textColorHint="@color/hintColor" />
 
                     <View
                         android:layout_width="match_parent"
@@ -181,45 +163,38 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
                     android:text="@string/security_number"
+                    android:textColor="@color/heading"
                     android:textSize="@dimen/tvTitlesSizeAll" />
 
-                <LinearLayout
+                <EditText
+                    android:id="@+id/etAddCardSecurityNumber"
                     android:layout_width="match_parent"
+                    android:layout_height="@dimen/etHeightAll"
+                    android:layout_marginRight="@dimen/tvMarginTopBottomStartEndAll"
+                    android:background="@drawable/grayborder"
+                    android:hint="@string/enter_sec_num"
+                    android:inputType="numberPassword"
+                    android:maxLines="1"
+                    android:paddingLeft="@dimen/tvMarginTopBottomStartEndAll"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/hintColor" />
+
+                <CheckBox
+                    android:id="@+id/cbAddCardFutureUse"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <EditText
-                        android:id="@+id/etAddCardSecurityNumber"
-                        android:layout_width="0dp"
-                        android:layout_height="@dimen/etHeightAll"
-                        android:layout_marginRight="@dimen/tvMarginTopBottomStartEndAll"
-                        android:layout_weight="1"
-                        android:background="@drawable/grayborder"
-                        android:drawableLeft="@mipmap/bank_cards"
-                        android:inputType="numberPassword"
-                        android:maxLines="1"
-                        android:paddingLeft="@dimen/tvMarginTopBottomStartEndAll"
-                        android:textColor="@color/black" />
-
-                    <CheckBox
-                        android:id="@+id/cbAddCardFutureUse"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/tvMarginTopBottomStartEndAll"
-                        android:button="@drawable/checkbox"
-                        android:checked="false"
-                        android:paddingLeft="@dimen/tvMarginTopBottomStartEndAll"
-                        android:text="@string/use_card_for_future_payment"
-                        android:textSize="@dimen/cbCheckTextSizeAll"
-                        android:theme="@style/AppTheme" />
-
-                </LinearLayout>
+                    android:button="@drawable/checkbox"
+                    android:checked="false"
+                    android:text="@string/use_card_for_future_payment"
+                    android:textColor="@color/heading"
+                    android:textSize="@dimen/cbCheckTextSizeAll"
+                    android:theme="@style/AppTheme" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
-                    android:text="@string/billing_address"
+                    android:text="@string/card_details_"
                     android:textColor="@color/background"
                     android:textSize="@dimen/tvHeadingSizeAll" />
 
@@ -228,12 +203,13 @@
                     android:layout_height="@dimen/vHeightWidthAll"
                     android:layout_marginBottom="@dimen/vMarginTopBottomAll"
                     android:layout_marginTop="@dimen/vMarginTopBottomAll"
-                    android:background="@color/background" />
+                    android:background="@color/colorPrimaryDark" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/first_name_"
+                    android:textColor="@color/heading"
                     android:textSize="@dimen/tvTitlesSizeAll" />
 
                 <EditText
@@ -241,17 +217,20 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/etHeightAll"
                     android:background="@drawable/grayborder"
+                    android:hint="@string/enter_first_name"
                     android:inputType="textCapSentences"
                     android:maxLines="1"
                     android:paddingLeft="@dimen/tvMarginTopBottomStartEndAll"
                     android:singleLine="true"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/hintColor" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
                     android:text="@string/last_name_"
+                    android:textColor="@color/heading"
                     android:textSize="@dimen/tvTitlesSizeAll" />
 
                 <EditText
@@ -259,15 +238,18 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/etHeightAll"
                     android:background="@drawable/grayborder"
+                    android:hint="@string/enter_last_name"
                     android:inputType="textCapSentences"
                     android:paddingLeft="@dimen/tvMarginTopBottomStartEndAll"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/hintColor" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
                     android:text="@string/address_1"
+                    android:textColor="@color/heading"
                     android:textSize="@dimen/tvTitlesSizeAll" />
 
                 <EditText
@@ -275,17 +257,20 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/etHeightAll"
                     android:background="@drawable/grayborder"
+                    android:hint="@string/enter_add"
                     android:inputType="textPostalAddress|textCapSentences"
                     android:maxLines="1"
                     android:paddingLeft="@dimen/tvMarginTopBottomStartEndAll"
                     android:singleLine="true"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/hintColor" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
                     android:text="@string/address_2"
+                    android:textColor="@color/heading"
                     android:textSize="@dimen/tvTitlesSizeAll" />
 
                 <EditText
@@ -293,11 +278,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/etHeightAll"
                     android:background="@drawable/grayborder"
+                    android:hint="@string/enter_first_name"
                     android:inputType="textPostalAddress|textCapSentences"
                     android:maxLines="1"
                     android:paddingLeft="@dimen/tvMarginTopBottomStartEndAll"
                     android:singleLine="true"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/hintColor" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -317,6 +304,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="@string/town"
+                            android:textColor="@color/heading"
                             android:textSize="@dimen/tvTitlesSizeAll" />
 
                         <EditText
@@ -327,12 +315,14 @@
                             android:clickable="true"
                             android:cursorVisible="false"
                             android:focusable="false"
+                            android:hint="@string/enter_town_below"
                             android:imeOptions="actionNext"
                             android:inputType="text"
                             android:maxLines="1"
                             android:paddingLeft="@dimen/tvMarginTopBottomStartEndAll"
                             android:singleLine="true"
-                            android:textColor="@color/black" />
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/hintColor" />
 
                     </LinearLayout>
 
@@ -347,6 +337,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="@string/city"
+                            android:textColor="@color/heading"
                             android:textSize="@dimen/tvTitlesSizeAll" />
 
                         <EditText
@@ -357,14 +348,15 @@
                             android:clickable="true"
                             android:cursorVisible="false"
                             android:focusable="false"
+                            android:hint="@string/enter_city_below"
                             android:inputType="text"
                             android:maxLines="1"
                             android:paddingLeft="@dimen/tvMarginTopBottomStartEndAll"
                             android:singleLine="true"
-                            android:textColor="@color/black" />
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/hintColor" />
 
                     </LinearLayout>
-
 
                 </LinearLayout>
 
@@ -373,6 +365,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
                     android:text="@string/postal_code"
+                    android:textColor="@color/heading"
                     android:textSize="@dimen/tvTitlesSizeAll" />
 
                 <EditText
@@ -380,11 +373,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/etHeightAll"
                     android:background="@drawable/grayborder"
+                    android:hint="@string/enter_postcode"
                     android:inputType="number"
                     android:maxLines="1"
                     android:paddingLeft="@dimen/tvMarginTopBottomStartEndAll"
                     android:singleLine="true"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/hintColor" />
 
             </LinearLayout>
         </ScrollView>

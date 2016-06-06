@@ -12,11 +12,13 @@
         android:layout_height="wrap_content"
         android:drawableLeft="@mipmap/ticket"
         android:drawablePadding="@dimen/drawablePaddingMore"
-        android:drawableRight="@mipmap/arrow_right"
+        android:drawableRight="@mipmap/arrow_right_gray"
         android:gravity="fill"
         android:paddingLeft="@dimen/paddingLeft"
+
+        android:paddingRight="@dimen/margin_5"
         android:text="@string/event_booking"
-        android:textColor="@color/black"
+        android:textColor="@color/heading"
         android:textSize="@dimen/tvAccountAllSize"
         android:textStyle="italic" />
 
@@ -32,10 +34,11 @@
         android:layout_marginTop="@dimen/tvAccountAllMarginTop"
         android:drawableLeft="@mipmap/business_contact"
         android:drawablePadding="@dimen/tvElementCardListMarginStartEnd5"
-        android:drawableRight="@mipmap/arrow_right"
+        android:drawableRight="@mipmap/arrow_right_gray"
         android:gravity="fill"
+        android:paddingRight="@dimen/margin_5"
         android:text="@string/contact_us"
-        android:textColor="@color/black"
+        android:textColor="@color/heading"
         android:textSize="@dimen/tvAccountAllSize"
         android:textStyle="italic" />
 
@@ -51,11 +54,12 @@
         android:layout_marginTop="@dimen/tvAccountAllMarginTop"
         android:drawableLeft="@mipmap/about_us"
         android:drawablePadding="@dimen/drawablePaddingMore"
-        android:drawableRight="@mipmap/arrow_right"
+        android:drawableRight="@mipmap/arrow_right_gray"
         android:gravity="fill"
         android:paddingLeft="@dimen/paddingLeft"
+        android:paddingRight="@dimen/margin_5"
         android:text="@string/about_us"
-        android:textColor="@color/black"
+        android:textColor="@color/heading"
         android:textSize="@dimen/tvAccountAllSize"
         android:textStyle="italic" />
 
@@ -71,11 +75,12 @@
         android:layout_marginTop="@dimen/tvAccountAllMarginTop"
         android:drawableLeft="@mipmap/privacy"
         android:drawablePadding="@dimen/drawablePaddingMore"
-        android:drawableRight="@mipmap/arrow_right"
+        android:drawableRight="@mipmap/arrow_right_gray"
         android:gravity="fill"
-        android:paddingLeft="5dp"
+        android:paddingLeft="@dimen/margin_5"
+        android:paddingRight="@dimen/margin_5"
         android:text="@string/privacy_poicy"
-        android:textColor="@color/black"
+        android:textColor="@color/heading"
         android:textSize="@dimen/tvAccountAllSize"
         android:textStyle="italic" />
 
@@ -92,11 +97,12 @@
         android:layout_marginTop="@dimen/tvAccountAllMarginTop"
         android:drawableLeft="@mipmap/terms_conditions"
         android:drawablePadding="@dimen/drawablePaddingMore"
-        android:drawableRight="@mipmap/arrow_right"
+        android:drawableRight="@mipmap/arrow_right_gray"
         android:gravity="fill"
         android:paddingLeft="@dimen/paddingLeft"
+        android:paddingRight="@dimen/margin_5"
         android:text="@string/terms_and_conditions"
-        android:textColor="@color/black"
+        android:textColor="@color/heading"
         android:textSize="@dimen/tvAccountAllSize"
         android:textStyle="italic" />
 

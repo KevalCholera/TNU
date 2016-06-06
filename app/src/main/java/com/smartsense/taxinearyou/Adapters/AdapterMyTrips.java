@@ -81,7 +81,7 @@ public class AdapterMyTrips extends BaseAdapter {
         if (test.optString("status").equals("Cancelled"))
             tvElementMyTripsStatus.setBackgroundColor(ContextCompat.getColor(a, R.color.red));
         else if (tvElementMyTripsStatus.getText().toString().equals("Complete"))
-            tvElementMyTripsStatus.setBackgroundColor(ContextCompat.getColor(a, R.color.green));
+            tvElementMyTripsStatus.setBackgroundColor(ContextCompat.getColor(a, R.color.dark_green));
         else
             tvElementMyTripsStatus.setBackgroundColor(ContextCompat.getColor(a, R.color.Yellow));
 

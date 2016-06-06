@@ -76,7 +76,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/tvTripDetailsTitlesMarginTop"
-                        android:textColor="@color/black"
+                        android:textColor="@color/heading"
                         android:textSize="@dimen/tvTitlesSizeAll" />
 
                     <TextView
@@ -84,7 +84,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/tvTripDetailsTitlesMarginTop"
-                        android:textColor="@color/black"
+                        android:textColor="@color/heading"
                         android:textSize="@dimen/tvTitlesSizeAll" />
 
 
@@ -102,7 +102,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/tvTripDetailsTitlesMarginTop"
-                        android:textColor="@color/black"
+                        android:textColor="@color/heading"
                         android:textSize="@dimen/tvTitlesSizeAll" />
 
                 </LinearLayout>
@@ -147,7 +147,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/tvTripDetailsTitlesMarginTop"
-                        android:textColor="@color/black"
+                        android:textColor="@color/heading"
                         android:textSize="@dimen/tvTitlesSizeAll" />
 
                     <TextView
@@ -155,7 +155,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/tvTripDetailsTitlesMarginTop"
-                        android:textColor="@color/black"
+                        android:textColor="@color/heading"
                         android:textSize="@dimen/tvTitlesSizeAll" />
 
                     <TextView
@@ -171,7 +171,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/tvTripDetailsTitlesMarginTop"
-                        android:textColor="@color/black"
+                        android:textColor="@color/heading"
                         android:textSize="@dimen/tvTitlesSizeAll" />
 
                 </LinearLayout>
@@ -210,7 +210,7 @@
                             android:id="@+id/tvTripDetailFrom"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textColor="@color/black"
+                            android:textColor="@color/heading"
                             android:textSize="@dimen/tvTitlesSizeAll" />
 
                         <LinearLayout
@@ -232,7 +232,7 @@
                                 android:id="@+id/tvTripDetailVia1"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:textColor="@color/black"
+                                android:textColor="@color/heading"
                                 android:textSize="@dimen/tvTitlesSizeAll" />
 
                         </LinearLayout>
@@ -257,7 +257,7 @@
                                 android:id="@+id/tvTripDetailVia2"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:textColor="@color/black"
+                                android:textColor="@color/heading"
                                 android:textSize="@dimen/tvTitlesSizeAll" />
 
                         </LinearLayout>
@@ -285,7 +285,7 @@
                         android:id="@+id/tvTripDetailTo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/black"
+                        android:textColor="@color/heading"
                         android:textSize="@dimen/tvTitlesSizeAll" />
 
                 </LinearLayout>
@@ -326,7 +326,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="end"
-                    android:textColor="@color/black"
+                    android:textColor="@color/heading"
                     android:textSize="@dimen/tvTitlesSizeAll" />
 
             </LinearLayout>
@@ -350,7 +350,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="end"
-                    android:textColor="@color/black"
+                    android:textColor="@color/heading"
                     android:textSize="@dimen/tvTitlesSizeAll" />
 
             </LinearLayout>
@@ -374,7 +374,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="end"
-                    android:textColor="@color/black"
+                    android:textColor="@color/heading"
                     android:textSize="@dimen/tvTitlesSizeAll" />
 
             </LinearLayout>
@@ -398,7 +398,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="end"
-                    android:textColor="@color/black"
+                    android:textColor="@color/heading"
                     android:textSize="@dimen/tvTitlesSizeAll" />
 
             </LinearLayout>
@@ -422,7 +422,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="end"
-                    android:textColor="@color/black"
+                    android:textColor="@color/heading"
                     android:textSize="@dimen/tvTitlesSizeAll" />
 
             </LinearLayout>
@@ -446,7 +446,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="end"
-                    android:textColor="@color/black"
+                    android:textColor="@color/heading"
                     android:textSize="@dimen/tvTitlesSizeAll" />
 
             </LinearLayout>
@@ -470,7 +470,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="end"
-                    android:textColor="@color/black"
+                    android:textColor="@color/heading"
                     android:textSize="@dimen/tvTitlesSizeAll" />
 
             </LinearLayout>
@@ -494,7 +494,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="end"
-                    android:textColor="@color/black"
+                    android:textColor="@color/heading"
                     android:textSize="@dimen/tvTitlesSizeAll" />
 
             </LinearLayout>
@@ -518,7 +518,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="end"
-                    android:textColor="@color/black"
+                    android:textColor="@color/heading"
                     android:textSize="@dimen/tvTitlesSizeAll" />
 
             </LinearLayout>

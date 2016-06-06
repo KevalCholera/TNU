@@ -93,9 +93,11 @@ public class FragmentMenu extends Fragment implements Response.Listener<JSONObje
 
         if (SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_STATUS, "").equalsIgnoreCase("1"))
             btAccountActivateNow.setVisibility(View.GONE);
+        else
+            btAccountActivateNow.setVisibility(View.VISIBLE);
 
         if (btAccountActivateNow.getVisibility() != View.VISIBLE) {
-            cvAccountPhoto.setBorderColor(ContextCompat.getColor(getActivity(), R.color.green));
+            cvAccountPhoto.setBorderColor(ContextCompat.getColor(getActivity(), R.color.dark_green));
         }
 
         if (!TextUtils.isEmpty(SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_PROIMG, "")))
@@ -304,6 +306,9 @@ public class FragmentMenu extends Fragment implements Response.Listener<JSONObje
                                     .placeholder(R.mipmap.imgtnulogo)
                                     .into(cvAccountPhoto);
 
+                            break;
+                        case Constants.Events.ACTIVE_ACCOUNT:
+                            CommonUtil.alertBox(getActivity(), response.optString("msg"), false, false);
                             break;
                     }
                 } else {

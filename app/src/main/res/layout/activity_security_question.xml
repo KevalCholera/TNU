@@ -18,8 +18,8 @@
 
             <ImageButton
                 android:id="@+id/btSecurityBack"
-                android:layout_width="@dimen/ivBackWidthSize"
-                android:layout_height="@dimen/ivBackWidthSize"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/ivBackWidthMargin"
                 android:background="@null"
                 android:src="@mipmap/imgback" />
@@ -64,7 +64,7 @@
             android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
             android:singleLine="true"
             android:textColor="@color/black"
-            android:textColorHint="@color/light_Gray"
+            android:textColorHint="@color/hintColor"
             android:textSize="@dimen/etSignUpSizeAll"
             android:textStyle="italic" />
 
@@ -101,7 +101,7 @@
             android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
             android:singleLine="true"
             android:textColor="@color/black"
-            android:textColorHint="@color/light_Gray"
+            android:textColorHint="@color/hintColor"
             android:textSize="@dimen/etSignUpSizeAll"
             android:textStyle="italic" />
 
@@ -116,8 +116,8 @@
             android:checked="false"
             android:paddingLeft="@dimen/tvMarginTopBottomStartEndAll"
             android:text="@string/ReceiveOffersFromOrganization"
-            android:textSize="@dimen/cbCheckTextSizeAll"
-            android:theme="@style/AppTheme" />
+            android:textColor="@color/black"
+            android:textSize="@dimen/cbCheckTextSizeAll" />
 
         <CheckBox
             android:id="@+id/cbSecurityAboutTaxinearu"
@@ -130,8 +130,7 @@
             android:checked="false"
             android:paddingLeft="@dimen/tvMarginTopBottomStartEndAll"
             android:text="@string/yes_i_would_like_to_receive_offers_and_infromation_about_products_and_services_about_taxinearu"
-            android:textSize="@dimen/cbCheckTextSizeAll"
-            android:theme="@style/AppTheme" />
+            android:textSize="@dimen/cbCheckTextSizeAll" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -150,8 +149,7 @@
                 android:checked="false"
                 android:paddingLeft="@dimen/tvMarginTopBottomStartEndAll"
                 android:text="@string/agree"
-                android:textSize="@dimen/cbCheckTextSizeAll"
-                android:theme="@style/AppTheme" />
+                android:textSize="@dimen/cbCheckTextSizeAll" />
 
             <TextView
                 android:id="@+id/tvSecurityTermsConditions"

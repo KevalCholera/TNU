@@ -103,7 +103,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="0.2"
-                android:textColor="@color/black"
+                android:textColor="@color/details"
                 android:textSize="@dimen/etSignInUserPassSize" />
 
             <TextView
@@ -123,7 +123,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="0.2"
-                android:textColor="@color/black"
+                android:textColor="@color/details"
                 android:textSize="@dimen/etSignInUserPassSize" />
 
             <TextView
@@ -189,6 +189,7 @@
             android:checked="true"
             android:paddingLeft="@dimen/lyAccountSecurityCheckTextMarginStartTop"
             android:text="@string/ReceiveOffersFromOrganization"
+            android:textColor="@color/details"
             android:textSize="@dimen/tvAccountSecurityCheckTextSizeAll" />
 
 
@@ -201,6 +202,7 @@
             android:checked="true"
             android:paddingLeft="@dimen/lyAccountSecurityCheckTextMarginStartTop"
             android:text="@string/yes_i_would_like_to_receive_offers_and_infromation_about_products_and_services_about_taxinearu"
+            android:textColor="@color/details"
             android:textSize="@dimen/tvAccountSecurityCheckTextSizeAll" />
 
         <Button

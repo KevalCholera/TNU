@@ -48,7 +48,7 @@
                         android:inputType="textCapSentences"
                         android:paddingBottom="@dimen/vPersonalInfoMarginTopBottomAll"
                         android:paddingRight="@dimen/etPersonalInfoPadding"
-                        android:textColor="@color/black"
+                        android:textColor="@color/heading"
                         android:textColorHint="@color/light_Black"
                         android:textSize="@dimen/tvTitlesSizeAll"
                         android:textStyle="italic" />
@@ -75,7 +75,7 @@
                         android:inputType="textCapSentences"
                         android:paddingBottom="@dimen/vPersonalInfoMarginTopBottomAll"
                         android:paddingRight="@dimen/etPersonalInfoPadding"
-                        android:textColor="@color/black"
+                        android:textColor="@color/heading"
                         android:textColorHint="@color/light_Black"
                         android:textSize="@dimen/tvTitlesSizeAll"
                         android:textStyle="italic" />
@@ -102,7 +102,7 @@
                         android:inputType="number"
                         android:paddingBottom="@dimen/vPersonalInfoMarginTopBottomAll"
                         android:paddingRight="@dimen/etPersonalInfoPadding"
-                        android:textColor="@color/black"
+                        android:textColor="@color/heading"
                         android:textColorHint="@color/light_Black"
                         android:textSize="@dimen/tvTitlesSizeAll"
                         android:textStyle="italic" />
@@ -129,7 +129,7 @@
                         android:inputType="textEmailAddress"
                         android:paddingBottom="@dimen/vPersonalInfoMarginTopBottomAll"
                         android:paddingRight="@dimen/etPersonalInfoPadding"
-                        android:textColor="@color/black"
+                        android:textColor="@color/heading"
                         android:textColorHint="@color/light_Black"
                         android:textSize="@dimen/tvTitlesSizeAll"
                         android:textStyle="italic" />
@@ -152,6 +152,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/e.g"
+                        android:textColor="@color/details"
                         android:textSize="@dimen/cbCheckTextSizeAll" />
 
                     <EditText

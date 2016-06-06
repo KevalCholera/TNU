@@ -1,5 +1,6 @@
 package com.smartsense.taxinearyou;
 
+import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
@@ -10,7 +11,9 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.smartsense.taxinearyou.Fragments.FragmentBook;
@@ -84,24 +87,37 @@ public class Search extends AppCompatActivity {
 
     private void setupTabIcons() {
 
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
+        params.setMargins(0, 10, 0, 0);
+
         TextView tabOne = (TextView) LayoutInflater.from(this).inflate(R.layout.element_search, null);
         tabOne.setText(R.string.book);
         tabOne.setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.car_white, 0, 0);
+        tabOne.setGravity(Gravity.CENTER);
         tbSearchTab.getTabAt(0).setCustomView(tabOne);
 
         TextView tabTwo = (TextView) LayoutInflater.from(this).inflate(R.layout.element_search, null);
         tabTwo.setText(R.string.my_trip);
         tabTwo.setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.ic_baggage, 0, 0);
+        tabTwo.setGravity(Gravity.CENTER);
+        tabTwo.setCompoundDrawablePadding(10);
+//        tabTwo.setLayoutParams(params);
         tbSearchTab.getTabAt(1).setCustomView(tabTwo);
 
         TextView tabThree = (TextView) LayoutInflater.from(this).inflate(R.layout.element_search, null);
         tabThree.setText(R.string.credit);
         tabThree.setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.coins2, 0, 0);
+        tabThree.setGravity(Gravity.CENTER);
+        tabThree.setCompoundDrawablePadding(10);
+//        tabThree.setLayoutParams(params);
         tbSearchTab.getTabAt(2).setCustomView(tabThree);
 
         TextView tabFour = (TextView) LayoutInflater.from(this).inflate(R.layout.element_search, null);
         tabFour.setText(R.string.menu);
         tabFour.setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.hamburger, 0, 0);
+        tabFour.setGravity(Gravity.CENTER);
+//        tabFour.setLayoutParams(params);
+        tabFour.setCompoundDrawablePadding(10);
         tbSearchTab.getTabAt(3).setCustomView(tabFour);
     }
 

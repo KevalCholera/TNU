@@ -1,10 +1,14 @@
 package com.smartsense.taxinearyou;
 
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -109,8 +113,8 @@ public class PaymentDetails extends AppCompatActivity implements View.OnClickLis
         CommonUtil.cancelProgressDialog();
         if (jsonObject != null)
             if (jsonObject.optInt("status") == Constants.STATUS_SUCCESS)
-//                CommonUtil.openDialogs(PaymentDetails.this, "Payment Details", R.id.lyPopupBookSuccess, R.id.btPopupBookSuccessOk, jsonObject.optString("msg"));
-                CommonUtil.alertBox(this, jsonObject.optString("msg"), true, false);
+                CommonUtil.openDialogs(PaymentDetails.this, "Payment Details", R.id.lyPopupBookSuccess, R.id.btPopupBookSuccessOk, jsonObject.optString("msg"));
+//                CommonUtil.alertBox(this, jsonObject.optString("msg"), true, false);
             else
                 CommonUtil.conditionAuthentication(this, jsonObject);
         else

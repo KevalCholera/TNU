@@ -37,6 +37,7 @@
                 android:inputType="textCapSentences"
                 android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
                 android:textColor="@color/black"
+                android:textColorHint="@color/hintColor"
                 android:textSize="@dimen/etSignUpSizeAll" />
 
             <TextView
@@ -55,6 +56,7 @@
                 android:inputType="phone"
                 android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
                 android:textColor="@color/black"
+                android:textColorHint="@color/hintColor"
                 android:textSize="@dimen/etSignUpSizeAll" />
 
             <TextView
@@ -73,6 +75,7 @@
                 android:inputType="textEmailAddress"
                 android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
                 android:textColor="@color/black"
+                android:textColorHint="@color/hintColor"
                 android:textSize="@dimen/etSignUpSizeAll" />
 
             <TextView
@@ -90,6 +93,7 @@
                 android:hint="@string/enter_sub"
                 android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
                 android:textColor="@color/black"
+                android:textColorHint="@color/hintColor"
                 android:textSize="@dimen/etSignUpSizeAll" />
 
             <TextView

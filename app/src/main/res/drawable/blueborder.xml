@@ -4,5 +4,5 @@
     <solid android:color="@color/white" />
     <stroke
         android:width="@dimen/drawableRadioWidth"
-        android:color="@color/background" />
+        android:color="@color/colorAccent" />
 </shape>

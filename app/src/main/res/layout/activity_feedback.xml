@@ -47,7 +47,7 @@
                             android:layout_height="match_parent"
                             android:gravity="center"
                             android:text="@string/how_was_your_trip"
-                            android:textColor="@android:color/darker_gray"
+                            android:textColor="@color/heading"
                             android:textSize="@dimen/tvHeadingSizeAll" />
 
                         <LinearLayout
@@ -71,6 +71,7 @@
                                 android:layout_gravity="center"
                                 android:layout_marginLeft="@dimen/lytvFeedbackMarginTopStartAll"
                                 android:text="@string/_3_5"
+                                android:textColor="@color/black"
                                 android:textSize="@dimen/tvFeedbackTextAll" />
 
                         </LinearLayout>
@@ -97,7 +98,6 @@
                             android:layout_marginTop="@dimen/etFeedbackImageMarginTop"
                             android:background="@drawable/grayborder2"
                             android:gravity="top"
-                            android:hint="@string/really_enjoyed_the_trip"
                             android:inputType="textLongMessage|textMultiLine|textCapSentences"
                             android:padding="@dimen/etPaddingAll"
                             android:scrollbars="vertical"
@@ -127,7 +127,7 @@
                             android:layout_height="wrap_content"
                             android:gravity="center"
                             android:text="@string/are_you_happy_with_this_service_that_taxinearu_provided"
-                            android:textColor="@android:color/darker_gray"
+                            android:textColor="@color/heading"
                             android:textSize="@dimen/tvHeadingSizeAll" />
 
                         <RadioGroup
@@ -173,7 +173,7 @@
                             android:checked="false"
                             android:paddingLeft="@dimen/tvMarginTopBottomStartEndAll"
                             android:text="@string/do_you_wish_to_leave_a_comment"
-                            android:textColor="@android:color/darker_gray"
+                            android:textColor="@color/heading"
                             android:theme="@style/AppTheme"
                             android:visibility="gone" />
 
@@ -184,7 +184,6 @@
                             android:layout_marginBottom="@dimen/etFeedbackImageMarginTop"
                             android:background="@drawable/grayborder2"
                             android:gravity="top"
-                            android:hint="@string/really_enjoyed_the_trip"
                             android:inputType="textLongMessage|textMultiLine|textCapSentences"
                             android:padding="@dimen/etPaddingAll"
                             android:scrollbars="vertical"

@@ -36,7 +36,6 @@ public class TaxiNearYouApp extends Application {
         this.setAppContext(getApplicationContext());
 //        register();
         OneSignal.startInit(this).init();
-        OneSignal.sendTag("emailId","thackerronak@gmail.com");
         OneSignal.enableInAppAlertNotification(false);
 
 

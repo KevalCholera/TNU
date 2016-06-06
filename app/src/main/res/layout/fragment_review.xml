@@ -38,6 +38,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginRight="@dimen/tvReviewMarginEnd"
                             android:text="@string/_5"
+                            android:textColor="@color/heading"
                             android:textSize="@dimen/tvHeadingSizeAll" />
 
                         <LinearLayout
@@ -85,6 +86,7 @@
                             android:layout_marginRight="@dimen/tvReviewMarginEnd"
                             android:gravity="center"
                             android:text="@string/_4"
+                            android:textColor="@color/heading"
                             android:textSize="@dimen/tvHeadingSizeAll" />
 
                         <LinearLayout
@@ -131,6 +133,7 @@
                             android:layout_marginRight="@dimen/tvReviewMarginEnd"
                             android:gravity="center"
                             android:text="@string/_3"
+                            android:textColor="@color/heading"
                             android:textSize="@dimen/tvHeadingSizeAll" />
 
                         <LinearLayout
@@ -177,6 +180,7 @@
                             android:layout_marginRight="@dimen/tvReviewMarginEnd"
                             android:gravity="center"
                             android:text="@string/_2"
+                            android:textColor="@color/heading"
                             android:textSize="@dimen/tvHeadingSizeAll" />
 
                         <LinearLayout
@@ -223,6 +227,7 @@
                             android:layout_marginRight="@dimen/tvReviewMarginEnd"
                             android:gravity="center"
                             android:text="@string/_1"
+                            android:textColor="@color/heading"
                             android:textSize="@dimen/tvHeadingSizeAll" />
 
                         <LinearLayout
@@ -276,25 +281,28 @@
                         android:id="@+id/tvFragmentReview4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:gravity="center"
+                        android:textColor="@color/heading"
                         android:textSize="@dimen/tvHeadingSizeAll" />
 
                     <TextView
                         android:id="@+id/tvFragmentReview3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textColor="@color/heading"
                         android:textSize="@dimen/tvHeadingSizeAll" />
 
                     <TextView
                         android:id="@+id/tvFragmentReview2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textColor="@color/heading"
                         android:textSize="@dimen/tvHeadingSizeAll" />
 
                     <TextView
                         android:id="@+id/tvFragmentReview1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textColor="@color/heading"
                         android:textSize="@dimen/tvHeadingSizeAll" />
 
                 </LinearLayout>

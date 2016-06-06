@@ -23,8 +23,8 @@
             android:layout_height="wrap_content"
 
             android:layout_gravity="center"
-            android:layout_marginRight="@dimen/lySignInUserPasswordMarginStartEnd"
             android:layout_marginLeft="@dimen/lySignInUserPasswordMarginStartEnd"
+            android:layout_marginRight="@dimen/lySignInUserPasswordMarginStartEnd"
             android:layout_marginTop="@dimen/lySignInUserMarginTop"
             android:background="@drawable/grayborder"
             android:orientation="horizontal">
@@ -50,16 +50,15 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:background="@null"
-                android:hint="@string/user_id"
+                android:hint="@string/user_name"
                 android:inputType="textEmailAddress"
                 android:paddingEnd="@dimen/etSignInUserPasswordPaddingStartEnd"
                 android:paddingStart="@dimen/etSignInUserPasswordPaddingStartEnd"
                 android:text="thackerronak@gmail.com"
                 android:textAllCaps="false"
                 android:textColor="@color/black"
-                android:textColorHint="@color/light_Gray"
-                android:textSize="@dimen/etSignInUserPassSize"
-                android:textStyle="italic" />
+                android:textColorHint="@color/hintColor"
+                android:textSize="@dimen/etSignInUserPassSize" />
 
         </LinearLayout>
 
@@ -67,8 +66,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginRight="@dimen/lySignInUserPasswordMarginStartEnd"
             android:layout_marginLeft="@dimen/lySignInUserPasswordMarginStartEnd"
+            android:layout_marginRight="@dimen/lySignInUserPasswordMarginStartEnd"
             android:layout_marginTop="@dimen/lySignInUserPasswordMarginTop"
             android:background="@drawable/grayborder"
             android:orientation="horizontal">
@@ -100,9 +99,8 @@
                 android:paddingStart="@dimen/etSignInUserPasswordPaddingStartEnd"
                 android:text="Abcd123"
                 android:textColor="@color/black"
-                android:textColorHint="@color/light_Gray"
-                android:textSize="@dimen/etSignInUserPassSize"
-                android:textStyle="italic" />
+                android:textColorHint="@color/hintColor"
+                android:textSize="@dimen/etSignInUserPassSize" />
         </LinearLayout>
 
         <Button
@@ -110,8 +108,8 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/btSignInSignUpHeight"
             android:layout_gravity="center_horizontal"
-            android:layout_marginRight="@dimen/lySignInUserPasswordMarginStartEnd"
             android:layout_marginLeft="@dimen/lySignInUserPasswordMarginStartEnd"
+            android:layout_marginRight="@dimen/lySignInUserPasswordMarginStartEnd"
             android:layout_marginTop="@dimen/btSignInSignInMarginTop"
             android:background="@drawable/gray_blue"
             android:text="@string/sign_in"
@@ -139,8 +137,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginRight="@dimen/tvSignInOrMarginStartEnd"
                 android:layout_marginLeft="@dimen/tvSignInOrMarginStartEnd"
+                android:layout_marginRight="@dimen/tvSignInOrMarginStartEnd"
                 android:text="@string/or"
                 android:textColor="@color/dark_gray" />
 
@@ -168,8 +166,8 @@
             android:layout_height="@dimen/btSignInSignUpHeight"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="@dimen/tvSignInSignUpMarginBottom"
-            android:layout_marginRight="@dimen/lySignInUserPasswordMarginStartEnd"
             android:layout_marginLeft="@dimen/lySignInUserPasswordMarginStartEnd"
+            android:layout_marginRight="@dimen/lySignInUserPasswordMarginStartEnd"
             android:layout_marginTop="@dimen/btSignInSignUpMarginTop"
             android:background="@drawable/yellow"
             android:text="@string/sign_up"

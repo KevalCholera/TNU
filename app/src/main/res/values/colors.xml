@@ -1,23 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#4386F4</color>
-    <color name="colorPrimaryDark">#3468D6</color>
-    <color name="colorAccent">#16AFFD</color>
+    <color name="toolBarColor">#4386F4</color>
+    <color name="colorPrimaryDark">#136FA8</color>
+    <color name="colorAccent">#16AFFF</color>
     <color name="black">#000000</color>
     <color name="light_Black">#99000000</color>
     <color name="light_Gray">#DFE0E0</color>
     <color name="white">#ffffff</color>
-    <color name="background">#008fff</color>
+    <color name="background">#136FA8</color>
     <color name="Yellow">#FFC402</color>
     <color name="selected_tab">#55C5FF</color>
-    <color name="tab_background">#14A1E9</color>
+    <color name="tab_background">#16AFFF</color>
     <color name="purple">#0A0AFA</color>
     <color name="red">#ff0000</color>
     <color name="green">#00ff00</color>
+    <color name="dark_green">#40AD18</color>
     <color name="dark_gray">#7e7e7e</color>
+    <color name="hintColor">#99888888</color>
     <color name="very_light_gray">#F2F2F3</color>
     <color name="book_now">#1295D8</color>
     <color name="search_car_gray">#DCDCDC</color>
     <color name="element">#f4f4f4f4</color>
-    <color name="dark_gray1">#8D8D8D</color>
+    <color name="details">#8D8D8D</color>
+    <color name="heading">#686868</color>
 </resources>
+
+    <!--<?xml version="1.0" encoding="utf-8"?>
+    <resources>
+        <color name="colorPrimary">#4386F4</color>
+        <color name="colorPrimaryDark">#3468D6</color>
+        <color name="colorAccent">#4386F4</color>
+        <color name="black">#000000</color>
+        <color name="light_Black">#99000000</color>
+        <color name="light_Gray">#DFE0E0</color>
+        <color name="white">#ffffff</color>
+        <color name="background">#4386F4</color>
+        <color name="Yellow">#FFC402</color>
+        <color name="selected_tab">#55C5FF</color>
+        <color name="tab_background">#4386F4</color>
+        <color name="purple">#0A0AFA</color>
+        <color name="red">#ff0000</color>
+        <color name="green">#00ff00</color>
+        <color name="dark_green">#40AD18</color>
+        <color name="dark_gray">#7e7e7e</color>
+        <color name="hintColor">#99888888</color>
+        <color name="very_light_gray">#F2F2F3</color>
+        <color name="book_now">#1295D8</color>
+        <color name="search_car_gray">#DCDCDC</color>
+        <color name="element">#f4f4f4f4</color>
+        <color name="details">#8D8D8D</color>
+        <color name="heading">#686868</color>
+    </resources>-->
+

@@ -36,7 +36,6 @@ import java.util.ArrayList;
 
 import javax.xml.transform.Result;
 
-
 public class FragmentMyTrips extends Fragment implements Response.Listener<JSONObject>, Response.ErrorListener {
 
     ImageView ivMyTripsNoTrips;
@@ -154,7 +153,8 @@ public class FragmentMyTrips extends Fragment implements Response.Listener<JSONO
                                     lvMyTrips.setVisibility(View.GONE);
                                     llFragmentMyTrips.setVisibility(View.VISIBLE);
                                 }
-                            } else CommonUtil.alertBox(getActivity(), "All data set", false, false);
+                            }
+//                            else CommonUtil.alertBox(getActivity(), "All data set", false, false);
                         } catch (Exception e) {
                             e.printStackTrace();
                         }

@@ -55,10 +55,9 @@
                             android:inputType="textCapSentences"
                             android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
                             android:singleLine="true"
-                            android:textColor="@color/black"
+                            android:textColor="@color/heading"
                             android:textColorHint="@android:color/darker_gray"
-                            android:textSize="@dimen/etSignInUserPassSize"
-                            android:textStyle="italic" />
+                            android:textSize="@dimen/etSignInUserPassSize" />
 
                     </LinearLayout>
 
@@ -88,10 +87,9 @@
                             android:inputType="phone"
                             android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
                             android:singleLine="true"
-                            android:textColor="@color/black"
+                            android:textColor="@color/heading"
                             android:textColorHint="@android:color/darker_gray"
-                            android:textSize="@dimen/etSignInUserPassSize"
-                            android:textStyle="italic" />
+                            android:textSize="@dimen/etSignInUserPassSize" />
 
                     </LinearLayout>
 
@@ -123,10 +121,9 @@
                         android:inputType="textEmailAddress"
                         android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
                         android:singleLine="true"
-                        android:textColor="@color/black"
+                        android:textColor="@color/heading"
                         android:textColorHint="@android:color/darker_gray"
-                        android:textSize="@dimen/etSignInUserPassSize"
-                        android:textStyle="italic" />
+                        android:textSize="@dimen/etSignInUserPassSize" />
 
                 </LinearLayout>
 
@@ -156,8 +153,7 @@
                         android:scrollbars="vertical"
                         android:singleLine="true"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/etSignInUserPassSize"
-                        android:textStyle="italic" />
+                        android:textSize="@dimen/etSignInUserPassSize" />
 
                 </LinearLayout>
 
@@ -186,11 +182,12 @@
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/etHeightAll"
                             android:background="@drawable/grayborder"
+                            android:hint="@string/enter_postcode"
                             android:inputType="number"
                             android:paddingLeft="@dimen/etPaddingAll"
                             android:textColor="@color/black"
-                            android:textSize="@dimen/etSignInUserPassSize"
-                            android:textStyle="italic" />
+                            android:textColorHint="@color/hintColor"
+                            android:textSize="@dimen/etSignInUserPassSize" />
 
                     </LinearLayout>
 
@@ -213,11 +210,12 @@
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/etHeightAll"
                             android:background="@drawable/grayborder"
+                            android:hint="@string/enter_color"
                             android:inputType="textCapSentences"
                             android:paddingLeft="@dimen/etPaddingAll"
                             android:textColor="@color/black"
-                            android:textSize="@dimen/etSignInUserPassSize"
-                            android:textStyle="italic" />
+                            android:textColorHint="@color/hintColor"
+                            android:textSize="@dimen/etSignInUserPassSize" />
 
                     </LinearLayout>
 
@@ -249,8 +247,7 @@
                         android:scrollbars="vertical"
                         android:singleLine="true"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/etSignInUserPassSize"
-                        android:textStyle="italic" />
+                        android:textSize="@dimen/etSignInUserPassSize" />
 
                 </LinearLayout>
 
@@ -259,7 +256,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/lyYourDetailsEditMarginTop"
                     android:text="@string/taxinearu_will_not_be_responsible_or_liable_for_any_loss_or_damage_caused_while_using_our_services"
-                    android:textColor="@android:color/darker_gray"
+                    android:textColor="@color/heading"
                     android:textSize="@dimen/tvTitlesSizeAll" />
 
                 <TextView
@@ -267,7 +264,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/lyYourDetailsEditMarginTop"
                     android:text="@string/we_aim_to_contact_you_within_24_48_hours_upon_receiving_your_lost_and_found_form"
-                    android:textColor="@android:color/darker_gray"
+                    android:textColor="@color/heading"
                     android:textSize="@dimen/tvTitlesSizeAll" />
 
             </LinearLayout>

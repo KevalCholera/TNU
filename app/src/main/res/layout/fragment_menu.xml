@@ -20,7 +20,7 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:layout_marginBottom="@dimen/lyPadding10"
-            app:civ_border_color="@color/background"
+            app:civ_border_color="@color/Yellow"
             app:civ_border_width="@dimen/cvAccountPhoto" />
 
         <ImageView
@@ -56,9 +56,9 @@
         android:paddingStart="@dimen/btAccountActivateNowPaddingStartEnd"
         android:text="@string/active_now"
         android:textAllCaps="false"
-        android:textColor="@color/black"
+        android:textColor="@color/heading"
         android:textSize="@dimen/tvTitlesSizeAll"
-        android:visibility="visible" />
+        android:visibility="gone" />
 
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -82,7 +82,7 @@
                 android:drawablePadding="@dimen/tvElementCardListMarginStartEnd5"
                 android:gravity="fill"
                 android:text="@string/general_info"
-                android:textColor="@color/black"
+                android:textColor="@color/heading"
                 android:textSize="@dimen/tvAccountAllSize"
                 android:textStyle="italic" />
 
@@ -105,7 +105,7 @@
                 android:drawablePadding="@dimen/tvElementCardListMarginStartEnd5"
                 android:gravity="fill"
                 android:text="@string/acc_sec"
-                android:textColor="@color/black"
+                android:textColor="@color/heading"
                 android:textSize="@dimen/tvAccountAllSize"
                 android:textStyle="italic" />
 
@@ -124,11 +124,14 @@
                 android:layout_marginRight="@dimen/tvAccountAllMarginStartEnd"
                 android:layout_marginTop="@dimen/tvAccountAllMarginTop"
                 android:drawableLeft="@mipmap/img_payment"
-                android:drawablePadding="@dimen/tvAccountDrawablePaddingAll"
+                android:drawablePadding="@dimen/tvAccountCredits"
                 android:enabled="false"
                 android:gravity="fill"
+                android:paddingBottom="@dimen/margin_5"
+                android:paddingLeft="@dimen/lyPadding10"
+                android:paddingTop="@dimen/margin_5"
                 android:text="@string/payment"
-                android:textColor="@color/dark_gray"
+                android:textColor="@color/hintColor"
                 android:textSize="@dimen/tvAccountAllSize"
                 android:textStyle="italic" />
 
@@ -154,7 +157,7 @@
                 android:paddingLeft="@dimen/lyPadding10"
                 android:paddingTop="@dimen/margin_5"
                 android:text="@string/Credits"
-                android:textColor="@color/dark_gray"
+                android:textColor="@color/hintColor"
                 android:textSize="@dimen/tvAccountAllSize"
                 android:textStyle="italic" />
 
@@ -177,7 +180,7 @@
                 android:drawablePadding="@dimen/tvAccountDrawablePaddingAll"
                 android:gravity="fill"
                 android:text="@string/lostitems"
-                android:textColor="@color/black"
+                android:textColor="@color/heading"
                 android:textSize="@dimen/tvAccountAllSize"
                 android:textStyle="italic" />
 
@@ -200,7 +203,7 @@
                 android:drawablePadding="@dimen/tvAccountDrawablePaddingAll"
                 android:gravity="fill"
                 android:text="@string/more"
-                android:textColor="@color/black"
+                android:textColor="@color/heading"
                 android:textSize="@dimen/tvAccountAllSize"
                 android:textStyle="italic" />
 
@@ -222,9 +225,16 @@
                 android:drawablePadding="@dimen/tvElementCardListMarginStartEnd10"
                 android:gravity="fill"
                 android:text="@string/logout"
-                android:textColor="@color/black"
+                android:textColor="@color/heading"
                 android:textSize="@dimen/tvAccountAllSize"
                 android:textStyle="italic" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/vAccountAllHeight"
+                android:layout_marginLeft="@dimen/vAccountAllStartEnd"
+                android:layout_marginRight="@dimen/vAccountAllStartEnd"
+                android:background="@color/light_Gray" />
 
         </LinearLayout>
     </ScrollView>

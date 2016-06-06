@@ -93,7 +93,7 @@ public class CommonUtil {
         builder.setCancelable(false);
         builder.setMessage(msg);
         if (check)
-            builder.setIcon(ContextCompat.getDrawable(context, android.R.drawable.progress_horizontal));
+            builder.setIcon(ContextCompat.getDrawable(context, R.mipmap.img_ok));
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 if (check)
@@ -223,14 +223,13 @@ public class CommonUtil {
     }
 
     public static void conditionAuthentication(Activity activity, JSONObject jsonObject) {
-//    public static void conditionAuthentication(Activity activity, JSONObject jsonObject, CoordinatorLayout coordinatorLayout) {
-        successToastShowing(activity, jsonObject);
         if (jsonObject.has("json") && jsonObject.optJSONObject("json").has("errorCode") && jsonObject.optJSONObject("json").optInt("errorCode") == Constants.ErrorCode.UNAUTHENTICATED_OPERATION) {
-            successToastShowing(activity, jsonObject);
+            Toast.makeText(activity, activity.getResources().getString(R.string.session_expire), Toast.LENGTH_SHORT).show();
             activity.startActivity(new Intent(activity, SignIn.class));
             SharedPreferenceUtil.clear();
             SharedPreferenceUtil.save();
-        }
+        } else
+            successToastShowing(activity, jsonObject);
     }
 
     public static void jsonRequestPOST(Activity activity, String msg, String urlType, HashMap<String, String> params, String tag, Response.Listener<JSONObject> requestListener, Response.ErrorListener errorListener) {

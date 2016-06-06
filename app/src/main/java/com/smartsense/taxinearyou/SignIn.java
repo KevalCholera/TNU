@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.mpt.storage.SharedPreferenceUtil;
+import com.onesignal.OneSignal;
 import com.pubnub.api.Callback;
 import com.pubnub.api.Pubnub;
 import com.pubnub.api.PubnubError;
@@ -32,7 +33,6 @@ public class SignIn extends AppCompatActivity implements Response.Listener<JSONO
     TextView tvSignInForgotPassword, tvSignInForgotEmail;
     CoordinatorLayout rlSignInMain;
     View view;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -218,6 +218,7 @@ public class SignIn extends AppCompatActivity implements Response.Listener<JSONO
                     SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_EVENT_lUGGAGE_LIST, response.optJSONObject("json").optJSONArray("eventLuggageList").toString());
                     SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_PASSENGER, response.optJSONObject("json").optJSONArray("passengerArray").toString());
                     SharedPreferenceUtil.save();
+                    OneSignal.sendTag("emailId", etSignInUserName.getText().toString());
                     startActivity(new Intent(this, Search.class));
                     finish();
 //                            break;

@@ -26,7 +26,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/vHeightWidthAll"
-                android:background="@color/background" />
+                android:background="@color/colorPrimaryDark" />
 
             <com.smartsense.taxinearyou.utill.CircleImageView1
                 android:layout_width="@dimen/tvMarginTopBottomStartEndAll"
@@ -131,7 +131,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/vHeightWidthAll"
                 android:layout_marginTop="@dimen/vMarginTopBottomAll"
-                android:background="@color/background" />
+                android:background="@color/colorPrimaryDark" />
 
             <View
                 android:layout_width="match_parent"
@@ -139,7 +139,6 @@
                 android:background="@color/element" />
 
         </LinearLayout>
-
 
         <LinearLayout
             android:id="@+id/lyElementLostItemStatus"
@@ -153,7 +152,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/vHeightWidthAll"
                 android:layout_marginBottom="@dimen/vElementLostItemMarginBottom"
-                android:background="@color/background" />
+                android:background="@color/colorPrimaryDark" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -177,7 +176,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/from_"
-                            android:textColor="@color/background"
+                            android:textColor="@color/colorPrimaryDark"
                             android:textSize="@dimen/etSignUpSizeAll" />
 
                         <TextView
@@ -185,6 +184,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:maxLines="2"
+                            android:textColor="@color/heading"
                             android:textSize="@dimen/etSignUpSizeAll" />
 
                     </LinearLayout>
@@ -201,7 +201,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/to_"
-                            android:textColor="@color/background"
+                            android:textColor="@color/colorPrimaryDark"
                             android:textSize="@dimen/etSignUpSizeAll" />
 
                         <TextView
@@ -209,6 +209,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:maxLines="2"
+                            android:textColor="@color/heading"
                             android:textSize="@dimen/etSignUpSizeAll" />
 
                     </LinearLayout>
@@ -241,6 +242,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
+                        android:textColor="@color/heading"
                         android:textSize="@dimen/etSignUpSizeAll" />
 
                     <TextView
@@ -248,7 +250,7 @@
                         android:layout_height="match_parent"
                         android:gravity="center|bottom"
                         android:text="@string/taxi_provider"
-                        android:textColor="@color/background"
+                        android:textColor="@color/colorPrimaryDark"
                         android:textSize="@dimen/etSignUpSizeAll" />
 
                 </LinearLayout>
@@ -270,6 +272,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
+                        android:textColor="@color/heading"
                         android:textSize="@dimen/etSignUpSizeAll" />
 
                     <TextView
@@ -277,7 +280,7 @@
                         android:layout_height="match_parent"
                         android:gravity="center|bottom"
                         android:text="@string/datetime"
-                        android:textColor="@color/background"
+                        android:textColor="@color/colorPrimaryDark"
                         android:textSize="@dimen/etSignUpSizeAll" />
 
                 </LinearLayout>
@@ -299,6 +302,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
+                        android:textColor="@color/heading"
                         android:textSize="@dimen/etSignUpSizeAll" />
 
                     <TextView
@@ -306,7 +310,7 @@
                         android:layout_height="match_parent"
                         android:gravity="center|bottom"
                         android:text="@string/status"
-                        android:textColor="@color/background"
+                        android:textColor="@color/colorPrimaryDark"
                         android:textSize="@dimen/etSignUpSizeAll" />
 
                 </LinearLayout>
@@ -330,7 +334,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/lost_item"
-                    android:textColor="@color/background"
+                    android:textColor="@color/colorPrimaryDark"
                     android:textSize="@dimen/etSignUpSizeAll" />
 
                 <TextView
@@ -339,6 +343,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/tvElementLostItemMarginStart"
                     android:gravity="center"
+                    android:textColor="@color/heading"
                     android:textSize="@dimen/etSignUpSizeAll" />
 
             </LinearLayout>
@@ -348,7 +353,7 @@
                 android:layout_height="@dimen/vHeightWidthAll"
                 android:layout_marginBottom="@dimen/vMarginTopBottomAll"
                 android:layout_marginTop="@dimen/vMarginTopBottomAll"
-                android:background="@android:color/darker_gray" />
+                android:colorPrimaryDark="@android:color/darker_gray" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -360,7 +365,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/tnr"
-                    android:textColor="@color/background"
+                    android:textColor="@color/colorPrimaryDark"
                     android:textSize="@dimen/etSignUpSizeAll" />
 
                 <TextView
@@ -368,6 +373,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/tvElementLostItemMarginStart"
+                    android:textColor="@color/heading"
                     android:textSize="@dimen/etSignUpSizeAll" />
 
             </LinearLayout>
@@ -376,7 +382,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/vHeightWidthAll"
                 android:layout_marginTop="@dimen/vMarginTopBottomAll"
-                android:background="@color/background" />
+                android:background="@color/colorPrimaryDark" />
 
             <View
                 android:layout_width="match_parent"
@@ -395,7 +401,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/vHeightWidthAll"
-                android:background="@color/background" />
+                android:background="@color/colorPrimaryDark" />
 
             <com.smartsense.taxinearyou.utill.CircleImageView1
                 android:layout_width="@dimen/tvMarginTopBottomStartEndAll"
@@ -500,12 +506,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/vHeightWidthAll"
                 android:layout_marginTop="@dimen/vMarginTopBottomAll"
-                android:background="@color/background" />
+                android:background="@color/colorPrimaryDark" />
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/vElementLostItemHeight"
-                android:background="@color/element" />
+                android:colorPrimaryDark="@color/element" />
 
         </LinearLayout>
 

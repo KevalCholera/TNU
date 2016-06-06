@@ -120,7 +120,9 @@ public class AddLostItem extends AppCompatActivity implements View.OnClickListen
         CommonUtil.cancelProgressDialog();
         if (jsonObject != null)
             if (jsonObject.optInt("status") == Constants.STATUS_SUCCESS) {
-                CommonUtil.alertBox(this, jsonObject.optString("msg"), false, true);
+//                CommonUtil.alertBox(this, jsonObject.optString("msg"), false, true);
+                CommonUtil.openDialogs(this, "Add Lost Item", R.id.lyPopUpYourDetail, R.id.btPopupYourDetailOk, jsonObject.optString("msg"));
+
                 setResult(RESULT_OK);
             } else {
                 CommonUtil.conditionAuthentication(this, jsonObject);

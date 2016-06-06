@@ -9,7 +9,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/light_Gray"
+        android:background="@color/very_light_gray"
         android:gravity="center">
 
         <com.smartsense.taxinearyou.utill.CircleImageView1

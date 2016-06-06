@@ -29,8 +29,8 @@
                 android:id="@+id/tvElementReviewCustomerName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="30dp"
                 android:layout_marginLeft="@dimen/lyPadding10"
+                android:layout_marginRight="30dp"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="@dimen/tvElementReviewTextSize" />
 
@@ -39,7 +39,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:singleLine="true"
-                android:textColor="@color/dark_gray"
+                android:textColor="@color/details"
                 android:textSize="@dimen/tvElementReviewTextSize" />
 
         </LinearLayout>
@@ -51,7 +51,7 @@
             android:layout_marginLeft="@dimen/lyPadding10"
             android:gravity="center_vertical"
             android:minLines="3"
-            android:textColor="@color/black"
+            android:textColor="@color/heading"
             android:textSize="@dimen/tvElementReviewTextSize" />
     </LinearLayout>
 </LinearLayout>

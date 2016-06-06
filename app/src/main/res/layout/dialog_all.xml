@@ -24,6 +24,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
+                android:textColor="@color/colorPrimaryDark"
                 android:text="@string/alternate_email"
                 android:textSize="@dimen/tvTitlesSizeAll" />
 
@@ -81,7 +82,7 @@
                 android:layout_height="@dimen/btSignUpAllheight"
                 android:layout_marginBottom="@dimen/btPopupSubmitMarginTopBottom"
                 android:layout_marginTop="@dimen/btPopupSubmitMarginTopBottom"
-                android:background="@color/background"
+                android:background="@color/colorPrimary"
                 android:gravity="center"
                 android:paddingLeft="@dimen/btPopupSubmitPaddingLeftRight"
                 android:paddingRight="@dimen/btPopupSubmitPaddingLeftRight"
@@ -106,6 +107,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="@string/email"
+                android:textColor="@color/colorPrimaryDark"
                 android:textSize="@dimen/tvTitlesSizeAll" />
 
             <View
@@ -162,7 +164,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/btSignUpAllheight"
                 android:layout_marginTop="@dimen/btPopupSubmitMarginTopBottom"
-                android:background="@color/background"
+                android:background="@color/colorPrimary"
                 android:gravity="center"
                 android:paddingLeft="@dimen/btPopupSubmitPaddingLeftRight"
                 android:paddingRight="@dimen/btPopupSubmitPaddingLeftRight"
@@ -185,6 +187,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="@dimen/tvPopupMarginTop"
                 android:text="@string/select_from_the_options_below"
+                android:textColor="@color/colorPrimary"
                 android:textSize="@dimen/tvTitlesSizeAll" />
 
             <View
@@ -305,7 +308,7 @@
                 android:layout_gravity="center"
                 android:layout_marginBottom="@dimen/btPopupSubmitMarginTopBottom"
                 android:layout_marginTop="@dimen/btPopupSubmitMarginTopBottom"
-                android:background="@color/background"
+                android:background="@color/colorPrimary"
                 android:gravity="center"
                 android:paddingLeft="@dimen/btPopupSubmitPaddingLeftRight"
                 android:paddingRight="@dimen/btPopupSubmitPaddingLeftRight"
@@ -330,6 +333,7 @@
                 android:layout_margin="@dimen/tvPopupMarginTop"
                 android:gravity="center"
                 android:text="@string/new_password"
+                android:textColor="@color/colorPrimary"
                 android:textSize="@dimen/tvTitlesSizeAll" />
 
             <View
@@ -385,7 +389,7 @@
                 android:layout_height="@dimen/btSignUpAllheight"
                 android:layout_marginBottom="@dimen/btPopupSubmitMarginTopBottom"
                 android:layout_marginTop="@dimen/btPopupSubmitMarginTopBottom"
-                android:background="@color/background"
+                android:background="@color/colorPrimary"
                 android:gravity="center"
                 android:paddingLeft="@dimen/btPopupSubmitPaddingLeftRight"
                 android:paddingRight="@dimen/btPopupSubmitPaddingLeftRight"
@@ -411,6 +415,7 @@
                 android:layout_marginTop="@dimen/tvPopupMarginTop"
                 android:gravity="center"
                 android:text="@string/ans_sec_qus"
+                android:textColor="@color/colorPrimary"
                 android:textSize="@dimen/tvTitlesSizeAll" />
 
             <View
@@ -526,7 +531,7 @@
                 android:layout_height="@dimen/btSignUpAllheight"
                 android:layout_marginBottom="@dimen/btPopupSubmitMarginTopBottom"
                 android:layout_marginTop="@dimen/btPopupSubmitMarginTopBottom"
-                android:background="@color/background"
+                android:background="@color/colorPrimary"
                 android:gravity="center"
                 android:paddingLeft="@dimen/btPopupSubmitPaddingLeftRight"
                 android:paddingRight="@dimen/btPopupSubmitPaddingLeftRight"
@@ -551,6 +556,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="@string/answer_security_question"
+                android:textColor="@color/colorPrimary"
                 android:textSize="@dimen/tvTitlesSizeAll" />
 
             <View
@@ -676,7 +682,7 @@
                 android:layout_height="@dimen/btSignUpAllheight"
                 android:layout_marginBottom="@dimen/btPopupSubmitMarginTopBottom"
                 android:layout_marginTop="@dimen/btPopupSubmitMarginTopBottom"
-                android:background="@color/background"
+                android:background="@color/colorPrimary"
                 android:gravity="center"
                 android:paddingLeft="@dimen/btPopupSubmitPaddingLeftRight"
                 android:paddingRight="@dimen/btPopupSubmitPaddingLeftRight"
@@ -690,24 +696,17 @@
             android:id="@+id/lyPopupBookSuccess"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="@dimen/lyPadding10"
             android:background="@color/white"
             android:gravity="center"
             android:orientation="vertical"
-            android:padding="@dimen/lyPadding10"
+            android:padding="@dimen/_20_margin_padding"
             android:visibility="gone">
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/vHeightWidthAll"
-                android:layout_marginBottom="@dimen/vMarginTopBottomAll"
-                android:layout_marginTop="@dimen/vMarginTopBottomAll"
-                android:background="@android:color/darker_gray" />
 
             <ImageView
                 android:layout_width="@dimen/ivPopImageWidthHeightAll"
                 android:layout_height="@dimen/ivPopImageWidthHeightAll"
-                android:layout_margin="@dimen/tvPopupMarginTop"
-                android:src="@mipmap/like_blue" />
+                android:src="@mipmap/img_ok" />
 
             <TextView
                 android:id="@+id/tvDialogAllSuccess"
@@ -716,7 +715,7 @@
                 android:layout_margin="@dimen/tvPopupMarginTop"
                 android:gravity="center"
                 android:text="@string/thank_you_your_ride_has_been_successfully_booked"
-                android:textColor="@android:color/darker_gray"
+                android:textColor="@color/heading"
                 android:textSize="@dimen/tvTitlesSizeAll"
                 android:textStyle="italic" />
 
@@ -727,20 +726,13 @@
                 android:layout_height="@dimen/btSignUpAllheight"
                 android:layout_marginBottom="@dimen/btPopupSubmitMarginTopBottom"
                 android:layout_marginTop="@dimen/btPopupSubmitMarginTopBottom"
-                android:background="@color/background"
+                android:background="@color/colorPrimary"
                 android:gravity="center"
                 android:paddingLeft="@dimen/btPopupSubmitPaddingLeftRight"
                 android:paddingRight="@dimen/btPopupSubmitPaddingLeftRight"
                 android:text="@string/ok"
                 android:textColor="@color/white"
                 android:textSize="@dimen/tvTitlesSizeAll" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/vHeightWidthAll"
-                android:layout_marginBottom="@dimen/vMarginTopBottomAll"
-                android:layout_marginTop="@dimen/vMarginTopBottomAll"
-                android:background="@android:color/darker_gray" />
 
         </LinearLayout>
 
@@ -795,7 +787,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/tvPopupCancelRideMarginStartEnd"
                     android:layout_weight="1"
-                    android:background="@color/background"
+                    android:background="@color/colorPrimary"
                     android:gravity="center"
                     android:padding="@dimen/tvPopupCancelRidePadding"
                     android:text="@string/no"
@@ -831,13 +823,6 @@
             android:padding="@dimen/lyPadding10"
             android:visibility="gone">
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/vHeightWidthAll"
-                android:layout_marginEnd="@dimen/btPopupFeedbackOk"
-                android:layout_marginStart="@dimen/btPopupFeedbackOk"
-                android:background="@android:color/darker_gray" />
-
             <ImageView
                 android:layout_width="@dimen/ivPopImageWidthHeightAll"
                 android:layout_height="@dimen/ivPopImageWidthHeightAll"
@@ -861,7 +846,7 @@
                 android:layout_height="@dimen/btSignUpAllheight"
                 android:layout_marginBottom="@dimen/btPopupSubmitMarginTopBottom"
                 android:layout_marginTop="@dimen/btPopupSubmitMarginTopBottom"
-                android:background="@color/background"
+                android:background="@color/colorPrimary"
                 android:gravity="center"
                 android:paddingLeft="@dimen/btPopupSubmitPaddingLeftRight"
                 android:paddingRight="@dimen/btPopupSubmitPaddingLeftRight"
@@ -886,7 +871,7 @@
                 android:gravity="center"
                 android:text="@string/we_have_located_your_account"
                 android:textAllCaps="true"
-                android:textColor="@color/background"
+                android:textColor="@color/colorPrimary"
                 android:textSize="@dimen/tvHeadingSizeAll"
                 android:textStyle="bold" />
 
@@ -908,7 +893,7 @@
                 android:id="@+id/tvPopupLocatedEmail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/background"
+                android:textColor="@color/colorPrimary"
                 android:textStyle="italic" />
 
 
@@ -929,7 +914,7 @@
                 android:layout_height="@dimen/btSignUpAllheight"
                 android:layout_marginBottom="@dimen/btPopupSubmitMarginTopBottom"
                 android:layout_marginTop="@dimen/btPopupSubmitMarginTopBottom"
-                android:background="@color/background"
+                android:background="@color/colorPrimary"
                 android:gravity="center"
                 android:paddingLeft="@dimen/btPopupSubmitPaddingLeftRight"
                 android:paddingRight="@dimen/btPopupSubmitPaddingLeftRight"
@@ -954,7 +939,7 @@
                 android:gravity="center"
                 android:text="@string/thank_you"
                 android:textAllCaps="true"
-                android:textColor="@color/background"
+                android:textColor="@color/colorPrimary"
                 android:textSize="@dimen/tvHeadingSizeAll"
                 android:textStyle="bold" />
 
@@ -981,7 +966,7 @@
                 android:layout_height="@dimen/btSignUpAllheight"
                 android:layout_marginBottom="@dimen/btPopupSubmitMarginTopBottom"
                 android:layout_marginTop="@dimen/btPopupSubmitMarginTopBottom"
-                android:background="@color/background"
+                android:background="@color/colorPrimary"
                 android:gravity="center"
                 android:paddingLeft="@dimen/btPopupSubmitPaddingLeftRight"
                 android:paddingRight="@dimen/btPopupSubmitPaddingLeftRight"
@@ -1000,13 +985,6 @@
             android:orientation="vertical"
             android:padding="@dimen/lyPadding10"
             android:visibility="gone">
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/vHeightWidthAll"
-                android:layout_marginBottom="@dimen/vMarginTopBottomAll"
-                android:layout_marginTop="@dimen/vPopupMarginTopBottom"
-                android:background="@android:color/darker_gray" />
 
             <ImageView
                 android:layout_width="@dimen/ivPopImageWidthHeightAll"
@@ -1031,21 +1009,13 @@
                 android:layout_height="@dimen/btSignUpAllheight"
                 android:layout_marginBottom="@dimen/btPopupSubmitMarginTopBottom"
                 android:layout_marginTop="@dimen/btPopupSubmitMarginTopBottom"
-                android:background="@color/background"
+                android:background="@color/colorPrimary"
                 android:gravity="center"
                 android:paddingLeft="@dimen/btPopupSubmitPaddingLeftRight"
                 android:paddingRight="@dimen/btPopupSubmitPaddingLeftRight"
                 android:text="@string/ok"
                 android:textColor="@color/white"
                 android:textSize="@dimen/tvTitlesSizeAll" />
-
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/vHeightWidthAll"
-                android:layout_marginBottom="@dimen/vPopupMarginTopBottom"
-                android:layout_marginTop="@dimen/vMarginTopBottomAll"
-                android:background="@android:color/darker_gray" />
         </LinearLayout>
     </LinearLayout>
 </android.support.design.widget.CoordinatorLayout>

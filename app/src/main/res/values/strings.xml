@@ -76,7 +76,7 @@
     <string name="extra_add">Aberdeen, Aberdeen City,UK</string>
     <string name="journey_date_time"><![CDATA[Journey Date & Time]]></string>
     <string name="vehicle_type">Vehicle Type</string>
-    <string name="digital">03-02-2016 12:26AM</string>
+    <string name="digital">03–02–2016 12:26AM</string>
     <string name="sedan">Sedan</string>
     <string name="provider_name">Taxi Provider Name</string>
     <string name="fare_cost">Fare Cost</string>
@@ -127,7 +127,7 @@
     <string name="str_atv_places">Enter Place Here</string>
     <string name="submit">Submit</string>
     <string name="rating">Rating</string>
-    <string name="timewait">(10-20 mins for a Taxi)</string>
+    <string name="timewait">(10–20 mins for a Taxi)</string>
     <string name="logout">Log Out</string>
     <string name="html"><![CDATA[<p>406.00<p>]]]></string>
     <string name="title_activity_zzzzz">ZZZZZ</string>
@@ -235,7 +235,7 @@
     <string name="q2">Q2)</string>
     <string name="enter_ans">Enter answer</string>
     <string name="in_which_city_or_town_did_your_mother_and_father_meet">In which city or town did your mother and father meet?</string>
-    <string name="thank_you_your_ride_has_been_successfully_booked">Thank you Your Ride has been Successfully Booked...</string>
+    <string name="thank_you_your_ride_has_been_successfully_booked">Thank you Your Ride has been Successfully Booked…</string>
     <string name="ok">OK</string>
     <string name="are_you_sure_you_want_to_cancel_the_ride">Are you sure you want to Cancel the Ride?</string>
     <string name="cancel">Cancel</string>
@@ -253,8 +253,8 @@
     <string name="please_enter_your_email_address_and_we_ll_help_you_to_reset_you_password1">Please enter your email address and we\'ll help you to reset your password.</string>
     <string name="email_address_">Email Address</string>
     <string name="enter_email_id">Enter Email address</string>
+    <string name="enter_email_id_">Enter Email iD</string>
     <string name="pls_email">Please enter email address</string>
-    <string name="enter_email_id_">Enter Email ID</string>
     <string name="enter_confirm_email_id">Enter Confirm Email ID</string>
     <string name="enter_valid_email_id">Enter Valid Email ID</string>
     <string name="enter_valid_confirm_email_id">Enter Valid Confirm Email ID</string>
@@ -289,6 +289,7 @@
     <string name="expiry_date">Expiry Date</string>
     <string name="card_type">Card Type :</string>
     <string name="month">Month</string>
+    <string name="enter_month">Enter month</string>
     <string name="expiry_date_">Expiry Date :</string>
     <string name="last_name_">Last Name :</string>
     <string name="address_1">Address 1 :</string>
@@ -296,25 +297,29 @@
     <string name="town">Town :</string>
     <string name="city">City :</string>
     <string name="postal_code">Postal Code :</string>
-    <string name="enter_card_holder_name">Enter Cardholders Name</string>
+    <string name="enter_card_holder_name">Enter cardholder\'s name</string>
     <string name="enter_card_type">Enter Card Type</string>
     <string name="enter_card_no">Enter Card Number</string>
     <string name="enter_security_no">Enter Security Number</string>
     <string name="enter_add">Enter Address</string>
     <string name="enter_town">Please Select Town</string>
+    <string name="enter_town_below">Enter Town</string>
     <string name="enter_city">Please Select City</string>
+    <string name="enter_city_below">Enter City</string>
     <string name="enter_postcode">Enter PostalCode</string>
     <string name="cardholder_s_name">Cardholder\'s Name :</string>
     <string name="card_details">Card Details</string>
+    <string name="card_details_">Card Details :</string>
     <string name="card_number">Card Number :</string>
     <string name="year">Year</string>
+    <string name="enter_year">Enter year</string>
     <string name="security_number">Security Number :</string>
     <string name="use_card_for_future_payment">Use card for future payment</string>
     <string name="first_name_">First Name :</string>
     <string name="confirm_amp_next"><![CDATA[Confirm & Next]]></string>
-    <string name="enter_additional_information">Enter Additional Information...</string>
-    <string name="we_aim_to_contact_you_within_24_48_hours_upon_receiving_your_lost_and_found_form">We aim to contact you within 24/48 hours upon receiving your lost and found form.</string>
-    <string name="taxinearu_will_not_be_responsible_or_liable_for_any_loss_or_damage_caused_while_using_our_services">Taxinearu will not be responsible or liable for any loss or damage caused while using our Services.</string>
+    <string name="enter_additional_information">Enter Additional Information…</string>
+    <string name="we_aim_to_contact_you_within_24_48_hours_upon_receiving_your_lost_and_found_form">We aim to contact you within 24/48 hours upon receiving your lost and found item.</string>
+    <string name="taxinearu_will_not_be_responsible_or_liable_for_any_loss_or_damage_caused_while_using_our_services">Taxinearu will not be responsible for any loss or damage caused while using our Services.</string>
     <string name="item_description">Item Description :</string>
     <string name="color">Color :</string>
     <string name="postcode">Postcode :</string>
@@ -434,7 +439,8 @@
     <string name="your_detail_send">Your details to recover your email has been send successfully…</string>
     <string name="eta_err">ETA may differ at any time due to unexpected circumstances e.g. traffic, weather changes, road works or any other events.</string>
     <string name="enter_sub">Enter subject</string>
-    <string name="pls_ent_alt">Please enter alernative email address</string>
+    <string name="pls_ent_alt">Please enter alternative email address</string>
+    <string name="pls_ent_alt_id">Enter Alternate Email ID</string>
     <string name="enter_alt_not_same">Confirm alternative email address does not match</string>
     <string name="take_photo">Take photo</string>
     <string name="select_pic">Select your Photos</string>
@@ -445,5 +451,11 @@
     <string name="no">NO</string>
     <string name="ye">Yes</string>
     <string name="crnt_lct">Current Location</string>
+    <string name="enter_card_number">Enter card Number</string>
+    <string name="select_card_type">Select card type</string>
+    <string name="enter_sec_num">Enter security number</string>
+    <string name="coming_soon">Coming Soon…!!!</string>
+    <string name="no_trip_available">No Trips Available</string>
+    <string name="session_expire">session expired. Please sign in again.</string>
 
 </resources>

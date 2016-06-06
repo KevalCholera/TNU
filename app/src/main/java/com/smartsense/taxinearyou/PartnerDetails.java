@@ -37,6 +37,7 @@ public class PartnerDetails extends AppCompatActivity {
     public static String taxiTypeName;
     public static String waitingTime;
     public static String partnerId;
+    public static int available;
     public static ArrayList<String> rating = new ArrayList<>();
 
     @Override
@@ -65,6 +66,7 @@ public class PartnerDetails extends AppCompatActivity {
         waitingTime = getIntent().getStringExtra("waitingTime");
         rating = getIntent().getStringArrayListExtra("rating");
         partnerId = getIntent().getStringExtra("partnerId");
+        available = getIntent().getIntExtra("available", 0);
 
         ViewPager vpPartnerRating = (ViewPager) findViewById(R.id.vpPartnerRating);
         setupViewPager(vpPartnerRating);

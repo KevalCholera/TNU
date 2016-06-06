@@ -120,19 +120,19 @@ public class AccountSecurity extends AppCompatActivity implements View.OnClickLi
             btPopupSecurityQuestionConfirm = (Button) dialog.findViewById(R.id.btPopupSecurityQuestionConfirm);
             tvPopupSecurityQuestion1 = (TextView) dialog.findViewById(R.id.tvPopupSecurityQuestion1);
             tvPopupSecurityQuestion2 = (TextView) dialog.findViewById(R.id.tvPopupSecurityQuestion2);
-            lyPopUpSecurityOptions.setVisibility(View.VISIBLE);
             clPopUpMain = (CoordinatorLayout) dialog.findViewById(R.id.clPopUpMain);
             etPopupSecurityQuestionChangeQuestion1 = (EditText) dialog.findViewById(R.id.etPopupSecurityQuestionChangeQuestion1);
             etPopupSecurityQuestionChangeQuestion2 = (EditText) dialog.findViewById(R.id.etPopupSecurityQuestionChangeQuestion2);
 
+            lyPopUpSecurityOptions.setVisibility(View.VISIBLE);
             tvPopupSecurityQuestion1.setText(SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_QUESTION1, ""));
             tvPopupSecurityQuestion2.setText(SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_QUESTION2, ""));
 
             if (clicked == 4)
                 rbPopupSecurityOptionsQuestions.setVisibility(View.GONE);
 
-            String primaryEmail = "<font color=" + ContextCompat.getColor(this, R.color.dark_gray) + ">" + getResources().getString(R.string.send_email_to_primary_email_address) + "</font>" + "\n" + "<font color=" + ContextCompat.getColor(this, R.color.black) + ">" + "<u>" + (SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_EMAIL, "") + "</u>" + "</font>");
-            String alternateEmail = "<font color=" + ContextCompat.getColor(this, R.color.dark_gray) + ">" + getResources().getString(R.string.send_email_to_alternate_email_address) + "</font>" + "\n" + "<font color=" + ContextCompat.getColor(this, R.color.black) + ">" + "<u>" + (SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_ALTERNATE_EMAIL, "") + "</u>" + "</font>");
+            String primaryEmail = "<font color=" + ContextCompat.getColor(this, R.color.heading) + ">" + getResources().getString(R.string.send_email_to_primary_email_address) + "</font>" + "\n" + "<font color=" + ContextCompat.getColor(this, R.color.black) + ">" + "<u>" + (SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_EMAIL, "") + "</u>" + "</font>");
+            String alternateEmail = "<font color=" + ContextCompat.getColor(this, R.color.heading) + ">" + getResources().getString(R.string.send_email_to_alternate_email_address) + "</font>" + "\n" + "<font color=" + ContextCompat.getColor(this, R.color.black) + ">" + "<u>" + (SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_ALTERNATE_EMAIL, "") + "</u>" + "</font>");
 
             rbPopupSecurityOptionsEmail.setText(Html.fromHtml(primaryEmail));
             rbPopupSecurityOptionsAlternateEmail.setText(Html.fromHtml(alternateEmail));
@@ -170,10 +170,6 @@ public class AccountSecurity extends AppCompatActivity implements View.OnClickLi
             case R.id.btAccountSecurityChangeQuestion:
                 clicked = 4;
                 openOccasionsPopupOptions();
-                break;
-            case R.id.etPopupSecurityQuestionChangeQuestion1:
-                break;
-            case R.id.etPopupSecurityQuestionChangeQuestion2:
                 break;
             case R.id.btPopupSecurityQuestionConfirm:
                 verifyingAnswers();
@@ -273,19 +269,20 @@ public class AccountSecurity extends AppCompatActivity implements View.OnClickLi
     }
 
     public void securityQuestionConfirm() {
+
         lyPopUpQuestion.setVisibility(View.GONE);
         if (clicked == 1) {
             lyPopUpEmail.setVisibility(View.VISIBLE);
-            btPopupSecurityEmailSubmit.setOnClickListener(this);
+            btPopupSecurityEmailSubmit.setOnClickListener(AccountSecurity.this);
         } else if (clicked == 2) {
             lyPopUpAlternateEmail.setVisibility(View.VISIBLE);
-            btPopupSecurityAlternateEmailSubmit.setOnClickListener(this);
+            btPopupSecurityAlternateEmailSubmit.setOnClickListener(AccountSecurity.this);
         } else if (clicked == 4) {
             lyPopUpQuestionChanges.setVisibility(View.VISIBLE);
-            btPopupSecurityQuestionChangeConfirm.setOnClickListener(this);
+            btPopupSecurityQuestionChangeConfirm.setOnClickListener(AccountSecurity.this);
         } else if (clicked == 3) {
             lyPopUpPassword.setVisibility(View.VISIBLE);
-            btPopupSecurityPasswordSubmit.setOnClickListener(this);
+            btPopupSecurityPasswordSubmit.setOnClickListener(AccountSecurity.this);
         }
     }
 
@@ -300,16 +297,16 @@ public class AccountSecurity extends AppCompatActivity implements View.OnClickLi
     }
 
     public void emailChanged() {
-        if (CommonUtil.isValidEmail(etPopupSecurityEmail.getText().toString())) {
-            CommonUtil.showSnackBar(getString(R.string.pls_email), clPopUpMain);
-        } else if (!CommonUtil.isValidEmail(etPopupSecurityConfirmEmail.getText().toString())) {
+        if (CommonUtil.isValidEmail(etPopupSecurityEmail.getText().toString()) || CommonUtil.isValidEmail(etPopupSecurityConfirmEmail.getText().toString()))
+            CommonUtil.showSnackBar(getString(R.string.enter_fields_below), clPopUpMain);
+        else if (!CommonUtil.isValidEmail(etPopupSecurityConfirmEmail.getText().toString()))
             CommonUtil.showSnackBar(getString(R.string.enter_not_same), clPopUpMain);
-        } else
+        else
             changeEmailAPI();
     }
 
     public void alternateEmailChanged() {
-        if (CommonUtil.isValidEmail(etPopupSecurityAlternateEmail.getText().toString())) {
+        if (CommonUtil.isValidEmail(etPopupSecurityAlternateEmail.getText().toString()) || CommonUtil.isValidEmail(etPopupSecurityConfirmAlternateEmail.getText().toString())) {
             CommonUtil.showSnackBar(getString(R.string.pls_ent_alt), clPopUpMain);
         } else if (!CommonUtil.isValidEmail(etPopupSecurityConfirmAlternateEmail.getText().toString())) {
             CommonUtil.showSnackBar(getString(R.string.enter_alt_not_same), clPopUpMain);
@@ -318,7 +315,7 @@ public class AccountSecurity extends AppCompatActivity implements View.OnClickLi
     }
 
     public void passwordChanged() {
-        if (etPopupSecurityPassword.length() < 7 || etPopupSecurityPassword.length() > 13) {
+        if (etPopupSecurityPassword.length() < 7 || etPopupSecurityPassword.length() > 13 || etPopupSecurityConfirmPassword.length() < 7 || etPopupSecurityConfirmPassword.length() > 13) {
             CommonUtil.showSnackBar(getString(R.string.enter_valid_pass), clPopUpMain);
         } else if (!etPopupSecurityConfirmPassword.getText().toString().equalsIgnoreCase(etPopupSecurityPassword.getText().toString())) {
             CommonUtil.showSnackBar(getString(R.string.conpass_pass_same), clPopUpMain);
@@ -333,8 +330,9 @@ public class AccountSecurity extends AppCompatActivity implements View.OnClickLi
             CommonUtil.showSnackBar(getResources().getString(R.string.answer_not_same), clPopUpMain);
         else if (!etPopupSecurityQuestionAnswer2.getText().toString().equalsIgnoreCase(SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_ANSWER2, "")))
             CommonUtil.showSnackBar(getResources().getString(R.string.answer_not_same), clPopUpMain);
-        else
+        else {
             securityQuestionConfirm();
+        }
     }
 
     @Override

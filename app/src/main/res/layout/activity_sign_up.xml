@@ -19,8 +19,8 @@
 
             <ImageButton
                 android:id="@+id/btSignUpBack"
-                android:layout_width="@dimen/ivBackWidthSize"
-                android:layout_height="@dimen/ivBackWidthSize"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/ivBackWidthMargin"
                 android:background="@null"
                 android:src="@mipmap/imgback" />
@@ -52,7 +52,7 @@
                 android:inputType="textCapSentences"
                 android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
                 android:textColor="@color/black"
-                android:textColorHint="@color/light_Gray"
+                android:textColorHint="@color/hintColor"
                 android:textSize="@dimen/etSignUpSizeAll"
                 android:textStyle="italic" />
 
@@ -70,7 +70,7 @@
                 android:nextFocusDown="@+id/etSignUpContact"
                 android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
                 android:textColor="@color/black"
-                android:textColorHint="@color/light_Gray"
+                android:textColorHint="@color/hintColor"
                 android:textSize="@dimen/etSignUpSizeAll"
                 android:textStyle="italic" />
 
@@ -93,7 +93,7 @@
                 android:maxLength="10"
                 android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
                 android:textColor="@color/black"
-                android:textColorHint="@color/light_Gray"
+                android:textColorHint="@color/hintColor"
                 android:textSize="@dimen/etSignUpSizeAll"
                 android:textStyle="italic" />
 
@@ -133,7 +133,7 @@
                 android:inputType="textEmailAddress"
                 android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
                 android:textColor="@color/black"
-                android:textColorHint="@color/light_Gray"
+                android:textColorHint="@color/hintColor"
                 android:textSize="@dimen/etSignUpSizeAll"
                 android:textStyle="italic" />
 
@@ -177,7 +177,7 @@
                 android:inputType="textPassword"
                 android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
                 android:textColor="@color/black"
-                android:textColorHint="@color/light_Gray"
+                android:textColorHint="@color/hintColor"
                 android:textSize="@dimen/etSignUpSizeAll"
                 android:textStyle="italic" />
 
@@ -194,7 +194,7 @@
                 android:inputType="textPassword"
                 android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
                 android:textColor="@color/black"
-                android:textColorHint="@color/light_Gray"
+                android:textColorHint="@color/hintColor"
                 android:textSize="@dimen/etSignUpSizeAll" />
 
         </LinearLayout>
@@ -215,7 +215,7 @@
                 android:inputType="textEmailAddress"
                 android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
                 android:textColor="@color/black"
-                android:textColorHint="@color/light_Gray"
+                android:textColorHint="@color/hintColor"
                 android:textSize="@dimen/etSignUpSizeAll"
                 android:textStyle="italic" />
 

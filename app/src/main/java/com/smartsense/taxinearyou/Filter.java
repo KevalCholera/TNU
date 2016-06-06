@@ -40,19 +40,18 @@ public class Filter extends AppCompatActivity implements View.OnClickListener {
     Button btFilterDone, btFilterResetAll;
     //    ImageView ivFilterCancel;
     CheckBox cbFilterRecommend;
-//    RatingBar rbFeedbackRatingForDriver5, rbFeedbackRatingForDriver4, rbFeedbackRatingForDriver3, rbFeedbackRatingForDriver2, rbFeedbackRatingForDriver1;
+    //    RatingBar rbFeedbackRatingForDriver5, rbFeedbackRatingForDriver4, rbFeedbackRatingForDriver3, rbFeedbackRatingForDriver2, rbFeedbackRatingForDriver1;
     private RadioButton rbFilterSingle;
     private JSONObject filterObj;
-    Toolbar toolbarAll;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_filter);
 
-        toolbarAll = (Toolbar) findViewById(R.id.toolbarAll);
+        Toolbar toolbarAll = (Toolbar) findViewById(R.id.toolbarAll);
         setSupportActionBar(toolbarAll);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbarAll.setTitle("");
 
         rgFilterVehicleType = (RadioGroup) findViewById(R.id.rgFilterVehicleType1);
         rgFilterBookingType = (RadioGroup) findViewById(R.id.rgFilterBookingType);
@@ -304,18 +303,17 @@ public class Filter extends AppCompatActivity implements View.OnClickListener {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-//        getMenuInflater().inflate(R.menu.ratingforsearch, menu);
+        getMenuInflater().inflate(R.menu.menu_filter, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case android.R.id.home:
+            case R.id.cancel_action:
                 finish();
                 break;
         }
         return super.onOptionsItemSelected(item);
-
     }
 }

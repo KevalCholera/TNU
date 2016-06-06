@@ -30,7 +30,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/email_chane"
-                    android:textColor="@color/dark_gray" />
+                    android:textColor="@color/heading" />
 
                 <View
                     android:layout_width="match_parent"
@@ -49,8 +49,8 @@
                         android:layout_height="wrap_content"
                         android:button="@drawable/radio_button_popup"
                         android:checked="true"
-                        android:text="Enter Alternate Email."
-                        android:textColor="@color/dark_gray" />
+                        android:text="@string/enter_alternate_email"
+                        android:textColor="@color/heading" />
 
                     <LinearLayout
                         android:id="@+id/lyRadioButton1"
@@ -63,7 +63,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="@string/alt_msg"
-                            android:textColor="@android:color/darker_gray" />
+                            android:textColor="@color/details" />
 
                         <TextView
                             android:layout_width="match_parent"
@@ -77,7 +77,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/etHeightAll"
                             android:background="@drawable/grayborder"
-                            android:hint="@string/alternate_email"
+                            android:hint="@string/pls_ent_alt_id"
                             android:inputType="textEmailAddress"
                             android:nextFocusForward="@+id/etSignUpLastName"
                             android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
@@ -94,7 +94,7 @@
                         android:layout_marginTop="@dimen/rbRecoverEmailRememberEmailMarginTop"
                         android:button="@drawable/radio_button_popup"
                         android:text="@string/do_not_remember_alternate_email"
-                        android:textColor="@color/dark_gray" />
+                        android:textColor="@color/heading" />
 
                     <LinearLayout
                         android:id="@+id/lyRadioButton2"
@@ -108,8 +108,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="@string/we_may_require_supportive_evidence_in_order_for_us_to_locate_your_account"
-                            android:textColor="@android:color/darker_gray" />
-
+                            android:textColor="@color/details" />
 
                         <TextView
                             android:layout_width="match_parent"
@@ -129,7 +128,7 @@
                             android:nextFocusForward="@+id/etSignUpLastName"
                             android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
                             android:textColor="@color/black"
-                            android:textColorHint="@color/light_Gray"
+                            android:textColorHint="@color/hintColor"
                             android:textSize="@dimen/etSignUpSizeAll" />
 
                         <TextView
@@ -150,7 +149,7 @@
                             android:nextFocusForward="@+id/etSignUpLastName"
                             android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
                             android:textColor="@color/black"
-                            android:textColorHint="@color/light_Gray"
+                            android:textColorHint="@color/hintColor"
                             android:textSize="@dimen/etSignUpSizeAll" />
 
                         <TextView
@@ -172,7 +171,7 @@
                             android:nextFocusForward="@+id/etSignUpLastName"
                             android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
                             android:textColor="@color/black"
-                            android:textColorHint="@color/light_Gray"
+                            android:textColorHint="@color/hintColor"
                             android:textSize="@dimen/etSignUpSizeAll" />
 
                         <TextView
@@ -193,7 +192,7 @@
                             android:nextFocusForward="@+id/etSignUpLastName"
                             android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
                             android:textColor="@color/black"
-                            android:textColorHint="@color/light_Gray"
+                            android:textColorHint="@color/hintColor"
                             android:textSize="@dimen/etSignUpSizeAll" />
 
                     </LinearLayout>

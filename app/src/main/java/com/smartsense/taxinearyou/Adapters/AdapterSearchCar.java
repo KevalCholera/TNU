@@ -81,6 +81,7 @@ public class AdapterSearchCar extends BaseAdapter {
                         .putExtra("taxiTypeName", test.optJSONObject("taxiType").optString("taxiTypeName"))
                         .putExtra("waitingTime", tvElementSearchCarsWaitingTime.getText().toString())
                         .putExtra("rating", rating)
+                        .putExtra("available", test.optInt("availability"))
                         .putExtra("partnerId", (String) tvElementSearchCarsChat.getTag())
                         .putExtra("logoPath", test.optString("logoPath")));
             }
@@ -125,7 +126,7 @@ public class AdapterSearchCar extends BaseAdapter {
         tvElementSearchCarsChat.setTag(test.optJSONObject("taxiType").optString("partnerId"));
 
         if (test.optInt("availability") == 0)
-            ivElementSearchCarsOnline.setImageResource(android.R.drawable.presence_online);
+            ivElementSearchCarsOnline.setImageResource(R.mipmap.online);
         else
             ivElementSearchCarsOnline.setImageResource(R.mipmap.ic_image_brightness_1);
 

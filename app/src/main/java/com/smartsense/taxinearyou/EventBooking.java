@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -295,9 +296,11 @@ public class EventBooking extends AppCompatActivity implements Response.Listener
                 getServerDateTime();
                 break;
             case R.id.rbEventBookingOneWay:
+                etEventBookingEventDuration.setTextColor(ContextCompat.getColor(this, R.color.hintColor));
                 etEventBookingEventDuration.setOnClickListener(null);
                 break;
             case R.id.rbEventBookingReturn:
+                etEventBookingEventDuration.setTextColor(ContextCompat.getColor(this, R.color.black));
                 etEventBookingEventDuration.setOnClickListener(this);
                 break;
             case R.id.etEventBookingEventDuration:

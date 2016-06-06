@@ -29,8 +29,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:paddingRight="@dimen/lyPaddingMainAll"
-                    android:paddingLeft="@dimen/lyPaddingMainAll">
+                    android:paddingLeft="@dimen/lyPaddingMainAll"
+                    android:paddingRight="@dimen/lyPaddingMainAll">
 
                     <TextView
                         android:layout_width="match_parent"
@@ -439,6 +439,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/cbMarginTopStartPaddingTopAll"
+                        android:button="@drawable/radio_button_event_booking"
                         android:paddingLeft="@dimen/cbMarginTopStartPaddingTopAll"
                         android:text="@string/recommend"
                         android:textColor="@color/white" />

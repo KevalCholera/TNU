@@ -30,10 +30,10 @@
                 android:id="@+id/etGeneralFirstName"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/etHeightAll"
-                android:layout_marginEnd="@dimen/etSignUpPersonNameMarginEnd"
+                android:layout_marginRight="@dimen/etSignUpPersonNameMarginEnd"
                 android:background="@drawable/grayborder"
                 android:inputType="textCapSentences"
-                android:paddingStart="@dimen/etSignUpAllPaddingStartEnd"
+                android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
                 android:textColor="@color/black"
                 android:textSize="@dimen/etSignInUserPassSize" />
 
@@ -49,10 +49,10 @@
                 android:id="@+id/etGeneralLastName"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/etHeightAll"
-                android:layout_marginEnd="@dimen/etSignUpPersonNameMarginEnd"
+                android:layout_marginRight="@dimen/etSignUpPersonNameMarginEnd"
                 android:background="@drawable/grayborder"
                 android:inputType="textCapSentences"
-                android:paddingStart="@dimen/etSignUpAllPaddingStartEnd"
+                android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
                 android:textColor="@color/black"
                 android:textSize="@dimen/etSignInUserPassSize" />
 
@@ -68,11 +68,11 @@
                 android:id="@+id/etGeneralMobile"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/etHeightAll"
-                android:layout_marginEnd="@dimen/etSignUpPersonNameMarginEnd"
+                android:layout_marginRight="@dimen/etSignUpPersonNameMarginEnd"
                 android:background="@drawable/grayborder"
                 android:inputType="phone"
                 android:maxLength="10"
-                android:paddingStart="@dimen/etSignUpAllPaddingStartEnd"
+                android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
                 android:textColor="@color/black"
                 android:textSize="@dimen/etSignInUserPassSize" />
 
