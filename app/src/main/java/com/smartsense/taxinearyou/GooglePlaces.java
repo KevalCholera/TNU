@@ -2,10 +2,17 @@ package com.smartsense.taxinearyou;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -27,6 +34,11 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.RequestFuture;
+import com.android.volley.toolbox.Volley;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.ResultCallback;
@@ -34,6 +46,8 @@ import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.PlaceBuffer;
 import com.google.android.gms.location.places.Places;
 import com.smartsense.taxinearyou.utill.CommonUtil;
+import com.smartsense.taxinearyou.utill.LocationFinderService;
+import com.smartsense.taxinearyou.utill.LocationSettingsHelper;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -46,7 +60,9 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.concurrent.ExecutionException;
+
+import static com.android.volley.Request.Method.GET;
 
 public class GooglePlaces extends FragmentActivity implements OnItemClickListener, View.OnClickListener, GoogleApiClient.OnConnectionFailedListener,
         GoogleApiClient.ConnectionCallbacks {
@@ -61,11 +77,13 @@ public class GooglePlaces extends FragmentActivity implements OnItemClickListene
     ImageButton ibGooglePlaceEmpty;
     EditText autoCompView;
     ListView lvGoogleSearch;
+    private LocationSettingsHelper mSettingsHelper;
     //------------ make your specific key ------------
 //    private static final String API_KEY = "AIzaSyDi0RWt263vcR_s6MAjN_3Lq4DIPCrW7JI";
     private static final String API_KEY = "AIzaSyCp1vbSHgiC1lsNUYb-PuDs3kJ4wYEKu3I";
     private GooglePlacesAutocompleteAdapter dataAdapter;
     private GooglePlacesAutocompleteAdapter1 dataAdapter1;
+    private static final int PERMISSION_REQUEST_CODE = 1;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -80,18 +98,17 @@ public class GooglePlaces extends FragmentActivity implements OnItemClickListene
                 .build();
         autoCompView = (EditText) findViewById(R.id.atv_places);
         tvGooglePlacesCancel = (TextView) findViewById(R.id.tvGooglePlacesCancel);
-        tvGooglePlacesCurrentLocation = (TextView) findViewById(R.id.tvGooglePlacesCurrentLocation);
         ibGooglePlaceEmpty = (ImageButton) findViewById(R.id.ibGooglePlaceEmpty);
         lvGoogleSearch = (ListView) findViewById(R.id.lvGooglePlaces);
+        tvGooglePlacesCurrentLocation = (TextView) findViewById(R.id.tvGooglePlacesCurrentLocation);
         dataAdapter = new GooglePlacesAutocompleteAdapter(this, R.layout.element_google);
         dataAdapter1 = new GooglePlacesAutocompleteAdapter1(this, new JSONArray());
-        lvGoogleSearch.setAdapter(dataAdapter);
+        lvGoogleSearch.setAdapter(dataAdapter1);
         lvGoogleSearch.setTextFilterEnabled(true);
         lvGoogleSearch.setOnItemClickListener(this);
         tvGooglePlacesCancel.setOnClickListener(this);
         ibGooglePlaceEmpty.setOnClickListener(this);
         tvGooglePlacesCurrentLocation.setOnClickListener(this);
-
         autoCompView.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -104,7 +121,7 @@ public class GooglePlaces extends FragmentActivity implements OnItemClickListene
                     ibGooglePlaceEmpty.setVisibility(View.VISIBLE);
                 else
                     ibGooglePlaceEmpty.setVisibility(View.GONE);
-                dataAdapter.getFilter().filter(s.toString());
+                dataAdapter1.getFilter().filter(s.toString());
             }
 
             @Override
@@ -120,11 +137,14 @@ public class GooglePlaces extends FragmentActivity implements OnItemClickListene
 //                .getPlaceById(mGoogleApiClient, resultList1.get(position));
 //        placeResult.setResultCallback(mUpdatePlaceDetailsCallback);
 
+        JSONObject jsonOb = (JSONObject) adapterView.getItemAtPosition(position);
+        String areaName = jsonOb.optString("description");
+        String placeId = jsonOb.optString("place_id");
 
         HttpURLConnection conn = null;
         StringBuilder jsonResults = new StringBuilder();
         try {
-            String sb = "https://maps.googleapis.com/maps/api/place/details/json?key=" + API_KEY + "&placeid=" + resultList1.get(position);
+            String sb = "https://maps.googleapis.com/maps/api/place/details/json?key=" + API_KEY + "&placeid=" + placeId;
 
             URL url = new URL(sb);
 
@@ -149,60 +169,14 @@ public class GooglePlaces extends FragmentActivity implements OnItemClickListene
                 conn.disconnect();
             }
         }
-
+        JSONObject jsonObj = null;
         try {
-            JSONObject addObj = new JSONObject();
-            String AreaName = (String) adapterView.getItemAtPosition(position);
-            String AreaPlaceid = resultList1.get(position);
-            String AreaAddress = "";
-            String AreaLat = "";
-            String AreaLong = "";
-            String AreaPostalCode = "";
-            String AreaCity = "";
-            JSONObject jsonObj = new JSONObject(jsonResults.toString());
-            if (jsonObj.optString("status").equalsIgnoreCase("OK")) {
-                JSONObject jsonObj1 = jsonObj.optJSONObject("result");
-                JSONArray types = jsonObj1.optJSONArray("types");
-                if (jsonObj1.has("formatted_address")) {
-                    AreaAddress = jsonObj1.optString("formatted_address");
-                }
-                if (jsonObj1.has("geometry")) {
-                    AreaLat = jsonObj1.optJSONObject("geometry").optJSONObject("location").optString("lat");
-                    AreaLong = jsonObj1.optJSONObject("geometry").optJSONObject("location").optString("lng");
-                }
-                if (jsonObj1.has("address_components")) {
-                    JSONArray jsonArray = jsonObj1.optJSONArray("address_components");
-                    for (int i = 0; i < jsonArray.length(); i++) {
-                        if (jsonArray.optJSONObject(i).optJSONArray("types").optString(0).equalsIgnoreCase("postal_code")) {
-                            AreaPostalCode = jsonArray.optJSONObject(i).optString("long_name");
-                        }
-                        if (jsonArray.optJSONObject(i).optJSONArray("types").optString(0).equalsIgnoreCase("postal_town") || jsonArray.optJSONObject(i).optJSONArray("types").optString(0).equalsIgnoreCase("locality")) {
-                            AreaCity = jsonArray.optJSONObject(i).optString("long_name");
-                        }
-
-                    }
-                }
-            }
-
-//            AreaName = AreaName.replace(" ", "%20");
-//            AreaAddress= AreaName.replace(" ", "%20");
-//            AreaCity= AreaCity.replace(" ", "%20");
-//            AreaPostalCode= AreaPostalCode.replace(" ", "%20");
-            addObj.put("viaAreaName", AreaName.equalsIgnoreCase("") ? "" : AreaName);
-            addObj.put("viaAreaPlaceid", AreaPlaceid.equalsIgnoreCase("") ? "" : AreaPlaceid);
-            addObj.put("viaAreaAddress", AreaAddress.equalsIgnoreCase("") ? "" : AreaAddress);
-            addObj.put("viaAreaLat", AreaLat.equalsIgnoreCase("") ? "" : AreaLat);
-            addObj.put("viaAreaLong", AreaLong.equalsIgnoreCase("") ? "" : AreaLong);
-            addObj.put("viaAreaPostalCode", AreaPostalCode.equalsIgnoreCase(" ") ? "" : AreaPostalCode);
-            addObj.put("viaAreaCity", AreaCity.equalsIgnoreCase(" ") ? "" : AreaCity);
-            System.out.println("jsonObj: " + addObj.toString());
-
-            setResult(Activity.RESULT_OK, new Intent().putExtra("typeAddress", getIntent().getIntExtra("typeAddress", 0)).putExtra("address", addObj.toString()).putExtra("AreaName", AreaName));
-            finish();
-            CommonUtil.closeKeyboard(this);
-        } catch (Exception e) {
+            jsonObj = new JSONObject(jsonResults.toString());
+            fillLocationList(jsonObj, areaName, placeId);
+        } catch (JSONException e) {
             e.printStackTrace();
         }
+
 //        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
 //        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
 //
@@ -285,6 +259,7 @@ public class GooglePlaces extends FragmentActivity implements OnItemClickListene
         return resultList;
     }
 
+
     public static JSONArray autocomplete1(String input) {
         ArrayList<String> resultList = null;
         JSONArray predsJsonArray = null;
@@ -355,7 +330,21 @@ public class GooglePlaces extends FragmentActivity implements OnItemClickListene
                 CommonUtil.closeKeyboard(this);
                 break;
             case R.id.tvGooglePlacesCurrentLocation:
-//                https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8670522,151.1957362&radius=500&types=food&name=cruise&key=AIzaSyCp1vbSHgiC1lsNUYb-PuDs3kJ4wYEKu3I
+                CommonUtil.closeKeyboard(GooglePlaces.this);
+                if (CommonUtil.isGPS(getApplicationContext())) {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                        if (!checkPermission()) {
+                            requestPermission();
+                        } else {
+                            getCurrentLocationSuggestions();
+                        }
+                    } else {
+                        getCurrentLocationSuggestions();
+                    }
+                } else {
+                    mSettingsHelper = new LocationSettingsHelper(this);
+                    mSettingsHelper.checkSettings();
+                }
                 break;
         }
     }
@@ -420,6 +409,11 @@ public class GooglePlaces extends FragmentActivity implements OnItemClickListene
             inflater = (LayoutInflater) a.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         }
 
+        public void googlePlacesAutocomplete(JSONArray jsonArray) {
+            resultList11 = jsonArray;
+            notifyDataSetChanged();
+        }
+
         @Override
         public int getCount() {
             return resultList11 == null ? 0 : resultList11.length();
@@ -443,8 +437,6 @@ public class GooglePlaces extends FragmentActivity implements OnItemClickListene
 
             TextView tvElementGoogle = (TextView) vi.findViewById(R.id.tvElementGoogle);
             TextView tvElementGoogle1 = (TextView) vi.findViewById(R.id.tvElementGoogle1);
-
-
             JSONObject test = resultList11.optJSONObject(position);
             try {
                 String[] str = test.optString("description").split(",", 2);
@@ -463,16 +455,13 @@ public class GooglePlaces extends FragmentActivity implements OnItemClickListene
                 protected FilterResults performFiltering(CharSequence constraint) {
                     FilterResults filterResults = new FilterResults();
                     if (constraint != null) {
-                        Log.i("Yes", "here");
                         // Retrieve the autocomplete results.
                         resultList1 = autocomplete1(constraint.toString());
-
                         // Assign the data to the FilterResults
                         filterResults.values = resultList1;
                         if (resultList1 != null) {
                             filterResults.count = resultList1.length();
                         }
-                        Log.e("VALUES", filterResults.values.toString());
                     }
                     return filterResults;
                 }
@@ -480,7 +469,7 @@ public class GooglePlaces extends FragmentActivity implements OnItemClickListene
                 @Override
                 protected void publishResults(CharSequence constraint, FilterResults results) {
 //                    if (results != null && results.count > 0) {
-                    Log.i("Yes", "here1");
+
                     resultList11 = (JSONArray) results.values;
                     notifyDataSetChanged();
 //                    } else {
@@ -528,6 +517,252 @@ public class GooglePlaces extends FragmentActivity implements OnItemClickListene
         }
         return super.onOptionsItemSelected(item);
 
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode) {
+            case LocationSettingsHelper.REQUEST_CHECK_SETTINGS:
+                switch (resultCode) {
+                    case Activity.RESULT_OK:
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                            if (!checkPermission()) {
+                                requestPermission();
+                            } else {
+                                getCurrentLocationSuggestions();
+                            }
+                        } else {
+                            getCurrentLocationSuggestions();
+                        }
+                        break;
+                    case Activity.RESULT_CANCELED:
+                        Toast.makeText(this, "Please turn on your devices gps to get your current location.", Toast.LENGTH_SHORT).show();
+                        break;
+                    default:
+                        break;
+                }
+                break;
+
+        }
+    }
+
+
+    private boolean checkPermission() {
+        int result = ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION);
+        if (result == PackageManager.PERMISSION_GRANTED) {
+
+            return true;
+
+        } else {
+
+            return false;
+
+        }
+    }
+
+    private void requestPermission() {
+
+        if (ActivityCompat.shouldShowRequestPermissionRationale(this, android.Manifest.permission.ACCESS_FINE_LOCATION)) {
+
+            showMessageOKCancel("You need to allow access to Location",
+                    new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                                requestPermissions(new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
+                                        PERMISSION_REQUEST_CODE);
+                            }
+                        }
+                    });
+
+        } else {
+
+            ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, PERMISSION_REQUEST_CODE);
+        }
+    }
+
+    private void showMessageOKCancel(String message, DialogInterface.OnClickListener okListener) {
+        new AlertDialog.Builder(this)
+                .setMessage(message)
+                .setPositiveButton("OK", okListener)
+                .setNegativeButton("Cancel", null)
+                .create()
+                .show();
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case PERMISSION_REQUEST_CODE:
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    getCurrentLocationSuggestions();
+                } else {
+                    Toast.makeText(this, "Permission Denied, You cannot access location.", Toast.LENGTH_SHORT).show();
+                }
+                break;
+        }
+    }
+
+    public void getCurrentLocationSuggestions() {
+        final LocationFinderService myLocation = new LocationFinderService();
+        if (!CommonUtil.isInternetAvailable(GooglePlaces.this))
+            CommonUtil.ToastShowing(this, getResources().getString(R.string.nointernet_try_again_msg));
+        else {
+
+            CommonUtil.showProgressDialog(this, "Searching...");
+            LocationFinderService.LocationResult locationResult = new LocationFinderService.LocationResult() {
+                @Override
+                public void gotLocation(Location location) {
+                    //Got the location!
+                    myLocation.stopLocation();
+                    CommonUtil.cancelProgressDialog();
+                    if (location != null) {
+                        fillLocation(location);
+                    } else {
+//                        CommonUtil.cancelProgressDialog();
+                        runOnUiThread(new Runnable() {
+                            public void run() {
+                                CommonUtil.ToastShowing(GooglePlaces.this, "Sorry we were unable to find your current location, please search your location.");
+                            }
+                        });
+
+                    }
+                }
+            };
+
+            myLocation.getLocation(this, locationResult);
+        }
+    }
+
+    public void fillLocation(Location location) {
+
+        HttpURLConnection conn = null;
+        StringBuilder jsonResults = new StringBuilder();
+        try {
+            String googleSuggestionLink = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + location.getLatitude() + "," + location.getLongitude() + "&radius=10&key=" + API_KEY;
+            Log.i("Location1", googleSuggestionLink);
+
+            URL url = new URL(googleSuggestionLink);
+
+            conn = (HttpURLConnection) url.openConnection();
+            InputStreamReader in = new InputStreamReader(conn.getInputStream());
+
+            // Load the results into a StringBuilder
+            int read;
+            char[] buff = new char[1024];
+            while ((read = in.read(buff)) != -1) {
+                jsonResults.append(buff, 0, read);
+            }
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (conn != null) {
+                conn.disconnect();
+            }
+        }
+
+        try {
+            final JSONObject jsonObj = new JSONObject(jsonResults.toString());
+            Log.i("Location1", jsonObj.toString());
+            if (jsonObj.optString("status").equalsIgnoreCase("OK")) {
+                String areaName;
+                if (jsonObj.optJSONArray("results").optJSONObject(0).optString("name").equalsIgnoreCase(jsonObj.optJSONArray("results").optJSONObject(0).optString("vicinity"))) {
+                    areaName = jsonObj.optJSONArray("results").optJSONObject(0).optString("name") + " , " + "United Kingdom";
+                } else {
+                    areaName = jsonObj.optJSONArray("results").optJSONObject(0).optString("name") + ", " + jsonObj.optJSONArray("results").optJSONObject(0).optString("vicinity") + ", " + "United Kingdom";
+                }
+                String placeId = jsonObj.optJSONArray("results").optJSONObject(0).optString("place_id");
+                if (jsonObj.optJSONArray("results").length() == 1) {
+                    fillLocationList(jsonObj, areaName, placeId);
+                } else {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            try {
+                                JSONArray placeArray = new JSONArray();
+                                for (int i = 0; i < jsonObj.optJSONArray("results").length(); i++) {
+                                    String areaName = "";
+                                    if (jsonObj.optJSONArray("results").optJSONObject(i).optString("name").equalsIgnoreCase(jsonObj.optJSONArray("results").optJSONObject(i).optString("vicinity"))) {
+                                        areaName = jsonObj.optJSONArray("results").optJSONObject(i).optString("name") + " , " + "United Kingdom";
+                                    } else {
+                                        areaName = jsonObj.optJSONArray("results").optJSONObject(i).optString("name") + ", " + jsonObj.optJSONArray("results").optJSONObject(i).optString("vicinity") + ", " + "United Kingdom";
+                                    }
+                                    String placeId = jsonObj.optJSONArray("results").optJSONObject(i).optString("place_id");
+                                    JSONObject newJson = new JSONObject();
+                                    newJson.put("description", areaName);
+                                    newJson.put("place_id", placeId);
+                                    placeArray.put(newJson);
+                                }
+                                dataAdapter1.googlePlacesAutocomplete(placeArray);
+                            }catch (Exception e){
+                                e.printStackTrace();
+                            }
+                        }
+                    });
+
+                }
+            } else
+                CommonUtil.ToastShowing(GooglePlaces.this, "Sorry we were unable to find your current location, please search your location.");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void fillLocationList(JSONObject jsonObj, String areaName, String placeId) {
+        try {
+            JSONObject addObj = new JSONObject();
+            String AreaName = areaName;
+            String AreaPlaceid = placeId;
+            String AreaAddress = "";
+            String AreaLat = "";
+            String AreaLong = "";
+            String AreaPostalCode = "";
+            String AreaCity = "";
+
+            if (jsonObj.optString("status").equalsIgnoreCase("OK")) {
+                JSONObject jsonObj1 = jsonObj.optJSONObject("result");
+                JSONArray types = jsonObj1.optJSONArray("types");
+                if (jsonObj1.has("formatted_address")) {
+                    AreaAddress = jsonObj1.optString("formatted_address");
+                }
+                if (jsonObj1.has("geometry")) {
+                    AreaLat = jsonObj1.optJSONObject("geometry").optJSONObject("location").optString("lat");
+                    AreaLong = jsonObj1.optJSONObject("geometry").optJSONObject("location").optString("lng");
+                }
+                if (jsonObj1.has("address_components")) {
+                    JSONArray jsonArray = jsonObj1.optJSONArray("address_components");
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        if (jsonArray.optJSONObject(i).optJSONArray("types").optString(0).equalsIgnoreCase("postal_code")) {
+                            AreaPostalCode = jsonArray.optJSONObject(i).optString("long_name");
+                        }
+                        if (jsonArray.optJSONObject(i).optJSONArray("types").optString(0).equalsIgnoreCase("postal_town") || jsonArray.optJSONObject(i).optJSONArray("types").optString(0).equalsIgnoreCase("locality")) {
+                            AreaCity = jsonArray.optJSONObject(i).optString("long_name");
+                        }
+
+                    }
+                }
+            }
+//            AreaName = AreaName.replace(" ", "%20");
+//            AreaAddress= AreaName.replace(" ", "%20");
+//            AreaCity= AreaCity.replace(" ", "%20");
+//            AreaPostalCode= AreaPostalCode.replace(" ", "%20");
+            addObj.put("viaAreaName", AreaName.equalsIgnoreCase("") ? "" : AreaName);
+            addObj.put("viaAreaPlaceid", AreaPlaceid.equalsIgnoreCase("") ? "" : AreaPlaceid);
+            addObj.put("viaAreaAddress", AreaAddress.equalsIgnoreCase("") ? "" : AreaAddress);
+            addObj.put("viaAreaLat", AreaLat.equalsIgnoreCase("") ? "" : AreaLat);
+            addObj.put("viaAreaLong", AreaLong.equalsIgnoreCase("") ? "" : AreaLong);
+            addObj.put("viaAreaPostalCode", AreaPostalCode.equalsIgnoreCase(" ") ? "" : AreaPostalCode);
+            addObj.put("viaAreaCity", AreaCity.equalsIgnoreCase(" ") ? "" : AreaCity);
+            System.out.println("jsonObj: " + addObj.toString());
+
+            setResult(Activity.RESULT_OK, new Intent().putExtra("typeAddress", getIntent().getIntExtra("typeAddress", 0)).putExtra("address", addObj.toString()).putExtra("AreaName", AreaName));
+            finish();
+            CommonUtil.closeKeyboard(this);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }

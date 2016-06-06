@@ -34,7 +34,7 @@
             android:paddingLeft="@dimen/tvElementCardListMarginStartEnd5"
             android:text="Ronak"
             android:textColor="@color/dark_gray1"
-            android:textSize="@dimen/btSignInSignInSize" />
+            android:textSize="@dimen/vSignInPasswordMarginStart" />
     </LinearLayout>
 
 </LinearLayout>

@@ -132,4 +132,14 @@ public class LocationFinderService {
     public static abstract class LocationResult {
         public abstract void gotLocation(Location location);
     }
+
+    public void stopLocation() {
+        timer1.cancel();
+        try {
+            lm.removeUpdates(locationListenerNetwork);
+            lm.removeUpdates(locationListenerGps);
+        } catch (SecurityException e) {
+            e.printStackTrace();
+        }
+    }
 }

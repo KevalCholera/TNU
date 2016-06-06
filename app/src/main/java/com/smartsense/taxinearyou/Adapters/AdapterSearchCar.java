@@ -78,7 +78,7 @@ public class AdapterSearchCar extends BaseAdapter {
                 a.startActivity(new Intent(a, PartnerDetails.class).putExtra("customerSelection", SharedPreferenceUtil.getString(Constants.PrefKeys.DISTANCE_AFTER_CONVERT, ""))
                         .putExtra("ETA", tvElementSearchCarsMoney.getText().toString())
                         .putExtra("partnerName", tvElementSearchCarsName.getText().toString())
-                        .putExtra("taxiTypeName",test.optJSONObject("taxiType").optString("taxiTypeName"))
+                        .putExtra("taxiTypeName", test.optJSONObject("taxiType").optString("taxiTypeName"))
                         .putExtra("waitingTime", tvElementSearchCarsWaitingTime.getText().toString())
                         .putExtra("rating", rating)
                         .putExtra("partnerId", (String) tvElementSearchCarsChat.getTag())

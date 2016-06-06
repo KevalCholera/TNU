@@ -42,6 +42,7 @@ import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.mpt.storage.SharedPreferenceUtil;
+import com.smartsense.taxinearyou.GooglePlaces;
 import com.smartsense.taxinearyou.R;
 import com.smartsense.taxinearyou.Search;
 import com.smartsense.taxinearyou.SignIn;
@@ -527,5 +528,9 @@ public class CommonUtil {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public static void ToastShowing(Activity a, String s) {
+        Toast.makeText(a, s, Toast.LENGTH_SHORT).show();
     }
 }

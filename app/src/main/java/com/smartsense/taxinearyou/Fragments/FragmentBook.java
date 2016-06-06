@@ -308,6 +308,7 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
                     tvBookFrom.setText(tvBookTo.getText().toString());
                     tvBookTo.setText(reverseFrom);
                     SharedPreferenceUtil.putValue(Constants.REVERSE_FROM_TO, SharedPreferenceUtil.getString(Constants.FROM_ADDRESS, ""));
+                    SharedPreferenceUtil.save();
                     SharedPreferenceUtil.putValue(Constants.FROM_ADDRESS, SharedPreferenceUtil.getString(Constants.TO_ADDRESS, ""));
                     SharedPreferenceUtil.putValue(Constants.TO_ADDRESS, SharedPreferenceUtil.getString(Constants.REVERSE_FROM_TO, ""));
                     SharedPreferenceUtil.save();
