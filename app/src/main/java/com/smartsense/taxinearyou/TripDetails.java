@@ -3,15 +3,12 @@ package com.smartsense.taxinearyou;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
-import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -36,7 +33,6 @@ import org.json.JSONObject;
 
 import java.text.DecimalFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 
 public class TripDetails extends AppCompatActivity implements View.OnClickListener, Response.Listener<JSONObject>, Response.ErrorListener {
 
@@ -92,7 +88,7 @@ public class TripDetails extends AppCompatActivity implements View.OnClickListen
 
             if (tripDetails.optInt("feedbackSts") == 1)
                 tvTripDetailFeedback.setVisibility(View.GONE);
-            if (tripDetails.optInt("lostFoundExists") == 1)
+            if (tripDetails.optInt("lostFoundExists") == 0)
                 tvTripDetailLost.setVisibility(View.GONE);
 
             if (tvTripDetailRideStatus.getText().toString().equalsIgnoreCase("complete")) {
@@ -142,7 +138,7 @@ public class TripDetails extends AppCompatActivity implements View.OnClickListen
 
             JSONArray jsonArray = tripDetails.optJSONArray("viaArray");
 
-            if (tripDetails.has("viaArray") && tripDetails != null && jsonArray.length() > 0) {
+            if (tripDetails.has("viaArray") && jsonArray.length() > 0) {
 
                 for (int i = 0; i < jsonArray.length(); i++) {
                     JSONObject jsonObject = jsonArray.optJSONObject(i);
@@ -331,7 +327,7 @@ public class TripDetails extends AppCompatActivity implements View.OnClickListen
                     alert.dismiss();
                     CommonUtil.alertBoxTwice(this, jsonObject.optString("msg"), getResources().getString(R.string.cancellation), tvTripDetailCancle);
                 } else if (jsonObject.optInt("__eventid") == Constants.Events.RESEND_INVOICE) {
-                    CommonUtil.alertBox(this, jsonObject.optString("msg"), false, false);
+                    CommonUtil.alertBox(this, jsonObject.optString("msg"));
                 }
             } else
                 CommonUtil.conditionAuthentication(this, jsonObject);

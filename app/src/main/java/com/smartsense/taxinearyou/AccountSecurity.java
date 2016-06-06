@@ -315,11 +315,11 @@ public class AccountSecurity extends AppCompatActivity implements View.OnClickLi
     }
 
     public void passwordChanged() {
-        if (etPopupSecurityPassword.length() < 7 || etPopupSecurityPassword.length() > 13 || etPopupSecurityConfirmPassword.length() < 7 || etPopupSecurityConfirmPassword.length() > 13) {
+        if ((etPopupSecurityPassword.length() < 7 || etPopupSecurityPassword.length() > 15) && !CommonUtil.isLegalPassword(etPopupSecurityPassword.getText().toString()) && CommonUtil.isSpecialChar(etPopupSecurityPassword.getText().toString()))
             CommonUtil.showSnackBar(getString(R.string.enter_valid_pass), clPopUpMain);
-        } else if (!etPopupSecurityConfirmPassword.getText().toString().equalsIgnoreCase(etPopupSecurityPassword.getText().toString())) {
+        else if (!etPopupSecurityConfirmPassword.getText().toString().equalsIgnoreCase(etPopupSecurityPassword.getText().toString()))
             CommonUtil.showSnackBar(getString(R.string.conpass_pass_same), clPopUpMain);
-        } else
+        else
             changePasswordAPI();
     }
 
@@ -364,7 +364,7 @@ public class AccountSecurity extends AppCompatActivity implements View.OnClickLi
             if (jsonObject.optInt("status") == Constants.STATUS_SUCCESS) {
                 if (alert != null)
                     alert.dismiss();
-                CommonUtil.alertBox(this, jsonObject.optString("msg"), false, false);
+                CommonUtil.alertBox(this, jsonObject.optString("msg"));
 
                 if (jsonObject.optString("__eventId").equalsIgnoreCase((Constants.Events.UPDATE_EMAIL) + "")) {
                     if (clicked == 1)

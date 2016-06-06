@@ -113,7 +113,7 @@ public class AdapterSearchCar extends BaseAdapter {
                 if (SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_STATUS, "").equalsIgnoreCase("1"))
                     a.startActivity(new Intent(a, BookingInfo.class));
                 else
-                    CommonUtil.alertBox(a, a.getResources().getString(R.string.msg_activate_account), false, false);
+                    CommonUtil.alertBox(a, a.getResources().getString(R.string.msg_activate_account));
             }
         });
 
@@ -132,7 +132,7 @@ public class AdapterSearchCar extends BaseAdapter {
 
         rbElementSearchCars.setRating(test.optInt("rating"));
         tvElementSearchCarsName.setText(test.optString("partnerName"));
-        tvElementSearchCarsMoney.setText("£" + test.optString("ETA") + ".00");
+        tvElementSearchCarsMoney.setText("£" + CommonUtil.getDecimal(Double.valueOf(test.optString("ETA"))));
 
         return vi;
     }

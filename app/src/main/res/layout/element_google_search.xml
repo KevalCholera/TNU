@@ -21,7 +21,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="@dimen/tvElementCardListMarginStartEnd5"
-            android:text="Ronak"
             android:textColor="#686868"
             android:textSize="@dimen/btSignInSignInSize"
             android:textStyle="bold" />
@@ -32,7 +31,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="@dimen/tvElementCardListMarginStartEnd5"
-            android:text="Ronak"
             android:textColor="@color/details"
             android:textSize="@dimen/vSignInPasswordMarginStart" />
     </LinearLayout>

@@ -28,7 +28,8 @@ public class LostItem extends AppCompatActivity implements View.OnClickListener,
     ListView lvLostItemList;
     RadioButton rbLostItemOnGoing, rbLostItemFound, rbLostItemNotFound;
     LinearLayout llLostItemNoItemAvailable, llLostItemItemsAvailable;
-    int which_clicked;
+    int which_clicked = 1;
+    private JSONArray jsonArray;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,8 +49,7 @@ public class LostItem extends AppCompatActivity implements View.OnClickListener,
         rbLostItemOnGoing.setOnClickListener(this);
         rbLostItemFound.setOnClickListener(this);
 
-        rbLostItemOnGoing.performClick();
-
+        lostItem();
     }
 
     private void lostItem() {
@@ -72,17 +72,34 @@ public class LostItem extends AppCompatActivity implements View.OnClickListener,
         switch (v.getId()) {
             case R.id.rbLostItemOnGoing:
                 which_clicked = 1;
-                lostItem();
+                lostItemFilter(jsonArray);
                 break;
             case R.id.rbLostItemFound:
                 which_clicked = 2;
-                lostItem();
+                lostItemFilter(jsonArray);
                 break;
             case R.id.rbLostItemNotFound:
                 which_clicked = 3;
-                lostItem();
+                lostItemFilter(jsonArray);
                 break;
         }
+    }
+
+    public void lostItemFilter(JSONArray jsonArray) {
+        JSONArray jsonArray1 = new JSONArray();
+        for (int i = 0; i < jsonArray.length(); i++) {
+            JSONObject jsonObject1 = jsonArray.optJSONObject(i);
+
+            if (which_clicked == 1 && jsonObject1.optJSONObject("rideInfo").optJSONObject("lostItem").optString("status").equalsIgnoreCase("On Going"))
+                jsonArray1.put(jsonObject1);
+            else if (which_clicked == 2 && jsonObject1.optJSONObject("rideInfo").optJSONObject("lostItem").optString("status").equalsIgnoreCase("Item Found"))
+                jsonArray1.put(jsonObject1);
+            else if (which_clicked == 3 && jsonObject1.optJSONObject("rideInfo").optJSONObject("lostItem").optString("status").equalsIgnoreCase("Item Not Found"))
+                jsonArray1.put(jsonObject1);
+        }
+
+        AdapterLostItem adapterLostItem = new AdapterLostItem(this, jsonArray1);
+        lvLostItemList.setAdapter(adapterLostItem);
     }
 
     @Override
@@ -114,25 +131,11 @@ public class LostItem extends AppCompatActivity implements View.OnClickListener,
         if (jsonObject != null) {
 
             if (jsonObject.optInt("status") == Constants.STATUS_SUCCESS) {
-                JSONArray jsonArray = jsonObject.optJSONObject("json").optJSONArray("lostItemInfoArray");
+                jsonArray = jsonObject.optJSONObject("json").optJSONArray("lostItemInfoArray");
                 if (jsonArray.length() > 0) {
                     llLostItemItemsAvailable.setVisibility(View.VISIBLE);
                     llLostItemNoItemAvailable.setVisibility(View.GONE);
-                    JSONArray jsonArray1 = new JSONArray();
-
-                    for (int i = 0; i < jsonArray.length(); i++) {
-                        JSONObject jsonObject1 = jsonArray.optJSONObject(i);
-
-                        if (which_clicked == 1 && jsonObject1.optJSONObject("rideInfo").optJSONObject("lostItem").optString("status").equalsIgnoreCase("On Going"))
-                            jsonArray1.put(jsonObject1);
-                        else if (which_clicked == 2 && jsonObject1.optJSONObject("rideInfo").optJSONObject("lostItem").optString("status").equalsIgnoreCase("Item Found"))
-                            jsonArray1.put(jsonObject1);
-                        else if (which_clicked == 3 && jsonObject1.optJSONObject("rideInfo").optJSONObject("lostItem").optString("status").equalsIgnoreCase("Item Not Found"))
-                            jsonArray1.put(jsonObject1);
-                    }
-
-                    AdapterLostItem adapterLostItem = new AdapterLostItem(this, jsonArray1);
-                    lvLostItemList.setAdapter(adapterLostItem);
+                    lostItemFilter(jsonArray);
 
                 } else {
                     llLostItemItemsAvailable.setVisibility(View.GONE);

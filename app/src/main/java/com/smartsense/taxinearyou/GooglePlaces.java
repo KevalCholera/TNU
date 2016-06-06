@@ -73,6 +73,7 @@ public class GooglePlaces extends FragmentActivity implements OnItemClickListene
     private static final String TYPE_AUTOCOMPLETE = "/autocomplete";
     private static final String OUT_JSON = "/json";
     private static ArrayList<String> resultList1;
+    View viewGooglePlace;
     TextView tvGooglePlacesCancel, tvGooglePlacesCurrentLocation;
     ImageButton ibGooglePlaceEmpty;
     EditText autoCompView;
@@ -100,15 +101,24 @@ public class GooglePlaces extends FragmentActivity implements OnItemClickListene
         tvGooglePlacesCancel = (TextView) findViewById(R.id.tvGooglePlacesCancel);
         ibGooglePlaceEmpty = (ImageButton) findViewById(R.id.ibGooglePlaceEmpty);
         lvGoogleSearch = (ListView) findViewById(R.id.lvGooglePlaces);
+        viewGooglePlace = findViewById(R.id.viewGooglePlace);
         tvGooglePlacesCurrentLocation = (TextView) findViewById(R.id.tvGooglePlacesCurrentLocation);
         dataAdapter = new GooglePlacesAutocompleteAdapter(this, R.layout.element_google);
         dataAdapter1 = new GooglePlacesAutocompleteAdapter1(this, new JSONArray());
         lvGoogleSearch.setAdapter(dataAdapter1);
+
         lvGoogleSearch.setTextFilterEnabled(true);
         lvGoogleSearch.setOnItemClickListener(this);
         tvGooglePlacesCancel.setOnClickListener(this);
         ibGooglePlaceEmpty.setOnClickListener(this);
         tvGooglePlacesCurrentLocation.setOnClickListener(this);
+
+        if (getIntent() != null && getIntent().hasExtra("typeAddress") && getIntent().getIntExtra("typeAddress", 0) != 1) {
+            tvGooglePlacesCurrentLocation.setVisibility(View.GONE);
+            viewGooglePlace.setVisibility(View.GONE);
+        }
+
+
         autoCompView.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {

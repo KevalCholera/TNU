@@ -130,7 +130,7 @@ public class GeneralInformation extends AppCompatActivity implements Response.Li
                         generalInfo();
                     }
                 else {
-                    CommonUtil.alertBox(this, jsonObject.optString("msg"), false, false);
+                    CommonUtil.alertBox(this, jsonObject.optString("msg"));
                     SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_USER_FIRST, etGeneralFirstName.getText().toString());
                     SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_USER_LAST, etGeneralLastName.getText().toString());
                     SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_USER_MNO, etGeneralMobile.getText().toString());

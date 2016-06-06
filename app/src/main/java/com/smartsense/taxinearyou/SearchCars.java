@@ -151,9 +151,9 @@ public class SearchCars extends AppCompatActivity implements Response.Listener<J
             else
                 bookingduration = "0";
             JSONArray viaArea = new JSONArray();
-            if (SharedPreferenceUtil.contains(Constants.VIA_ADDRESS))
+            if (SharedPreferenceUtil.contains(Constants.VIA_ADDRESS) && !SharedPreferenceUtil.getString(Constants.VIA_ADDRESS, "").equalsIgnoreCase(""))
                 viaArea.put(new JSONObject(SharedPreferenceUtil.getString(Constants.VIA_ADDRESS, "")));
-            if (SharedPreferenceUtil.contains(Constants.VIA2_ADDRESS))
+            if (SharedPreferenceUtil.contains(Constants.VIA2_ADDRESS) && !SharedPreferenceUtil.getString(Constants.VIA2_ADDRESS, "").equalsIgnoreCase(""))
                 viaArea.put(new JSONObject(SharedPreferenceUtil.getString(Constants.VIA2_ADDRESS, "")));
             int selectedId2 = rbgSearchCars.getCheckedRadioButtonId();
             RadioButton radioButton2 = (RadioButton) findViewById(selectedId2);
@@ -248,7 +248,6 @@ public class SearchCars extends AppCompatActivity implements Response.Listener<J
                             SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_FILTER_REQUEST, response.optJSONObject("filterRequest").toString());
                             SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_DISTANCE_MATRIX, response.optJSONObject("json").optJSONObject("distanceMatrix").toString());
                             SharedPreferenceUtil.save();
-//                            JSONArray jsonArray = new JSONArray(SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_PARTNER_ARRAY, ""));
                             AdapterSearchCar adapterSearchCar = new AdapterSearchCar(this, response.optJSONObject("json").optJSONArray("partnerArray"), bookingduration);
                             lvSearchCarsLine1.setAdapter(adapterSearchCar);
                             break;

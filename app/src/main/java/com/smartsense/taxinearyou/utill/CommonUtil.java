@@ -18,6 +18,7 @@ import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
+import android.os.PatternMatcher;
 import android.os.StrictMode;
 import android.provider.MediaStore;
 import android.support.design.widget.CoordinatorLayout;
@@ -28,6 +29,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Base64;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -58,8 +60,12 @@ import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.HashMap;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 //import org.apache.http.HttpStatus;
 
@@ -88,20 +94,30 @@ public class CommonUtil {
         return !TextUtils.isEmpty(strEmail) && android.util.Patterns.EMAIL_ADDRESS.matcher(strEmail).matches();
     }
 
-    public static void alertBox(final Activity context, final String msg, final boolean check, final boolean canFinish) {
+    public static boolean isLegalPassword(String pass) {
+
+        Pattern p = Pattern.compile("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).+$", Pattern.DOTALL);
+        Matcher m = p.matcher(pass);
+
+        return m.find();
+    }
+
+    public static boolean isSpecialChar(String pass) {
+
+        Pattern p = Pattern.compile("[&@!#+]", Pattern.DOTALL);
+        Matcher m = p.matcher(pass);
+
+        return m.find();
+    }
+
+    public static void alertBox(final Activity context, final String msg) {
         final AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setCancelable(false);
         builder.setMessage(msg);
-        if (check)
-            builder.setIcon(ContextCompat.getDrawable(context, R.mipmap.img_ok));
-        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton(context.getResources().getString(R.string.ok), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
-                if (check)
-                    context.startActivity(new Intent(context, Search.class));
-                else {
-                    if (canFinish)
-                        context.finish();
-                }
+                if (msg.equalsIgnoreCase(context.getResources().getString(R.string.event_complete)))
+                    context.finish();
             }
         });
         builder.create();
@@ -480,10 +496,16 @@ public class CommonUtil {
         return url;
     }
 
+    public static String getDecimal(Double x) {
+        NumberFormat formatter = new DecimalFormat("#0.00");
+        String s = formatter.format(x);
+        return s;
+    }
+
     public static void showSnackBar(String msg, View view) {
 
         TSnackbar snackbar = TSnackbar
-                .make(view, msg, TSnackbar.LENGTH_LONG);
+                .make(view, msg, TSnackbar.LENGTH_SHORT);
         snackbar.setActionTextColor(Color.WHITE);
         View snackbarView = snackbar.getView();
         snackbarView.setBackgroundColor(Color.WHITE);

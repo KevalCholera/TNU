@@ -45,6 +45,7 @@
                 android:layout_gravity="center"
                 android:layout_marginLeft="@dimen/signUpMargin"
                 android:layout_marginRight="@dimen/etSignUpPersonNameMarginEnd"
+                android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
                 android:layout_weight="1"
                 android:background="@drawable/grayborder"
                 android:hint="@string/first_name"

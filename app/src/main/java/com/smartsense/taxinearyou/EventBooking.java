@@ -36,8 +36,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 import java.text.ParseException;
 import java.util.Calendar;
 import java.util.Date;
@@ -497,7 +495,7 @@ public class EventBooking extends AppCompatActivity implements Response.Listener
         if (jsonObject != null) {
             if (jsonObject.optInt("status") == Constants.STATUS_SUCCESS) {
                 if (jsonObject.optString("__eventid").equalsIgnoreCase((Constants.Events.EVENT_BOOKING) + "")) {
-                    CommonUtil.alertBox(this, getResources().getString(R.string.event_complete), false, true);
+                    CommonUtil.alertBox(this, getResources().getString(R.string.event_complete));
 
                 } else if (jsonObject.optString("__eventid").equalsIgnoreCase((Constants.Events.GET_SERVER_DATE_TIME) + "")) {
 

@@ -12,17 +12,14 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.mpt.storage.SharedPreferenceUtil;
-import com.smartsense.taxinearyou.Fragments.FragmentBook;
 import com.smartsense.taxinearyou.utill.CommonUtil;
 import com.smartsense.taxinearyou.utill.Constants;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.DecimalFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 
 public class BookingInfo extends AppCompatActivity {
 
@@ -60,7 +57,7 @@ public class BookingInfo extends AppCompatActivity {
         lyBookingInfoETA.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CommonUtil.alertBox(BookingInfo.this, getResources().getString(R.string.eta_err), false, false);
+                CommonUtil.alertBox(BookingInfo.this, getResources().getString(R.string.eta_err));
             }
         });
 
@@ -72,21 +69,17 @@ public class BookingInfo extends AppCompatActivity {
                 tvBookInfoFrom.setText(mainData.optString("fromAreaAddress"));
                 tvBookInfoTo.setText(mainData.optString("toAreaAddress"));
 
-                JSONArray jsonArray = mainData.optJSONArray("viaArray");
-                if (mainData.has("viaArray") && jsonArray.length() > 0) {
-
-                    for (int i = 0; i < jsonArray.length(); i++) {
-                        JSONObject jsonObject = jsonArray.optJSONObject(i);
-
-                        if (i == 0) {
-                            lyBookingInfoVia1.setVisibility(View.VISIBLE);
-                            tvBookInfoVia1.setText(jsonObject.optString("viaAreaAddress"));
-                        }
-                        if (i == 1) {
-                            lyBookingInfoVia2.setVisibility(View.VISIBLE);
-                            tvBookInfoVia2.setText(jsonObject.optString("viaAreaAddress"));
-                        }
-                    }
+                if (!SharedPreferenceUtil.getString(Constants.VIA_ADDRESS, "").equalsIgnoreCase("")) {
+                    JSONObject viaField1 = new JSONObject(SharedPreferenceUtil.getString(Constants.VIA_ADDRESS, ""));
+                    lyBookingInfoVia1.setVisibility(View.VISIBLE);
+                    tvBookInfoVia1.setText(viaField1.optString("viaAreaAddress"));
+                    Log.i("VIA_ADDRESS1",SharedPreferenceUtil.getString(Constants.VIA_ADDRESS, ""));
+                }
+                if (!SharedPreferenceUtil.getString(Constants.VIA2_ADDRESS, "").equalsIgnoreCase("")) {
+                    JSONObject viaField1 = new JSONObject(SharedPreferenceUtil.getString(Constants.VIA2_ADDRESS, ""));
+                    lyBookingInfoVia2.setVisibility(View.VISIBLE);
+                    tvBookInfoVia2.setText(viaField1.optString("viaAreaAddress"));
+                    Log.i("VIA_ADDRESS2", SharedPreferenceUtil.getString(Constants.VIA2_ADDRESS, ""));
                 }
 
                 tvBookInfoVehicleType.setTag(mainData.optJSONObject("filterRequest").optString("vehicleType"));

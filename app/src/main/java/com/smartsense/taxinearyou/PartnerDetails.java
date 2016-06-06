@@ -80,7 +80,7 @@ public class PartnerDetails extends AppCompatActivity {
                 if (SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_STATUS, "").equalsIgnoreCase("1"))
                     startActivity(new Intent(PartnerDetails.this, BookingInfo.class));
                 else
-                    CommonUtil.alertBox(PartnerDetails.this, getResources().getString(R.string.msg_activate_account), false, false);
+                    CommonUtil.alertBox(PartnerDetails.this, getResources().getString(R.string.msg_activate_account));
             }
         });
     }

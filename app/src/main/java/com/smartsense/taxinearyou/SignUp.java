@@ -160,7 +160,7 @@ public class SignUp extends AppCompatActivity implements Response.Listener<JSONO
             CommonUtil.showSnackBar(getResources().getString(R.string.email_alred_exist), clSignUp);
         else if (TextUtils.isEmpty(etSignUpPassword.getText().toString()))
             CommonUtil.showSnackBar(getString(R.string.enter_pass), clSignUp);
-        else if (etSignUpPassword.length() < 7 || etSignUpPassword.length() > 15)
+        else if ((etSignUpPassword.length() < 7 || etSignUpPassword.length() > 15) && !CommonUtil.isLegalPassword(etSignUpPassword.getText().toString()) && CommonUtil.isSpecialChar(etSignUpPassword.getText().toString()))
             CommonUtil.showSnackBar(getString(R.string.enter_valid_pass), clSignUp);
         else if (!TextUtils.equals(etSignUpConfirmPassword.getText().toString(), etSignUpPassword.getText().toString()))
             CommonUtil.showSnackBar(getString(R.string.conpass_pass_same), clSignUp);

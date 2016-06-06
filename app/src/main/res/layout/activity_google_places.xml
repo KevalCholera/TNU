@@ -81,9 +81,10 @@
         android:textStyle="bold" />
 
     <View
+        android:id="@+id/viewGooglePlace"
         android:layout_width="match_parent"
         android:layout_height="@dimen/vReviewTextAllMargin"
-        android:background="@color/dark_gray" />
+        android:background="@color/heading" />
 
     <ListView
         android:id="@+id/lvGooglePlaces"
