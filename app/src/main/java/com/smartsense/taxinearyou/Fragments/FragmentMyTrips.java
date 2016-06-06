@@ -17,6 +17,7 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -47,6 +48,7 @@ public class FragmentMyTrips extends Fragment implements Response.Listener<JSONO
     int pageSize = 10;
     ArrayList<Integer> arrayList;
     int selected = 0;
+    ProgressBar pbMyTrips;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -54,6 +56,7 @@ public class FragmentMyTrips extends Fragment implements Response.Listener<JSONO
 
         ivMyTripsNoTrips = (ImageView) rootView.findViewById(R.id.ivMyTripsNoTrips);
         lvMyTrips = (ListView) rootView.findViewById(R.id.lvMyTrips);
+        pbMyTrips = (ProgressBar) rootView.findViewById(R.id.pbMyTrips);
         llFragmentMyTrips = (LinearLayout) rootView.findViewById(R.id.llFragmentMyTrips);
 
         getActivity().registerReceiver(tripMessageReceiver, new IntentFilter(Constants.PushList.PUSH_MY_TRIP));

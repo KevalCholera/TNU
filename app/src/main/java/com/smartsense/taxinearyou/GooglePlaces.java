@@ -696,7 +696,7 @@ public class GooglePlaces extends FragmentActivity implements OnItemClickListene
                                     placeArray.put(newJson);
                                 }
                                 dataAdapter1.googlePlacesAutocomplete(placeArray);
-                            }catch (Exception e){
+                            } catch (Exception e) {
                                 e.printStackTrace();
                             }
                         }
@@ -725,7 +725,12 @@ public class GooglePlaces extends FragmentActivity implements OnItemClickListene
                 JSONObject jsonObj1 = jsonObj.optJSONObject("result");
                 JSONArray types = jsonObj1.optJSONArray("types");
                 if (jsonObj1.has("formatted_address")) {
-                    AreaAddress = jsonObj1.optString("formatted_address");
+                    String[] str = AreaAddress.split(",");
+                    if (jsonObj1.optString("name").equalsIgnoreCase(str[0].trim())) {
+                        AreaAddress = jsonObj1.optString("formatted_address");
+                    } else {
+                        AreaAddress = jsonObj1.optString("name") + ", " + jsonObj1.optString("formatted_address");
+                    }
                 }
                 if (jsonObj1.has("geometry")) {
                     AreaLat = jsonObj1.optJSONObject("geometry").optJSONObject("location").optString("lat");
@@ -748,13 +753,13 @@ public class GooglePlaces extends FragmentActivity implements OnItemClickListene
 //            AreaAddress= AreaName.replace(" ", "%20");
 //            AreaCity= AreaCity.replace(" ", "%20");
 //            AreaPostalCode= AreaPostalCode.replace(" ", "%20");
-            addObj.put("viaAreaName", AreaName.equalsIgnoreCase("") ? "" : AreaName);
-            addObj.put("viaAreaPlaceid", AreaPlaceid.equalsIgnoreCase("") ? "" : AreaPlaceid);
-            addObj.put("viaAreaAddress", AreaAddress.equalsIgnoreCase("") ? "" : AreaAddress);
-            addObj.put("viaAreaLat", AreaLat.equalsIgnoreCase("") ? "" : AreaLat);
-            addObj.put("viaAreaLong", AreaLong.equalsIgnoreCase("") ? "" : AreaLong);
-            addObj.put("viaAreaPostalCode", AreaPostalCode.equalsIgnoreCase(" ") ? "" : AreaPostalCode);
-            addObj.put("viaAreaCity", AreaCity.equalsIgnoreCase(" ") ? "" : AreaCity);
+            addObj.put("viaAreaName", AreaName.equalsIgnoreCase("") ? " " : AreaName);
+            addObj.put("viaAreaPlaceid", AreaPlaceid.equalsIgnoreCase("") ? " " : AreaPlaceid);
+            addObj.put("viaAreaLat", AreaLat.equalsIgnoreCase("") ? " " : AreaLat);
+            addObj.put("viaAreaLong", AreaLong.equalsIgnoreCase("") ? " " : AreaLong);
+            addObj.put("viaAreaAddress", AreaAddress.equalsIgnoreCase("") ? " " : AreaAddress);
+            addObj.put("viaAreaPostalCode", AreaPostalCode.equalsIgnoreCase(" ") ? " " : AreaPostalCode);
+            addObj.put("viaAreaCity", AreaCity.equalsIgnoreCase(" ") ? " " : AreaCity);
             System.out.println("jsonObj: " + addObj.toString());
 
             setResult(Activity.RESULT_OK, new Intent().putExtra("typeAddress", getIntent().getIntExtra("typeAddress", 0)).putExtra("address", addObj.toString()).putExtra("AreaName", AreaName));
