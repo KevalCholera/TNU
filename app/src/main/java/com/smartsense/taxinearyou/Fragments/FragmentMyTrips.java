@@ -131,7 +131,9 @@ public class FragmentMyTrips extends Fragment implements Response.Listener<JSONO
     public void onErrorResponse(VolleyError volleyError) {
         CommonUtil.errorToastShowing(getActivity());
         CommonUtil.cancelProgressDialog();
-
+        if (srMyTrips.isRefreshing()) {
+            srMyTrips.setRefreshing(false);
+        }
     }
 
     @Override
@@ -139,8 +141,10 @@ public class FragmentMyTrips extends Fragment implements Response.Listener<JSONO
         if (resultCode == Activity.RESULT_OK)
             switch (requestCode) {
                 case request:
+                    pageNumber = 0;
+                    totalRecord = 0;
+                    adapterMyTrips = null;
                     doMyTrip(pageNumber);
-                    lvMyTrips.setSelection(selected);
                     break;
             }
     }
@@ -157,14 +161,15 @@ public class FragmentMyTrips extends Fragment implements Response.Listener<JSONO
     @Override
     public void onResponse(final JSONObject response) {
         CommonUtil.cancelProgressDialog();
+        if (srMyTrips.isRefreshing()) {
+            srMyTrips.setRefreshing(false);
+        }
         if (response != null) {
             if (response.optInt("status") == Constants.STATUS_SUCCESS) {
                 switch (response.optInt("__eventid")) {
                     case Constants.Events.EVENT_MY_TRIP:
                         try {
-                            if (srMyTrips.isRefreshing()) {
-                                srMyTrips.setRefreshing(false);
-                            }
+
                             if (response.optJSONObject("json").optJSONArray("rideArray").length() > 0) {
                                 totalRecord = response.optJSONObject("json").optInt("totalRecord");
                                 lvMyTrips.setVisibility(View.VISIBLE);
