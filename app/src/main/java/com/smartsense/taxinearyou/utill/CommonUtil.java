@@ -44,6 +44,7 @@ import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.mpt.storage.SharedPreferenceUtil;
+import com.onesignal.OneSignal;
 import com.smartsense.taxinearyou.GooglePlaces;
 import com.smartsense.taxinearyou.R;
 import com.smartsense.taxinearyou.Search;
@@ -244,6 +245,7 @@ public class CommonUtil {
             activity.startActivity(new Intent(activity, SignIn.class));
             SharedPreferenceUtil.clear();
             SharedPreferenceUtil.save();
+            OneSignal.sendTag("emailId", "");
         } else
             successToastShowing(activity, jsonObject);
     }

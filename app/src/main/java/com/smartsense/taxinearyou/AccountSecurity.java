@@ -1,6 +1,8 @@
 package com.smartsense.taxinearyou;
 
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
@@ -9,6 +11,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -23,6 +26,7 @@ import android.widget.TextView;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.mpt.storage.SharedPreferenceUtil;
+import com.onesignal.OneSignal;
 import com.smartsense.taxinearyou.utill.CommonUtil;
 import com.smartsense.taxinearyou.utill.Constants;
 
@@ -37,9 +41,7 @@ public class AccountSecurity extends AppCompatActivity implements View.OnClickLi
     private AlertDialog alert;
     View dialog;
     int clicked = 0;
-
     EditText etAccountSecurityEmail, etAccountSecurityAlternateEmail;
-
     LinearLayout lyPopUpAlternateEmail, lyPopUpSecurityOptions, lyPopUpPassword, lyPopUpQuestion, lyPopUpQuestionChanges;
     EditText etPopupSecurityAlternateEmail, etPopupSecurityConfirmAlternateEmail, etPopupSecurityEmail,
             etPopupSecurityConfirmEmail, etPopupSecurityPassword, etPopupSecurityConfirmPassword,
@@ -297,25 +299,30 @@ public class AccountSecurity extends AppCompatActivity implements View.OnClickLi
     }
 
     public void emailChanged() {
-        if (CommonUtil.isValidEmail(etPopupSecurityEmail.getText().toString()) || CommonUtil.isValidEmail(etPopupSecurityConfirmEmail.getText().toString()))
+        if (etPopupSecurityEmail.getText().toString().equalsIgnoreCase("") || etPopupSecurityConfirmEmail.getText().toString().equalsIgnoreCase(""))
             CommonUtil.showSnackBar(getString(R.string.enter_fields_below), clPopUpMain);
-        else if (!CommonUtil.isValidEmail(etPopupSecurityConfirmEmail.getText().toString()))
+        else if (!CommonUtil.isValidEmail(etPopupSecurityEmail.getText().toString()) || !CommonUtil.isValidEmail(etPopupSecurityConfirmEmail.getText().toString()))
+            CommonUtil.showSnackBar(getString(R.string.pls_email), clPopUpMain);
+        else if (!etPopupSecurityEmail.getText().toString().equalsIgnoreCase(etPopupSecurityConfirmEmail.getText().toString()))
             CommonUtil.showSnackBar(getString(R.string.enter_not_same), clPopUpMain);
         else
             changeEmailAPI();
     }
 
+
     public void alternateEmailChanged() {
-        if (CommonUtil.isValidEmail(etPopupSecurityAlternateEmail.getText().toString()) || CommonUtil.isValidEmail(etPopupSecurityConfirmAlternateEmail.getText().toString())) {
+        if (etPopupSecurityAlternateEmail.getText().toString().equalsIgnoreCase("") || etPopupSecurityAlternateEmail.getText().toString().equalsIgnoreCase(""))
+            CommonUtil.showSnackBar(getString(R.string.enter_fields_below), clPopUpMain);
+        else if (!CommonUtil.isValidEmail(etPopupSecurityAlternateEmail.getText().toString()) || !CommonUtil.isValidEmail(etPopupSecurityConfirmAlternateEmail.getText().toString())) {
             CommonUtil.showSnackBar(getString(R.string.pls_ent_alt), clPopUpMain);
-        } else if (!CommonUtil.isValidEmail(etPopupSecurityConfirmAlternateEmail.getText().toString())) {
+        } else if (!etPopupSecurityAlternateEmail.getText().toString().equalsIgnoreCase(etPopupSecurityConfirmAlternateEmail.getText().toString())) {
             CommonUtil.showSnackBar(getString(R.string.enter_alt_not_same), clPopUpMain);
         } else
             changeEmailAPI();
     }
 
     public void passwordChanged() {
-        if ((etPopupSecurityPassword.length() < 7 || etPopupSecurityPassword.length() > 15) && !CommonUtil.isLegalPassword(etPopupSecurityPassword.getText().toString()) && CommonUtil.isSpecialChar(etPopupSecurityPassword.getText().toString()))
+        if ((etPopupSecurityPassword.length() < 7 || etPopupSecurityPassword.length() > 15) || !CommonUtil.isLegalPassword(etPopupSecurityPassword.getText().toString()) || CommonUtil.isSpecialChar(etPopupSecurityPassword.getText().toString()))
             CommonUtil.showSnackBar(getString(R.string.enter_valid_pass), clPopUpMain);
         else if (!etPopupSecurityConfirmPassword.getText().toString().equalsIgnoreCase(etPopupSecurityPassword.getText().toString()))
             CommonUtil.showSnackBar(getString(R.string.conpass_pass_same), clPopUpMain);
@@ -333,6 +340,23 @@ public class AccountSecurity extends AppCompatActivity implements View.OnClickLi
         else {
             securityQuestionConfirm();
         }
+    }
+
+    public void alertBox(String msg) {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(false);
+        builder.setMessage(msg);
+        builder.setPositiveButton(getResources().getString(R.string.ok), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                startActivity(new Intent(AccountSecurity.this, SignIn.class));
+                SharedPreferenceUtil.clear();
+                SharedPreferenceUtil.save();
+                finish();
+                OneSignal.sendTag("emailId", "");
+            }
+        });
+        builder.create();
+        builder.show();
     }
 
     @Override
@@ -364,16 +388,15 @@ public class AccountSecurity extends AppCompatActivity implements View.OnClickLi
             if (jsonObject.optInt("status") == Constants.STATUS_SUCCESS) {
                 if (alert != null)
                     alert.dismiss();
-                CommonUtil.alertBox(this, jsonObject.optString("msg"));
 
-                if (jsonObject.optString("__eventId").equalsIgnoreCase((Constants.Events.UPDATE_EMAIL) + "")) {
-                    if (clicked == 1)
-                        SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_USER_EMAIL, etPopupSecurityEmail.getText().toString());
-                    else if (clicked == 2)
-                        SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_USER_ALTERNATE_EMAIL, etPopupSecurityAlternateEmail.getText().toString());
-                }
-                SharedPreferenceUtil.save();
-                setValue();
+                if (clicked == 1)
+                    alertBox(jsonObject.optString("msg"));
+                else if (clicked == 2) {
+                    SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_USER_ALTERNATE_EMAIL, etPopupSecurityAlternateEmail.getText().toString());
+                    SharedPreferenceUtil.save();
+                    setValue();
+                } else
+                    CommonUtil.alertBox(this, jsonObject.optString("msg"));
 
             } else
                 CommonUtil.conditionAuthentication(this, jsonObject);

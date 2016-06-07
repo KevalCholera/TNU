@@ -25,6 +25,7 @@ import android.widget.Toast;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.mpt.storage.SharedPreferenceUtil;
+import com.onesignal.OneSignal;
 import com.smartsense.taxinearyou.AccountSecurity;
 import com.smartsense.taxinearyou.CardList;
 import com.smartsense.taxinearyou.GeneralInformation;
@@ -227,8 +228,8 @@ public class FragmentMenu extends Fragment implements Response.Listener<JSONObje
                     doUpload(data);
                     break;
             }
-        else
-            Toast.makeText(getContext(), getResources().getString(R.string.cancel_camera), Toast.LENGTH_SHORT).show();
+//        else
+//            Toast.makeText(getContext(), getResources().getString(R.string.cancel_camera), Toast.LENGTH_SHORT).show();
         super.onActivityResult(requestCode, resultCode, data);
     }
 
@@ -275,6 +276,7 @@ public class FragmentMenu extends Fragment implements Response.Listener<JSONObje
                         case Constants.Events.EVENT_LOGOUT:
                             SharedPreferenceUtil.clear();
                             SharedPreferenceUtil.save();
+                            OneSignal.sendTag("emailId", "");
                             startActivity(new Intent(getActivity(), SignIn.class));
                             getActivity().finish();
                             break;

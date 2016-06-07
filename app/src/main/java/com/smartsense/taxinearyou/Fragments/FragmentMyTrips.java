@@ -122,8 +122,6 @@ public class FragmentMyTrips extends Fragment implements Response.Listener<JSONO
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
-        Log.i("URL", builder.toString());
         CommonUtil.jsonRequestNoProgressBar(CommonUtil.utf8Convert(builder, Constants.Events.EVENT_MY_TRIP), tag, this, this);
     }
 

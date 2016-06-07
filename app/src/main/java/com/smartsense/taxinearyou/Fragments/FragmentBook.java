@@ -9,6 +9,7 @@ import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -102,6 +103,12 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
         return rootView;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        check = false;
+    }
+
     private String updateTime(int hours, int mins) {
 
         String timeSet;
@@ -153,8 +160,10 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
                 long millisecondSet = dateSet.getTime();
                 long millisecondGet = dateGet.getTime();
                 if (millisecondGet < millisecondSet) {
+                    Log.i("1", millisecondGet + "==>" + millisecondSet);
                     Toast.makeText(getActivity(), "Invalid Time", Toast.LENGTH_SHORT).show();
                 } else {
+                    Log.i("2", millisecondGet + "==>" + millisecondSet);
                     hrs = hour;
                     minute = minutes;
                     timeSlice = timeSet;
@@ -200,7 +209,7 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
     }
 
     public void timePicker(final int id, final String finalDateNow2, final String finalDateTomorrow, int hour, int minute) {
-        mTimePicker = new TimePickerDialog(getActivity(), android.R.style.Theme_DeviceDefault_Dialog, new TimePickerDialog.OnTimeSetListener() {
+        mTimePicker = new TimePickerDialog(getActivity(), new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
                 if (rbBookToday.getId() == id) {

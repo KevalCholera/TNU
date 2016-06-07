@@ -4,7 +4,9 @@ import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -25,6 +27,7 @@ public class GeneralInformation extends AppCompatActivity implements Response.Li
     EditText etGeneralFirstName, etGeneralLastName, etGeneralMobile;
     Button btGeneralUpdateProfile;
     CoordinatorLayout clGeneralInfo;
+    int check;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,11 +48,28 @@ public class GeneralInformation extends AppCompatActivity implements Response.Li
         etGeneralLastName.setText(SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_LAST, ""));
         etGeneralMobile.setText(SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_MNO, ""));
 
+        etGeneralMobile.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                check = 1;
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
         btGeneralUpdateProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 CommonUtil.closeKeyboard(GeneralInformation.this);
-                if (TextUtils.isEmpty(etGeneralFirstName.getText().toString()) || TextUtils.isEmpty(etGeneralLastName.getText().toString()) || TextUtils.isEmpty(etGeneralMobile.getText().toString()))
+                if (TextUtils.isEmpty(etGeneralFirstName.getText().toString()) && TextUtils.isEmpty(etGeneralLastName.getText().toString()) && TextUtils.isEmpty(etGeneralMobile.getText().toString()))
                     CommonUtil.showSnackBar(getResources().getString(R.string.enter_fields_below), clGeneralInfo);
                 else if (TextUtils.isEmpty(etGeneralFirstName.getText().toString()))
                     CommonUtil.showSnackBar(getString(R.string.enter_first_name), clGeneralInfo);
@@ -57,8 +77,12 @@ public class GeneralInformation extends AppCompatActivity implements Response.Li
                     CommonUtil.showSnackBar(getString(R.string.enter_last_name), clGeneralInfo);
                 else if (etGeneralMobile.length() != 10)
                     CommonUtil.showSnackBar(getString(R.string.enter_valid_contact), clGeneralInfo);
-                else
-                    contactAvailability();
+                else {
+                    if (check == 1)
+                        contactAvailability();
+                    else
+                        generalInfo();
+                }
             }
         });
     }
@@ -69,13 +93,12 @@ public class GeneralInformation extends AppCompatActivity implements Response.Li
         JSONObject jsonData = new JSONObject();
 
         try {
-            builder.append(Constants.BASE_URL + Constants.BASE_URL_POSTFIX + Constants.Events.CHECK_MOBILE_AVAILABILITY + "&json=")
-                    .append(jsonData.put("mobileNo", etGeneralMobile.getText().toString().trim()));
+            builder.append(jsonData.put("mobileNo", etGeneralMobile.getText().toString().trim()));
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        CommonUtil.jsonRequestGET(this, getResources().getString(R.string.get_data), builder.toString(), tag, this, this);
+        CommonUtil.jsonRequestGET(this, getResources().getString(R.string.get_data), CommonUtil.utf8Convert(builder, Constants.Events.CHECK_MOBILE_AVAILABILITY), tag, this, this);
     }
 
     private void generalInfo() {
@@ -123,19 +146,23 @@ public class GeneralInformation extends AppCompatActivity implements Response.Li
         CommonUtil.cancelProgressDialog();
         if (jsonObject != null)
             if (jsonObject.optInt("status") == Constants.STATUS_SUCCESS) {
+
                 if (jsonObject.optString("__eventid").equalsIgnoreCase(Constants.Events.CHECK_MOBILE_AVAILABILITY + ""))
-                    if (!jsonObject.optJSONObject("json").optString("isAvailable").equalsIgnoreCase("1")) {
+
+                    if (!jsonObject.optJSONObject("json").optString("isAvailable").equalsIgnoreCase("1"))
                         CommonUtil.showSnackBar(jsonObject.optString("msg"), clGeneralInfo);
-                    } else {
+                    else
                         generalInfo();
-                    }
-                else {
+
+                if (jsonObject.optString("__eventid").equalsIgnoreCase(Constants.Events.UPDATE_GENERAL_INFO + "")) {
                     CommonUtil.alertBox(this, jsonObject.optString("msg"));
                     SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_USER_FIRST, etGeneralFirstName.getText().toString());
                     SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_USER_LAST, etGeneralLastName.getText().toString());
                     SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_USER_MNO, etGeneralMobile.getText().toString());
                     SharedPreferenceUtil.save();
+                    check = 0;
                 }
+
             } else
                 CommonUtil.conditionAuthentication(this, jsonObject);
         else CommonUtil.jsonNullError(this);

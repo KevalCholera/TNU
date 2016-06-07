@@ -12,9 +12,11 @@
     <string name="last_name">Last Name</string>
     <string name="contact">Contact Number</string>
     <string name="email">Email</string>
+    <string name="new_email">Email</string>
     <string name="password_signup">Password</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="alternate_email">Alternate Email</string>
+    <string name="new_alternate_email">New Alternate Email</string>
     <string name="confirm_next">Confirm &amp; Next</string>
     <string name="title_activity_forgot_password">ForgotPassword</string>
     <string name="security_question1">In which City or Town did your Mother &amp; Father meet?</string>

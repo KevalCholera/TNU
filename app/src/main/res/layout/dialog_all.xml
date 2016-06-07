@@ -25,7 +25,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:textColor="@color/colorPrimaryDark"
-                android:text="@string/alternate_email"
+                android:text="@string/new_alternate_email"
                 android:textSize="@dimen/tvTitlesSizeAll" />
 
             <View
@@ -106,7 +106,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="@string/email"
+                android:text="@string/new_email"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="@dimen/tvTitlesSizeAll" />
 

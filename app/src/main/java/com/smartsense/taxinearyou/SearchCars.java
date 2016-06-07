@@ -147,7 +147,7 @@ public class SearchCars extends AppCompatActivity implements Response.Listener<J
     }
 
     private void doPartnerList(int pageNumber) {
-        if(pageNumber==0){
+        if (pageNumber == 0) {
             adapterSearchCar = null;
         }
         final String tag = "doPartnerList";
@@ -394,14 +394,32 @@ public class SearchCars extends AppCompatActivity implements Response.Listener<J
                 @Override
                 public void onClick(View v) {
                     a.startActivity(new Intent(a, PartnerDetails.class).putExtra("customerSelection", SharedPreferenceUtil.getString(Constants.PrefKeys.DISTANCE_AFTER_CONVERT, ""))
-                            .putExtra("ETA", tvElementSearchCarsMoney.getText().toString())
-                            .putExtra("partnerName", tvElementSearchCarsName.getText().toString())
+                            .putExtra("ETA", "£" + CommonUtil.getDecimal(test.optDouble("ETA")))
+                            .putExtra("partnerName", test.optString("partnerName"))
                             .putExtra("taxiTypeName", test.optJSONObject("taxiType").optString("taxiTypeName"))
                             .putExtra("waitingTime", tvElementSearchCarsWaitingTime.getText().toString())
                             .putExtra("rating", rating)
                             .putExtra("available", test.optInt("availability"))
                             .putExtra("partnerId", (String) tvElementSearchCarsChat.getTag())
                             .putExtra("logoPath", test.optString("logoPath")));
+
+                    JSONObject jsonObject = new JSONObject();
+                    try {
+                        jsonObject.put("partnerTaxiTypeId", test.optJSONObject("taxiType").optInt("partnerTaxiTypeId"));
+                        jsonObject.put("partnerName", test.optString("partnerName"));
+                        jsonObject.put("distance", test.optString("distance"));
+                        jsonObject.put("price", test.optString("ETA"));
+                        jsonObject.put("taxiTypeName", test.optJSONObject("taxiType").optString("taxiTypeName"));
+                        jsonObject.put("partnerId", test.optJSONObject("taxiType").optString("partnerId"));
+                        jsonObject.put("tripType", bookingduration);
+                        jsonObject.put("duration", SharedPreferenceUtil.getString(Constants.PrefKeys.DISTANCE_AFTER_CONVERT, ""));
+                        jsonObject.put("taxiTypeId", test.optJSONObject("taxiType").optString("taxiTypeId"));
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                    SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_CUSTOMER_SELECTION, jsonObject.toString());
+                    SharedPreferenceUtil.save();
                 }
             });
 
@@ -423,7 +441,6 @@ public class SearchCars extends AppCompatActivity implements Response.Listener<J
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-                    Log.i("Partner", jsonObject.toString());
 
                     SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_CUSTOMER_SELECTION, jsonObject.toString());
                     SharedPreferenceUtil.save();
