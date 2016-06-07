@@ -52,6 +52,7 @@ public class LostItem extends AppCompatActivity implements View.OnClickListener,
         srLostItemList.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
+                onCreate = false;
                 lostItem();
             }
         });

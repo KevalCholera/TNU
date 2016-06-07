@@ -273,6 +273,12 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
             CommonUtil.showSnackBar(getResources().getString(R.string.pls_ent_via1_loc), clSearch);
         else if (llBookVia2.getVisibility() == View.VISIBLE && TextUtils.isEmpty(tvBookvia2.getText().toString()))
             CommonUtil.showSnackBar(getResources().getString(R.string.pls_ent_via2_loc), clSearch);
+        else if (TextUtils.isEmpty(tvBookDateTime.getText().toString()))
+            CommonUtil.showSnackBar(getResources().getString(R.string.sel_date), clSearch);
+        else if (TextUtils.isEmpty(tvBookLuggage.getText().toString()))
+            CommonUtil.showSnackBar(getResources().getString(R.string.sel_lug), clSearch);
+        else if (TextUtils.isEmpty(tvBookPassenger.getText().toString()))
+            CommonUtil.showSnackBar(getResources().getString(R.string.sel_passe), clSearch);
         else
             try {
                 startActivity(new Intent(getActivity(), SearchCars.class)

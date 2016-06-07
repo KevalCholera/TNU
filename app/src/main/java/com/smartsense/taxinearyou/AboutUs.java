@@ -31,7 +31,7 @@ public class AboutUs extends AppCompatActivity {
             lyAboutUs.setLayoutParams(params);
             getSupportActionBar().setTitle("About Us");
             lyAboutUs.setVisibility(View.VISIBLE);
-            
+
         } else if (getIntent() != null && getIntent().hasExtra("privacy") && getIntent().getStringExtra("privacy").equalsIgnoreCase("privacy")) {
             getSupportActionBar().setTitle("Privacy Policy");
             wvPrivacyPolicy.setVisibility(View.VISIBLE);
