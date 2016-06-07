@@ -1,26 +1,31 @@
 package com.smartsense.taxinearyou;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.mpt.storage.SharedPreferenceUtil;
-import com.smartsense.taxinearyou.Adapters.AdapterSearchCar;
+
 import com.smartsense.taxinearyou.utill.CommonUtil;
 import com.smartsense.taxinearyou.utill.Constants;
 
@@ -31,6 +36,7 @@ import org.json.JSONObject;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.text.ParseException;
+import java.util.ArrayList;
 
 public class SearchCars extends AppCompatActivity implements Response.Listener<JSONObject>, Response.ErrorListener, View.OnClickListener {
 
@@ -47,11 +53,19 @@ public class SearchCars extends AppCompatActivity implements Response.Listener<J
     Toolbar toolbarAll;
     CoordinatorLayout clSearchCars;
     private String bookingduration;
+    AdapterSearchCar adapterSearchCar;
+
+    int pageNumber = 0;
+    int totalRecord = 0;
+    int pageSize = 10;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_cars);
+        adapterSearchCar = null;
+        pageNumber = 0;
+        totalRecord = 0;
 
         toolbarAll = (Toolbar) findViewById(R.id.toolbarAll);
         setSupportActionBar(toolbarAll);
@@ -87,7 +101,7 @@ public class SearchCars extends AppCompatActivity implements Response.Listener<J
 
         SharedPreferenceUtil.remove(Constants.PrefKeys.PREF_FILTER_REQUEST);
         SharedPreferenceUtil.save();
-        doPartnerList();
+        doPartnerList(pageNumber);
     }
 
     @Override
@@ -106,7 +120,7 @@ public class SearchCars extends AppCompatActivity implements Response.Listener<J
                     rbSearchCarsRating.setText("Rating" + (char) 0x2193);
                 else
                     rbSearchCarsRating.setText("Rating" + (char) 0x2191);
-                doPartnerList();
+                doPartnerList(0);
                 break;
             case R.id.rbSearchCarsAvailability:
                 rbSearchCarsPriceRange.setText("Price Range");
@@ -115,7 +129,7 @@ public class SearchCars extends AppCompatActivity implements Response.Listener<J
                     rbSearchCarsAvailability.setText("Availability" + (char) 0x2193);
                 else
                     rbSearchCarsAvailability.setText("Availability" + (char) 0x2191);
-                doPartnerList();
+                doPartnerList(0);
                 break;
             case R.id.rbSearchCarsPriceRange:
                 rbSearchCarsRating.setText("Rating");
@@ -124,7 +138,7 @@ public class SearchCars extends AppCompatActivity implements Response.Listener<J
                     rbSearchCarsPriceRange.setText("Price Range" + (char) 0x2193);
                 else
                     rbSearchCarsPriceRange.setText("Price Range" + (char) 0x2191);
-                doPartnerList();
+                doPartnerList(0);
                 break;
             case R.id.lySearchCarsDateTime:
                 finish();
@@ -132,7 +146,10 @@ public class SearchCars extends AppCompatActivity implements Response.Listener<J
         }
     }
 
-    private void doPartnerList() {
+    private void doPartnerList(int pageNumber) {
+        if(pageNumber==0){
+            adapterSearchCar = null;
+        }
         final String tag = "doPartnerList";
         StringBuilder builder = new StringBuilder();
         JSONObject jsonData = new JSONObject();
@@ -197,8 +214,8 @@ public class SearchCars extends AppCompatActivity implements Response.Listener<J
                     .put("filterRequest", filterRequest)
                     .put("token", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_ACCESS_TOKEN, ""))
                     .put("userId", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_ID, ""))
-                    .put("offset", 0)
-                    .put("pageSize", "10"));
+                    .put("offset", pageNumber)
+                    .put("pageSize", pageSize));
 
             jsonDataForSet.put("fromAreaName", fromData.optString("viaAreaName"))
                     .put("fromAreaLat", fromData.optString("viaAreaLat"))
@@ -248,8 +265,8 @@ public class SearchCars extends AppCompatActivity implements Response.Listener<J
                             SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_FILTER_REQUEST, response.optJSONObject("filterRequest").toString());
                             SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_DISTANCE_MATRIX, response.optJSONObject("json").optJSONObject("distanceMatrix").toString());
                             SharedPreferenceUtil.save();
-                            AdapterSearchCar adapterSearchCar = new AdapterSearchCar(this, response.optJSONObject("json").optJSONArray("partnerArray"), bookingduration);
-                            lvSearchCarsLine1.setAdapter(adapterSearchCar);
+                            totalRecord = response.optJSONObject("json").optInt("totalRecords");
+                            fillPartnerList(response.optJSONObject("json").optJSONArray("partnerArray"));
                             break;
                     }
                 } else {
@@ -259,6 +276,15 @@ public class SearchCars extends AppCompatActivity implements Response.Listener<J
                 e.printStackTrace();
             }
         } else CommonUtil.jsonNullError(this);
+    }
+
+    private void fillPartnerList(JSONArray jsonArray) {
+        if (adapterSearchCar == null) {
+            adapterSearchCar = new AdapterSearchCar(SearchCars.this, jsonArray, bookingduration);
+            lvSearchCarsLine1.setAdapter(adapterSearchCar);
+        } else {
+            adapterSearchCar.adapterSearchCar(jsonArray);
+        }
     }
 
     @Override
@@ -291,7 +317,7 @@ public class SearchCars extends AppCompatActivity implements Response.Listener<J
             rbSearchCarsPriceRange.setChecked(true);
             rbSearchCarsAvailability.setChecked(false);
             rbSearchCarsRating.setChecked(false);
-            doPartnerList();
+            doPartnerList(0);
         }
     }
 
@@ -309,5 +335,127 @@ public class SearchCars extends AppCompatActivity implements Response.Listener<J
         }
         return super.onOptionsItemSelected(item);
 
+    }
+
+    public class AdapterSearchCar extends BaseAdapter {
+        private JSONArray data;
+        private LayoutInflater inflater = null;
+        String bookingduration;
+        Activity a;
+
+        public AdapterSearchCar(Activity a, JSONArray data, String bookingduration) {
+            this.data = data;
+            this.a = a;
+            this.bookingduration = bookingduration;
+            inflater = (LayoutInflater) a.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        }
+
+        public void adapterSearchCar(JSONArray data) {
+            for (int i = 0; i < data.length(); i++) {
+                this.data.put(data.optJSONObject(i));
+            }
+            notifyDataSetChanged();
+        }
+
+        public int getCount() {
+            return data.length();
+        }
+
+        public Object getItem(int position) {
+            return this.data.optJSONObject(position);
+        }
+
+        public long getItemId(int position) {
+            return position;
+        }
+
+        public View getView(int position, final View convertView, ViewGroup parent) {
+            View vi = convertView;
+            if (convertView == null)
+
+                vi = inflater.inflate(R.layout.element_search_cars, null);
+            final JSONObject test = data.optJSONObject(position);
+
+            final TextView tvElementSearchCarsName = (TextView) vi.findViewById(R.id.tvElementSearchCarsName);
+            final TextView tvElementSearchCarsWaitingTime = (TextView) vi.findViewById(R.id.tvElementSearchCarsWaitingTime);
+            final TextView tvElementSearchCarsChat = (TextView) vi.findViewById(R.id.tvElementSearchCarsChat);
+            final TextView tvElementSearchCarsMoney = (TextView) vi.findViewById(R.id.tvElementSearchCarsMoney);
+            TextView tvSearchCarsBookNow = (TextView) vi.findViewById(R.id.tvSearchCarsBookNow);
+            LinearLayout llElementSearchCarsMain = (LinearLayout) vi.findViewById(R.id.llElementSearchCarsMain);
+            ImageView ivElementSearchCarsOnline = (ImageView) vi.findViewById(R.id.ivElementSearchCarsOnline);
+            RatingBar rbElementSearchCars = (RatingBar) vi.findViewById(R.id.rbElementSearchCars);
+
+            final ArrayList<String> rating = new ArrayList<>();
+
+            for (int i = 0; i < test.optJSONArray("partnerRating").length(); i++)
+                rating.add(test.optJSONArray("partnerRating").optJSONObject(i).optString("ccount"));
+
+            llElementSearchCarsMain.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    a.startActivity(new Intent(a, PartnerDetails.class).putExtra("customerSelection", SharedPreferenceUtil.getString(Constants.PrefKeys.DISTANCE_AFTER_CONVERT, ""))
+                            .putExtra("ETA", tvElementSearchCarsMoney.getText().toString())
+                            .putExtra("partnerName", tvElementSearchCarsName.getText().toString())
+                            .putExtra("taxiTypeName", test.optJSONObject("taxiType").optString("taxiTypeName"))
+                            .putExtra("waitingTime", tvElementSearchCarsWaitingTime.getText().toString())
+                            .putExtra("rating", rating)
+                            .putExtra("available", test.optInt("availability"))
+                            .putExtra("partnerId", (String) tvElementSearchCarsChat.getTag())
+                            .putExtra("logoPath", test.optString("logoPath")));
+                }
+            });
+
+            tvSearchCarsBookNow.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    JSONObject jsonObject = new JSONObject();
+                    try {
+                        jsonObject.put("partnerTaxiTypeId", test.optJSONObject("taxiType").optInt("partnerTaxiTypeId"));
+                        jsonObject.put("partnerName", test.optString("partnerName"));
+                        jsonObject.put("distance", test.optString("distance"));
+                        jsonObject.put("price", test.optString("ETA"));
+                        jsonObject.put("taxiTypeName", test.optJSONObject("taxiType").optString("taxiTypeName"));
+                        jsonObject.put("partnerId", test.optJSONObject("taxiType").optString("partnerId"));
+                        jsonObject.put("tripType", bookingduration);
+                        jsonObject.put("duration", SharedPreferenceUtil.getString(Constants.PrefKeys.DISTANCE_AFTER_CONVERT, ""));
+                        jsonObject.put("taxiTypeId", test.optJSONObject("taxiType").optString("taxiTypeId"));
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    Log.i("Partner", jsonObject.toString());
+
+                    SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_CUSTOMER_SELECTION, jsonObject.toString());
+                    SharedPreferenceUtil.save();
+
+                    if (SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_STATUS, "").equalsIgnoreCase("1"))
+                        a.startActivity(new Intent(a, BookingInfo.class));
+                    else
+                        CommonUtil.alertBox(a, a.getResources().getString(R.string.msg_activate_account));
+                }
+            });
+
+            if (test.optJSONObject("taxiType").optInt("status") == 0)
+                tvElementSearchCarsWaitingTime.setText("(10 to 20 minutes for a taxi)");
+            else
+                tvElementSearchCarsWaitingTime.setText("(20 to 45 minutes for a taxi)");
+
+            tvElementSearchCarsChat.setText(test.optJSONObject("taxiType").optString("taxiTypeName"));
+            tvElementSearchCarsChat.setTag(test.optJSONObject("taxiType").optString("partnerId"));
+
+            if (test.optInt("availability") == 0)
+                ivElementSearchCarsOnline.setImageResource(R.mipmap.online);
+            else
+                ivElementSearchCarsOnline.setImageResource(R.mipmap.ic_image_brightness_1);
+
+            rbElementSearchCars.setRating(test.optInt("rating"));
+            tvElementSearchCarsName.setText(test.optString("partnerName"));
+            tvElementSearchCarsMoney.setText("£" + CommonUtil.getDecimal(test.optDouble("ETA")));
+            Log.i("Yes", totalRecord + " " + data.length());
+            if ((position + 1) == data.length() && totalRecord != data.length()) {
+                doPartnerList(data.length());
+            }
+            return vi;
+        }
     }
 }

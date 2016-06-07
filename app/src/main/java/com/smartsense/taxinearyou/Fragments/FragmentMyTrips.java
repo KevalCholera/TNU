@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -55,6 +56,7 @@ public class FragmentMyTrips extends Fragment implements Response.Listener<JSONO
     int selected = 0;
     AdapterMyTrips adapterMyTrips = null;
     ProgressBar pbMyTrips;
+    private SwipeRefreshLayout srMyTrips;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -62,6 +64,7 @@ public class FragmentMyTrips extends Fragment implements Response.Listener<JSONO
         pageNumber = 0;
         totalRecord = 0;
         ivMyTripsNoTrips = (ImageView) rootView.findViewById(R.id.ivMyTripsNoTrips);
+        srMyTrips = (SwipeRefreshLayout) rootView.findViewById(R.id.srMyTrips);
         lvMyTrips = (ListView) rootView.findViewById(R.id.lvMyTrips);
         pbMyTrips = (ProgressBar) rootView.findViewById(R.id.pbMyTrips);
         llFragmentMyTrips = (LinearLayout) rootView.findViewById(R.id.llFragmentMyTrips);
@@ -71,6 +74,15 @@ public class FragmentMyTrips extends Fragment implements Response.Listener<JSONO
                 selected = position;
                 JSONObject obj = (JSONObject) parent.getItemAtPosition(position);
                 startActivityForResult(new Intent(getActivity(), TripDetails.class).putExtra("key", obj.toString()), request);
+            }
+        });
+        srMyTrips.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                pageNumber = 0;
+                totalRecord = 0;
+                adapterMyTrips = null;
+                doMyTrip(pageNumber);
             }
         });
         getActivity().registerReceiver(tripMessageReceiver, new IntentFilter(Constants.PushList.PUSH_MY_TRIP));
@@ -136,6 +148,8 @@ public class FragmentMyTrips extends Fragment implements Response.Listener<JSONO
     @Override
     public void onResume() {
         super.onResume();
+        pageNumber = 0;
+        totalRecord = 0;
         adapterMyTrips = null;
 
     }
@@ -144,11 +158,13 @@ public class FragmentMyTrips extends Fragment implements Response.Listener<JSONO
     public void onResponse(final JSONObject response) {
         CommonUtil.cancelProgressDialog();
         if (response != null) {
-            Log.i("response", response.toString());
             if (response.optInt("status") == Constants.STATUS_SUCCESS) {
                 switch (response.optInt("__eventid")) {
                     case Constants.Events.EVENT_MY_TRIP:
                         try {
+                            if (srMyTrips.isRefreshing()) {
+                                srMyTrips.setRefreshing(false);
+                            }
                             if (response.optJSONObject("json").optJSONArray("rideArray").length() > 0) {
                                 totalRecord = response.optJSONObject("json").optInt("totalRecord");
                                 lvMyTrips.setVisibility(View.VISIBLE);
