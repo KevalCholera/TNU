@@ -85,8 +85,8 @@ public class FragmentMyTrips extends Fragment implements Response.Listener<JSONO
                 doMyTrip(pageNumber);
             }
         });
-        getActivity().registerReceiver(tripMessageReceiver, new IntentFilter(Constants.PushList.PUSH_MY_TRIP));
-
+        getActivity().registerReceiver(tripMessageReceiver, new IntentFilter(String.valueOf(Constants.Events.EVENT_CHANGE)));
+        getActivity().registerReceiver(tripMessageReceiver, new IntentFilter(String.valueOf(Constants.Events.BookRide)));
         doMyTrip(pageNumber);
 
 //        lvMyTrips.setOnScrollListener(new AbsListView.OnScrollListener() {
@@ -194,12 +194,12 @@ public class FragmentMyTrips extends Fragment implements Response.Listener<JSONO
     private final BroadcastReceiver tripMessageReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            String newMessage = intent.getExtras().getString(
-                    Constants.EXTRAS);
-            // Waking up mobile if it is sleeping
-            WakeLocker.acquire(getActivity());
-            // ConstantClass.logPrint("msg rcv from gcm ", newMessage);
-            // Releasing wake lock
+            WakeLocker.acquire(context);
+            Log.i("Push ", intent.getStringExtra(Constants.EXTRAS));
+            pageNumber = 0;
+            totalRecord = 0;
+            adapterMyTrips = null;
+            doMyTrip(pageNumber);
             WakeLocker.release();
         }
     };

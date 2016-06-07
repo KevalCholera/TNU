@@ -1,14 +1,17 @@
 package com.smartsense.taxinearyou;
 
 import android.app.Activity;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -25,6 +28,7 @@ import com.mpt.storage.SharedPreferenceUtil;
 import com.smartsense.taxinearyou.utill.CircleImageView1;
 import com.smartsense.taxinearyou.utill.CommonUtil;
 import com.smartsense.taxinearyou.utill.Constants;
+import com.smartsense.taxinearyou.utill.WakeLocker;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
@@ -53,7 +57,8 @@ public class TripDetails extends AppCompatActivity implements View.OnClickListen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trip_details);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+        registerReceiver(tripMessageReceiver, new IntentFilter(String.valueOf(Constants.Events.EVENT_CHANGE)));
+        registerReceiver(tripMessageReceiver, new IntentFilter(String.valueOf(Constants.Events.BookRide)));
         tvTripDetailBookingDate = (TextView) findViewById(R.id.tvTripDetailBookingDate);
         tvTripDetailBookingTime = (TextView) findViewById(R.id.tvTripDetailBookingTime);
         tvTripDetailLost = (TextView) findViewById(R.id.tvTripDetailLost);
@@ -328,7 +333,7 @@ public class TripDetails extends AppCompatActivity implements View.OnClickListen
             if (jsonObject.optInt("status") == Constants.STATUS_SUCCESS) {
                 if (jsonObject.optInt("__eventid") == Constants.Events.CANCEL_RIDE) {
                     alert.dismiss();
-                    requestRefreshMyTrip=1;
+                    requestRefreshMyTrip = 1;
                     CommonUtil.alertBoxTwice(this, jsonObject.optString("msg"), getResources().getString(R.string.cancellation), tvTripDetailCancle);
                 } else if (jsonObject.optInt("__eventid") == Constants.Events.RESEND_INVOICE) {
                     CommonUtil.alertBox(this, jsonObject.optString("msg"));
@@ -337,5 +342,37 @@ public class TripDetails extends AppCompatActivity implements View.OnClickListen
                 CommonUtil.conditionAuthentication(this, jsonObject);
         else
             CommonUtil.jsonNullError(this);
+    }
+
+    private final BroadcastReceiver tripMessageReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            WakeLocker.acquire(context);
+            Log.i("Push ", intent.getStringExtra(Constants.EXTRAS));
+            try {
+                JSONObject pushData = new JSONObject(intent.getStringExtra(Constants.EXTRAS));
+                if (pushData.optJSONObject("ride").optString("rideId").equalsIgnoreCase((String) tvTripDetailTaxiProvider.getTag())) {
+                    if (pushData.optJSONObject("ride").optString("status").equalsIgnoreCase("complete")) {
+                        tvTripDetailLost.setVisibility(View.VISIBLE);
+                        lyTripDetailInvoiceFeedback.setVisibility(View.VISIBLE);
+                        tvTripDetailCancle.setVisibility(View.GONE);
+                    }
+                    tvTripDetailRideStatus.setText(pushData.optJSONObject("ride").optString("status"));
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            WakeLocker.release();
+        }
+    };
+
+    @Override
+    public void onDestroy() {
+        try {
+            unregisterReceiver(tripMessageReceiver);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        super.onDestroy();
     }
 }
