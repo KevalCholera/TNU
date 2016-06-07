@@ -81,7 +81,6 @@ public class FragmentMenu extends Fragment implements Response.Listener<JSONObje
         ivEditProfilePhoto = (ImageView) rootView.findViewById(R.id.ivEditProfilePhoto);
         clSearch = (CoordinatorLayout) getActivity().findViewById(R.id.clSearch);
 
-
         tvAccountLogout.setOnClickListener(this);
         tvAccountAccountSecurity.setOnClickListener(this);
         tvAccountLostItems.setOnClickListener(this);
@@ -90,6 +89,9 @@ public class FragmentMenu extends Fragment implements Response.Listener<JSONObje
         tvAccountMore.setOnClickListener(this);
         ivEditProfilePhoto.setOnClickListener(this);
         btAccountActivateNow.setOnClickListener(this);
+
+        setDataInActivity();
+
         return rootView;
     }
 

@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.widget.LinearLayout;
 
@@ -30,13 +31,33 @@ public class AboutUs extends AppCompatActivity {
             lyAboutUs.setLayoutParams(params);
             getSupportActionBar().setTitle("About Us");
             lyAboutUs.setVisibility(View.VISIBLE);
+            
         } else if (getIntent() != null && getIntent().hasExtra("privacy") && getIntent().getStringExtra("privacy").equalsIgnoreCase("privacy")) {
             getSupportActionBar().setTitle("Privacy Policy");
             wvPrivacyPolicy.setVisibility(View.VISIBLE);
+
+            wvPrivacyPolicy.setWebChromeClient(new WebChromeClient() {
+                public void onProgressChanged(WebView view, int progress) {
+                    setTitle(getResources().getString(R.string.get_data));
+                    setProgress(progress * 100);
+                    if (progress == 100)
+                        setTitle(R.string.app_name);
+                }
+            });
             wvPrivacyPolicy.loadUrl(Constants.BASE_URL_IMAGE_POSTFIX + Constants.BASE_PRIVACY_POLICY);
+
         } else {
             getSupportActionBar().setTitle("Terms and Conditions");
             wvPrivacyPolicy.setVisibility(View.VISIBLE);
+
+            wvPrivacyPolicy.setWebChromeClient(new WebChromeClient() {
+                public void onProgressChanged(WebView view, int progress) {
+                    setTitle(getResources().getString(R.string.get_data));
+                    setProgress(progress * 100);
+                    if (progress == 100)
+                        setTitle(R.string.app_name);
+                }
+            });
             wvPrivacyPolicy.loadUrl(Constants.BASE_URL_IMAGE_POSTFIX + Constants.BASE_TERMS_AND_CONDITION);
         }
     }

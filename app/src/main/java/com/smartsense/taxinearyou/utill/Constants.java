@@ -41,6 +41,8 @@ public class Constants {
     public static final SimpleDateFormat DATE_FORMAT_BIG_TIME_HOUR = new SimpleDateFormat("HH");
     public static final SimpleDateFormat DATE_FORMAT_TIME_AM_PM = new SimpleDateFormat("aa");
     public static final SimpleDateFormat DATE_FORMAT_EXTRA = new SimpleDateFormat("dd-MMM-yyyy HH:mm");
+    public static final SimpleDateFormat DATE_FORMAT_BIG_TIME_HOUR_MIN = new SimpleDateFormat("HH:mm");
+
     public class PrefKeys {
 
         public static final String PREF_CITY_ID = "city_id";
@@ -111,6 +113,7 @@ public class Constants {
         public static final String FARE_COST = "fareCost";
         public static final String RECEIVE_TNU_OFFERS = "receiveTnuOffers";
         public static final String RECEIVE_ORG_OFFERS = "receiveOrgOffers";
+        public static final String SERVER_DATE_TIME = "serverDateTime";
     }
 
     public class NavigationItems {
@@ -175,6 +178,12 @@ public class Constants {
         public static final int CHANGE_ALTERNET_EMAIL = 2;
         public static final int SECURITY_QUESTION = 4;
         public static final int CHANGE_PASSWORD = 3;
+    }
+
+    public class LostItem {
+        public static final int ON_GOING = 1;
+        public static final int FOUND = 2;
+        public static final int NOT_FOUND = 3;
     }
 
     public class PushList {

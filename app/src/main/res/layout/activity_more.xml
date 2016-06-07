@@ -14,13 +14,13 @@
         android:drawablePadding="@dimen/drawablePaddingMore"
         android:drawableRight="@mipmap/arrow_right_gray"
         android:gravity="fill"
+        android:paddingBottom="@dimen/lyPadding10"
         android:paddingLeft="@dimen/paddingLeft"
-
         android:paddingRight="@dimen/margin_5"
+        android:paddingTop="@dimen/lyPadding10"
         android:text="@string/event_booking"
         android:textColor="@color/heading"
-        android:textSize="@dimen/tvAccountAllSize"
-         />
+        android:textSize="@dimen/tvAccountAllSize" />
 
     <View
         android:layout_width="match_parent"
@@ -31,16 +31,16 @@
         android:id="@+id/tvMoreContactUs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/tvAccountAllMarginTop"
         android:drawableLeft="@mipmap/business_contact"
         android:drawablePadding="@dimen/tvElementCardListMarginStartEnd5"
         android:drawableRight="@mipmap/arrow_right_gray"
         android:gravity="fill"
+        android:paddingBottom="@dimen/margin_5"
         android:paddingRight="@dimen/margin_5"
+        android:paddingTop="@dimen/margin_5"
         android:text="@string/contact_us"
         android:textColor="@color/heading"
-        android:textSize="@dimen/tvAccountAllSize"
-         />
+        android:textSize="@dimen/tvAccountAllSize" />
 
     <View
         android:layout_width="match_parent"
@@ -51,17 +51,17 @@
         android:id="@+id/tvMoreAboutUs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/tvAccountAllMarginTop"
         android:drawableLeft="@mipmap/about_us"
         android:drawablePadding="@dimen/drawablePaddingMore"
         android:drawableRight="@mipmap/arrow_right_gray"
         android:gravity="fill"
+        android:paddingBottom="@dimen/lyPadding10"
         android:paddingLeft="@dimen/paddingLeft"
         android:paddingRight="@dimen/margin_5"
+        android:paddingTop="@dimen/lyPadding10"
         android:text="@string/about_us"
         android:textColor="@color/heading"
-        android:textSize="@dimen/tvAccountAllSize"
-         />
+        android:textSize="@dimen/tvAccountAllSize" />
 
     <View
         android:layout_width="match_parent"
@@ -72,17 +72,17 @@
         android:id="@+id/tvMorePrivacyPolicy"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/tvAccountAllMarginTop"
         android:drawableLeft="@mipmap/privacy"
         android:drawablePadding="@dimen/drawablePaddingMore"
         android:drawableRight="@mipmap/arrow_right_gray"
         android:gravity="fill"
+        android:paddingBottom="@dimen/lyPadding10"
         android:paddingLeft="@dimen/margin_5"
         android:paddingRight="@dimen/margin_5"
+        android:paddingTop="@dimen/lyPadding10"
         android:text="@string/privacy_poicy"
         android:textColor="@color/heading"
-        android:textSize="@dimen/tvAccountAllSize"
-         />
+        android:textSize="@dimen/tvAccountAllSize" />
 
     <View
         android:layout_width="match_parent"
@@ -94,22 +94,22 @@
         android:id="@+id/tvMoreTermsConditions"
         android:layout_width="match_parent"
         android:layout_height="@dimen/etHeightAll"
-        android:layout_marginTop="@dimen/tvAccountAllMarginTop"
         android:drawableLeft="@mipmap/terms_conditions"
         android:drawablePadding="@dimen/drawablePaddingMore"
         android:drawableRight="@mipmap/arrow_right_gray"
         android:gravity="fill"
+        android:paddingBottom="@dimen/lyPadding10"
         android:paddingLeft="@dimen/paddingLeft"
         android:paddingRight="@dimen/margin_5"
+        android:paddingTop="@dimen/lyPadding10"
         android:text="@string/terms_and_conditions"
         android:textColor="@color/heading"
-        android:textSize="@dimen/tvAccountAllSize"
-         />
-
+        android:textSize="@dimen/tvAccountAllSize" />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/vAccountAllHeight"
+        android:layout_marginTop="@dimen/margin_5"
         android:background="@color/light_Gray" />
 
 </LinearLayout>

@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AbsListView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RadioButton;
@@ -22,16 +21,15 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
-
 public class LostItem extends AppCompatActivity implements View.OnClickListener, Response.Listener<JSONObject>, Response.ErrorListener {
 
     ListView lvLostItemList;
     RadioButton rbLostItemOnGoing, rbLostItemFound, rbLostItemNotFound;
     LinearLayout llLostItemNoItemAvailable, llLostItemItemsAvailable;
-    int which_clicked = 1;
+    int which_clicked = Constants.LostItem.ON_GOING;
     private JSONArray jsonArray;
     private SwipeRefreshLayout srLostItemList;
+    boolean onCreate = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,13 +38,7 @@ public class LostItem extends AppCompatActivity implements View.OnClickListener,
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         lvLostItemList = (ListView) findViewById(R.id.lvLostItemList);
-        srLostItemList=(SwipeRefreshLayout) findViewById(R.id.srLostItemList);
-        srLostItemList.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                lostItem();
-            }
-        });
+        srLostItemList = (SwipeRefreshLayout) findViewById(R.id.srLostItemList);
         rbLostItemNotFound = (RadioButton) findViewById(R.id.rbLostItemNotFound);
         rbLostItemOnGoing = (RadioButton) findViewById(R.id.rbLostItemOnGoing);
         rbLostItemFound = (RadioButton) findViewById(R.id.rbLostItemFound);
@@ -56,6 +48,13 @@ public class LostItem extends AppCompatActivity implements View.OnClickListener,
         rbLostItemNotFound.setOnClickListener(this);
         rbLostItemOnGoing.setOnClickListener(this);
         rbLostItemFound.setOnClickListener(this);
+
+        srLostItemList.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                lostItem();
+            }
+        });
 
         lostItem();
     }
@@ -71,23 +70,25 @@ public class LostItem extends AppCompatActivity implements View.OnClickListener,
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
-        CommonUtil.jsonRequestGET(this, getResources().getString(R.string.get_data), CommonUtil.utf8Convert(builder, Constants.Events.LOST_ITEM), tag, this, this);
+        if (onCreate)
+            CommonUtil.jsonRequestGET(this, getResources().getString(R.string.get_data), CommonUtil.utf8Convert(builder, Constants.Events.LOST_ITEM), tag, this, this);
+        else
+            CommonUtil.jsonRequestNoProgressBar(CommonUtil.utf8Convert(builder, Constants.Events.LOST_ITEM), tag, this, this);
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.rbLostItemOnGoing:
-                which_clicked = 1;
+                which_clicked = Constants.LostItem.ON_GOING;
                 lostItemFilter(jsonArray);
                 break;
             case R.id.rbLostItemFound:
-                which_clicked = 2;
+                which_clicked = Constants.LostItem.FOUND;
                 lostItemFilter(jsonArray);
                 break;
             case R.id.rbLostItemNotFound:
-                which_clicked = 3;
+                which_clicked = Constants.LostItem.NOT_FOUND;
                 lostItemFilter(jsonArray);
                 break;
         }
@@ -98,11 +99,11 @@ public class LostItem extends AppCompatActivity implements View.OnClickListener,
         for (int i = 0; i < jsonArray.length(); i++) {
             JSONObject jsonObject1 = jsonArray.optJSONObject(i);
 
-            if (which_clicked == 1 && jsonObject1.optJSONObject("rideInfo").optJSONObject("lostItem").optString("status").equalsIgnoreCase("On Going"))
+            if (which_clicked == Constants.LostItem.ON_GOING && jsonObject1.optJSONObject("rideInfo").optJSONObject("lostItem").optString("status").equalsIgnoreCase("On Going"))
                 jsonArray1.put(jsonObject1);
-            else if (which_clicked == 2 && jsonObject1.optJSONObject("rideInfo").optJSONObject("lostItem").optString("status").equalsIgnoreCase("Item Found"))
+            else if (which_clicked == Constants.LostItem.FOUND && jsonObject1.optJSONObject("rideInfo").optJSONObject("lostItem").optString("status").equalsIgnoreCase("Item Found"))
                 jsonArray1.put(jsonObject1);
-            else if (which_clicked == 3 && jsonObject1.optJSONObject("rideInfo").optJSONObject("lostItem").optString("status").equalsIgnoreCase("Item Not Found"))
+            else if (which_clicked == Constants.LostItem.NOT_FOUND && jsonObject1.optJSONObject("rideInfo").optJSONObject("lostItem").optString("status").equalsIgnoreCase("Item Not Found"))
                 jsonArray1.put(jsonObject1);
         }
 

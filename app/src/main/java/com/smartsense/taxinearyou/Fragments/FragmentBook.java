@@ -50,8 +50,10 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
     CoordinatorLayout clSearch;
     TimePickerDialog mTimePicker;
     private AlertDialog alert;
-    Boolean check = false;
-    Boolean timeChange;
+    Boolean timeHasToSetInField = true;
+    Boolean onCreate = true;
+    String dateTimeCanChange;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -96,7 +98,6 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
         ivBookDeleteVia1.setOnClickListener(this);
         ivBookDeleteVia2.setOnClickListener(this);
 
-        timeChange = true;
         setDefaultValues();
         getServerDateTime();
 
@@ -106,119 +107,50 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
     @Override
     public void onResume() {
         super.onResume();
-        check = false;
+        onCreate = false;
     }
 
-    private String updateTime(int hours, int mins) {
-
-        String timeSet;
-        if (hours > 12) {
-            hours -= 12;
-            timeSet = "PM";
-        } else if (hours == 0) {
-            hours += 12;
-            timeSet = "AM";
-        } else if (hours == 12)
-            timeSet = "PM";
-        else
-            timeSet = "AM";
-
-        String minutes;
-        if (mins < 10)
-            minutes = "0" + mins;
-        else
-            minutes = String.valueOf(mins);
-
-        String hour = "";
-        if (hours < 10)
-            hour = "0" + hours;
-        else
-            hour = String.valueOf(hours);
-
-        String hrs = null, minute = null, timeSlice = null;
-        String daTime = tvBookDateTime.getText().toString();
-
-        if (rbBookTomorrow.isChecked()) {
-            hrs = hour;
-            minute = minutes;
-            timeSlice = timeSet;
-        } else {
-            try {
-                hrs = Constants.DATE_FORMAT_SMALL_TIME_HOUR.format(Constants.DATE_FORMAT_SET.parse(daTime));
-                minute = Constants.DATE_FORMAT_TIME_MIN.format(Constants.DATE_FORMAT_SET.parse(daTime));
-                timeSlice = Constants.DATE_FORMAT_TIME_AM_PM.format(Constants.DATE_FORMAT_SET.parse(daTime));
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
+    public void timePicker() {
+        int hour = 0;
+        int minute = 0;
+        try {
+            hour = Integer.valueOf(Constants.DATE_FORMAT_BIG_TIME_HOUR.format(Constants.DATE_FORMAT_SET.parse(tvBookDateTime.getText().toString())));
+            minute = Integer.valueOf(Constants.DATE_FORMAT_TIME_MIN.format(Constants.DATE_FORMAT_SET.parse(tvBookDateTime.getText().toString())));
+        } catch (ParseException e) {
+            e.printStackTrace();
         }
 
-        if (rbBookToday.isChecked()) {
-            Date dateSet, dateGet;
-            try {
-                dateSet = Constants.DATE_FORMAT_SET.parse(daTime);
-                dateGet = Constants.DATE_FORMAT_SET.parse((daTime.substring(0, daTime.indexOf(' '))) + " " + hour + ':' + minutes + " " + timeSet);
-                long millisecondSet = dateSet.getTime();
-                long millisecondGet = dateGet.getTime();
-                if (millisecondGet < millisecondSet) {
-                    Log.i("1", millisecondGet + "==>" + millisecondSet);
-                    Toast.makeText(getActivity(), "Invalid Time", Toast.LENGTH_SHORT).show();
-                } else {
-                    Log.i("2", millisecondGet + "==>" + millisecondSet);
-                    hrs = hour;
-                    minute = minutes;
-                    timeSlice = timeSet;
-                }
-
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-        }
-
-        return hrs + ':' + minute + " " + timeSlice;
-    }
-
-    public void setDateTime(Boolean check, String dateTime) {
-        final int id = llBookNowTodayTomorrow.getCheckedRadioButtonId();
-        Date Now = new Date();
-        Calendar calendar;
-        final String finalDateNow1 = Constants.DATE_FORMAT_SET.format(Now);
-        if (rbBookNow.getId() != id) {
-            int hour = 0, minute = 0;
-            try {
-                hour = Integer.valueOf(Constants.DATE_FORMAT_BIG_TIME_HOUR.format(Constants.DATE_FORMAT_SET.parse(dateTime)));
-                minute = Integer.valueOf(Constants.DATE_FORMAT_TIME_MIN.format(Constants.DATE_FORMAT_SET.parse(dateTime)));
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-            final String finalDateNow2 = Constants.DATE_FORMAT_ONLY_DATE.format(Now);
-            calendar = Calendar.getInstance();
-            calendar.add(Calendar.DAY_OF_YEAR, 1);
-            Date tomorrow = calendar.getTime();
-            final String finalDateTomorrow = Constants.DATE_FORMAT_ONLY_DATE.format(tomorrow);
-            if (rbBookToday.getId() == id) {
-                tvBookDateTime.setText(finalDateNow2 + " " + updateTime(hour, minute));
-            } else if (rbBookTomorrow.getId() == id) {
-                tvBookDateTime.setText(finalDateTomorrow + " " + updateTime(hour, minute));
-            }
-            if (check) {
-                timePicker(id, finalDateNow2, finalDateTomorrow, hour, minute);
-            }
-        } else {
-            tvBookDateTime.setText(finalDateNow1);
-        }
-    }
-
-    public void timePicker(final int id, final String finalDateNow2, final String finalDateTomorrow, int hour, int minute) {
         mTimePicker = new TimePickerDialog(getActivity(), new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
-                if (rbBookToday.getId() == id) {
-                    tvBookDateTime.setText(finalDateNow2 + " " + updateTime(selectedHour, selectedMinute));
-                } else if (rbBookTomorrow.getId() == id) {
-                    tvBookDateTime.setText(finalDateTomorrow + " " + updateTime(selectedHour, selectedMinute));
+
+                try {
+                    String time = Constants.DATE_FORMAT_ONLY_TIME.format(Constants.DATE_FORMAT_BIG_TIME_HOUR_MIN.parse(selectedHour + ":" + selectedMinute));
+                    if (rbBookToday.isChecked()) {
+                        Date dateServerTime, dateGetTime;
+                        dateServerTime = Constants.DATE_FORMAT_ONLY_TIME.parse(Constants.DATE_FORMAT_ONLY_TIME.format(Constants.DATE_FORMAT_SET.parse(SharedPreferenceUtil.getString(Constants.PrefKeys.SERVER_DATE_TIME, ""))));
+                        dateGetTime = Constants.DATE_FORMAT_ONLY_TIME.parse(time);
+                        long milliServerTime = dateServerTime.getTime();
+                        long milliGetTime = dateGetTime.getTime();
+
+                        if (milliGetTime >= milliServerTime)
+                            tvBookDateTime.setText(Constants.DATE_FORMAT_ONLY_DATE.format(Constants.DATE_FORMAT_SET.parse(dateTimeCanChange)) + " " + time);
+                        else
+                            Toast.makeText(getActivity(), "Invalid Time", Toast.LENGTH_SHORT).show();
+
+                    } else {
+                        Calendar calendar = Calendar.getInstance();
+                        calendar.setTime(Constants.DATE_FORMAT_SET.parse(dateTimeCanChange));
+                        calendar.add(Calendar.DAY_OF_MONTH, 1);
+                        tvBookDateTime.setText(Constants.DATE_FORMAT_ONLY_DATE.format(calendar.getTime()) + " " + time);
+                    }
+
+                } catch (ParseException e) {
+                    e.printStackTrace();
                 }
             }
         }, hour, minute, false);
+
         mTimePicker.setTitle("Select Time");
         mTimePicker.show();
     }
@@ -244,26 +176,24 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
         switch (v.getId()) {
 
             case R.id.rbBookNow:
-                check = false;
-                timeChange = true;
+                timeHasToSetInField = true;
                 getServerDateTime();
                 break;
 
             case R.id.rbBookToday:
-                check = false;
+                timeHasToSetInField = true;
                 getServerDateTime();
                 break;
 
             case R.id.rbBookTomorrow:
+                timeHasToSetInField = true;
                 getServerDateTime();
-                check = false;
                 break;
 
             case R.id.tvBookDateTime:
-                if (rbBookNow.isChecked())
-                    timeChange = true;
+                onCreate = !rbBookNow.isChecked();
+                timeHasToSetInField = rbBookNow.isChecked();
                 getServerDateTime();
-                check = true;
                 break;
 
             case R.id.tvBookSearchCars:
@@ -535,18 +465,24 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
         if (jsonObject != null) {
             if (jsonObject.optInt("status") == Constants.STATUS_SUCCESS) {
                 try {
-                    String dateTime = Constants.DATE_FORMAT_SET.format(Constants.DATE_FORMAT_GET.parse(jsonObject.optJSONObject("json").optString("serverTime")));
-                    if (timeChange) {
-                        tvBookDateTime.setText(dateTime);
-                        tvBookDateTime.setTag(dateTime);
-                        timeChange = false;
+                    SharedPreferenceUtil.putValue(Constants.PrefKeys.SERVER_DATE_TIME, Constants.DATE_FORMAT_SET.format(Constants.DATE_FORMAT_GET.parse(jsonObject.optJSONObject("json").optString("serverTime"))));
+                    SharedPreferenceUtil.save();
+                    dateTimeCanChange = Constants.DATE_FORMAT_SET.format(Constants.DATE_FORMAT_GET.parse(jsonObject.optJSONObject("json").optString("serverTime")));
+                    if (timeHasToSetInField) {
+                        tvBookDateTime.setText(Constants.DATE_FORMAT_SET.format(Constants.DATE_FORMAT_GET.parse(jsonObject.optJSONObject("json").optString("serverTime"))));
+                    } else if (onCreate)
+                        timePicker();
+
+                    if (rbBookTomorrow.isChecked()) {
+                        Calendar calendar = Calendar.getInstance();
+                        calendar.setTime(Constants.DATE_FORMAT_SET.parse(Constants.DATE_FORMAT_SET.format(Constants.DATE_FORMAT_GET.parse(jsonObject.optJSONObject("json").optString("serverTime")))));
+                        calendar.add(Calendar.DAY_OF_MONTH, 1);
+                        tvBookDateTime.setText(Constants.DATE_FORMAT_ONLY_DATE.format(calendar.getTime()) + " " + Constants.DATE_FORMAT_ONLY_TIME.format(Constants.DATE_FORMAT_GET.parse(jsonObject.optJSONObject("json").optString("serverTime"))));
                     }
-                    if (!rbBookNow.isChecked())
-                        setDateTime(check, dateTime);
+
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
-
             } else
                 CommonUtil.conditionAuthentication(getActivity(), jsonObject);
         } else

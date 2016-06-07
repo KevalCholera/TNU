@@ -20,6 +20,7 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:layout_marginBottom="@dimen/lyPadding10"
+            android:src="@mipmap/imgtnulogo"
             app:civ_border_color="@color/Yellow"
             app:civ_border_width="@dimen/cvAccountPhoto" />
 

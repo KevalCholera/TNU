@@ -13,7 +13,6 @@ public class More extends AppCompatActivity implements View.OnClickListener {
     TextView tvMoreEventBooking, tvMoreContactUs, tvMoreAboutUs,
             tvMorePrivacyPolicy, tvMoreTermsConditions;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
