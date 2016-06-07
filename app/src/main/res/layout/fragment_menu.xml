@@ -83,8 +83,7 @@
                 android:gravity="fill"
                 android:text="@string/general_info"
                 android:textColor="@color/heading"
-                android:textSize="@dimen/tvAccountAllSize"
-                android:textStyle="italic" />
+                android:textSize="@dimen/tvAccountAllSize" />
 
 
             <View
@@ -106,8 +105,7 @@
                 android:gravity="fill"
                 android:text="@string/acc_sec"
                 android:textColor="@color/heading"
-                android:textSize="@dimen/tvAccountAllSize"
-                android:textStyle="italic" />
+                android:textSize="@dimen/tvAccountAllSize" />
 
             <View
                 android:layout_width="match_parent"
@@ -132,8 +130,7 @@
                 android:paddingTop="@dimen/margin_5"
                 android:text="@string/payment"
                 android:textColor="@color/hintColor"
-                android:textSize="@dimen/tvAccountAllSize"
-                android:textStyle="italic" />
+                android:textSize="@dimen/tvAccountAllSize" />
 
 
             <View
@@ -158,8 +155,7 @@
                 android:paddingTop="@dimen/margin_5"
                 android:text="@string/Credits"
                 android:textColor="@color/hintColor"
-                android:textSize="@dimen/tvAccountAllSize"
-                android:textStyle="italic" />
+                android:textSize="@dimen/tvAccountAllSize" />
 
             <View
                 android:layout_width="match_parent"
@@ -181,8 +177,7 @@
                 android:gravity="fill"
                 android:text="@string/lostitems"
                 android:textColor="@color/heading"
-                android:textSize="@dimen/tvAccountAllSize"
-                android:textStyle="italic" />
+                android:textSize="@dimen/tvAccountAllSize" />
 
             <View
                 android:layout_width="match_parent"
@@ -204,8 +199,7 @@
                 android:gravity="fill"
                 android:text="@string/more"
                 android:textColor="@color/heading"
-                android:textSize="@dimen/tvAccountAllSize"
-                android:textStyle="italic" />
+                android:textSize="@dimen/tvAccountAllSize" />
 
             <View
                 android:layout_width="match_parent"
@@ -226,8 +220,7 @@
                 android:gravity="fill"
                 android:text="@string/logout"
                 android:textColor="@color/heading"
-                android:textSize="@dimen/tvAccountAllSize"
-                android:textStyle="italic" />
+                android:textSize="@dimen/tvAccountAllSize" />
 
             <View
                 android:layout_width="match_parent"

@@ -121,6 +121,7 @@
                     android:cursorVisible="false"
                     android:focusable="false"
                     android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
+                    android:singleLine="true"
                     android:textColor="@color/black"
                     android:textSize="@dimen/etSignUpSizeAll" />
 
@@ -140,6 +141,7 @@
                     android:cursorVisible="false"
                     android:focusable="false"
                     android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
+                    android:singleLine="true"
                     android:textColor="@color/black"
                     android:textSize="@dimen/etSignUpSizeAll" />
 
@@ -159,9 +161,8 @@
 
                     <RadioButton
                         android:id="@+id/rbEventBookingOneWay"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         android:button="@drawable/radio_button_event_booking"
                         android:checked="true"
                         android:text="@string/one_way"
@@ -169,10 +170,9 @@
 
                     <RadioButton
                         android:id="@+id/rbEventBookingReturn"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/rbMarginTopBottomStartEndAll"
-                        android:layout_weight="1"
                         android:button="@drawable/radio_button_event_booking"
                         android:text="@string/returns"
                         android:textColor="@color/background" />
@@ -235,6 +235,7 @@
                             android:focusable="false"
                             android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
                             android:textColor="@color/black"
+                            android:textColorHint="@color/hintColor"
                             android:textSize="@dimen/etSignUpSizeAll" />
 
                     </LinearLayout>

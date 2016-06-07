@@ -158,11 +158,13 @@ public class SignUp extends AppCompatActivity implements Response.Listener<JSONO
             CommonUtil.showSnackBar(getString(R.string.enter_email_id), clSignUp);
         else if (ivSignUpUnAvailableEmail.getVisibility() == View.VISIBLE)
             CommonUtil.showSnackBar(getResources().getString(R.string.email_alred_exist), clSignUp);
-        else if (TextUtils.isEmpty(etSignUpPassword.getText().toString()))
-            CommonUtil.showSnackBar(getString(R.string.enter_pass), clSignUp);
-        else if ((etSignUpPassword.length() < 7 || etSignUpPassword.length() > 15) && !CommonUtil.isLegalPassword(etSignUpPassword.getText().toString()) && CommonUtil.isSpecialChar(etSignUpPassword.getText().toString()))
+        else if (etSignUpPassword.length() < 7 || etSignUpPassword.length() > 15 || !CommonUtil.isLegalPassword(etSignUpPassword.getText().toString()) || CommonUtil.isSpecialChar(etSignUpPassword.getText().toString()))
             CommonUtil.showSnackBar(getString(R.string.enter_valid_pass), clSignUp);
-        else if (!TextUtils.equals(etSignUpConfirmPassword.getText().toString(), etSignUpPassword.getText().toString()))
+//        else if (!CommonUtil.isLegalPassword(etSignUpPassword.getText().toString()))
+//            CommonUtil.showSnackBar(getString(R.string.enter_valid_pass), clSignUp);
+//        else if (CommonUtil.isSpecialChar(etSignUpPassword.getText().toString()))
+//            CommonUtil.showSnackBar(getString(R.string.enter_valid_pass), clSignUp);
+        else if (!etSignUpConfirmPassword.getText().toString().equalsIgnoreCase(etSignUpPassword.getText().toString()))
             CommonUtil.showSnackBar(getString(R.string.conpass_pass_same), clSignUp);
         else if (!CommonUtil.isValidEmail(etSignUpAlternateEmail.getText().toString()))
             CommonUtil.showSnackBar(getString(R.string.enter_alternate_email), clSignUp);
@@ -181,13 +183,12 @@ public class SignUp extends AppCompatActivity implements Response.Listener<JSONO
         JSONObject jsonData = new JSONObject();
 
         try {
-            builder.append(Constants.BASE_URL + Constants.BASE_URL_POSTFIX + Constants.Events.CHECK_MOBILE_AVAILABILITY + "&json=")
-                    .append(jsonData.put("mobileNo", etSignUpContact.getText().toString()));
+            builder.append(jsonData.put("mobileNo", etSignUpContact.getText().toString()));
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        CommonUtil.jsonRequestNoProgressBar(builder.toString(), tag, this, this);
+        CommonUtil.jsonRequestNoProgressBar(CommonUtil.utf8Convert(builder, Constants.Events.CHECK_MOBILE_AVAILABILITY), tag, this, this);
     }
 
     public void imageVisibility() {
@@ -205,13 +206,13 @@ public class SignUp extends AppCompatActivity implements Response.Listener<JSONO
         JSONObject jsonData = new JSONObject();
 
         try {
-            builder.append(Constants.BASE_URL + Constants.BASE_URL_POSTFIX + Constants.Events.CHECK_EMAIL_AVAILABILITY + "&json=")
-                    .append(jsonData.put("emailId", etSignUpEmail.getText().toString())
-                            .put("type", whichEmail + ""));
+            builder.append(jsonData.put("emailId", whichEmail == 1 ? etSignUpEmail.getText().toString() : etSignUpAlternateEmail.getText().toString())
+                    .put("type", whichEmail + ""));
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        CommonUtil.jsonRequestNoProgressBar(builder.toString(), tag, this, this);
+        CommonUtil.jsonRequestNoProgressBar(CommonUtil.utf8Convert(builder, Constants.Events.CHECK_EMAIL_AVAILABILITY), tag, this, this);
     }
 
     @Override

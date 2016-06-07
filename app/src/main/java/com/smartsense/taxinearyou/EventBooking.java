@@ -140,7 +140,7 @@ public class EventBooking extends AppCompatActivity implements Response.Listener
     Boolean once = false;
 
     public void datePicker(String dateTime) {
-        DatePickerDialog DatePicker = new DatePickerDialog(this, android.R.style.Theme_DeviceDefault_Dialog, new DatePickerDialog.OnDateSetListener() {
+        DatePickerDialog DatePicker = new DatePickerDialog(this, android.R.style.Theme_DeviceDefault_Light_DarkActionBar, new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(android.widget.DatePicker DatePicker, int year, int month, int dayOfMonth) {
                 mCalendar.set(Calendar.YEAR, year);

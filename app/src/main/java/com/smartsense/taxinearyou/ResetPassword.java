@@ -71,12 +71,11 @@ public class ResetPassword extends AppCompatActivity implements Response.Listene
         StringBuilder builder = new StringBuilder();
         JSONObject jsonData = new JSONObject();
         try {
-            builder.append(Constants.BASE_URL + Constants.BASE_URL_POSTFIX + Constants.Events.EVENT_FORGOT_PASS + "&json="
-                    + jsonData.put("emailId", etResetPasswordEmailAddress.getText().toString().trim()).toString());
+            builder.append(jsonData.put("emailId", etResetPasswordEmailAddress.getText().toString().trim()).toString());
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        CommonUtil.jsonRequestGET(this, getResources().getString(R.string.get_data), builder.toString(), tag, this, this);
+        CommonUtil.jsonRequestGET(this, getResources().getString(R.string.get_data), CommonUtil.utf8Convert(builder, Constants.Events.EVENT_FORGOT_PASS), tag, this, this);
     }
 
     public void openDialog() {

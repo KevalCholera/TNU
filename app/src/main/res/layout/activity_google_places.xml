@@ -33,8 +33,7 @@
                 android:padding="@dimen/margin_5"
                 android:textColor="@color/black"
                 android:textColorHint="@color/dark_gray"
-                android:textSize="@dimen/etSignInUserPassSize"
-                android:textStyle="italic">
+                android:textSize="@dimen/etSignInUserPassSize">
 
                 <requestFocus />
             </EditText>

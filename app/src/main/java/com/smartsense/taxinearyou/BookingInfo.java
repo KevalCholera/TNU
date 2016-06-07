@@ -63,6 +63,7 @@ public class BookingInfo extends AppCompatActivity {
 
         try {
             JSONObject mainData = new JSONObject(SharedPreferenceUtil.getString(Constants.PrefKeys.MAIN_DATA, ""));
+            JSONObject jsonObject = new JSONObject(SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_CUSTOMER_SELECTION, ""));
             try {
                 tvBookInfoDate.setText(Constants.DATE_FORMAT_ONLY_DATE.format(Constants.DATE_FORMAT_SEND.parse(mainData.optString("journeyDatetime"))));
                 tvBookInfoTime.setText(Constants.DATE_FORMAT_ONLY_TIME.format(Constants.DATE_FORMAT_SEND.parse(mainData.optString("journeyDatetime"))));
@@ -73,7 +74,7 @@ public class BookingInfo extends AppCompatActivity {
                     JSONObject viaField1 = new JSONObject(SharedPreferenceUtil.getString(Constants.VIA_ADDRESS, ""));
                     lyBookingInfoVia1.setVisibility(View.VISIBLE);
                     tvBookInfoVia1.setText(viaField1.optString("viaAreaAddress"));
-                    Log.i("VIA_ADDRESS1",SharedPreferenceUtil.getString(Constants.VIA_ADDRESS, ""));
+                    Log.i("VIA_ADDRESS1", SharedPreferenceUtil.getString(Constants.VIA_ADDRESS, ""));
                 }
                 if (!SharedPreferenceUtil.getString(Constants.VIA2_ADDRESS, "").equalsIgnoreCase("")) {
                     JSONObject viaField1 = new JSONObject(SharedPreferenceUtil.getString(Constants.VIA2_ADDRESS, ""));
@@ -84,11 +85,11 @@ public class BookingInfo extends AppCompatActivity {
 
                 tvBookInfoVehicleType.setTag(mainData.optJSONObject("filterRequest").optString("vehicleType"));
                 tvBookInfoVehicleType.setText(mainData.optJSONObject("json").optJSONArray("partnerArray").optJSONObject(0).optJSONObject("taxiType").optString("taxiTypeName"));
-                tvBookInfoProvider.setText(mainData.optJSONObject("json").optJSONArray("partnerArray").optJSONObject(0).optString("partnerName"));
-                tvBookInfoPassengers.setText(mainData.optString("passanger") + "Passengers");
+                tvBookInfoProvider.setText(jsonObject.optString("partnerName"));
+                tvBookInfoPassengers.setText(mainData.optString("passanger") + " Passengers");
                 tvBookInfoLugguages.setText("Up to " + SharedPreferenceUtil.getString(Constants.PrefKeys.LUGGAGE_VALUE, "") + " Luggagges");
                 tvBookInfoRideType.setText(mainData.optJSONObject("filterRequest").optString("bookingType").equalsIgnoreCase("0") ? "Single" : "Return");
-                tvBookInfoCost.setText("£" + mainData.optJSONObject("json").optJSONArray("partnerArray").optJSONObject(0).optString("ETA") + ".00");
+                tvBookInfoCost.setText("£" + CommonUtil.getDecimal(jsonObject.optDouble("price")));
 
                 int hours = mainData.optJSONObject("json").optJSONObject("distanceMatrix").optInt("duration") / 3600;
                 String hour;

@@ -68,7 +68,7 @@
                         android:textColor="@color/black"
                         android:textColorHint="@color/light_Gray"
                         android:textSize="@dimen/tvHeadingSizeAll"
-                        android:textStyle="italic" />
+                         />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -90,7 +90,7 @@
                         android:textColor="@color/black"
                         android:textColorHint="@color/light_Gray"
                         android:textSize="@dimen/tvHeadingSizeAll"
-                        android:textStyle="italic" />
+                         />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -113,7 +113,7 @@
                         android:textColor="@color/black"
                         android:textColorHint="@color/light_Gray"
                         android:textSize="@dimen/tvHeadingSizeAll"
-                        android:textStyle="italic" />
+                         />
 
                 </LinearLayout>
             </LinearLayout>

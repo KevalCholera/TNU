@@ -45,17 +45,15 @@
                 android:layout_gravity="center"
                 android:layout_marginLeft="@dimen/signUpMargin"
                 android:layout_marginRight="@dimen/etSignUpPersonNameMarginEnd"
-                android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
                 android:layout_weight="1"
                 android:background="@drawable/grayborder"
+                android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
                 android:hint="@string/first_name"
-                android:imeOptions="actionNext"
                 android:inputType="textCapSentences"
                 android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
                 android:textColor="@color/black"
                 android:textColorHint="@color/hintColor"
-                android:textSize="@dimen/etSignUpSizeAll"
-                android:textStyle="italic" />
+                android:textSize="@dimen/etSignUpSizeAll" />
 
             <EditText
                 android:id="@+id/etSignUpLastName"
@@ -72,8 +70,7 @@
                 android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
                 android:textColor="@color/black"
                 android:textColorHint="@color/hintColor"
-                android:textSize="@dimen/etSignUpSizeAll"
-                android:textStyle="italic" />
+                android:textSize="@dimen/etSignUpSizeAll" />
 
         </LinearLayout>
 
@@ -95,8 +92,7 @@
                 android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
                 android:textColor="@color/black"
                 android:textColorHint="@color/hintColor"
-                android:textSize="@dimen/etSignUpSizeAll"
-                android:textStyle="italic" />
+                android:textSize="@dimen/etSignUpSizeAll" />
 
             <ImageView
                 android:id="@+id/ivSignUpAvailableNumber"
@@ -135,8 +131,7 @@
                 android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
                 android:textColor="@color/black"
                 android:textColorHint="@color/hintColor"
-                android:textSize="@dimen/etSignUpSizeAll"
-                android:textStyle="italic" />
+                android:textSize="@dimen/etSignUpSizeAll" />
 
             <ImageView
                 android:id="@+id/ivSignUpAvailableEmail"
@@ -179,8 +174,7 @@
                 android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
                 android:textColor="@color/black"
                 android:textColorHint="@color/hintColor"
-                android:textSize="@dimen/etSignUpSizeAll"
-                android:textStyle="italic" />
+                android:textSize="@dimen/etSignUpSizeAll" />
 
             <EditText
                 android:id="@+id/etSignUpConfirmPassword"
@@ -217,8 +211,7 @@
                 android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
                 android:textColor="@color/black"
                 android:textColorHint="@color/hintColor"
-                android:textSize="@dimen/etSignUpSizeAll"
-                android:textStyle="italic" />
+                android:textSize="@dimen/etSignUpSizeAll" />
 
             <ImageView
                 android:id="@+id/ivSignUpAvailableAlternateEmail"

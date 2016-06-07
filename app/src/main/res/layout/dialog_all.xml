@@ -52,7 +52,7 @@
                 android:textColor="@color/black"
                 android:textColorHint="@android:color/darker_gray"
                 android:textSize="@dimen/etSignInUserPassSize"
-                android:textStyle="italic" />
+                 />
 
             <TextView
                 android:layout_width="match_parent"
@@ -73,7 +73,7 @@
                 android:textColor="@color/black"
                 android:textColorHint="@android:color/darker_gray"
                 android:textSize="@dimen/etSignInUserPassSize"
-                android:textStyle="italic" />
+                 />
 
             <Button
                 android:id="@+id/btPopupSecurityAlternateEmailSubmit"
@@ -135,7 +135,7 @@
                 android:textColor="@color/black"
                 android:textColorHint="@android:color/darker_gray"
                 android:textSize="@dimen/etSignInUserPassSize"
-                android:textStyle="italic" />
+                 />
 
             <TextView
                 android:layout_width="match_parent"
@@ -156,7 +156,7 @@
                 android:textColor="@color/black"
                 android:textColorHint="@android:color/darker_gray"
                 android:textSize="@dimen/etSignInUserPassSize"
-                android:textStyle="italic" />
+                 />
 
             <Button
                 android:id="@+id/btPopupSecurityEmailSubmit"
@@ -325,7 +325,7 @@
             android:gravity="center"
             android:orientation="vertical"
             android:padding="@dimen/lyPadding10"
-            android:visibility="visible">
+            android:visibility="gone">
 
             <TextView
                 android:layout_width="match_parent"
@@ -360,7 +360,7 @@
                 android:textColor="@color/black"
                 android:textColorHint="@android:color/darker_gray"
                 android:textSize="@dimen/etSignInUserPassSize"
-                android:textStyle="italic" />
+                 />
 
             <TextView
                 android:layout_width="match_parent"
@@ -470,7 +470,7 @@
                     android:textColor="@color/black"
                     android:textColorHint="@android:color/darker_gray"
                     android:textSize="@dimen/etSignInUserPassSize"
-                    android:textStyle="italic" />
+                     />
             </LinearLayout>
 
             <LinearLayout
@@ -521,7 +521,7 @@
                     android:textColor="@color/black"
                     android:textColorHint="@android:color/darker_gray"
                     android:textSize="@dimen/etSignInUserPassSize"
-                    android:textStyle="italic" />
+                     />
             </LinearLayout>
 
             <Button
@@ -590,7 +590,7 @@
                     android:padding="@dimen/etPopupSecurityQuestionChangeAnswerPadding"
                     android:textColor="@android:color/darker_gray"
                     android:textSize="@dimen/tvTitlesSizeAll"
-                    android:textStyle="italic" />
+                     />
             </LinearLayout>
 
             <LinearLayout
@@ -615,7 +615,7 @@
                     android:padding="@dimen/etPopupSecurityQuestionChangeAnswerPadding"
                     android:textColor="@android:color/darker_gray"
                     android:textSize="@dimen/tvTitlesSizeAll"
-                    android:textStyle="italic" />
+                     />
             </LinearLayout>
 
             <LinearLayout
@@ -643,7 +643,7 @@
                     android:padding="@dimen/etPopupSecurityQuestionChangeAnswerPadding"
                     android:textColor="@android:color/darker_gray"
                     android:textSize="@dimen/tvTitlesSizeAll"
-                    android:textStyle="italic" />
+                     />
             </LinearLayout>
 
             <LinearLayout
@@ -672,7 +672,7 @@
                     android:textColor="@color/black"
                     android:textColorHint="@android:color/darker_gray"
                     android:textSize="@dimen/etSignInUserPassSize"
-                    android:textStyle="italic" />
+                     />
             </LinearLayout>
 
             <Button
@@ -717,7 +717,7 @@
                 android:text="@string/thank_you_your_ride_has_been_successfully_booked"
                 android:textColor="@color/heading"
                 android:textSize="@dimen/tvTitlesSizeAll"
-                android:textStyle="italic" />
+                 />
 
             <Button
                 android:id="@+id/btPopupBookSuccessOk"
@@ -754,7 +754,7 @@
                 android:text="@string/cancel_title"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="@dimen/tvHeadingSizeAll"
-                android:textStyle="italic" />
+                 />
 
             <View
                 android:layout_width="match_parent"
@@ -772,7 +772,7 @@
                 android:text="@string/cancel_msg"
                 android:textColor="@color/dark_gray"
                 android:textSize="@dimen/tvHeadingSizeAll"
-                android:textStyle="italic" />
+                 />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -837,7 +837,7 @@
                 android:text="@string/thank_you_for_submitting_your_feedback_this_will_help_us_to_improve_our_service"
                 android:textColor="@android:color/darker_gray"
                 android:textSize="@dimen/tvTitlesSizeAll"
-                android:textStyle="italic" />
+                 />
 
             <Button
                 android:id="@+id/btPopupFeedbackOk"
@@ -887,14 +887,14 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:textColor="@android:color/darker_gray"
-                android:textStyle="italic" />
+                 />
 
             <TextView
                 android:id="@+id/tvPopupLocatedEmail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/colorPrimary"
-                android:textStyle="italic" />
+                 />
 
 
             <TextView
@@ -905,7 +905,7 @@
                 android:gravity="center"
                 android:text="@string/please_follow_the_instructions_to_recover_your_email_address_if_you_can_t_find_the_email_we_have_send_you_in_your_inbox_check_your_junk_mail"
                 android:textColor="@android:color/darker_gray"
-                android:textStyle="italic" />
+                 />
 
             <Button
                 android:id="@+id/btPopupLocatedBack"
@@ -957,7 +957,7 @@
                 android:gravity="center"
                 android:text="@string/your_recover_email_request_has_been_sent_to_our_taxinearu_support_team_once_they_receive_your_email_they_will_contact_you_within_24_48_hours"
                 android:textColor="@android:color/darker_gray"
-                android:textStyle="italic" />
+                 />
 
             <Button
                 android:id="@+id/btPopupThankingRecoveryBack"
@@ -1000,7 +1000,7 @@
                 android:text="@string/your_lost_and_found_form_has_been_sent_to_our_taxinearu_support_team_we_will_contact_you_within_24_48_hours"
                 android:textColor="@android:color/darker_gray"
                 android:textSize="@dimen/tvTitlesSizeAll"
-                android:textStyle="italic" />
+                 />
 
             <Button
                 android:id="@+id/btPopupYourDetailOk"

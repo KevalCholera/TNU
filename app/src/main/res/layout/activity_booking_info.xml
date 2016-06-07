@@ -104,6 +104,7 @@
                             android:id="@+id/tvBookInfoFrom"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/lyPadding10"
                             android:textColor="@color/heading"
                             android:textSize="@dimen/etSignInUserPassSize" />
 
@@ -111,7 +112,6 @@
                             android:id="@+id/lyBookingInfoVia1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/lyBookingInfoMarginTopAll"
                             android:orientation="horizontal"
                             android:visibility="gone">
 
@@ -233,7 +233,6 @@
                                 android:textColor="@color/background"
                                 android:textSize="@dimen/tvTitlesSizeAll" />
                         </LinearLayout>
-
 
                     </LinearLayout>
 

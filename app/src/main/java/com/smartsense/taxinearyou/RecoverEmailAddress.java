@@ -107,21 +107,20 @@ public class RecoverEmailAddress extends AppCompatActivity implements Response.L
         JSONObject jsonData = new JSONObject();
         if (rbRecoverEmailAlternateEmail.isChecked()) {
             try {
-                builder.append(Constants.BASE_URL + Constants.BASE_URL_POSTFIX + Constants.Events.EVENT_FORGOT_EMAIL + "&json="
-                        + jsonData.put("emailId", etRecoverEmailAlternateEmail.getText().toString().trim()).toString());
+                builder.append(jsonData.put("emailId", etRecoverEmailAlternateEmail.getText().toString().trim()).toString());
+
+                CommonUtil.jsonRequestGET(this, getResources().getString(R.string.get_data), CommonUtil.utf8Convert(builder, Constants.Events.EVENT_FORGOT_EMAIL), tag, this, this);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
         } else {
             try {
-                builder.append(Constants.BASE_URL + Constants.BASE_URL_POSTFIX + Constants.Events.EVENT_FORGOT_EMAIL_WITHOUT + "&json="
-                        + jsonData.put("firstName", etRecoverEmailFirstName.getText().toString().trim()).put("lastName", etRecoverEmailLastName.getText().toString().trim()).put("mobileNo", etRecoverEmailContact.getText().toString().trim()).put("emailId", etRecoverEmailAddress.getText().toString().trim()).toString());
+                builder.append(jsonData.put("firstName", etRecoverEmailFirstName.getText().toString().trim()).put("lastName", etRecoverEmailLastName.getText().toString().trim()).put("mobileNo", etRecoverEmailContact.getText().toString().trim()).put("emailId", etRecoverEmailAddress.getText().toString().trim()).toString());
+                CommonUtil.jsonRequestGET(this, getResources().getString(R.string.get_data), CommonUtil.utf8Convert(builder, Constants.Events.EVENT_FORGOT_EMAIL_WITHOUT), tag, this, this);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
         }
-
-        CommonUtil.jsonRequestGET(this, getResources().getString(R.string.get_data), builder.toString(), tag, this, this);
 
     }
 

@@ -88,7 +88,7 @@ public class TripDetails extends AppCompatActivity implements View.OnClickListen
 
             if (tripDetails.optInt("feedbackSts") == 1)
                 tvTripDetailFeedback.setVisibility(View.GONE);
-            if (tripDetails.optInt("lostFoundExists") == 0)
+            if (tripDetails.optInt("lostFoundExists") == 1)
                 tvTripDetailLost.setVisibility(View.GONE);
 
             if (tvTripDetailRideStatus.getText().toString().equalsIgnoreCase("complete")) {
@@ -111,7 +111,7 @@ public class TripDetails extends AppCompatActivity implements View.OnClickListen
 
             tvTripDetailTaxiProvider.setText(tripDetails.optString("partner"));
             tvTripDetailTaxiProvider.setTag(tripDetails.optString("rideId"));
-            tvTripDetailFare.setText("£" + tripDetails.optInt("estimatedAmount") + ".00");
+            tvTripDetailFare.setText("£" + CommonUtil.getDecimal(tripDetails.optDouble("estimatedAmount")));
             tvTripDetailFrom.setText(tripDetails.optString("from"));
             tvTripDetailTo.setText(tripDetails.optString("to"));
 
@@ -128,8 +128,8 @@ public class TripDetails extends AppCompatActivity implements View.OnClickListen
 
                     Picasso.with(TripDetails.this)
                             .load(Uri.parse(Constants.GOOGLE_TRIP_PATH_API + "size=" + ivTripDetailsMap.getMeasuredWidth() + "x" + ivTripDetailsMap.getMeasuredHeight() + "&scale=2&markers=color:" + ContextCompat.getColor(TripDetails.this, R.color.red) + "%7C" + tripDetails.optString("fromAreaLat") + "," + tripDetails.optString("fromAreaLng") + "%7C" + tripDetails.optString("toAreaLat") + "," + tripDetails.optString("toAreaLng") + "&path=color:" + ContextCompat.getColor(TripDetails.this, R.color.colorPrimaryDark) + "%7Cweight:4%7C" + tripDetails.optString("fromAreaLat") + "," + tripDetails.optString("fromAreaLng") + "%7C" + tripDetails.optString("toAreaLat") + "," + tripDetails.optString("toAreaLng") + "&key=" + Constants.GOOGLE_TRIP_API))
-                            .error(R.mipmap.imgtnulogo)
-                            .placeholder(R.mipmap.imgtnulogo)
+                            .error(R.mipmap.img_map)
+                            .placeholder(R.mipmap.img_map)
                             .into(ivTripDetailsMap);
 
                     return true;
@@ -155,13 +155,13 @@ public class TripDetails extends AppCompatActivity implements View.OnClickListen
             }
 
             tvTripDetailTNR.setText(tripDetails.optString("pnr"));
-            tvTripDetailPassengers.setText(tripDetails.optInt("totalPassenger") + "");
+            tvTripDetailPassengers.setText(tripDetails.optString("totalPassenger"));
             tvTripDetailLugguages.setText(tripDetails.optString("totalLuggage"));
             tvTripDetailPayment.setText(tripDetails.optString("paymentType"));
             tvTripDetailRideType.setText(tripDetails.optString("bookingType"));
             tvTripDetailVehicle.setText(tripDetails.optString("vehicleType"));
 
-            double x = Double.valueOf(tripDetails.optString("estimatedKm"));
+            double x = tripDetails.optDouble("estimatedKm");
             DecimalFormat df = new DecimalFormat("#.##");
             String dx = df.format(x);
             x = Double.valueOf(dx);
