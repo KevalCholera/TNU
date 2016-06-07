@@ -734,6 +734,7 @@ public class GooglePlaces extends FragmentActivity implements OnItemClickListene
             if (jsonObj.optString("status").equalsIgnoreCase("OK")) {
                 JSONObject jsonObj1 = jsonObj.optJSONObject("result");
                 JSONArray types = jsonObj1.optJSONArray("types");
+                AreaName = jsonObj1.optString("name");
                 if (jsonObj1.has("formatted_address")) {
                     String[] str = AreaAddress.split(",");
                     if (jsonObj1.optString("name").equalsIgnoreCase(str[0].trim())) {
@@ -768,8 +769,8 @@ public class GooglePlaces extends FragmentActivity implements OnItemClickListene
             addObj.put("viaAreaLat", AreaLat.equalsIgnoreCase("") ? " " : AreaLat);
             addObj.put("viaAreaLong", AreaLong.equalsIgnoreCase("") ? " " : AreaLong);
             addObj.put("viaAreaAddress", AreaAddress.equalsIgnoreCase("") ? " " : AreaAddress);
-            addObj.put("viaAreaPostalCode", AreaPostalCode.equalsIgnoreCase(" ") ? " " : AreaPostalCode);
-            addObj.put("viaAreaCity", AreaCity.equalsIgnoreCase(" ") ? " " : AreaCity);
+            addObj.put("viaAreaPostalCode", AreaPostalCode.equalsIgnoreCase("") ? " " : AreaPostalCode);
+            addObj.put("viaAreaCity", AreaCity.equalsIgnoreCase("") ? " " : AreaCity);
             System.out.println("jsonObj: " + addObj.toString());
 
             setResult(Activity.RESULT_OK, new Intent().putExtra("typeAddress", getIntent().getIntExtra("typeAddress", 0)).putExtra("address", addObj.toString()).putExtra("AreaName", AreaName));
