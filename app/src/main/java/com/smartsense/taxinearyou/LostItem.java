@@ -1,6 +1,7 @@
 package com.smartsense.taxinearyou;
 
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -30,6 +31,7 @@ public class LostItem extends AppCompatActivity implements View.OnClickListener,
     LinearLayout llLostItemNoItemAvailable, llLostItemItemsAvailable;
     int which_clicked = 1;
     private JSONArray jsonArray;
+    private SwipeRefreshLayout srLostItemList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +40,13 @@ public class LostItem extends AppCompatActivity implements View.OnClickListener,
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         lvLostItemList = (ListView) findViewById(R.id.lvLostItemList);
-
+        srLostItemList=(SwipeRefreshLayout) findViewById(R.id.srLostItemList);
+        srLostItemList.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                lostItem();
+            }
+        });
         rbLostItemNotFound = (RadioButton) findViewById(R.id.rbLostItemNotFound);
         rbLostItemOnGoing = (RadioButton) findViewById(R.id.rbLostItemOnGoing);
         rbLostItemFound = (RadioButton) findViewById(R.id.rbLostItemFound);
@@ -123,13 +131,18 @@ public class LostItem extends AppCompatActivity implements View.OnClickListener,
         llLostItemNoItemAvailable.setVisibility(View.GONE);
         CommonUtil.errorToastShowing(this);
         CommonUtil.cancelProgressDialog();
+        if (srLostItemList.isRefreshing()) {
+            srLostItemList.setRefreshing(false);
+        }
     }
 
     @Override
     public void onResponse(JSONObject jsonObject) {
         CommonUtil.cancelProgressDialog();
+        if (srLostItemList.isRefreshing()) {
+            srLostItemList.setRefreshing(false);
+        }
         if (jsonObject != null) {
-
             if (jsonObject.optInt("status") == Constants.STATUS_SUCCESS) {
                 jsonArray = jsonObject.optJSONObject("json").optJSONArray("lostItemInfoArray");
                 if (jsonArray.length() > 0) {

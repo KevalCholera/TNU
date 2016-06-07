@@ -46,6 +46,7 @@ public class TripDetails extends AppCompatActivity implements View.OnClickListen
     ImageView ivTripDetailsMap;
     final int requestFeedBack = 1;
     final int requestLostItem = 2;
+    int requestRefreshMyTrip = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -291,7 +292,10 @@ public class TripDetails extends AppCompatActivity implements View.OnClickListen
 
     @Override
     public void onBackPressed() {
-        setResult(RESULT_OK);
+        if (requestRefreshMyTrip == 1)
+            setResult(RESULT_OK);
+        else
+            setResult(RESULT_CANCELED);
         finish();
     }
 
@@ -304,8 +308,7 @@ public class TripDetails extends AppCompatActivity implements View.OnClickListen
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                setResult(RESULT_OK);
-                finish();
+                onBackPressed();
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -325,6 +328,7 @@ public class TripDetails extends AppCompatActivity implements View.OnClickListen
             if (jsonObject.optInt("status") == Constants.STATUS_SUCCESS) {
                 if (jsonObject.optInt("__eventid") == Constants.Events.CANCEL_RIDE) {
                     alert.dismiss();
+                    requestRefreshMyTrip=1;
                     CommonUtil.alertBoxTwice(this, jsonObject.optString("msg"), getResources().getString(R.string.cancellation), tvTripDetailCancle);
                 } else if (jsonObject.optInt("__eventid") == Constants.Events.RESEND_INVOICE) {
                     CommonUtil.alertBox(this, jsonObject.optString("msg"));
