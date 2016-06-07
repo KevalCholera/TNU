@@ -69,7 +69,7 @@ public class FragmentMyTrips extends Fragment implements Response.Listener<JSONO
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 selected = position;
-                JSONObject obj = new JSONObject();
+                JSONObject obj = (JSONObject) parent.getItemAtPosition(position);
                 startActivityForResult(new Intent(getActivity(), TripDetails.class).putExtra("key", obj.toString()), request);
             }
         });
@@ -226,7 +226,7 @@ public class FragmentMyTrips extends Fragment implements Response.Listener<JSONO
         }
 
         public Object getItem(int position) {
-            return position;
+            return data.optJSONObject(position);
         }
 
         public long getItemId(int position) {
@@ -270,8 +270,8 @@ public class FragmentMyTrips extends Fragment implements Response.Listener<JSONO
             else
                 tvElementMyTripsStatus.setBackgroundColor(ContextCompat.getColor(a, R.color.Yellow));
             Log.i("Yes", totalRecord + " " + data.length());
-            if ((position + 1) == data.length()&&totalRecord != data.length()) {
-                    doMyTrip(data.length());
+            if ((position + 1) == data.length() && totalRecord != data.length()) {
+                doMyTrip(data.length());
             }
             return vi;
         }
