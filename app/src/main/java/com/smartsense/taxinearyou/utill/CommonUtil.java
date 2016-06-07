@@ -27,7 +27,11 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.InputFilter;
+import android.text.Spanned;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -36,6 +40,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -269,6 +274,20 @@ public class CommonUtil {
         dataRequest.setRetryPolicy(new DefaultRetryPolicy(20000, 0, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         TaxiNearYouApp.getInstance().addToRequestQueue(dataRequest, tag);
     }
+
+
+    public static InputFilter filter = new InputFilter() {
+        public CharSequence filter(CharSequence source, int start, int end,
+                                   Spanned dest, int dstart, int dend) {
+            for (int i = start; i < end; i++) {
+                if (Character.isSpaceChar(source.charAt(i))) {
+                    return "";
+                }
+            }
+            return null;
+        }
+    };
+
 
 //    public Cursor rawQuery(DataBaseHelper dbHelper, String sqlQuery) {
 //        Log.i("sqlQuery", sqlQuery);
@@ -557,7 +576,7 @@ public class CommonUtil {
         Toast.makeText(a, s, Toast.LENGTH_SHORT).show();
     }
 
-    public static void storeUserData(JSONObject jsonObject){
+    public static void storeUserData(JSONObject jsonObject) {
         SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_USER_FULLNAME, jsonObject.optString("firstName") + " " + jsonObject.optString("lastName"));
         SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_USER_FIRST, jsonObject.optString("firstName"));
         SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_USER_LAST, jsonObject.optString("lastName"));

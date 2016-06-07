@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
+import android.text.InputFilter;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
@@ -53,6 +54,8 @@ public class SignUp extends AppCompatActivity implements Response.Listener<JSONO
         ivSignUpAvailableAlternateEmail = (ImageView) findViewById(R.id.ivSignUpAvailableAlternateEmail);
         ivSignUpUnAvailableAlternateEmail = (ImageView) findViewById(R.id.ivSignUpUnAvailableAlternateEmail);
 
+        etSignUpFirstName.setFilters(new InputFilter[]{CommonUtil.filter});
+
         etSignUpContact.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -67,7 +70,6 @@ public class SignUp extends AppCompatActivity implements Response.Listener<JSONO
                 } else {
                     ivSignUpAvailableNumber.setVisibility(View.GONE);
                     ivSignUpUnAvailableNumber.setVisibility(View.INVISIBLE);
-//                    imageVisibility();
                 }
             }
 
@@ -91,7 +93,6 @@ public class SignUp extends AppCompatActivity implements Response.Listener<JSONO
                 } else {
                     ivSignUpAvailableEmail.setVisibility(View.GONE);
                     ivSignUpUnAvailableEmail.setVisibility(View.INVISIBLE);
-//                    imageVisibility();
                 }
             }
 
@@ -113,11 +114,9 @@ public class SignUp extends AppCompatActivity implements Response.Listener<JSONO
                     whichEmail = 2;
                     emailAvailability();
                 } else {
-//                    imageVisibility();
                     ivSignUpAvailableAlternateEmail.setVisibility(View.GONE);
                     ivSignUpUnAvailableAlternateEmail.setVisibility(View.INVISIBLE);
                 }
-
             }
 
             @Override
