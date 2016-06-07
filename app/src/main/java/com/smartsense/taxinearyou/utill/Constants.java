@@ -109,6 +109,8 @@ public class Constants {
         public static final String PREF_CUSTOMER_SELECTION = "customerSelection";
         public static final String BOOKING_INFO = "bookingInfo";
         public static final String FARE_COST = "fareCost";
+        public static final String RECEIVE_TNU_OFFERS = "receiveTnuOffers";
+        public static final String RECEIVE_ORG_OFFERS = "receiveOrgOffers";
     }
 
     public class NavigationItems {
@@ -168,12 +170,11 @@ public class Constants {
         public static final int UNAUTHENTICATED_OPERATION = 504;
     }
 
-    public class ScreenCode {
-        public static final int SCREEN_OTP = 1;
-        public static final int SCREEN_FORGOT = 2;
-        public static final int SCREEN_MYADDRESS = 3;
-        public static final int SCREEN_MYREMINDER = 4;
-        public static final int SCREEN_LOGIN = 5;
+    public class AccountSecurity {
+        public static final int CHANGE_EMAIL = 1;
+        public static final int CHANGE_ALTERNET_EMAIL = 2;
+        public static final int SECURITY_QUESTION = 4;
+        public static final int CHANGE_PASSWORD = 3;
     }
 
     public class PushList {

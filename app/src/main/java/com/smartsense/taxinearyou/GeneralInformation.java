@@ -1,5 +1,9 @@
 package com.smartsense.taxinearyou;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -7,6 +11,7 @@ import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,6 +23,8 @@ import com.android.volley.VolleyError;
 import com.mpt.storage.SharedPreferenceUtil;
 import com.smartsense.taxinearyou.utill.CommonUtil;
 import com.smartsense.taxinearyou.utill.Constants;
+import com.smartsense.taxinearyou.utill.WakeLocker;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -33,7 +40,7 @@ public class GeneralInformation extends AppCompatActivity implements Response.Li
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_general_information);
-
+        registerReceiver(tripMessageReceiver, new IntentFilter(String.valueOf(Constants.Events.UPDATE_GENERAL_INFO)));
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarAll);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -44,9 +51,7 @@ public class GeneralInformation extends AppCompatActivity implements Response.Li
         btGeneralUpdateProfile = (Button) findViewById(R.id.btGeneralUpdateProfile);
         clGeneralInfo = (CoordinatorLayout) findViewById(R.id.clGeneralInfo);
 
-        etGeneralFirstName.setText(SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_FIRST, ""));
-        etGeneralLastName.setText(SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_LAST, ""));
-        etGeneralMobile.setText(SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_MNO, ""));
+        setDataInActivity();
 
         etGeneralMobile.addTextChangedListener(new TextWatcher() {
             @Override
@@ -85,6 +90,13 @@ public class GeneralInformation extends AppCompatActivity implements Response.Li
                 }
             }
         });
+
+    }
+
+    public void setDataInActivity() {
+        etGeneralFirstName.setText(SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_FIRST, ""));
+        etGeneralLastName.setText(SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_LAST, ""));
+        etGeneralMobile.setText(SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_MNO, ""));
     }
 
     private void contactAvailability() {
@@ -166,5 +178,31 @@ public class GeneralInformation extends AppCompatActivity implements Response.Li
             } else
                 CommonUtil.conditionAuthentication(this, jsonObject);
         else CommonUtil.jsonNullError(this);
+    }
+
+    private final BroadcastReceiver tripMessageReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            WakeLocker.acquire(context);
+            Log.i("Push ", intent.getStringExtra(Constants.EXTRAS));
+            try {
+                JSONObject pushData = new JSONObject(intent.getStringExtra(Constants.EXTRAS));
+                CommonUtil.storeUserData(pushData.optJSONObject("user"));
+                setDataInActivity();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            WakeLocker.release();
+        }
+    };
+
+    @Override
+    public void onDestroy() {
+        try {
+            unregisterReceiver(tripMessageReceiver);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        super.onDestroy();
     }
 }

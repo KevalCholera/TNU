@@ -353,6 +353,7 @@ public class TripDetails extends AppCompatActivity implements View.OnClickListen
             try {
                 JSONObject pushData = new JSONObject(intent.getStringExtra(Constants.EXTRAS));
                 if (pushData.optJSONObject("ride").optString("rideId").equalsIgnoreCase((String) tvTripDetailTaxiProvider.getTag())) {
+                    requestRefreshMyTrip = 1;
                     if (pushData.optJSONObject("ride").optString("status").equalsIgnoreCase("complete")) {
                         tvTripDetailLost.setVisibility(View.VISIBLE);
                         lyTripDetailInvoiceFeedback.setVisibility(View.VISIBLE);

@@ -556,4 +556,23 @@ public class CommonUtil {
     public static void ToastShowing(Activity a, String s) {
         Toast.makeText(a, s, Toast.LENGTH_SHORT).show();
     }
+
+    public static void storeUserData(JSONObject jsonObject){
+        SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_USER_FULLNAME, jsonObject.optString("firstName") + " " + jsonObject.optString("lastName"));
+        SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_USER_FIRST, jsonObject.optString("firstName"));
+        SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_USER_LAST, jsonObject.optString("lastName"));
+        SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_USER_EMAIL, jsonObject.optString("primaryEmailId"));
+        SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_USER_ALTERNATE_EMAIL, jsonObject.optString("alternateEmailId"));
+        SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_USER_MNO, jsonObject.optString("mobileNo"));
+        SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_USER_PROIMG, Constants.BASE_URL_IMAGE_POSTFIX + jsonObject.optString("profilePic"));
+        SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_USER_STATUS, jsonObject.optString("isActivated"));
+        SharedPreferenceUtil.putValue(Constants.PrefKeys.RECEIVE_ORG_OFFERS, jsonObject.optString("receiveOrgOffers"));
+        SharedPreferenceUtil.putValue(Constants.PrefKeys.RECEIVE_TNU_OFFERS, jsonObject.optString("receiveTnuOffers"));
+        SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_QUESTION1, jsonObject.optString("secQ1"));
+        SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_QUESTION2, jsonObject.optString("secQ2"));
+        SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_ANSWER1, jsonObject.optString("ans1"));
+        SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_ANSWER2, jsonObject.optString("ans2"));
+        SharedPreferenceUtil.save();
+
+    }
 }

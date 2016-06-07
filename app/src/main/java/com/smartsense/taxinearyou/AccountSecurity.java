@@ -1,5 +1,6 @@
 package com.smartsense.taxinearyou;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -29,6 +30,7 @@ import com.mpt.storage.SharedPreferenceUtil;
 import com.onesignal.OneSignal;
 import com.smartsense.taxinearyou.utill.CommonUtil;
 import com.smartsense.taxinearyou.utill.Constants;
+import com.smartsense.taxinearyou.utill.WakeLocker;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -130,7 +132,7 @@ public class AccountSecurity extends AppCompatActivity implements View.OnClickLi
             tvPopupSecurityQuestion1.setText(SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_QUESTION1, ""));
             tvPopupSecurityQuestion2.setText(SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_QUESTION2, ""));
 
-            if (clicked == 4)
+            if (clicked == Constants.AccountSecurity.SECURITY_QUESTION)
                 rbPopupSecurityOptionsQuestions.setVisibility(View.GONE);
 
             String primaryEmail = "<font color=" + ContextCompat.getColor(this, R.color.heading) + ">" + getResources().getString(R.string.send_email_to_primary_email_address) + "</font>" + "\n" + "<font color=" + ContextCompat.getColor(this, R.color.black) + ">" + "<u>" + (SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_EMAIL, "") + "</u>" + "</font>");
@@ -158,19 +160,19 @@ public class AccountSecurity extends AppCompatActivity implements View.OnClickLi
         switch (v.getId()) {
 
             case R.id.btAccountSecurityChangeEmail:
-                clicked = 1;
+                clicked = Constants.AccountSecurity.CHANGE_EMAIL;
                 openOccasionsPopupOptions();
                 break;
             case R.id.btAccountSecurityChangeAlternateEmail:
-                clicked = 2;
+                clicked = Constants.AccountSecurity.CHANGE_ALTERNET_EMAIL;
                 openOccasionsPopupOptions();
                 break;
             case R.id.btAccountSecurityChangePassword:
-                clicked = 3;
+                clicked = Constants.AccountSecurity.CHANGE_PASSWORD;
                 openOccasionsPopupOptions();
                 break;
             case R.id.btAccountSecurityChangeQuestion:
-                clicked = 4;
+                clicked = Constants.AccountSecurity.SECURITY_QUESTION;
                 openOccasionsPopupOptions();
                 break;
             case R.id.btPopupSecurityQuestionConfirm:
@@ -268,21 +270,23 @@ public class AccountSecurity extends AppCompatActivity implements View.OnClickLi
         etAccountSecurityAlternateEmail.setText(SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_ALTERNATE_EMAIL, ""));
         tvAccountSecurityQuestion1.setText("Q1)  " + SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_QUESTION1, ""));
         tvAccountSecurityQuestion2.setText("Q2)  " + SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_QUESTION2, ""));
+        cbAccountSecurityOrganization.setChecked(SharedPreferenceUtil.getString(Constants.PrefKeys.RECEIVE_ORG_OFFERS, "0").equalsIgnoreCase("1") ? true : false);
+        cbAccountSecurityTaxinearu.setChecked(SharedPreferenceUtil.getString(Constants.PrefKeys.RECEIVE_TNU_OFFERS, "0").equalsIgnoreCase("1") ? true : false);
     }
 
     public void securityQuestionConfirm() {
 
         lyPopUpQuestion.setVisibility(View.GONE);
-        if (clicked == 1) {
+        if (clicked == Constants.AccountSecurity.CHANGE_EMAIL) {
             lyPopUpEmail.setVisibility(View.VISIBLE);
             btPopupSecurityEmailSubmit.setOnClickListener(AccountSecurity.this);
-        } else if (clicked == 2) {
+        } else if (clicked == Constants.AccountSecurity.CHANGE_ALTERNET_EMAIL) {
             lyPopUpAlternateEmail.setVisibility(View.VISIBLE);
             btPopupSecurityAlternateEmailSubmit.setOnClickListener(AccountSecurity.this);
-        } else if (clicked == 4) {
+        } else if (clicked == Constants.AccountSecurity.SECURITY_QUESTION) {
             lyPopUpQuestionChanges.setVisibility(View.VISIBLE);
             btPopupSecurityQuestionChangeConfirm.setOnClickListener(AccountSecurity.this);
-        } else if (clicked == 3) {
+        } else if (clicked == Constants.AccountSecurity.CHANGE_PASSWORD) {
             lyPopUpPassword.setVisibility(View.VISIBLE);
             btPopupSecurityPasswordSubmit.setOnClickListener(AccountSecurity.this);
         }
@@ -389,9 +393,9 @@ public class AccountSecurity extends AppCompatActivity implements View.OnClickLi
                 if (alert != null)
                     alert.dismiss();
 
-                if (clicked == 1)
+                if (clicked == Constants.AccountSecurity.CHANGE_EMAIL)
                     alertBox(jsonObject.optString("msg"));
-                else if (clicked == 2) {
+                else if (clicked == Constants.AccountSecurity.CHANGE_ALTERNET_EMAIL) {
                     SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_USER_ALTERNATE_EMAIL, etPopupSecurityAlternateEmail.getText().toString());
                     SharedPreferenceUtil.save();
                     setValue();
@@ -402,5 +406,31 @@ public class AccountSecurity extends AppCompatActivity implements View.OnClickLi
                 CommonUtil.conditionAuthentication(this, jsonObject);
         } else
             CommonUtil.jsonNullError(this);
+    }
+
+    private final BroadcastReceiver tripMessageReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            WakeLocker.acquire(context);
+            Log.i("Push ", intent.getStringExtra(Constants.EXTRAS));
+            try {
+                JSONObject pushData = new JSONObject(intent.getStringExtra(Constants.EXTRAS));
+                CommonUtil.storeUserData(pushData.optJSONObject("user"));
+                setValue();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            WakeLocker.release();
+        }
+    };
+
+    @Override
+    public void onDestroy() {
+        try {
+            unregisterReceiver(tripMessageReceiver);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        super.onDestroy();
     }
 }

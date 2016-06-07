@@ -1,8 +1,11 @@
 package com.smartsense.taxinearyou.Fragments;
 
 import android.app.Activity;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -36,6 +39,7 @@ import com.smartsense.taxinearyou.SignIn;
 import com.smartsense.taxinearyou.utill.CircleImageView1;
 import com.smartsense.taxinearyou.utill.CommonUtil;
 import com.smartsense.taxinearyou.utill.Constants;
+import com.smartsense.taxinearyou.utill.WakeLocker;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
@@ -63,7 +67,7 @@ public class FragmentMenu extends Fragment implements Response.Listener<JSONObje
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_menu, container, false);
-
+        getActivity().registerReceiver(tripMessageReceiver, new IntentFilter(String.valueOf(Constants.Events.UPDATE_PROFILE_PIC)));
         cvAccountPhoto = (CircleImageView1) rootView.findViewById(R.id.cvAccountPhoto);
         tvAccountPersonName = (TextView) rootView.findViewById(R.id.tvAccountPersonName);
         tvAccountGeneralInfo = (TextView) rootView.findViewById(R.id.tvAccountGeneralInfo);
@@ -77,6 +81,19 @@ public class FragmentMenu extends Fragment implements Response.Listener<JSONObje
         ivEditProfilePhoto = (ImageView) rootView.findViewById(R.id.ivEditProfilePhoto);
         clSearch = (CoordinatorLayout) getActivity().findViewById(R.id.clSearch);
 
+
+        tvAccountLogout.setOnClickListener(this);
+        tvAccountAccountSecurity.setOnClickListener(this);
+        tvAccountLostItems.setOnClickListener(this);
+        tvAccountGeneralInfo.setOnClickListener(this);
+        tvAccountPayment.setOnClickListener(this);
+        tvAccountMore.setOnClickListener(this);
+        ivEditProfilePhoto.setOnClickListener(this);
+        btAccountActivateNow.setOnClickListener(this);
+        return rootView;
+    }
+
+    public void setDataInActivity() {
         if (SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_STATUS, "").equalsIgnoreCase("1"))
             btAccountActivateNow.setVisibility(View.GONE);
         else
@@ -95,15 +112,6 @@ public class FragmentMenu extends Fragment implements Response.Listener<JSONObje
 
         tvAccountPersonName.setText(SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_FULLNAME, ""));
 
-        tvAccountLogout.setOnClickListener(this);
-        tvAccountAccountSecurity.setOnClickListener(this);
-        tvAccountLostItems.setOnClickListener(this);
-        tvAccountGeneralInfo.setOnClickListener(this);
-        tvAccountPayment.setOnClickListener(this);
-        tvAccountMore.setOnClickListener(this);
-        ivEditProfilePhoto.setOnClickListener(this);
-        btAccountActivateNow.setOnClickListener(this);
-        return rootView;
     }
 
     @Override
@@ -305,5 +313,31 @@ public class FragmentMenu extends Fragment implements Response.Listener<JSONObje
                 e.printStackTrace();
             }
         } else CommonUtil.jsonNullError(getActivity());
+    }
+
+    private final BroadcastReceiver tripMessageReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            WakeLocker.acquire(context);
+            Log.i("Push ", intent.getStringExtra(Constants.EXTRAS));
+            try {
+                JSONObject pushData = new JSONObject(intent.getStringExtra(Constants.EXTRAS));
+                CommonUtil.storeUserData(pushData.optJSONObject("user"));
+                setDataInActivity();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            WakeLocker.release();
+        }
+    };
+
+    @Override
+    public void onDestroy() {
+        try {
+            getActivity().unregisterReceiver(tripMessageReceiver);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        super.onDestroy();
     }
 }

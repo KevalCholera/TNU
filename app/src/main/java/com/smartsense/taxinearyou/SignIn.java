@@ -142,58 +142,58 @@ public class SignIn extends AppCompatActivity implements Response.Listener<JSONO
                 if (response.getInt("status") == Constants.STATUS_SUCCESS) {
 //                    switch (response.getInt("__eventid")) {
 //                        case Constants.Events.EVENT_LOGIN:
-                    final Pubnub pubnub = new Pubnub(
-                            "pub-c-fde08950-9a6c-48a9-99b6-7700e5bd884d",  // PUBLISH_KEY   (Optional, supply "" to disable)
-                            "sub-c-8e406cea-57aa-11e5-b316-0619f8945a4f"  // SUBSCRIBE_KEY (Required)
-                    );
-                    try {
-                        pubnub.subscribe(response.optJSONObject("json").optJSONObject("user").optString("pubnubChannel"), new Callback() {
-                                    @Override
-                                    public void connectCallback(String channel, Object message) {
-                                        pubnub.publish("my_channel", "Hello from the PubNub Java SDK", new Callback() {
-                                        });
-                                    }
-
-                                    @Override
-                                    public void disconnectCallback(String channel, Object message) {
-                                        System.out.println("SUBSCRIBE : DISCONNECT on channel:" + channel
-                                                + " : " + message.getClass() + " : "
-                                                + message.toString());
-                                    }
-
-                                    public void reconnectCallback(String channel, Object message) {
-                                        System.out.println("SUBSCRIBE : RECONNECT on channel:" + channel
-                                                + " : " + message.getClass() + " : "
-                                                + message.toString());
-                                    }
-
-                                    @Override
-                                    public void successCallback(String channel, Object message) {
-                                        System.out.println("SUBSCRIBE : " + channel + " : "
-                                                + message.getClass() + " : " + message.toString());
-                                    }
-
-                                    @Override
-                                    public void errorCallback(String channel, PubnubError error) {
-                                        System.out.println("SUBSCRIBE : ERROR on channel " + channel
-                                                + " : " + error.toString());
-                                    }
-                                }
-                        );
-                    } catch (PubnubException e) {
-                        System.out.println(e.toString());
-                    }
-                    Callback callback = new Callback() {
-                        public void successCallback(String channel, Object response) {
-                            System.out.println(response.toString());
-                        }
-
-                        public void errorCallback(String channel, PubnubError error) {
-                            System.out.println(error.toString());
-                        }
-                    };
-                    pubnub.time(callback);
-                    pubnub.publish(response.optJSONObject("json").optJSONObject("user").optString("pubnubChannel"), "Hello from the PubNub Java SDK!", callback);
+//                    final Pubnub pubnub = new Pubnub(
+//                            "pub-c-fde08950-9a6c-48a9-99b6-7700e5bd884d",  // PUBLISH_KEY   (Optional, supply "" to disable)
+//                            "sub-c-8e406cea-57aa-11e5-b316-0619f8945a4f"  // SUBSCRIBE_KEY (Required)
+//                    );
+//                    try {
+//                        pubnub.subscribe(response.optJSONObject("json").optJSONObject("user").optString("pubnubChannel"), new Callback() {
+//                                    @Override
+//                                    public void connectCallback(String channel, Object message) {
+//                                        pubnub.publish("my_channel", "Hello from the PubNub Java SDK", new Callback() {
+//                                        });
+//                                    }
+//
+//                                    @Override
+//                                    public void disconnectCallback(String channel, Object message) {
+//                                        System.out.println("SUBSCRIBE : DISCONNECT on channel:" + channel
+//                                                + " : " + message.getClass() + " : "
+//                                                + message.toString());
+//                                    }
+//
+//                                    public void reconnectCallback(String channel, Object message) {
+//                                        System.out.println("SUBSCRIBE : RECONNECT on channel:" + channel
+//                                                + " : " + message.getClass() + " : "
+//                                                + message.toString());
+//                                    }
+//
+//                                    @Override
+//                                    public void successCallback(String channel, Object message) {
+//                                        System.out.println("SUBSCRIBE : " + channel + " : "
+//                                                + message.getClass() + " : " + message.toString());
+//                                    }
+//
+//                                    @Override
+//                                    public void errorCallback(String channel, PubnubError error) {
+//                                        System.out.println("SUBSCRIBE : ERROR on channel " + channel
+//                                                + " : " + error.toString());
+//                                    }
+//                                }
+//                        );
+//                    } catch (PubnubException e) {
+//                        System.out.println(e.toString());
+//                    }
+//                    Callback callback = new Callback() {
+//                        public void successCallback(String channel, Object response) {
+//                            System.out.println(response.toString());
+//                        }
+//
+//                        public void errorCallback(String channel, PubnubError error) {
+//                            System.out.println(error.toString());
+//                        }
+//                    };
+//                    pubnub.time(callback);
+//                    pubnub.publish(response.optJSONObject("json").optJSONObject("user").optString("pubnubChannel"), "Hello from the PubNub Java SDK!", callback);
                     SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_ACCESS_TOKEN, response.optJSONObject("json").optString("token"));
                     SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_USER_ID, response.optJSONObject("json").optJSONObject("user").optString("userId"));
                     SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_USER_FULLNAME, response.optJSONObject("json").optJSONObject("user").optString("firstName") + " " + response.optJSONObject("json").getJSONObject("user").getString("lastName"));
@@ -205,10 +205,12 @@ public class SignIn extends AppCompatActivity implements Response.Listener<JSONO
                     SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_USER_PROIMG, Constants.BASE_URL_IMAGE_POSTFIX + response.optJSONObject("json").optJSONObject("user").optString("profilePic"));
                     SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_USER_STATUS, response.optJSONObject("json").optJSONObject("user").optString("isActivated"));
 
+                    SharedPreferenceUtil.putValue(Constants.PrefKeys.RECEIVE_ORG_OFFERS, response.optJSONObject("json").optJSONObject("user").optString("receiveOrgOffers"));
+                    SharedPreferenceUtil.putValue(Constants.PrefKeys.RECEIVE_TNU_OFFERS, response.optJSONObject("json").optJSONObject("user").optString("receiveTnuOffers"));
                     SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_QUESTION1, response.optJSONObject("json").optJSONObject("user").optString("secQ1"));
                     SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_QUESTION2, response.optJSONObject("json").optJSONObject("user").optString("secQ2"));
                     SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_ANSWER1, response.optJSONObject("json").optJSONObject("user").optString("ans1"));
-                    SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_ANSWER2, response.optJSONObject("json").optJSONObject("user").optString("ans1"));
+                    SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_ANSWER2, response.optJSONObject("json").optJSONObject("user").optString("ans2"));
 
                     SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_USER_INFO, response.optJSONObject("json").optJSONObject("user").toString());
                     SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_LUGGAGE, response.optJSONObject("json").optJSONArray("luggageArray").toString());
