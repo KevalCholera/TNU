@@ -280,13 +280,37 @@ public class CommonUtil {
         public CharSequence filter(CharSequence source, int start, int end,
                                    Spanned dest, int dstart, int dend) {
             for (int i = start; i < end; i++) {
-                if (Character.isSpaceChar(source.charAt(i))) {
+                if (Character.isWhitespace(source.charAt(i))) {
                     return "";
                 }
             }
             return null;
         }
+
     };
+
+    public static String text(EditText editText) {
+
+        editText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                if (s.toString().equalsIgnoreCase(""))
+                    s = "";
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        return "";
+    }
 
 
 //    public Cursor rawQuery(DataBaseHelper dbHelper, String sqlQuery) {
