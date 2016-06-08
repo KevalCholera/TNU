@@ -93,45 +93,19 @@
             android:textColor="@color/colorPrimaryDark"
             android:textSize="@dimen/tvHeadingSizeAll" />
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/tvAccountSecurityQuestion1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:textColor="@color/details"
+            android:textSize="@dimen/etSignInUserPassSize" />
 
-            <TextView
-                android:id="@+id/tvAccountSecurityQuestion1"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="0.2"
-                android:textColor="@color/details"
-                android:textSize="@dimen/etSignInUserPassSize" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="0.8" />
-
-        </LinearLayout>
-
-        <LinearLayout
+        <TextView
+            android:id="@+id/tvAccountSecurityQuestion2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/tvAccountSecurityQuestion2"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="0.2"
-                android:textColor="@color/details"
-                android:textSize="@dimen/etSignInUserPassSize" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="0.8" />
-
-        </LinearLayout>
+            android:textColor="@color/details"
+            android:textSize="@dimen/etSignInUserPassSize" />
 
         <Button
             android:id="@+id/btAccountSecurityChangeQuestion"
@@ -145,7 +119,6 @@
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="@dimen/btSizeAll" />
-
 
         <View
             android:layout_width="match_parent"

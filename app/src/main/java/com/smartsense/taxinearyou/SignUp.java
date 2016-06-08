@@ -22,6 +22,8 @@ import com.smartsense.taxinearyou.utill.Constants;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+
 public class SignUp extends AppCompatActivity implements Response.Listener<JSONObject>, Response.ErrorListener {
 
     EditText etSignUpFirstName, etSignUpLastName, etSignUpContact, etSignUpEmail,
@@ -31,6 +33,7 @@ public class SignUp extends AppCompatActivity implements Response.Listener<JSONO
     ImageButton btSignUpBack;
     ImageView ivSignUpAvailableNumber, ivSignUpUnAvailableNumber, ivSignUpAvailableEmail, ivSignUpUnAvailableEmail, ivSignUpUnAvailableAlternateEmail, ivSignUpAvailableAlternateEmail;
     int whichEmail;
+    ArrayList<String> text = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +61,31 @@ public class SignUp extends AppCompatActivity implements Response.Listener<JSONO
 //        etSignUpFirstName.setFilters(new InputFilter[]{
 //                CommonUtil.filter1
 //        });
+
+        etSignUpFirstName.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                if (s != null && !s.toString().equalsIgnoreCase(" ")) {
+                    text.add(s.toString());
+
+                    if (s.toString().contains(" "))
+                        for (int i = 0; i < text.size(); i++) {
+                            etSignUpFirstName.setText(text.get(i));
+                        }
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
 
         etSignUpContact.addTextChangedListener(new TextWatcher() {
             @Override

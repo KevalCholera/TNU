@@ -24,8 +24,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:textColor="@color/colorPrimaryDark"
                 android:text="@string/new_alternate_email"
+                android:textColor="@color/colorPrimary"
                 android:textSize="@dimen/tvTitlesSizeAll" />
 
             <View
@@ -51,8 +51,7 @@
                 android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
                 android:textColor="@color/black"
                 android:textColorHint="@android:color/darker_gray"
-                android:textSize="@dimen/etSignInUserPassSize"
-                 />
+                android:textSize="@dimen/etSignInUserPassSize" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -72,8 +71,7 @@
                 android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
                 android:textColor="@color/black"
                 android:textColorHint="@android:color/darker_gray"
-                android:textSize="@dimen/etSignInUserPassSize"
-                 />
+                android:textSize="@dimen/etSignInUserPassSize" />
 
             <Button
                 android:id="@+id/btPopupSecurityAlternateEmailSubmit"
@@ -107,7 +105,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="@string/new_email"
-                android:textColor="@color/colorPrimaryDark"
+                android:textColor="@color/colorPrimary"
                 android:textSize="@dimen/tvTitlesSizeAll" />
 
             <View
@@ -134,8 +132,7 @@
                 android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
                 android:textColor="@color/black"
                 android:textColorHint="@android:color/darker_gray"
-                android:textSize="@dimen/etSignInUserPassSize"
-                 />
+                android:textSize="@dimen/etSignInUserPassSize" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -155,8 +152,7 @@
                 android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
                 android:textColor="@color/black"
                 android:textColorHint="@android:color/darker_gray"
-                android:textSize="@dimen/etSignInUserPassSize"
-                 />
+                android:textSize="@dimen/etSignInUserPassSize" />
 
             <Button
                 android:id="@+id/btPopupSecurityEmailSubmit"
@@ -179,6 +175,7 @@
             android:layout_height="wrap_content"
             android:background="@color/white"
             android:orientation="vertical"
+            android:padding="@dimen/vMarginTopBottomAll"
             android:visibility="gone">
 
             <TextView
@@ -193,8 +190,6 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/vHeightWidthAll"
-                android:layout_marginLeft="@dimen/vPopupMarginStartEnd"
-                android:layout_marginRight="@dimen/vPopupMarginStartEnd"
                 android:layout_marginTop="@dimen/vMarginTopBottomAll"
                 android:background="@android:color/darker_gray" />
 
@@ -205,10 +200,10 @@
                 android:gravity="center"
                 android:orientation="horizontal">
 
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1" />
+                <!--<View-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_weight="1" />-->
 
                 <RadioGroup
                     android:layout_width="0dp"
@@ -222,14 +217,16 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/margin_5"
                         android:button="@drawable/radio_button_popup"
-                        android:checked="true" />
+                        android:checked="true"
+                        android:textColor="@color/details" />
 
                     <RadioButton
                         android:id="@+id/rbPopupSecurityOptionsAlternateEmail"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/margin_5"
-                        android:button="@drawable/radio_button_popup" />
+                        android:button="@drawable/radio_button_popup"
+                        android:textColor="@color/details" />
 
                     <RadioButton
                         android:id="@+id/rbPopupSecurityOptionsQuestions"
@@ -238,7 +235,8 @@
                         android:layout_marginTop="@dimen/margin_5"
                         android:button="@drawable/radio_button_popup"
                         android:gravity="center"
-                        android:text="@string/answer_security_question" />
+                        android:text="@string/answer_security_question"
+                        android:textColor="@color/details" />
 
                 </RadioGroup>
 
@@ -359,8 +357,7 @@
                 android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
                 android:textColor="@color/black"
                 android:textColorHint="@android:color/darker_gray"
-                android:textSize="@dimen/etSignInUserPassSize"
-                 />
+                android:textSize="@dimen/etSignInUserPassSize" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -393,7 +390,7 @@
                 android:gravity="center"
                 android:paddingLeft="@dimen/btPopupSubmitPaddingLeftRight"
                 android:paddingRight="@dimen/btPopupSubmitPaddingLeftRight"
-                android:text="Submit"
+                android:text="@string/submit"
                 android:textColor="@color/white"
                 android:textSize="@dimen/tvTitlesSizeAll" />
 
@@ -403,6 +400,7 @@
             android:id="@+id/lyPopUpQuestion"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="@dimen/vMarginTopBottomAll"
             android:background="@color/white"
             android:gravity="center"
             android:orientation="vertical"
@@ -421,28 +419,16 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/vHeightWidthAll"
-                android:layout_margin="@dimen/vMarginTopBottomAll"
+                android:layout_marginBottom="@dimen/vMarginTopBottomAll"
+                android:layout_marginTop="@dimen/vMarginTopBottomAll"
                 android:background="@android:color/darker_gray" />
 
-            <LinearLayout
+            <TextView
+                android:id="@+id/tvPopupSecurityQuestion1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/q1"
-                    android:textSize="@dimen/tvTitlesSizeAll" />
-
-                <TextView
-                    android:id="@+id/tvPopupSecurityQuestion1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/tvPopupSecurityQuestionMarginStart"
-                    android:textColor="@android:color/darker_gray"
-                    android:textSize="@dimen/tvTitlesSizeAll" />
-            </LinearLayout>
+                android:textColor="@android:color/darker_gray"
+                android:textSize="@dimen/tvTitlesSizeAll" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -455,6 +441,7 @@
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:text="@string/a"
+                    android:textColor="@color/details"
                     android:textSize="@dimen/tvTitlesSizeAll" />
 
                 <EditText
@@ -469,31 +456,15 @@
                     android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
                     android:textColor="@color/black"
                     android:textColorHint="@android:color/darker_gray"
-                    android:textSize="@dimen/etSignInUserPassSize"
-                     />
+                    android:textSize="@dimen/etSignInUserPassSize" />
             </LinearLayout>
 
-            <LinearLayout
+            <TextView
+                android:id="@+id/tvPopupSecurityQuestion2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/tvPopupMarginTop"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/q2"
-                    android:textSize="@dimen/tvTitlesSizeAll" />
-
-
-                <TextView
-                    android:id="@+id/tvPopupSecurityQuestion2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/tvPopupSecurityQuestionMarginStart"
-                    android:textColor="@android:color/darker_gray"
-                    android:textSize="@dimen/tvTitlesSizeAll" />
-            </LinearLayout>
+                android:textColor="@android:color/darker_gray"
+                android:textSize="@dimen/tvTitlesSizeAll" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -506,6 +477,7 @@
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:text="@string/a"
+                    android:textColor="@color/details"
                     android:textSize="@dimen/tvTitlesSizeAll" />
 
                 <EditText
@@ -520,8 +492,7 @@
                     android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
                     android:textColor="@color/black"
                     android:textColorHint="@android:color/darker_gray"
-                    android:textSize="@dimen/etSignInUserPassSize"
-                     />
+                    android:textSize="@dimen/etSignInUserPassSize" />
             </LinearLayout>
 
             <Button
@@ -589,8 +560,7 @@
                     android:focusable="false"
                     android:padding="@dimen/etPopupSecurityQuestionChangeAnswerPadding"
                     android:textColor="@android:color/darker_gray"
-                    android:textSize="@dimen/tvTitlesSizeAll"
-                     />
+                    android:textSize="@dimen/tvTitlesSizeAll" />
             </LinearLayout>
 
             <LinearLayout
@@ -614,8 +584,7 @@
                     android:background="@drawable/grayborder"
                     android:padding="@dimen/etPopupSecurityQuestionChangeAnswerPadding"
                     android:textColor="@android:color/darker_gray"
-                    android:textSize="@dimen/tvTitlesSizeAll"
-                     />
+                    android:textSize="@dimen/tvTitlesSizeAll" />
             </LinearLayout>
 
             <LinearLayout
@@ -642,8 +611,7 @@
                     android:focusable="false"
                     android:padding="@dimen/etPopupSecurityQuestionChangeAnswerPadding"
                     android:textColor="@android:color/darker_gray"
-                    android:textSize="@dimen/tvTitlesSizeAll"
-                     />
+                    android:textSize="@dimen/tvTitlesSizeAll" />
             </LinearLayout>
 
             <LinearLayout
@@ -671,8 +639,7 @@
                     android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
                     android:textColor="@color/black"
                     android:textColorHint="@android:color/darker_gray"
-                    android:textSize="@dimen/etSignInUserPassSize"
-                     />
+                    android:textSize="@dimen/etSignInUserPassSize" />
             </LinearLayout>
 
             <Button
@@ -716,8 +683,7 @@
                 android:gravity="center"
                 android:text="@string/thank_you_your_ride_has_been_successfully_booked"
                 android:textColor="@color/heading"
-                android:textSize="@dimen/tvTitlesSizeAll"
-                 />
+                android:textSize="@dimen/tvTitlesSizeAll" />
 
             <Button
                 android:id="@+id/btPopupBookSuccessOk"
@@ -752,9 +718,8 @@
                 android:layout_margin="@dimen/tvPopupMarginTop"
                 android:gravity="center"
                 android:text="@string/cancel_title"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="@dimen/tvHeadingSizeAll"
-                 />
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/tvHeadingSizeAll" />
 
             <View
                 android:layout_width="match_parent"
@@ -771,8 +736,7 @@
                 android:gravity="center"
                 android:text="@string/cancel_msg"
                 android:textColor="@color/dark_gray"
-                android:textSize="@dimen/tvHeadingSizeAll"
-                 />
+                android:textSize="@dimen/tvHeadingSizeAll" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -836,8 +800,7 @@
                 android:gravity="center"
                 android:text="@string/thank_you_for_submitting_your_feedback_this_will_help_us_to_improve_our_service"
                 android:textColor="@android:color/darker_gray"
-                android:textSize="@dimen/tvTitlesSizeAll"
-                 />
+                android:textSize="@dimen/tvTitlesSizeAll" />
 
             <Button
                 android:id="@+id/btPopupFeedbackOk"
@@ -886,15 +849,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:textColor="@android:color/darker_gray"
-                 />
+                android:textColor="@android:color/darker_gray" />
 
             <TextView
                 android:id="@+id/tvPopupLocatedEmail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/colorPrimary"
-                 />
+                android:textColor="@color/colorPrimary" />
 
 
             <TextView
@@ -904,8 +865,7 @@
                 android:layout_marginTop="@dimen/tvPopupMarginTop"
                 android:gravity="center"
                 android:text="@string/please_follow_the_instructions_to_recover_your_email_address_if_you_can_t_find_the_email_we_have_send_you_in_your_inbox_check_your_junk_mail"
-                android:textColor="@android:color/darker_gray"
-                 />
+                android:textColor="@android:color/darker_gray" />
 
             <Button
                 android:id="@+id/btPopupLocatedBack"
@@ -956,8 +916,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="@string/your_recover_email_request_has_been_sent_to_our_taxinearu_support_team_once_they_receive_your_email_they_will_contact_you_within_24_48_hours"
-                android:textColor="@android:color/darker_gray"
-                 />
+                android:textColor="@android:color/darker_gray" />
 
             <Button
                 android:id="@+id/btPopupThankingRecoveryBack"
@@ -999,8 +958,7 @@
                 android:gravity="center"
                 android:text="@string/your_lost_and_found_form_has_been_sent_to_our_taxinearu_support_team_we_will_contact_you_within_24_48_hours"
                 android:textColor="@android:color/darker_gray"
-                android:textSize="@dimen/tvTitlesSizeAll"
-                 />
+                android:textSize="@dimen/tvTitlesSizeAll" />
 
             <Button
                 android:id="@+id/btPopupYourDetailOk"

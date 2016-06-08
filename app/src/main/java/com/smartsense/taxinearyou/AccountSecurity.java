@@ -140,17 +140,20 @@ public class AccountSecurity extends AppCompatActivity implements View.OnClickLi
             etPopupSecurityQuestionChangeQuestion2 = (EditText) dialog.findViewById(R.id.etPopupSecurityQuestionChangeQuestion2);
 
             lyPopUpSecurityOptions.setVisibility(View.VISIBLE);
-            tvPopupSecurityQuestion1.setText(SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_QUESTION1, ""));
-            tvPopupSecurityQuestion2.setText(SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_QUESTION2, ""));
+            tvPopupSecurityQuestion1.setText(dialog.getResources().getString(R.string.q1) + " " + SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_QUESTION1, ""));
+            tvPopupSecurityQuestion2.setText(dialog.getResources().getString(R.string.q2) + " " + SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_QUESTION2, ""));
 
             if (clicked == Constants.AccountSecurity.SECURITY_QUESTION)
                 rbPopupSecurityOptionsQuestions.setVisibility(View.GONE);
 
-            String primaryEmail = "<font color=" + ContextCompat.getColor(this, R.color.heading) + ">" + getResources().getString(R.string.send_email_to_primary_email_address) + "</font>" + "\n" + "<font color=" + ContextCompat.getColor(this, R.color.black) + ">" + "<u>" + (SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_EMAIL, "") + "</u>" + "</font>");
-            String alternateEmail = "<font color=" + ContextCompat.getColor(this, R.color.heading) + ">" + getResources().getString(R.string.send_email_to_alternate_email_address) + "</font>" + "\n" + "<font color=" + ContextCompat.getColor(this, R.color.black) + ">" + "<u>" + (SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_ALTERNATE_EMAIL, "") + "</u>" + "</font>");
+//            String primaryEmail = "<font color=" + ContextCompat.getColor(this, R.color.heading) + ">" + getResources().getString(R.string.send_email_to_primary_email_address) + "</font>" + "\n" + "<font color=" + ContextCompat.getColor(this, R.color.black) + ">" + "<u>" + (SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_EMAIL, "") + "</u>" + "</font>");
+//            String alternateEmail = "<font color=" + ContextCompat.getColor(this, R.color.heading) + ">" + getResources().getString(R.string.send_email_to_alternate_email_address) + "</font>" + "\n" + "<font color=" + ContextCompat.getColor(this, R.color.black) + ">" + "<u>" + (SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_ALTERNATE_EMAIL, "") + "</u>" + "</font>");
+//
+//            rbPopupSecurityOptionsEmail.setText(Html.fromHtml(primaryEmail));
+//            rbPopupSecurityOptionsAlternateEmail.setText(Html.fromHtml(alternateEmail));
 
-            rbPopupSecurityOptionsEmail.setText(Html.fromHtml(primaryEmail));
-            rbPopupSecurityOptionsAlternateEmail.setText(Html.fromHtml(alternateEmail));
+            rbPopupSecurityOptionsEmail.setText(getResources().getString(R.string.send_email_to_primary_email_address)+"\n"+SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_EMAIL, ""));
+            rbPopupSecurityOptionsAlternateEmail.setText(getResources().getString(R.string.send_email_to_alternate_email_address)+"\n"+SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_ALTERNATE_EMAIL, ""));
 
             btPopupSecurityOptionsSubmit.setOnClickListener(this);
             etPopupSecurityQuestionChangeQuestion1.setOnClickListener(this);
