@@ -5,7 +5,9 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.content.ContextCompat;
@@ -100,7 +102,11 @@ public class AccountSecurity extends AppCompatActivity implements View.OnClickLi
             final AlertDialog.Builder alertDialogs = new AlertDialog.Builder(this);
             LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             dialog = inflater.inflate(R.layout.dialog_all, null);
-            dialog.setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                dialog.setBackground(new ColorDrawable(Color.TRANSPARENT));
+            } else {
+                dialog.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            }
 
             lyPopUpAlternateEmail = (LinearLayout) dialog.findViewById(R.id.lyPopUpAlternateEmail);
             lyPopUpEmail = (LinearLayout) dialog.findViewById(R.id.lyPopUpEmail);
@@ -423,15 +429,7 @@ public class AccountSecurity extends AppCompatActivity implements View.OnClickLi
             try {
                 JSONObject pushData = new JSONObject(intent.getStringExtra(Constants.EXTRAS));
                 CommonUtil.storeUserData(pushData.optJSONObject("user"));
-                if (pushData.optInt("reqType") == 1) {
-                    Toast.makeText(AccountSecurity.this, AccountSecurity.this.getResources().getString(R.string.session_expire), Toast.LENGTH_SHORT).show();
-                    SharedPreferenceUtil.clear();
-                    SharedPreferenceUtil.save();
-                    OneSignal.sendTag("emailId", "");
-                    startActivity(new Intent(AccountSecurity.this, SignIn.class));
-                    finish();
-                } else
-                    setValue();
+                setValue();
             } catch (JSONException e) {
                 e.printStackTrace();
             }

@@ -8,11 +8,16 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.google.android.gms.gcm.GoogleCloudMessaging;
+import com.mpt.storage.SharedPreferenceUtil;
+import com.onesignal.OneSignal;
 import com.smartsense.taxinearyou.ActivitySplash;
 import com.smartsense.taxinearyou.R;
+import com.smartsense.taxinearyou.SignIn;
 import com.smartsense.taxinearyou.TaxiNearYouApp;
+import com.smartsense.taxinearyou.utill.CommonUtil;
 import com.smartsense.taxinearyou.utill.Constants;
 
 import org.json.JSONObject;
@@ -37,6 +42,15 @@ public class GcmIntentService extends IntentService {
 
             if (!extras.isEmpty()) {
                 JSONObject pushDataObj = new JSONObject(extras.get("custom").toString());
+                if (pushDataObj.optJSONObject("a").has("user")) {
+                    CommonUtil.storeUserData(pushDataObj.optJSONObject("a").optJSONObject("user"));
+                } else if (pushDataObj.optJSONObject("a").optInt("eventId") == Constants.Events.UPDATE_EMAIL) {
+                    if (pushDataObj.optJSONObject("a").optInt("reqType") == 1) {
+                        SharedPreferenceUtil.clear();
+                        SharedPreferenceUtil.save();
+                        OneSignal.sendTag("emailId", "");
+                    }
+                }
                 Intent intentBroadCast;
                 intentBroadCast = new Intent(pushDataObj.optJSONObject("a").optString("eventId"));
                 intentBroadCast.putExtra(Constants.EXTRAS, pushDataObj.optJSONObject("a").toString());

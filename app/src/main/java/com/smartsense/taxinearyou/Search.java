@@ -1,7 +1,10 @@
 package com.smartsense.taxinearyou;
 
 import android.app.ActionBar;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
@@ -13,16 +16,26 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.mpt.storage.SharedPreferenceUtil;
+import com.onesignal.OneSignal;
 import com.smartsense.taxinearyou.Fragments.FragmentBook;
 import com.smartsense.taxinearyou.Fragments.FragmentCredit;
 import com.smartsense.taxinearyou.Fragments.FragmentMenu;
 import com.smartsense.taxinearyou.Fragments.FragmentMyTrips;
+import com.smartsense.taxinearyou.utill.CommonUtil;
+import com.smartsense.taxinearyou.utill.Constants;
+import com.smartsense.taxinearyou.utill.WakeLocker;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,7 +52,7 @@ public class Search extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
-
+        registerReceiver(tripMessageReceiver, new IntentFilter(String.valueOf(Constants.Events.UPDATE_EMAIL)));
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarAll);
         setSupportActionBar(toolbar);
 
@@ -51,7 +64,7 @@ public class Search extends AppCompatActivity {
         tbSearchTab.setupWithViewPager(viewPager);
 //        setupTabIcons();
 
-        imageViews.add(ContextCompat.getDrawable(this, R.mipmap.ic_car_white));
+        imageViews.add(ContextCompat.getDrawable(this, R.mipmap.car_white));
         imageViews.add(ContextCompat.getDrawable(this, R.mipmap.ic_baggage));
         imageViews.add(ContextCompat.getDrawable(this, R.mipmap.coins2));
         imageViews.add(ContextCompat.getDrawable(this, R.mipmap.hamburger));
@@ -155,5 +168,38 @@ public class Search extends AppCompatActivity {
         intent.addCategory(Intent.CATEGORY_HOME);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
+    }
+
+    private final BroadcastReceiver tripMessageReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            WakeLocker.acquire(context);
+            Log.i("Push ", intent.getStringExtra(Constants.EXTRAS));
+            try {
+                JSONObject pushData = new JSONObject(intent.getStringExtra(Constants.EXTRAS));
+                CommonUtil.storeUserData(pushData.optJSONObject("user"));
+                if (pushData.optInt("reqType") == 1 ) {
+                    Toast.makeText(Search.this, Search.this.getResources().getString(R.string.session_expire), Toast.LENGTH_SHORT).show();
+                    SharedPreferenceUtil.clear();
+                    SharedPreferenceUtil.save();
+                    OneSignal.sendTag("emailId", "");
+                    startActivity(new Intent(Search.this, SignIn.class));
+                    finish();
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            WakeLocker.release();
+        }
+    };
+
+    @Override
+    public void onDestroy() {
+        try {
+            unregisterReceiver(tripMessageReceiver);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        super.onDestroy();
     }
 }
