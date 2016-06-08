@@ -83,13 +83,13 @@ public class FragmentMyTrips extends Fragment implements Response.Listener<JSONO
                 pageNumber = 0;
                 totalRecord = 0;
                 adapterMyTrips = null;
-                doMyTrip(pageNumber);
+                doMyTrip(pageNumber,false);
             }
         });
         getActivity().registerReceiver(tripMessageReceiver, new IntentFilter(String.valueOf(Constants.Events.EVENT_CHANGE)));
         getActivity().registerReceiver(tripMessageReceiver, new IntentFilter(String.valueOf(Constants.Events.CANCEL_RIDE)));
         getActivity().registerReceiver(tripMessageReceiver, new IntentFilter(String.valueOf(Constants.Events.BookRide)));
-        doMyTrip(pageNumber);
+        doMyTrip(pageNumber,false);
 
 //        lvMyTrips.setOnScrollListener(new AbsListView.OnScrollListener() {
 //
@@ -111,7 +111,7 @@ public class FragmentMyTrips extends Fragment implements Response.Listener<JSONO
         return rootView;
     }
 
-    private void doMyTrip(int pageNumber) {
+    private void doMyTrip(int pageNumber, Boolean check) {
         final String tag = "My Trip";
         StringBuilder builder = new StringBuilder();
         JSONObject jsonData = new JSONObject();
@@ -124,6 +124,8 @@ public class FragmentMyTrips extends Fragment implements Response.Listener<JSONO
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        if (check)
+            CommonUtil.showProgressDialog(getActivity(), getResources().getString(R.string.get_data));
         CommonUtil.jsonRequestNoProgressBar(CommonUtil.utf8Convert(builder, Constants.Events.EVENT_MY_TRIP), tag, this, this);
     }
 
@@ -144,7 +146,7 @@ public class FragmentMyTrips extends Fragment implements Response.Listener<JSONO
                     pageNumber = 0;
                     totalRecord = 0;
                     adapterMyTrips = null;
-                    doMyTrip(pageNumber);
+                    doMyTrip(pageNumber,true);
                     break;
             }
     }
@@ -199,7 +201,7 @@ public class FragmentMyTrips extends Fragment implements Response.Listener<JSONO
             pageNumber = 0;
             totalRecord = 0;
             adapterMyTrips = null;
-            doMyTrip(pageNumber);
+            doMyTrip(pageNumber,true);
             WakeLocker.release();
         }
     };
@@ -292,7 +294,7 @@ public class FragmentMyTrips extends Fragment implements Response.Listener<JSONO
                 tvElementMyTripsStatus.setBackgroundColor(ContextCompat.getColor(a, R.color.Yellow));
             Log.i("Yes", totalRecord + " " + data.length());
             if ((position + 1) == data.length() && totalRecord != data.length()) {
-                doMyTrip(data.length());
+                doMyTrip(data.length(),true);
             }
             return vi;
         }

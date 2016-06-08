@@ -64,7 +64,7 @@ public class Search extends AppCompatActivity {
         tbSearchTab.setupWithViewPager(viewPager);
 //        setupTabIcons();
 
-        imageViews.add(ContextCompat.getDrawable(this, R.mipmap.car_white));
+        imageViews.add(ContextCompat.getDrawable(this, R.drawable.ic_imgtab13x));
         imageViews.add(ContextCompat.getDrawable(this, R.mipmap.ic_baggage));
         imageViews.add(ContextCompat.getDrawable(this, R.mipmap.coins2));
         imageViews.add(ContextCompat.getDrawable(this, R.mipmap.hamburger));
@@ -177,7 +177,7 @@ public class Search extends AppCompatActivity {
             Log.i("Push ", intent.getStringExtra(Constants.EXTRAS));
             try {
                 JSONObject pushData = new JSONObject(intent.getStringExtra(Constants.EXTRAS));
-                CommonUtil.storeUserData(pushData.optJSONObject("user"));
+//                CommonUtil.storeUserData(pushData.optJSONObject("user"));
                 if (pushData.optInt("reqType") == 1 ) {
                     Toast.makeText(Search.this, Search.this.getResources().getString(R.string.session_expire), Toast.LENGTH_SHORT).show();
                     SharedPreferenceUtil.clear();

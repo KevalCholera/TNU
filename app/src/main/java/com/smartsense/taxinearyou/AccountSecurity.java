@@ -160,6 +160,7 @@ public class AccountSecurity extends AppCompatActivity implements View.OnClickLi
             etPopupSecurityQuestionChangeQuestion2.setOnClickListener(this);
 
             alertDialogs.setView(dialog);
+//            alert.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
             alert = alertDialogs.create();
             alert.show();
 
@@ -430,10 +431,10 @@ public class AccountSecurity extends AppCompatActivity implements View.OnClickLi
             WakeLocker.acquire(context);
             Log.i("Push ", intent.getStringExtra(Constants.EXTRAS));
             try {
-                JSONObject pushData = new JSONObject(intent.getStringExtra(Constants.EXTRAS));
-                CommonUtil.storeUserData(pushData.optJSONObject("user"));
+//                JSONObject pushData = new JSONObject(intent.getStringExtra(Constants.EXTRAS));
+//                CommonUtil.storeUserData(pushData.optJSONObject("user"));
                 setValue();
-            } catch (JSONException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
             WakeLocker.release();

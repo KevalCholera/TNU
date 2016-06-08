@@ -6,6 +6,7 @@ import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.InputFilter;
+import android.text.Spanned;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
@@ -56,44 +57,45 @@ public class SignUp extends AppCompatActivity implements Response.Listener<JSONO
         ivSignUpAvailableNumber = (ImageView) findViewById(R.id.ivSignUpAvailableNumber);
         ivSignUpAvailableAlternateEmail = (ImageView) findViewById(R.id.ivSignUpAvailableAlternateEmail);
         ivSignUpUnAvailableAlternateEmail = (ImageView) findViewById(R.id.ivSignUpUnAvailableAlternateEmail);
+        etSignUpFirstName.setFilters(new InputFilter[]{textFilter});
 
 //        etSignUpFirstName.setFilters(new InputFilter[]{CommonUtil.filter});
 //        etSignUpFirstName.setFilters(new InputFilter[]{
 //                CommonUtil.filter1
 //        });
 
-        etSignUpFirstName.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-//                if (s != null && !s.toString().equalsIgnoreCase(" ")) {
-//                    text.add(s.toString());
+//        etSignUpFirstName.addTextChangedListener(new TextWatcher() {
+//            @Override
+//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 //
-//                    if (s.toString().contains(" "))
-//                        for (int i = 0; i < text.size(); i++) {
-//                            etSignUpFirstName.setText(text.get(i));
-//                        }
-
-//                if (s != null && s.toString().equalsIgnoreCase(" ")) {
-//                    etSignUpFirstName.setText(etSignUpFirstName.getText().toString());
+//            }
+//
+//            @Override
+//            public void onTextChanged(CharSequence s, int start, int before, int count) {
+//
+////                if (s != null && !s.toString().equalsIgnoreCase(" ")) {
+////                    text.add(s.toString());
+////
+////                    if (s.toString().contains(" "))
+////                        for (int i = 0; i < text.size(); i++) {
+////                            etSignUpFirstName.setText(text.get(i));
+////                        }
+//
+////                if (s != null && s.toString().equalsIgnoreCase(" ")) {
+////                    etSignUpFirstName.setText(etSignUpFirstName.getText().toString());
+////                }
+//            }
+//
+//            @Override
+//            public void afterTextChanged(Editable s) {
+//
+//                String result = s.toString().replaceAll(" ", "");
+//                if (!s.toString().equals(result)) {
+//                    etSignUpFirstName.setText(result);
+//                    etSignUpFirstName.setSelection(result.length());
 //                }
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-                String result = s.toString().replaceAll(" ", "");
-                if (!s.toString().equals(result)) {
-                    etSignUpFirstName.setText(result);
-                    etSignUpFirstName.setSelection(result.length());
-                }
-            }
-        });
+//            }
+//        });
 
         etSignUpContact.addTextChangedListener(new TextWatcher() {
             @Override
@@ -291,4 +293,16 @@ public class SignUp extends AppCompatActivity implements Response.Listener<JSONO
         } else
             CommonUtil.jsonNullError(this);
     }
+
+    InputFilter textFilter = new InputFilter() {
+        @Override
+        public CharSequence filter(CharSequence c, int arg1, int arg2,Spanned arg3, int arg4, int arg5) {
+            StringBuilder sbText = new StringBuilder(c);
+            String text = sbText.toString();
+            if (text.contains(" ")) {
+                return "";
+            }
+            return c;
+        }
+    };
 }

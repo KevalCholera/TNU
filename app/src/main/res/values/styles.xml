@@ -63,4 +63,8 @@
         <item name="android:textColorPrimary">@color/white</item>
     </style>
 
+    <style name="DialogAnimation">
+        <item name="android:windowEnterAnimation">@anim/flip_dialog_left</item>
+        <item name="android:windowExitAnimation">@anim/flip_dialog_right</item>
+    </style>
 </resources>

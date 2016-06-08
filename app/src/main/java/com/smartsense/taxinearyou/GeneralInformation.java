@@ -186,10 +186,10 @@ public class GeneralInformation extends AppCompatActivity implements Response.Li
             WakeLocker.acquire(context);
             Log.i("Push ", intent.getStringExtra(Constants.EXTRAS));
             try {
-                JSONObject pushData = new JSONObject(intent.getStringExtra(Constants.EXTRAS));
-                CommonUtil.storeUserData(pushData.optJSONObject("user"));
+//                JSONObject pushData = new JSONObject(intent.getStringExtra(Constants.EXTRAS));
+//                CommonUtil.storeUserData(pushData.optJSONObject("user"));
                 setDataInActivity();
-            } catch (JSONException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
             WakeLocker.release();
