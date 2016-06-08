@@ -63,6 +63,7 @@ public class FragmentMyTrips extends Fragment implements Response.Listener<JSONO
         View rootView = inflater.inflate(R.layout.fragment_my_trips, container, false);
         pageNumber = 0;
         totalRecord = 0;
+        adapterMyTrips = null;
         ivMyTripsNoTrips = (ImageView) rootView.findViewById(R.id.ivMyTripsNoTrips);
         srMyTrips = (SwipeRefreshLayout) rootView.findViewById(R.id.srMyTrips);
         lvMyTrips = (ListView) rootView.findViewById(R.id.lvMyTrips);
@@ -86,6 +87,7 @@ public class FragmentMyTrips extends Fragment implements Response.Listener<JSONO
             }
         });
         getActivity().registerReceiver(tripMessageReceiver, new IntentFilter(String.valueOf(Constants.Events.EVENT_CHANGE)));
+        getActivity().registerReceiver(tripMessageReceiver, new IntentFilter(String.valueOf(Constants.Events.CANCEL_RIDE)));
         getActivity().registerReceiver(tripMessageReceiver, new IntentFilter(String.valueOf(Constants.Events.BookRide)));
         doMyTrip(pageNumber);
 
@@ -150,9 +152,9 @@ public class FragmentMyTrips extends Fragment implements Response.Listener<JSONO
     @Override
     public void onResume() {
         super.onResume();
-        pageNumber = 0;
-        totalRecord = 0;
-        adapterMyTrips = null;
+//        pageNumber = 0;
+//        totalRecord = 0;
+//        adapterMyTrips = null;
 
     }
 

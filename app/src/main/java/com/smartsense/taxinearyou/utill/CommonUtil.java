@@ -247,10 +247,11 @@ public class CommonUtil {
     public static void conditionAuthentication(Activity activity, JSONObject jsonObject) {
         if (jsonObject.has("json") && jsonObject.optJSONObject("json").has("errorCode") && jsonObject.optJSONObject("json").optInt("errorCode") == Constants.ErrorCode.UNAUTHENTICATED_OPERATION) {
             Toast.makeText(activity, activity.getResources().getString(R.string.session_expire), Toast.LENGTH_SHORT).show();
-            activity.startActivity(new Intent(activity, SignIn.class));
             SharedPreferenceUtil.clear();
             SharedPreferenceUtil.save();
             OneSignal.sendTag("emailId", "");
+            activity.startActivity(new Intent(activity, SignIn.class));
+            activity.finish();
         } else
             successToastShowing(activity, jsonObject);
     }

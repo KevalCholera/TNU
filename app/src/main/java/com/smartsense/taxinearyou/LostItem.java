@@ -1,21 +1,31 @@
 package com.smartsense.taxinearyou;
 
+import android.app.Activity;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RadioButton;
+import android.widget.Toast;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.mpt.storage.SharedPreferenceUtil;
+import com.onesignal.OneSignal;
 import com.smartsense.taxinearyou.Adapters.AdapterLostItem;
 import com.smartsense.taxinearyou.utill.CommonUtil;
 import com.smartsense.taxinearyou.utill.Constants;
+import com.smartsense.taxinearyou.utill.WakeLocker;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -30,14 +40,22 @@ public class LostItem extends AppCompatActivity implements View.OnClickListener,
     private JSONArray jsonArray;
     private SwipeRefreshLayout srLostItemList;
     boolean onCreate = true;
+    final int callLost = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lost_item);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+        registerReceiver(tripMessageReceiver, new IntentFilter(String.valueOf(Constants.Events.ADD_LOST_ITEM)));
         lvLostItemList = (ListView) findViewById(R.id.lvLostItemList);
+        lvLostItemList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                JSONObject jData = (JSONObject) adapterView.getItemAtPosition(i);
+                startActivityForResult(new Intent(LostItem.this, LostItemDetail.class).putExtra("lostItemDetails", jData.toString()), callLost);
+            }
+        });
         srLostItemList = (SwipeRefreshLayout) findViewById(R.id.srLostItemList);
         rbLostItemNotFound = (RadioButton) findViewById(R.id.rbLostItemNotFound);
         rbLostItemOnGoing = (RadioButton) findViewById(R.id.rbLostItemOnGoing);
@@ -160,5 +178,41 @@ public class LostItem extends AppCompatActivity implements View.OnClickListener,
                 CommonUtil.conditionAuthentication(this, jsonObject);
         } else
             CommonUtil.jsonNullError(this);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == Activity.RESULT_OK)
+            switch (requestCode) {
+                case callLost:
+                    lostItem();
+                    break;
+            }
+    }
+
+    private final BroadcastReceiver tripMessageReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            WakeLocker.acquire(context);
+            Log.i("Push ", intent.getStringExtra(Constants.EXTRAS));
+            try {
+//                JSONObject pushData = new JSONObject(intent.getStringExtra(Constants.EXTRAS));
+                lostItem();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            WakeLocker.release();
+        }
+    };
+
+    @Override
+    public void onDestroy() {
+        try {
+            unregisterReceiver(tripMessageReceiver);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        super.onDestroy();
     }
 }

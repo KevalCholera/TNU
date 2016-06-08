@@ -58,10 +58,8 @@ public class TripDetails extends AppCompatActivity implements View.OnClickListen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trip_details);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
         registerReceiver(tripMessageReceiver, new IntentFilter(String.valueOf(Constants.Events.EVENT_CHANGE)));
         registerReceiver(tripMessageReceiver, new IntentFilter(String.valueOf(Constants.Events.BookRide)));
-
         tvTripDetailBookingDate = (TextView) findViewById(R.id.tvTripDetailBookingDate);
         tvTripDetailBookingTime = (TextView) findViewById(R.id.tvTripDetailBookingTime);
         tvTripDetailLost = (TextView) findViewById(R.id.tvTripDetailLost);
@@ -94,6 +92,11 @@ public class TripDetails extends AppCompatActivity implements View.OnClickListen
         try {
             final JSONObject tripDetails = new JSONObject(getIntent().getStringExtra("key"));
             tvTripDetailRideStatus.setText(tripDetails.optString("status"));
+
+            if (tripDetails.optInt("feedbackSts") == 1)
+                tvTripDetailFeedback.setVisibility(View.GONE);
+            if (tripDetails.optInt("lostFoundExists") == 1)
+                tvTripDetailLost.setVisibility(View.GONE);
 
             if (tvTripDetailRideStatus.getText().toString().equalsIgnoreCase("complete")) {
                 tvTripDetailLost.setVisibility(View.VISIBLE);

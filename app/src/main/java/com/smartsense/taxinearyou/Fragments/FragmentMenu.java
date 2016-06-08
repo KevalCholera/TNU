@@ -68,6 +68,7 @@ public class FragmentMenu extends Fragment implements Response.Listener<JSONObje
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_menu, container, false);
         getActivity().registerReceiver(tripMessageReceiver, new IntentFilter(String.valueOf(Constants.Events.UPDATE_PROFILE_PIC)));
+        getActivity().registerReceiver(tripMessageReceiver, new IntentFilter(String.valueOf(Constants.Events.UPDATE_GENERAL_INFO)));
         cvAccountPhoto = (CircleImageView1) rootView.findViewById(R.id.cvAccountPhoto);
         tvAccountPersonName = (TextView) rootView.findViewById(R.id.tvAccountPersonName);
         tvAccountGeneralInfo = (TextView) rootView.findViewById(R.id.tvAccountGeneralInfo);

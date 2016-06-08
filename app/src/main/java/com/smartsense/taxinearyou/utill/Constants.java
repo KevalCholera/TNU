@@ -162,6 +162,7 @@ public class Constants {
         public static final int EVENT_GET_SECURITY_QES = 5008;
         public static final int ACTIVE_ACCOUNT = 1121;
         public static final int EVENT_CHANGE = 1022;
+        public static final int LOST_ITEM_STATUS = 1030;
     }
 
     public class ErrorCode {

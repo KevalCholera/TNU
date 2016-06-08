@@ -4,6 +4,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
@@ -23,6 +24,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -62,7 +64,9 @@ public class AccountSecurity extends AppCompatActivity implements View.OnClickLi
         setContentView(R.layout.activity_account_security);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+        registerReceiver(tripMessageReceiver, new IntentFilter(String.valueOf(Constants.Events.UPDATE_PROMOTIONS)));
+        registerReceiver(tripMessageReceiver, new IntentFilter(String.valueOf(Constants.Events.UPDATE_EMAIL)));
+        registerReceiver(tripMessageReceiver, new IntentFilter(String.valueOf(Constants.Events.UPDATE_GENERAL_INFO)));
         tvAccountSecurityNote = (TextView) findViewById(R.id.tvAccountSecurityNote);
         btAccountSecurityChangeEmail = (Button) findViewById(R.id.btAccountSecurityChangeEmail);
         btAccountSecurityChangeAlternateEmail = (Button) findViewById(R.id.btAccountSecurityChangeAlternateEmail);
@@ -416,7 +420,15 @@ public class AccountSecurity extends AppCompatActivity implements View.OnClickLi
             try {
                 JSONObject pushData = new JSONObject(intent.getStringExtra(Constants.EXTRAS));
                 CommonUtil.storeUserData(pushData.optJSONObject("user"));
-                setValue();
+                if (pushData.optInt("reqType") == 1) {
+                    Toast.makeText(AccountSecurity.this, AccountSecurity.this.getResources().getString(R.string.session_expire), Toast.LENGTH_SHORT).show();
+                    SharedPreferenceUtil.clear();
+                    SharedPreferenceUtil.save();
+                    OneSignal.sendTag("emailId", "");
+                    startActivity(new Intent(AccountSecurity.this, SignIn.class));
+                    finish();
+                } else
+                    setValue();
             } catch (JSONException e) {
                 e.printStackTrace();
             }
