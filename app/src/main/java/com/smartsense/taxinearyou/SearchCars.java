@@ -41,11 +41,11 @@ import java.util.ArrayList;
 public class SearchCars extends AppCompatActivity implements Response.Listener<JSONObject>, Response.ErrorListener, View.OnClickListener {
 
     ListView lvSearchCarsLine1;
-    TextView tvSearchCarsFilter, tvSearchCarsDateTime;
+    TextView tvSearchCarsFilter, tvSearchCarsDateTime, tvSearchNoPartnerFound;
     RadioButton rbSearchCarsRating, rbSearchCarsAvailability, rbSearchCarsPriceRange;
     RadioGroup rbgSearchCars;
     ImageView ivSearchCarsFront, ivSearchCarsBack;
-    LinearLayout llSearchCarsFilter, lySearchCarsDateTime;
+    LinearLayout llSearchCarsFilter, lySearchCarsDateTime, llSearchCarsNoPartner;
 
     String a = "Rating" + (char) 0x2191;
     String b = "Price Range" + (char) 0x2191;
@@ -79,10 +79,12 @@ public class SearchCars extends AppCompatActivity implements Response.Listener<J
         rbSearchCarsAvailability = (RadioButton) findViewById(R.id.rbSearchCarsAvailability);
         rbSearchCarsPriceRange = (RadioButton) findViewById(R.id.rbSearchCarsPriceRange);
         tvSearchCarsDateTime = (TextView) findViewById(R.id.tvSearchCarsDateTime);
+        tvSearchNoPartnerFound = (TextView) findViewById(R.id.tvSearchNoPartnerFound);
         ivSearchCarsFront = (ImageView) findViewById(R.id.ivSearchCarsFront);
         ivSearchCarsBack = (ImageView) findViewById(R.id.ivSearchCarsBack);
         llSearchCarsFilter = (LinearLayout) findViewById(R.id.llSearchCarsFilter);
         lySearchCarsDateTime = (LinearLayout) findViewById(R.id.lySearchCarsDateTime);
+        llSearchCarsNoPartner = (LinearLayout) findViewById(R.id.llSearchCarsNoPartner);
 
         try {
             tvSearchCarsDateTime.setText(Constants.DATE_FORMAT_SET.format(Constants.DATE_FORMAT_SEND.parse(getIntent().getStringExtra("tvBookDateTime"))) + " " + (getIntent().getStringExtra("duration").equalsIgnoreCase("1") ? "Now" : getIntent().getStringExtra("duration").equalsIgnoreCase("2") ? "Today" : "Tomorrow"));
@@ -267,6 +269,16 @@ public class SearchCars extends AppCompatActivity implements Response.Listener<J
                             SharedPreferenceUtil.save();
                             totalRecord = response.optJSONObject("json").optInt("totalRecords");
                             fillPartnerList(response.optJSONObject("json").optJSONArray("partnerArray"));
+
+                            if (response.optJSONObject("json").optJSONArray("partnerArray").length() > 0) {
+                                llSearchCarsNoPartner.setVisibility(View.GONE);
+                                lvSearchCarsLine1.setVisibility(View.VISIBLE);
+                            } else {
+                                llSearchCarsNoPartner.setVisibility(View.VISIBLE);
+                                lvSearchCarsLine1.setVisibility(View.GONE);
+                                tvSearchNoPartnerFound.setText(response.optString("msg"));
+                            }
+
                             break;
                     }
                 } else {
@@ -311,6 +323,8 @@ public class SearchCars extends AppCompatActivity implements Response.Listener<J
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == Activity.RESULT_OK) {
+            lvSearchCarsLine1.setVisibility(View.VISIBLE);
+            llSearchCarsNoPartner.setVisibility(View.GONE);
             rbSearchCarsPriceRange.setText("Price Range" + (char) 0x2193);
             rbSearchCarsAvailability.setText("Availability");
             rbSearchCarsRating.setText("Rating");

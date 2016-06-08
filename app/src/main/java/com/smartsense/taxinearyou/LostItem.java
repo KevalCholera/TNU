@@ -48,7 +48,15 @@ public class LostItem extends AppCompatActivity implements View.OnClickListener,
         setContentView(R.layout.activity_lost_item);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         registerReceiver(tripMessageReceiver, new IntentFilter(String.valueOf(Constants.Events.ADD_LOST_ITEM)));
+
+        srLostItemList = (SwipeRefreshLayout) findViewById(R.id.srLostItemList);
+        rbLostItemNotFound = (RadioButton) findViewById(R.id.rbLostItemNotFound);
+        rbLostItemOnGoing = (RadioButton) findViewById(R.id.rbLostItemOnGoing);
+        rbLostItemFound = (RadioButton) findViewById(R.id.rbLostItemFound);
+        llLostItemNoItemAvailable = (LinearLayout) findViewById(R.id.llLostItemNoItemAvailable);
+        llLostItemItemsAvailable = (LinearLayout) findViewById(R.id.llLostItemItemsAvailable);
         lvLostItemList = (ListView) findViewById(R.id.lvLostItemList);
+
         lvLostItemList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -56,12 +64,6 @@ public class LostItem extends AppCompatActivity implements View.OnClickListener,
                 startActivityForResult(new Intent(LostItem.this, LostItemDetail.class).putExtra("lostItemDetails", jData.toString()), callLost);
             }
         });
-        srLostItemList = (SwipeRefreshLayout) findViewById(R.id.srLostItemList);
-        rbLostItemNotFound = (RadioButton) findViewById(R.id.rbLostItemNotFound);
-        rbLostItemOnGoing = (RadioButton) findViewById(R.id.rbLostItemOnGoing);
-        rbLostItemFound = (RadioButton) findViewById(R.id.rbLostItemFound);
-        llLostItemNoItemAvailable = (LinearLayout) findViewById(R.id.llLostItemNoItemAvailable);
-        llLostItemItemsAvailable = (LinearLayout) findViewById(R.id.llLostItemItemsAvailable);
 
         rbLostItemNotFound.setOnClickListener(this);
         rbLostItemOnGoing.setOnClickListener(this);

@@ -2,17 +2,20 @@ package com.smartsense.taxinearyou;
 
 import android.app.ActionBar;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -30,6 +33,7 @@ public class Search extends AppCompatActivity {
     CoordinatorLayout clSearch;
     private final List<Fragment> mFragmentList = new ArrayList<>();
     private final List<String> mFragmentTitleList = new ArrayList<>();
+    private final List<Drawable> imageViews = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,13 +49,23 @@ public class Search extends AppCompatActivity {
         clSearch = (CoordinatorLayout) findViewById(R.id.clSearch);
         tbSearchTab = (TabLayout) findViewById(R.id.tbSearchTab);
         tbSearchTab.setupWithViewPager(viewPager);
-        setupTabIcons();
+//        setupTabIcons();
+
+        imageViews.add(ContextCompat.getDrawable(this, R.mipmap.ic_car_white));
+        imageViews.add(ContextCompat.getDrawable(this, R.mipmap.ic_baggage));
+        imageViews.add(ContextCompat.getDrawable(this, R.mipmap.coins2));
+        imageViews.add(ContextCompat.getDrawable(this, R.mipmap.hamburger));
 
         final ArrayList<String> arrayList = new ArrayList<>();
         arrayList.add("Search");
         arrayList.add("My Trips");
         arrayList.add("Credit");
         arrayList.add("Menu");
+
+        tbSearchTab.setupWithViewPager(viewPager);
+        for (int i = 0; i < tbSearchTab.getTabCount(); i++) {
+            tbSearchTab.getTabAt(i).setIcon(imageViews.get(i));
+        }
 
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 

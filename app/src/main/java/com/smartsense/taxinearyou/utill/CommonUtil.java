@@ -276,18 +276,28 @@ public class CommonUtil {
         TaxiNearYouApp.getInstance().addToRequestQueue(dataRequest, tag);
     }
 
-
     public static InputFilter filter = new InputFilter() {
         public CharSequence filter(CharSequence source, int start, int end,
                                    Spanned dest, int dstart, int dend) {
             for (int i = start; i < end; i++) {
-                if (Character.isWhitespace(source.charAt(i))) {
+                if (!Character.isLetter(source.charAt(i))) {
                     return "";
                 }
             }
-            return null;
+            return "";
         }
 
+    };
+
+    public static InputFilter filter1 = new InputFilter() {
+        public CharSequence filter(CharSequence source, int start, int end,
+                                   Spanned dest, int dstart, int dend) {
+            if (source.equals("")) // for backspace
+                return source;
+            if (source.toString().matches("[a-zA-Z]+"))
+                return source;
+            return "";
+        }
     };
 
     public static String text(EditText editText) {

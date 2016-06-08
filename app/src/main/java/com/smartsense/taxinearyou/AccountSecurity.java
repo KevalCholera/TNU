@@ -18,6 +18,7 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -281,8 +282,10 @@ public class AccountSecurity extends AppCompatActivity implements View.OnClickLi
     public void securityQuestionConfirm() {
 
         lyPopUpQuestion.setVisibility(View.GONE);
+        lyPopUpQuestion.startAnimation(AnimationUtils.loadAnimation(this, R.anim.flip_dialog_right));
         if (clicked == Constants.AccountSecurity.CHANGE_EMAIL) {
             lyPopUpEmail.setVisibility(View.VISIBLE);
+            lyPopUpEmail.startAnimation(AnimationUtils.loadAnimation(this, R.anim.flip_dialog_left));
             btPopupSecurityEmailSubmit.setOnClickListener(AccountSecurity.this);
         } else if (clicked == Constants.AccountSecurity.CHANGE_ALTERNET_EMAIL) {
             lyPopUpAlternateEmail.setVisibility(View.VISIBLE);
@@ -399,7 +402,7 @@ public class AccountSecurity extends AppCompatActivity implements View.OnClickLi
 
                 if (clicked == Constants.AccountSecurity.CHANGE_EMAIL)
                     alertBox(jsonObject.optString("msg"));
-                else if (clicked == Constants.AccountSecurity.CHANGE_ALTERNET_EMAIL) {
+                else if (clicked == Constants.AccountSecurity.CHANGE_ALTERNET_EMAIL && TextUtils.isEmpty(etPopupSecurityAlternateEmail.getText().toString())) {
                     SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_USER_ALTERNATE_EMAIL, etPopupSecurityAlternateEmail.getText().toString());
                     SharedPreferenceUtil.save();
                     setValue();

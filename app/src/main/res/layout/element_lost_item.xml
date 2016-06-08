@@ -511,7 +511,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/vElementLostItemHeight"
-                android:colorPrimaryDark="@color/element" />
+                android:background="@color/element" />
 
         </LinearLayout>
 

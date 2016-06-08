@@ -50,8 +50,7 @@
                         android:paddingRight="@dimen/etPersonalInfoPadding"
                         android:textColor="@color/heading"
                         android:textColorHint="@color/light_Black"
-                        android:textSize="@dimen/tvTitlesSizeAll"
-                         />
+                        android:textSize="@dimen/tvTitlesSizeAll" />
 
                     <View
                         android:layout_width="match_parent"
@@ -77,8 +76,7 @@
                         android:paddingRight="@dimen/etPersonalInfoPadding"
                         android:textColor="@color/heading"
                         android:textColorHint="@color/light_Black"
-                        android:textSize="@dimen/tvTitlesSizeAll"
-                         />
+                        android:textSize="@dimen/tvTitlesSizeAll" />
 
                     <View
                         android:layout_width="match_parent"
@@ -104,8 +102,7 @@
                         android:paddingRight="@dimen/etPersonalInfoPadding"
                         android:textColor="@color/heading"
                         android:textColorHint="@color/light_Black"
-                        android:textSize="@dimen/tvTitlesSizeAll"
-                         />
+                        android:textSize="@dimen/tvTitlesSizeAll" />
 
                     <View
                         android:layout_width="match_parent"
@@ -131,8 +128,7 @@
                         android:paddingRight="@dimen/etPersonalInfoPadding"
                         android:textColor="@color/heading"
                         android:textColorHint="@color/light_Black"
-                        android:textSize="@dimen/tvTitlesSizeAll"
-                         />
+                        android:textSize="@dimen/tvTitlesSizeAll" />
 
                     <View
                         android:layout_width="match_parent"
@@ -169,8 +165,7 @@
                         android:singleLine="true"
                         android:textColor="@color/black"
                         android:textColorHint="@color/light_Gray"
-                        android:textSize="@dimen/tvTitlesSizeAll"
-                         />
+                        android:textSize="@dimen/tvTitlesSizeAll" />
 
                     <TextView
                         android:layout_width="match_parent"

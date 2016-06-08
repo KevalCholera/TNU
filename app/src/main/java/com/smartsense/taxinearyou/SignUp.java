@@ -54,7 +54,10 @@ public class SignUp extends AppCompatActivity implements Response.Listener<JSONO
         ivSignUpAvailableAlternateEmail = (ImageView) findViewById(R.id.ivSignUpAvailableAlternateEmail);
         ivSignUpUnAvailableAlternateEmail = (ImageView) findViewById(R.id.ivSignUpUnAvailableAlternateEmail);
 
-        etSignUpFirstName.setFilters(new InputFilter[]{CommonUtil.filter});
+//        etSignUpFirstName.setFilters(new InputFilter[]{CommonUtil.filter});
+//        etSignUpFirstName.setFilters(new InputFilter[]{
+//                CommonUtil.filter1
+//        });
 
         etSignUpContact.addTextChangedListener(new TextWatcher() {
             @Override
