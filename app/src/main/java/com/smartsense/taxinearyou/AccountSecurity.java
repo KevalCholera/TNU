@@ -406,7 +406,7 @@ public class AccountSecurity extends AppCompatActivity implements View.OnClickLi
                 if (alert != null)
                     alert.dismiss();
 
-                if (clicked == Constants.AccountSecurity.CHANGE_EMAIL)
+                if (clicked == Constants.AccountSecurity.CHANGE_EMAIL && jsonObject.optInt("__eventid") == Constants.Events.UPDATE_EMAIL)
                     alertBox(jsonObject.optString("msg"));
                 else if (clicked == Constants.AccountSecurity.CHANGE_ALTERNET_EMAIL && TextUtils.isEmpty(etPopupSecurityAlternateEmail.getText().toString())) {
                     SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_USER_ALTERNATE_EMAIL, etPopupSecurityAlternateEmail.getText().toString());

@@ -679,7 +679,7 @@ public class GooglePlaces extends FragmentActivity implements OnItemClickListene
             if (jsonObj.optString("status").equalsIgnoreCase("OK")) {
                 String areaName;
                 if (jsonObj.optJSONArray("results").optJSONObject(0).optString("name").equalsIgnoreCase(jsonObj.optJSONArray("results").optJSONObject(0).optString("vicinity"))) {
-                    areaName = jsonObj.optJSONArray("results").optJSONObject(0).optString("name") + " , " + "United Kingdom";
+                    areaName = jsonObj.optJSONArray("results").optJSONObject(0).optString("name") + ", " + "United Kingdom";
                 } else {
                     areaName = jsonObj.optJSONArray("results").optJSONObject(0).optString("name") + ", " + jsonObj.optJSONArray("results").optJSONObject(0).optString("vicinity") + ", " + "United Kingdom";
                 }
@@ -695,7 +695,7 @@ public class GooglePlaces extends FragmentActivity implements OnItemClickListene
                                 for (int i = 0; i < jsonObj.optJSONArray("results").length(); i++) {
                                     String areaName = "";
                                     if (jsonObj.optJSONArray("results").optJSONObject(i).optString("name").equalsIgnoreCase(jsonObj.optJSONArray("results").optJSONObject(i).optString("vicinity"))) {
-                                        areaName = jsonObj.optJSONArray("results").optJSONObject(i).optString("name") + " , " + "United Kingdom";
+                                        areaName = jsonObj.optJSONArray("results").optJSONObject(i).optString("name") + ", " + "United Kingdom";
                                     } else {
                                         areaName = jsonObj.optJSONArray("results").optJSONObject(i).optString("name") + ", " + jsonObj.optJSONArray("results").optJSONObject(i).optString("vicinity") + ", " + "United Kingdom";
                                     }
@@ -740,7 +740,8 @@ public class GooglePlaces extends FragmentActivity implements OnItemClickListene
                     if (jsonObj1.optString("name").equalsIgnoreCase(str[0].trim())) {
                         AreaAddress = jsonObj1.optString("formatted_address");
                     } else {
-                        AreaAddress = jsonObj1.optString("name") + ", " + jsonObj1.optString("formatted_address");
+//                        AreaAddress = jsonObj1.optString("name") + ", " + jsonObj1.optString("formatted_address");
+                        AreaAddress = jsonObj1.optString("formatted_address");
                     }
                 }
                 if (jsonObj1.has("geometry")) {
@@ -773,7 +774,7 @@ public class GooglePlaces extends FragmentActivity implements OnItemClickListene
             addObj.put("viaAreaCity", AreaCity.equalsIgnoreCase("") ? " " : AreaCity);
             System.out.println("jsonObj: " + addObj.toString());
 
-            setResult(Activity.RESULT_OK, new Intent().putExtra("typeAddress", getIntent().getIntExtra("typeAddress", 0)).putExtra("address", addObj.toString()).putExtra("AreaName", AreaName));
+            setResult(Activity.RESULT_OK, new Intent().putExtra("typeAddress", getIntent().getIntExtra("typeAddress", 0)).putExtra("address", addObj.toString()).putExtra("AreaName", AreaAddress));
             finish();
             CommonUtil.closeKeyboard(this);
         } catch (Exception e) {
