@@ -71,19 +71,27 @@ public class SignUp extends AppCompatActivity implements Response.Listener<JSONO
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-                if (s != null && !s.toString().equalsIgnoreCase(" ")) {
-                    text.add(s.toString());
+//                if (s != null && !s.toString().equalsIgnoreCase(" ")) {
+//                    text.add(s.toString());
+//
+//                    if (s.toString().contains(" "))
+//                        for (int i = 0; i < text.size(); i++) {
+//                            etSignUpFirstName.setText(text.get(i));
+//                        }
 
-                    if (s.toString().contains(" "))
-                        for (int i = 0; i < text.size(); i++) {
-                            etSignUpFirstName.setText(text.get(i));
-                        }
-                }
+//                if (s != null && s.toString().equalsIgnoreCase(" ")) {
+//                    etSignUpFirstName.setText(etSignUpFirstName.getText().toString());
+//                }
             }
 
             @Override
             public void afterTextChanged(Editable s) {
 
+                String result = s.toString().replaceAll(" ", "");
+                if (!s.toString().equals(result)) {
+                    etSignUpFirstName.setText(result);
+                    etSignUpFirstName.setSelection(result.length());
+                }
             }
         });
 

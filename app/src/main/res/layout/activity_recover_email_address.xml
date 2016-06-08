@@ -81,6 +81,7 @@
                             android:inputType="textEmailAddress"
                             android:nextFocusForward="@+id/etSignUpLastName"
                             android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
+                            android:singleLine="true"
                             android:textColor="@color/black"
                             android:textColorHint="@color/light_Gray"
                             android:textSize="@dimen/etSignUpSizeAll" />
@@ -123,10 +124,12 @@
                             android:layout_height="@dimen/etHeightAll"
                             android:layout_marginBottom="@dimen/tvetRecoverEmailMarginTopBottomAll"
                             android:background="@drawable/grayborder"
+                            android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
                             android:hint="@string/first_name"
                             android:inputType="textCapSentences"
                             android:nextFocusForward="@+id/etSignUpLastName"
                             android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
+                            android:singleLine="true"
                             android:textColor="@color/black"
                             android:textColorHint="@color/hintColor"
                             android:textSize="@dimen/etSignUpSizeAll" />
@@ -144,10 +147,12 @@
                             android:layout_height="@dimen/etHeightAll"
                             android:layout_marginBottom="@dimen/tvetRecoverEmailMarginTopBottomAll"
                             android:background="@drawable/grayborder"
+                            android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
                             android:hint="@string/last_name"
                             android:inputType="textCapSentences"
                             android:nextFocusForward="@+id/etSignUpLastName"
                             android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
+                            android:singleLine="true"
                             android:textColor="@color/black"
                             android:textColorHint="@color/hintColor"
                             android:textSize="@dimen/etSignUpSizeAll" />
@@ -170,6 +175,7 @@
                             android:maxLength="10"
                             android:nextFocusForward="@+id/etSignUpLastName"
                             android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
+                            android:singleLine="true"
                             android:textColor="@color/black"
                             android:textColorHint="@color/hintColor"
                             android:textSize="@dimen/etSignUpSizeAll" />
@@ -191,6 +197,7 @@
                             android:inputType="textEmailAddress"
                             android:nextFocusForward="@+id/etSignUpLastName"
                             android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
+                            android:singleLine="true"
                             android:textColor="@color/black"
                             android:textColorHint="@color/hintColor"
                             android:textSize="@dimen/etSignUpSizeAll" />

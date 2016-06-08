@@ -52,6 +52,7 @@
                 android:imeOptions="actionNext"
                 android:inputType="textCapSentences"
                 android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
+                android:singleLine="true"
                 android:textColor="@color/black"
                 android:textColorHint="@color/hintColor"
                 android:textSize="@dimen/etSignUpSizeAll" />
@@ -71,6 +72,7 @@
                 android:inputType="textCapSentences"
                 android:nextFocusDown="@+id/etSignUpContact"
                 android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
+                android:singleLine="true"
                 android:textColor="@color/black"
                 android:textColorHint="@color/hintColor"
                 android:textSize="@dimen/etSignUpSizeAll" />
@@ -135,6 +137,7 @@
                 android:imeOptions="actionNext"
                 android:inputType="textEmailAddress"
                 android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
+                android:singleLine="true"
                 android:textColor="@color/black"
                 android:textColorHint="@color/hintColor"
                 android:textSize="@dimen/etSignUpSizeAll" />
@@ -178,6 +181,7 @@
                 android:imeOptions="actionNext"
                 android:inputType="textPassword"
                 android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
+                android:singleLine="true"
                 android:textColor="@color/black"
                 android:textColorHint="@color/hintColor"
                 android:textSize="@dimen/etSignUpSizeAll" />
@@ -195,6 +199,7 @@
                 android:imeOptions="actionNext"
                 android:inputType="textPassword"
                 android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
+                android:singleLine="true"
                 android:textColor="@color/black"
                 android:textColorHint="@color/hintColor"
                 android:textSize="@dimen/etSignUpSizeAll" />
@@ -217,6 +222,7 @@
                 android:imeOptions="actionDone"
                 android:inputType="textEmailAddress"
                 android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
+                android:singleLine="true"
                 android:textColor="@color/black"
                 android:textColorHint="@color/hintColor"
                 android:textSize="@dimen/etSignUpSizeAll" />

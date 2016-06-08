@@ -47,8 +47,7 @@
             android:singleLine="true"
             android:text=""
             android:textColor="@color/dark_gray"
-            android:textSize="@dimen/etSignUpSizeAll"
-             />
+            android:textSize="@dimen/etSignUpSizeAll" />
 
         <EditText
             android:id="@+id/etSecurityAnswer1"
@@ -65,8 +64,7 @@
             android:singleLine="true"
             android:textColor="@color/black"
             android:textColorHint="@color/hintColor"
-            android:textSize="@dimen/etSignUpSizeAll"
-             />
+            android:textSize="@dimen/etSignUpSizeAll" />
 
         <EditText
             android:id="@+id/etSecurityQuestion2"
@@ -85,8 +83,7 @@
             android:singleLine="true"
             android:text=""
             android:textColor="@color/dark_gray"
-            android:textSize="@dimen/etSignUpSizeAll"
-             />
+            android:textSize="@dimen/etSignUpSizeAll" />
 
         <EditText
             android:id="@+id/etSecurityAnswer2"
@@ -102,8 +99,7 @@
             android:singleLine="true"
             android:textColor="@color/black"
             android:textColorHint="@color/hintColor"
-            android:textSize="@dimen/etSignUpSizeAll"
-             />
+            android:textSize="@dimen/etSignUpSizeAll" />
 
         <CheckBox
             android:id="@+id/cbSecurityFromOrganization"

@@ -49,6 +49,7 @@
                 android:background="@drawable/grayborder"
                 android:inputType="textEmailAddress"
                 android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
+                android:singleLine="true"
                 android:textColor="@color/black"
                 android:textColorHint="@android:color/darker_gray"
                 android:textSize="@dimen/etSignInUserPassSize" />
@@ -69,6 +70,7 @@
                 android:background="@drawable/grayborder"
                 android:inputType="textEmailAddress"
                 android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
+                android:singleLine="true"
                 android:textColor="@color/black"
                 android:textColorHint="@android:color/darker_gray"
                 android:textSize="@dimen/etSignInUserPassSize" />
@@ -130,6 +132,7 @@
                 android:background="@drawable/grayborder"
                 android:inputType="textEmailAddress"
                 android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
+                android:singleLine="true"
                 android:textColor="@color/black"
                 android:textColorHint="@android:color/darker_gray"
                 android:textSize="@dimen/etSignInUserPassSize" />
@@ -150,6 +153,7 @@
                 android:background="@drawable/grayborder"
                 android:inputType="textEmailAddress"
                 android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
+                android:singleLine="true"
                 android:textColor="@color/black"
                 android:textColorHint="@android:color/darker_gray"
                 android:textSize="@dimen/etSignInUserPassSize" />
@@ -355,6 +359,7 @@
                 android:background="@drawable/grayborder"
                 android:inputType="textPassword"
                 android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
+                android:singleLine="true"
                 android:textColor="@color/black"
                 android:textColorHint="@android:color/darker_gray"
                 android:textSize="@dimen/etSignInUserPassSize" />
@@ -375,6 +380,7 @@
                 android:background="@drawable/grayborder"
                 android:inputType="textPassword"
                 android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
+                android:singleLine="true"
                 android:textColor="@color/black"
                 android:textColorHint="@android:color/darker_gray"
                 android:textSize="@dimen/etSignInUserPassSize" />
@@ -454,6 +460,7 @@
                     android:hint="@string/enter_ans"
                     android:inputType="text"
                     android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
+                    android:singleLine="true"
                     android:textColor="@color/black"
                     android:textColorHint="@android:color/darker_gray"
                     android:textSize="@dimen/etSignInUserPassSize" />
@@ -490,6 +497,7 @@
                     android:hint="@string/enter_ans"
                     android:inputType="text"
                     android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
+                    android:singleLine="true"
                     android:textColor="@color/black"
                     android:textColorHint="@android:color/darker_gray"
                     android:textSize="@dimen/etSignInUserPassSize" />
@@ -559,6 +567,7 @@
                     android:drawableRight="@mipmap/imgdropdown"
                     android:focusable="false"
                     android:padding="@dimen/etPopupSecurityQuestionChangeAnswerPadding"
+                    android:singleLine="true"
                     android:textColor="@android:color/darker_gray"
                     android:textSize="@dimen/tvTitlesSizeAll" />
             </LinearLayout>
@@ -583,6 +592,7 @@
                     android:layout_marginLeft="@dimen/etPopupSecurityQuestionChangeAnswerMarginStart"
                     android:background="@drawable/grayborder"
                     android:padding="@dimen/etPopupSecurityQuestionChangeAnswerPadding"
+                    android:singleLine="true"
                     android:textColor="@android:color/darker_gray"
                     android:textSize="@dimen/tvTitlesSizeAll" />
             </LinearLayout>
@@ -610,6 +620,7 @@
                     android:drawableRight="@mipmap/imgdropdown"
                     android:focusable="false"
                     android:padding="@dimen/etPopupSecurityQuestionChangeAnswerPadding"
+                    android:singleLine="true"
                     android:textColor="@android:color/darker_gray"
                     android:textSize="@dimen/tvTitlesSizeAll" />
             </LinearLayout>
@@ -637,6 +648,7 @@
                     android:inputType="text"
                     android:padding="@dimen/etPopupSecurityQuestionChangeAnswerPadding"
                     android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
+                    android:singleLine="true"
                     android:textColor="@color/black"
                     android:textColorHint="@android:color/darker_gray"
                     android:textSize="@dimen/etSignInUserPassSize" />

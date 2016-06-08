@@ -35,6 +35,7 @@
                 android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
                 android:inputType="textCapSentences"
                 android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
+                android:singleLine="true"
                 android:textColor="@color/black"
                 android:textSize="@dimen/etSignInUserPassSize" />
 
@@ -55,6 +56,7 @@
                 android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
                 android:inputType="textCapSentences"
                 android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
+                android:singleLine="true"
                 android:textColor="@color/black"
                 android:textSize="@dimen/etSignInUserPassSize" />
 
@@ -76,6 +78,7 @@
                 android:inputType="phone"
                 android:maxLength="10"
                 android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
+                android:singleLine="true"
                 android:textColor="@color/black"
                 android:textSize="@dimen/etSignInUserPassSize" />
 

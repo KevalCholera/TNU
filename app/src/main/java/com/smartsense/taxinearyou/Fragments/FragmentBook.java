@@ -92,7 +92,7 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
         tvBookSearchCars.setOnClickListener(this);
         tvBookDateTime.setOnClickListener(this);
         ivBookVia.setOnClickListener(this);
-        imgBookFromToReverse.setOnClickListener(this);
+        imgBookFromToReverse.setOnClickListener(null);
         llBookVia1.setOnClickListener(this);
         llBookVia2.setOnClickListener(this);
         ivBookDeleteVia1.setOnClickListener(this);
@@ -108,6 +108,7 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
     public void onResume() {
         super.onResume();
         onCreate = false;
+        tvBookDateTime.setText(SharedPreferenceUtil.getString(Constants.PrefKeys.SERVER_DATE_TIME, ""));
     }
 
     public void timePicker() {
@@ -120,7 +121,7 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
             e.printStackTrace();
         }
 
-        mTimePicker = new TimePickerDialog(getActivity(), new TimePickerDialog.OnTimeSetListener() {
+        mTimePicker = new TimePickerDialog(getActivity(),TimePickerDialog.THEME_HOLO_LIGHT, new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
 
@@ -136,7 +137,7 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
                         if (milliGetTime >= milliServerTime)
                             tvBookDateTime.setText(Constants.DATE_FORMAT_ONLY_DATE.format(Constants.DATE_FORMAT_SET.parse(dateTimeCanChange)) + " " + time);
                         else
-                            Toast.makeText(getActivity(), "Invalid Time", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity().getApplicationContext(), "Invalid Time", Toast.LENGTH_SHORT).show();
 
                     } else {
                         Calendar calendar = Calendar.getInstance();

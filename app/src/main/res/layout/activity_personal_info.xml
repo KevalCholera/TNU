@@ -48,6 +48,7 @@
                         android:inputType="textCapSentences"
                         android:paddingBottom="@dimen/vPersonalInfoMarginTopBottomAll"
                         android:paddingRight="@dimen/etPersonalInfoPadding"
+                        android:singleLine="true"
                         android:textColor="@color/heading"
                         android:textColorHint="@color/light_Black"
                         android:textSize="@dimen/tvTitlesSizeAll" />
@@ -74,6 +75,7 @@
                         android:inputType="textCapSentences"
                         android:paddingBottom="@dimen/vPersonalInfoMarginTopBottomAll"
                         android:paddingRight="@dimen/etPersonalInfoPadding"
+                        android:singleLine="true"
                         android:textColor="@color/heading"
                         android:textColorHint="@color/light_Black"
                         android:textSize="@dimen/tvTitlesSizeAll" />
@@ -100,6 +102,7 @@
                         android:inputType="number"
                         android:paddingBottom="@dimen/vPersonalInfoMarginTopBottomAll"
                         android:paddingRight="@dimen/etPersonalInfoPadding"
+                        android:singleLine="true"
                         android:textColor="@color/heading"
                         android:textColorHint="@color/light_Black"
                         android:textSize="@dimen/tvTitlesSizeAll" />
@@ -126,6 +129,7 @@
                         android:inputType="textEmailAddress"
                         android:paddingBottom="@dimen/vPersonalInfoMarginTopBottomAll"
                         android:paddingRight="@dimen/etPersonalInfoPadding"
+                        android:singleLine="true"
                         android:textColor="@color/heading"
                         android:textColorHint="@color/light_Black"
                         android:textSize="@dimen/tvTitlesSizeAll" />
@@ -159,10 +163,8 @@
                         android:background="@drawable/grayborder2"
                         android:gravity="top"
                         android:imeOptions="actionDone"
-                        android:maxLines="4"
                         android:padding="@dimen/vPersonalInfoMarginTopBottomAll"
                         android:scrollbars="vertical"
-                        android:singleLine="true"
                         android:textColor="@color/black"
                         android:textColorHint="@color/light_Gray"
                         android:textSize="@dimen/tvTitlesSizeAll" />
