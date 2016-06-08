@@ -90,7 +90,7 @@ public class BookingInfo extends AppCompatActivity {
                 tvBookInfoProvider.setText(jsonObject.optString("partnerName"));
                 tvBookInfoPassengers.setText(mainData.optString("passanger") + " Passengers");
                 tvBookInfoLugguages.setText("Up to " + SharedPreferenceUtil.getString(Constants.PrefKeys.LUGGAGE_VALUE, "") + " Luggagges");
-                tvBookInfoRideType.setText(mainData.optJSONObject("filterRequest").optString("bookingType").equalsIgnoreCase("0") ? "Single" : "Return");
+                tvBookInfoRideType.setText(mainData.optJSONObject("filterRequest").optString("bookingType").equalsIgnoreCase("1") ? "Single" : "Return");
                 tvBookInfoCost.setText("£" + CommonUtil.getDecimal(jsonObject.optDouble("price")));
 
                 int hours = mainData.optJSONObject("json").optJSONObject("distanceMatrix").optInt("duration") / 3600;

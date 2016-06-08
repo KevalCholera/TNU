@@ -90,7 +90,7 @@ public class Filter extends AppCompatActivity implements View.OnClickListener {
         try {
             filterObj = new JSONObject(SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_FILTER_REQUEST, ""));
             if (filterObj.has("bookingType")) {
-                if (filterObj.optInt("bookingType") == 0)
+                if (filterObj.optInt("bookingType") == 1)
                     rbFilterSingle.setChecked(true);
                 else
                     rbFilterReturn.setChecked(true);
@@ -151,7 +151,7 @@ public class Filter extends AppCompatActivity implements View.OnClickListener {
                     filterObj.put("distance", String.valueOf(radioButton1.getId() == 0 ? -1 : radioButton1.getId()));
                     if (filterObj.has("bookingType"))
                         filterObj.remove("bookingType");
-                    filterObj.put("bookingType", String.valueOf(radioButton.getId() == R.id.rbFilterSingle ? 0 : 1));
+                    filterObj.put("bookingType", String.valueOf(radioButton.getId() == R.id.rbFilterSingle ? 1 : 2));
                     if (filterObj.has("rating"))
                         filterObj.remove("rating");
                     int ratingId = -1;
@@ -267,7 +267,7 @@ public class Filter extends AppCompatActivity implements View.OnClickListener {
                 radioButton[i].setLayoutParams(params);
                 radioButton[i].setButtonDrawable(R.drawable.radio_button_filter);
                 radioButton[i].setText(jsonArray.optJSONObject(i).getString("name"));
-                radioButton[i].setTextColor(getResources().getColor(R.color.white));
+                radioButton[i].setTextColor(ContextCompat.getColor(Filter.this,R.color.white));
                 int id1 = jsonArray.optJSONObject(i).getInt("distanceId") == -1 ? 0 : jsonArray.optJSONObject(i).getInt("distanceId");
                 radioButton[i].setId(id1);
                 radioButton[i].setGravity(Gravity.CENTER);

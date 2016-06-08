@@ -168,7 +168,7 @@ public class SearchCars extends AppCompatActivity implements Response.Listener<J
             if (filterRequest.has("bookingType"))
                 bookingduration = filterRequest.optString("bookingType");
             else
-                bookingduration = "0";
+                bookingduration = "1";
             JSONArray viaArea = new JSONArray();
             if (SharedPreferenceUtil.contains(Constants.VIA_ADDRESS) && !SharedPreferenceUtil.getString(Constants.VIA_ADDRESS, "").equalsIgnoreCase(""))
                 viaArea.put(new JSONObject(SharedPreferenceUtil.getString(Constants.VIA_ADDRESS, "")));
