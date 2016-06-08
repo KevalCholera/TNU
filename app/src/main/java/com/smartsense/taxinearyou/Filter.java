@@ -51,7 +51,7 @@ public class Filter extends AppCompatActivity implements View.OnClickListener {
 
         Toolbar toolbarAll = (Toolbar) findViewById(R.id.toolbarAll);
         setSupportActionBar(toolbarAll);
-        toolbarAll.setTitle("");
+        toolbarAll.setTitle(" ");
 
         rgFilterVehicleType = (RadioGroup) findViewById(R.id.rgFilterVehicleType1);
         rgFilterBookingType = (RadioGroup) findViewById(R.id.rgFilterBookingType);

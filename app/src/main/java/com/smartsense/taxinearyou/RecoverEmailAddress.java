@@ -6,6 +6,7 @@ import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.InputFilter;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -55,6 +56,9 @@ public class RecoverEmailAddress extends AppCompatActivity implements Response.L
         lyRadioButton2 = (LinearLayout) findViewById(R.id.lyRadioButton2);
         btRecoverEmailSubmit = (Button) findViewById(R.id.btRecoverEmailSubmit);
         clRecoverEmail = (CoordinatorLayout) findViewById(R.id.clRecoverEmail);
+
+        etRecoverEmailFirstName.setFilters(new InputFilter[]{CommonUtil.textFilter});
+        etRecoverEmailLastName.setFilters(new InputFilter[]{CommonUtil.textFilter});
 
         rbRecoverEmailAlternateEmail.setOnClickListener(this);
         rbRecoverEmailRememberEmail.setOnClickListener(this);

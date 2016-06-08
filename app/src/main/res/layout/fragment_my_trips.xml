@@ -22,9 +22,9 @@
             android:background="@mipmap/no_trips_avilable" />
 
         <TextView
+            android:id="@+id/tvFragmentMyTrips"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/no_trip_available"
             android:textColor="@color/heading"
             android:textSize="@dimen/tvHeadingSizeAll" />
     </LinearLayout>

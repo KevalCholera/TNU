@@ -57,6 +57,7 @@ public class FragmentMyTrips extends Fragment implements Response.Listener<JSONO
     AdapterMyTrips adapterMyTrips = null;
     ProgressBar pbMyTrips;
     private SwipeRefreshLayout srMyTrips;
+    TextView tvFragmentMyTrips;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -64,11 +65,14 @@ public class FragmentMyTrips extends Fragment implements Response.Listener<JSONO
         pageNumber = 0;
         totalRecord = 0;
         adapterMyTrips = null;
+
+        tvFragmentMyTrips = (TextView) rootView.findViewById(R.id.tvFragmentMyTrips);
         ivMyTripsNoTrips = (ImageView) rootView.findViewById(R.id.ivMyTripsNoTrips);
         srMyTrips = (SwipeRefreshLayout) rootView.findViewById(R.id.srMyTrips);
         lvMyTrips = (ListView) rootView.findViewById(R.id.lvMyTrips);
         pbMyTrips = (ProgressBar) rootView.findViewById(R.id.pbMyTrips);
         llFragmentMyTrips = (LinearLayout) rootView.findViewById(R.id.llFragmentMyTrips);
+
         lvMyTrips.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -180,6 +184,7 @@ public class FragmentMyTrips extends Fragment implements Response.Listener<JSONO
                             } else {
                                 lvMyTrips.setVisibility(View.GONE);
                                 llFragmentMyTrips.setVisibility(View.VISIBLE);
+                                tvFragmentMyTrips.setText(response.optString("msg"));
                             }
 //                            else CommonUtil.alertBox(getActivity(), "All data set", false, false);
                         } catch (Exception e) {
