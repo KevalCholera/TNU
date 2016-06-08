@@ -222,6 +222,7 @@ public class SignUp extends AppCompatActivity implements Response.Listener<JSONO
     @Override
     public void onErrorResponse(VolleyError volleyError) {
         CommonUtil.errorToastShowing(this);
+        CommonUtil.cancelProgressDialog();
     }
 
     @Override
