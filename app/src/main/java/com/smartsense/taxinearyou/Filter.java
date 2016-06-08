@@ -51,7 +51,7 @@ public class Filter extends AppCompatActivity implements View.OnClickListener {
 
         Toolbar toolbarAll = (Toolbar) findViewById(R.id.toolbarAll);
         setSupportActionBar(toolbarAll);
-        toolbarAll.setTitle(" ");
+        getSupportActionBar().setTitle("");
 
         rgFilterVehicleType = (RadioGroup) findViewById(R.id.rgFilterVehicleType1);
         rgFilterBookingType = (RadioGroup) findViewById(R.id.rgFilterBookingType);
@@ -267,7 +267,7 @@ public class Filter extends AppCompatActivity implements View.OnClickListener {
                 radioButton[i].setLayoutParams(params);
                 radioButton[i].setButtonDrawable(R.drawable.radio_button_filter);
                 radioButton[i].setText(jsonArray.optJSONObject(i).getString("name"));
-                radioButton[i].setTextColor(ContextCompat.getColor(Filter.this,R.color.white));
+                radioButton[i].setTextColor(ContextCompat.getColor(Filter.this, R.color.white));
                 int id1 = jsonArray.optJSONObject(i).getInt("distanceId") == -1 ? 0 : jsonArray.optJSONObject(i).getInt("distanceId");
                 radioButton[i].setId(id1);
                 radioButton[i].setGravity(Gravity.CENTER);
