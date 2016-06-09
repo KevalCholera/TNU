@@ -46,6 +46,7 @@ public class AccountSecurity extends AppCompatActivity implements View.OnClickLi
     CheckBox cbAccountSecurityOrganization, cbAccountSecurityTaxinearu;
     String important, privacy, text;
     private AlertDialog alert;
+    AlertDialog.Builder alertDialogs;
     View dialog;
     int clicked = 0;
     EditText etAccountSecurityEmail, etAccountSecurityAlternateEmail;
@@ -99,7 +100,7 @@ public class AccountSecurity extends AppCompatActivity implements View.OnClickLi
 
     public void openOccasionsPopupOptions() {
         try {
-            final AlertDialog.Builder alertDialogs = new AlertDialog.Builder(this);
+            alertDialogs = new AlertDialog.Builder(this);
             LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             dialog = inflater.inflate(R.layout.dialog_all, null);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
@@ -152,16 +153,16 @@ public class AccountSecurity extends AppCompatActivity implements View.OnClickLi
 //            rbPopupSecurityOptionsEmail.setText(Html.fromHtml(primaryEmail));
 //            rbPopupSecurityOptionsAlternateEmail.setText(Html.fromHtml(alternateEmail));
 
-            rbPopupSecurityOptionsEmail.setText(getResources().getString(R.string.send_email_to_primary_email_address)+"\n"+SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_EMAIL, ""));
-            rbPopupSecurityOptionsAlternateEmail.setText(getResources().getString(R.string.send_email_to_alternate_email_address)+"\n"+SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_ALTERNATE_EMAIL, ""));
+            rbPopupSecurityOptionsEmail.setText(getResources().getString(R.string.send_email_to_primary_email_address) + "\n" + SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_EMAIL, ""));
+            rbPopupSecurityOptionsAlternateEmail.setText(getResources().getString(R.string.send_email_to_alternate_email_address) + "\n" + SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_ALTERNATE_EMAIL, ""));
 
             btPopupSecurityOptionsSubmit.setOnClickListener(this);
             etPopupSecurityQuestionChangeQuestion1.setOnClickListener(this);
             etPopupSecurityQuestionChangeQuestion2.setOnClickListener(this);
 
             alertDialogs.setView(dialog);
-//            alert.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
             alert = alertDialogs.create();
+            alert.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
             alert.show();
 
         } catch (Exception e) {
@@ -191,7 +192,20 @@ public class AccountSecurity extends AppCompatActivity implements View.OnClickLi
                 openOccasionsPopupOptions();
                 break;
             case R.id.btPopupSecurityQuestionConfirm:
-                verifyingAnswers();
+                alert.dismiss();
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            Thread.sleep(2000);
+                            alert.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
+                            alert.show();
+                            verifyingAnswers();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }).start();
                 break;
             case R.id.btPopupSecurityOptionsSubmit:
                 securityOptionSelection();
@@ -292,10 +306,8 @@ public class AccountSecurity extends AppCompatActivity implements View.OnClickLi
     public void securityQuestionConfirm() {
 
         lyPopUpQuestion.setVisibility(View.GONE);
-        lyPopUpQuestion.startAnimation(AnimationUtils.loadAnimation(this, R.anim.flip_dialog_right));
         if (clicked == Constants.AccountSecurity.CHANGE_EMAIL) {
             lyPopUpEmail.setVisibility(View.VISIBLE);
-            lyPopUpEmail.startAnimation(AnimationUtils.loadAnimation(this, R.anim.flip_dialog_left));
             btPopupSecurityEmailSubmit.setOnClickListener(AccountSecurity.this);
         } else if (clicked == Constants.AccountSecurity.CHANGE_ALTERNET_EMAIL) {
             lyPopUpAlternateEmail.setVisibility(View.VISIBLE);
