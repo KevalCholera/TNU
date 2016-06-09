@@ -1,8 +1,10 @@
 package com.smartsense.taxinearyou;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.InputFilter;
@@ -10,6 +12,7 @@ import android.text.Spanned;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -31,7 +34,7 @@ public class SignUp extends AppCompatActivity implements Response.Listener<JSONO
             etSignUpPassword, etSignUpConfirmPassword, etSignUpAlternateEmail;
     CoordinatorLayout clSignUp;
     Button btSignUpSaveNext;
-    ImageButton btSignUpBack;
+    ImageView btSignUpBack;
     ImageView ivSignUpAvailableNumber, ivSignUpUnAvailableNumber, ivSignUpAvailableEmail, ivSignUpUnAvailableEmail, ivSignUpUnAvailableAlternateEmail, ivSignUpAvailableAlternateEmail;
     int whichEmail;
     ArrayList<String> text = new ArrayList<String>();
@@ -40,7 +43,10 @@ public class SignUp extends AppCompatActivity implements Response.Listener<JSONO
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
-
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = getWindow();
+            window.setStatusBarColor(ContextCompat.getColor(SignUp.this,R.color.status_bar));
+        }
         etSignUpFirstName = (EditText) findViewById(R.id.etSignUpFirstName);
         etSignUpLastName = (EditText) findViewById(R.id.etSignUpLastName);
         etSignUpContact = (EditText) findViewById(R.id.etSignUpContact);
@@ -50,7 +56,7 @@ public class SignUp extends AppCompatActivity implements Response.Listener<JSONO
         etSignUpAlternateEmail = (EditText) findViewById(R.id.etSignUpAlternateEmail);
         btSignUpSaveNext = (Button) findViewById(R.id.btSignUpSaveNext);
         clSignUp = (CoordinatorLayout) findViewById(R.id.clSignUp);
-        btSignUpBack = (ImageButton) findViewById(R.id.btSignUpBack);
+        btSignUpBack = (ImageView) findViewById(R.id.btSignUpBack);
         ivSignUpUnAvailableEmail = (ImageView) findViewById(R.id.ivSignUpUnAvailableEmail);
         ivSignUpAvailableEmail = (ImageView) findViewById(R.id.ivSignUpAvailableEmail);
         ivSignUpUnAvailableNumber = (ImageView) findViewById(R.id.ivSignUpUnAvailableNumber);

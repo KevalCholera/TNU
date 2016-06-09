@@ -1,326 +1,322 @@
-<?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?><!--<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"--><!--xmlns:tools="http://schemas.android.com/tools"--><!--android:layout_width="match_parent"--><!----><!--android:layout_height="match_parent"--><!--android:background="@mipmap/imgappbackground">-->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@mipmap/imgappbackground">
+    android:background="@mipmap/imgappbackground"
+    android:orientation="vertical">
 
-    <LinearLayout
+    <RelativeLayout
+        android:id="@+id/rlBookFromTo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <RelativeLayout
-            android:id="@+id/rlBookFromTo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/lySearchAllMarginStartEnd"
-            android:layout_marginRight="@dimen/lySearchAllMarginStartEnd"
-            android:layout_marginTop="@dimen/lySearchFromToMarginTop">
-
-            <LinearLayout
-                android:id="@+id/lyBookFromTo"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/grayborder"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/tvBookFrom"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/etHeightAll"
-                    android:background="@null"
-                    android:clickable="true"
-                    android:drawableLeft="@mipmap/imgfromto"
-                    android:drawablePadding="@dimen/tvMarginTopBottomStartEndAll"
-                    android:focusable="false"
-                    android:gravity="fill"
-                    android:hint="@string/from"
-                    android:maxLines="1"
-                    android:paddingTop="@dimen/lyPadding10"
-                    android:singleLine="true"
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/hintColor"
-                    android:textSize="@dimen/etSignInUserPassSize" />
-
-                <LinearLayout
-                    android:id="@+id/llBookView"
-                    android:layout_width="match_parent"
-                    android:layout_height="17dp"
-                    android:orientation="horizontal">
-
-                    <View
-                        android:layout_width="0dp"
-                        android:layout_height="@dimen/vSearchFromToHeight"
-                        android:layout_gravity="center"
-                        android:layout_weight="0.8"
-                        android:background="@color/light_Gray" />
-
-                    <ImageView
-                        android:id="@+id/imgBookFromToReverse"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.1"
-                        android:src="@mipmap/reverse" />
-
-                    <View
-                        android:id="@+id/vBookMiddle"
-                        android:layout_width="0dp"
-                        android:layout_height="@dimen/vSearchFromToHeight"
-                        android:layout_gravity="center"
-                        android:layout_weight="0.1"
-                        android:background="@color/light_Gray" />
-
-                </LinearLayout>
-
-                <TextView
-                    android:id="@+id/tvBookTo"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/etHeightAll"
-                    android:background="@null"
-                    android:clickable="true"
-                    android:drawableLeft="@mipmap/imgfromto"
-                    android:drawablePadding="@dimen/tvMarginTopBottomStartEndAll"
-                    android:focusable="false"
-                    android:gravity="fill"
-                    android:hint="@string/to"
-                    android:maxLines="1"
-                    android:paddingBottom="@dimen/lyPadding10"
-                    android:singleLine="true"
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/hintColor"
-                    android:textSize="@dimen/etSignInUserPassSize" />
-            </LinearLayout>
-
-            <ImageView
-                android:id="@+id/ivBookVia"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentRight="true"
-                android:layout_gravity="fill_vertical"
-                android:layout_marginRight="@dimen/ivBookViaMarginEnd"
-                android:layout_marginTop="@dimen/ivBookViaMarginTop"
-                android:src="@mipmap/imgbtnvia"
-                tools:ignore="ContentDescription,RtlHardcoded" />
-
-            <View
-                android:id="@+id/view"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/vBookViewHeight"
-                android:layout_alignParentBottom="true"
-                android:layout_below="@+id/lyBookFromTo"
-                android:background="@null" />
-        </RelativeLayout>
+        android:layout_marginLeft="@dimen/lySearchAllMarginStartEnd"
+        android:layout_marginRight="@dimen/lySearchAllMarginStartEnd"
+        android:layout_marginTop="@dimen/lySearchFromToMarginTop">
 
         <LinearLayout
-            android:id="@+id/llBookVia1"
+            android:id="@+id/lyBookFromTo"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/etHeightAll"
-            android:layout_marginLeft="@dimen/tvSearchAllMarginStartEnd"
-            android:layout_marginRight="@dimen/tvSearchAllMarginStartEnd"
+            android:layout_height="wrap_content"
             android:background="@drawable/grayborder"
-            android:orientation="horizontal"
-            android:visibility="gone">
+            android:orientation="vertical">
 
             <TextView
-                android:id="@+id/tvBookvia1"
+                android:id="@+id/tvBookFrom"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="0.15"
+                android:layout_height="@dimen/etHeightAll"
                 android:background="@null"
                 android:clickable="true"
-                android:drawableLeft="@mipmap/imgvia"
+                android:drawableLeft="@mipmap/imgfromto"
                 android:drawablePadding="@dimen/tvMarginTopBottomStartEndAll"
                 android:focusable="false"
                 android:gravity="fill"
-                android:hint="@string/via1"
+                android:hint="@string/from"
                 android:maxLines="1"
-                android:padding="@dimen/tvSearchAllPadding"
+                android:paddingTop="5dp"
                 android:singleLine="true"
                 android:textColor="@color/black"
-                android:textSize="@dimen/tvSearchAllSize" />
+                android:textColorHint="@color/hintColor"
+                android:textSize="@dimen/etSignInUserPassSize" />
 
-            <ImageView
-                android:id="@+id/ivBookDeleteVia1"
+            <LinearLayout
+                android:id="@+id/llBookView"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.85"
-                android:padding="@dimen/ivBookDeleteViaPadding"
-                android:src="@mipmap/imgdelete" />
+                android:layout_height="17dp"
+                android:orientation="horizontal">
 
-        </LinearLayout>
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/vSearchFromToHeight"
+                    android:layout_gravity="center"
+                    android:layout_weight="0.8"
+                    android:background="@color/light_Gray" />
 
-        <LinearLayout
-            android:id="@+id/llBookVia2"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/etHeightAll"
-            android:layout_marginLeft="@dimen/tvSearchAllMarginStartEnd"
-            android:layout_marginRight="@dimen/tvSearchAllMarginStartEnd"
-            android:layout_marginTop="@dimen/llBookVia2MarginTop"
-            android:background="@drawable/grayborder"
-            android:orientation="horizontal"
-            android:visibility="gone">
+                <ImageView
+                    android:id="@+id/imgBookFromToReverse"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_weight="0.1"
+                    android:src="@mipmap/reverse" />
+
+                <View
+                    android:id="@+id/vBookMiddle"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/vSearchFromToHeight"
+                    android:layout_gravity="center"
+                    android:layout_weight="0.1"
+                    android:background="@color/light_Gray" />
+
+            </LinearLayout>
 
             <TextView
-                android:id="@+id/tvBookvia2"
+                android:id="@+id/tvBookTo"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="0.15"
+                android:layout_height="@dimen/etHeightAll"
                 android:background="@null"
                 android:clickable="true"
-                android:drawableLeft="@mipmap/imgvia"
-                android:drawablePadding="@dimen/etBookviaDrawablePadding"
+                android:drawableLeft="@mipmap/imgfromto"
+                android:drawablePadding="@dimen/tvMarginTopBottomStartEndAll"
                 android:focusable="false"
                 android:gravity="fill"
-                android:hint="@string/via2"
+                android:hint="@string/to"
                 android:maxLines="1"
-                android:padding="@dimen/tvSearchAllPadding"
+                android:paddingBottom="5dp"
                 android:singleLine="true"
                 android:textColor="@color/black"
-                android:textSize="@dimen/tvSearchAllSize" />
-
-            <ImageView
-                android:id="@+id/ivBookDeleteVia2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.85"
-                android:padding="@dimen/ivBookDeleteViaPadding"
-                android:src="@mipmap/imgdelete" />
-
+                android:textColorHint="@color/hintColor"
+                android:textSize="@dimen/etSignInUserPassSize" />
         </LinearLayout>
 
-        <RadioGroup
-            android:id="@+id/llBookNowTodayTomorrow"
+        <ImageView
+            android:id="@+id/ivBookVia"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/lyBookFromTo"
+            android:layout_gravity="fill_vertical"
+            android:layout_marginRight="@dimen/ivBookViaMarginEnd"
+            android:layout_marginTop="-15dp"
+            android:src="@mipmap/imgbtnvia"
+            tools:ignore="ContentDescription,RtlHardcoded" />
+
+        <View
+            android:id="@+id/view"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/etHeightAll"
-            android:layout_marginLeft="@dimen/lySearchAllMarginStartEnd"
-            android:layout_marginRight="@dimen/lySearchAllMarginStartEnd"
-            android:layout_marginTop="@dimen/lySearchNowTodayTomorrowMaginTop"
-            android:background="@drawable/blueborder"
-            android:orientation="horizontal"
-            android:padding="@dimen/llBookNowTodayTomorrowPadding">
+            android:layout_height="@dimen/vBookViewHeight"
 
-            <RadioButton
-                android:id="@+id/rbBookNow"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@drawable/radio_book"
-                android:button="@null"
-                android:checked="true"
-                android:gravity="center"
-                android:text="@string/now"
-                android:textColor="@color/black"
-                android:textSize="@dimen/etSignInUserPassSize"
-                tools:ignore="NestedWeights" />
+            android:layout_below="@+id/lyBookFromTo"
+            android:background="@null" />
+    </RelativeLayout>
 
-            <RadioButton
-                android:id="@+id/rbBookToday"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@drawable/radio_book"
-                android:button="@null"
-                android:gravity="center"
-                android:text="@string/today"
-                android:textColor="@color/black"
-                android:textSize="@dimen/etSignInUserPassSize" />
-
-            <RadioButton
-                android:id="@+id/rbBookTomorrow"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@drawable/radio_book"
-                android:button="@null"
-                android:gravity="center"
-                android:text="@string/tomorrow"
-                android:textColor="@color/black"
-                android:textSize="@dimen/etSignInUserPassSize" />
-
-        </RadioGroup>
+    <LinearLayout
+        android:id="@+id/llBookVia1"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/etHeightAll"
+        android:layout_marginLeft="@dimen/tvSearchAllMarginStartEnd"
+        android:layout_marginRight="@dimen/tvSearchAllMarginStartEnd"
+        android:background="@drawable/grayborder"
+        android:orientation="horizontal"
+        android:visibility="gone">
 
         <TextView
-            android:id="@+id/tvBookDateTime"
+            android:id="@+id/tvBookvia1"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/etHeightAll"
-            android:layout_marginLeft="@dimen/lySearchAllMarginStartEnd"
-            android:layout_marginRight="@dimen/lySearchAllMarginStartEnd"
-            android:layout_marginTop="@dimen/lySearchDateTimeMaginTop"
-            android:background="@drawable/grayborder"
+            android:layout_height="match_parent"
+            android:layout_weight="0.15"
+            android:background="@null"
             android:clickable="true"
-            android:drawableLeft="@mipmap/imgtime"
+            android:drawableLeft="@mipmap/imgvia"
             android:drawablePadding="@dimen/tvMarginTopBottomStartEndAll"
             android:focusable="false"
             android:gravity="fill"
-            android:hint="@string/datetime"
+            android:hint="@string/via1"
             android:maxLines="1"
+            android:padding="@dimen/tvSearchAllPadding"
+            android:singleLine="true"
+            android:textColor="@color/black"
+            android:textSize="@dimen/tvSearchAllSize" />
+
+        <ImageView
+            android:id="@+id/ivBookDeleteVia1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.85"
+            android:padding="@dimen/ivBookDeleteViaPadding"
+            android:src="@mipmap/imgdelete" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llBookVia2"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/etHeightAll"
+        android:layout_marginLeft="@dimen/tvSearchAllMarginStartEnd"
+        android:layout_marginRight="@dimen/tvSearchAllMarginStartEnd"
+        android:layout_marginTop="@dimen/llBookVia2MarginTop"
+        android:background="@drawable/grayborder"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/tvBookvia2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.15"
+            android:background="@null"
+            android:clickable="true"
+            android:drawableLeft="@mipmap/imgvia"
+            android:drawablePadding="@dimen/etBookviaDrawablePadding"
+            android:focusable="false"
+            android:gravity="fill"
+            android:hint="@string/via2"
+            android:maxLines="1"
+            android:padding="@dimen/tvSearchAllPadding"
+            android:singleLine="true"
+            android:textColor="@color/black"
+            android:textSize="@dimen/tvSearchAllSize" />
+
+        <ImageView
+            android:id="@+id/ivBookDeleteVia2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.85"
+            android:padding="@dimen/ivBookDeleteViaPadding"
+            android:src="@mipmap/imgdelete" />
+
+    </LinearLayout>
+
+    <RadioGroup
+        android:id="@+id/llBookNowTodayTomorrow"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/etHeightAll"
+        android:layout_marginLeft="@dimen/lySearchAllMarginStartEnd"
+        android:layout_marginRight="@dimen/lySearchAllMarginStartEnd"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/blueborder"
+        android:orientation="horizontal"
+        android:padding="@dimen/llBookNowTodayTomorrowPadding">
+
+        <RadioButton
+            android:id="@+id/rbBookNow"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/radio_book"
+            android:button="@null"
+            android:checked="true"
+            android:gravity="center"
+            android:text="@string/now"
+            android:textColor="@color/black"
+            android:textSize="@dimen/etSignInUserPassSize"
+            tools:ignore="NestedWeights" />
+
+        <RadioButton
+            android:id="@+id/rbBookToday"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/radio_book"
+            android:button="@null"
+            android:gravity="center"
+            android:text="@string/today"
+            android:textColor="@color/black"
+            android:textSize="@dimen/etSignInUserPassSize" />
+
+        <RadioButton
+            android:id="@+id/rbBookTomorrow"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/radio_book"
+            android:button="@null"
+            android:gravity="center"
+            android:text="@string/tomorrow"
+            android:textColor="@color/black"
+            android:textSize="@dimen/etSignInUserPassSize" />
+
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/tvBookDateTime"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/etHeightAll"
+        android:layout_marginLeft="@dimen/lySearchAllMarginStartEnd"
+        android:layout_marginRight="@dimen/lySearchAllMarginStartEnd"
+        android:layout_marginTop="@dimen/lySearchDateTimeMaginTop"
+        android:background="@drawable/grayborder"
+        android:clickable="true"
+        android:drawableLeft="@mipmap/imgtime"
+        android:drawablePadding="@dimen/tvMarginTopBottomStartEndAll"
+        android:focusable="false"
+        android:gravity="fill"
+        android:hint="@string/datetime"
+        android:maxLines="1"
+        android:textColor="@color/black"
+        android:textColorHint="@color/hintColor"
+        android:textSize="@dimen/etSignInUserPassSize" />
+
+    <LinearLayout
+        android:id="@+id/llBookLuggagePassenger"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/lySearchAllMarginStartEnd"
+        android:layout_marginRight="@dimen/lySearchAllMarginStartEnd"
+        android:layout_marginTop="@dimen/lySearchLuggagePassengerMarginTop"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvBookLuggage"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/etHeightAll"
+            android:layout_marginRight="@dimen/tvMarginTopBottomStartEndAll"
+            android:layout_weight="1"
+            android:background="@drawable/grayborder"
+            android:clickable="true"
+            android:drawableLeft="@mipmap/baggage"
+            android:drawablePadding="@dimen/tvSearchCarsPaddingTopBottom"
+            android:focusable="false"
+            android:gravity="fill"
+            android:hint="@string/luggage"
+            android:maxLines="1"
+            android:singleLine="true"
             android:textColor="@color/black"
             android:textColorHint="@color/hintColor"
             android:textSize="@dimen/etSignInUserPassSize" />
 
-        <LinearLayout
-            android:id="@+id/llBookLuggagePassenger"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/lySearchAllMarginStartEnd"
-            android:layout_marginRight="@dimen/lySearchAllMarginStartEnd"
-            android:layout_marginTop="@dimen/lySearchLuggagePassengerMarginTop"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/tvBookLuggage"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/etHeightAll"
-                android:layout_marginRight="@dimen/tvMarginTopBottomStartEndAll"
-                android:layout_weight="1"
-                android:background="@drawable/grayborder"
-                android:clickable="true"
-                android:drawableLeft="@mipmap/baggage"
-                android:drawablePadding="@dimen/tvSearchCarsPaddingTopBottom"
-                android:focusable="false"
-                android:gravity="fill"
-                android:hint="@string/luggage"
-                android:maxLines="1"
-                android:singleLine="true"
-                android:textColor="@color/black"
-                android:textColorHint="@color/hintColor"
-                android:textSize="@dimen/etSignInUserPassSize" />
-
-            <TextView
-                android:id="@+id/tvBookPassenger"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/etHeightAll"
-                android:layout_marginLeft="@dimen/tvMarginTopBottomStartEndAll"
-                android:layout_weight="1"
-                android:background="@drawable/grayborder"
-                android:clickable="true"
-                android:drawableLeft="@mipmap/imgpassenger"
-                android:drawablePadding="@dimen/tvSearchCarsPaddingTopBottom"
-                android:focusable="false"
-                android:gravity="fill"
-                android:hint="@string/passengers"
-                android:maxLines="1"
-                android:singleLine="true"
-                android:textColor="@color/black"
-                android:textColorHint="@color/hintColor"
-                android:textSize="@dimen/etSignInUserPassSize" />
-
-        </LinearLayout>
-
         <TextView
-            android:id="@+id/tvBookSearchCars"
+            android:id="@+id/tvBookPassenger"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/btSignUpAllheight"
-            android:layout_gravity="center_horizontal"
-            android:layout_margin="@dimen/tvSearchAllMargin"
-            android:background="@drawable/yellow"
-            android:gravity="center"
-            android:text="@string/searchcar"
-            android:textColor="@color/white"
-            android:textSize="@dimen/btSizeAll" />
+            android:layout_height="@dimen/etHeightAll"
+            android:layout_marginLeft="@dimen/tvMarginTopBottomStartEndAll"
+            android:layout_weight="1"
+            android:background="@drawable/grayborder"
+            android:clickable="true"
+            android:drawableLeft="@mipmap/imgpassenger"
+            android:drawablePadding="@dimen/tvSearchCarsPaddingTopBottom"
+            android:focusable="false"
+            android:gravity="fill"
+            android:hint="@string/passengers"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:textColor="@color/black"
+            android:textColorHint="@color/hintColor"
+            android:textSize="@dimen/etSignInUserPassSize" />
 
     </LinearLayout>
-</ScrollView>
+
+    <TextView
+        android:id="@+id/tvBookSearchCars"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/btSignUpAllheight"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="@dimen/tvSearchAllMargin"
+        android:background="@drawable/yellow"
+        android:gravity="center"
+        android:text="@string/searchcar"
+        android:textColor="@color/white"
+        android:textSize="@dimen/btSizeAll" />
+
+</LinearLayout><!--</ScrollView>-->
 

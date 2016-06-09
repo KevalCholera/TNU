@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -36,7 +37,7 @@ public class SecurityQuestion extends AppCompatActivity implements View.OnClickL
     Button btSecuritySave;
     TextView tvSecurityTermsConditions;
     CoordinatorLayout clSecurityQuestion;
-    ImageButton btSecurityBack;
+    ImageView btSecurityBack;
     private AlertDialog alert;
     private JSONObject jsonObject;
 
@@ -55,7 +56,7 @@ public class SecurityQuestion extends AppCompatActivity implements View.OnClickL
         btSecuritySave = (Button) findViewById(R.id.btSecuritySave);
         tvSecurityTermsConditions = (TextView) findViewById(R.id.tvSecurityTermsConditions);
         clSecurityQuestion = (CoordinatorLayout) findViewById(R.id.clSecurityQuestion);
-        btSecurityBack = (ImageButton) findViewById(R.id.btSecurityBack);
+        btSecurityBack = (ImageView) findViewById(R.id.btSecurityBack);
         etSecurityQuestion1.setOnClickListener(this);
         etSecurityQuestion2.setOnClickListener(this);
         btSecuritySave.setOnClickListener(this);

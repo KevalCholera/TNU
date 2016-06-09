@@ -6,10 +6,10 @@
     <dimen name="lySignInUserPasswordMarginTop">10dp</dimen>
     <dimen name="btSignInSignInMarginTop">15dp</dimen>
     <dimen name="etSignInUserPasswordMarginStart">20dp</dimen>
-    <dimen name="btSignInSignInSize">18sp</dimen>
+    <dimen name="btSignInSignInSize">15sp</dimen>
     <dimen name="imgSignInUserPassMarginStart">15dp</dimen>
     <dimen name="tvAccountCredits">15dp</dimen>
-    <dimen name="etSignInUserPassSize">15sp</dimen>
+    <dimen name="etSignInUserPassSize">12sp</dimen>
     <dimen name="tvSignInForgotPasswordMarginTop">20dp</dimen>
     <dimen name="tvSignInStillNotConnectedSize">17sp</dimen>
     <dimen name="tvSignInStillNotConnectedMarginTop">20dp</dimen>
@@ -34,7 +34,7 @@
     <dimen name="lySignUpPersonNameMarginTop">30dp</dimen>
     <dimen name="etSignUpAllsize">12sp</dimen>
     <dimen name="etSignUpAllMarginTop">10dp</dimen>
-    <dimen name="etHeightAll">40dp</dimen>
+    <dimen name="etHeightAll">35dp</dimen>
     <dimen name="etSignUpPersonNameMarginEnd">5dp</dimen>
     <dimen name="etSignUpPersonNameMarginStart">20dp</dimen>
     <dimen name="etSignUpLastNameMarginEnd">20dp</dimen>
@@ -43,7 +43,7 @@
     <dimen name="etSignUpAllPaddingStartEnd">10dp</dimen>
     <dimen name="btSignUpAllMarginTop">10dp</dimen>
     <dimen name="tvSignUpSignUpMarginBottom">50dp</dimen>
-    <dimen name="btSignUpAllheight">40dp</dimen>
+    <dimen name="btSignUpAllheight">37dp</dimen>
     <dimen name="etBookingInfoPaddingStart">20dp</dimen>
     <dimen name="signUpMargin">30dp</dimen>
     <!-- Default screen margins, per the Android Design guidelines. -->
@@ -251,19 +251,19 @@
     <dimen name="tvPopupCancelRideCancelMarginStart">10dp</dimen>
     <dimen name="tvPopupCancelRidePadding">5dp</dimen>
     <dimen name="vGoogleHeight">2dp</dimen>
-    <dimen name="etSignUpSizeAll">13sp</dimen>
+    <dimen name="etSignUpSizeAll">12sp</dimen>
     <dimen name="btFeedBackSubmitMargin">20dp</dimen>
     <dimen name="lyFeedbackCheckboxMarginTopBottom">15dp</dimen>
     <dimen name="tvPersonalInfoHeadingSizeAll">17sp</dimen>
     <dimen name="etPersonalInfoPadding">5dp</dimen>
-    <dimen name="cbCheckTextSizeAll">13sp</dimen>
+    <dimen name="cbCheckTextSizeAll">10sp</dimen>
     <dimen name="cbCheckTextMarginStart">5dp</dimen>
     <dimen name="tvSignInOrMarginStartEnd">20dp</dimen>
     <dimen name="etResetPasswordEmailAddressMarginTop">10dp</dimen>
     <dimen name="btResetPasswordSendMarginTop">50dp</dimen>
     <dimen name="tvResetPasswordForgotEmailMargin">20dp</dimen>
     <dimen name="vResetForgotAll">20dp</dimen>
-    <dimen name="lyResetPaddingAll">30dp</dimen>
+    <dimen name="lyResetPaddingAll">25dp</dimen>
     <dimen name="lyRecoverEmailMarginStartAll">40dp</dimen>
     <dimen name="rbRecoverEmailRememberEmailMarginTop">20dp</dimen>
     <dimen name="tvetRecoverEmailMarginTopBottomAll">10dp</dimen>

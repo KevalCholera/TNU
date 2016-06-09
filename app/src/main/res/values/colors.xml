@@ -24,6 +24,9 @@
     <color name="element">#f4f4f4f4</color>
     <color name="details">#8D8D8D</color>
     <color name="heading">#686868</color>
+    <color name="status_bar">#F2F5F5</color>
+    <color name="text_color">#8f8f8f</color>
+    <color name="line_color">#cccccc</color>
 </resources>
 
     <!--<?xml version="1.0" encoding="utf-8"?>

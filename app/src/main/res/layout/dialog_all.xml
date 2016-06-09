@@ -847,7 +847,7 @@
                 android:text="@string/we_have_located_your_account"
                 android:textAllCaps="true"
                 android:textColor="@color/colorPrimary"
-                android:textSize="@dimen/tvHeadingSizeAll"
+                android:textSize="@dimen/tvTitlesSizeAll"
                 android:textStyle="bold" />
 
             <View
@@ -855,7 +855,7 @@
                 android:layout_height="@dimen/vHeightWidthAll"
                 android:layout_marginBottom="@dimen/vMarginTopBottomAll"
                 android:layout_marginTop="@dimen/vMarginTopBottomAll"
-                android:background="@android:color/darker_gray" />
+                android:background="@color/line_color" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -867,6 +867,7 @@
                 android:id="@+id/tvPopupLocatedEmail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="12sp"
                 android:textColor="@color/colorPrimary" />
 
 
@@ -876,6 +877,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/tvPopupMarginTop"
                 android:gravity="center"
+                android:textSize="12sp"
                 android:text="@string/please_follow_the_instructions_to_recover_your_email_address_if_you_can_t_find_the_email_we_have_send_you_in_your_inbox_check_your_junk_mail"
                 android:textColor="@android:color/darker_gray" />
 

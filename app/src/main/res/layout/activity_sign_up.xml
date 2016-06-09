@@ -15,28 +15,31 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/lyMarginMainAll"
+            android:layout_marginTop="10dp"
             android:orientation="horizontal">
 
-            <ImageButton
+            <ImageView
                 android:id="@+id/btSignUpBack"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/ivBackWidthMargin"
-                android:background="@null"
+                android:layout_width="12dp"
+                android:layout_height="18dp"
+                android:layout_marginBottom="@dimen/tvSignUpSignUpMarginBottom"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="@dimen/btSignUpAllMarginTop"
                 android:src="@mipmap/imgback" />
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/ivTNUiconMain"
+                android:layout_width="160dp"
+                android:layout_height="72dp"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
+                android:layout_marginTop="@dimen/ivBackWidthMargin"
                 android:background="@mipmap/imgtnulogo" />
         </RelativeLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:orientation="horizontal">
 
             <EditText
@@ -104,8 +107,9 @@
 
             <ImageView
                 android:id="@+id/ivSignUpAvailableNumber"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginRight="@dimen/margin_5"
                 android:layout_gravity="center"
                 android:layout_marginLeft="@dimen/margin_5"
                 android:src="@mipmap/img_available"
@@ -113,10 +117,11 @@
 
             <ImageView
                 android:id="@+id/ivSignUpUnAvailableNumber"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:layout_gravity="center"
                 android:layout_marginLeft="@dimen/margin_5"
+                android:layout_marginRight="@dimen/margin_5"
                 android:src="@mipmap/img_unavailable"
                 android:visibility="invisible" />
 
@@ -145,8 +150,9 @@
 
             <ImageView
                 android:id="@+id/ivSignUpAvailableEmail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginRight="@dimen/margin_5"
                 android:layout_gravity="center"
                 android:layout_marginLeft="@dimen/margin_5"
                 android:src="@mipmap/img_available"
@@ -154,9 +160,10 @@
 
             <ImageView
                 android:id="@+id/ivSignUpUnAvailableEmail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:layout_gravity="center"
+                android:layout_marginRight="@dimen/margin_5"
                 android:layout_marginLeft="@dimen/margin_5"
                 android:src="@mipmap/img_unavailable"
                 android:visibility="invisible" />
@@ -230,8 +237,9 @@
 
             <ImageView
                 android:id="@+id/ivSignUpAvailableAlternateEmail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginRight="@dimen/margin_5"
                 android:layout_gravity="center"
                 android:layout_marginLeft="@dimen/margin_5"
                 android:src="@mipmap/img_available"
@@ -239,11 +247,13 @@
 
             <ImageView
                 android:id="@+id/ivSignUpUnAvailableAlternateEmail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginRight="@dimen/margin_5"
                 android:layout_gravity="center"
                 android:layout_marginLeft="@dimen/margin_5"
                 android:src="@mipmap/img_unavailable"
+
                 android:visibility="invisible" />
 
         </LinearLayout>
@@ -254,8 +264,8 @@
             android:layout_height="@dimen/btSignUpAllheight"
             android:layout_gravity="center"
             android:layout_marginBottom="@dimen/tvSignUpSignUpMarginBottom"
-            android:layout_marginLeft="@dimen/etSignUpContactMarginStartEnd"
-            android:layout_marginRight="@dimen/etSignUpContactMarginStartEnd"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
             android:layout_marginTop="@dimen/btSignUpAllMarginTop"
             android:background="@drawable/yellow"
             android:text="@string/save_amp_next"

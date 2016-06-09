@@ -8,6 +8,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/white"
         android:orientation="vertical">
 
         <include
@@ -30,14 +31,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/email_chane"
-                    android:textColor="@color/heading" />
+                    android:textColor="@color/text_color"
+                    android:textSize="12sp" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/vHeightWidthAll"
                     android:layout_marginBottom="@dimen/vResetForgotAll"
                     android:layout_marginTop="@dimen/vResetForgotAll"
-                    android:background="@color/dark_gray" />
+                    android:background="@color/line_color" />
 
                 <RadioGroup
                     android:layout_width="match_parent"
@@ -50,25 +52,30 @@
                         android:button="@drawable/radio_button_popup"
                         android:checked="true"
                         android:text="@string/enter_alternate_email"
-                        android:textColor="@color/heading" />
+                        android:textColor="@color/text_color"
+                        android:textSize="12sp" />
 
                     <LinearLayout
                         android:id="@+id/lyRadioButton1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="@dimen/lyRecoverEmailMarginStartAll"
+                        android:visibility="visible"
                         android:orientation="vertical">
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="@string/alt_msg"
-                            android:textColor="@color/details" />
+                            android:textSize="10sp"
+                            android:textColor="@color/light_Gray"
+                             />
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/tvetRecoverEmailMarginTopBottomAll"
+                            android:layout_marginBottom="5dp"
                             android:text="@string/alternate_email"
                             android:textColor="@color/background" />
 
@@ -81,6 +88,7 @@
                             android:inputType="textEmailAddress"
                             android:nextFocusForward="@+id/etSignUpLastName"
                             android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
+
                             android:singleLine="true"
                             android:textColor="@color/black"
                             android:textColorHint="@color/light_Gray"
@@ -95,7 +103,8 @@
                         android:layout_marginTop="@dimen/rbRecoverEmailRememberEmailMarginTop"
                         android:button="@drawable/radio_button_popup"
                         android:text="@string/do_not_remember_alternate_email"
-                        android:textColor="@color/heading" />
+                        android:textColor="@color/text_color"
+                        android:textSize="12sp" />
 
                     <LinearLayout
                         android:id="@+id/lyRadioButton2"
@@ -109,13 +118,15 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="@string/we_may_require_supportive_evidence_in_order_for_us_to_locate_your_account"
-                            android:textColor="@color/details" />
+                            android:textSize="10sp"
+                            android:textColor="@color/light_Gray" />
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/tvetRecoverEmailMarginTopBottomAll"
                             android:text="@string/first_name"
+                            android:layout_marginBottom="5dp"
                             android:textColor="@color/background" />
 
                         <EditText
@@ -139,6 +150,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/tvetRecoverEmailMarginTopBottomAll"
                             android:text="@string/last_name"
+                            android:layout_marginBottom="5dp"
                             android:textColor="@color/background" />
 
                         <EditText
@@ -162,6 +174,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/tvetRecoverEmailMarginTopBottomAll"
                             android:text="@string/contact"
+                            android:layout_marginBottom="5dp"
                             android:textColor="@color/background" />
 
                         <EditText
@@ -185,6 +198,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/tvetRecoverEmailMarginTopBottomAll"
                             android:text="@string/email_add"
+                            android:layout_marginBottom="5dp"
                             android:textColor="@color/background" />
 
                         <EditText
@@ -215,7 +229,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:background="@color/Yellow"
-            android:text="@string/submit"
+            android:text="@string/send"
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="@dimen/btSizeAll" />

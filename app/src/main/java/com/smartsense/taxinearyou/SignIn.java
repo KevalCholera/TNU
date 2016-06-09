@@ -1,13 +1,16 @@
 package com.smartsense.taxinearyou;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -38,7 +41,10 @@ public class SignIn extends AppCompatActivity implements Response.Listener<JSONO
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
-
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = getWindow();
+            window.setStatusBarColor(ContextCompat.getColor(SignIn.this,R.color.status_bar));
+        }
         btSignInSignIn = (Button) findViewById(R.id.btSignInSignIn);
         btSignInSignUp = (Button) findViewById(R.id.btSignInSignUp);
         etSignInUserName = (EditText) findViewById(R.id.etSignInUserName);
