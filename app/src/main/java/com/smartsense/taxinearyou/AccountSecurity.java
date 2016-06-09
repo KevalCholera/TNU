@@ -1,5 +1,6 @@
 package com.smartsense.taxinearyou;
 
+import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -10,7 +11,6 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
@@ -20,14 +20,12 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -71,6 +69,7 @@ public class AccountSecurity extends AppCompatActivity implements View.OnClickLi
         registerReceiver(tripMessageReceiver, new IntentFilter(String.valueOf(Constants.Events.UPDATE_PROMOTIONS)));
         registerReceiver(tripMessageReceiver, new IntentFilter(String.valueOf(Constants.Events.UPDATE_EMAIL)));
         registerReceiver(tripMessageReceiver, new IntentFilter(String.valueOf(Constants.Events.UPDATE_GENERAL_INFO)));
+
         tvAccountSecurityNote = (TextView) findViewById(R.id.tvAccountSecurityNote);
         btAccountSecurityChangeEmail = (Button) findViewById(R.id.btAccountSecurityChangeEmail);
         btAccountSecurityChangeAlternateEmail = (Button) findViewById(R.id.btAccountSecurityChangeAlternateEmail);
@@ -147,12 +146,6 @@ public class AccountSecurity extends AppCompatActivity implements View.OnClickLi
             if (clicked == Constants.AccountSecurity.SECURITY_QUESTION)
                 rbPopupSecurityOptionsQuestions.setVisibility(View.GONE);
 
-//            String primaryEmail = "<font color=" + ContextCompat.getColor(this, R.color.heading) + ">" + getResources().getString(R.string.send_email_to_primary_email_address) + "</font>" + "\n" + "<font color=" + ContextCompat.getColor(this, R.color.black) + ">" + "<u>" + (SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_EMAIL, "") + "</u>" + "</font>");
-//            String alternateEmail = "<font color=" + ContextCompat.getColor(this, R.color.heading) + ">" + getResources().getString(R.string.send_email_to_alternate_email_address) + "</font>" + "\n" + "<font color=" + ContextCompat.getColor(this, R.color.black) + ">" + "<u>" + (SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_ALTERNATE_EMAIL, "") + "</u>" + "</font>");
-//
-//            rbPopupSecurityOptionsEmail.setText(Html.fromHtml(primaryEmail));
-//            rbPopupSecurityOptionsAlternateEmail.setText(Html.fromHtml(alternateEmail));
-
             rbPopupSecurityOptionsEmail.setText(getResources().getString(R.string.send_email_to_primary_email_address) + "\n" + SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_EMAIL, ""));
             rbPopupSecurityOptionsAlternateEmail.setText(getResources().getString(R.string.send_email_to_alternate_email_address) + "\n" + SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_ALTERNATE_EMAIL, ""));
 
@@ -192,20 +185,7 @@ public class AccountSecurity extends AppCompatActivity implements View.OnClickLi
                 openOccasionsPopupOptions();
                 break;
             case R.id.btPopupSecurityQuestionConfirm:
-                alert.dismiss();
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        try {
-                            Thread.sleep(2000);
-                            alert.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
-                            alert.show();
-                            verifyingAnswers();
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }).start();
+                verifyingAnswers();
                 break;
             case R.id.btPopupSecurityOptionsSubmit:
                 securityOptionSelection();
@@ -304,19 +284,19 @@ public class AccountSecurity extends AppCompatActivity implements View.OnClickLi
     }
 
     public void securityQuestionConfirm() {
-
+        alert.dismiss();
         lyPopUpQuestion.setVisibility(View.GONE);
         if (clicked == Constants.AccountSecurity.CHANGE_EMAIL) {
-            lyPopUpEmail.setVisibility(View.VISIBLE);
+            CommonUtil.handlerDialog(alert, lyPopUpEmail);
             btPopupSecurityEmailSubmit.setOnClickListener(AccountSecurity.this);
         } else if (clicked == Constants.AccountSecurity.CHANGE_ALTERNET_EMAIL) {
-            lyPopUpAlternateEmail.setVisibility(View.VISIBLE);
+            CommonUtil.handlerDialog(alert, lyPopUpAlternateEmail);
             btPopupSecurityAlternateEmailSubmit.setOnClickListener(AccountSecurity.this);
         } else if (clicked == Constants.AccountSecurity.SECURITY_QUESTION) {
-            lyPopUpQuestionChanges.setVisibility(View.VISIBLE);
+            CommonUtil.handlerDialog(alert, lyPopUpQuestionChanges);
             btPopupSecurityQuestionChangeConfirm.setOnClickListener(AccountSecurity.this);
         } else if (clicked == Constants.AccountSecurity.CHANGE_PASSWORD) {
-            lyPopUpPassword.setVisibility(View.VISIBLE);
+            CommonUtil.handlerDialog(alert, lyPopUpPassword);
             btPopupSecurityPasswordSubmit.setOnClickListener(AccountSecurity.this);
         }
     }
@@ -325,8 +305,9 @@ public class AccountSecurity extends AppCompatActivity implements View.OnClickLi
         if (rbPopupSecurityOptionsEmail.isChecked() || rbPopupSecurityOptionsAlternateEmail.isChecked()) {
             changeByLinkAPI();
         } else {
+            alert.dismiss();
             lyPopUpSecurityOptions.setVisibility(View.GONE);
-            lyPopUpQuestion.setVisibility(View.VISIBLE);
+            CommonUtil.handlerDialog(alert, lyPopUpQuestion);
             btPopupSecurityQuestionConfirm.setOnClickListener(this);
         }
     }
@@ -341,7 +322,6 @@ public class AccountSecurity extends AppCompatActivity implements View.OnClickLi
         else
             changeEmailAPI();
     }
-
 
     public void alternateEmailChanged() {
         if (etPopupSecurityAlternateEmail.getText().toString().equalsIgnoreCase("") || etPopupSecurityAlternateEmail.getText().toString().equalsIgnoreCase(""))

@@ -49,8 +49,8 @@ public class Filter extends AppCompatActivity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_filter);
 
-        Toolbar toolbarAll = (Toolbar) findViewById(R.id.toolbarAll);
-        setSupportActionBar(toolbarAll);
+        Toolbar tbFilter = (Toolbar) findViewById(R.id.tbFilter);
+        setSupportActionBar(tbFilter);
         getSupportActionBar().setTitle("");
 
         rgFilterVehicleType = (RadioGroup) findViewById(R.id.rgFilterVehicleType1);

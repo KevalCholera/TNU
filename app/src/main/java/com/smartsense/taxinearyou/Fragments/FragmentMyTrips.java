@@ -87,13 +87,13 @@ public class FragmentMyTrips extends Fragment implements Response.Listener<JSONO
                 pageNumber = 0;
                 totalRecord = 0;
                 adapterMyTrips = null;
-                doMyTrip(pageNumber,false);
+                doMyTrip(pageNumber, false);
             }
         });
         getActivity().registerReceiver(tripMessageReceiver, new IntentFilter(String.valueOf(Constants.Events.EVENT_CHANGE)));
         getActivity().registerReceiver(tripMessageReceiver, new IntentFilter(String.valueOf(Constants.Events.CANCEL_RIDE)));
         getActivity().registerReceiver(tripMessageReceiver, new IntentFilter(String.valueOf(Constants.Events.BookRide)));
-        doMyTrip(pageNumber,false);
+        doMyTrip(pageNumber, false);
 
 //        lvMyTrips.setOnScrollListener(new AbsListView.OnScrollListener() {
 //
@@ -150,7 +150,7 @@ public class FragmentMyTrips extends Fragment implements Response.Listener<JSONO
                     pageNumber = 0;
                     totalRecord = 0;
                     adapterMyTrips = null;
-                    doMyTrip(pageNumber,true);
+                    doMyTrip(pageNumber, true);
                     break;
             }
     }
@@ -206,7 +206,7 @@ public class FragmentMyTrips extends Fragment implements Response.Listener<JSONO
             pageNumber = 0;
             totalRecord = 0;
             adapterMyTrips = null;
-            doMyTrip(pageNumber,true);
+            doMyTrip(pageNumber, true);
             WakeLocker.release();
         }
     };
@@ -280,13 +280,13 @@ public class FragmentMyTrips extends Fragment implements Response.Listener<JSONO
             final JSONObject test = data.optJSONObject(position);
 //            Log.i("Test", test.toString());
 
-            tvElementMyTripsAmount.setText("£" + test.optInt("estimatedAmount") + ".00");
+            tvElementMyTripsAmount.setText("£" + CommonUtil.getDecimal(test.optDouble("estimatedAmount")));
             tvElementMyTripsFrom.setText(test.optString("from"));
             tvElementMyTripsTo.setText(test.optString("to"));
             tvElementMyTripsStatus.setText(test.optString("status"));
             tvElementMyTripsTaxiProvider.setText(test.optString("partner"));
             try {
-                tvElementMyTripsDateTime.setText(Constants.DATE_FORMAT_DATE_TIME.format(Constants.DATE_FORMAT_EXTRA.parse(test.optString("pickTime"))));
+                tvElementMyTripsDateTime.setText(Constants.DATE_FORMAT_FULL_DATE_TIME_DOWN.format(Constants.DATE_FORMAT_EXTRA.parse(test.optString("pickTime"))));
             } catch (ParseException e) {
                 e.printStackTrace();
             }
@@ -297,9 +297,8 @@ public class FragmentMyTrips extends Fragment implements Response.Listener<JSONO
                 tvElementMyTripsStatus.setBackgroundColor(ContextCompat.getColor(a, R.color.dark_green));
             else
                 tvElementMyTripsStatus.setBackgroundColor(ContextCompat.getColor(a, R.color.Yellow));
-            Log.i("Yes", totalRecord + " " + data.length());
             if ((position + 1) == data.length() && totalRecord != data.length()) {
-                doMyTrip(data.length(),true);
+                doMyTrip(data.length(), true);
             }
             return vi;
         }

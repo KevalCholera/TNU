@@ -111,10 +111,10 @@ public class TripDetails extends AppCompatActivity implements View.OnClickListen
                     .placeholder(R.mipmap.imgtnulogo)
                     .into(cvTripDetailsPartnerLogo);
 
-            tvTripDetailBookingDate.setText(Constants.DATE_FORMAT_ONLY_DATE.format(Constants.DATE_FORMAT_FULL_DATE_TIME.parse(tripDetails.optString("bookingTime").trim())));
-            tvTripDetailBookingTime.setText(Constants.DATE_FORMAT_ONLY_TIME.format(Constants.DATE_FORMAT_FULL_DATE_TIME.parse(tripDetails.optString("bookingTime").trim())));
-            tvTripDetailPickUpDate.setText(Constants.DATE_FORMAT_ONLY_DATE.format(Constants.DATE_FORMAT_FULL_DATE_TIME.parse(tripDetails.optString("pickTime").trim())));
-            tvTripDetailPickUpTime.setText(Constants.DATE_FORMAT_ONLY_TIME.format(Constants.DATE_FORMAT_FULL_DATE_TIME.parse(tripDetails.optString("pickTime").trim())));
+            tvTripDetailBookingDate.setText(Constants.DATE_FORMAT_FULL_DATE_TIME_DOWN.format(Constants.DATE_FORMAT_EXTRA.parse(tripDetails.optString("bookingTime").trim())));
+//            tvTripDetailBookingTime.setText(Constants.DATE_FORMAT_ONLY_TIME.format(Constants.DATE_FORMAT_FULL_DATE_TIME.parse(tripDetails.optString("bookingTime").trim())));
+            tvTripDetailPickUpDate.setText(Constants.DATE_FORMAT_FULL_DATE_TIME_DOWN.format(Constants.DATE_FORMAT_EXTRA.parse(tripDetails.optString("pickTime").trim())));
+//            tvTripDetailPickUpTime.setText(Constants.DATE_FORMAT_ONLY_TIME.format(Constants.DATE_FORMAT_FULL_DATE_TIME.parse(tripDetails.optString("pickTime").trim())));
 
             tvTripDetailTaxiProvider.setText(tripDetails.optString("partner"));
             tvTripDetailTaxiProvider.setTag(tripDetails.optString("rideId"));
@@ -289,6 +289,20 @@ public class TripDetails extends AppCompatActivity implements View.OnClickListen
         }
     }
 
+    public void alertBoxTripDetails(final String msg) {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(false);
+        builder.setMessage(msg);
+        builder.setTitle(getResources().getString(R.string.cancellation));
+        builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                tvTripDetailCancle.setVisibility(View.GONE);
+            }
+        });
+        builder.create();
+        builder.show();
+    }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == Activity.RESULT_OK) {
@@ -342,12 +356,13 @@ public class TripDetails extends AppCompatActivity implements View.OnClickListen
                 if (jsonObject.optInt("__eventid") == Constants.Events.CANCEL_RIDE) {
                     alert.dismiss();
                     requestRefreshMyTrip = 1;
-                    CommonUtil.alertBoxTwice(this, jsonObject.optString("msg"), getResources().getString(R.string.cancellation), tvTripDetailCancle);
+                    alertBoxTripDetails(jsonObject.optString("msg"));
                 } else if (jsonObject.optInt("__eventid") == Constants.Events.RESEND_INVOICE) {
                     CommonUtil.alertBox(this, jsonObject.optString("msg"));
                 }
-            } else
+            } else {
                 CommonUtil.conditionAuthentication(this, jsonObject);
+            }
         else
             CommonUtil.jsonNullError(this);
     }

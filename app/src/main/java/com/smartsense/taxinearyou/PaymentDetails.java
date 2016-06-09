@@ -44,7 +44,7 @@ public class PaymentDetails extends AppCompatActivity implements View.OnClickLis
         tvPaymentCash = (TextView) findViewById(R.id.tvPaymentCash);
         tvPaymentAmount = (TextView) findViewById(R.id.tvPaymentAmount);
 
-        tvPaymentAmount.setText("£" + SharedPreferenceUtil.getString(Constants.PrefKeys.FARE_COST, "") + ".00");
+        tvPaymentAmount.setText("£" + CommonUtil.getDecimal(Double.valueOf(SharedPreferenceUtil.getString(Constants.PrefKeys.FARE_COST, ""))));
 
         tvPaymentCash.setOnClickListener(this);
         tvPaymentCard.setOnClickListener(this);

@@ -44,7 +44,7 @@ public class PersonalInfo extends AppCompatActivity implements View.OnClickListe
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarAll);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().getThemedContext();
+//        getSupportActionBar().getThemedContext();
 
         btInfoConfirmNext = (Button) findViewById(R.id.btInfoConfirmNext);
         etPersonalInfoName = (EditText) findViewById(R.id.etPersonalInfoName);
@@ -92,13 +92,13 @@ public class PersonalInfo extends AppCompatActivity implements View.OnClickListe
             try {
                 JSONObject jsonData = new JSONObject();
                 jsonData.put("hearAboutUs", spPersonalInfoAd.getSelectedItemPosition() + "")
-                        .put("firstName", etPersonalInfoName.getText().toString())
-                        .put("mobileNo", etPersonalInfoNo.getText().toString())
+                        .put("firstName", etPersonalInfoName.getText().toString().trim())
+                        .put("mobileNo", etPersonalInfoNo.getText().toString().trim())
                         .put("freeSms", 0)
                         .put("paymentMode", 1)
-                        .put("emailId", etPersonalInfoEmail.getText().toString())
-                        .put("addtionalInformation", etPersonalInfoAddInfo.getText().toString())
-                        .put("lastName", etPersonalInfolastName.getText().toString());
+                        .put("emailId", etPersonalInfoEmail.getText().toString().trim())
+                        .put("addtionalInformation", etPersonalInfoAddInfo.getText().toString().trim())
+                        .put("lastName", etPersonalInfolastName.getText().toString().trim());
 
                 SharedPreferenceUtil.putValue(Constants.PrefKeys.BOOKING_INFO, jsonData.toString());
                 SharedPreferenceUtil.save();

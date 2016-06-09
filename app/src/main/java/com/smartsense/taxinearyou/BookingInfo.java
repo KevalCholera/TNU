@@ -115,7 +115,7 @@ public class BookingInfo extends AppCompatActivity {
                 x = Double.valueOf(dx);
 
                 tvBookInfoDistance.setText(x + " miles");
-                SharedPreferenceUtil.putValue(Constants.PrefKeys.FARE_COST, mainData.optJSONObject("json").optJSONArray("partnerArray").optJSONObject(0).optString("ETA"));
+                SharedPreferenceUtil.putValue(Constants.PrefKeys.FARE_COST, CommonUtil.getDecimal(jsonObject.optDouble("price")));
                 SharedPreferenceUtil.save();
             } catch (ParseException e) {
                 e.printStackTrace();

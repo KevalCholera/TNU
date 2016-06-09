@@ -1,5 +1,6 @@
 package com.smartsense.taxinearyou.utill;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.ProgressDialog;
@@ -18,6 +19,8 @@ import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
+import android.os.Build;
+import android.os.Handler;
 import android.os.PatternMatcher;
 import android.os.StrictMode;
 import android.provider.MediaStore;
@@ -38,6 +41,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
@@ -83,11 +87,13 @@ public class CommonUtil {
     static AlertDialog alert;
 
     public static void showProgressDialog(Context activity, String msg) {
+        activity.setTheme(R.style.New_Style);
         pDialog = new ProgressDialog(activity);
 //        pDialog.getIndeterminateDrawable().setColorFilter(0xFFFF0000, android.graphics.PorterDuff.Mode.MULTIPLY);
         pDialog.setMessage(msg);
         pDialog.setCancelable(false);
         pDialog.show();
+        activity.setTheme(R.style.AppTheme);
     }
 
 
@@ -122,22 +128,10 @@ public class CommonUtil {
         builder.setMessage(msg);
         builder.setPositiveButton(context.getResources().getString(R.string.ok), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
-                if (msg.equalsIgnoreCase(context.getResources().getString(R.string.event_complete)))
+                if (msg.equalsIgnoreCase(context.getResources().getString(R.string.event_complete))) {
                     context.finish();
-            }
-        });
-        builder.create();
-        builder.show();
-    }
-
-    public static void alertBoxTwice(final Activity context, final String msg, final String title, final TextView textView) {
-        final AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setCancelable(false);
-        builder.setMessage(msg);
-        builder.setTitle(title);
-        builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                textView.setVisibility(View.GONE);
+                    context.setTheme(R.style.AppTheme);
+                }
             }
         });
         builder.create();
@@ -233,18 +227,25 @@ public class CommonUtil {
     }
 
     public static void errorToastShowing(Activity activity) {
-        Toast.makeText(activity, "Internet Error", Toast.LENGTH_SHORT).show();
+        activity.setTheme(R.style.New_Style);
+        Toast.makeText(activity, activity.getResources().getString(R.string.inter_error), Toast.LENGTH_SHORT).show();
+        activity.setTheme(R.style.AppTheme);
     }
 
     public static void successToastShowing(Activity activity, JSONObject jsonObject) {
+        activity.setTheme(R.style.New_Style);
         Toast.makeText(activity, jsonObject.optString("msg"), Toast.LENGTH_SHORT).show();
+        activity.setTheme(R.style.AppTheme);
     }
 
     public static void jsonNullError(Activity activity) {
+        activity.setTheme(R.style.New_Style);
         Toast.makeText(activity, activity.getResources().getString(R.string.something_wrong), Toast.LENGTH_SHORT).show();
+        activity.setTheme(R.style.AppTheme);
     }
 
     public static void conditionAuthentication(Activity activity, JSONObject jsonObject) {
+        activity.setTheme(R.style.New_Style);
         if (jsonObject.has("json") && jsonObject.optJSONObject("json").has("errorCode") && jsonObject.optJSONObject("json").optInt("errorCode") == Constants.ErrorCode.UNAUTHENTICATED_OPERATION) {
             Toast.makeText(activity, activity.getResources().getString(R.string.session_expire), Toast.LENGTH_SHORT).show();
             SharedPreferenceUtil.clear();
@@ -252,8 +253,14 @@ public class CommonUtil {
             OneSignal.sendTag("emailId", "");
             activity.startActivity(new Intent(activity, SignIn.class));
             activity.finish();
+            activity.setTheme(R.style.AppTheme);
         } else
             successToastShowing(activity, jsonObject);
+    }
+
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+    public static void FitSystemUI(CoordinatorLayout coordinatorLayout) {
+        coordinatorLayout.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION);
     }
 
     public static void jsonRequestPOST(Activity activity, String msg, String urlType, HashMap<String, String> params, String tag, Response.Listener<JSONObject> requestListener, Response.ErrorListener errorListener) {
@@ -287,6 +294,18 @@ public class CommonUtil {
             return c;
         }
     };
+
+    public static void handlerDialog(final AlertDialog alert, final LinearLayout linearLayout) {
+        Handler mHandler = new Handler();
+        Runnable mRunnable = new Runnable() {
+            public void run() {
+                alert.show();
+                alert.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
+                linearLayout.setVisibility(View.VISIBLE);
+            }
+        };
+        mHandler.postDelayed(mRunnable, 500);
+    }
 
     public static String text(EditText editText) {
 

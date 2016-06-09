@@ -57,6 +57,7 @@ public class SecurityQuestion extends AppCompatActivity implements View.OnClickL
         tvSecurityTermsConditions = (TextView) findViewById(R.id.tvSecurityTermsConditions);
         clSecurityQuestion = (CoordinatorLayout) findViewById(R.id.clSecurityQuestion);
         btSecurityBack = (ImageView) findViewById(R.id.btSecurityBack);
+
         etSecurityQuestion1.setOnClickListener(this);
         etSecurityQuestion2.setOnClickListener(this);
         btSecuritySave.setOnClickListener(this);

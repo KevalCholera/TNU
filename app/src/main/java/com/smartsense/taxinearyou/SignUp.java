@@ -43,10 +43,10 @@ public class SignUp extends AppCompatActivity implements Response.Listener<JSONO
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            Window window = getWindow();
-            window.setStatusBarColor(ContextCompat.getColor(SignUp.this,R.color.status_bar));
-        }
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+//            Window window = getWindow();
+//            window.setStatusBarColor(ContextCompat.getColor(SignUp.this,R.color.status_bar));
+//        }
         etSignUpFirstName = (EditText) findViewById(R.id.etSignUpFirstName);
         etSignUpLastName = (EditText) findViewById(R.id.etSignUpLastName);
         etSignUpContact = (EditText) findViewById(R.id.etSignUpContact);

@@ -71,7 +71,7 @@ public class ResetPassword extends AppCompatActivity implements Response.Listene
         StringBuilder builder = new StringBuilder();
         JSONObject jsonData = new JSONObject();
         try {
-            builder.append(jsonData.put("emailId", etResetPasswordEmailAddress.getText().toString().trim()).toString());
+            builder.append(jsonData.put("username", etResetPasswordEmailAddress.getText().toString().trim()));
         } catch (JSONException e) {
             e.printStackTrace();
         }

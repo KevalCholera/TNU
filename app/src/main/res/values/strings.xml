@@ -465,5 +465,6 @@
     <string name="sel_date">Select Date and Time</string>
     <string name="sel_lug">Select Luggage</string>
     <string name="sel_passe">Select Passenger</string>
+    <string name="inter_error">Internet Error</string>
 
 </resources>

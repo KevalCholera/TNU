@@ -1,9 +1,11 @@
 package com.smartsense.taxinearyou;
 
+import android.annotation.TargetApi;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -25,7 +27,6 @@ import com.mpt.storage.SharedPreferenceUtil;
 import com.smartsense.taxinearyou.utill.CommonUtil;
 import com.smartsense.taxinearyou.utill.Constants;
 import com.smartsense.taxinearyou.utill.WakeLocker;
-import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -37,11 +38,13 @@ public class GeneralInformation extends AppCompatActivity implements Response.Li
     CoordinatorLayout clGeneralInfo;
     int check;
 
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_general_information);
         registerReceiver(tripMessageReceiver, new IntentFilter(String.valueOf(Constants.Events.UPDATE_GENERAL_INFO)));
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarAll);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -51,6 +54,10 @@ public class GeneralInformation extends AppCompatActivity implements Response.Li
         etGeneralMobile = (EditText) findViewById(R.id.etGeneralMobile);
         btGeneralUpdateProfile = (Button) findViewById(R.id.btGeneralUpdateProfile);
         clGeneralInfo = (CoordinatorLayout) findViewById(R.id.clGeneralInfo);
+
+//        clGeneralInfo.setFitsSystemWindows(true);
+
+//        clGeneralInfo.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION);
 
         etGeneralFirstName.setFilters(new InputFilter[]{CommonUtil.textFilter});
         etGeneralLastName.setFilters(new InputFilter[]{CommonUtil.textFilter});
@@ -94,7 +101,6 @@ public class GeneralInformation extends AppCompatActivity implements Response.Li
                 }
             }
         });
-
     }
 
     public void setDataInActivity() {
@@ -157,6 +163,7 @@ public class GeneralInformation extends AppCompatActivity implements Response.Li
         CommonUtil.errorToastShowing(this);
     }
 
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     @Override
     public void onResponse(JSONObject jsonObject) {
         CommonUtil.cancelProgressDialog();
@@ -179,8 +186,10 @@ public class GeneralInformation extends AppCompatActivity implements Response.Li
                     check = 0;
                 }
 
-            } else
+            } else {
+//                clGeneralInfo.setFitsSystemWindows(false);
                 CommonUtil.conditionAuthentication(this, jsonObject);
+            }
         else CommonUtil.jsonNullError(this);
     }
 
