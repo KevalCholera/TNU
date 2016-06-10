@@ -35,7 +35,9 @@
     <color name="filter_text1">#686868</color>
     <color name="gray_55">#555555</color>
     <color name="disable_55">#cccccc</color>
-
+    <color name="blue_element">#116ea7</color>
+    <color name="line_color2">#aaaaaa</color>
+    <color name="line_color3">#e2e2e2</color>
 </resources>
 
     <!--<?xml version="1.0" encoding="utf-8"?>

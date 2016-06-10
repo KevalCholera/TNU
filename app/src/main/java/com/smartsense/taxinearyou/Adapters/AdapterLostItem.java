@@ -83,7 +83,7 @@ public class AdapterLostItem extends BaseAdapter {
             e.printStackTrace();
         }
         tvLostItemStatus.setText(test.optString("status"));
-        tvLostItemLostItem.setText(test.optString("color") + " color\n" + test.optString("itemDescription"));
+        tvLostItemLostItem.setText(test.optString("itemDescription"));//test.optString("color") + " color," +
 
 //        lyElementLostItemMain.setOnClickListener(new View.OnClickListener() {
 //            @Override

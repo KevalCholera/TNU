@@ -4,7 +4,7 @@
     android:id="@+id/lyElementLostItemMain"
     android:layout_width="match_parent"
     android:layout_height="fill_parent"
-    android:background="@color/element"
+
     android:orientation="vertical"
     android:paddingLeft="@dimen/lyPaddingMainAll"
     android:paddingRight="@dimen/lyPaddingMainAll"
@@ -13,6 +13,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/white"
         android:orientation="horizontal">
 
         <LinearLayout
@@ -176,15 +177,17 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/from_"
-                            android:textColor="@color/colorPrimaryDark"
+                            android:textColor="@color/blue_element"
                             android:textSize="@dimen/etSignUpSizeAll" />
 
                         <TextView
                             android:id="@+id/tvLostItemFrom"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:maxLines="2"
-                            android:textColor="@color/heading"
+                            android:layout_marginLeft="8dp"
+                            android:maxLines="4"
+
+                            android:textColor="@color/text_color"
                             android:textSize="@dimen/etSignUpSizeAll" />
 
                     </LinearLayout>
@@ -201,15 +204,16 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/to_"
-                            android:textColor="@color/colorPrimaryDark"
+                            android:textColor="@color/blue_element"
                             android:textSize="@dimen/etSignUpSizeAll" />
 
                         <TextView
                             android:id="@+id/tvLostItemTo"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:maxLines="2"
-                            android:textColor="@color/heading"
+                            android:layout_marginLeft="8dp"
+                            android:maxLines="4"
+                            android:textColor="@color/text_color"
                             android:textSize="@dimen/etSignUpSizeAll" />
 
                     </LinearLayout>
@@ -223,7 +227,7 @@
                 android:layout_height="@dimen/vHeightWidthAll"
                 android:layout_marginBottom="@dimen/vMarginTopBottomAll"
                 android:layout_marginTop="@dimen/vMarginTopBottomAll"
-                android:background="@android:color/darker_gray" />
+                android:background="@color/line_color2" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -242,7 +246,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:textColor="@color/heading"
+                        android:textColor="@color/text_color"
                         android:textSize="@dimen/etSignUpSizeAll" />
 
                     <TextView
@@ -250,7 +254,7 @@
                         android:layout_height="match_parent"
                         android:gravity="center|bottom"
                         android:text="@string/taxi_provider"
-                        android:textColor="@color/colorPrimaryDark"
+                        android:textColor="@color/blue_element"
                         android:textSize="@dimen/etSignUpSizeAll" />
 
                 </LinearLayout>
@@ -258,7 +262,7 @@
                 <View
                     android:layout_width="@dimen/vHeightWidthAll"
                     android:layout_height="match_parent"
-                    android:background="@android:color/darker_gray" />
+                    android:background="@color/line_color2" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -272,7 +276,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:textColor="@color/heading"
+                        android:textColor="@color/text_color"
                         android:textSize="@dimen/etSignUpSizeAll" />
 
                     <TextView
@@ -280,7 +284,7 @@
                         android:layout_height="match_parent"
                         android:gravity="center|bottom"
                         android:text="@string/datetime"
-                        android:textColor="@color/colorPrimaryDark"
+                        android:textColor="@color/blue_element"
                         android:textSize="@dimen/etSignUpSizeAll" />
 
                 </LinearLayout>
@@ -302,7 +306,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:textColor="@color/heading"
+                        android:textColor="@color/text_color"
                         android:textSize="@dimen/etSignUpSizeAll" />
 
                     <TextView
@@ -310,7 +314,7 @@
                         android:layout_height="match_parent"
                         android:gravity="center|bottom"
                         android:text="@string/status"
-                        android:textColor="@color/colorPrimaryDark"
+                        android:textColor="@color/blue_element"
                         android:textSize="@dimen/etSignUpSizeAll" />
 
                 </LinearLayout>
@@ -334,16 +338,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/lost_item"
-                    android:textColor="@color/colorPrimaryDark"
+                    android:textColor="@color/blue_element"
                     android:textSize="@dimen/etSignUpSizeAll" />
 
                 <TextView
                     android:id="@+id/tvLostItemLostItem"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/tvElementLostItemMarginStart"
+                    android:layout_marginLeft="8dp"
                     android:gravity="center"
-                    android:textColor="@color/heading"
+                    android:textColor="@color/text_color"
                     android:textSize="@dimen/etSignUpSizeAll" />
 
             </LinearLayout>
@@ -353,7 +357,7 @@
                 android:layout_height="@dimen/vHeightWidthAll"
                 android:layout_marginBottom="@dimen/vMarginTopBottomAll"
                 android:layout_marginTop="@dimen/vMarginTopBottomAll"
-                android:colorPrimaryDark="@android:color/darker_gray" />
+                android:background="@color/line_color2" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -365,15 +369,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/tnr"
-                    android:textColor="@color/colorPrimaryDark"
+                    android:textColor="@color/blue_element"
                     android:textSize="@dimen/etSignUpSizeAll" />
 
                 <TextView
                     android:id="@+id/tvLostItemTNR"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/tvElementLostItemMarginStart"
-                    android:textColor="@color/heading"
+                    android:layout_marginLeft="8dp"
+                    android:textColor="@color/text_color"
                     android:textSize="@dimen/etSignUpSizeAll" />
 
             </LinearLayout>

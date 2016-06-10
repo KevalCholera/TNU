@@ -19,13 +19,13 @@
         android:paddingRight="@dimen/margin_5"
         android:paddingTop="@dimen/lyPadding10"
         android:text="@string/event_booking"
-        android:textColor="@color/heading"
-        android:textSize="@dimen/tvAccountAllSize" />
+        android:textColor="@color/text_color"
+        android:textSize="@dimen/textHead" />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/vAccountAllHeight"
-        android:background="@color/light_Gray" />
+        android:background="@color/line_color3" />
 
     <TextView
         android:id="@+id/tvMoreContactUs"
@@ -39,13 +39,13 @@
         android:paddingRight="@dimen/margin_5"
         android:paddingTop="@dimen/margin_5"
         android:text="@string/contact_us"
-        android:textColor="@color/heading"
-        android:textSize="@dimen/tvAccountAllSize" />
+        android:textColor="@color/text_color"
+        android:textSize="@dimen/textHead" />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/vAccountAllHeight"
-        android:background="@color/light_Gray" />
+        android:background="@color/line_color3" />
 
     <TextView
         android:id="@+id/tvMoreAboutUs"
@@ -60,8 +60,8 @@
         android:paddingRight="@dimen/margin_5"
         android:paddingTop="@dimen/lyPadding10"
         android:text="@string/about_us"
-        android:textColor="@color/heading"
-        android:textSize="@dimen/tvAccountAllSize" />
+        android:textColor="@color/text_color"
+        android:textSize="@dimen/textHead" />
 
     <View
         android:layout_width="match_parent"
@@ -81,13 +81,13 @@
         android:paddingRight="@dimen/margin_5"
         android:paddingTop="@dimen/lyPadding10"
         android:text="@string/privacy_poicy"
-        android:textColor="@color/heading"
-        android:textSize="@dimen/tvAccountAllSize" />
+        android:textColor="@color/text_color"
+        android:textSize="@dimen/textHead" />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/vAccountAllHeight"
-        android:background="@color/light_Gray"
+        android:background="@color/line_color3"
         android:textColor="#90cacaca" />
 
     <TextView
@@ -103,12 +103,12 @@
         android:paddingRight="@dimen/margin_5"
         android:paddingTop="@dimen/lyPadding10"
         android:text="@string/terms_and_conditions"
-        android:textColor="@color/heading"
-        android:textSize="@dimen/tvAccountAllSize" />
+        android:textColor="@color/text_color"
+        android:textSize="@dimen/textHead" />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/vAccountAllHeight"
-        android:background="@color/light_Gray" />
+        android:background="@color/line_color3" />
 
 </LinearLayout>

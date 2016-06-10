@@ -50,7 +50,7 @@ public class LostItemDetail extends AppCompatActivity {
             tvLostItemDetailStatusDescription.setText(lostItemDetails.optString("statusMsg"));
             tvLostItemDetailDateTime.setText(Constants.DATE_FORMAT_DATE_TIME.format(Constants.DATE_FORMAT_FULL_DATE_TIME.parse(lostItemDetails.optString("rideDate"))));
             tvLostItemDetailStatus.setText(lostItemDetails.optString("status"));
-            tvLostItemDetailLostItem.setText(lostItemDetails.optString("color") + " color\n" + lostItemDetails.optString("itemDescription"));
+            tvLostItemDetailLostItem.setText(lostItemDetails.optString("itemDescription"));//lostItemDetails.optString("color") + " color\n" +
         } catch (JSONException | ParseException e) {
             e.printStackTrace();
         }

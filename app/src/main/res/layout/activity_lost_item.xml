@@ -24,42 +24,42 @@
             <RadioButton
                 android:id="@+id/rbLostItemOnGoing"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="30dp"
                 android:layout_weight="1"
                 android:background="@drawable/radio_yellow_border_lost_item_open"
                 android:button="@color/white"
                 android:checked="true"
                 android:gravity="center"
-                android:padding="@dimen/rbPaddingAll"
+                android:padding="2dp"
                 android:text="@string/on_going"
                 android:textColor="@drawable/radio_yellow_border_lost_item_open"
-                android:textSize="@dimen/btSizeAll" />
+                android:textSize="@dimen/textButton" />
 
             <RadioButton
                 android:id="@+id/rbLostItemFound"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="30dp"
                 android:layout_weight="1"
                 android:background="@drawable/radio_yellow_border_lost_item_inprogress"
                 android:button="@color/white"
                 android:gravity="center"
-                android:padding="@dimen/rbPaddingAll"
+                android:padding="2dp"
                 android:text="@string/found"
                 android:textColor="@drawable/radio_yellow_border_lost_item_inprogress"
-                android:textSize="@dimen/btSizeAll" />
+                android:textSize="@dimen/textButton" />
 
             <RadioButton
                 android:id="@+id/rbLostItemNotFound"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="30dp"
                 android:layout_weight="1"
                 android:background="@drawable/radio_yellow_border_lost_item_closed"
                 android:button="@color/white"
                 android:gravity="center"
-                android:padding="@dimen/rbPaddingAll"
+                android:padding="2dp"
                 android:text="@string/not_found"
                 android:textColor="@drawable/radio_yellow_border_lost_item_closed"
-                android:textSize="@dimen/btSizeAll" />
+                android:textSize="@dimen/textButton" />
 
         </RadioGroup>
 
