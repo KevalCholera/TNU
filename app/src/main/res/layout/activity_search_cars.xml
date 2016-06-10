@@ -44,14 +44,15 @@
                         android:paddingTop="@dimen/rbPaddingAll"
                         android:text="@string/rating"
                         android:textColor="@drawable/radio_button_yellow_only"
-                        android:textSize="@dimen/tvTitlesSizeAll" />
+                        android:textSize="@dimen/tvTitlesSizeAll1" />
 
 
                     <View
                         android:layout_width="@dimen/vRatingRatingWidth"
                         android:layout_height="@dimen/vRatingRatingHeight"
                         android:layout_marginTop="@dimen/vSearchCarsMarginTop"
-                        android:background="@color/black" />
+                        android:layout_marginBottom="@dimen/vSearchCarsMarginTop"
+                        android:background="@color/line_color" />
 
                     <RadioButton
                         android:id="@+id/rbSearchCarsAvailability"
@@ -65,13 +66,14 @@
                         android:paddingTop="@dimen/rbPaddingAll"
                         android:text="@string/availability"
                         android:textColor="@drawable/radio_button_yellow_only"
-                        android:textSize="@dimen/tvTitlesSizeAll" />
+                        android:textSize="@dimen/tvTitlesSizeAll1" />
 
                     <View
                         android:layout_width="@dimen/vRatingRatingWidth"
                         android:layout_height="@dimen/vRatingRatingHeight"
                         android:layout_marginTop="@dimen/vSearchCarsMarginTop"
-                        android:background="@color/black" />
+                        android:layout_marginBottom="@dimen/vSearchCarsMarginTop"
+                        android:background="@color/line_color" />
 
                     <RadioButton
                         android:id="@+id/rbSearchCarsPriceRange"
@@ -85,41 +87,42 @@
                         android:paddingTop="@dimen/rbPaddingAll"
                         android:text="@string/pricerange"
                         android:textColor="@drawable/radio_button_yellow_only"
-                        android:textSize="@dimen/tvTitlesSizeAll" />
+                        android:textSize="@dimen/tvTitlesSizeAll1" />
 
                 </RadioGroup>
 
                 <LinearLayout
                     android:id="@+id/lySearchCarsDateTime"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="25dp"
+                    android:gravity="center"
                     android:background="@color/search_car_gray"
                     android:orientation="horizontal">
 
                     <ImageView
                         android:id="@+id/ivSearchCarsBack"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="0dp"
+                        android:layout_height="9dp"
                         android:layout_gravity="center"
-                        android:layout_weight="0.5"
+                        android:layout_weight="1"
                         android:src="@mipmap/imgarrowleft" />
 
                     <TextView
                         android:id="@+id/tvSearchCarsDateTime"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="0.5"
+
                         android:gravity="center"
                         android:paddingBottom="@dimen/tvSearchCarsPaddingTopBottom"
-                        android:paddingTop="@dimen/tvSearchCarsPaddingTopBottom"
+
                         android:textSize="@dimen/tvTitlesSizeAll" />
 
                     <ImageView
                         android:id="@+id/ivSearchCarsFront"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="0dp"
+                        android:layout_height="9dp"
                         android:layout_gravity="center"
-                        android:layout_weight="0.5"
+                        android:layout_weight="1"
                         android:src="@mipmap/imgarrowright" />
 
                 </LinearLayout>
@@ -158,23 +161,24 @@
             <LinearLayout
                 android:id="@+id/llSearchCarsFilter"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="35dp"
                 android:layout_gravity="bottom"
                 android:background="@color/colorAccent"
                 android:gravity="center"
                 android:orientation="horizontal"
-                android:padding="@dimen/lySearchCarsFilterPadding">
+                >
 
                 <TextView
                     android:id="@+id/tvSearchCarsFilter"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:clickable="true"
+                    android:gravity="center"
+                    android:drawablePadding="5dp"
                     android:drawableLeft="@mipmap/imgfilter"
                     android:text="@string/filter"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/tvHeadingSizeAll"
-                    android:textStyle="bold" />
+                    android:textSize="@dimen/tvHeadingSizeAll1"  />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

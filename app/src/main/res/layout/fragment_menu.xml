@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:padding="@dimen/lyPadding10">
+        android:padding="5dp">
 
         <com.smartsense.taxinearyou.utill.CircleImageView1
             android:id="@+id/cvAccountPhoto"
@@ -42,10 +42,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:padding="@dimen/lyPadding10"
-        android:textColor="@color/black"
-        android:textSize="@dimen/tvAccountAllSize"
-        android:textStyle="bold" />
+        android:padding="5dp"
+        android:textColor="@color/gray_55"
+        android:textSize="@dimen/text15" />
 
     <Button
         android:id="@+id/btAccountActivateNow"
@@ -57,8 +56,8 @@
         android:paddingStart="@dimen/btAccountActivateNowPaddingStartEnd"
         android:text="@string/active_now"
         android:textAllCaps="false"
-        android:textColor="@color/heading"
-        android:textSize="@dimen/tvTitlesSizeAll"
+        android:textColor="@color/text_color"
+        android:textSize="@dimen/textDetail"
         android:visibility="gone" />
 
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
@@ -72,20 +71,30 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/tvAccountGeneralInfo"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/lyAccountMarginTopAll"
-                android:layout_marginRight="@dimen/tvAccountAllMarginStartEnd"
-                android:layout_marginTop="@dimen/tvAccountAllMarginTop"
-                android:drawableLeft="@mipmap/genreal_info"
-                android:drawablePadding="@dimen/tvElementCardListMarginStartEnd5"
-                android:gravity="fill"
-                android:text="@string/general_info"
-                android:textColor="@color/heading"
-                android:textSize="@dimen/tvAccountAllSize" />
+                android:layout_marginLeft="@dimen/vAccountAllStartEnd"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="5dp">
 
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:background="@mipmap/genreal_info"
+                    android:gravity="center" />
+
+                <TextView
+                    android:id="@+id/tvAccountGeneralInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:text="@string/general_info"
+                    android:textColor="@color/text_color"
+                    android:textSize="@dimen/textHead" />
+
+            </LinearLayout>
 
             <View
                 android:layout_width="match_parent"
@@ -94,19 +103,29 @@
                 android:layout_marginRight="@dimen/vAccountAllStartEnd"
                 android:background="@color/light_Gray" />
 
-            <TextView
-                android:id="@+id/tvAccountAccountSecurity"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/lyAccountMarginTopAll"
-                android:layout_marginRight="@dimen/tvAccountAllMarginStartEnd"
-                android:layout_marginTop="@dimen/tvAccountAllMarginTop"
-                android:drawableLeft="@mipmap/acc_security"
-                android:drawablePadding="@dimen/tvElementCardListMarginStartEnd5"
-                android:gravity="fill"
-                android:text="@string/acc_sec"
-                android:textColor="@color/heading"
-                android:textSize="@dimen/tvAccountAllSize" />
+                android:layout_marginLeft="@dimen/vAccountAllStartEnd"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="5dp">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:background="@mipmap/acc_security"
+                    android:gravity="center" />
+
+                <TextView
+                    android:id="@+id/tvAccountAccountSecurity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:text="@string/acc_sec"
+                    android:textColor="@color/text_color"
+                    android:textSize="@dimen/textHead" />
+            </LinearLayout>
 
             <View
                 android:layout_width="match_parent"
@@ -115,48 +134,65 @@
                 android:layout_marginRight="@dimen/vAccountAllStartEnd"
                 android:background="@color/light_Gray" />
 
-            <TextView
-                android:id="@+id/tvAccountPayment"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/lyAccountMarginTopAll"
-                android:layout_marginRight="@dimen/tvAccountAllMarginStartEnd"
-                android:layout_marginTop="@dimen/tvAccountAllMarginTop"
-                android:drawableLeft="@mipmap/img_payment"
-                android:drawablePadding="@dimen/tvAccountCredits"
-                android:enabled="false"
-                android:gravity="fill"
-                android:paddingBottom="@dimen/margin_5"
-                android:paddingLeft="@dimen/lyPadding10"
-                android:paddingTop="@dimen/margin_5"
-                android:text="@string/payment"
-                android:textColor="@color/hintColor"
-                android:textSize="@dimen/tvAccountAllSize" />
+                android:layout_marginLeft="@dimen/vAccountAllStartEnd"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="5dp">
 
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:src="@mipmap/img_payment" />
+
+                <TextView
+                    android:id="@+id/tvAccountPayment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:enabled="false"
+                    android:text="@string/payment"
+                    android:textColor="@color/disable_55"
+                    android:textSize="@dimen/textHead" />
+
+            </LinearLayout>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/vAccountAllHeight"
                 android:layout_marginLeft="@dimen/vAccountAllStartEnd"
                 android:layout_marginRight="@dimen/vAccountAllStartEnd"
-                android:background="#90cacaca" />
+                android:background="@color/light_Gray" />
 
-            <TextView
-                android:id="@+id/tvAccountCredits"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/lyAccountMarginTopAll"
-                android:layout_marginRight="@dimen/tvAccountAllMarginStartEnd"
-                android:layout_marginTop="@dimen/tvAccountAllMarginTop"
-                android:drawableLeft="@mipmap/img_free_rides"
-                android:drawablePadding="@dimen/tvAccountCredits"
-                android:gravity="fill"
-                android:paddingBottom="@dimen/margin_5"
-                android:paddingLeft="@dimen/lyPadding10"
-                android:paddingTop="@dimen/margin_5"
-                android:text="@string/Credits"
-                android:textColor="@color/hintColor"
-                android:textSize="@dimen/tvAccountAllSize" />
+                android:layout_marginLeft="@dimen/vAccountAllStartEnd"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="5dp">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:src="@mipmap/img_free_rides" />
+
+                <TextView
+                    android:id="@+id/tvAccountCredits"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="fill"
+                    android:paddingLeft="@dimen/margin_5"
+                    android:text="Credit"
+                    android:textColor="@color/disable_55"
+                    android:textSize="@dimen/textHead" />
+            </LinearLayout>
 
             <View
                 android:layout_width="match_parent"
@@ -164,43 +200,33 @@
                 android:layout_marginLeft="@dimen/vAccountAllStartEnd"
                 android:layout_marginRight="@dimen/vAccountAllStartEnd"
                 android:background="@color/light_Gray"
-                android:textColor="#90cacaca" />
+                 />
 
-            <TextView
-                android:id="@+id/tvAccountLostItems"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/etHeightAll"
-                android:layout_marginLeft="@dimen/lyAccountMarginTopAll"
-                android:layout_marginRight="@dimen/tvAccountAllMarginStartEnd"
-                android:layout_marginTop="@dimen/tvAccountAllMarginTop"
-                android:drawableLeft="@mipmap/imglostitems"
-                android:drawablePadding="@dimen/tvAccountDrawablePaddingAll"
-                android:gravity="fill"
-                android:text="@string/lostitems"
-                android:textColor="@color/heading"
-                android:textSize="@dimen/tvAccountAllSize" />
 
-            <View
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/vAccountAllHeight"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/vAccountAllStartEnd"
-                android:layout_marginRight="@dimen/vAccountAllStartEnd"
-                android:background="@color/light_Gray"
-                android:textColor="#90cacaca" />
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="5dp">
 
-            <TextView
-                android:id="@+id/tvAccountMore"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/etHeightAll"
-                android:layout_marginLeft="@dimen/lyAccountMarginTopAll"
-                android:layout_marginRight="@dimen/tvAccountAllMarginStartEnd"
-                android:layout_marginTop="@dimen/tvAccountAllMarginTop"
-                android:drawableLeft="@mipmap/ic_more_"
-                android:drawablePadding="@dimen/tvAccountDrawablePaddingAll"
-                android:gravity="fill"
-                android:text="@string/more"
-                android:textColor="@color/heading"
-                android:textSize="@dimen/tvAccountAllSize" />
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:src="@mipmap/imglostitems" />
+
+                <TextView
+                    android:id="@+id/tvAccountLostItems"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/etHeightAll"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="fill"
+                    android:text="@string/lostitems"
+                    android:textColor="@color/text_color"
+                    android:textSize="@dimen/textHead" />
+            </LinearLayout>
 
             <View
                 android:layout_width="match_parent"
@@ -209,19 +235,62 @@
                 android:layout_marginRight="@dimen/vAccountAllStartEnd"
                 android:background="@color/light_Gray" />
 
-            <TextView
-                android:id="@+id/tvAccountLogout"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/lyAccountMarginTopAll"
-                android:layout_marginRight="@dimen/tvAccountAllMarginStartEnd"
-                android:layout_marginTop="@dimen/tvAccountAllMarginTop"
-                android:drawableLeft="@mipmap/img_login_logout"
-                android:drawablePadding="@dimen/tvElementCardListMarginStartEnd10"
-                android:gravity="fill"
-                android:text="@string/logout"
-                android:textColor="@color/heading"
-                android:textSize="@dimen/tvAccountAllSize" />
+                android:layout_marginLeft="@dimen/vAccountAllStartEnd"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="5dp">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:src="@mipmap/ic_more_" />
+
+                <TextView
+                    android:id="@+id/tvAccountMore"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/etHeightAll"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="fill"
+                    android:text="@string/more"
+                    android:textColor="@color/text_color"
+                    android:textSize="@dimen/textHead" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/vAccountAllHeight"
+                android:layout_marginLeft="@dimen/vAccountAllStartEnd"
+                android:layout_marginRight="@dimen/vAccountAllStartEnd"
+                android:background="@color/light_Gray" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/vAccountAllStartEnd"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="5dp">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:src="@mipmap/img_login_logout" />
+
+                <TextView
+                    android:id="@+id/tvAccountLogout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="fill"
+                    android:text="@string/logout"
+                    android:textColor="@color/text_color"
+                    android:textSize="@dimen/textHead" />
+            </LinearLayout>
 
             <View
                 android:layout_width="match_parent"

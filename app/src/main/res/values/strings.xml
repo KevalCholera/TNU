@@ -22,8 +22,8 @@
     <string name="security_question1">In which City or Town did your Mother &amp; Father meet?</string>
     <string name="security_answer">Your Answer</string>
     <string name="security_question2">What was the last name of your third grade teacher?</string>
-    <string name="ReceiveOffersFromOrganization">Yes, I would like to receive offers and information about product and services from various organization</string>
-    <string name="ReceiveOffersAboutTaxinearu">Yes - I would like to receive offers and information about product and services about taxinearu</string>
+    <string name="ReceiveOffersFromOrganization">Yes, I would like to receive offers and information about product and services from various organization.</string>
+    <string name="ReceiveOffersAboutTaxinearu">Yes - I would like to receive offers and information about product and services about taxinearu.</string>
     <string name="agree">I agree to the</string>
     <string name="conditions"><u>Terms of Services &amp; Privacy Policy.</u></string>
     <string name="register">Are you register?</string>
@@ -146,7 +146,7 @@
     <string name="security_question_2">Security Question 2</string>
     <string name="change_security_question">Change Security Question</string>
     <string name="change_password">Change password</string>
-    <string name="yes_i_would_like_to_receive_offers_and_infromation_about_products_and_services_about_taxinearu">Yes, I would like to receive offers and infromation about products and services about Taxinearu</string>
+    <string name="yes_i_would_like_to_receive_offers_and_infromation_about_products_and_services_about_taxinearu">Yes, I would like to receive offers and infromation about products and services about Taxinearu.</string>
     <string name="email_id">Email ID</string>
     <string name="email_id_">Email ID :</string>
     <string name="_03_02_2016">03/02/2016</string>

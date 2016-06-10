@@ -220,6 +220,7 @@ public class Filter extends AppCompatActivity implements View.OnClickListener {
                 }
                 radioButton[i] = new RadioButton(this);
                 radioButton[i].setText(taxiTypeArray.optJSONObject(i).getString("taxiName"));
+                radioButton[i].setTextSize(12f);
                 radioButton[i].setTextColor(getResources().getColor(R.color.white));
                 radioButton[i].setButtonDrawable(R.drawable.radio_button_filter);
                 radioButton[i].setId(taxiTypeArray.optJSONObject(i).getInt("taxiTypeId"));
@@ -266,6 +267,7 @@ public class Filter extends AppCompatActivity implements View.OnClickListener {
                 radioButton[i] = new RadioButton(this);
                 radioButton[i].setLayoutParams(params);
                 radioButton[i].setButtonDrawable(R.drawable.radio_button_filter);
+                radioButton[i].setTextSize(12f);
                 radioButton[i].setText(jsonArray.optJSONObject(i).getString("name"));
                 radioButton[i].setTextColor(ContextCompat.getColor(Filter.this, R.color.white));
                 int id1 = jsonArray.optJSONObject(i).getInt("distanceId") == -1 ? 0 : jsonArray.optJSONObject(i).getInt("distanceId");

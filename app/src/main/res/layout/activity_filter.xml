@@ -20,7 +20,7 @@
                 android:id="@+id/tbFilter"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/colorPrimaryDark" />
+                android:background="@color/colorPrimaryDark1" />
 
         </android.support.design.widget.AppBarLayout>
 
@@ -33,7 +33,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:background="@color/colorPrimaryDark">
+                android:background="@color/colorPrimaryDark1">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -47,13 +47,13 @@
                         android:layout_height="wrap_content"
                         android:text="@string/vehicle_type"
                         android:textColor="@color/white"
-                        android:textSize="@dimen/tvHeadingSizeAll" />
+                        android:textSize="@dimen/tvHeadingSizeAll2" />
 
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/vHeightWidthAll"
                         android:layout_marginTop="@dimen/vMarginTopBottomAll"
-                        android:background="@color/white" />
+                        android:background="@color/sort_text" />
 
                     <RadioGroup
                         android:id="@+id/rgFilterVehicleType1"
@@ -69,13 +69,13 @@
                         android:layout_marginTop="@dimen/tvFilterMarginTopAll"
                         android:text="@string/booking_type"
                         android:textColor="@color/white"
-                        android:textSize="@dimen/tvHeadingSizeAll" />
+                        android:textSize="@dimen/tvHeadingSizeAll2" />
 
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/vHeightWidthAll"
                         android:layout_marginTop="@dimen/vMarginTopBottomAll"
-                        android:background="@color/white" />
+                        android:background="@color/sort_text" />
 
                     <RadioGroup
                         android:id="@+id/rgFilterBookingType"
@@ -87,29 +87,29 @@
                         <RadioButton
                             android:id="@+id/rbFilterSingle"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="35dp"
                             android:layout_weight="1"
                             android:background="@drawable/radio_button"
                             android:button="@color/white"
                             android:checked="true"
                             android:gravity="center"
-                            android:padding="@dimen/rbPaddingAll"
+                            android:padding="5dp"
                             android:text="@string/single"
                             android:textColor="@drawable/radio_button"
-                            android:textSize="@dimen/btSizeAll" />
+                            android:textSize="15sp" />
 
                         <RadioButton
                             android:id="@+id/rbFilterReturn"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="35dp"
                             android:layout_weight="1"
                             android:background="@drawable/radio_button"
                             android:button="@color/white"
                             android:gravity="center"
-                            android:padding="@dimen/rbPaddingAll"
+                            android:padding="5dp"
                             android:text="@string/return_"
                             android:textColor="@drawable/radio_button"
-                            android:textSize="@dimen/btSizeAll" />
+                            android:textSize="15sp" />
 
                     </RadioGroup>
 
@@ -119,13 +119,13 @@
                         android:layout_marginTop="@dimen/tvFilterMarginTopAll"
                         android:text="@string/distance"
                         android:textColor="@color/white"
-                        android:textSize="@dimen/tvHeadingSizeAll" />
+                        android:textSize="@dimen/tvHeadingSizeAll2" />
 
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/vHeightWidthAll"
                         android:layout_marginTop="@dimen/vMarginTopBottomAll"
-                        android:background="@color/white" />
+                        android:background="@color/sort_text" />
 
                     <RadioGroup
                         android:id="@+id/rgFilterDistance1"
@@ -140,13 +140,13 @@
                         android:layout_marginTop="@dimen/tvFilterMarginTopAll"
                         android:text="@string/operator_rating"
                         android:textColor="@color/white"
-                        android:textSize="@dimen/tvHeadingSizeAll" />
+                        android:textSize="@dimen/tvHeadingSizeAll2" />
 
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/vHeightWidthAll"
                         android:layout_marginTop="@dimen/vMarginTopBottomAll"
-                        android:background="@color/white" />
+                        android:background="@color/sort_text" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -171,7 +171,7 @@
                             <RadioButton
                                 android:id="@+id/rbFilterRating5"
                                 android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
+                                android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/rbReviewMarginEnd"
                                 android:button="@drawable/radio_button_filter" />
 
@@ -442,7 +442,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/vHeightWidthAll"
                         android:layout_marginTop="@dimen/vMarginTopBottomAll"
-                        android:background="@color/white" />
+                        android:background="@color/sort_text" />
 
                     <CheckBox
                         android:id="@+id/cbFilterRecommend"
@@ -452,6 +452,7 @@
                         android:button="@drawable/radio_button_event_booking"
                         android:paddingLeft="@dimen/cbMarginTopStartPaddingTopAll"
                         android:text="@string/recommend"
+                        android:textSize="14sp"
                         android:textColor="@color/white" />
                 </LinearLayout>
             </ScrollView>
@@ -463,24 +464,24 @@
                 <Button
                     android:id="@+id/btFilterDone"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="35dp"
                     android:layout_weight="1"
                     android:background="@color/Yellow"
                     android:text="@string/done"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/btSizeAll" />
+                    android:textSize="15sp" />
 
                 <Button
                     android:id="@+id/btFilterResetAll"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="35dp"
                     android:layout_weight="1"
                     android:background="@color/white"
                     android:text="@string/reset_all"
                     android:textAllCaps="false"
                     android:textColor="@color/Yellow"
-                    android:textSize="@dimen/btSizeAll" />
+                    android:textSize="15sp" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

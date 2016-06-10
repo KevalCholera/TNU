@@ -102,6 +102,8 @@
     <dimen name="etInfoSocialPadding">10dp</dimen>
     <dimen name="vReviewTextAllMargin">2dp</dimen>
     <dimen name="tvHeadingSizeAll">20sp</dimen>
+    <dimen name="tvHeadingSizeAll1">17sp</dimen>
+    <dimen name="tvHeadingSizeAll2">14sp</dimen>
     <dimen name="tvElementGoogle">17sp</dimen>
     <dimen name="btAccountSecurityPaddingEndStartAll">15dp</dimen>
     <dimen name="vtvAccountSecurityMarginTopBottomAll">15dp</dimen>
@@ -115,6 +117,7 @@
     <dimen name="cbCheckboxMarginTopAll">7dp</dimen>
     <dimen name="iconWidthHeightAll">30dp</dimen>
     <dimen name="tvTitlesSizeAll">15sp</dimen>
+    <dimen name="tvTitlesSizeAll1">12sp</dimen>
     <dimen name="ivHighImportantWidthHeightAll">20dp</dimen>
     <dimen name="vtvBookingInfoMarginTopBottomAll">20dp</dimen>
     <dimen name="tvBookingInfoMarginStartAll">5dp</dimen>
@@ -204,7 +207,7 @@
     <dimen name="tvSearchCarsBookNowMarginTop">10dp</dimen>
     <dimen name="tvSearchCarsBookNowPaddingTopBottom">5dp</dimen>
     <dimen name="tvSearchCarsBookNowPaddingStartEnd">10dp</dimen>
-    <dimen name="cvAccountPhotoWidthHeight">90dp</dimen>
+    <dimen name="cvAccountPhotoWidthHeight">80dp</dimen>
     <dimen name="btAccountActivateNowPaddingStartEnd">15dp</dimen>
     <dimen name="tvAccountMarginStartAll">15dp</dimen>
     <dimen name="ivAccountMarginStartAll">5dp</dimen>
@@ -315,4 +318,9 @@
     <dimen name="llBookNowTodayTomorrowPadding">2.5dp</dimen>
     <dimen name="drawableRadioWidth">3dp</dimen>
     <dimen name="ivElementSearchCarsOnlineSize">20dp</dimen>
+    <dimen name="textHead">14sp</dimen>
+    <dimen name="text15">15sp</dimen>
+    <dimen name="textDetail">12sp</dimen>
+    <dimen name="textButton">15sp</dimen>
+
 </resources>

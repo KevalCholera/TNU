@@ -5,97 +5,101 @@
     android:layout_height="wrap_content"
     android:layout_marginBottom="@dimen/tvSearchCarsBookNowPaddingStartEnd"
     android:background="#ffffff"
-    android:orientation="horizontal">
+    android:orientation="vertical">
 
     <LinearLayout
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:orientation="vertical"
-        android:padding="10dp">
+        android:orientation="horizontal"
+        android:paddingBottom="5dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
 
         <TextView
             android:id="@+id/tvElementSearchCarsName"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="aa"
             android:textColor="@color/black"
             android:textSize="@dimen/tvTitlesSizeAll" />
 
-        <RatingBar
-            android:id="@+id/rbElementSearchCars"
-            style="?attr/ratingBarStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:max="5"
-            android:numStars="5"
-            android:rating="0"
-            android:stepSize="1" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/lyElementSearchCarsWaitingTimeMarginTopRight"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:id="@+id/ivElementSearchCarsOnline"
-                android:layout_width="@dimen/ivElementSearchCarsOnlineSize"
-                android:layout_height="@dimen/ivElementSearchCarsOnlineSize"
-                android:layout_gravity="center"
-                android:layout_marginRight="@dimen/lyElementSearchCarsWaitingTimeMarginTopRight" />
-
-            <TextView
-                android:id="@+id/tvElementSearchCarsChat"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="@dimen/margin_5"
-                android:singleLine="true"
-                android:textColor="@color/heading"
-                android:textSize="@dimen/tvTitlesSizeAll" />
-
-            <TextView
-                android:id="@+id/tvElementSearchCarsWaitingTime"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:gravity="right"
-                android:singleLine="true"
-                android:textSize="@dimen/lyElementSearchCarsWaitingTimeSize" />
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:padding="@dimen/margin_5">
 
         <TextView
             android:id="@+id/tvElementSearchCarsMoney"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:text="aa"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <RatingBar
+        android:id="@+id/rbElementSearchCars"
+        style="?attr/ratingBarStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:max="5"
+        android:numStars="5"
+        android:rating="0"
+        android:stepSize="1" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingBottom="5dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="10dp"
+        android:paddingTop="3dp">
+
+        <ImageView
+            android:id="@+id/ivElementSearchCarsOnline"
+            android:layout_width="@dimen/ivElementSearchCarsOnlineSize"
+            android:layout_height="@dimen/ivElementSearchCarsOnlineSize"
+            android:layout_gravity="center"
+            android:layout_marginTop="2dp"
+            android:layout_marginRight="@dimen/lyElementSearchCarsWaitingTimeMarginTopRight" />
+
+        <TextView
+            android:id="@+id/tvElementSearchCarsChat"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:textColor="@color/black"
-            android:textSize="@dimen/tvElementSearchCarsMoneySize" />
+            android:layout_marginRight="10dp"
+            android:singleLine="true"
+            android:text="aa"
+            android:textColor="@color/filter_text"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/tvElementSearchCarsWaitingTime"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:gravity="left"
+            android:singleLine="true"
+            android:text="aa"
+            android:textColor="@color/filter_text1"
+            android:textSize="10sp" />
 
         <TextView
             android:id="@+id/tvSearchCarsBookNow"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="25dp"
             android:layout_gravity="center"
-            android:layout_marginTop="@dimen/tvSearchCarsBookNowMarginTop"
             android:background="@color/Yellow"
             android:paddingBottom="@dimen/tvSearchCarsBookNowPaddingTopBottom"
-            android:paddingEnd="@dimen/tvSearchCarsBookNowPaddingStartEnd"
-            android:paddingStart="@dimen/tvSearchCarsBookNowPaddingStartEnd"
+            android:paddingLeft="@dimen/tvSearchCarsBookNowPaddingStartEnd"
+            android:paddingRight="@dimen/tvSearchCarsBookNowPaddingStartEnd"
             android:paddingTop="@dimen/tvSearchCarsBookNowPaddingTopBottom"
             android:text="@string/booknow"
             android:textColor="@color/white"
-            android:textSize="@dimen/btSizeAll" />
+            android:textSize="12sp" />
 
     </LinearLayout>
 

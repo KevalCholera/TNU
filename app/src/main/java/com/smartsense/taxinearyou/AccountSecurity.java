@@ -83,9 +83,9 @@ public class AccountSecurity extends AppCompatActivity implements View.OnClickLi
         etAccountSecurityEmail = (EditText) findViewById(R.id.etAccountSecurityEmail);
         etAccountSecurityAlternateEmail = (EditText) findViewById(R.id.etAccountSecurityAlternateEmail);
 
-        important = "<font color='#000000'>Important: </font>";
-        text = "<font color='#7e7e7e'>Tick the boxes below, to receive offers and information (By Email, Telephone and Text) about products and services from various organization. For more information please view our </font>";
-        privacy = "<u><font color='#0000ff'>Privacy Policy</font></u>";
+        important = "<font color='#cccccc'><b>Important: </b></font>";
+        text = "<font color='#cccccc'>Tick the boxes below, to receive offers and information (By Email, Telephone and Text) about products and services from various organization. For more information please view our </font>";
+        privacy = "<u><font color='#2b86cc'>Privacy Policy</font></u>.";
 
         tvAccountSecurityNote.setText(Html.fromHtml(important + text + privacy));
         btAccountSecurityChangeEmail.setOnClickListener(this);

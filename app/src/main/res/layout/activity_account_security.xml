@@ -17,7 +17,7 @@
             android:layout_marginBottom="@dimen/lyAccountSecurityMarginBottomAll"
             android:text="@string/email_id_"
             android:textColor="@color/colorPrimaryDark"
-            android:textSize="@dimen/tvHeadingSizeAll" />
+            android:textSize="@dimen/textDetail" />
 
         <EditText
             android:id="@+id/etAccountSecurityEmail"
@@ -29,7 +29,7 @@
             android:inputType="textEmailAddress"
             android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
             android:textColor="@color/black"
-            android:textSize="@dimen/etSignInUserPassSize" />
+            android:textSize="@dimen/textDetail" />
 
         <Button
             android:id="@+id/btAccountSecurityChangeEmail"
@@ -42,7 +42,7 @@
             android:text="@string/change_email"
             android:textAllCaps="false"
             android:textColor="@color/white"
-            android:textSize="@dimen/btSizeAll" />
+            android:textSize="@dimen/textButton" />
 
         <TextView
             android:layout_width="match_parent"
@@ -51,7 +51,7 @@
             android:layout_marginTop="@dimen/vtvAccountSecurityMarginTopBottomAll"
             android:text="@string/alternate_email_id_"
             android:textColor="@color/colorPrimaryDark"
-            android:textSize="@dimen/tvHeadingSizeAll" />
+            android:textSize="@dimen/textDetail" />
 
         <EditText
             android:id="@+id/etAccountSecurityAlternateEmail"
@@ -63,7 +63,7 @@
             android:inputType="textEmailAddress"
             android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
             android:textColor="@color/black"
-            android:textSize="@dimen/etSignInUserPassSize" />
+            android:textSize="@dimen/textDetail" />
 
         <Button
             android:id="@+id/btAccountSecurityChangeAlternateEmail"
@@ -76,14 +76,14 @@
             android:text="@string/change_alternate_email"
             android:textAllCaps="false"
             android:textColor="@color/white"
-            android:textSize="@dimen/btSizeAll" />
+            android:textSize="@dimen/textButton" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/vHeightWidthAll"
             android:layout_marginBottom="@dimen/vtvAccountSecurityMarginTopBottomAll"
             android:layout_marginTop="@dimen/vtvAccountSecurityMarginTopBottomAll"
-            android:background="@android:color/darker_gray" />
+            android:background="@color/disable_55" />
 
         <TextView
             android:layout_width="match_parent"
@@ -91,21 +91,22 @@
             android:layout_marginBottom="@dimen/lyAccountSecurityMarginBottomAll"
             android:text="@string/security_question"
             android:textColor="@color/colorPrimaryDark"
-            android:textSize="@dimen/tvHeadingSizeAll" />
+            android:textSize="@dimen/textDetail" />
 
         <TextView
             android:id="@+id/tvAccountSecurityQuestion1"
             android:layout_width="match_parent"
+            android:layout_marginBottom="@dimen/vtvAccountSecurityMarginTopBottomAll"
             android:layout_height="wrap_content"
             android:textColor="@color/details"
-            android:textSize="@dimen/etSignInUserPassSize" />
+            android:textSize="@dimen/textDetail" />
 
         <TextView
             android:id="@+id/tvAccountSecurityQuestion2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/details"
-            android:textSize="@dimen/etSignInUserPassSize" />
+            android:textSize="@dimen/textDetail" />
 
         <Button
             android:id="@+id/btAccountSecurityChangeQuestion"
@@ -118,27 +119,26 @@
             android:text="@string/change_security_question"
             android:textAllCaps="false"
             android:textColor="@color/white"
-            android:textSize="@dimen/btSizeAll" />
+            android:textSize="@dimen/textButton" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/vHeightWidthAll"
             android:layout_marginBottom="@dimen/vtvAccountSecurityMarginTopBottomAll"
             android:layout_marginTop="@dimen/vtvAccountSecurityMarginTopBottomAll"
-            android:background="@android:color/darker_gray" />
+            android:background="@color/disable_55" />
 
         <Button
             android:id="@+id/btAccountSecurityChangePassword"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/btSignUpAllheight"
-            android:layout_marginTop="@dimen/btSignUpAllMarginTop"
             android:background="@drawable/yellow"
             android:paddingLeft="@dimen/btAccountSecurityPaddingEndStartAll"
             android:paddingRight="@dimen/btAccountSecurityPaddingEndStartAll"
             android:text="@string/change_password"
             android:textAllCaps="false"
             android:textColor="@color/white"
-            android:textSize="@dimen/btSizeAll" />
+            android:textSize="@dimen/textButton" />
 
 
         <View
@@ -146,11 +146,12 @@
             android:layout_height="@dimen/vHeightWidthAll"
             android:layout_marginBottom="@dimen/vtvAccountSecurityMarginTopBottomAll"
             android:layout_marginTop="@dimen/vtvAccountSecurityMarginTopBottomAll"
-            android:background="@android:color/darker_gray" />
+            android:background="@color/disable_55" />
 
         <TextView
             android:id="@+id/tvAccountSecurityNote"
             android:layout_width="wrap_content"
+            android:textSize="@dimen/textDetail"
             android:layout_height="wrap_content" />
 
         <CheckBox
@@ -162,7 +163,7 @@
             android:paddingLeft="@dimen/lyAccountSecurityCheckTextMarginStartTop"
             android:text="@string/ReceiveOffersFromOrganization"
             android:textColor="@color/details"
-            android:textSize="@dimen/tvAccountSecurityCheckTextSizeAll" />
+            android:textSize="@dimen/textDetail" />
 
 
         <CheckBox
@@ -174,7 +175,7 @@
             android:paddingLeft="@dimen/lyAccountSecurityCheckTextMarginStartTop"
             android:text="@string/yes_i_would_like_to_receive_offers_and_infromation_about_products_and_services_about_taxinearu"
             android:textColor="@color/details"
-            android:textSize="@dimen/tvAccountSecurityCheckTextSizeAll" />
+            android:textSize="@dimen/textDetail" />
 
         <Button
             android:id="@+id/btAccountSecurityUpdate"
@@ -187,7 +188,7 @@
             android:text="@string/update"
             android:textAllCaps="false"
             android:textColor="@color/white"
-            android:textSize="@dimen/btSizeAll" />
+            android:textSize="@dimen/textButton" />
 
     </LinearLayout>
 </ScrollView>
