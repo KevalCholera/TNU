@@ -50,8 +50,8 @@
                     <View
                         android:layout_width="@dimen/vRatingRatingWidth"
                         android:layout_height="@dimen/vRatingRatingHeight"
-                        android:layout_marginTop="@dimen/vSearchCarsMarginTop"
                         android:layout_marginBottom="@dimen/vSearchCarsMarginTop"
+                        android:layout_marginTop="@dimen/vSearchCarsMarginTop"
                         android:background="@color/line_color" />
 
                     <RadioButton
@@ -71,8 +71,8 @@
                     <View
                         android:layout_width="@dimen/vRatingRatingWidth"
                         android:layout_height="@dimen/vRatingRatingHeight"
-                        android:layout_marginTop="@dimen/vSearchCarsMarginTop"
                         android:layout_marginBottom="@dimen/vSearchCarsMarginTop"
+                        android:layout_marginTop="@dimen/vSearchCarsMarginTop"
                         android:background="@color/line_color" />
 
                     <RadioButton
@@ -95,8 +95,8 @@
                     android:id="@+id/lySearchCarsDateTime"
                     android:layout_width="match_parent"
                     android:layout_height="25dp"
-                    android:gravity="center"
                     android:background="@color/search_car_gray"
+                    android:gravity="center"
                     android:orientation="horizontal">
 
                     <ImageView
@@ -111,10 +111,7 @@
                         android:id="@+id/tvSearchCarsDateTime"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-
                         android:gravity="center"
-                        android:paddingBottom="@dimen/tvSearchCarsPaddingTopBottom"
-
                         android:textSize="@dimen/tvTitlesSizeAll" />
 
                     <ImageView
@@ -165,20 +162,19 @@
                 android:layout_gravity="bottom"
                 android:background="@color/colorAccent"
                 android:gravity="center"
-                android:orientation="horizontal"
-                >
+                android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/tvSearchCarsFilter"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:clickable="true"
-                    android:gravity="center"
-                    android:drawablePadding="5dp"
                     android:drawableLeft="@mipmap/imgfilter"
+                    android:drawablePadding="5dp"
+                    android:gravity="center"
                     android:text="@string/filter"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/tvHeadingSizeAll1"  />
+                    android:textSize="@dimen/tvHeadingSizeAll1" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
