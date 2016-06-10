@@ -11,9 +11,9 @@ public class Constants {
 //    public static final String DB_PATH = "/data/data/com.smartsense.gifkar/databases/";
 
 
-    //    public static final String BASE_URL = "http://13.76.228.139:8080";
-    public static final String BASE_URL = "http://fmcgfinal.cloudapp.net:8080";
-    public static final String BASE_URL_IMAGE_POSTFIX = "http://fmcgfinal.cloudapp.net:8080/tnu";
+    //    public static final String BASE_URL = "http://fmcgfinal.cloudapp.net:8080";
+    public static final String BASE_URL = "http://188.166.157.61";
+    public static final String BASE_URL_IMAGE_POSTFIX = BASE_URL+"/tnu";
     public static final String BASE_URL_POSTFIX = "/tnu/m?__eventid=";
     public static final String BASE_URL_PHOTO = BASE_URL + "/tnu/m?";
     public static final String BASE_TERMS_AND_CONDITION = "/customer/termsAndConditions.html";

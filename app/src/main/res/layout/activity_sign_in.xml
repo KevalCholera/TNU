@@ -55,7 +55,7 @@
                 android:paddingLeft="@dimen/etSignInUserPasswordPaddingStartEnd"
                 android:paddingRight="@dimen/etSignInUserPasswordPaddingStartEnd"
                 android:singleLine="true"
-                android:text="wuke@top1mail.ru"
+                android:text="thackerronak@gmail.com"
                 android:textAllCaps="false"
                 android:textColor="@color/black"
                 android:textColorHint="@color/hintColor"
