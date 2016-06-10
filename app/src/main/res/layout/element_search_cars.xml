@@ -20,7 +20,6 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="aa"
             android:textColor="@color/black"
             android:textSize="@dimen/tvTitlesSizeAll" />
 
@@ -31,17 +30,16 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="right"
-            android:text="aa"
             android:textColor="@color/black"
             android:textSize="18sp" />
     </LinearLayout>
 
     <RatingBar
         android:id="@+id/rbElementSearchCars"
-        style="?attr/ratingBarStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
+        android:progressDrawable="@drawable/rating_star"
         android:max="5"
         android:numStars="5"
         android:rating="0"
@@ -71,7 +69,6 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="10dp"
             android:singleLine="true"
-            android:text="aa"
             android:textColor="@color/filter_text"
             android:textSize="12sp" />
 
@@ -83,7 +80,6 @@
             android:ellipsize="end"
             android:gravity="left"
             android:singleLine="true"
-            android:text="aa"
             android:textColor="@color/filter_text1"
             android:textSize="10sp" />
 

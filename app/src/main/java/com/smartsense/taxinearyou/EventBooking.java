@@ -24,7 +24,6 @@ import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.TimePicker;
-import android.widget.Toast;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -165,6 +164,7 @@ public class EventBooking extends AppCompatActivity implements Response.Listener
             e.printStackTrace();
         }
         DatePicker.show();
+        DatePicker.setCancelable(false);
     }
 
     public void Time(final String date) {
@@ -183,6 +183,7 @@ public class EventBooking extends AppCompatActivity implements Response.Listener
         mTimePicker.updateTime(Integer.valueOf(jsonTimeHour), Integer.valueOf(jsonTimeMin));
 
         mTimePicker.show();
+        mTimePicker.setCancelable(false);
     }
 
     private void updateTime(int hours, int mins, String date) {
@@ -277,7 +278,7 @@ public class EventBooking extends AppCompatActivity implements Response.Listener
                     CommonUtil.showSnackBar(getResources().getString(R.string.enter_first_name), clEventBooking);
                 else if (TextUtils.isEmpty(etEventBookingLastName.getText().toString()))
                     CommonUtil.showSnackBar(getResources().getString(R.string.enter_last_name), clEventBooking);
-                else if (TextUtils.isEmpty(etEventBookingEmailAddress.getText().toString()))
+                else if (TextUtils.isEmpty(etEventBookingEmailAddress.getText().toString()) || !CommonUtil.isValidEmail(etEventBookingEmailAddress.getText().toString()))
                     CommonUtil.showSnackBar(getResources().getString(R.string.enter_email_id), clEventBooking);
                 else if (etEventBookingContactNumber.length() != 10)
                     CommonUtil.showSnackBar(getResources().getString(R.string.enter_con), clEventBooking);
@@ -287,38 +288,47 @@ public class EventBooking extends AppCompatActivity implements Response.Listener
                     CommonUtil.showSnackBar(getResources().getString(R.string.event_bookin_drop), clEventBooking);
                 else
                     eventBooking();
-
                 break;
+
             case R.id.etEventBookingDateTime:
                 once = true;
                 getServerDateTime();
                 break;
+
             case R.id.rbEventBookingOneWay:
                 etEventBookingEventDuration.setTextColor(ContextCompat.getColor(this, R.color.hintColor));
                 etEventBookingEventDuration.setOnClickListener(null);
                 break;
+
             case R.id.rbEventBookingReturn:
                 etEventBookingEventDuration.setTextColor(ContextCompat.getColor(this, R.color.black));
                 etEventBookingEventDuration.setOnClickListener(this);
                 break;
+
             case R.id.etEventBookingEventDuration:
                 openQuestionSelectPopup(duration);
                 break;
+
             case R.id.etEventBookingPassengers:
                 openQuestionSelectPopup(passenger);
                 break;
+
             case R.id.etEventBookingEventLuggage:
                 openQuestionSelectPopup(luggage);
                 break;
+
             case R.id.etEventBookingVehicleType:
                 openQuestionSelectPopup(vehicleType);
                 break;
+
             case R.id.etEventBookingPickUp:
                 startActivityForResult(new Intent(this, GooglePlaces.class).putExtra("typeAddress", 1), 1);
                 break;
+
             case R.id.etEventBookingEventDropOff:
                 startActivityForResult(new Intent(this, GooglePlaces.class).putExtra("typeAddress", 2), 2);
                 break;
+
         }
     }
 

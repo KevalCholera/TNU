@@ -48,7 +48,7 @@
         <TextView
             android:id="@+id/tvPartnerMoney"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="@dimen/btSignInSignUpHeight"
             android:layout_weight="1"
             android:background="@color/colorAccent"
             android:gravity="center"
@@ -58,7 +58,7 @@
         <Button
             android:id="@+id/btPartnerBookNow"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/etHeightAll"
+            android:layout_height="@dimen/btSignInSignUpHeight"
             android:layout_weight="1"
             android:background="@color/book_now"
             android:text="@string/booknow"

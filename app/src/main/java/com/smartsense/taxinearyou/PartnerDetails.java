@@ -55,8 +55,8 @@ public class PartnerDetails extends AppCompatActivity {
         if (!TextUtils.isEmpty(getIntent().getStringExtra("logoPath")))
             Picasso.with(this)
                     .load(Constants.BASE_URL_IMAGE_POSTFIX + getIntent().getStringExtra("logoPath"))
-                    .error(R.mipmap.imgtnulogo)
-                    .placeholder(R.mipmap.imgtnulogo)
+                    .error(R.mipmap.car_blue)
+                    .placeholder(R.mipmap.car_blue)
                     .into(cvPartnerPic);
 
         tvPartnerMoney.setText(getIntent().getStringExtra("ETA"));

@@ -60,22 +60,21 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="@dimen/lyRecoverEmailMarginStartAll"
-                        android:visibility="visible"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:visibility="visible">
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="@string/alt_msg"
-                            android:textSize="10sp"
                             android:textColor="@color/light_Gray"
-                             />
+                            android:textSize="10sp" />
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/tvetRecoverEmailMarginTopBottomAll"
                             android:layout_marginBottom="5dp"
+                            android:layout_marginTop="@dimen/tvetRecoverEmailMarginTopBottomAll"
                             android:text="@string/alternate_email"
                             android:textColor="@color/background" />
 
@@ -118,15 +117,15 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="@string/we_may_require_supportive_evidence_in_order_for_us_to_locate_your_account"
-                            android:textSize="10sp"
-                            android:textColor="@color/light_Gray" />
+                            android:textColor="@color/light_Gray"
+                            android:textSize="10sp" />
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginBottom="5dp"
                             android:layout_marginTop="@dimen/tvetRecoverEmailMarginTopBottomAll"
                             android:text="@string/first_name"
-                            android:layout_marginBottom="5dp"
                             android:textColor="@color/background" />
 
                         <EditText
@@ -148,9 +147,9 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginBottom="5dp"
                             android:layout_marginTop="@dimen/tvetRecoverEmailMarginTopBottomAll"
                             android:text="@string/last_name"
-                            android:layout_marginBottom="5dp"
                             android:textColor="@color/background" />
 
                         <EditText
@@ -172,9 +171,9 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginBottom="5dp"
                             android:layout_marginTop="@dimen/tvetRecoverEmailMarginTopBottomAll"
                             android:text="@string/contact"
-                            android:layout_marginBottom="5dp"
                             android:textColor="@color/background" />
 
                         <EditText
@@ -183,6 +182,7 @@
                             android:layout_height="@dimen/etHeightAll"
                             android:layout_marginBottom="@dimen/tvetRecoverEmailMarginTopBottomAll"
                             android:background="@drawable/grayborder"
+                            android:digits="0123456789"
                             android:hint="@string/contact"
                             android:inputType="phone"
                             android:maxLength="10"
@@ -196,9 +196,9 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginBottom="5dp"
                             android:layout_marginTop="@dimen/tvetRecoverEmailMarginTopBottomAll"
                             android:text="@string/email_add"
-                            android:layout_marginBottom="5dp"
                             android:textColor="@color/background" />
 
                         <EditText

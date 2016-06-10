@@ -23,7 +23,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -54,21 +53,21 @@ public class FragmentMenu extends Fragment implements Response.Listener<JSONObje
 
     CircleImageView1 cvAccountPhoto;
     TextView tvAccountPersonName;
-    TextView tvAccountGeneralInfo, tvAccountAccountSecurity, tvAccountPayment,
-            tvAccountCredits, tvAccountLostItems, tvAccountLogout, tvAccountMore;
-    private final int REQUEST_CAMERA = 0;
-    private final int SELECT_FILE = 1;
-    public int whichSelect;
+    TextView tvAccountGeneralInfo, tvAccountAccountSecurity, tvAccountPayment, tvAccountCredits, tvAccountLostItems, tvAccountLogout, tvAccountMore;
+    final int REQUEST_CAMERA = 0;
+    final int SELECT_FILE = 1;
+    int whichSelect;
     ImageView ivEditProfilePhoto;
     Button btAccountActivateNow;
     CoordinatorLayout clSearch;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
         View rootView = inflater.inflate(R.layout.fragment_menu, container, false);
         getActivity().registerReceiver(tripMessageReceiver, new IntentFilter(String.valueOf(Constants.Events.UPDATE_PROFILE_PIC)));
         getActivity().registerReceiver(tripMessageReceiver, new IntentFilter(String.valueOf(Constants.Events.UPDATE_GENERAL_INFO)));
+
         cvAccountPhoto = (CircleImageView1) rootView.findViewById(R.id.cvAccountPhoto);
         tvAccountPersonName = (TextView) rootView.findViewById(R.id.tvAccountPersonName);
         tvAccountGeneralInfo = (TextView) rootView.findViewById(R.id.tvAccountGeneralInfo);
@@ -195,9 +194,9 @@ public class FragmentMenu extends Fragment implements Response.Listener<JSONObje
             }
             bitmap = BitmapFactory.decodeStream(inputStream);
             ByteArrayOutputStream stream = new ByteArrayOutputStream();
-            bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
             byte[] imageInByte = stream.toByteArray();
-            lengthBitmap = imageInByte.length / 3000;
+            lengthBitmap = imageInByte.length;
         }
 
         if (lengthBitmap <= 500) {

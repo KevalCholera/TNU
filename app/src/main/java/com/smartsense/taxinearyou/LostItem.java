@@ -8,6 +8,7 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -76,7 +77,6 @@ public class LostItem extends AppCompatActivity implements View.OnClickListener,
                 lostItem();
             }
         });
-
         lostItem();
     }
 
@@ -102,15 +102,18 @@ public class LostItem extends AppCompatActivity implements View.OnClickListener,
         switch (v.getId()) {
             case R.id.rbLostItemOnGoing:
                 which_clicked = Constants.LostItem.ON_GOING;
-                lostItemFilter(jsonArray);
+                if (jsonArray != null)
+                    lostItemFilter(jsonArray);
                 break;
             case R.id.rbLostItemFound:
                 which_clicked = Constants.LostItem.FOUND;
-                lostItemFilter(jsonArray);
+                if (jsonArray != null)
+                    lostItemFilter(jsonArray);
                 break;
             case R.id.rbLostItemNotFound:
                 which_clicked = Constants.LostItem.NOT_FOUND;
-                lostItemFilter(jsonArray);
+                if (jsonArray != null)
+                    lostItemFilter(jsonArray);
                 break;
         }
     }
@@ -167,7 +170,7 @@ public class LostItem extends AppCompatActivity implements View.OnClickListener,
         if (jsonObject != null) {
             if (jsonObject.optInt("status") == Constants.STATUS_SUCCESS) {
                 jsonArray = jsonObject.optJSONObject("json").optJSONArray("lostItemInfoArray");
-                if (jsonArray.length() > 0) {
+                if (jsonArray != null && jsonArray.length() > 0) {
                     lvLostItemList.setVisibility(View.VISIBLE);
                     llLostItemNoItemAvailable.setVisibility(View.GONE);
                     lostItemFilter(jsonArray);

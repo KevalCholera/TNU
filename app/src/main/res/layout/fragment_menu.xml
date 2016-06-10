@@ -20,7 +20,7 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:layout_marginBottom="@dimen/lyPadding10"
-            android:src="@mipmap/imgtnulogo"
+            android:src="@color/light_Gray"
             app:civ_border_color="@color/Yellow"
             app:civ_border_width="@dimen/cvAccountPhoto" />
 
@@ -35,7 +35,6 @@
             android:src="@mipmap/img_edit" />
 
     </RelativeLayout>
-
 
     <TextView
         android:id="@+id/tvAccountPersonName"
@@ -199,8 +198,7 @@
                 android:layout_height="@dimen/vAccountAllHeight"
                 android:layout_marginLeft="@dimen/vAccountAllStartEnd"
                 android:layout_marginRight="@dimen/vAccountAllStartEnd"
-                android:background="@color/light_Gray"
-                 />
+                android:background="@color/light_Gray" />
 
 
             <LinearLayout

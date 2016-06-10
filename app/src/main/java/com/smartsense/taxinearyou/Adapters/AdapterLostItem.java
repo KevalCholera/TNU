@@ -45,7 +45,7 @@ public class AdapterLostItem extends BaseAdapter {
 
 
     public Object getItem(int position) {
-        return position;
+        return data.optJSONObject(position);
     }
 
 

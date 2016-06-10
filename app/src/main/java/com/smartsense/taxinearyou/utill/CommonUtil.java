@@ -620,6 +620,10 @@ public class CommonUtil {
         }
     }
 
+    public static void ToastShowing(Activity a, String s) {
+        Toast.makeText(a, s, Toast.LENGTH_SHORT).show();
+    }
+
     public static void storeUserData(JSONObject jsonObject) {
         SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_USER_FULLNAME, jsonObject.optString("firstName") + " " + jsonObject.optString("lastName"));
         SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_USER_FIRST, jsonObject.optString("firstName"));

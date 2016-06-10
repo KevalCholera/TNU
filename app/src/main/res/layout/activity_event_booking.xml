@@ -98,6 +98,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/etHeightAll"
                     android:background="@drawable/grayborder"
+                    android:digits="01234567890"
                     android:hint="@string/enter_contact_no"
                     android:imeOptions="actionNext"
                     android:inputType="phone"
@@ -235,8 +236,7 @@
                             android:cursorVisible="false"
                             android:focusable="false"
                             android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
-                            android:textColor="@color/black"
-                            android:textColorHint="@color/hintColor"
+                            android:textColor="@color/hintColor"
                             android:textSize="@dimen/etSignUpSizeAll" />
 
                     </LinearLayout>
