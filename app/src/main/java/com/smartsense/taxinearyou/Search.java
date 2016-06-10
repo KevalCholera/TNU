@@ -17,6 +17,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.mpt.storage.SharedPreferenceUtil;
@@ -57,7 +61,7 @@ public class Search extends AppCompatActivity {
         clSearch = (CoordinatorLayout) findViewById(R.id.clSearch);
         tbSearchTab = (TabLayout) findViewById(R.id.tbSearchTab);
         tbSearchTab.setupWithViewPager(viewPager);
-//        setupTabIcons();
+        setupTabIcons();
 
         imageViews.add(ContextCompat.getDrawable(this, R.drawable.ic_imgtab13x));
         imageViews.add(ContextCompat.getDrawable(this, R.mipmap.ic_baggage));
@@ -70,10 +74,10 @@ public class Search extends AppCompatActivity {
         arrayList.add("Credit");
         arrayList.add("Menu");
 
-        tbSearchTab.setupWithViewPager(viewPager);
-        for (int i = 0; i < tbSearchTab.getTabCount(); i++) {
-            tbSearchTab.getTabAt(i).setIcon(imageViews.get(i));
-        }
+//        tbSearchTab.setupWithViewPager(viewPager);
+//        for (int i = 0; i < tbSearchTab.getTabCount(); i++) {
+//            tbSearchTab.getTabAt(i).setIcon(imageViews.get(i));
+//        }
 
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 
@@ -109,25 +113,33 @@ public class Search extends AppCompatActivity {
 
     private void setupTabIcons() {
 
-        TextView tabOne = (TextView) LayoutInflater.from(this).inflate(R.layout.element_search, null);
+        RelativeLayout linearLayout = (RelativeLayout) LayoutInflater.from(this).inflate(R.layout.element_search, null);
+        ImageView tabIconOne = (ImageView) linearLayout.findViewById(R.id.ivElementSearch);
+        tabIconOne.setImageResource(R.mipmap.ic_imgtab1_3x);
+        TextView tabOne = (TextView) linearLayout.findViewById(R.id.tab);
         tabOne.setText(R.string.book);
-        tabOne.setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.car_white, 0, 0);
-        tbSearchTab.getTabAt(0).setCustomView(tabOne);
+        tbSearchTab.getTabAt(0).setCustomView(linearLayout);
 
-        TextView tabTwo = (TextView) LayoutInflater.from(this).inflate(R.layout.element_search, null);
+        RelativeLayout linearLayout1 = (RelativeLayout) LayoutInflater.from(this).inflate(R.layout.element_search, null);
+        ImageView tabIconTwo = (ImageView) linearLayout1.findViewById(R.id.ivElementSearch);
+        tabIconTwo.setImageResource(R.mipmap.ic_baggage);
+        TextView tabTwo = (TextView) linearLayout1.findViewById(R.id.tab);
         tabTwo.setText(R.string.my_trip);
-        tabTwo.setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.ic_baggage, 0, 0);
-        tbSearchTab.getTabAt(1).setCustomView(tabTwo);
+        tbSearchTab.getTabAt(1).setCustomView(linearLayout1);
 
-        TextView tabThree = (TextView) LayoutInflater.from(this).inflate(R.layout.element_search, null);
+        RelativeLayout linearLayout2 = (RelativeLayout) LayoutInflater.from(this).inflate(R.layout.element_search, null);
+        ImageView tabIconThree = (ImageView) linearLayout2.findViewById(R.id.ivElementSearch);
+        tabIconThree.setImageResource(R.mipmap.coins2);
+        TextView tabThree = (TextView) linearLayout2.findViewById(R.id.tab);
         tabThree.setText(R.string.credit);
-        tabThree.setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.coins2, 0, 0);
-        tbSearchTab.getTabAt(2).setCustomView(tabThree);
+        tbSearchTab.getTabAt(2).setCustomView(linearLayout2);
 
-        TextView tabFour = (TextView) LayoutInflater.from(this).inflate(R.layout.element_search, null);
+        RelativeLayout linearLayout3 = (RelativeLayout) LayoutInflater.from(this).inflate(R.layout.element_search, null);
+        ImageView tabIconFour = (ImageView) linearLayout3.findViewById(R.id.ivElementSearch);
+        tabIconFour.setImageResource(R.mipmap.hamburger);
+        TextView tabFour = (TextView) linearLayout3.findViewById(R.id.tab);
         tabFour.setText(R.string.menu);
-        tabFour.setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.hamburger, 0, 0);
-        tbSearchTab.getTabAt(3).setCustomView(tabFour);
+        tbSearchTab.getTabAt(3).setCustomView(linearLayout3);
     }
 
     class ViewPagerAdapter extends FragmentPagerAdapter {

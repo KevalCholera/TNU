@@ -23,7 +23,6 @@
             android:textColor="@color/black"
             android:textSize="@dimen/tvTitlesSizeAll" />
 
-
         <TextView
             android:id="@+id/tvElementSearchCarsMoney"
             android:layout_width="0dp"
@@ -39,9 +38,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
-        android:progressDrawable="@drawable/rating_star"
+        android:isIndicator="true"
         android:max="5"
+        android:minHeight="15dp"
         android:numStars="5"
+        android:progressDrawable="@drawable/rating_search_star"
         android:rating="0"
         android:stepSize="1" />
 
@@ -60,8 +61,8 @@
             android:layout_width="@dimen/ivElementSearchCarsOnlineSize"
             android:layout_height="@dimen/ivElementSearchCarsOnlineSize"
             android:layout_gravity="center"
-            android:layout_marginTop="2dp"
-            android:layout_marginRight="@dimen/lyElementSearchCarsWaitingTimeMarginTopRight" />
+            android:layout_marginRight="@dimen/lyElementSearchCarsWaitingTimeMarginTopRight"
+            android:layout_marginTop="2dp" />
 
         <TextView
             android:id="@+id/tvElementSearchCarsChat"

@@ -235,7 +235,6 @@
             android:text="@string/tomorrow"
             android:textColor="@color/black"
             android:textSize="@dimen/etSignInUserPassSize" />
-
     </RadioGroup>
 
     <TextView
@@ -311,9 +310,9 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/btSignUpAllheight"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="10dp"
         android:layout_marginLeft="@dimen/lySearchAllMarginStartEnd"
         android:layout_marginRight="@dimen/lySearchAllMarginStartEnd"
+        android:layout_marginTop="10dp"
         android:background="@drawable/yellow"
         android:gravity="center"
         android:text="@string/searchcar"

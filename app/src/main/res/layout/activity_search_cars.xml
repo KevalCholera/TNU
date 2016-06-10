@@ -44,8 +44,7 @@
                         android:paddingTop="@dimen/rbPaddingAll"
                         android:text="@string/rating"
                         android:textColor="@drawable/radio_button_yellow_only"
-                        android:textSize="@dimen/tvTitlesSizeAll1" />
-
+                        android:textSize="@dimen/tvTitlesSizeAll" />
 
                     <View
                         android:layout_width="@dimen/vRatingRatingWidth"
@@ -66,7 +65,7 @@
                         android:paddingTop="@dimen/rbPaddingAll"
                         android:text="@string/availability"
                         android:textColor="@drawable/radio_button_yellow_only"
-                        android:textSize="@dimen/tvTitlesSizeAll1" />
+                        android:textSize="@dimen/tvTitlesSizeAll" />
 
                     <View
                         android:layout_width="@dimen/vRatingRatingWidth"
@@ -87,7 +86,7 @@
                         android:paddingTop="@dimen/rbPaddingAll"
                         android:text="@string/pricerange"
                         android:textColor="@drawable/radio_button_yellow_only"
-                        android:textSize="@dimen/tvTitlesSizeAll1" />
+                        android:textSize="@dimen/tvTitlesSizeAll" />
 
                 </RadioGroup>
 
