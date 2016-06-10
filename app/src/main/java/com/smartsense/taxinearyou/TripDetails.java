@@ -107,17 +107,16 @@ public class TripDetails extends AppCompatActivity implements View.OnClickListen
 
             Picasso.with(this)
                     .load(Constants.BASE_URL_IMAGE_POSTFIX + tripDetails.optString("partnerLogo"))
-                    .error(R.mipmap.imgtnulogo)
-                    .placeholder(R.mipmap.imgtnulogo)
+                    .error(R.mipmap.car_blue)
+                    .placeholder(R.mipmap.car_blue)
                     .into(cvTripDetailsPartnerLogo);
 
             tvTripDetailBookingDate.setText(Constants.DATE_FORMAT_FULL_DATE_TIME_DOWN.format(Constants.DATE_FORMAT_EXTRA.parse(tripDetails.optString("bookingTime").trim())));
-//            tvTripDetailBookingTime.setText(Constants.DATE_FORMAT_ONLY_TIME.format(Constants.DATE_FORMAT_FULL_DATE_TIME.parse(tripDetails.optString("bookingTime").trim())));
             tvTripDetailPickUpDate.setText(Constants.DATE_FORMAT_FULL_DATE_TIME_DOWN.format(Constants.DATE_FORMAT_EXTRA.parse(tripDetails.optString("pickTime").trim())));
-//            tvTripDetailPickUpTime.setText(Constants.DATE_FORMAT_ONLY_TIME.format(Constants.DATE_FORMAT_FULL_DATE_TIME.parse(tripDetails.optString("pickTime").trim())));
 
             tvTripDetailTaxiProvider.setText(tripDetails.optString("partner"));
             tvTripDetailTaxiProvider.setTag(tripDetails.optString("rideId"));
+            tvTripDetailMiles.setText(CommonUtil.getDecimal(tripDetails.optDouble("estimatedKm")) + " miles");
             tvTripDetailFare.setText("£" + CommonUtil.getDecimal(tripDetails.optDouble("estimatedAmount")));
             tvTripDetailFrom.setText(tripDetails.optString("from"));
             tvTripDetailTo.setText(tripDetails.optString("to"));
@@ -133,40 +132,63 @@ public class TripDetails extends AppCompatActivity implements View.OnClickListen
 
                     ivTripDetailsMap.getViewTreeObserver().removeOnPreDrawListener(this);
 
-                    Picasso.with(TripDetails.this)
-                            .load(Uri.parse(Constants.GOOGLE_TRIP_PATH_API + "size=" + ivTripDetailsMap.getMeasuredWidth() + "x" + ivTripDetailsMap.getMeasuredHeight() + "&scale=2&markers=color:" + ContextCompat.getColor(TripDetails.this, R.color.red) + "%7C" + tripDetails.optString("fromAreaLat") + "," + tripDetails.optString("fromAreaLng") + "%7C" + tripDetails.optString("toAreaLat") + "," + tripDetails.optString("toAreaLng") + "&path=color:" + ContextCompat.getColor(TripDetails.this, R.color.colorPrimaryDark) + "%7Cweight:4%7C" + tripDetails.optString("fromAreaLat") + "," + tripDetails.optString("fromAreaLng") + "%7C" + tripDetails.optString("toAreaLat") + "," + tripDetails.optString("toAreaLng") + "&key=" + Constants.GOOGLE_TRIP_API))
-                            .error(R.mipmap.img_map)
-                            .placeholder(R.mipmap.img_map)
-                            .into(ivTripDetailsMap);
+                    JSONArray jsonArray = tripDetails.optJSONArray("viaArray");
 
-                    if (tripDetails.optInt("feedbackSts") == 1)
-                        tvTripDetailFeedback.setVisibility(View.GONE);
+                    String fromLat, fromLong, toLat, toLong, via1Lat = null, via1Long = null, via2Lat, via2Long;
 
-                    if (tripDetails.optInt("lostFoundExists") == 1)
-                        tvTripDetailLost.setVisibility(View.GONE);
+                    fromLat = tripDetails.optString("fromAreaLat");
+                    fromLong = tripDetails.optString("fromAreaLng");
+                    toLat = tripDetails.optString("toAreaLat");
+                    toLong = tripDetails.optString("toAreaLng");
 
+                    if (tripDetails.has("viaArray") && jsonArray.length() > 0) {
 
+                        for (int i = 0; i < jsonArray.length(); i++) {
+                            JSONObject jsonObject = jsonArray.optJSONObject(i);
+
+                            if (i == 0) {
+                                JSONObject via1Details = jsonObject.optJSONObject("areaInfo");
+                                lyTripDetailsVia1.setVisibility(View.VISIBLE);
+                                tvTripDetailVia1.setText(via1Details.optString("areaName"));
+                                via1Lat = via1Details.optString("areaLatitude");
+                                via1Long = via1Details.optString("areaLongitude");
+
+                                Picasso.with(TripDetails.this)
+                                        .load(Uri.parse(Constants.GOOGLE_TRIP_PATH_API + "size=" + ivTripDetailsMap.getMeasuredWidth() + "x" + ivTripDetailsMap.getMeasuredHeight() + "&scale=2&markers=color:" + ContextCompat.getColor(TripDetails.this, R.color.red) + "%7C" + fromLat + "," + fromLong + "%7C" + toLat + "," + toLong + "&path=color:" + ContextCompat.getColor(TripDetails.this, R.color.colorPrimaryDark) + "%7Cweight:4%7C" + fromLat + "," + fromLong + "%7C" + via1Lat + "," + via1Long + "%7C" + toLat + "," + toLong + "&key=" + Constants.GOOGLE_MAP_API))
+                                        .error(R.mipmap.img_map)
+                                        .placeholder(R.mipmap.img_map)
+                                        .into(ivTripDetailsMap);
+                            }
+                            if (i == 1) {
+                                JSONObject via2Details = jsonObject.optJSONObject("areaInfo");
+                                lyTripDetailsVia2.setVisibility(View.VISIBLE);
+                                tvTripDetailVia2.setText(via2Details.optString("areaName"));
+                                via2Lat = via2Details.optString("areaLatitude");
+                                via2Long = via2Details.optString("areaLongitude");
+
+                                Picasso.with(TripDetails.this)
+                                        .load(Uri.parse(Constants.GOOGLE_TRIP_PATH_API + "size=" + ivTripDetailsMap.getMeasuredWidth() + "x" + ivTripDetailsMap.getMeasuredHeight() + "&scale=2&markers=color:" + ContextCompat.getColor(TripDetails.this, R.color.red) + "%7C" + fromLat + "," + fromLong + "%7C" + toLat + "," + toLong + "&path=color:" + ContextCompat.getColor(TripDetails.this, R.color.colorPrimaryDark) + "%7Cweight:4%7C" + fromLat + "," + fromLong + "%7C" + via1Lat + "," + via1Long + "%7C" + via2Lat + "," + via2Long + "%7C" + toLat + "," + toLong + "&key=" + Constants.GOOGLE_MAP_API))
+                                        .error(R.mipmap.img_map)
+                                        .placeholder(R.mipmap.img_map)
+                                        .into(ivTripDetailsMap);
+                            }
+                        }
+                    } else {
+                        Picasso.with(TripDetails.this)
+                                .load(Uri.parse(Constants.GOOGLE_TRIP_PATH_API + "size=" + ivTripDetailsMap.getMeasuredWidth() + "x" + ivTripDetailsMap.getMeasuredHeight() + "&scale=2&markers=color:" + ContextCompat.getColor(TripDetails.this, R.color.red) + "%7C" + fromLat + "," + fromLong + "%7C" + toLat + "," + toLong + "&path=color:" + ContextCompat.getColor(TripDetails.this, R.color.colorPrimaryDark) + "%7Cweight:4%7C" + fromLat + "," + fromLong + "%7C" + toLat + "," + toLong + "&key=" + Constants.GOOGLE_MAP_API))
+                                .error(R.mipmap.img_map)
+                                .placeholder(R.mipmap.img_map)
+                                .into(ivTripDetailsMap);
+                    }
                     return true;
                 }
             });
 
-            JSONArray jsonArray = tripDetails.optJSONArray("viaArray");
+            if (tripDetails.optInt("feedbackSts") == 1)
+                tvTripDetailFeedback.setVisibility(View.GONE);
 
-            if (tripDetails.has("viaArray") && jsonArray.length() > 0) {
-
-                for (int i = 0; i < jsonArray.length(); i++) {
-                    JSONObject jsonObject = jsonArray.optJSONObject(i);
-
-                    if (i == 0) {
-                        lyTripDetailsVia1.setVisibility(View.VISIBLE);
-                        tvTripDetailVia1.setText(jsonObject.optJSONObject("areaInfo").optString("areaName"));
-                    }
-                    if (i == 1) {
-                        lyTripDetailsVia2.setVisibility(View.VISIBLE);
-                        tvTripDetailVia2.setText(jsonObject.optJSONObject("areaInfo").optString("areaName"));
-                    }
-                }
-            }
+            if (tripDetails.optInt("lostFoundExists") == 1)
+                tvTripDetailLost.setVisibility(View.GONE);
 
             tvTripDetailTNR.setText(tripDetails.optString("pnr"));
             tvTripDetailPassengers.setText(tripDetails.optString("totalPassenger"));
@@ -174,13 +196,6 @@ public class TripDetails extends AppCompatActivity implements View.OnClickListen
             tvTripDetailPayment.setText(tripDetails.optString("paymentType"));
             tvTripDetailRideType.setText(tripDetails.optString("bookingType"));
             tvTripDetailVehicle.setText(tripDetails.optString("vehicleType"));
-
-            double x = tripDetails.optDouble("estimatedKm");
-            DecimalFormat df = new DecimalFormat("#.##");
-            String dx = df.format(x);
-            x = Double.valueOf(dx);
-
-            tvTripDetailMiles.setText(x + " miles");
 
         } catch (JSONException | ParseException e) {
             e.printStackTrace();
@@ -198,7 +213,6 @@ public class TripDetails extends AppCompatActivity implements View.OnClickListen
         switch (v.getId()) {
             case R.id.tvTripDetailCancle:
                 cancelRideDialog();
-//                CommonUtil.alertBoxTwice(TripDetails.this, getResources().getString(R.string.cancel_msg), getResources().getString(R.string.cancel_title));
                 break;
             case R.id.tvTripDetailLost:
                 startActivityForResult(new Intent(TripDetails.this, AddLostItem.class).putExtra("rideId", (String) tvTripDetailTaxiProvider.getTag()), requestLostItem);

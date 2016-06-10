@@ -178,8 +178,8 @@ public class Search extends AppCompatActivity {
             try {
                 JSONObject pushData = new JSONObject(intent.getStringExtra(Constants.EXTRAS));
 //                CommonUtil.storeUserData(pushData.optJSONObject("user"));
-                if (pushData.optInt("reqType") == 1 ) {
-                    Toast.makeText(Search.this, Search.this.getResources().getString(R.string.session_expire), Toast.LENGTH_SHORT).show();
+                if (pushData.optInt("reqType") == 1) {
+                    CommonUtil.byToastMessage(Search.this, getResources().getString(R.string.session_expire));
                     SharedPreferenceUtil.clear();
                     SharedPreferenceUtil.save();
                     OneSignal.sendTag("emailId", "");

@@ -466,5 +466,11 @@
     <string name="sel_lug">Select Luggage</string>
     <string name="sel_passe">Select Passenger</string>
     <string name="inter_error">Internet Error</string>
+    <string name="invalid_time">Invalid Time</string>
+    <string name="turnDeviceGPS">Please turn on your devices gps to get your current location.</string>
+    <string name="api_failed">Google Places API connection failed with error code:</string>
+    <string name="google_perm_denied">Permission Denied, You cannot access location.</string>
+    <string name="searching">Searching...</string>
+    <string name="unavailable_to_find_place">Sorry we were unable to find your current location, please search your location.</string>
 
 </resources>

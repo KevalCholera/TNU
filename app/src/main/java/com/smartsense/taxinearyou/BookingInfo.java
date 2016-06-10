@@ -63,8 +63,6 @@ public class BookingInfo extends AppCompatActivity {
 
         try {
             JSONObject mainData = new JSONObject(SharedPreferenceUtil.getString(Constants.PrefKeys.MAIN_DATA, ""));
-            Log.i("PARAM", mainData.toString());
-            Log.i("mainData111", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_CUSTOMER_SELECTION, ""));
             JSONObject jsonObject = new JSONObject(SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_CUSTOMER_SELECTION, ""));
             try {
                 tvBookInfoDate.setText(Constants.DATE_FORMAT_ONLY_DATE.format(Constants.DATE_FORMAT_SEND.parse(mainData.optString("journeyDatetime"))));
@@ -76,13 +74,11 @@ public class BookingInfo extends AppCompatActivity {
                     JSONObject viaField1 = new JSONObject(SharedPreferenceUtil.getString(Constants.VIA_ADDRESS, ""));
                     lyBookingInfoVia1.setVisibility(View.VISIBLE);
                     tvBookInfoVia1.setText(viaField1.optString("viaAreaAddress"));
-                    Log.i("VIA_ADDRESS1", SharedPreferenceUtil.getString(Constants.VIA_ADDRESS, ""));
                 }
                 if (!SharedPreferenceUtil.getString(Constants.VIA2_ADDRESS, "").equalsIgnoreCase("")) {
                     JSONObject viaField1 = new JSONObject(SharedPreferenceUtil.getString(Constants.VIA2_ADDRESS, ""));
                     lyBookingInfoVia2.setVisibility(View.VISIBLE);
                     tvBookInfoVia2.setText(viaField1.optString("viaAreaAddress"));
-                    Log.i("VIA_ADDRESS2", SharedPreferenceUtil.getString(Constants.VIA2_ADDRESS, ""));
                 }
 
                 tvBookInfoVehicleType.setTag(mainData.optJSONObject("filterRequest").optString("vehicleType"));

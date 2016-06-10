@@ -226,6 +226,12 @@ public class CommonUtil {
         }
     }
 
+    public static void byToastMessage(Activity activity, String msg) {
+        activity.setTheme(R.style.New_Style);
+        Toast.makeText(activity, msg, Toast.LENGTH_SHORT).show();
+        activity.setTheme(R.style.AppTheme);
+    }
+
     public static void errorToastShowing(Activity activity) {
         activity.setTheme(R.style.New_Style);
         Toast.makeText(activity, activity.getResources().getString(R.string.inter_error), Toast.LENGTH_SHORT).show();
@@ -612,10 +618,6 @@ public class CommonUtil {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    public static void ToastShowing(Activity a, String s) {
-        Toast.makeText(a, s, Toast.LENGTH_SHORT).show();
     }
 
     public static void storeUserData(JSONObject jsonObject) {

@@ -9,6 +9,7 @@ import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
@@ -32,13 +33,7 @@ import android.widget.Filterable;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.RequestFuture;
-import com.android.volley.toolbox.Volley;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.ResultCallback;
@@ -46,6 +41,7 @@ import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.PlaceBuffer;
 import com.google.android.gms.location.places.Places;
 import com.smartsense.taxinearyou.utill.CommonUtil;
+import com.smartsense.taxinearyou.utill.Constants;
 import com.smartsense.taxinearyou.utill.LocationFinderService;
 import com.smartsense.taxinearyou.utill.LocationSettingsHelper;
 
@@ -60,9 +56,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
-import java.util.concurrent.ExecutionException;
-
-import static com.android.volley.Request.Method.GET;
 
 public class GooglePlaces extends FragmentActivity implements OnItemClickListener, View.OnClickListener, GoogleApiClient.OnConnectionFailedListener,
         GoogleApiClient.ConnectionCallbacks {
@@ -81,7 +74,6 @@ public class GooglePlaces extends FragmentActivity implements OnItemClickListene
     private LocationSettingsHelper mSettingsHelper;
     //------------ make your specific key ------------
 //    private static final String API_KEY = "AIzaSyDi0RWt263vcR_s6MAjN_3Lq4DIPCrW7JI";
-    private static final String API_KEY = "AIzaSyCp1vbSHgiC1lsNUYb-PuDs3kJ4wYEKu3I";
     private GooglePlacesAutocompleteAdapter dataAdapter;
     private GooglePlacesAutocompleteAdapter1 dataAdapter1;
     private static final int PERMISSION_REQUEST_CODE = 1;
@@ -154,7 +146,7 @@ public class GooglePlaces extends FragmentActivity implements OnItemClickListene
         HttpURLConnection conn = null;
         StringBuilder jsonResults = new StringBuilder();
         try {
-            String sb = "https://maps.googleapis.com/maps/api/place/details/json?key=" + API_KEY + "&placeid=" + placeId;
+            String sb = "https://maps.googleapis.com/maps/api/place/details/json?key=" + Constants.GOOGLE_PLACE_API + "&placeid=" + placeId;
 
             URL url = new URL(sb);
 
@@ -218,7 +210,7 @@ public class GooglePlaces extends FragmentActivity implements OnItemClickListene
         HttpURLConnection conn = null;
         StringBuilder jsonResults = new StringBuilder();
         try {
-            String sb = PLACES_API_BASE + TYPE_AUTOCOMPLETE + OUT_JSON + "?key=" + API_KEY +
+            String sb = PLACES_API_BASE + TYPE_AUTOCOMPLETE + OUT_JSON + "?key=" + Constants.GOOGLE_PLACE_API +
                     "&components=country:uk" +
                     "&input=" + URLEncoder.encode(input, "utf8");
 
@@ -277,7 +269,7 @@ public class GooglePlaces extends FragmentActivity implements OnItemClickListene
         HttpURLConnection conn = null;
         StringBuilder jsonResults = new StringBuilder();
         try {
-            String sb = PLACES_API_BASE + TYPE_AUTOCOMPLETE + OUT_JSON + "?key=" + API_KEY +
+            String sb = PLACES_API_BASE + TYPE_AUTOCOMPLETE + OUT_JSON + "?key=" + Constants.GOOGLE_PLACE_API +
                     "&components=country:uk" +
                     "&input=" + URLEncoder.encode(input, "utf8");
 
@@ -341,6 +333,7 @@ public class GooglePlaces extends FragmentActivity implements OnItemClickListene
                 break;
             case R.id.tvGooglePlacesCurrentLocation:
                 CommonUtil.closeKeyboard(GooglePlaces.this);
+                ibGooglePlaceEmpty.performClick();
                 if (CommonUtil.isGPS(getApplicationContext())) {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                         if (!checkPermission()) {
@@ -497,14 +490,10 @@ public class GooglePlaces extends FragmentActivity implements OnItemClickListene
     }
 
     @Override
-    public void onConnectionFailed(ConnectionResult connectionResult) {
-        Log.e(LOG_TAG, "Google Places API connection failed with error code: "
-                + connectionResult.getErrorCode());
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+        Log.e(LOG_TAG, "Google Places API connection failed with error code: " + connectionResult.getErrorCode());
 
-        Toast.makeText(this,
-                "Google Places API connection failed with error code:" +
-                        connectionResult.getErrorCode(),
-                Toast.LENGTH_LONG).show();
+        CommonUtil.byToastMessage(this, getResources().getString(R.string.api_failed));
     }
 
     @Override
@@ -546,7 +535,7 @@ public class GooglePlaces extends FragmentActivity implements OnItemClickListene
                         }
                         break;
                     case Activity.RESULT_CANCELED:
-                        Toast.makeText(this, "Please turn on your devices gps to get your current location.", Toast.LENGTH_SHORT).show();
+                        CommonUtil.byToastMessage(this, getResources().getString(R.string.turnDeviceGPS));
                         break;
                     default:
                         break;
@@ -559,15 +548,7 @@ public class GooglePlaces extends FragmentActivity implements OnItemClickListene
 
     private boolean checkPermission() {
         int result = ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION);
-        if (result == PackageManager.PERMISSION_GRANTED) {
-
-            return true;
-
-        } else {
-
-            return false;
-
-        }
+        return result == PackageManager.PERMISSION_GRANTED;
     }
 
     private void requestPermission() {
@@ -601,13 +582,13 @@ public class GooglePlaces extends FragmentActivity implements OnItemClickListene
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[], @NonNull int[] grantResults) {
         switch (requestCode) {
             case PERMISSION_REQUEST_CODE:
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     getCurrentLocationSuggestions();
                 } else {
-                    Toast.makeText(this, "Permission Denied, You cannot access location.", Toast.LENGTH_SHORT).show();
+                    CommonUtil.byToastMessage(this, getResources().getString(R.string.google_perm_denied));
                 }
                 break;
         }
@@ -616,10 +597,10 @@ public class GooglePlaces extends FragmentActivity implements OnItemClickListene
     public void getCurrentLocationSuggestions() {
         final LocationFinderService myLocation = new LocationFinderService();
         if (!CommonUtil.isInternetAvailable(GooglePlaces.this))
-            CommonUtil.ToastShowing(this, getResources().getString(R.string.nointernet_try_again_msg));
+            CommonUtil.byToastMessage(this, getResources().getString(R.string.nointernet_try_again_msg));
         else {
 
-            CommonUtil.showProgressDialog(this, "Searching...");
+            CommonUtil.showProgressDialog(this, getResources().getString(R.string.searching));
             LocationFinderService.LocationResult locationResult = new LocationFinderService.LocationResult() {
                 @Override
                 public void gotLocation(Location location) {
@@ -632,7 +613,7 @@ public class GooglePlaces extends FragmentActivity implements OnItemClickListene
 //                        CommonUtil.cancelProgressDialog();
                         runOnUiThread(new Runnable() {
                             public void run() {
-                                CommonUtil.ToastShowing(GooglePlaces.this, "Sorry we were unable to find your current location, please search your location.");
+                                CommonUtil.byToastMessage(GooglePlaces.this, getResources().getString(R.string.unavailable_to_find_place));
                             }
                         });
 
@@ -649,7 +630,7 @@ public class GooglePlaces extends FragmentActivity implements OnItemClickListene
         HttpURLConnection conn = null;
         StringBuilder jsonResults = new StringBuilder();
         try {
-            String googleSuggestionLink = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + location.getLatitude() + "," + location.getLongitude() + "&radius=10&key=" + API_KEY;
+            String googleSuggestionLink = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + location.getLatitude() + "," + location.getLongitude() + "&radius=10&key=" + Constants.GOOGLE_PLACE_API;
             Log.i("Location1", googleSuggestionLink);
 
             URL url = new URL(googleSuggestionLink);
@@ -663,8 +644,6 @@ public class GooglePlaces extends FragmentActivity implements OnItemClickListene
             while ((read = in.read(buff)) != -1) {
                 jsonResults.append(buff, 0, read);
             }
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
@@ -714,7 +693,7 @@ public class GooglePlaces extends FragmentActivity implements OnItemClickListene
 
                 }
             } else
-                CommonUtil.ToastShowing(GooglePlaces.this, "Sorry we were unable to find your current location, please search your location.");
+                CommonUtil.byToastMessage(GooglePlaces.this, getResources().getString(R.string.unavailable_to_find_place));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -724,7 +703,6 @@ public class GooglePlaces extends FragmentActivity implements OnItemClickListene
         try {
             JSONObject addObj = new JSONObject();
             String AreaName = areaName;
-            String AreaPlaceid = placeId;
             String AreaAddress = "";
             String AreaLat = "";
             String AreaLong = "";
@@ -767,7 +745,7 @@ public class GooglePlaces extends FragmentActivity implements OnItemClickListene
 //            AreaCity= AreaCity.replace(" ", "%20");
 //            AreaPostalCode= AreaPostalCode.replace(" ", "%20");
             addObj.put("viaAreaName", AreaName.equalsIgnoreCase("") ? " " : AreaName);
-            addObj.put("viaAreaPlaceid", AreaPlaceid.equalsIgnoreCase("") ? " " : AreaPlaceid);
+            addObj.put("viaAreaPlaceid", placeId.equalsIgnoreCase("") ? " " : placeId);
             addObj.put("viaAreaLat", AreaLat.equalsIgnoreCase("") ? " " : AreaLat);
             addObj.put("viaAreaLong", AreaLong.equalsIgnoreCase("") ? " " : AreaLong);
             addObj.put("viaAreaAddress", AreaAddress.equalsIgnoreCase("") ? " " : AreaAddress);

@@ -137,7 +137,7 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
                         if (milliGetTime >= milliServerTime)
                             tvBookDateTime.setText(Constants.DATE_FORMAT_ONLY_DATE.format(Constants.DATE_FORMAT_SET.parse(dateTimeCanChange)) + " " + time);
                         else
-                            Toast.makeText(getActivity().getApplicationContext(), "Invalid Time", Toast.LENGTH_SHORT).show();
+                            CommonUtil.byToastMessage(getActivity(),getResources().getString(R.string.invalid_time));
 
                     } else {
                         Calendar calendar = Calendar.getInstance();

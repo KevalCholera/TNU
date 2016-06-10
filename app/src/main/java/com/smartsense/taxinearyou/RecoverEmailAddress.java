@@ -192,7 +192,7 @@ public class RecoverEmailAddress extends AppCompatActivity implements Response.L
                             openDialog();
                             break;
                         case Constants.Events.EVENT_FORGOT_EMAIL_WITHOUT:
-                            Toast.makeText(this, getResources().getString(R.string.your_detail_send), Toast.LENGTH_SHORT).show();
+                            CommonUtil.byToastMessage(this, getResources().getString(R.string.your_detail_send));
                             finish();
                             break;
                     }

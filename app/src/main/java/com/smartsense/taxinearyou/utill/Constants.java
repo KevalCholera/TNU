@@ -28,7 +28,8 @@ public class Constants {
     public static final String REVERSE_FROM_TO = "reverse_from_to";
     public static final String VIA2_ADDRESS = "via2_add";
     public static final String EXTRAS = "extras";
-    public static final String GOOGLE_TRIP_API = "AIzaSyDrWeTlPdYv-p9IfH6kHawV6s-cffgBQPI";
+    public static final String GOOGLE_PLACE_API = "AIzaSyCp1vbSHgiC1lsNUYb-PuDs3kJ4wYEKu3I";
+    public static final String GOOGLE_MAP_API = "AIzaSyDrWeTlPdYv-p9IfH6kHawV6s-cffgBQPI";
     public static final SimpleDateFormat DATE_FORMAT_SET = new SimpleDateFormat("dd-MM-yyyy hh:mm aa");
     public static final SimpleDateFormat DATE_FORMAT_GET = new SimpleDateFormat("dd MM yyyy HH mm ss");
     public static final SimpleDateFormat DATE_FORMAT_SEND = new SimpleDateFormat("dd-MM-yyyy HH:mm");

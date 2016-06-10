@@ -60,7 +60,9 @@
                                 android:id="@+id/rbFeedbackRatingForDriver"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/lyPadding10"
                                 android:numStars="5"
+                                android:progressDrawable="@drawable/rating_star"
                                 android:rating="3"
                                 android:stepSize="1" />
 

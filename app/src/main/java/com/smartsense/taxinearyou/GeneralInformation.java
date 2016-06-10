@@ -94,7 +94,7 @@ public class GeneralInformation extends AppCompatActivity implements Response.Li
                 else if (etGeneralMobile.length() != 10)
                     CommonUtil.showSnackBar(getString(R.string.enter_valid_contact), clGeneralInfo);
                 else {
-                    if (check == 1)
+                    if (check == 1 && !etGeneralMobile.getText().toString().equalsIgnoreCase(SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_MNO, "")))
                         contactAvailability();
                     else
                         generalInfo();
@@ -173,7 +173,8 @@ public class GeneralInformation extends AppCompatActivity implements Response.Li
                 if (jsonObject.optString("__eventid").equalsIgnoreCase(Constants.Events.CHECK_MOBILE_AVAILABILITY + ""))
 
                     if (!jsonObject.optJSONObject("json").optString("isAvailable").equalsIgnoreCase("1"))
-                        CommonUtil.showSnackBar(jsonObject.optString("msg"), clGeneralInfo);
+//                        CommonUtil.showSnackBar(jsonObject.optString("msg"), clGeneralInfo);
+                        CommonUtil.successToastShowing(this, jsonObject);
                     else
                         generalInfo();
 

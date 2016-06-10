@@ -41,10 +41,12 @@ public class SignIn extends AppCompatActivity implements Response.Listener<JSONO
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-//            Window window = getWindow();
-//            window.setStatusBarColor(ContextCompat.getColor(SignIn.this,R.color.status_bar));
-//        }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = getWindow();
+            window.setStatusBarColor(ContextCompat.getColor(SignIn.this, R.color.status_bar));
+        }
+
         btSignInSignIn = (Button) findViewById(R.id.btSignInSignIn);
         btSignInSignUp = (Button) findViewById(R.id.btSignInSignUp);
         etSignInUserName = (EditText) findViewById(R.id.etSignInUserName);

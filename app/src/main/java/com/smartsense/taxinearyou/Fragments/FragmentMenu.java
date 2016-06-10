@@ -225,7 +225,7 @@ public class FragmentMenu extends Fragment implements Response.Listener<JSONObje
                 e.printStackTrace();
             }
         } else
-            Toast.makeText(getActivity(), getResources().getString(R.string.less_100), Toast.LENGTH_SHORT).show();
+            CommonUtil.byToastMessage(getActivity(), getResources().getString(R.string.less_100));
     }
 
     @Override

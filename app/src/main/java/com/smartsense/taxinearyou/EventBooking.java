@@ -242,7 +242,7 @@ public class EventBooking extends AppCompatActivity implements Response.Listener
                     long millisecondSet = dateSet.getTime();
                     long millisecondGet = dateGet.getTime();
                     if (millisecondGet < millisecondSet) {
-                        Toast.makeText(this, "Invalid Time", Toast.LENGTH_SHORT).show();
+                        CommonUtil.byToastMessage(this, getResources().getString(R.string.invalid_time));
                     } else {
                         hrs = hour;
                         minute = minutes;
