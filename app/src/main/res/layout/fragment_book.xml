@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@mipmap/imgappbackground"
+    android:background="@mipmap/imgappbackground1"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -193,7 +193,7 @@
         android:layout_height="@dimen/etHeightAll"
         android:layout_marginLeft="@dimen/lySearchAllMarginStartEnd"
         android:layout_marginRight="@dimen/lySearchAllMarginStartEnd"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:background="@drawable/blueborder"
         android:orientation="horizontal"
         android:padding="@dimen/llBookNowTodayTomorrowPadding">
@@ -244,7 +244,7 @@
         android:layout_height="@dimen/etHeightAll"
         android:layout_marginLeft="@dimen/lySearchAllMarginStartEnd"
         android:layout_marginRight="@dimen/lySearchAllMarginStartEnd"
-        android:layout_marginTop="@dimen/lySearchDateTimeMaginTop"
+        android:layout_marginTop="10dp"
         android:background="@drawable/grayborder"
         android:clickable="true"
         android:drawableLeft="@mipmap/imgtime"
@@ -311,7 +311,9 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/btSignUpAllheight"
         android:layout_gravity="center_horizontal"
-        android:layout_margin="@dimen/tvSearchAllMargin"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="@dimen/lySearchAllMarginStartEnd"
+        android:layout_marginRight="@dimen/lySearchAllMarginStartEnd"
         android:background="@drawable/yellow"
         android:gravity="center"
         android:text="@string/searchcar"

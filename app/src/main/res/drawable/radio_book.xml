@@ -14,7 +14,7 @@
 
         <shape>
 
-            <solid android:color="@color/white" />
+            <solid android:color="@android:color/transparent" />
 
         </shape>
 

@@ -27,6 +27,9 @@
     <color name="status_bar">#F2F5F5</color>
     <color name="text_color">#8f8f8f</color>
     <color name="line_color">#cccccc</color>
+    <color name="line_color1">#b1b1b1</color>
+    <color name="current_loc">#239DFF</color>
+
 </resources>
 
     <!--<?xml version="1.0" encoding="utf-8"?>

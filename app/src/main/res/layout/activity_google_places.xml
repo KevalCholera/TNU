@@ -27,14 +27,14 @@
                 android:drawableLeft="@mipmap/imgsearcharea"
                 android:drawablePadding="@dimen/margin_5"
                 android:ems="10"
-                android:hint="@string/please_enter_your_place"
+                android:hint="Search Area"
                 android:imeOptions="actionSearch"
                 android:inputType="textCapSentences"
                 android:padding="@dimen/margin_5"
                 android:singleLine="true"
                 android:textColor="@color/black"
                 android:textColorHint="@color/dark_gray"
-                android:textSize="@dimen/etSignInUserPassSize">
+                android:textSize="12sp">
 
                 <requestFocus />
             </EditText>
@@ -57,15 +57,15 @@
             android:layout_marginLeft="@dimen/tvMarginTopBottomStartEndAll"
             android:background="@null"
             android:text="@string/cancel"
-            android:textColor="@color/background"
-            android:textSize="@dimen/tvHeadingSizeAll" />
+            android:textColor="@color/colorAccent"
+            android:textSize="17sp" />
 
     </LinearLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/vReviewTextAllMargin"
-        android:background="@color/background" />
+        android:background="@color/colorAccent" />
 
     <TextView
         android:id="@+id/tvGooglePlacesCurrentLocation"
@@ -76,15 +76,14 @@
         android:gravity="center|left"
         android:padding="@dimen/lyPadding10"
         android:text="@string/crnt_lct"
-        android:textColor="@color/colorPrimary"
-        android:textSize="@dimen/font_20"
-        android:textStyle="bold" />
+        android:textColor="@color/current_loc"
+        android:textSize="17dp" />
 
     <View
         android:id="@+id/viewGooglePlace"
         android:layout_width="match_parent"
         android:layout_height="@dimen/vReviewTextAllMargin"
-        android:background="@color/heading" />
+        android:background="@color/line_color1" />
 
     <ListView
         android:id="@+id/lvGooglePlaces"

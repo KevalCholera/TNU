@@ -5,9 +5,11 @@
     android:orientation="horizontal">
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="12dp"
         android:src="@mipmap/imgsearcharea" />
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -20,9 +22,11 @@
             android:id="@+id/tvElementGoogle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/tvElementCardListMarginStartEnd5"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="@dimen/tvElementCardListMarginStartEnd5"
             android:textColor="#686868"
             android:textSize="@dimen/btSignInSignInSize"
+            android:text="yes"
             android:textStyle="bold" />
 
 
@@ -30,7 +34,8 @@
             android:id="@+id/tvElementGoogle1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingLeft="@dimen/tvElementCardListMarginStartEnd5"
+            android:layout_marginLeft="@dimen/tvElementCardListMarginStartEnd5"
+            android:text="yes"
             android:textColor="@color/details"
             android:textSize="@dimen/vSignInPasswordMarginStart" />
     </LinearLayout>
