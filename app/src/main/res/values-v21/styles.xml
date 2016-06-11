@@ -9,7 +9,6 @@
         <item name="colorAccent">@color/Yellow</item>
         <item name="android:fitsSystemWindows">true</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
-
     </style>
 
     <style name="New_Style" parent="AppTheme">
@@ -20,7 +19,6 @@
         <item name="colorAccent">@color/Yellow</item>
         <item name="android:fitsSystemWindows">false</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
-
     </style>
 
     <style name="Filter_Theme" parent="AppTheme">
@@ -30,7 +28,6 @@
         <item name="android:fitsSystemWindows">false</item>
         <item name="android:colorControlNormal">@color/white</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-
     </style>
 
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">

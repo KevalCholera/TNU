@@ -14,7 +14,11 @@ import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
+import android.text.Spannable;
+import android.text.Spanned;
 import android.text.TextUtils;
+import android.text.method.LinkMovementMethod;
+import android.text.style.ClickableSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -26,6 +30,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -93,6 +98,18 @@ public class AccountSecurity extends AppCompatActivity implements View.OnClickLi
         btAccountSecurityChangeQuestion.setOnClickListener(this);
         btAccountSecurityChangePassword.setOnClickListener(this);
         btAccountSecurityUpdate.setOnClickListener(this);
+
+
+        Spannable span = Spannable.Factory.getInstance().newSpannable(Html.fromHtml(important + text + privacy));
+        span.setSpan(new ClickableSpan() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(AccountSecurity.this, AboutUs.class).putExtra("privacy", "privacy"));
+            }
+        }, 190, 205, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+        tvAccountSecurityNote.setText(span);
+        tvAccountSecurityNote.setMovementMethod(LinkMovementMethod.getInstance());
 
         setValue();
     }

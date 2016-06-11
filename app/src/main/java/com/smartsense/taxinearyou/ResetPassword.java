@@ -89,7 +89,7 @@ public class ResetPassword extends AppCompatActivity implements Response.Listene
             TextView tvPopupLocatedEmail = (TextView) dialog.findViewById(R.id.tvPopupLocatedEmail);
             tvPopupLocatedEmail.setText(etResetPasswordEmailAddress.getText().toString());
             TextView tvPopupLocatedDetail = (TextView) dialog.findViewById(R.id.tvPopupLocatedDetail);
-            tvPopupLocatedEmail.setText("Please follow the instructions to recover your password.If you can\\'t find the email we have send you in your inbox, check your junk mail");
+            tvPopupLocatedEmail.setText(etResetPasswordEmailAddress.getText().toString().trim());
             Button button1 = (Button) dialog.findViewById(R.id.btPopupLocatedBack);
 
             linearLayout.setVisibility(View.VISIBLE);
