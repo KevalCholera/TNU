@@ -215,7 +215,7 @@ public class FragmentMenu extends Fragment implements Response.Listener<JSONObje
                 params.put("token", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_ACCESS_TOKEN, ""));
                 params.put("userId", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_ID, ""));
                 params.put("__eventid", Constants.Events.UPDATE_PROFILE_PIC + "");
-//                params.put("json", jsonObject.toString());
+                params.put("json", jsonObject.toString());
                 Log.i("params", params.toString());
 
                 CommonUtil.jsonRequestPOST(getActivity(), getResources().getString(R.string.updating), urlType, params, tag, this, this);

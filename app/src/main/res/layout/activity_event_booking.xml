@@ -40,6 +40,7 @@
                     android:id="@+id/etEventBookingFirstName"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/etHeightAll"
+                    android:layout_marginTop="@dimen/margin_5"
                     android:background="@drawable/grayborder"
                     android:hint="@string/enter_first_name"
                     android:inputType="textCapSentences"
@@ -59,6 +60,7 @@
                     android:id="@+id/etEventBookingLastName"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/etHeightAll"
+                    android:layout_marginTop="@dimen/margin_5"
                     android:background="@drawable/grayborder"
                     android:hint="@string/enter_last_name"
                     android:inputType="textCapSentences"
@@ -78,6 +80,7 @@
                     android:id="@+id/etEventBookingEmailAddress"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/etHeightAll"
+                    android:layout_marginTop="@dimen/margin_5"
                     android:background="@drawable/grayborder"
                     android:hint="@string/enter_email"
                     android:inputType="textEmailAddress"
@@ -97,6 +100,7 @@
                     android:id="@+id/etEventBookingContactNumber"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/etHeightAll"
+                    android:layout_marginTop="@dimen/margin_5"
                     android:background="@drawable/grayborder"
                     android:digits="01234567890"
                     android:hint="@string/enter_contact_no"
@@ -119,6 +123,7 @@
                     android:id="@+id/etEventBookingPickUp"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/etHeightAll"
+                    android:layout_marginTop="@dimen/margin_5"
                     android:background="@drawable/grayborder"
                     android:clickable="true"
                     android:cursorVisible="false"
@@ -139,6 +144,7 @@
                     android:id="@+id/etEventBookingEventDropOff"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/etHeightAll"
+                    android:layout_marginTop="@dimen/margin_5"
                     android:background="@drawable/grayborder"
                     android:clickable="true"
                     android:cursorVisible="false"
@@ -158,8 +164,6 @@
                 <RadioGroup
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/lyPadding10"
-                    android:layout_marginTop="@dimen/lyPadding10"
                     android:orientation="horizontal">
 
                     <RadioButton
@@ -168,7 +172,7 @@
                         android:layout_height="wrap_content"
                         android:button="@drawable/radio_button_event_booking"
                         android:checked="true"
-                        android:text="@string/one_way"
+                        android:text="@string/single"
                         android:textColor="@color/background" />
 
                     <RadioButton
@@ -205,6 +209,7 @@
                             android:id="@+id/etEventBookingDateTime"
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/etHeightAll"
+                            android:layout_marginTop="@dimen/margin_5"
                             android:background="@drawable/grayborder"
                             android:clickable="true"
                             android:cursorVisible="false"
@@ -232,6 +237,7 @@
                             android:id="@+id/etEventBookingEventDuration"
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/etHeightAll"
+                            android:layout_marginTop="@dimen/margin_5"
                             android:background="@drawable/grayborder"
                             android:clickable="true"
                             android:cursorVisible="false"
@@ -266,6 +272,7 @@
                             android:id="@+id/etEventBookingPassengers"
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/etHeightAll"
+                            android:layout_marginTop="@dimen/margin_5"
                             android:background="@drawable/grayborder"
                             android:clickable="true"
                             android:cursorVisible="false"
@@ -293,6 +300,7 @@
                             android:id="@+id/etEventBookingEventLuggage"
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/etHeightAll"
+                            android:layout_marginTop="@dimen/margin_5"
                             android:background="@drawable/grayborder"
                             android:clickable="true"
                             android:cursorVisible="false"
@@ -308,6 +316,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/lyPadding10"
                     android:orientation="vertical">
 
                     <TextView
@@ -320,6 +329,7 @@
                         android:id="@+id/etEventBookingVehicleType"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/etHeightAll"
+                        android:layout_marginTop="@dimen/margin_5"
                         android:background="@drawable/grayborder"
                         android:clickable="true"
                         android:cursorVisible="false"
@@ -341,6 +351,7 @@
                     android:id="@+id/etEventBookingReq"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/etLongTextHeightAll"
+                    android:layout_marginTop="@dimen/margin_5"
                     android:background="@drawable/grayborder"
                     android:gravity="top"
                     android:imeOptions="actionDone"
@@ -363,7 +374,7 @@
                 android:text="@string/submit"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
-                android:textSize="@dimen/btSizeAll" />
+                android:textSize="@dimen/buttonGeneral" />
         </LinearLayout>
 
     </LinearLayout>

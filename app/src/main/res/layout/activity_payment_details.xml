@@ -14,7 +14,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="fill_parent"
             android:background="@color/white"
@@ -26,13 +26,13 @@
                 android:layout_height="wrap_content"
                 android:text="@string/choose_a_payment_option"
                 android:textColor="@color/background"
-                android:textSize="@dimen/tvHeadingSizeAll" />
+                android:textSize="@dimen/heading" />
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/vHeightWidthAll"
-                android:layout_marginBottom="@dimen/vMarginTopBottomAll"
-                android:layout_marginTop="@dimen/vMarginTopBottomAll"
+                android:layout_marginBottom="@dimen/margin_5"
+                android:layout_marginTop="@dimen/margin_5"
                 android:background="@color/background" />
 
             <TextView
@@ -45,13 +45,13 @@
                 android:gravity="fill"
                 android:text="@string/tnu_credit_coming_soon"
                 android:textColor="@android:color/darker_gray"
-                android:textSize="@dimen/tvHeadingSizeAll" />
+                android:textSize="@dimen/heading" />
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/vHeightWidthAll"
-                android:layout_marginBottom="@dimen/vMarginTopBottomAll"
-                android:layout_marginTop="@dimen/vMarginTopBottomAll"
+                android:layout_marginBottom="@dimen/margin_5"
+                android:layout_marginTop="@dimen/margin_5"
                 android:background="@android:color/darker_gray" />
 
             <TextView
@@ -66,13 +66,13 @@
                 android:gravity="fill"
                 android:text="@string/card"
                 android:textColor="@android:color/darker_gray"
-                android:textSize="@dimen/tvHeadingSizeAll" />
+                android:textSize="@dimen/heading" />
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/vHeightWidthAll"
-                android:layout_marginBottom="@dimen/vMarginTopBottomAll"
-                android:layout_marginTop="@dimen/vMarginTopBottomAll"
+                android:layout_marginBottom="@dimen/margin_5"
+                android:layout_marginTop="@dimen/margin_5"
                 android:background="@android:color/darker_gray" />
 
             <TextView
@@ -85,12 +85,12 @@
                 android:gravity="fill"
                 android:text="@string/cash"
                 android:textColor="@android:color/black"
-                android:textSize="@dimen/tvHeadingSizeAll" />
+                android:textSize="@dimen/heading" />
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/vHeightWidthAll"
-                android:layout_marginTop="@dimen/vMarginTopBottomAll"
+                android:layout_marginTop="@dimen/margin_5"
                 android:background="@android:color/darker_gray" />
 
             <LinearLayout
@@ -107,7 +107,7 @@
                     android:gravity="center"
                     android:text="@string/total_fare_cost"
                     android:textColor="@color/Yellow"
-                    android:textSize="@dimen/tvPaymentDetailsFareCostSize"
+                    android:textSize="@dimen/buttonGeneral"
                     android:textStyle="bold" />
 
                 <TextView

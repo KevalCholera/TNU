@@ -47,7 +47,7 @@ public class AboutUs extends AppCompatActivity {
             wvPrivacyPolicy.loadUrl(Constants.BASE_URL_IMAGE_POSTFIX + Constants.BASE_PRIVACY_POLICY);
 
         } else {
-            getSupportActionBar().setTitle("Terms and Conditions");
+            getSupportActionBar().setTitle("Terms & Conditions");
             wvPrivacyPolicy.setVisibility(View.VISIBLE);
 
             wvPrivacyPolicy.setWebChromeClient(new WebChromeClient() {

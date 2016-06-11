@@ -114,6 +114,7 @@
         android:id="@+id/llBookVia1"
         android:layout_width="match_parent"
         android:layout_height="@dimen/etHeightAll"
+        android:layout_marginBottom="@dimen/llBookVia2MarginTop"
         android:layout_marginLeft="@dimen/tvSearchAllMarginStartEnd"
         android:layout_marginRight="@dimen/tvSearchAllMarginStartEnd"
         android:background="@drawable/grayborder"
@@ -154,7 +155,6 @@
         android:layout_height="@dimen/etHeightAll"
         android:layout_marginLeft="@dimen/tvSearchAllMarginStartEnd"
         android:layout_marginRight="@dimen/tvSearchAllMarginStartEnd"
-        android:layout_marginTop="@dimen/llBookVia2MarginTop"
         android:background="@drawable/grayborder"
         android:orientation="horizontal"
         android:visibility="gone">
@@ -193,7 +193,7 @@
         android:layout_height="@dimen/etHeightAll"
         android:layout_marginLeft="@dimen/lySearchAllMarginStartEnd"
         android:layout_marginRight="@dimen/lySearchAllMarginStartEnd"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/blueborder"
         android:orientation="horizontal"
         android:padding="@dimen/llBookNowTodayTomorrowPadding">

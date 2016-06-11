@@ -160,7 +160,7 @@
     <dimen name="tvPaymentDetailsDrawableCashPadding">10dp</dimen>
     <dimen name="tvPaymentDetailsMarginStart">5dp</dimen>
     <dimen name="tvPaymentDetailsFareCostSize">25sp</dimen>
-    <dimen name="tvPaymentDetailsFareMoneySize">40sp</dimen>
+    <dimen name="tvPaymentDetailsFareMoneySize">25sp</dimen>
     <dimen name="lyPaymentDetailsFareCostMarginTop">10dp</dimen>
     <dimen name="etPersonalInfoPaddingAll">5dp</dimen>
     <dimen name="vPersonalInfoMarginTopBottomAll">5dp</dimen>
@@ -322,5 +322,7 @@
     <dimen name="text15">15sp</dimen>
     <dimen name="textDetail">12sp</dimen>
     <dimen name="textButton">15sp</dimen>
+    <dimen name="heading">15sp</dimen>
+    <dimen name="buttonGeneral">20sp</dimen>
 
 </resources>

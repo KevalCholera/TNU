@@ -9,8 +9,8 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:padding="5dp"
-        android:fillViewport="true">
+        android:fillViewport="true"
+        android:padding="5dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -28,7 +28,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="1"
-                    android:gravity="start"
+                    android:gravity="start|center"
                     android:orientation="horizontal">
 
                     <ImageView
@@ -51,6 +51,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:gravity="start|center"
                     android:orientation="horizontal">
 
                     <ImageView
@@ -93,18 +94,18 @@
                         android:layout_height="wrap_content"
                         android:text="@string/from_"
                         android:textColor="@color/blue_element"
-                        android:textSize="@dimen/textHead" />
+                        android:textSize="@dimen/etSignInUserPassSize" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="3dp"
                         android:orientation="vertical">
 
                         <TextView
                             android:id="@+id/tvBookInfoFrom"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginBottom="@dimen/lyPadding10"
                             android:textColor="@color/heading"
                             android:textSize="@dimen/etSignInUserPassSize" />
 
@@ -171,11 +172,12 @@
                         android:layout_height="wrap_content"
                         android:text="@string/to_"
                         android:textColor="@color/blue_element"
-                        android:textSize="@dimen/textHead" />
+                        android:textSize="@dimen/etSignInUserPassSize" />
 
                     <TextView
                         android:id="@+id/tvBookInfoTo"
                         android:layout_width="wrap_content"
+                        android:layout_marginLeft="3dp"
                         android:layout_height="wrap_content"
                         android:textColor="@color/heading"
                         android:textSize="@dimen/etSignInUserPassSize" />
@@ -231,7 +233,7 @@
                                 android:layout_height="wrap_content"
                                 android:text="@string/vehicle_type"
                                 android:textColor="@color/blue_element"
-                                android:textSize="@dimen/textHead" />
+                                android:textSize="@dimen/etSignInUserPassSize" />
                         </LinearLayout>
 
                     </LinearLayout>
@@ -266,7 +268,7 @@
                                 android:layout_height="wrap_content"
                                 android:text="@string/passengers"
                                 android:textColor="@color/blue_element"
-                                android:textSize="@dimen/textHead" />
+                                android:textSize="@dimen/etSignInUserPassSize" />
                         </LinearLayout>
 
                     </LinearLayout>
@@ -316,7 +318,7 @@
                                 android:singleLine="true"
                                 android:text="@string/taxi_provider"
                                 android:textColor="@color/blue_element"
-                                android:textSize="@dimen/textHead" />
+                                android:textSize="@dimen/etSignInUserPassSize" />
                         </LinearLayout>
 
                     </LinearLayout>
@@ -352,7 +354,7 @@
                                 android:layout_height="wrap_content"
                                 android:text="@string/luggage"
                                 android:textColor="@color/blue_element"
-                                android:textSize="@dimen/textHead" />
+                                android:textSize="@dimen/etSignInUserPassSize" />
                         </LinearLayout>
 
                     </LinearLayout>
@@ -400,7 +402,7 @@
                             android:layout_height="wrap_content"
                             android:text="@string/eta"
                             android:textColor="@color/blue_element"
-                            android:textSize="@dimen/textHead" />
+                            android:textSize="@dimen/etSignInUserPassSize" />
 
                         <ImageView
                             android:layout_width="@dimen/ivHighImportantWidthHeightAll"
@@ -433,7 +435,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/distance"
                         android:textColor="@color/blue_element"
-                        android:textSize="@dimen/textHead" />
+                        android:textSize="@dimen/etSignInUserPassSize" />
 
                 </LinearLayout>
 
@@ -461,7 +463,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/ride_type"
                         android:textColor="@color/blue_element"
-                        android:textSize="@dimen/textHead" />
+                        android:textSize="@dimen/etSignInUserPassSize" />
 
                 </LinearLayout>
 
@@ -486,7 +488,7 @@
                     android:gravity="center"
                     android:text="@string/fare_cost"
                     android:textColor="@color/Yellow"
-                    android:textSize="@dimen/text15" />
+                    android:textSize="@dimen/buttonGeneral" />
 
                 <TextView
                     android:id="@+id/tvBookInfoCost"
@@ -505,7 +507,7 @@
     <Button
         android:id="@+id/btBookingInfoConfirm"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="@dimen/btSignUpAllheight"
         android:background="@color/Yellow"
         android:text="@string/confirm_next"
         android:textAllCaps="false"

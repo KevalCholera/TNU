@@ -69,7 +69,7 @@
                         android:gravity="end"
                         android:text="@string/booking_time"
                         android:textColor="@color/background"
-                        android:textSize="@dimen/tvTitlesSizeAll" />
+                        android:textSize="@dimen/etSignUpSizeAll" />
 
                     <TextView
                         android:id="@+id/tvTripDetailBookingDate"
@@ -78,7 +78,7 @@
                         android:layout_marginTop="@dimen/tvTripDetailsTitlesMarginTop"
                         android:gravity="center"
                         android:textColor="@color/heading"
-                        android:textSize="@dimen/tvTitlesSizeAll" />
+                        android:textSize="@dimen/etSignUpSizeAll" />
 
                     <TextView
                         android:id="@+id/tvTripDetailBookingTime"
@@ -86,7 +86,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/tvTripDetailsTitlesMarginTop"
                         android:textColor="@color/heading"
-                        android:textSize="@dimen/tvTitlesSizeAll"
+                        android:textSize="@dimen/etSignUpSizeAll"
                         android:visibility="gone" />
 
 
@@ -97,7 +97,7 @@
                         android:gravity="end"
                         android:text="@string/taxi_provider"
                         android:textColor="@color/background"
-                        android:textSize="@dimen/tvTitlesSizeAll" />
+                        android:textSize="@dimen/etSignUpSizeAll" />
 
                     <TextView
                         android:id="@+id/tvTripDetailTaxiProvider"
@@ -105,7 +105,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/tvTripDetailsTitlesMarginTop"
                         android:textColor="@color/heading"
-                        android:textSize="@dimen/tvTitlesSizeAll" />
+                        android:textSize="@dimen/etSignUpSizeAll" />
 
                 </LinearLayout>
 
@@ -142,7 +142,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/pick_up"
                         android:textColor="@color/background"
-                        android:textSize="@dimen/tvTitlesSizeAll" />
+                        android:textSize="@dimen/etSignUpSizeAll" />
 
                     <TextView
                         android:id="@+id/tvTripDetailPickUpDate"
@@ -151,7 +151,7 @@
                         android:layout_marginTop="@dimen/tvTripDetailsTitlesMarginTop"
                         android:gravity="center"
                         android:textColor="@color/heading"
-                        android:textSize="@dimen/tvTitlesSizeAll" />
+                        android:textSize="@dimen/etSignUpSizeAll" />
 
                     <TextView
                         android:id="@+id/tvTripDetailPickUpTime"
@@ -159,7 +159,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/tvTripDetailsTitlesMarginTop"
                         android:textColor="@color/heading"
-                        android:textSize="@dimen/tvTitlesSizeAll"
+                        android:textSize="@dimen/etSignUpSizeAll"
                         android:visibility="gone" />
 
                     <TextView
@@ -168,7 +168,7 @@
                         android:layout_marginTop="@dimen/lytvTripDetailsHeadingsMarginTopAll"
                         android:text="@string/total_fare"
                         android:textColor="@color/background"
-                        android:textSize="@dimen/tvTitlesSizeAll" />
+                        android:textSize="@dimen/etSignUpSizeAll" />
 
                     <TextView
                         android:id="@+id/tvTripDetailFare"
@@ -176,7 +176,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/tvTripDetailsTitlesMarginTop"
                         android:textColor="@color/heading"
-                        android:textSize="@dimen/tvTitlesSizeAll" />
+                        android:textSize="@dimen/etSignUpSizeAll" />
 
                 </LinearLayout>
             </LinearLayout>
@@ -203,11 +203,12 @@
                         android:layout_height="wrap_content"
                         android:text="@string/from_"
                         android:textColor="@color/background"
-                        android:textSize="@dimen/tvTitlesSizeAll" />
+                        android:textSize="@dimen/etSignUpSizeAll" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="3dp"
                         android:orientation="vertical">
 
                         <TextView
@@ -215,7 +216,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="@color/heading"
-                            android:textSize="@dimen/tvTitlesSizeAll" />
+                            android:textSize="@dimen/etSignUpSizeAll" />
 
                         <LinearLayout
                             android:id="@+id/lyTripDetailsVia1"
@@ -230,14 +231,14 @@
                                 android:layout_height="wrap_content"
                                 android:text="@string/via_1"
                                 android:textColor="@color/background"
-                                android:textSize="@dimen/tvTitlesSizeAll" />
+                                android:textSize="@dimen/etSignUpSizeAll" />
 
                             <TextView
                                 android:id="@+id/tvTripDetailVia1"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:textColor="@color/heading"
-                                android:textSize="@dimen/tvTitlesSizeAll" />
+                                android:textSize="@dimen/etSignUpSizeAll" />
 
                         </LinearLayout>
 
@@ -255,14 +256,14 @@
                                 android:layout_height="wrap_content"
                                 android:text="@string/via_2"
                                 android:textColor="@color/background"
-                                android:textSize="@dimen/tvTitlesSizeAll" />
+                                android:textSize="@dimen/etSignUpSizeAll" />
 
                             <TextView
                                 android:id="@+id/tvTripDetailVia2"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:textColor="@color/heading"
-                                android:textSize="@dimen/tvTitlesSizeAll" />
+                                android:textSize="@dimen/etSignUpSizeAll" />
 
                         </LinearLayout>
 
@@ -275,7 +276,6 @@
                     android:layout_height="match_parent"
                     android:layout_marginLeft="@dimen/lytvTripDetailsHeadingsMarginStartAll"
                     android:layout_marginTop="@dimen/padding_10"
-
                     android:orientation="horizontal">
 
                     <TextView
@@ -283,14 +283,15 @@
                         android:layout_height="wrap_content"
                         android:text="@string/to_"
                         android:textColor="@color/background"
-                        android:textSize="@dimen/tvTitlesSizeAll" />
+                        android:textSize="@dimen/etSignUpSizeAll" />
 
                     <TextView
                         android:id="@+id/tvTripDetailTo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="3dp"
                         android:textColor="@color/heading"
-                        android:textSize="@dimen/tvTitlesSizeAll" />
+                        android:textSize="@dimen/etSignUpSizeAll" />
 
                 </LinearLayout>
 
@@ -309,7 +310,7 @@
                 android:gravity="center"
                 android:text="@string/taxi_recipt"
                 android:textColor="@color/Yellow"
-                android:textSize="@dimen/tvHeadingSizeAll" />
+                android:textSize="@dimen/heading" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -322,7 +323,7 @@
                     android:layout_weight="1"
                     android:text="@string/tnr_"
                     android:textColor="@color/background"
-                    android:textSize="@dimen/tvTitlesSizeAll" />
+                    android:textSize="@dimen/etSignUpSizeAll" />
 
                 <TextView
                     android:id="@+id/tvTripDetailTNR"
@@ -331,7 +332,7 @@
                     android:layout_weight="1"
                     android:gravity="end"
                     android:textColor="@color/heading"
-                    android:textSize="@dimen/tvTitlesSizeAll" />
+                    android:textSize="@dimen/etSignUpSizeAll" />
 
             </LinearLayout>
 
@@ -346,7 +347,7 @@
                     android:layout_weight="1"
                     android:text="@string/passengers"
                     android:textColor="@color/background"
-                    android:textSize="@dimen/tvTitlesSizeAll" />
+                    android:textSize="@dimen/etSignUpSizeAll" />
 
                 <TextView
                     android:id="@+id/tvTripDetailPassengers"
@@ -355,7 +356,7 @@
                     android:layout_weight="1"
                     android:gravity="end"
                     android:textColor="@color/heading"
-                    android:textSize="@dimen/tvTitlesSizeAll" />
+                    android:textSize="@dimen/etSignUpSizeAll" />
 
             </LinearLayout>
 
@@ -370,7 +371,7 @@
                     android:layout_weight="1"
                     android:text="@string/luggage"
                     android:textColor="@color/background"
-                    android:textSize="@dimen/tvTitlesSizeAll" />
+                    android:textSize="@dimen/etSignUpSizeAll" />
 
                 <TextView
                     android:id="@+id/tvTripDetailLugguages"
@@ -379,7 +380,7 @@
                     android:layout_weight="1"
                     android:gravity="end"
                     android:textColor="@color/heading"
-                    android:textSize="@dimen/tvTitlesSizeAll" />
+                    android:textSize="@dimen/etSignUpSizeAll" />
 
             </LinearLayout>
 
@@ -394,7 +395,7 @@
                     android:layout_weight="1"
                     android:text="@string/mile_jour"
                     android:textColor="@color/background"
-                    android:textSize="@dimen/tvTitlesSizeAll" />
+                    android:textSize="@dimen/etSignUpSizeAll" />
 
                 <TextView
                     android:id="@+id/tvTripDetailMiles"
@@ -403,7 +404,7 @@
                     android:layout_weight="1"
                     android:gravity="end"
                     android:textColor="@color/heading"
-                    android:textSize="@dimen/tvTitlesSizeAll" />
+                    android:textSize="@dimen/etSignUpSizeAll" />
 
             </LinearLayout>
 
@@ -418,7 +419,7 @@
                     android:layout_weight="1"
                     android:text="@string/payment"
                     android:textColor="@color/background"
-                    android:textSize="@dimen/tvTitlesSizeAll" />
+                    android:textSize="@dimen/etSignUpSizeAll" />
 
                 <TextView
                     android:id="@+id/tvTripDetailPayment"
@@ -427,7 +428,7 @@
                     android:layout_weight="1"
                     android:gravity="end"
                     android:textColor="@color/heading"
-                    android:textSize="@dimen/tvTitlesSizeAll" />
+                    android:textSize="@dimen/etSignUpSizeAll" />
 
             </LinearLayout>
 
@@ -442,7 +443,7 @@
                     android:layout_weight="1"
                     android:text="@string/ride_type"
                     android:textColor="@color/background"
-                    android:textSize="@dimen/tvTitlesSizeAll" />
+                    android:textSize="@dimen/etSignUpSizeAll" />
 
                 <TextView
                     android:id="@+id/tvTripDetailRideType"
@@ -451,7 +452,7 @@
                     android:layout_weight="1"
                     android:gravity="end"
                     android:textColor="@color/heading"
-                    android:textSize="@dimen/tvTitlesSizeAll" />
+                    android:textSize="@dimen/etSignUpSizeAll" />
 
             </LinearLayout>
 
@@ -466,7 +467,7 @@
                     android:layout_weight="1"
                     android:text="@string/ride_status"
                     android:textColor="@color/background"
-                    android:textSize="@dimen/tvTitlesSizeAll" />
+                    android:textSize="@dimen/etSignUpSizeAll" />
 
                 <TextView
                     android:id="@+id/tvTripDetailRideStatus"
@@ -475,7 +476,7 @@
                     android:layout_weight="1"
                     android:gravity="end"
                     android:textColor="@color/heading"
-                    android:textSize="@dimen/tvTitlesSizeAll" />
+                    android:textSize="@dimen/etSignUpSizeAll" />
 
             </LinearLayout>
 
@@ -490,7 +491,7 @@
                     android:layout_weight="1"
                     android:text="@string/vehicle_type"
                     android:textColor="@color/background"
-                    android:textSize="@dimen/tvTitlesSizeAll" />
+                    android:textSize="@dimen/etSignUpSizeAll" />
 
                 <TextView
                     android:id="@+id/tvTripDetailVehicle"
@@ -499,7 +500,7 @@
                     android:layout_weight="1"
                     android:gravity="end"
                     android:textColor="@color/heading"
-                    android:textSize="@dimen/tvTitlesSizeAll" />
+                    android:textSize="@dimen/etSignUpSizeAll" />
 
             </LinearLayout>
 
@@ -514,7 +515,7 @@
                     android:layout_weight="1"
                     android:text="@string/add_info"
                     android:textColor="@color/background"
-                    android:textSize="@dimen/tvTitlesSizeAll" />
+                    android:textSize="@dimen/etSignUpSizeAll" />
 
                 <TextView
                     android:id="@+id/tvTripDetailAdditionsInfo"
@@ -523,7 +524,7 @@
                     android:layout_weight="1"
                     android:gravity="end"
                     android:textColor="@color/heading"
-                    android:textSize="@dimen/tvTitlesSizeAll" />
+                    android:textSize="@dimen/etSignUpSizeAll" />
 
             </LinearLayout>
 

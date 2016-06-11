@@ -78,7 +78,7 @@ public class AdapterLostItem extends BaseAdapter {
         tvLostItemTo.setText(test.optString("toArea"));
         tvLostItemProvider.setText(test.optString("partnerName"));
         try {
-            tvLostItemDateTime.setText(Constants.DATE_FORMAT_DATE_TIME.format(Constants.DATE_FORMAT_FULL_DATE_TIME.parse(test.optString("rideDate"))));
+            tvLostItemDateTime.setText(Constants.DATE_FORMAT_DATE_TIME.format(Constants.DATE_FORMAT_SET.parse(test.optString("rideDate"))));
         } catch (ParseException e) {
             e.printStackTrace();
         }

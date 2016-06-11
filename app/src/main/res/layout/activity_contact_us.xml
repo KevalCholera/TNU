@@ -19,6 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
+            android:background="@color/white"
             android:orientation="vertical"
             android:padding="@dimen/lyPaddingMainAll">
 
@@ -32,6 +33,7 @@
                 android:id="@+id/etContactUsName"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/etHeightAll"
+                android:layout_marginTop="@dimen/margin_5"
                 android:background="@drawable/grayborder"
                 android:hint="@string/enter_name"
                 android:imeOptions="actionNext"
@@ -53,6 +55,7 @@
                 android:id="@+id/etContactUsMobile"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/etHeightAll"
+                android:layout_marginTop="@dimen/margin_5"
                 android:background="@drawable/grayborder"
                 android:hint="@string/enter_contact_no"
                 android:imeOptions="actionNext"
@@ -74,6 +77,7 @@
                 android:id="@+id/etContactUsEmail"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/etHeightAll"
+                android:layout_marginTop="@dimen/margin_5"
                 android:background="@drawable/grayborder"
                 android:hint="@string/enter_email_id_"
                 android:imeOptions="actionNext"
@@ -88,13 +92,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
-                android:text="@string/subject"
+                android:text="@string/subject_"
                 android:textColor="@color/background" />
 
             <EditText
                 android:id="@+id/etContactUsSubject"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/etHeightAll"
+                android:layout_marginTop="@dimen/margin_5"
                 android:background="@drawable/grayborder"
                 android:hint="@string/enter_sub"
                 android:imeOptions="actionNext"
@@ -115,6 +120,7 @@
                 android:id="@+id/etContactUsMessage"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/etLongTextHeightAll"
+                android:layout_marginTop="@dimen/margin_5"
                 android:background="@drawable/grayborder"
                 android:gravity="top"
                 android:imeOptions="actionDone"
@@ -132,7 +138,7 @@
             android:text="@string/submit"
             android:textAllCaps="false"
             android:textColor="@color/white"
-            android:textSize="@dimen/btSizeAll" />
+            android:textSize="@dimen/buttonGeneral" />
 
     </LinearLayout>
 </android.support.design.widget.CoordinatorLayout>

@@ -174,7 +174,7 @@
     <string name="hampshire_uk">Hampshire, UK</string>
     <string name="how_was_your_trip">How was your trip?</string>
     <string name="_3_5">3/5</string>
-    <string name="do_you_wish_to_leave_a_comment">Do you wish to leave a comment</string>
+    <string name="do_you_wish_to_leave_a_comment">Do you wish to leave a comment?</string>
     <string name="really_enjoyed_the_trip">Really enjoyed the trip…</string>
     <string name="are_you_happy_with_this_service_that_taxinearu_provided">Are you happy with this service that Taxinearu Provided?</string>
     <string name="reset_all">Reset All</string>
@@ -213,7 +213,7 @@
     <string name="lost_item">Lost Item :</string>
     <string name="white_color_handbag_and_black_color_wallet">White color Handbag and Black color wallet</string>
     <string name="we_have_found_your_item_amp_soon_be_delivered_to_you"><![CDATA[We have Found Your Item & soon be Delivered to You]]></string>
-    <string name="choose_a_payment_option">Choose a Payment option</string>
+    <string name="choose_a_payment_option">Choose a payment option</string>
     <string name="tnu_credit_coming_soon">TNU Credit (Coming Soon)</string>
     <string name="card">Card</string>
     <string name="cash">Cash</string>
@@ -229,7 +229,7 @@
     <string name="kevalcholeracholera369_gmail_com">kevalcholeracholera369@gmail.com</string>
     <string name="kevalcholeracholera_gmail_com">kevalcholeracholera@gmail.com</string>
     <string name="send_email_to_primary_email_address">Send Email to primary Email Address</string>
-    <string name="enter_email">Enter Email</string>
+    <string name="enter_email">Enter email</string>
     <string name="confirm_alternate_email">Confirm Alternate Email</string>
     <string name="confirm_email">Confirm Email</string>
     <string name="send_email_to_alternate_email_address">Send Email to Alternate Email Address</string>
@@ -260,7 +260,7 @@
     <string name="please_enter_your_email_address_and_we_ll_help_you_to_reset_you_password1">Please enter your email address and we\'ll help you to reset your password.</string>
     <string name="email_address_">Email Address</string>
     <string name="enter_email_id">Enter Email address</string>
-    <string name="enter_email_id_">Enter Email iD</string>
+    <string name="enter_email_id_">Enter email id</string>
     <string name="pls_email">Please enter email address</string>
     <string name="enter_confirm_email_id">Enter Confirm Email ID</string>
     <string name="enter_valid_email_id">Enter Valid Email ID</string>
@@ -283,9 +283,9 @@
     <string name="enter_valid_contact">Enter 10 digit UK number</string>
     <string name="alternate_email_not_same">Email address &amp; Alternative email can not be the same</string>
     <string name="conpass_pass_same">Confirm password does not match</string>
-    <string name="enter_first_name">Enter First Name</string>
+    <string name="enter_first_name">Enter first name</string>
     <string name="enter_name">Enter name</string>
-    <string name="enter_last_name">Enter Last Name</string>
+    <string name="enter_last_name">Enter last name</string>
     <string name="enter_from">Enter from where you want to go</string>
     <string name="enter_to">Enter where you want to go</string>
     <string name="save">Save</string>
@@ -313,7 +313,7 @@
     <string name="enter_town_below">Enter Town</string>
     <string name="enter_city">Please Select City</string>
     <string name="enter_city_below">Enter City</string>
-    <string name="enter_postcode">Enter PostalCode</string>
+    <string name="enter_postcode">Enter postcode</string>
     <string name="cardholder_s_name">Cardholder\'s Name :</string>
     <string name="card_details">Card Details</string>
     <string name="card_details_">Card Details :</string>
@@ -333,7 +333,7 @@
     <string name="address">Address :</string>
     <string name="name">Name :</string>
     <string name="contact_number">Contact Number :</string>
-    <string name="enter_color">Enter Color</string>
+    <string name="enter_color">Enter color</string>
     <string name="enter_item_add">Enter Address where did Item Lost</string>
     <string name="enter_item_dec">Enter item description</string>
     <string name="enter_expiry">Enter Expiry Date</string>
@@ -381,6 +381,7 @@
     <string name="gcm_defaultSenderId">480578202536</string>
     <string name="no_lost_item">No Lost Item Available</string>
     <string name="subject">Subject</string>
+    <string name="subject_">Subject :</string>
     <string name="total_fare">Total Fare</string>
     <string name="trip_type">Trip type</string>
     <string name="please_enter_answer">Please Enter Answer</string>

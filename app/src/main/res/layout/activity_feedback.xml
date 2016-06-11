@@ -83,34 +83,31 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/tvMarginTopBottomStartEndAll"
-                            android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
                             android:button="@drawable/checkbox"
                             android:checked="false"
                             android:paddingLeft="@dimen/tvMarginTopBottomStartEndAll"
                             android:text="@string/do_you_wish_to_leave_a_comment"
-                            android:textColor="@android:color/darker_gray"
+                            android:textColor="@color/heading"
+                            android:textSize="@dimen/heading"
                             android:theme="@style/AppTheme" />
 
                         <EditText
                             android:id="@+id/etFeedbackCommentForDriver"
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/etLongTextHeightAll"
-                            android:layout_marginLeft="@dimen/etFeedbackImageMarginTop"
-                            android:layout_marginRight="@dimen/etFeedbackImageMarginTop"
-                            android:layout_marginTop="@dimen/etFeedbackImageMarginTop"
+                            android:layout_margin="10dp"
                             android:background="@drawable/grayborder2"
                             android:gravity="top"
                             android:imeOptions="actionDone"
                             android:inputType="textCapSentences"
+                            android:maxLength="200"
                             android:padding="@dimen/etPaddingAll"
                             android:scrollbars="vertical"
                             android:textColor="@color/black"
                             android:textColorHint="@android:color/darker_gray"
                             android:visibility="gone" />
 
-
                     </LinearLayout>
-
 
                     <View
                         android:layout_width="match_parent"
@@ -169,7 +166,6 @@
                             android:id="@+id/cbFeedbackCommentForTaxinearu"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginBottom="@dimen/lyFeedbackCheckboxMarginTopBottom"
                             android:layout_marginLeft="@dimen/tvMarginTopBottomStartEndAll"
                             android:button="@drawable/checkbox"
                             android:checked="false"
@@ -188,6 +184,7 @@
                             android:gravity="top"
                             android:imeOptions="actionDone"
                             android:inputType="textCapSentences"
+                            android:maxLength="200"
                             android:padding="@dimen/etPaddingAll"
                             android:scrollbars="vertical"
                             android:textColor="@color/black"
@@ -196,7 +193,6 @@
                             android:visibility="gone" />
 
                     </LinearLayout>
-
                 </LinearLayout>
             </ScrollView>
 
@@ -206,10 +202,10 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:background="@color/Yellow"
-                android:text="@string/confirm_next"
+                android:text="@string/submit"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
-                android:textSize="@dimen/btSizeAll" />
+                android:textSize="@dimen/buttonGeneral" />
         </LinearLayout>
     </LinearLayout>
 </android.support.design.widget.CoordinatorLayout>

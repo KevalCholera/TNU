@@ -38,11 +38,39 @@ public class FragmentReview extends Fragment implements Response.Listener<JSONOb
         tvFragmentReview4 = (TextView) rootView.findViewById(R.id.tvFragmentReview4);
         tvFragmentReview5 = (TextView) rootView.findViewById(R.id.tvFragmentReview5);
 
-        tvFragmentReview1.setText(PartnerDetails.rating.get(1));
-        tvFragmentReview2.setText(PartnerDetails.rating.get(2));
-        tvFragmentReview3.setText(PartnerDetails.rating.get(3));
-        tvFragmentReview4.setText(PartnerDetails.rating.get(4));
-        tvFragmentReview5.setText(PartnerDetails.rating.get(5));
+        if (PartnerDetails.rating != null && PartnerDetails.rating.size() > 1) {
+
+            if (PartnerDetails.rating.get(1) != null)
+                tvFragmentReview1.setText(PartnerDetails.rating.get(1));
+            else
+                tvFragmentReview1.setText("-");
+
+            if (PartnerDetails.rating.get(2) != null)
+                tvFragmentReview2.setText(PartnerDetails.rating.get(2));
+            else
+                tvFragmentReview2.setText("-");
+
+            if (PartnerDetails.rating.get(3) != null)
+                tvFragmentReview3.setText(PartnerDetails.rating.get(3));
+            else
+                tvFragmentReview3.setText("-");
+
+            if (PartnerDetails.rating.get(4) != null)
+                tvFragmentReview4.setText(PartnerDetails.rating.get(4));
+            else
+                tvFragmentReview4.setText("-");
+
+            if (PartnerDetails.rating.get(5) != null)
+                tvFragmentReview5.setText(PartnerDetails.rating.get(5));
+            else
+                tvFragmentReview5.setText("-");
+        } else {
+            tvFragmentReview1.setText("-");
+            tvFragmentReview2.setText("-");
+            tvFragmentReview3.setText("-");
+            tvFragmentReview4.setText("-");
+            tvFragmentReview5.setText("-");
+        }
         feedBack();
 
         return rootView;

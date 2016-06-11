@@ -16,260 +16,37 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="horizontal"
-            android:padding="@dimen/lyPaddingMainAll">
+            android:padding="@dimen/lyPadding10">
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:gravity="center"
+                android:orientation="vertical">
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:gravity="center"
+                    android:orientation="horizontal">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="@dimen/tvReviewMarginEnd"
-                            android:text="@string/_5"
-                            android:textColor="@color/heading"
-                            android:textSize="@dimen/tvHeadingSizeAll" />
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/lyReviewMarginTop">
-
-
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:background="@mipmap/imgstarfilled" />
-
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:background="@mipmap/imgstarfilled" />
-
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:background="@mipmap/imgstarfilled" />
-
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:background="@mipmap/imgstarfilled" />
-
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:background="@mipmap/imgstarfilled" />
-                        </LinearLayout>
-
-                    </LinearLayout>
-
-                    <LinearLayout
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        android:layout_marginRight="@dimen/tvReviewMarginEnd"
+                        android:text="@string/_5"
+                        android:textColor="@color/heading"
+                        android:textSize="@dimen/tvHeadingSizeAll" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="@dimen/tvReviewMarginEnd"
-                            android:gravity="center"
-                            android:text="@string/_4"
-                            android:textColor="@color/heading"
-                            android:textSize="@dimen/tvHeadingSizeAll" />
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/lyReviewMarginTop">
-
-
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:background="@mipmap/imgstarfilled" />
-
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:background="@mipmap/imgstarfilled" />
-
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:background="@mipmap/imgstarfilled" />
-
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:background="@mipmap/imgstarfilled" />
-
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:background="@mipmap/imgstarunfilled" />
-                        </LinearLayout>
-                    </LinearLayout>
-
-                    <LinearLayout
+                    <RatingBar
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="@dimen/tvReviewMarginEnd"
-                            android:gravity="center"
-                            android:text="@string/_3"
-                            android:textColor="@color/heading"
-                            android:textSize="@dimen/tvHeadingSizeAll" />
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/lyReviewMarginTop">
-
-
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:background="@mipmap/imgstarfilled" />
-
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:background="@mipmap/imgstarfilled" />
-
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:background="@mipmap/imgstarfilled" />
-
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:background="@mipmap/imgstarunfilled" />
-
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:background="@mipmap/imgstarunfilled" />
-                        </LinearLayout>
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="@dimen/tvReviewMarginEnd"
-                            android:gravity="center"
-                            android:text="@string/_2"
-                            android:textColor="@color/heading"
-                            android:textSize="@dimen/tvHeadingSizeAll" />
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/lyReviewMarginTop">
-
-
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:background="@mipmap/imgstarfilled" />
-
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:background="@mipmap/imgstarfilled" />
-
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:background="@mipmap/imgstarunfilled" />
-
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:background="@mipmap/imgstarunfilled" />
-
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:background="@mipmap/imgstarunfilled" />
-                        </LinearLayout>
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="@dimen/tvReviewMarginEnd"
-                            android:gravity="center"
-                            android:text="@string/_1"
-                            android:textColor="@color/heading"
-                            android:textSize="@dimen/tvHeadingSizeAll" />
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/lyReviewMarginTop">
-
-
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:background="@mipmap/imgstarfilled" />
-
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:background="@mipmap/imgstarunfilled" />
-
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:background="@mipmap/imgstarunfilled" />
-
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:background="@mipmap/imgstarunfilled" />
-
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:background="@mipmap/imgstarunfilled" />
-                        </LinearLayout>
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:orientation="vertical">
+                        android:isIndicator="true"
+                        android:minHeight="15dp"
+                        android:numStars="5"
+                        android:progressDrawable="@drawable/rating_star"
+                        android:rating="5"
+                        android:stepSize="1" />
 
                     <TextView
                         android:id="@+id/tvFragmentReview5"
@@ -277,36 +54,136 @@
                         android:layout_height="wrap_content"
                         android:textSize="@dimen/tvHeadingSizeAll" />
 
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/tvReviewMarginEnd"
+                        android:text="@string/_4"
+                        android:textColor="@color/heading"
+                        android:textSize="@dimen/tvHeadingSizeAll" />
+
+                    <RatingBar
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:isIndicator="true"
+                        android:minHeight="20dp"
+                        android:numStars="5"
+                        android:progressDrawable="@drawable/rating_star"
+                        android:rating="4"
+                        android:stepSize="1" />
+
                     <TextView
                         android:id="@+id/tvFragmentReview4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textSize="@dimen/tvHeadingSizeAll" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/tvReviewMarginEnd"
+                        android:text="@string/_3"
                         android:textColor="@color/heading"
                         android:textSize="@dimen/tvHeadingSizeAll" />
+
+                    <RatingBar
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:isIndicator="true"
+                        android:minHeight="20dp"
+                        android:numStars="5"
+                        android:progressDrawable="@drawable/rating_star"
+                        android:rating="3"
+                        android:stepSize="1" />
 
                     <TextView
                         android:id="@+id/tvFragmentReview3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textSize="@dimen/tvHeadingSizeAll" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/tvReviewMarginEnd"
+                        android:text="@string/_2"
                         android:textColor="@color/heading"
                         android:textSize="@dimen/tvHeadingSizeAll" />
+
+                    <RatingBar
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:isIndicator="true"
+                        android:minHeight="20dp"
+                        android:numStars="5"
+                        android:progressDrawable="@drawable/rating_star"
+                        android:rating="2"
+                        android:stepSize="1" />
 
                     <TextView
                         android:id="@+id/tvFragmentReview2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textSize="@dimen/tvHeadingSizeAll" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/tvReviewMarginEnd"
+                        android:text="@string/_1"
                         android:textColor="@color/heading"
                         android:textSize="@dimen/tvHeadingSizeAll" />
+
+                    <RatingBar
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:isIndicator="true"
+                        android:minHeight="20dp"
+                        android:numStars="5"
+                        android:progressDrawable="@drawable/rating_star"
+                        android:rating="1"
+                        android:stepSize="1" />
 
                     <TextView
                         android:id="@+id/tvFragmentReview1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/heading"
                         android:textSize="@dimen/tvHeadingSizeAll" />
 
                 </LinearLayout>
-
             </LinearLayout>
         </LinearLayout>
 

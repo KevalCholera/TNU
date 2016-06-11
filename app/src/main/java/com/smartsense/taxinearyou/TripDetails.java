@@ -117,8 +117,8 @@ public class TripDetails extends AppCompatActivity implements View.OnClickListen
                     .placeholder(R.mipmap.car_blue)
                     .into(cvTripDetailsPartnerLogo);
 
-            tvTripDetailBookingDate.setText(Constants.DATE_FORMAT_FULL_DATE_TIME_DOWN.format(Constants.DATE_FORMAT_EXTRA.parse(tripDetails.optString("bookingTime").trim())));
-            tvTripDetailPickUpDate.setText(Constants.DATE_FORMAT_FULL_DATE_TIME_DOWN.format(Constants.DATE_FORMAT_EXTRA.parse(tripDetails.optString("pickTime").trim())));
+            tvTripDetailBookingDate.setText(Constants.DATE_FORMAT_DATE_TIME.format(Constants.DATE_FORMAT_SET.parse(tripDetails.optString("bookingTime").trim())));
+            tvTripDetailPickUpDate.setText(Constants.DATE_FORMAT_DATE_TIME.format(Constants.DATE_FORMAT_SET.parse(tripDetails.optString("pickTime").trim())));
 
             tvTripDetailTaxiProvider.setText(tripDetails.optString("partner"));
             tvTripDetailTaxiProvider.setTag(tripDetails.optString("rideId"));

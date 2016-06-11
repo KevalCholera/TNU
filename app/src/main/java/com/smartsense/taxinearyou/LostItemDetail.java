@@ -25,6 +25,7 @@ public class LostItemDetail extends AppCompatActivity {
     TextView tvLostItemDetailTNR, tvLostItemDetailFrom, tvLostItemDetailTo, tvLostItemDetailProvider, tvLostItemDetailDateTime, tvLostItemDetailStatus, tvLostItemDetailLostItem, tvLostItemDetailStatusDescription;
     private int requestRefresh = 0;
     JSONObject lostItemDetails;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,7 +49,7 @@ public class LostItemDetail extends AppCompatActivity {
             tvLostItemDetailTo.setText(lostItemDetails.optString("toArea"));
             tvLostItemDetailProvider.setText(lostItemDetails.optString("partnerName"));
             tvLostItemDetailStatusDescription.setText(lostItemDetails.optString("statusMsg"));
-            tvLostItemDetailDateTime.setText(Constants.DATE_FORMAT_DATE_TIME.format(Constants.DATE_FORMAT_FULL_DATE_TIME.parse(lostItemDetails.optString("rideDate"))));
+            tvLostItemDetailDateTime.setText(Constants.DATE_FORMAT_DATE_TIME.format(Constants.DATE_FORMAT_SET.parse(lostItemDetails.optString("rideDate"))));
             tvLostItemDetailStatus.setText(lostItemDetails.optString("status"));
             tvLostItemDetailLostItem.setText(lostItemDetails.optString("itemDescription"));//lostItemDetails.optString("color") + " color\n" +
         } catch (JSONException | ParseException e) {
@@ -69,7 +70,6 @@ public class LostItemDetail extends AppCompatActivity {
                 break;
         }
         return super.onOptionsItemSelected(item);
-
     }
 
     @Override
@@ -90,8 +90,8 @@ public class LostItemDetail extends AppCompatActivity {
                 requestRefresh = 1;
                 JSONObject pushData = new JSONObject(intent.getStringExtra(Constants.EXTRAS));
                 if (pushData.has("lostItem")) {
-                    if(pushData.optJSONObject("lostItem").optInt("id")==lostItemDetails.optInt("id"))
-                    tvLostItemDetailStatus.setText(pushData.optJSONObject("lostItem").optString("status"));
+                    if (pushData.optJSONObject("lostItem").optInt("id") == lostItemDetails.optInt("id"))
+                        tvLostItemDetailStatus.setText(pushData.optJSONObject("lostItem").optString("status"));
                     tvLostItemDetailStatusDescription.setText(pushData.optJSONObject("lostItem").optString("statusMsg"));
                 }
             } catch (Exception e) {

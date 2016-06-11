@@ -731,14 +731,14 @@
                 android:gravity="center"
                 android:text="@string/cancel_title"
                 android:textColor="@color/colorPrimary"
-                android:textSize="@dimen/tvHeadingSizeAll" />
+                android:textSize="@dimen/text15" />
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/vHeightWidthAll"
                 android:layout_marginLeft="@dimen/tvElementCardListMarginStartEnd10"
                 android:layout_marginRight="@dimen/tvElementCardListMarginStartEnd10"
-                android:background="@android:color/darker_gray" />
+                android:background="@color/disable_55" />
 
             <TextView
                 android:id="@+id/tvDialogCancelText"
@@ -746,8 +746,6 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/tvPopupMarginTop"
                 android:gravity="center"
-                android:text="@string/cancel_msg"
-                android:textColor="@color/dark_gray"
                 android:textSize="@dimen/tvHeadingSizeAll" />
 
             <LinearLayout

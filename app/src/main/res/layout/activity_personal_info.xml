@@ -36,7 +36,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/first_name"
-                        android:textColor="@color/blue_element1"
+                        android:textColor="@color/background"
                         android:textSize="@dimen/etSignUpSizeAll" />
 
                     <EditText
@@ -63,7 +63,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/vPersonalInfoMarginTopBottomAll"
                         android:text="@string/last_name"
-                        android:textColor="@color/blue_element1"
+                        android:textColor="@color/background"
                         android:textSize="@dimen/etSignUpSizeAll" />
 
                     <EditText
@@ -139,7 +139,6 @@
                         android:layout_height="@dimen/vAccountAllHeight"
                         android:background="@color/light_Gray" />
 
-
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -165,6 +164,7 @@
                         android:background="@drawable/grayborder2"
                         android:gravity="top"
                         android:imeOptions="actionDone"
+                        android:maxLength="200"
                         android:padding="@dimen/vPersonalInfoMarginTopBottomAll"
                         android:scrollbars="vertical"
                         android:textColor="@color/black"
@@ -177,8 +177,7 @@
                         android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
                         android:text="@string/how_did_you_hear_about_us"
                         android:textSize="@dimen/textDetail"
-
-                        android:textColor="@color/blue_element1" />
+                        android:textColor="@color/background" />
 
                     <LinearLayout
                         android:id="@+id/etInfoSocial"
@@ -210,7 +209,7 @@
             <Button
                 android:id="@+id/btInfoConfirmNext"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/btSignUpAllheight"
                 android:layout_gravity="center_horizontal"
                 android:background="@color/Yellow"
                 android:text="@string/confirm_amp_next"

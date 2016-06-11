@@ -119,7 +119,7 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
             e.printStackTrace();
         }
 
-        mTimePicker = new TimePickerDialog(getActivity(),TimePickerDialog.THEME_HOLO_LIGHT, new TimePickerDialog.OnTimeSetListener() {
+        mTimePicker = new TimePickerDialog(getActivity(), TimePickerDialog.THEME_HOLO_LIGHT, new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
 
@@ -135,7 +135,7 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
                         if (milliGetTime >= milliServerTime)
                             tvBookDateTime.setText(Constants.DATE_FORMAT_ONLY_DATE.format(Constants.DATE_FORMAT_SET.parse(dateTimeCanChange)) + " " + time);
                         else
-                            CommonUtil.byToastMessage(getActivity(),getResources().getString(R.string.invalid_time));
+                            CommonUtil.byToastMessage(getActivity(), getResources().getString(R.string.invalid_time));
 
                     } else {
                         Calendar calendar = Calendar.getInstance();
