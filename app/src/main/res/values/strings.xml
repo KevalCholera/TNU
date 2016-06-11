@@ -26,6 +26,8 @@
     <string name="ReceiveOffersAboutTaxinearu">Yes - I would like to receive offers and information about product and services about taxinearu.</string>
     <string name="agree">I agree to the</string>
     <string name="conditions"><u>Terms of Services &amp; Privacy Policy.</u></string>
+    <string name="terms_service"><u>Terms of Services</u> \t &amp;</string>
+    <string name="privacy_policy"><u>Privacy Policy.</u></string>
     <string name="register">Are you register?</string>
     <string name="smallSignIn">Sign In</string>
     <string name="title_activity_search">Search</string>

@@ -12,6 +12,10 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
+import android.text.Spannable;
+import android.text.Spanned;
+import android.text.method.LinkMovementMethod;
+import android.text.style.ClickableSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -57,9 +61,11 @@ public class TripDetails extends AppCompatActivity implements View.OnClickListen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trip_details);
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         registerReceiver(tripMessageReceiver, new IntentFilter(String.valueOf(Constants.Events.EVENT_CHANGE)));
         registerReceiver(tripMessageReceiver, new IntentFilter(String.valueOf(Constants.Events.BookRide)));
+
         tvTripDetailBookingDate = (TextView) findViewById(R.id.tvTripDetailBookingDate);
         tvTripDetailBookingTime = (TextView) findViewById(R.id.tvTripDetailBookingTime);
         tvTripDetailLost = (TextView) findViewById(R.id.tvTripDetailLost);
@@ -274,14 +280,25 @@ public class TripDetails extends AppCompatActivity implements View.OnClickListen
             tvPopupCancelRideCancel = (TextView) dialog.findViewById(R.id.tvPopupCancelRideCancel);
             tvDialogCancelText = (TextView) dialog.findViewById(R.id.tvDialogCancelText);
 
-            String important = "<font color='#3468D6'>" + dialog.getResources().getString(R.string.half_cancel_msg) + "</font>";
-            tvDialogCancelText.setText(getResources().getString(R.string.cancel_msg) + Html.fromHtml(important));
+            String important = "<font color='#3468D6'>" + "Terms and Conditions" + "</font>";
+            String text = "<font color='#000000'>" + "You may incur charges if you cancel your booking please see " + "</font>";
+
+            Spannable span = Spannable.Factory.getInstance().newSpannable(Html.fromHtml(text + important));
+            span.setSpan(new ClickableSpan() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(new Intent(TripDetails.this, AboutUs.class));
+                }
+            }, 60, 80, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+            tvDialogCancelText.setText(span);
+            tvDialogCancelText.setMovementMethod(LinkMovementMethod.getInstance());
+
 
             tvPopupCancelRideOk.setOnClickListener(new Button.OnClickListener() {
 
                 @Override
                 public void onClick(View v) {
-
                     cancelRide();
 
                 }

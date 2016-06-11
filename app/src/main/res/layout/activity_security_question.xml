@@ -28,9 +28,9 @@
             <ImageView
                 android:layout_width="160dp"
                 android:layout_height="72dp"
-                android:layout_marginTop="5dp"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
+                android:layout_marginTop="5dp"
                 android:background="@mipmap/imgtnulogo" />
         </RelativeLayout>
 
@@ -156,9 +156,22 @@
                 android:layout_gravity="center"
                 android:layout_marginLeft="@dimen/lySecurityQuestionCheckLayoutPaddingTop"
                 android:gravity="fill"
-                android:text="@string/conditions"
+                android:text="@string/terms_service"
                 android:textColor="@color/purple"
                 android:textSize="@dimen/cbCheckTextSizeAll" />
+
+            <TextView
+                android:id="@+id/tvSecurityPrivacyPolicy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/lySecurityQuestionCheckLayoutPaddingTop"
+                android:gravity="fill"
+                android:text="@string/privacy_policy"
+                android:textColor="@color/purple"
+                android:textSize="@dimen/cbCheckTextSizeAll" />
+
+
         </LinearLayout>
 
         <Button

@@ -172,35 +172,35 @@
                                 android:id="@+id/rbFilterRating5"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/rbReviewMarginEnd"
+                                android:layout_marginTop="15dp"
                                 android:button="@drawable/radio_button_filter" />
 
                             <RadioButton
                                 android:id="@+id/rbFilterRating4"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/rbReviewMarginEnd"
+                                android:layout_marginTop="15dp"
                                 android:button="@drawable/radio_button_filter" />
 
                             <RadioButton
                                 android:id="@+id/rbFilterRating3"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/rbReviewMarginEnd"
+                                android:layout_marginTop="20dp"
                                 android:button="@drawable/radio_button_filter" />
 
                             <RadioButton
                                 android:id="@+id/rbFilterRating2"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/rbReviewMarginEnd"
+                                android:layout_marginTop="22dp"
                                 android:button="@drawable/radio_button_filter" />
 
                             <RadioButton
                                 android:id="@+id/rbFilterRating1"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/rbReviewMarginEnd"
+                                android:layout_marginTop="22dp"
                                 android:button="@drawable/radio_button_filter" />
                         </RadioGroup>
 
@@ -218,222 +218,220 @@
                                 android:textColor="@color/white"
                                 android:textSize="@dimen/tvTitlesSizeAll" />
 
-                            <!--<RatingBar
-                                android:id="@+id/rbFeedbackRatingForDriver5"
+                            <RatingBar
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
                                 android:isIndicator="true"
-                                android:maxHeight="@dimen/ratingStarSIze"
-                                android:minHeight="@dimen/ratingStarSIze"
+                                android:minHeight="25dp"
                                 android:numStars="5"
-                                android:progress="@color/Yellow"
+                                android:progressDrawable="@drawable/rating_star"
                                 android:rating="5"
                                 android:stepSize="1" />
 
                             <RatingBar
-                                android:id="@+id/rbFeedbackRatingForDriver4"
                                 android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
                                 android:isIndicator="true"
-                                android:maxHeight="@dimen/ratingStarSIze"
-                                android:minHeight="@dimen/ratingStarSIze"
+                                android:minHeight="25dp"
                                 android:numStars="5"
+                                android:progressDrawable="@drawable/rating_star"
                                 android:rating="4"
                                 android:stepSize="1" />
 
                             <RatingBar
-                                android:id="@+id/rbFeedbackRatingForDriver3"
                                 android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
                                 android:isIndicator="true"
-                                android:maxHeight="@dimen/ratingStarSIze"
-                                android:minHeight="@dimen/ratingStarSIze"
+                                android:minHeight="25dp"
                                 android:numStars="5"
+                                android:progressDrawable="@drawable/rating_star"
                                 android:rating="3"
                                 android:stepSize="1" />
 
                             <RatingBar
-                                android:id="@+id/rbFeedbackRatingForDriver2"
                                 android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
                                 android:isIndicator="true"
-                                android:maxHeight="@dimen/ratingStarSIze"
-                                android:minHeight="@dimen/ratingStarSIze"
+                                android:minHeight="25dp"
                                 android:numStars="5"
+                                android:progressDrawable="@drawable/rating_star"
                                 android:rating="2"
                                 android:stepSize="1" />
 
                             <RatingBar
-                                android:id="@+id/rbFeedbackRatingForDriver1"
                                 android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
                                 android:isIndicator="true"
-                                android:maxHeight="@dimen/ratingStarSIze"
-                                android:minHeight="@dimen/ratingStarSIze"
+                                android:minHeight="25dp"
                                 android:numStars="5"
+                                android:progressDrawable="@drawable/rating_star"
                                 android:rating="1"
-                                android:stepSize="1" />-->
+                                android:stepSize="1" />
 
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/lyReviewMarginTop">
-
-
-                                <ImageView
-                                    android:layout_width="@dimen/ratingStarWidthHeight"
-                                    android:layout_height="@dimen/ratingStarWidthHeight"
-                                    android:background="@mipmap/imgstarfilled" />
-
-                                <ImageView
-                                    android:layout_width="@dimen/ratingStarWidthHeight"
-                                    android:layout_height="@dimen/ratingStarWidthHeight"
-                                    android:background="@mipmap/imgstarfilled" />
-
-                                <ImageView
-                                    android:layout_width="@dimen/ratingStarWidthHeight"
-                                    android:layout_height="@dimen/ratingStarWidthHeight"
-                                    android:background="@mipmap/imgstarfilled" />
-
-                                <ImageView
-                                    android:layout_width="@dimen/ratingStarWidthHeight"
-                                    android:layout_height="@dimen/ratingStarWidthHeight"
-                                    android:background="@mipmap/imgstarfilled" />
-
-                                <ImageView
-                                    android:layout_width="@dimen/ratingStarWidthHeight"
-                                    android:layout_height="@dimen/ratingStarWidthHeight"
-                                    android:background="@mipmap/imgstarfilled" />
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/lyReviewMarginTop">
+                            <!--<LinearLayout-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:layout_marginTop="@dimen/lyReviewMarginTop">-->
 
 
-                                <ImageView
-                                    android:layout_width="@dimen/ratingStarWidthHeight"
-                                    android:layout_height="@dimen/ratingStarWidthHeight"
-                                    android:background="@mipmap/imgstarfilled" />
+                            <!--<ImageView-->
+                            <!--android:layout_width="@dimen/ratingStarWidthHeight"-->
+                            <!--android:layout_height="@dimen/ratingStarWidthHeight"-->
+                            <!--android:background="@mipmap/imgstarfilled" />-->
 
-                                <ImageView
-                                    android:layout_width="@dimen/ratingStarWidthHeight"
-                                    android:layout_height="@dimen/ratingStarWidthHeight"
-                                    android:background="@mipmap/imgstarfilled" />
+                            <!--<ImageView-->
+                            <!--android:layout_width="@dimen/ratingStarWidthHeight"-->
+                            <!--android:layout_height="@dimen/ratingStarWidthHeight"-->
+                            <!--android:background="@mipmap/imgstarfilled" />-->
 
-                                <ImageView
-                                    android:layout_width="@dimen/ratingStarWidthHeight"
-                                    android:layout_height="@dimen/ratingStarWidthHeight"
-                                    android:background="@mipmap/imgstarfilled" />
+                            <!--<ImageView-->
+                            <!--android:layout_width="@dimen/ratingStarWidthHeight"-->
+                            <!--android:layout_height="@dimen/ratingStarWidthHeight"-->
+                            <!--android:background="@mipmap/imgstarfilled" />-->
 
-                                <ImageView
-                                    android:layout_width="@dimen/ratingStarWidthHeight"
-                                    android:layout_height="@dimen/ratingStarWidthHeight"
-                                    android:background="@mipmap/imgstarfilled" />
+                            <!--<ImageView-->
+                            <!--android:layout_width="@dimen/ratingStarWidthHeight"-->
+                            <!--android:layout_height="@dimen/ratingStarWidthHeight"-->
+                            <!--android:background="@mipmap/imgstarfilled" />-->
 
-                                <ImageView
-                                    android:layout_width="@dimen/ratingStarWidthHeight"
-                                    android:layout_height="@dimen/ratingStarWidthHeight"
-                                    android:background="@mipmap/imgstarunfilled" />
-                            </LinearLayout>
+                            <!--<ImageView-->
+                            <!--android:layout_width="@dimen/ratingStarWidthHeight"-->
+                            <!--android:layout_height="@dimen/ratingStarWidthHeight"-->
+                            <!--android:background="@mipmap/imgstarfilled" />-->
+                            <!--</LinearLayout>-->
 
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/lyReviewMarginTop">
-
-
-                                <ImageView
-                                    android:layout_width="@dimen/ratingStarWidthHeight"
-                                    android:layout_height="@dimen/ratingStarWidthHeight"
-                                    android:background="@mipmap/imgstarfilled" />
-
-                                <ImageView
-                                    android:layout_width="@dimen/ratingStarWidthHeight"
-                                    android:layout_height="@dimen/ratingStarWidthHeight"
-                                    android:background="@mipmap/imgstarfilled" />
-
-                                <ImageView
-                                    android:layout_width="@dimen/ratingStarWidthHeight"
-                                    android:layout_height="@dimen/ratingStarWidthHeight"
-                                    android:background="@mipmap/imgstarfilled" />
-
-                                <ImageView
-                                    android:layout_width="@dimen/ratingStarWidthHeight"
-                                    android:layout_height="@dimen/ratingStarWidthHeight"
-                                    android:background="@mipmap/imgstarunfilled" />
-
-                                <ImageView
-                                    android:layout_width="@dimen/ratingStarWidthHeight"
-                                    android:layout_height="@dimen/ratingStarWidthHeight"
-                                    android:background="@mipmap/imgstarunfilled" />
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/lyReviewMarginTop">
+                            <!--<LinearLayout-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:layout_marginTop="@dimen/lyReviewMarginTop">-->
 
 
-                                <ImageView
-                                    android:layout_width="@dimen/ratingStarWidthHeight"
-                                    android:layout_height="@dimen/ratingStarWidthHeight"
-                                    android:background="@mipmap/imgstarfilled" />
+                            <!--<ImageView-->
+                            <!--android:layout_width="@dimen/ratingStarWidthHeight"-->
+                            <!--android:layout_height="@dimen/ratingStarWidthHeight"-->
+                            <!--android:background="@mipmap/imgstarfilled" />-->
 
-                                <ImageView
-                                    android:layout_width="@dimen/ratingStarWidthHeight"
-                                    android:layout_height="@dimen/ratingStarWidthHeight"
-                                    android:background="@mipmap/imgstarfilled" />
+                            <!--<ImageView-->
+                            <!--android:layout_width="@dimen/ratingStarWidthHeight"-->
+                            <!--android:layout_height="@dimen/ratingStarWidthHeight"-->
+                            <!--android:background="@mipmap/imgstarfilled" />-->
 
-                                <ImageView
-                                    android:layout_width="@dimen/ratingStarWidthHeight"
-                                    android:layout_height="@dimen/ratingStarWidthHeight"
-                                    android:background="@mipmap/imgstarunfilled" />
+                            <!--<ImageView-->
+                            <!--android:layout_width="@dimen/ratingStarWidthHeight"-->
+                            <!--android:layout_height="@dimen/ratingStarWidthHeight"-->
+                            <!--android:background="@mipmap/imgstarfilled" />-->
 
-                                <ImageView
-                                    android:layout_width="@dimen/ratingStarWidthHeight"
-                                    android:layout_height="@dimen/ratingStarWidthHeight"
-                                    android:background="@mipmap/imgstarunfilled" />
+                            <!--<ImageView-->
+                            <!--android:layout_width="@dimen/ratingStarWidthHeight"-->
+                            <!--android:layout_height="@dimen/ratingStarWidthHeight"-->
+                            <!--android:background="@mipmap/imgstarfilled" />-->
 
-                                <ImageView
-                                    android:layout_width="@dimen/ratingStarWidthHeight"
-                                    android:layout_height="@dimen/ratingStarWidthHeight"
-                                    android:background="@mipmap/imgstarunfilled" />
-                            </LinearLayout>
+                            <!--<ImageView-->
+                            <!--android:layout_width="@dimen/ratingStarWidthHeight"-->
+                            <!--android:layout_height="@dimen/ratingStarWidthHeight"-->
+                            <!--android:background="@mipmap/imgstarunfilled" />-->
+                            <!--</LinearLayout>-->
 
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/lyReviewMarginTop">
+                            <!--<LinearLayout-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:layout_marginTop="@dimen/lyReviewMarginTop">-->
 
 
-                                <ImageView
-                                    android:layout_width="@dimen/ratingStarWidthHeight"
-                                    android:layout_height="@dimen/ratingStarWidthHeight"
-                                    android:background="@mipmap/imgstarfilled" />
+                            <!--<ImageView-->
+                            <!--android:layout_width="@dimen/ratingStarWidthHeight"-->
+                            <!--android:layout_height="@dimen/ratingStarWidthHeight"-->
+                            <!--android:background="@mipmap/imgstarfilled" />-->
 
-                                <ImageView
-                                    android:layout_width="@dimen/ratingStarWidthHeight"
-                                    android:layout_height="@dimen/ratingStarWidthHeight"
-                                    android:background="@mipmap/imgstarunfilled" />
+                            <!--<ImageView-->
+                            <!--android:layout_width="@dimen/ratingStarWidthHeight"-->
+                            <!--android:layout_height="@dimen/ratingStarWidthHeight"-->
+                            <!--android:background="@mipmap/imgstarfilled" />-->
 
-                                <ImageView
-                                    android:layout_width="@dimen/ratingStarWidthHeight"
-                                    android:layout_height="@dimen/ratingStarWidthHeight"
-                                    android:background="@mipmap/imgstarunfilled" />
+                            <!--<ImageView-->
+                            <!--android:layout_width="@dimen/ratingStarWidthHeight"-->
+                            <!--android:layout_height="@dimen/ratingStarWidthHeight"-->
+                            <!--android:background="@mipmap/imgstarfilled" />-->
 
-                                <ImageView
-                                    android:layout_width="@dimen/ratingStarWidthHeight"
-                                    android:layout_height="@dimen/ratingStarWidthHeight"
-                                    android:background="@mipmap/imgstarunfilled" />
+                            <!--<ImageView-->
+                            <!--android:layout_width="@dimen/ratingStarWidthHeight"-->
+                            <!--android:layout_height="@dimen/ratingStarWidthHeight"-->
+                            <!--android:background="@mipmap/imgstarunfilled" />-->
 
-                                <ImageView
-                                    android:layout_width="@dimen/ratingStarWidthHeight"
-                                    android:layout_height="@dimen/ratingStarWidthHeight"
-                                    android:background="@mipmap/imgstarunfilled" />
-                            </LinearLayout>
+                            <!--<ImageView-->
+                            <!--android:layout_width="@dimen/ratingStarWidthHeight"-->
+                            <!--android:layout_height="@dimen/ratingStarWidthHeight"-->
+                            <!--android:background="@mipmap/imgstarunfilled" />-->
+                            <!--</LinearLayout>-->
+
+                            <!--<LinearLayout-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:layout_marginTop="@dimen/lyReviewMarginTop">-->
+
+
+                            <!--<ImageView-->
+                            <!--android:layout_width="@dimen/ratingStarWidthHeight"-->
+                            <!--android:layout_height="@dimen/ratingStarWidthHeight"-->
+                            <!--android:background="@mipmap/imgstarfilled" />-->
+
+                            <!--<ImageView-->
+                            <!--android:layout_width="@dimen/ratingStarWidthHeight"-->
+                            <!--android:layout_height="@dimen/ratingStarWidthHeight"-->
+                            <!--android:background="@mipmap/imgstarfilled" />-->
+
+                            <!--<ImageView-->
+                            <!--android:layout_width="@dimen/ratingStarWidthHeight"-->
+                            <!--android:layout_height="@dimen/ratingStarWidthHeight"-->
+                            <!--android:background="@mipmap/imgstarunfilled" />-->
+
+                            <!--<ImageView-->
+                            <!--android:layout_width="@dimen/ratingStarWidthHeight"-->
+                            <!--android:layout_height="@dimen/ratingStarWidthHeight"-->
+                            <!--android:background="@mipmap/imgstarunfilled" />-->
+
+                            <!--<ImageView-->
+                            <!--android:layout_width="@dimen/ratingStarWidthHeight"-->
+                            <!--android:layout_height="@dimen/ratingStarWidthHeight"-->
+                            <!--android:background="@mipmap/imgstarunfilled" />-->
+                            <!--</LinearLayout>-->
+
+                            <!--<LinearLayout-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:layout_marginTop="@dimen/lyReviewMarginTop">-->
+
+
+                            <!--<ImageView-->
+                            <!--android:layout_width="@dimen/ratingStarWidthHeight"-->
+                            <!--android:layout_height="@dimen/ratingStarWidthHeight"-->
+                            <!--android:background="@mipmap/imgstarfilled" />-->
+
+                            <!--<ImageView-->
+                            <!--android:layout_width="@dimen/ratingStarWidthHeight"-->
+                            <!--android:layout_height="@dimen/ratingStarWidthHeight"-->
+                            <!--android:background="@mipmap/imgstarunfilled" />-->
+
+                            <!--<ImageView-->
+                            <!--android:layout_width="@dimen/ratingStarWidthHeight"-->
+                            <!--android:layout_height="@dimen/ratingStarWidthHeight"-->
+                            <!--android:background="@mipmap/imgstarunfilled" />-->
+
+                            <!--<ImageView-->
+                            <!--android:layout_width="@dimen/ratingStarWidthHeight"-->
+                            <!--android:layout_height="@dimen/ratingStarWidthHeight"-->
+                            <!--android:background="@mipmap/imgstarunfilled" />-->
+
+                            <!--<ImageView-->
+                            <!--android:layout_width="@dimen/ratingStarWidthHeight"-->
+                            <!--android:layout_height="@dimen/ratingStarWidthHeight"-->
+                            <!--android:background="@mipmap/imgstarunfilled" />-->
+                            <!--</LinearLayout>-->
 
                         </LinearLayout>
                     </LinearLayout>
@@ -452,8 +450,8 @@
                         android:button="@drawable/radio_button_event_booking"
                         android:paddingLeft="@dimen/cbMarginTopStartPaddingTopAll"
                         android:text="@string/recommend"
-                        android:textSize="14sp"
-                        android:textColor="@color/white" />
+                        android:textColor="@color/white"
+                        android:textSize="14sp" />
                 </LinearLayout>
             </ScrollView>
 

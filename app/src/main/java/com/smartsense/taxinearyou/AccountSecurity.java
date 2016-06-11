@@ -92,7 +92,6 @@ public class AccountSecurity extends AppCompatActivity implements View.OnClickLi
         text = "<font color='#cccccc'>Tick the boxes below, to receive offers and information (By Email, Telephone and Text) about products and services from various organization. For more information please view our </font>";
         privacy = "<u><font color='#2b86cc'>Privacy Policy</font></u>.";
 
-        tvAccountSecurityNote.setText(Html.fromHtml(important + text + privacy));
         btAccountSecurityChangeEmail.setOnClickListener(this);
         btAccountSecurityChangeAlternateEmail.setOnClickListener(this);
         btAccountSecurityChangeQuestion.setOnClickListener(this);
@@ -119,6 +118,7 @@ public class AccountSecurity extends AppCompatActivity implements View.OnClickLi
             alertDialogs = new AlertDialog.Builder(this);
             LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             dialog = inflater.inflate(R.layout.dialog_all, null);
+
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                 dialog.setBackground(new ColorDrawable(Color.TRANSPARENT));
             } else {

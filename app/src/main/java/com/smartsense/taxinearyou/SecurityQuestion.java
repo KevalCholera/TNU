@@ -35,7 +35,7 @@ public class SecurityQuestion extends AppCompatActivity implements View.OnClickL
     EditText etSecurityQuestion1, etSecurityAnswer1, etSecurityQuestion2, etSecurityAnswer2;
     CheckBox cbSecurityFromOrganization, cbSecurityFromPrivacyPolicy, cbSecurityAboutTaxinearu;
     Button btSecuritySave;
-    TextView tvSecurityTermsConditions;
+    TextView tvSecurityTermsConditions, tvSecurityPrivacyPolicy;
     CoordinatorLayout clSecurityQuestion;
     ImageView btSecurityBack;
     private AlertDialog alert;
@@ -55,6 +55,7 @@ public class SecurityQuestion extends AppCompatActivity implements View.OnClickL
         cbSecurityAboutTaxinearu = (CheckBox) findViewById(R.id.cbSecurityAboutTaxinearu);
         btSecuritySave = (Button) findViewById(R.id.btSecuritySave);
         tvSecurityTermsConditions = (TextView) findViewById(R.id.tvSecurityTermsConditions);
+        tvSecurityPrivacyPolicy = (TextView) findViewById(R.id.tvSecurityPrivacyPolicy);
         clSecurityQuestion = (CoordinatorLayout) findViewById(R.id.clSecurityQuestion);
         btSecurityBack = (ImageView) findViewById(R.id.btSecurityBack);
 
@@ -62,6 +63,8 @@ public class SecurityQuestion extends AppCompatActivity implements View.OnClickL
         etSecurityQuestion2.setOnClickListener(this);
         btSecuritySave.setOnClickListener(this);
         btSecurityBack.setOnClickListener(this);
+        tvSecurityPrivacyPolicy.setOnClickListener(this);
+        tvSecurityTermsConditions.setOnClickListener(this);
         getSecurityQuestion();
     }
 
@@ -93,6 +96,12 @@ public class SecurityQuestion extends AppCompatActivity implements View.OnClickL
                     openQuestionSelectPopup(false, jsonObject);
                 } else
                     getSecurityQuestion();
+                break;
+            case R.id.tvSecurityTermsConditions:
+                startActivity(new Intent(this, AboutUs.class));
+                break;
+            case R.id.tvSecurityPrivacyPolicy:
+                startActivity(new Intent(this, AboutUs.class).putExtra("privacy", "privacy"));
                 break;
         }
     }
