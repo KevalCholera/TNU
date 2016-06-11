@@ -66,7 +66,7 @@ public class RecoverEmailAddress extends AppCompatActivity implements Response.L
 
     @Override
     public void onClick(View v) {
-
+        CommonUtil.closeKeyboard(this);
         switch (v.getId()) {
             case R.id.rbRecoverEmailAlternateEmail:
                 lyRadioButton2.setVisibility(View.GONE);
@@ -80,6 +80,8 @@ public class RecoverEmailAddress extends AppCompatActivity implements Response.L
             case R.id.rbRecoverEmailRememberEmail:
                 lyRadioButton1.setVisibility(View.GONE);
                 lyRadioButton2.setVisibility(View.VISIBLE);
+
+
                 etRecoverEmailAlternateEmail.setText("");
                 break;
             case R.id.btRecoverEmailSubmit:
@@ -168,6 +170,7 @@ public class RecoverEmailAddress extends AppCompatActivity implements Response.L
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
+                CommonUtil.closeKeyboard(this);
                 finish();
                 break;
         }

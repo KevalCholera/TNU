@@ -375,12 +375,20 @@ public class EventBooking extends AppCompatActivity implements Response.Listener
             message = data.getStringExtra("AreaName");
             switch (data.getIntExtra("typeAddress", 0)) {
                 case 1:
-                    etEventBookingPickUp.setText(message);
-                    SharedPreferenceUtil.putValue(Constants.FROM_ADDRESS, data.getStringExtra("address"));
+                    if (!message.equalsIgnoreCase(etEventBookingEventDropOff.getText().toString())) {
+                        etEventBookingPickUp.setText(message);
+                        SharedPreferenceUtil.putValue(Constants.FROM_ADDRESS, data.getStringExtra("address"));
+                    } else {
+                        CommonUtil.showSnackBar(getString(R.string.same_filled_error), clEventBooking);
+                    }
                     break;
                 case 2:
-                    etEventBookingEventDropOff.setText(message);
-                    SharedPreferenceUtil.putValue(Constants.TO_ADDRESS, data.getStringExtra("address"));
+                    if (!message.equalsIgnoreCase(etEventBookingPickUp.getText().toString())) {
+                        etEventBookingEventDropOff.setText(message);
+                        SharedPreferenceUtil.putValue(Constants.TO_ADDRESS, data.getStringExtra("address"));
+                    } else {
+                        CommonUtil.showSnackBar(getString(R.string.same_filled_error), clEventBooking);
+                    }
                     break;
             }
             SharedPreferenceUtil.save();
@@ -484,7 +492,7 @@ public class EventBooking extends AppCompatActivity implements Response.Listener
                     .put("phoneno", etEventBookingContactNumber.getText().toString().trim())
                     .put("pickuparea", etEventBookingPickUp.getText().toString().trim())
                     .put("droparea", etEventBookingEventDropOff.getText().toString().trim())
-                    .put("type", rbEventBookingOneWay.isChecked() ? "0" : "1")
+                    .put("type", rbEventBookingOneWay.isChecked() ? "1" : "2")
                     .put("lastname", etEventBookingLastName.getText().toString().trim()));
 
         } catch (JSONException | ParseException e) {
