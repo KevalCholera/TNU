@@ -42,7 +42,8 @@ public class GcmIntentService extends IntentService {
                 JSONObject pushDataObj = new JSONObject(extras.get("custom").toString());
                 if (pushDataObj.optJSONObject("a").has("user")) {
                     CommonUtil.storeUserData(pushDataObj.optJSONObject("a").optJSONObject("user"));
-                } else if (pushDataObj.optJSONObject("a").optInt("eventId") == Constants.Events.UPDATE_EMAIL) {
+                }
+                if (pushDataObj.optJSONObject("a").optInt("eventId") == Constants.Events.UPDATE_EMAIL) {
                     if (pushDataObj.optJSONObject("a").optInt("reqType") == 1) {
                         SharedPreferenceUtil.clear();
                         SharedPreferenceUtil.save();

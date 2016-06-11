@@ -36,7 +36,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/first_name"
-                        android:textColor="@color/background"
+                        android:textColor="@color/blue_element1"
                         android:textSize="@dimen/etSignUpSizeAll" />
 
                     <EditText
@@ -50,8 +50,8 @@
                         android:paddingRight="@dimen/etPersonalInfoPadding"
                         android:singleLine="true"
                         android:textColor="@color/heading"
-                        android:textColorHint="@color/light_Black"
-                        android:textSize="@dimen/tvTitlesSizeAll" />
+                        android:textColorHint="@color/disable_55"
+                        android:textSize="@dimen/etSignUpSizeAll" />
 
                     <View
                         android:layout_width="match_parent"
@@ -63,7 +63,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/vPersonalInfoMarginTopBottomAll"
                         android:text="@string/last_name"
-                        android:textColor="@color/background"
+                        android:textColor="@color/blue_element1"
                         android:textSize="@dimen/etSignUpSizeAll" />
 
                     <EditText
@@ -77,8 +77,8 @@
                         android:paddingRight="@dimen/etPersonalInfoPadding"
                         android:singleLine="true"
                         android:textColor="@color/heading"
-                        android:textColorHint="@color/light_Black"
-                        android:textSize="@dimen/tvTitlesSizeAll" />
+                        android:textColorHint="@color/disable_55"
+                        android:textSize="@dimen/etSignUpSizeAll" />
 
                     <View
                         android:layout_width="match_parent"
@@ -104,8 +104,8 @@
                         android:paddingRight="@dimen/etPersonalInfoPadding"
                         android:singleLine="true"
                         android:textColor="@color/heading"
-                        android:textColorHint="@color/light_Black"
-                        android:textSize="@dimen/tvTitlesSizeAll" />
+                        android:textColorHint="@color/disable_55"
+                        android:textSize="@dimen/etSignUpSizeAll" />
 
                     <View
                         android:layout_width="match_parent"
@@ -131,8 +131,8 @@
                         android:paddingRight="@dimen/etPersonalInfoPadding"
                         android:singleLine="true"
                         android:textColor="@color/heading"
-                        android:textColorHint="@color/light_Black"
-                        android:textSize="@dimen/tvTitlesSizeAll" />
+                        android:textColorHint="@color/disable_55"
+                        android:textSize="@dimen/etSignUpSizeAll" />
 
                     <View
                         android:layout_width="match_parent"
@@ -145,6 +145,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
                         android:text="@string/add_info"
+                        android:textSize="@dimen/textDetail"
                         android:textColor="@color/background" />
 
 
@@ -152,8 +153,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/e.g"
+                        android:layout_marginTop="3dp"
                         android:textColor="@color/details"
-                        android:textSize="@dimen/cbCheckTextSizeAll" />
+                        android:textSize="8sp" />
 
                     <EditText
                         android:id="@+id/etPersonalInfoAddInfo"
@@ -167,14 +169,16 @@
                         android:scrollbars="vertical"
                         android:textColor="@color/black"
                         android:textColorHint="@color/light_Gray"
-                        android:textSize="@dimen/tvTitlesSizeAll" />
+                        android:textSize="@dimen/etSignUpSizeAll" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
                         android:text="@string/how_did_you_hear_about_us"
-                        android:textColor="@color/background" />
+                        android:textSize="@dimen/textDetail"
+
+                        android:textColor="@color/blue_element1" />
 
                     <LinearLayout
                         android:id="@+id/etInfoSocial"

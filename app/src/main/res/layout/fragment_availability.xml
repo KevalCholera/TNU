@@ -19,16 +19,16 @@
 
             <ImageView
                 android:id="@+id/ivFragmentAvailabilityStatus"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="12dp"
+                android:layout_height="12dp"
                 android:layout_gravity="center" />
 
             <TextView
                 android:id="@+id/tvAvailabilityDriverNmae"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/heading"
-                android:textSize="@dimen/tvHeadingSizeAll" />
+                android:textColor="@color/gray_55"
+                android:textSize="@dimen/textHead" />
 
         </LinearLayout>
 
@@ -38,36 +38,39 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/tvAvailabilityWaitingTimeMarginTop"
             android:gravity="center"
-            android:textColor="@color/details" />
+            android:textSize="12sp"
+            android:textColor="@color/text_color" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/vHeightWidthAll"
             android:layout_marginBottom="@dimen/vMarginTopBottomAll"
             android:layout_marginTop="@dimen/vMarginTopBottomAll"
-            android:background="@android:color/darker_gray" />
+            android:background="@color/line_color2" />
 
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:textSize="@dimen/textHead"
             android:text="@string/availability_text_1"
-            android:textColor="@color/details" />
+            android:textColor="@color/text_color" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/vHeightWidthAll"
             android:layout_marginBottom="@dimen/vMarginTopBottomAll"
             android:layout_marginTop="@dimen/vMarginTopBottomAll"
-            android:background="@android:color/darker_gray" />
+            android:background="@color/line_color2" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:textSize="@dimen/textHead"
             android:text="@string/availability_text_2"
-            android:textColor="@color/details" />
+            android:textColor="@color/text_color" />
 
 
         <View
@@ -75,7 +78,7 @@
             android:layout_height="@dimen/vHeightWidthAll"
             android:layout_marginBottom="@dimen/vMarginTopBottomAll"
             android:layout_marginTop="@dimen/vMarginTopBottomAll"
-            android:background="@android:color/darker_gray" />
+            android:background="@color/line_color2" />
 
     </LinearLayout>
 </ScrollView>

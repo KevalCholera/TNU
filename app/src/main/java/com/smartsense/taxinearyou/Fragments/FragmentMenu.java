@@ -199,7 +199,7 @@ public class FragmentMenu extends Fragment implements Response.Listener<JSONObje
             lengthBitmap = imageInByte.length;
         }
 
-        if (lengthBitmap <= 500) {
+//        if (lengthBitmap <= 500) {
 
             try {
                 String imageBase64 = CommonUtil.BitMapToString(bitmap);
@@ -215,7 +215,7 @@ public class FragmentMenu extends Fragment implements Response.Listener<JSONObje
                 params.put("token", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_ACCESS_TOKEN, ""));
                 params.put("userId", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_ID, ""));
                 params.put("__eventid", Constants.Events.UPDATE_PROFILE_PIC + "");
-                params.put("json", jsonObject.toString());
+//                params.put("json", jsonObject.toString());
                 Log.i("params", params.toString());
 
                 CommonUtil.jsonRequestPOST(getActivity(), getResources().getString(R.string.updating), urlType, params, tag, this, this);
@@ -223,8 +223,8 @@ public class FragmentMenu extends Fragment implements Response.Listener<JSONObje
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-        } else
-            CommonUtil.byToastMessage(getActivity(), getResources().getString(R.string.less_100));
+//        } else
+//            CommonUtil.byToastMessage(getActivity(), getResources().getString(R.string.less_100));
     }
 
     @Override

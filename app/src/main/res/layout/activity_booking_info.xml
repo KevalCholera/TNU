@@ -9,6 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
+        android:padding="5dp"
         android:fillViewport="true">
 
         <LinearLayout
@@ -23,7 +24,7 @@
                 android:orientation="horizontal">
 
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="1"
@@ -31,31 +32,30 @@
                     android:orientation="horizontal">
 
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
                         android:src="@mipmap/imgtime" />
 
                     <TextView
                         android:id="@+id/tvBookInfoDate"
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/tvBookingInfoMarginStartAll"
                         android:gravity="center"
-                        android:textColor="@color/heading"
+                        android:textColor="@color/text_color"
                         android:textSize="@dimen/etSignInUserPassSize" />
 
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:gravity="center"
                     android:orientation="horizontal">
 
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
                         android:src="@mipmap/clock" />
 
                     <TextView
@@ -63,7 +63,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/tvBookingInfoMarginStartAll"
-                        android:textColor="@color/heading"
+                        android:textColor="@color/text_color"
                         android:textSize="@dimen/etSignInUserPassSize" />
 
                 </LinearLayout>
@@ -92,8 +92,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/from_"
-                        android:textColor="@color/background"
-                        android:textSize="@dimen/tvTitlesSizeAll" />
+                        android:textColor="@color/blue_element"
+                        android:textSize="@dimen/textHead" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -119,7 +119,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/via_1"
-                                android:textColor="@color/background"
+                                android:textColor="@color/blue_element"
                                 android:textSize="@dimen/tvTitlesSizeAll" />
 
                             <TextView
@@ -143,7 +143,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/via_2"
-                                android:textColor="@color/background"
+                                android:textColor="@color/blue_element"
                                 android:textSize="@dimen/tvTitlesSizeAll" />
 
                             <TextView
@@ -170,8 +170,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/to_"
-                        android:textColor="@color/background"
-                        android:textSize="@dimen/tvTitlesSizeAll" />
+                        android:textColor="@color/blue_element"
+                        android:textSize="@dimen/textHead" />
 
                     <TextView
                         android:id="@+id/tvBookInfoTo"
@@ -189,7 +189,7 @@
                 android:layout_height="@dimen/vHeightWidthAll"
                 android:layout_marginBottom="@dimen/vMarginTopBottomAll"
                 android:layout_marginTop="@dimen/vMarginTopBottomAll"
-                android:background="@android:color/darker_gray" />
+                android:background="@color/line_color2" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -230,8 +230,8 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/vehicle_type"
-                                android:textColor="@color/background"
-                                android:textSize="@dimen/tvTitlesSizeAll" />
+                                android:textColor="@color/blue_element"
+                                android:textSize="@dimen/textHead" />
                         </LinearLayout>
 
                     </LinearLayout>
@@ -265,8 +265,8 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/passengers"
-                                android:textColor="@color/background"
-                                android:textSize="@dimen/tvTitlesSizeAll" />
+                                android:textColor="@color/blue_element"
+                                android:textSize="@dimen/textHead" />
                         </LinearLayout>
 
                     </LinearLayout>
@@ -276,7 +276,7 @@
                 <View
                     android:layout_width="@dimen/vHeightWidthAll"
                     android:layout_height="match_parent"
-                    android:background="@android:color/darker_gray" />
+                    android:background="@color/line_color2" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -315,8 +315,8 @@
                                 android:layout_height="match_parent"
                                 android:singleLine="true"
                                 android:text="@string/taxi_provider"
-                                android:textColor="@color/background"
-                                android:textSize="@dimen/tvTitlesSizeAll" />
+                                android:textColor="@color/blue_element"
+                                android:textSize="@dimen/textHead" />
                         </LinearLayout>
 
                     </LinearLayout>
@@ -351,8 +351,8 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/luggage"
-                                android:textColor="@color/background"
-                                android:textSize="@dimen/tvTitlesSizeAll" />
+                                android:textColor="@color/blue_element"
+                                android:textSize="@dimen/textHead" />
                         </LinearLayout>
 
                     </LinearLayout>
@@ -399,8 +399,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/eta"
-                            android:textColor="@color/background"
-                            android:textSize="@dimen/tvTitlesSizeAll" />
+                            android:textColor="@color/blue_element"
+                            android:textSize="@dimen/textHead" />
 
                         <ImageView
                             android:layout_width="@dimen/ivHighImportantWidthHeightAll"
@@ -412,7 +412,7 @@
                 <View
                     android:layout_width="@dimen/vHeightWidthAll"
                     android:layout_height="match_parent"
-                    android:background="@android:color/darker_gray" />
+                    android:background="@color/line_color2" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -432,15 +432,15 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/distance"
-                        android:textColor="@color/background"
-                        android:textSize="@dimen/tvTitlesSizeAll" />
+                        android:textColor="@color/blue_element"
+                        android:textSize="@dimen/textHead" />
 
                 </LinearLayout>
 
                 <View
                     android:layout_width="@dimen/vHeightWidthAll"
                     android:layout_height="match_parent"
-                    android:background="@android:color/darker_gray" />
+                    android:background="@color/line_color2" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -460,8 +460,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/ride_type"
-                        android:textColor="@color/background"
-                        android:textSize="@dimen/tvTitlesSizeAll" />
+                        android:textColor="@color/blue_element"
+                        android:textSize="@dimen/textHead" />
 
                 </LinearLayout>
 
@@ -471,7 +471,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/vHeightWidthAll"
                 android:layout_marginTop="@dimen/vMarginTopBottomAll"
-                android:background="@android:color/darker_gray" />
+                android:background="@color/line_color2" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -486,7 +486,7 @@
                     android:gravity="center"
                     android:text="@string/fare_cost"
                     android:textColor="@color/Yellow"
-                    android:textSize="@dimen/tvFareCostSizeAll" />
+                    android:textSize="@dimen/text15" />
 
                 <TextView
                     android:id="@+id/tvBookInfoCost"
@@ -505,10 +505,10 @@
     <Button
         android:id="@+id/btBookingInfoConfirm"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:background="@color/Yellow"
         android:text="@string/confirm_next"
         android:textAllCaps="false"
         android:textColor="@color/white"
-        android:textSize="@dimen/btSizeAll" />
+        android:textSize="@dimen/textButton" />
 </LinearLayout>

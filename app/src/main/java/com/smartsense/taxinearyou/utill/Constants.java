@@ -12,7 +12,9 @@ public class Constants {
 
 
     //    public static final String BASE_URL = "http://fmcgfinal.cloudapp.net:8080";
-    public static final String BASE_URL = "http://188.166.157.61";
+//    public static final String BASE_URL = "http://188.166.157.61";
+    public static final String BASE_URL = "http://taxinearu.co.uk";
+//    public static final String BASE_URL = "http://192.168.0.123:8080";
     public static final String BASE_URL_IMAGE_POSTFIX = BASE_URL+"/tnu";
     public static final String BASE_URL_POSTFIX = "/tnu/m?__eventid=";
     public static final String BASE_URL_PHOTO = BASE_URL + "/tnu/m?";
