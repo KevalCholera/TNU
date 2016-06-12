@@ -88,23 +88,16 @@
 
         <ImageView
             android:id="@+id/ivBookVia"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:layout_alignParentRight="true"
             android:layout_below="@+id/lyBookFromTo"
             android:layout_gravity="fill_vertical"
             android:layout_marginRight="@dimen/ivBookViaMarginEnd"
-            android:layout_marginTop="-15dp"
+            android:layout_marginTop="-12dp"
             android:src="@mipmap/imgbtnvia"
             tools:ignore="ContentDescription,RtlHardcoded" />
 
-        <View
-            android:id="@+id/view"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/vBookViewHeight"
-
-            android:layout_below="@+id/lyBookFromTo"
-            android:background="@null" />
     </RelativeLayout>
 
     <LinearLayout

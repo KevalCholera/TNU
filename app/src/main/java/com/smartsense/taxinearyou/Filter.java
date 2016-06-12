@@ -45,6 +45,7 @@ public class Filter extends TimeActivity implements View.OnClickListener {
 
 //        Toolbar tbFilter = (Toolbar) findViewById(R.id.tbFilter);
 //        setSupportAct(tbFilter);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         getSupportActionBar().setTitle("");
 
         rgFilterVehicleType = (RadioGroup) findViewById(R.id.rgFilterVehicleType1);
@@ -115,9 +116,8 @@ public class Filter extends TimeActivity implements View.OnClickListener {
 
     @Override
     public int getLayoutResource() {
-        return R.layout.activity_partner_details;
+        return R.layout.activity_filter;
     }
-
 
     @Override
     public void onClick(View v) {

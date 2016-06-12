@@ -139,7 +139,7 @@ public class EventBooking extends AppCompatActivity implements Response.Listener
     Boolean once = false;
 
     public void datePicker(String dateTime) {
-        DatePickerDialog DatePicker = new DatePickerDialog(this, DatePickerDialog.BUTTON_POSITIVE, new DatePickerDialog.OnDateSetListener() {
+        DatePickerDialog DatePicker = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(android.widget.DatePicker DatePicker, int year, int month, int dayOfMonth) {
                 mCalendar.set(Calendar.YEAR, year);
@@ -172,7 +172,7 @@ public class EventBooking extends AppCompatActivity implements Response.Listener
         int hour = calendar.get(Calendar.HOUR_OF_DAY);
         int minute = calendar.get(Calendar.MINUTE);
 
-        TimePickerDialog mTimePicker = new TimePickerDialog(this, TimePickerDialog.BUTTON_POSITIVE, new TimePickerDialog.OnTimeSetListener() {
+        TimePickerDialog mTimePicker = new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
                 updateTime(selectedHour, selectedMinute, date);

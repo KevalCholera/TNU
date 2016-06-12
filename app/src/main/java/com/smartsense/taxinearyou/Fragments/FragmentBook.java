@@ -124,7 +124,7 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
             e.printStackTrace();
         }
 
-        mTimePicker = new TimePickerDialog(getActivity(), android.R.style.Theme_Light_Panel, new TimePickerDialog.OnTimeSetListener() {
+        mTimePicker = new TimePickerDialog(getActivity(), new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
 
@@ -161,6 +161,7 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
 
         mTimePicker.setTitle("Select Time");
         mTimePicker.show();
+        mTimePicker.setCancelable(false);
     }
 
     private void getServerDateTime() {
@@ -357,10 +358,10 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
     }
 
     public void setDefaultValues() {
+
         String str;
         JSONArray jsonArray;
         try {
-
             str = SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_LUGGAGE, "");
             jsonArray = new JSONArray(str);
             if (jsonArray.length() > 0) {
