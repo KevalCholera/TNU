@@ -110,7 +110,7 @@ public class GooglePlaces extends FragmentActivity implements OnItemClickListene
         lyGooglePlaceCurrentLocation.setOnClickListener(this);
 
         if (getIntent() != null && getIntent().hasExtra("typeAddress") && getIntent().getIntExtra("typeAddress", 0) != 1) {
-            tvGooglePlacesCurrentLocation.setVisibility(View.GONE);
+            lyGooglePlaceCurrentLocation.setVisibility(View.GONE);
             viewGooglePlace.setVisibility(View.GONE);
         }
 
