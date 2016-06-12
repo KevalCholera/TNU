@@ -43,6 +43,7 @@ import org.json.JSONObject;
 import java.text.ParseException;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 public class FragmentBook extends Fragment implements Response.Listener<JSONObject>, Response.ErrorListener, View.OnClickListener {
 
@@ -227,12 +228,14 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
                 llBookVia1.setVisibility(View.GONE);
                 tvBookvia1.setText("");
                 SharedPreferenceUtil.putValue(Constants.VIA_ADDRESS, "");
+                SharedPreferenceUtil.save();
                 break;
 
             case R.id.ivBookDeleteVia2:
                 llBookVia2.setVisibility(View.GONE);
                 tvBookvia2.setText("");
                 SharedPreferenceUtil.putValue(Constants.VIA2_ADDRESS, "");
+                SharedPreferenceUtil.save();
                 break;
 
             case R.id.tvBookFrom:
@@ -499,8 +502,11 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
         if (jsonObject != null) {
             if (jsonObject.optInt("status") == Constants.STATUS_SUCCESS) {
                 try {
+                    SharedPreferenceUtil.putValue(Constants.SESSION_LIMIT, jsonObject.optJSONObject("json").optInt("sessionLimit"));
+                    SharedPreferenceUtil.putValue(Constants.PAGE_LIMIT, jsonObject.optJSONObject("json").optInt("pageLimit"));
+                    SharedPreferenceUtil.save();
+                    timeRemaining = TimeUnit.MINUTES.toMillis(SharedPreferenceUtil.getInt(Constants.SESSION_LIMIT, 9));
                     dateTimeCanChange = Constants.DATE_FORMAT_SET.format(Constants.DATE_FORMAT_GET.parse(jsonObject.optJSONObject("json").optString("serverTime")));
-
                     tvBookDateTime.setText(dateTimeCanChange);
                     calendar.setTime(Constants.DATE_FORMAT_SET.parse(dateTimeCanChange));
                     calendar1.setTime(Constants.DATE_FORMAT_SET.parse(dateTimeCanChange));
@@ -521,6 +527,7 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
             public void run() {
                 calendar.add(Calendar.MINUTE, 1);
                 calendar1.add(Calendar.MINUTE, 1);
+                dateTimeCanChange = Constants.DATE_FORMAT_ONLY_DATE1.format(calendar.getTime());
                 setTextOnView();
                 handler.postDelayed(this, 60 * 1000);
             }
@@ -536,10 +543,9 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
                 calendarToday = null;
             }
         }
+        calendar.setTime(calendar1.getTime());
         if (rbBookTomorrow.isChecked()) {
             calendar.add(Calendar.DAY_OF_MONTH, 1);
-        } else {
-            calendar.setTime(calendar1.getTime());
         }
         if (!isUserTimeSelect)
             tvBookDateTime.setText(Constants.DATE_FORMAT_ONLY_DATE1.format(calendar.getTime()));// + " " + Constants.DATE_FORMAT_ONLY_TIME.format(Constants.DATE_FORMAT_GET.parse(jsonObject.optJSONObject("json").optString("serverTime")))
@@ -554,7 +560,10 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
     @Override
     public void onResume() {
         super.onResume();
-        timeRemaining = 600000;
+        SharedPreferenceUtil.putValue(Constants.VIA_ADDRESS, "");
+        SharedPreferenceUtil.putValue(Constants.VIA2_ADDRESS, "");
+        SharedPreferenceUtil.save();
+        timeRemaining = TimeUnit.MINUTES.toMillis(SharedPreferenceUtil.getInt(Constants.SESSION_LIMIT, 9));
     }
 
 

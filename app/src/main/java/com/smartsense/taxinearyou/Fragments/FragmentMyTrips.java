@@ -52,7 +52,7 @@ public class FragmentMyTrips extends Fragment implements Response.Listener<JSONO
 
     int pageNumber = 0;
     int totalRecord = 0;
-    int pageSize = 10;
+    int pageSize = SharedPreferenceUtil.getInt(Constants.PAGE_LIMIT,9);
     int selected = 0;
     AdapterMyTrips adapterMyTrips = null;
     ProgressBar pbMyTrips;

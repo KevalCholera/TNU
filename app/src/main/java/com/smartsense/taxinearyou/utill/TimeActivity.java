@@ -39,6 +39,8 @@ public abstract class TimeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(getLayoutResource());
         configureToolbar();
+        if (countDownTimer == null)
+            countDownStart(FragmentBook.timeRemaining);
 
     }
 
@@ -54,15 +56,15 @@ public abstract class TimeActivity extends AppCompatActivity {
     @Override
     public void onStop() {
         super.onStop();
-        countDownTimer.cancel();
+        if (countDownTimer == null)
+            countDownTimer.cancel();
         countDownTimer = null;
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        if (countDownTimer == null)
-            countDownStart(FragmentBook.timeRemaining);
+
     }
 
 

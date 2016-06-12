@@ -59,7 +59,7 @@ public class SearchCars extends TimeActivity implements Response.Listener<JSONOb
 
     int pageNumber = 0;
     int totalRecord = 0;
-    int pageSize = 10;
+    int pageSize = SharedPreferenceUtil.getInt(Constants.PAGE_LIMIT,9);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,8 +68,6 @@ public class SearchCars extends TimeActivity implements Response.Listener<JSONOb
         adapterSearchCar = null;
         pageNumber = 0;
         totalRecord = 0;
-
-
 
         clSearchCars = (CoordinatorLayout) findViewById(R.id.clSearchCars);
         lvSearchCarsLine1 = (ListView) findViewById(R.id.lvSearchCarsLine1);
