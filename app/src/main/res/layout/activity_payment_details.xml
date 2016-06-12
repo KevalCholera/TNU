@@ -51,13 +51,13 @@
             <TextView
                 android:id="@+id/tvPaymentTNUCredit"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/btSignUpAllheight"
                 android:drawableLeft="@mipmap/bank_cards"
                 android:drawablePadding="@dimen/tvPaymentDetailsDrawableTNUPadding"
                 android:drawableRight="@mipmap/arrow_right_yellow"
                 android:gravity="fill"
                 android:text="@string/tnu_credit_coming_soon"
-                android:textColor="@android:color/darker_gray"
+                android:textColor="@color/disable_55"
                 android:textSize="@dimen/heading" />
 
             <View
@@ -65,12 +65,12 @@
                 android:layout_height="@dimen/vHeightWidthAll"
                 android:layout_marginBottom="@dimen/margin_5"
                 android:layout_marginTop="@dimen/margin_5"
-                android:background="@android:color/darker_gray" />
+                android:background="@color/line_color" />
 
             <TextView
                 android:id="@+id/tvPaymentCard"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/btSignUpAllheight"
                 android:layout_gravity="center"
                 android:drawableLeft="@mipmap/card_pay"
                 android:drawablePadding="@dimen/tvPaymentDetailsDrawableCashPadding"
@@ -78,7 +78,7 @@
                 android:enabled="false"
                 android:gravity="fill"
                 android:text="@string/card"
-                android:textColor="@android:color/darker_gray"
+                android:textColor="@color/disable_55"
                 android:textSize="@dimen/heading" />
 
             <View
@@ -86,25 +86,25 @@
                 android:layout_height="@dimen/vHeightWidthAll"
                 android:layout_marginBottom="@dimen/margin_5"
                 android:layout_marginTop="@dimen/margin_5"
-                android:background="@android:color/darker_gray" />
+                android:background="@color/line_color" />
 
             <TextView
                 android:id="@+id/tvPaymentCash"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/btSignUpAllheight"
                 android:drawableLeft="@mipmap/banknotes"
                 android:drawablePadding="@dimen/tvPaymentDetailsDrawableCashPadding"
                 android:drawableRight="@mipmap/arrow_right_yellow"
                 android:gravity="fill"
                 android:text="@string/cash"
-                android:textColor="@android:color/black"
+                android:textColor="@color/black"
                 android:textSize="@dimen/heading" />
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/vHeightWidthAll"
                 android:layout_marginTop="@dimen/margin_5"
-                android:background="@android:color/darker_gray" />
+                android:background="@color/line_color" />
 
             <LinearLayout
                 android:layout_width="match_parent"

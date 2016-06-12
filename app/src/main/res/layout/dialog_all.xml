@@ -77,7 +77,6 @@
 
             <Button
                 android:id="@+id/btPopupSecurityAlternateEmailSubmit"
-                style="?android:attr/buttonStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/btSignUpAllheight"
                 android:layout_marginBottom="@dimen/btPopupSubmitMarginTopBottom"
@@ -88,7 +87,7 @@
                 android:paddingRight="@dimen/btPopupSubmitPaddingLeftRight"
                 android:text="@string/submit"
                 android:textColor="@color/white"
-                android:textSize="@dimen/tvTitlesSizeAll" />
+                android:textSize="@dimen/buttonGeneral" />
 
         </LinearLayout>
 
@@ -160,7 +159,6 @@
 
             <Button
                 android:id="@+id/btPopupSecurityEmailSubmit"
-                style="?android:attr/buttonStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/btSignUpAllheight"
                 android:layout_marginTop="@dimen/btPopupSubmitMarginTopBottom"
@@ -170,7 +168,7 @@
                 android:paddingRight="@dimen/btPopupSubmitPaddingLeftRight"
                 android:text="@string/submit"
                 android:textColor="@color/white"
-                android:textSize="@dimen/tvTitlesSizeAll" />
+                android:textSize="@dimen/buttonGeneral" />
         </LinearLayout>
 
         <LinearLayout
@@ -304,7 +302,6 @@
 
             <Button
                 android:id="@+id/btPopupSecurityOptionsSubmit"
-                style="?android:attr/buttonStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/btSignUpAllheight"
                 android:layout_gravity="center"
@@ -316,7 +313,7 @@
                 android:paddingRight="@dimen/btPopupSubmitPaddingLeftRight"
                 android:text="@string/submit"
                 android:textColor="@color/white"
-                android:textSize="@dimen/tvTitlesSizeAll" />
+                android:textSize="@dimen/buttonGeneral" />
         </LinearLayout>
 
         <LinearLayout
@@ -387,7 +384,6 @@
 
             <Button
                 android:id="@+id/btPopupSecurityPasswordSubmit"
-                style="?android:attr/buttonStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/btSignUpAllheight"
                 android:layout_marginBottom="@dimen/btPopupSubmitMarginTopBottom"
@@ -398,7 +394,7 @@
                 android:paddingRight="@dimen/btPopupSubmitPaddingLeftRight"
                 android:text="@string/submit"
                 android:textColor="@color/white"
-                android:textSize="@dimen/tvTitlesSizeAll" />
+                android:textSize="@dimen/buttonGeneral" />
 
         </LinearLayout>
 
@@ -505,7 +501,6 @@
 
             <Button
                 android:id="@+id/btPopupSecurityQuestionConfirm"
-                style="?android:attr/buttonStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/btSignUpAllheight"
                 android:layout_marginBottom="@dimen/btPopupSubmitMarginTopBottom"
@@ -516,7 +511,7 @@
                 android:paddingRight="@dimen/btPopupSubmitPaddingLeftRight"
                 android:text="@string/confirm"
                 android:textColor="@color/white"
-                android:textSize="@dimen/tvTitlesSizeAll" />
+                android:textSize="@dimen/buttonGeneral" />
 
         </LinearLayout>
 
@@ -656,7 +651,6 @@
 
             <Button
                 android:id="@+id/btPopupSecurityQuestionChangeConfirm"
-                style="?android:attr/buttonStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/btSignUpAllheight"
                 android:layout_marginBottom="@dimen/btPopupSubmitMarginTopBottom"
@@ -667,7 +661,7 @@
                 android:paddingRight="@dimen/btPopupSubmitPaddingLeftRight"
                 android:text="@string/confirm"
                 android:textColor="@color/white"
-                android:textSize="@dimen/tvTitlesSizeAll" />
+                android:textSize="@dimen/buttonGeneral" />
 
         </LinearLayout>
 
@@ -710,7 +704,7 @@
                 android:paddingRight="@dimen/btPopupSubmitPaddingLeftRight"
                 android:text="@string/ok"
                 android:textColor="@color/white"
-                android:textSize="@dimen/tvTitlesSizeAll" />
+                android:textSize="@dimen/buttonGeneral" />
 
         </LinearLayout>
 
@@ -814,7 +808,6 @@
 
             <Button
                 android:id="@+id/btPopupFeedbackOk"
-                style="?android:attr/buttonStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/btSignUpAllheight"
                 android:layout_marginBottom="@dimen/btPopupSubmitMarginTopBottom"
@@ -825,7 +818,7 @@
                 android:paddingRight="@dimen/btPopupSubmitPaddingLeftRight"
                 android:text="@string/ok"
                 android:textColor="@color/white"
-                android:textSize="@dimen/tvTitlesSizeAll" />
+                android:textSize="@dimen/buttonGeneral" />
 
         </LinearLayout>
 
@@ -881,7 +874,6 @@
 
             <Button
                 android:id="@+id/btPopupLocatedBack"
-                style="?android:attr/buttonStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/btSignUpAllheight"
                 android:layout_marginBottom="@dimen/btPopupSubmitMarginTopBottom"
@@ -892,7 +884,7 @@
                 android:paddingRight="@dimen/btPopupSubmitPaddingLeftRight"
                 android:text="@string/ok"
                 android:textColor="@color/white"
-                android:textSize="@dimen/tvTitlesSizeAll" />
+                android:textSize="@dimen/buttonGeneral" />
 
         </LinearLayout>
 
@@ -932,7 +924,6 @@
 
             <Button
                 android:id="@+id/btPopupThankingRecoveryBack"
-                style="?android:attr/buttonStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/btSignUpAllheight"
                 android:layout_marginBottom="@dimen/btPopupSubmitMarginTopBottom"
@@ -943,7 +934,7 @@
                 android:paddingRight="@dimen/btPopupSubmitPaddingLeftRight"
                 android:text="@string/ok"
                 android:textColor="@color/white"
-                android:textSize="@dimen/tvTitlesSizeAll" />
+                android:textSize="@dimen/buttonGeneral" />
 
         </LinearLayout>
 
@@ -974,7 +965,6 @@
 
             <Button
                 android:id="@+id/btPopupYourDetailOk"
-                style="?android:attr/buttonStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/btSignUpAllheight"
                 android:layout_marginBottom="@dimen/btPopupSubmitMarginTopBottom"
@@ -985,7 +975,7 @@
                 android:paddingRight="@dimen/btPopupSubmitPaddingLeftRight"
                 android:text="@string/ok"
                 android:textColor="@color/white"
-                android:textSize="@dimen/tvTitlesSizeAll" />
+                android:textSize="@dimen/buttonGeneral" />
         </LinearLayout>
     </LinearLayout>
 </android.support.design.widget.CoordinatorLayout>

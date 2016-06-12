@@ -18,7 +18,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 
 public class LostItemDetail extends AppCompatActivity {
 
@@ -30,9 +29,11 @@ public class LostItemDetail extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lost_item_detail);
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         registerReceiver(tripMessageReceiver, new IntentFilter(String.valueOf(Constants.Events.ADD_LOST_ITEM)));
         registerReceiver(tripMessageReceiver, new IntentFilter(String.valueOf(Constants.Events.LOST_ITEM_STATUS)));
+
         tvLostItemDetailTNR = (TextView) findViewById(R.id.tvLostItemDetailTNR);
         tvLostItemDetailFrom = (TextView) findViewById(R.id.tvLostItemDetailFrom);
         tvLostItemDetailTo = (TextView) findViewById(R.id.tvLostItemDetailTo);
@@ -49,7 +50,7 @@ public class LostItemDetail extends AppCompatActivity {
             tvLostItemDetailTo.setText(lostItemDetails.optString("toArea"));
             tvLostItemDetailProvider.setText(lostItemDetails.optString("partnerName"));
             tvLostItemDetailStatusDescription.setText(lostItemDetails.optString("statusMsg"));
-            tvLostItemDetailDateTime.setText(Constants.DATE_FORMAT_DATE_TIME.format(Constants.DATE_FORMAT_SET.parse(lostItemDetails.optString("rideDate"))));
+            tvLostItemDetailDateTime.setText(Constants.DATE_FORMAT_DATE_TIME.format(Constants.DATE_FORMAT_SET.parse(lostItemDetails.optString("rideDate").trim())));
             tvLostItemDetailStatus.setText(lostItemDetails.optString("status"));
             tvLostItemDetailLostItem.setText(lostItemDetails.optString("itemDescription"));//lostItemDetails.optString("color") + " color\n" +
         } catch (JSONException | ParseException e) {

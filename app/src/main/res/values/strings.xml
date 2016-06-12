@@ -448,7 +448,7 @@
     <string name="eta_err">ETA may differ at any time due to unexpected circumstances e.g. traffic, weather changes, road works or any other events.</string>
     <string name="enter_sub">Enter subject</string>
     <string name="pls_ent_alt">Please enter alternative email address</string>
-    <string name="pls_ent_alt_id">Enter Alternate Email ID</string>
+    <string name="pls_ent_alt_id">Enter alternate email id</string>
     <string name="enter_alt_not_same">Confirm alternative email address does not match</string>
     <string name="take_photo">Take photo</string>
     <string name="select_pic">Select your Photos</string>

@@ -323,6 +323,7 @@
     <dimen name="textDetail">12sp</dimen>
     <dimen name="textButton">15sp</dimen>
     <dimen name="heading">15sp</dimen>
-    <dimen name="buttonGeneral">20sp</dimen>
-
+    <dimen name="buttonGeneral">15sp</dimen>
+    <dimen name="fromToGaping">8dp</dimen>
+    <dimen name="bookingInfoPadding">20dp</dimen>
 </resources>

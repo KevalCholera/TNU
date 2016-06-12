@@ -9,22 +9,19 @@
         android:id="@+id/llLostItemItemsAvailable"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="@dimen/bookingInfoPadding"
         android:orientation="vertical"
         android:visibility="visible">
 
         <RadioGroup
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingBottom="@dimen/lyPadding10"
-            android:paddingLeft="@dimen/lyPaddingMainAll"
-            android:paddingRight="@dimen/lyPaddingMainAll"
-            android:paddingTop="@dimen/lyPaddingMainAll">
+            android:layout_height="@dimen/btSignUpAllheight"
+            android:orientation="horizontal">
 
             <RadioButton
                 android:id="@+id/rbLostItemOnGoing"
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@drawable/radio_yellow_border_lost_item_open"
                 android:button="@color/white"
@@ -38,7 +35,7 @@
             <RadioButton
                 android:id="@+id/rbLostItemFound"
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@drawable/radio_yellow_border_lost_item_inprogress"
                 android:button="@color/white"
@@ -51,7 +48,7 @@
             <RadioButton
                 android:id="@+id/rbLostItemNotFound"
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@drawable/radio_yellow_border_lost_item_closed"
                 android:button="@color/white"

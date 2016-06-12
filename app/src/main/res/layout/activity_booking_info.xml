@@ -27,14 +27,13 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:fillViewport="true"
-        android:padding="5dp">
+        android:fillViewport="true">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="@dimen/vMarginTopBottomAll">
+            android:padding="@dimen/bookingInfoPadding">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -50,8 +49,8 @@
                     android:orientation="horizontal">
 
                     <ImageView
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:src="@mipmap/imgtime" />
 
                     <TextView
@@ -73,8 +72,8 @@
                     android:orientation="horizontal">
 
                     <ImageView
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:src="@mipmap/clock" />
 
                     <TextView
@@ -117,7 +116,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="3dp"
+                        android:layout_marginLeft="@dimen/fromToGaping"
                         android:orientation="vertical">
 
                         <TextView
@@ -131,6 +130,7 @@
                             android:id="@+id/lyBookingInfoVia1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/lyBookingInfoMarginTopAll"
                             android:orientation="horizontal"
                             android:visibility="gone">
 
@@ -145,6 +145,7 @@
                                 android:id="@+id/tvBookInfoVia1"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/fromToGaping"
                                 android:textColor="@color/heading"
                                 android:textSize="@dimen/etSignInUserPassSize" />
 
@@ -169,6 +170,7 @@
                                 android:id="@+id/tvBookInfoVia2"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/fromToGaping"
                                 android:textColor="@color/heading"
                                 android:textSize="@dimen/etSignInUserPassSize" />
 
@@ -195,8 +197,8 @@
                     <TextView
                         android:id="@+id/tvBookInfoTo"
                         android:layout_width="wrap_content"
-                        android:layout_marginLeft="3dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/fromToGaping"
                         android:textColor="@color/heading"
                         android:textSize="@dimen/etSignInUserPassSize" />
 
@@ -445,6 +447,7 @@
                         android:id="@+id/tvBookInfoDistance"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:singleLine="true"
                         android:textColor="@color/heading"
                         android:textSize="@dimen/etSignInUserPassSize" />
 
@@ -530,5 +533,5 @@
         android:text="@string/confirm_next"
         android:textAllCaps="false"
         android:textColor="@color/white"
-        android:textSize="@dimen/textButton" />
+        android:textSize="@dimen/buttonGeneral" />
 </LinearLayout>

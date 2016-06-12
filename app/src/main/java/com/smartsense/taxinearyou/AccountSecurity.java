@@ -11,6 +11,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
@@ -88,9 +89,9 @@ public class AccountSecurity extends AppCompatActivity implements View.OnClickLi
         etAccountSecurityEmail = (EditText) findViewById(R.id.etAccountSecurityEmail);
         etAccountSecurityAlternateEmail = (EditText) findViewById(R.id.etAccountSecurityAlternateEmail);
 
-        important = "<font color='#cccccc'><b>Important: </b></font>";
-        text = "<font color='#cccccc'>Tick the boxes below, to receive offers and information (By Email, Telephone and Text) about products and services from various organization. For more information please view our </font>";
-        privacy = "<u><font color='#2b86cc'>Privacy Policy</font></u>.";
+        important = "<font color='" + ContextCompat.getColor(this, R.color.disable_55) + "'><b>Important: </b></font>";
+        text = "<font color='" + ContextCompat.getColor(this, R.color.search_car_gray) + "'>Tick the boxes below, to receive offers and information (By Email, Telephone and Text) about products and services from various organization. For more information please view our </font>";
+        privacy = "<u><font color='" + ContextCompat.getColor(this, R.color.purple) + "'>Privacy Policy</font></u>.";
 
         btAccountSecurityChangeEmail.setOnClickListener(this);
         btAccountSecurityChangeAlternateEmail.setOnClickListener(this);

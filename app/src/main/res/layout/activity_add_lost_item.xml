@@ -271,13 +271,12 @@
                     android:textSize="@dimen/tvTitlesSizeAll" />
 
             </LinearLayout>
-
         </ScrollView>
 
         <Button
             android:id="@+id/btYourDetailSubmit"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/btSignUpAllheight"
             android:background="@color/Yellow"
             android:text="@string/submit"
             android:textAllCaps="false"

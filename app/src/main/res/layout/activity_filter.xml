@@ -87,7 +87,7 @@
                         <RadioButton
                             android:id="@+id/rbFilterSingle"
                             android:layout_width="match_parent"
-                            android:layout_height="35dp"
+                            android:layout_height="@dimen/btSignUpAllheight"
                             android:layout_weight="1"
                             android:background="@drawable/radio_button"
                             android:button="@color/white"
@@ -101,7 +101,7 @@
                         <RadioButton
                             android:id="@+id/rbFilterReturn"
                             android:layout_width="match_parent"
-                            android:layout_height="35dp"
+                            android:layout_height="@dimen/btSignUpAllheight"
                             android:layout_weight="1"
                             android:background="@drawable/radio_button"
                             android:button="@color/white"
@@ -462,7 +462,7 @@
                 <Button
                     android:id="@+id/btFilterDone"
                     android:layout_width="match_parent"
-                    android:layout_height="35dp"
+                    android:layout_height="@dimen/btSignUpAllheight"
                     android:layout_weight="1"
                     android:background="@color/Yellow"
                     android:text="@string/done"
@@ -473,7 +473,7 @@
                 <Button
                     android:id="@+id/btFilterResetAll"
                     android:layout_width="match_parent"
-                    android:layout_height="35dp"
+                    android:layout_height="@dimen/btSignUpAllheight"
                     android:layout_weight="1"
                     android:background="@color/white"
                     android:text="@string/reset_all"

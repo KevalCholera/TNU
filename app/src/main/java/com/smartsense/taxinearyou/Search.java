@@ -45,7 +45,6 @@ public class Search extends AppCompatActivity {
     CoordinatorLayout clSearch;
     private final List<Fragment> mFragmentList = new ArrayList<>();
     private final List<String> mFragmentTitleList = new ArrayList<>();
-    private final List<Drawable> imageViews = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,21 +62,11 @@ public class Search extends AppCompatActivity {
         tbSearchTab.setupWithViewPager(viewPager);
         setupTabIcons();
 
-        imageViews.add(ContextCompat.getDrawable(this, R.drawable.ic_imgtab13x));
-        imageViews.add(ContextCompat.getDrawable(this, R.mipmap.ic_baggage));
-        imageViews.add(ContextCompat.getDrawable(this, R.mipmap.coins2));
-        imageViews.add(ContextCompat.getDrawable(this, R.mipmap.hamburger));
-
         final ArrayList<String> arrayList = new ArrayList<>();
         arrayList.add("Search");
         arrayList.add("My Trips");
         arrayList.add("Credit");
         arrayList.add("Menu");
-
-//        tbSearchTab.setupWithViewPager(viewPager);
-//        for (int i = 0; i < tbSearchTab.getTabCount(); i++) {
-//            tbSearchTab.getTabAt(i).setIcon(imageViews.get(i));
-//        }
 
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 

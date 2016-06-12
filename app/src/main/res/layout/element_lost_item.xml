@@ -4,16 +4,12 @@
     android:id="@+id/lyElementLostItemMain"
     android:layout_width="match_parent"
     android:layout_height="fill_parent"
-
-    android:orientation="vertical"
-    android:paddingLeft="@dimen/lyPaddingMainAll"
-    android:paddingRight="@dimen/lyPaddingMainAll"
-    android:paddingTop="@dimen/tvPopupMarginTop">
+    android:background="@color/element"
+    android:paddingTop="@dimen/margin_5">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
         android:orientation="horizontal">
 
         <LinearLayout
@@ -184,9 +180,7 @@
                             android:id="@+id/tvLostItemFrom"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="8dp"
-                            android:maxLines="4"
-
+                            android:layout_marginLeft="@dimen/fromToGaping"
                             android:textColor="@color/text_color"
                             android:textSize="@dimen/etSignUpSizeAll" />
 
@@ -211,8 +205,7 @@
                             android:id="@+id/tvLostItemTo"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="8dp"
-                            android:maxLines="4"
+                            android:layout_marginLeft="@dimen/fromToGaping"
                             android:textColor="@color/text_color"
                             android:textSize="@dimen/etSignUpSizeAll" />
 
@@ -345,7 +338,7 @@
                     android:id="@+id/tvLostItemLostItem"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
+                    android:layout_marginLeft="@dimen/fromToGaping"
                     android:gravity="center"
                     android:textColor="@color/text_color"
                     android:textSize="@dimen/etSignUpSizeAll" />
@@ -376,7 +369,7 @@
                     android:id="@+id/tvLostItemTNR"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
+                    android:layout_marginLeft="@dimen/fromToGaping"
                     android:textColor="@color/text_color"
                     android:textSize="@dimen/etSignUpSizeAll" />
 

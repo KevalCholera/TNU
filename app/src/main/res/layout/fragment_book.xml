@@ -1,19 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?><!--<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"--><!--xmlns:tools="http://schemas.android.com/tools"--><!--android:layout_width="match_parent"--><!----><!--android:layout_height="match_parent"--><!--android:background="@mipmap/imgappbackground">-->
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@mipmap/imgappbackground1"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="@dimen/lySearchAllMarginStartEnd">
 
     <RelativeLayout
         android:id="@+id/rlBookFromTo"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/lySearchAllMarginStartEnd"
-        android:layout_marginRight="@dimen/lySearchAllMarginStartEnd"
-        android:layout_marginTop="@dimen/lySearchFromToMarginTop">
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:id="@+id/lyBookFromTo"
@@ -25,7 +22,7 @@
             <TextView
                 android:id="@+id/tvBookFrom"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/etHeightAll"
+                android:layout_height="@dimen/btSignUpAllheight"
                 android:background="@null"
                 android:clickable="true"
                 android:drawableLeft="@mipmap/imgfromto"
@@ -73,7 +70,7 @@
             <TextView
                 android:id="@+id/tvBookTo"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/etHeightAll"
+                android:layout_height="@dimen/btSignUpAllheight"
                 android:background="@null"
                 android:clickable="true"
                 android:drawableLeft="@mipmap/imgfromto"
@@ -113,10 +110,8 @@
     <LinearLayout
         android:id="@+id/llBookVia1"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/etHeightAll"
+        android:layout_height="@dimen/btSignUpAllheight"
         android:layout_marginBottom="@dimen/llBookVia2MarginTop"
-        android:layout_marginLeft="@dimen/tvSearchAllMarginStartEnd"
-        android:layout_marginRight="@dimen/tvSearchAllMarginStartEnd"
         android:background="@drawable/grayborder"
         android:orientation="horizontal"
         android:visibility="gone">
@@ -152,9 +147,7 @@
     <LinearLayout
         android:id="@+id/llBookVia2"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/etHeightAll"
-        android:layout_marginLeft="@dimen/tvSearchAllMarginStartEnd"
-        android:layout_marginRight="@dimen/tvSearchAllMarginStartEnd"
+        android:layout_height="@dimen/btSignUpAllheight"
         android:background="@drawable/grayborder"
         android:orientation="horizontal"
         android:visibility="gone">
@@ -190,9 +183,7 @@
     <RadioGroup
         android:id="@+id/llBookNowTodayTomorrow"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/etHeightAll"
-        android:layout_marginLeft="@dimen/lySearchAllMarginStartEnd"
-        android:layout_marginRight="@dimen/lySearchAllMarginStartEnd"
+        android:layout_height="@dimen/btSignUpAllheight"
         android:layout_marginTop="10dp"
         android:background="@drawable/blueborder"
         android:orientation="horizontal"
@@ -240,9 +231,7 @@
     <TextView
         android:id="@+id/tvBookDateTime"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/etHeightAll"
-        android:layout_marginLeft="@dimen/lySearchAllMarginStartEnd"
-        android:layout_marginRight="@dimen/lySearchAllMarginStartEnd"
+        android:layout_height="@dimen/btSignUpAllheight"
         android:layout_marginTop="10dp"
         android:background="@drawable/grayborder"
         android:clickable="true"
@@ -260,15 +249,13 @@
         android:id="@+id/llBookLuggagePassenger"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/lySearchAllMarginStartEnd"
-        android:layout_marginRight="@dimen/lySearchAllMarginStartEnd"
         android:layout_marginTop="@dimen/lySearchLuggagePassengerMarginTop"
         android:orientation="horizontal">
 
         <TextView
             android:id="@+id/tvBookLuggage"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/etHeightAll"
+            android:layout_height="@dimen/btSignUpAllheight"
             android:layout_marginRight="@dimen/tvMarginTopBottomStartEndAll"
             android:layout_weight="1"
             android:background="@drawable/grayborder"
@@ -287,7 +274,7 @@
         <TextView
             android:id="@+id/tvBookPassenger"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/etHeightAll"
+            android:layout_height="@dimen/btSignUpAllheight"
             android:layout_marginLeft="@dimen/tvMarginTopBottomStartEndAll"
             android:layout_weight="1"
             android:background="@drawable/grayborder"
@@ -310,8 +297,6 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/btSignUpAllheight"
         android:layout_gravity="center_horizontal"
-        android:layout_marginLeft="@dimen/lySearchAllMarginStartEnd"
-        android:layout_marginRight="@dimen/lySearchAllMarginStartEnd"
         android:layout_marginTop="10dp"
         android:background="@drawable/yellow"
         android:gravity="center"

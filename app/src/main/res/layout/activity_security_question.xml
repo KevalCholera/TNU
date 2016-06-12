@@ -21,7 +21,6 @@
                 android:layout_width="12dp"
                 android:layout_height="18dp"
                 android:layout_marginBottom="@dimen/tvSignUpSignUpMarginBottom"
-                android:layout_marginLeft="0dp"
                 android:layout_marginTop="@dimen/btSignUpAllMarginTop"
                 android:src="@mipmap/imgback" />
 
@@ -47,7 +46,6 @@
             android:focusable="false"
             android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
             android:singleLine="true"
-            android:text=""
             android:textColor="@color/black"
             android:textSize="@dimen/etSignUpSizeAll" />
 
@@ -83,7 +81,6 @@
             android:imeOptions="actionNext"
             android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
             android:singleLine="true"
-            android:text=""
             android:textColor="@color/black"
             android:textSize="@dimen/etSignUpSizeAll" />
 
@@ -186,7 +183,7 @@
             android:text="@string/sign_up"
             android:textAllCaps="false"
             android:textColor="@color/white"
-            android:textSize="@dimen/btSizeAll" />
+            android:textSize="@dimen/buttonGeneral" />
     </LinearLayout>
 
 </android.support.design.widget.CoordinatorLayout>

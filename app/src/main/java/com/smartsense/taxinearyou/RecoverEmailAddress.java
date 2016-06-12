@@ -29,7 +29,8 @@ import org.json.JSONObject;
 public class RecoverEmailAddress extends AppCompatActivity implements Response.Listener<JSONObject>, Response.ErrorListener, View.OnClickListener {
 
     RadioButton rbRecoverEmailAlternateEmail, rbRecoverEmailRememberEmail;
-    EditText etRecoverEmailAlternateEmail, etRecoverEmailFirstName, etRecoverEmailLastName, etRecoverEmailContact, etRecoverEmailAddress;
+    EditText etRecoverEmailAlternateEmail, etRecoverEmailFirstName, etRecoverEmailLastName,
+            etRecoverEmailContact, etRecoverEmailAddress;
     LinearLayout lyRadioButton1, lyRadioButton2;
     AlertDialog alert;
     Button btRecoverEmailSubmit;
@@ -80,13 +81,11 @@ public class RecoverEmailAddress extends AppCompatActivity implements Response.L
             case R.id.rbRecoverEmailRememberEmail:
                 lyRadioButton1.setVisibility(View.GONE);
                 lyRadioButton2.setVisibility(View.VISIBLE);
-
-
                 etRecoverEmailAlternateEmail.setText("");
                 break;
             case R.id.btRecoverEmailSubmit:
                 if (rbRecoverEmailAlternateEmail.isChecked()) {
-                    if (TextUtils.isEmpty(etRecoverEmailAlternateEmail.getText().toString()))
+                    if (!CommonUtil.isValidEmail(etRecoverEmailAlternateEmail.getText().toString()))
                         CommonUtil.showSnackBar(getString(R.string.enter_alternate), clRecoverEmail);
                     else
                         doResetEmail();
@@ -113,7 +112,6 @@ public class RecoverEmailAddress extends AppCompatActivity implements Response.L
         if (rbRecoverEmailAlternateEmail.isChecked()) {
             try {
                 builder.append(jsonData.put("emailId", etRecoverEmailAlternateEmail.getText().toString().trim()).toString());
-
                 CommonUtil.jsonRequestGET(this, getResources().getString(R.string.get_data), CommonUtil.utf8Convert(builder, Constants.Events.EVENT_FORGOT_EMAIL), tag, this, this);
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -126,7 +124,6 @@ public class RecoverEmailAddress extends AppCompatActivity implements Response.L
                 e.printStackTrace();
             }
         }
-
     }
 
     public void openDialog() {

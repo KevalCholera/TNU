@@ -280,8 +280,8 @@ public class TripDetails extends AppCompatActivity implements View.OnClickListen
             tvPopupCancelRideCancel = (TextView) dialog.findViewById(R.id.tvPopupCancelRideCancel);
             tvDialogCancelText = (TextView) dialog.findViewById(R.id.tvDialogCancelText);
 
-            String important = "<font color='#3468D6'>" + "Terms and Conditions" + "</font>";
-            String text = "<font color='#000000'>" + "You may incur charges if you cancel your booking please see " + "</font>";
+            String important = "<font color='" + ContextCompat.getColor(this, R.color.purple) + "'>" + "Terms and Conditions" + "</font>";
+            String text = "<font color='" + ContextCompat.getColor(this, R.color.black) + "'>" + "You may incur charges if you cancel your booking please see " + "</font>";
 
             Spannable span = Spannable.Factory.getInstance().newSpannable(Html.fromHtml(text + important));
             span.setSpan(new ClickableSpan() {

@@ -62,7 +62,7 @@
                         android:paddingBottom="@dimen/vPersonalInfoMarginTopBottomAll"
                         android:paddingRight="@dimen/etPersonalInfoPadding"
                         android:singleLine="true"
-                        android:textColor="@color/heading"
+                        android:textColor="@color/disable_55"
                         android:textColorHint="@color/disable_55"
                         android:textSize="@dimen/etSignUpSizeAll" />
 
@@ -89,7 +89,7 @@
                         android:paddingBottom="@dimen/vPersonalInfoMarginTopBottomAll"
                         android:paddingRight="@dimen/etPersonalInfoPadding"
                         android:singleLine="true"
-                        android:textColor="@color/heading"
+                        android:textColor="@color/disable_55"
                         android:textColorHint="@color/disable_55"
                         android:textSize="@dimen/etSignUpSizeAll" />
 
@@ -116,7 +116,7 @@
                         android:paddingBottom="@dimen/vPersonalInfoMarginTopBottomAll"
                         android:paddingRight="@dimen/etPersonalInfoPadding"
                         android:singleLine="true"
-                        android:textColor="@color/heading"
+                        android:textColor="@color/disable_55"
                         android:textColorHint="@color/disable_55"
                         android:textSize="@dimen/etSignUpSizeAll" />
 
@@ -143,7 +143,7 @@
                         android:paddingBottom="@dimen/vPersonalInfoMarginTopBottomAll"
                         android:paddingRight="@dimen/etPersonalInfoPadding"
                         android:singleLine="true"
-                        android:textColor="@color/heading"
+                        android:textColor="@color/disable_55"
                         android:textColorHint="@color/disable_55"
                         android:textSize="@dimen/etSignUpSizeAll" />
 
@@ -157,16 +157,16 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
                         android:text="@string/add_info"
-                        android:textSize="@dimen/textDetail"
-                        android:textColor="@color/background" />
+                        android:textColor="@color/background"
+                        android:textSize="@dimen/textDetail" />
 
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/e.g"
                         android:layout_marginTop="3dp"
-                        android:textColor="@color/details"
+                        android:text="@string/e.g"
+                        android:textColor="@color/disable_55"
                         android:textSize="8sp" />
 
                     <EditText
@@ -189,8 +189,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
                         android:text="@string/how_did_you_hear_about_us"
-                        android:textSize="@dimen/textDetail"
-                        android:textColor="@color/background" />
+                        android:textColor="@color/background"
+                        android:textSize="@dimen/textDetail" />
 
                     <LinearLayout
                         android:id="@+id/etInfoSocial"
@@ -228,7 +228,7 @@
                 android:text="@string/confirm_amp_next"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
-                android:textSize="@dimen/btSizeAll" />
+                android:textSize="@dimen/buttonGeneral" />
 
         </LinearLayout>
     </LinearLayout>

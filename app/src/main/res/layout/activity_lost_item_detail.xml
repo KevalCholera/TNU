@@ -6,7 +6,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:background="@color/very_light_gray"
         android:orientation="vertical">
 
@@ -36,7 +36,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
-
                     android:textColor="@color/text_color"
                     android:textSize="@dimen/textDetail" />
 
@@ -52,67 +51,54 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_marginLeft="@dimen/lyLostItemDetailsFromMarginStart"
+                android:orientation="vertical">
 
                 <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/lyLostItemDetailsFromMarginStart"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/from_"
+                        android:textColor="@color/blue_element"
+                        android:textSize="@dimen/textDetail" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/from_"
-                            android:textColor="@color/blue_element"
-                            android:textSize="@dimen/textDetail" />
-
-                        <TextView
-                            android:id="@+id/tvLostItemDetailFrom"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="8dp"
-                            android:textColor="@color/text_color"
-                            android:textSize="@dimen/textDetail" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="@dimen/lyLostItemDetailsToMarginStart"
-                        android:layout_marginTop="@dimen/lyLostItemDetailsToMarginTop"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/to_"
-                            android:textColor="@color/blue_element"
-                            android:textSize="@dimen/textDetail" />
-
-                        <TextView
-                            android:id="@+id/tvLostItemDetailTo"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="8dp"
-                            android:textColor="@color/text_color"
-                            android:textSize="@dimen/textDetail" />
-
-                    </LinearLayout>
+                    <TextView
+                        android:id="@+id/tvLostItemDetailFrom"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/fromToGaping"
+                        android:textColor="@color/text_color"
+                        android:textSize="@dimen/textDetail" />
 
                 </LinearLayout>
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@mipmap/imgtab1" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/lyLostItemDetailsToMarginStart"
+                    android:layout_marginTop="@dimen/lyLostItemDetailsToMarginTop"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/to_"
+                        android:textColor="@color/blue_element"
+                        android:textSize="@dimen/textDetail" />
+
+                    <TextView
+                        android:id="@+id/tvLostItemDetailTo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/fromToGaping"
+                        android:textColor="@color/text_color"
+                        android:textSize="@dimen/textDetail" />
+
+                </LinearLayout>
 
             </LinearLayout>
 
@@ -244,7 +230,7 @@
                         android:id="@+id/tvLostItemDetailLostItem"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="8dp"
+                        android:layout_marginLeft="@dimen/fromToGaping"
                         android:gravity="center"
                         android:textColor="@color/text_color"
                         android:textSize="@dimen/textDetail" />
@@ -265,16 +251,14 @@
                 android:layout_marginTop="@dimen/vMarginTopBottomAll"
                 android:background="@color/line_color2" />
 
-
-
         </LinearLayout>
+
         <TextView
             android:id="@+id/tvLostItemDetailStatusDescription"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/very_light_gray"
             android:gravity="center"
-            android:text="aaaa"
             android:padding="5dp"
             android:textColor="@color/text_color"
             android:textSize="15sp" />

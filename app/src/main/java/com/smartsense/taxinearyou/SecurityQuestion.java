@@ -210,10 +210,10 @@ public class SecurityQuestion extends AppCompatActivity implements View.OnClickL
                 public void onClick(View v) {
                     if (check) {
                         etSecurityQuestion1.setText(cbElementClassName.getText().toString());
-                        etSecurityQuestion1.setTag((String) cbElementClassName.getTag());
+                        etSecurityQuestion1.setTag(cbElementClassName.getTag());
                     } else {
                         etSecurityQuestion2.setText(cbElementClassName.getText().toString());
-                        etSecurityQuestion2.setTag((String) cbElementClassName.getTag());
+                        etSecurityQuestion2.setTag(cbElementClassName.getTag());
                     }
                     alert.dismiss();
                 }

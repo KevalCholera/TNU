@@ -50,7 +50,7 @@ public class ResetPassword extends AppCompatActivity implements Response.Listene
         btResetPasswordSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (TextUtils.isEmpty(etResetPasswordEmailAddress.getText().toString()))
+                if (!CommonUtil.isValidEmail(etResetPasswordEmailAddress.getText().toString()))
                     CommonUtil.showSnackBar(getString(R.string.enter_email_id), clResetPassword);
                 else {
                     CommonUtil.closeKeyboard(ResetPassword.this);

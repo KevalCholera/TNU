@@ -199,7 +199,7 @@
             <Button
                 android:id="@+id/btFeedBackSubmit"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/btSignUpAllheight"
                 android:layout_gravity="center"
                 android:background="@color/Yellow"
                 android:text="@string/submit"

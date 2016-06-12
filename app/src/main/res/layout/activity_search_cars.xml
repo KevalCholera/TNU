@@ -46,7 +46,7 @@
                 <RadioGroup
                     android:id="@+id/rbgSearchCars"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="@dimen/btSignUpAllheight"
                     android:layout_marginTop="@dimen/rgSearchCarsMarginTop"
                     android:orientation="horizontal">
 
@@ -174,7 +174,7 @@
             <LinearLayout
                 android:id="@+id/llSearchCarsFilter"
                 android:layout_width="match_parent"
-                android:layout_height="35dp"
+                android:layout_height="@dimen/btSignUpAllheight"
                 android:layout_gravity="bottom"
                 android:background="@color/colorAccent"
                 android:gravity="center"
