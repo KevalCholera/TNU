@@ -21,11 +21,12 @@ import android.widget.TextView;
 
 import com.mpt.storage.SharedPreferenceUtil;
 import com.smartsense.taxinearyou.utill.Constants;
+import com.smartsense.taxinearyou.utill.TimeActivity;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-public class Filter extends AppCompatActivity implements View.OnClickListener {
+public class Filter extends TimeActivity implements View.OnClickListener {
 
     RadioGroup rgFilterBookingType, rgFilterDistance, rgFilterVehicleType, rbgFilterRating;
     RadioButton rbFilterRating5, rbFilterRating4, rbFilterRating3, rbFilterRating2, rbFilterRating1, rbFilterRatingAll;
@@ -40,10 +41,10 @@ public class Filter extends AppCompatActivity implements View.OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_filter);
+//        setContentView(R.layout.activity_filter);
 
-        Toolbar tbFilter = (Toolbar) findViewById(R.id.tbFilter);
-        setSupportActionBar(tbFilter);
+//        Toolbar tbFilter = (Toolbar) findViewById(R.id.tbFilter);
+//        setSupportAct(tbFilter);
         getSupportActionBar().setTitle("");
 
         rgFilterVehicleType = (RadioGroup) findViewById(R.id.rgFilterVehicleType1);
@@ -110,6 +111,11 @@ public class Filter extends AppCompatActivity implements View.OnClickListener {
             e.printStackTrace();
         }
         addRadioVehical();
+    }
+
+    @Override
+    public int getLayoutResource() {
+        return R.layout.activity_partner_details;
     }
 
 
