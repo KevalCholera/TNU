@@ -118,7 +118,7 @@ public class Constants {
         public static final String FARE_COST = "fareCost";
         public static final String RECEIVE_TNU_OFFERS = "receiveTnuOffers";
         public static final String RECEIVE_ORG_OFFERS = "receiveOrgOffers";
-        public static final String SERVER_DATE_TIME = "serverDateTime";
+//        public static final String SERVER_DATE_TIME = "serverDateTime";
     }
 
     public class NavigationItems {

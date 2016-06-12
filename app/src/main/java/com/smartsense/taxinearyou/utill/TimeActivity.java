@@ -52,8 +52,8 @@ public abstract class TimeActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onDestroy() {
-        super.onDestroy();
+    public void onStop() {
+        super.onStop();
         countDownTimer.cancel();
         countDownTimer = null;
     }
@@ -64,7 +64,6 @@ public abstract class TimeActivity extends AppCompatActivity {
         if (countDownTimer == null)
             countDownStart(FragmentBook.timeRemaining);
     }
-
 
 
     @Override
@@ -92,15 +91,10 @@ public abstract class TimeActivity extends AppCompatActivity {
         countDownTimer = new CountDownTimer(timeRemaining1, 1000) {
             public void onTick(long millisUntilFinished) {
                 FragmentBook.timeRemaining = millisUntilFinished;
-//                long minutes = (millisUntilFinished % 3600) / 60;
-//                long seconds = millisUntilFinished % 60;
                 long seconds = (millisUntilFinished / 1000) % 60;
-
                 long minutes = ((millisUntilFinished - seconds) / 1000) / 60;
                 if (toolbarText != null)
                     toolbarText.setText(String.format("%02d:%02d", minutes, seconds));
-//                tvOtpCountDown.setText(String.format("%02d:%02d", minutes, seconds));
-                //here you can have your logic to set text to edittext
             }
 
             public void onFinish() {
@@ -119,8 +113,6 @@ public abstract class TimeActivity extends AppCompatActivity {
 
         }.start();
     }
-
-
 
 
 }
