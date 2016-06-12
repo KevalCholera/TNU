@@ -211,6 +211,7 @@
                             android:orientation="vertical">
 
                             <TextView
+                                android:id="@+id/tvFilterRating1"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/tvFilterRadioTextMarginTop"
@@ -218,220 +219,95 @@
                                 android:textColor="@color/white"
                                 android:textSize="@dimen/tvTitlesSizeAll" />
 
-                            <RatingBar
+                            <LinearLayout
+                                android:id="@+id/rbFeedbackRatingForDriver5"
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
-                                android:isIndicator="true"
-                                android:minHeight="25dp"
-                                android:numStars="5"
-                                android:progressDrawable="@drawable/rating_star"
-                                android:rating="5"
-                                android:stepSize="1" />
+                                android:layout_height="wrap_content">
 
-                            <RatingBar
+                                <RatingBar
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
+                                    android:clickable="true"
+                                    android:isIndicator="true"
+                                    android:minHeight="25dp"
+                                    android:numStars="5"
+                                    android:progressDrawable="@drawable/rating_star"
+                                    android:rating="5"
+                                    android:stepSize="1" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/rbFeedbackRatingForDriver4"
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
-                                android:isIndicator="true"
-                                android:minHeight="25dp"
-                                android:numStars="5"
-                                android:progressDrawable="@drawable/rating_star"
-                                android:rating="4"
-                                android:stepSize="1" />
+                                android:layout_height="wrap_content">
 
-                            <RatingBar
+                                <RatingBar
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
+                                    android:clickable="true"
+                                    android:isIndicator="true"
+                                    android:minHeight="25dp"
+                                    android:numStars="5"
+                                    android:progressDrawable="@drawable/rating_star"
+                                    android:rating="4"
+                                    android:stepSize="1" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/rbFeedbackRatingForDriver3"
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
-                                android:isIndicator="true"
-                                android:minHeight="25dp"
-                                android:numStars="5"
-                                android:progressDrawable="@drawable/rating_star"
-                                android:rating="3"
-                                android:stepSize="1" />
+                                android:layout_height="wrap_content">
 
-                            <RatingBar
+                                <RatingBar
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
+                                    android:clickable="true"
+                                    android:isIndicator="true"
+                                    android:minHeight="25dp"
+                                    android:numStars="5"
+                                    android:progressDrawable="@drawable/rating_star"
+                                    android:rating="3"
+                                    android:stepSize="1" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/rbFeedbackRatingForDriver2"
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
-                                android:isIndicator="true"
-                                android:minHeight="25dp"
-                                android:numStars="5"
-                                android:progressDrawable="@drawable/rating_star"
-                                android:rating="2"
-                                android:stepSize="1" />
+                                android:layout_height="wrap_content">
 
-                            <RatingBar
+                                <RatingBar
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
+                                    android:clickable="true"
+                                    android:isIndicator="true"
+                                    android:minHeight="25dp"
+                                    android:numStars="5"
+                                    android:progressDrawable="@drawable/rating_star"
+                                    android:rating="2"
+                                    android:stepSize="1" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/rbFeedbackRatingForDriver1"
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
-                                android:isIndicator="true"
-                                android:minHeight="25dp"
-                                android:numStars="5"
-                                android:progressDrawable="@drawable/rating_star"
-                                android:rating="1"
-                                android:stepSize="1" />
+                                android:layout_height="wrap_content">
 
-                            <!--<LinearLayout-->
-                            <!--android:layout_width="wrap_content"-->
-                            <!--android:layout_height="wrap_content"-->
-                            <!--android:layout_marginTop="@dimen/lyReviewMarginTop">-->
-
-
-                            <!--<ImageView-->
-                            <!--android:layout_width="@dimen/ratingStarWidthHeight"-->
-                            <!--android:layout_height="@dimen/ratingStarWidthHeight"-->
-                            <!--android:background="@mipmap/imgstarfilled" />-->
-
-                            <!--<ImageView-->
-                            <!--android:layout_width="@dimen/ratingStarWidthHeight"-->
-                            <!--android:layout_height="@dimen/ratingStarWidthHeight"-->
-                            <!--android:background="@mipmap/imgstarfilled" />-->
-
-                            <!--<ImageView-->
-                            <!--android:layout_width="@dimen/ratingStarWidthHeight"-->
-                            <!--android:layout_height="@dimen/ratingStarWidthHeight"-->
-                            <!--android:background="@mipmap/imgstarfilled" />-->
-
-                            <!--<ImageView-->
-                            <!--android:layout_width="@dimen/ratingStarWidthHeight"-->
-                            <!--android:layout_height="@dimen/ratingStarWidthHeight"-->
-                            <!--android:background="@mipmap/imgstarfilled" />-->
-
-                            <!--<ImageView-->
-                            <!--android:layout_width="@dimen/ratingStarWidthHeight"-->
-                            <!--android:layout_height="@dimen/ratingStarWidthHeight"-->
-                            <!--android:background="@mipmap/imgstarfilled" />-->
-                            <!--</LinearLayout>-->
-
-                            <!--<LinearLayout-->
-                            <!--android:layout_width="wrap_content"-->
-                            <!--android:layout_height="wrap_content"-->
-                            <!--android:layout_marginTop="@dimen/lyReviewMarginTop">-->
-
-
-                            <!--<ImageView-->
-                            <!--android:layout_width="@dimen/ratingStarWidthHeight"-->
-                            <!--android:layout_height="@dimen/ratingStarWidthHeight"-->
-                            <!--android:background="@mipmap/imgstarfilled" />-->
-
-                            <!--<ImageView-->
-                            <!--android:layout_width="@dimen/ratingStarWidthHeight"-->
-                            <!--android:layout_height="@dimen/ratingStarWidthHeight"-->
-                            <!--android:background="@mipmap/imgstarfilled" />-->
-
-                            <!--<ImageView-->
-                            <!--android:layout_width="@dimen/ratingStarWidthHeight"-->
-                            <!--android:layout_height="@dimen/ratingStarWidthHeight"-->
-                            <!--android:background="@mipmap/imgstarfilled" />-->
-
-                            <!--<ImageView-->
-                            <!--android:layout_width="@dimen/ratingStarWidthHeight"-->
-                            <!--android:layout_height="@dimen/ratingStarWidthHeight"-->
-                            <!--android:background="@mipmap/imgstarfilled" />-->
-
-                            <!--<ImageView-->
-                            <!--android:layout_width="@dimen/ratingStarWidthHeight"-->
-                            <!--android:layout_height="@dimen/ratingStarWidthHeight"-->
-                            <!--android:background="@mipmap/imgstarunfilled" />-->
-                            <!--</LinearLayout>-->
-
-                            <!--<LinearLayout-->
-                            <!--android:layout_width="wrap_content"-->
-                            <!--android:layout_height="wrap_content"-->
-                            <!--android:layout_marginTop="@dimen/lyReviewMarginTop">-->
-
-
-                            <!--<ImageView-->
-                            <!--android:layout_width="@dimen/ratingStarWidthHeight"-->
-                            <!--android:layout_height="@dimen/ratingStarWidthHeight"-->
-                            <!--android:background="@mipmap/imgstarfilled" />-->
-
-                            <!--<ImageView-->
-                            <!--android:layout_width="@dimen/ratingStarWidthHeight"-->
-                            <!--android:layout_height="@dimen/ratingStarWidthHeight"-->
-                            <!--android:background="@mipmap/imgstarfilled" />-->
-
-                            <!--<ImageView-->
-                            <!--android:layout_width="@dimen/ratingStarWidthHeight"-->
-                            <!--android:layout_height="@dimen/ratingStarWidthHeight"-->
-                            <!--android:background="@mipmap/imgstarfilled" />-->
-
-                            <!--<ImageView-->
-                            <!--android:layout_width="@dimen/ratingStarWidthHeight"-->
-                            <!--android:layout_height="@dimen/ratingStarWidthHeight"-->
-                            <!--android:background="@mipmap/imgstarunfilled" />-->
-
-                            <!--<ImageView-->
-                            <!--android:layout_width="@dimen/ratingStarWidthHeight"-->
-                            <!--android:layout_height="@dimen/ratingStarWidthHeight"-->
-                            <!--android:background="@mipmap/imgstarunfilled" />-->
-                            <!--</LinearLayout>-->
-
-                            <!--<LinearLayout-->
-                            <!--android:layout_width="wrap_content"-->
-                            <!--android:layout_height="wrap_content"-->
-                            <!--android:layout_marginTop="@dimen/lyReviewMarginTop">-->
-
-
-                            <!--<ImageView-->
-                            <!--android:layout_width="@dimen/ratingStarWidthHeight"-->
-                            <!--android:layout_height="@dimen/ratingStarWidthHeight"-->
-                            <!--android:background="@mipmap/imgstarfilled" />-->
-
-                            <!--<ImageView-->
-                            <!--android:layout_width="@dimen/ratingStarWidthHeight"-->
-                            <!--android:layout_height="@dimen/ratingStarWidthHeight"-->
-                            <!--android:background="@mipmap/imgstarfilled" />-->
-
-                            <!--<ImageView-->
-                            <!--android:layout_width="@dimen/ratingStarWidthHeight"-->
-                            <!--android:layout_height="@dimen/ratingStarWidthHeight"-->
-                            <!--android:background="@mipmap/imgstarunfilled" />-->
-
-                            <!--<ImageView-->
-                            <!--android:layout_width="@dimen/ratingStarWidthHeight"-->
-                            <!--android:layout_height="@dimen/ratingStarWidthHeight"-->
-                            <!--android:background="@mipmap/imgstarunfilled" />-->
-
-                            <!--<ImageView-->
-                            <!--android:layout_width="@dimen/ratingStarWidthHeight"-->
-                            <!--android:layout_height="@dimen/ratingStarWidthHeight"-->
-                            <!--android:background="@mipmap/imgstarunfilled" />-->
-                            <!--</LinearLayout>-->
-
-                            <!--<LinearLayout-->
-                            <!--android:layout_width="wrap_content"-->
-                            <!--android:layout_height="wrap_content"-->
-                            <!--android:layout_marginTop="@dimen/lyReviewMarginTop">-->
-
-
-                            <!--<ImageView-->
-                            <!--android:layout_width="@dimen/ratingStarWidthHeight"-->
-                            <!--android:layout_height="@dimen/ratingStarWidthHeight"-->
-                            <!--android:background="@mipmap/imgstarfilled" />-->
-
-                            <!--<ImageView-->
-                            <!--android:layout_width="@dimen/ratingStarWidthHeight"-->
-                            <!--android:layout_height="@dimen/ratingStarWidthHeight"-->
-                            <!--android:background="@mipmap/imgstarunfilled" />-->
-
-                            <!--<ImageView-->
-                            <!--android:layout_width="@dimen/ratingStarWidthHeight"-->
-                            <!--android:layout_height="@dimen/ratingStarWidthHeight"-->
-                            <!--android:background="@mipmap/imgstarunfilled" />-->
-
-                            <!--<ImageView-->
-                            <!--android:layout_width="@dimen/ratingStarWidthHeight"-->
-                            <!--android:layout_height="@dimen/ratingStarWidthHeight"-->
-                            <!--android:background="@mipmap/imgstarunfilled" />-->
-
-                            <!--<ImageView-->
-                            <!--android:layout_width="@dimen/ratingStarWidthHeight"-->
-                            <!--android:layout_height="@dimen/ratingStarWidthHeight"-->
-                            <!--android:background="@mipmap/imgstarunfilled" />-->
-                            <!--</LinearLayout>-->
+                                <RatingBar
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
+                                    android:clickable="true"
+                                    android:isIndicator="true"
+                                    android:minHeight="25dp"
+                                    android:numStars="5"
+                                    android:progressDrawable="@drawable/rating_star"
+                                    android:rating="1"
+                                    android:stepSize="1" />
+                            </LinearLayout>
 
                         </LinearLayout>
                     </LinearLayout>
@@ -448,7 +324,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/cbMarginTopStartPaddingTopAll"
                         android:button="@drawable/radio_button_event_booking"
-                        android:paddingLeft="@dimen/cbMarginTopStartPaddingTopAll"
                         android:text="@string/recommend"
                         android:textColor="@color/white"
                         android:textSize="14sp" />

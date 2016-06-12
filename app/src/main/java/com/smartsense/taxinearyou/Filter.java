@@ -2,11 +2,7 @@ package com.smartsense.taxinearyou;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -17,20 +13,16 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.RatingBar;
 import android.widget.TableRow;
+import android.widget.TextView;
 
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.mpt.storage.SharedPreferenceUtil;
-import com.smartsense.taxinearyou.utill.CommonUtil;
 import com.smartsense.taxinearyou.utill.Constants;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 public class Filter extends AppCompatActivity implements View.OnClickListener {
@@ -40,9 +32,10 @@ public class Filter extends AppCompatActivity implements View.OnClickListener {
     Button btFilterDone, btFilterResetAll;
     //    ImageView ivFilterCancel;
     CheckBox cbFilterRecommend;
-    //    RatingBar rbFeedbackRatingForDriver5, rbFeedbackRatingForDriver4, rbFeedbackRatingForDriver3, rbFeedbackRatingForDriver2, rbFeedbackRatingForDriver1;
+    LinearLayout rbFeedbackRatingForDriver5, rbFeedbackRatingForDriver4, rbFeedbackRatingForDriver3, rbFeedbackRatingForDriver2, rbFeedbackRatingForDriver1;
     private RadioButton rbFilterSingle;
     private JSONObject filterObj;
+    TextView tvFilterRating1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,28 +58,28 @@ public class Filter extends AppCompatActivity implements View.OnClickListener {
         rbFilterRating2 = (RadioButton) findViewById(R.id.rbFilterRating2);
         rbFilterRating1 = (RadioButton) findViewById(R.id.rbFilterRating1);
         rbFilterRatingAll = (RadioButton) findViewById(R.id.rbFilterRatingAll);
-//        rbFeedbackRatingForDriver5 = (RatingBar) findViewById(R.id.rbFeedbackRatingForDriver5);
-//        rbFeedbackRatingForDriver4 = (RatingBar) findViewById(R.id.rbFeedbackRatingForDriver4);
-//        rbFeedbackRatingForDriver3 = (RatingBar) findViewById(R.id.rbFeedbackRatingForDriver3);
-//        rbFeedbackRatingForDriver2 = (RatingBar) findViewById(R.id.rbFeedbackRatingForDriver2);
-//        rbFeedbackRatingForDriver1 = (RatingBar) findViewById(R.id.rbFeedbackRatingForDriver1);
+        rbFeedbackRatingForDriver5 = (LinearLayout) findViewById(R.id.rbFeedbackRatingForDriver5);
+        rbFeedbackRatingForDriver4 = (LinearLayout) findViewById(R.id.rbFeedbackRatingForDriver4);
+        rbFeedbackRatingForDriver3 = (LinearLayout) findViewById(R.id.rbFeedbackRatingForDriver3);
+        rbFeedbackRatingForDriver2 = (LinearLayout) findViewById(R.id.rbFeedbackRatingForDriver2);
+        rbFeedbackRatingForDriver1 = (LinearLayout) findViewById(R.id.rbFeedbackRatingForDriver1);
         cbFilterRecommend = (CheckBox) findViewById(R.id.cbFilterRecommend);
         btFilterDone = (Button) findViewById(R.id.btFilterDone);
         btFilterResetAll = (Button) findViewById(R.id.btFilterResetAll);
-//        ivFilterCancel = (ImageView) findViewById(R.id.ivFilterCancel);
-
-//        rbFeedbackRatingForDriver5.getProgressDrawable().setColorFilter(ContextCompat.getColor(this, R.color.Yellow), PorterDuff.Mode.SRC_ATOP);
-//        rbFeedbackRatingForDriver4.getProgressDrawable().setColorFilter(ContextCompat.getColor(this, R.color.Yellow), PorterDuff.Mode.SRC_ATOP);
-//        rbFeedbackRatingForDriver3.getProgressDrawable().setColorFilter(ContextCompat.getColor(this, R.color.Yellow), PorterDuff.Mode.SRC_ATOP);
-//        rbFeedbackRatingForDriver2.getProgressDrawable().setColorFilter(ContextCompat.getColor(this, R.color.Yellow), PorterDuff.Mode.SRC_ATOP);
-//        rbFeedbackRatingForDriver1.getProgressDrawable().setColorFilter(ContextCompat.getColor(this, R.color.Yellow), PorterDuff.Mode.SRC_ATOP);
+        tvFilterRating1 = (TextView) findViewById(R.id.tvFilterRating1);
 
         cbFilterRecommend.setOnClickListener(this);
         rbFilterSingle.setOnClickListener(this);
         rbFilterReturn.setOnClickListener(this);
         btFilterDone.setOnClickListener(this);
         btFilterResetAll.setOnClickListener(this);
-//        ivFilterCancel.setOnClickListener(this);
+        rbFeedbackRatingForDriver5.setOnClickListener(this);
+        rbFeedbackRatingForDriver4.setOnClickListener(this);
+        rbFeedbackRatingForDriver3.setOnClickListener(this);
+        rbFeedbackRatingForDriver2.setOnClickListener(this);
+        rbFeedbackRatingForDriver1.setOnClickListener(this);
+        tvFilterRating1.setOnClickListener(this);
+
         try {
             filterObj = new JSONObject(SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_FILTER_REQUEST, ""));
             if (filterObj.has("bookingType")) {
@@ -123,15 +116,29 @@ public class Filter extends AppCompatActivity implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-//            case R.id.ivFilterCancel:
-//                setResult(Activity.RESULT_CANCELED, new Intent());
-//                finish();
-//                break;
             case R.id.btFilterResetAll:
                 SharedPreferenceUtil.remove(Constants.PrefKeys.PREF_FILTER_REQUEST);
                 SharedPreferenceUtil.save();
                 setResult(Activity.RESULT_OK, new Intent());
                 finish();
+                break;
+            case R.id.rbFeedbackRatingForDriver5:
+                rbFilterRating5.performClick();
+                break;
+            case R.id.rbFeedbackRatingForDriver4:
+                rbFilterRating4.performClick();
+                break;
+            case R.id.rbFeedbackRatingForDriver3:
+                rbFilterRating3.performClick();
+                break;
+            case R.id.rbFeedbackRatingForDriver2:
+                rbFilterRating2.performClick();
+                break;
+            case R.id.rbFeedbackRatingForDriver1:
+                rbFilterRating1.performClick();
+                break;
+            case R.id.tvFilterRating1:
+                rbFilterRatingAll.performClick();
                 break;
             case R.id.btFilterDone:
                 int selectedId2 = rgFilterVehicleType.getCheckedRadioButtonId();

@@ -42,8 +42,8 @@ public abstract class TimeActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onStop() {
-        super.onStop();
+    public void onPause() {
+        super.onPause();
         if (countDownTimer != null)
             countDownTimer.cancel();
         countDownTimer = null;
