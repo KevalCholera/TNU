@@ -20,11 +20,6 @@
             android:background="@color/white"
             android:orientation="vertical">
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/vHeightWidthAll"
-                android:background="@color/colorPrimaryDark" />
-
             <com.smartsense.taxinearyou.utill.CircleImageView1
                 android:layout_width="@dimen/tvMarginTopBottomStartEndAll"
                 android:layout_height="@dimen/tvMarginTopBottomStartEndAll"
@@ -123,12 +118,6 @@
                 android:src="@color/element"
                 app:civ_border_color="#d2d2d2"
                 app:civ_border_width="@dimen/civTripDetailsBorderWidth" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/vHeightWidthAll"
-                android:layout_marginTop="@dimen/vMarginTopBottomAll"
-                android:background="@color/colorPrimaryDark" />
 
             <View
                 android:layout_width="match_parent"
@@ -144,12 +133,6 @@
             android:layout_weight="1"
             android:background="@color/white"
             android:orientation="vertical">
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/vHeightWidthAll"
-                android:layout_marginBottom="@dimen/vElementLostItemMarginBottom"
-                android:background="@color/colorPrimaryDark" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -355,6 +338,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_5"
                 android:layout_marginLeft="@dimen/lyElementLostItemFromToMarginStart"
                 android:orientation="horizontal">
 
@@ -377,12 +361,6 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/vHeightWidthAll"
-                android:layout_marginTop="@dimen/vMarginTopBottomAll"
-                android:background="@color/colorPrimaryDark" />
-
-            <View
-                android:layout_width="match_parent"
                 android:layout_height="@dimen/vElementLostItemHeight"
                 android:background="@color/element" />
         </LinearLayout>
@@ -395,11 +373,6 @@
             android:background="@color/white"
             android:orientation="vertical">
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/vHeightWidthAll"
-                android:background="@color/colorPrimaryDark" />
-
             <com.smartsense.taxinearyou.utill.CircleImageView1
                 android:layout_width="@dimen/tvMarginTopBottomStartEndAll"
                 android:layout_height="@dimen/tvMarginTopBottomStartEndAll"
@@ -498,12 +471,6 @@
                 android:src="@color/element"
                 app:civ_border_color="#d2d2d2"
                 app:civ_border_width="@dimen/civTripDetailsBorderWidth" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/vHeightWidthAll"
-                android:layout_marginTop="@dimen/vMarginTopBottomAll"
-                android:background="@color/colorPrimaryDark" />
 
             <View
                 android:layout_width="match_parent"

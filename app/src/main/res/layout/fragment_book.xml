@@ -132,6 +132,7 @@
             android:padding="@dimen/tvSearchAllPadding"
             android:singleLine="true"
             android:textColor="@color/black"
+            android:textColorHint="@color/hintColor"
             android:textSize="@dimen/tvSearchAllSize" />
 
         <ImageView
@@ -168,6 +169,7 @@
             android:padding="@dimen/tvSearchAllPadding"
             android:singleLine="true"
             android:textColor="@color/black"
+            android:textColorHint="@color/hintColor"
             android:textSize="@dimen/tvSearchAllSize" />
 
         <ImageView

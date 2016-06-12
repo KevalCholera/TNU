@@ -30,7 +30,6 @@
             android:layout_height="@dimen/tabSearchTabHeight"
             android:layout_gravity="bottom"
             android:background="@color/background"
-            android:scrollbars="vertical"
             app:tabBackground="@drawable/tab_color_search"
             app:tabIndicatorColor="@null"
             app:tabMode="fixed"

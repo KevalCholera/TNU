@@ -31,6 +31,7 @@ import android.widget.EditText;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -66,6 +67,7 @@ public class GooglePlaces extends FragmentActivity implements OnItemClickListene
     private static final String TYPE_AUTOCOMPLETE = "/autocomplete";
     private static final String OUT_JSON = "/json";
     private static ArrayList<String> resultList1;
+    LinearLayout lyGooglePlaceCurrentLocation;
     View viewGooglePlace;
     TextView tvGooglePlacesCancel, tvGooglePlacesCurrentLocation;
     ImageButton ibGooglePlaceEmpty;
@@ -98,15 +100,17 @@ public class GooglePlaces extends FragmentActivity implements OnItemClickListene
         dataAdapter = new GooglePlacesAutocompleteAdapter(this, R.layout.element_google);
         dataAdapter1 = new GooglePlacesAutocompleteAdapter1(this, new JSONArray());
         lvGoogleSearch.setAdapter(dataAdapter1);
+        lyGooglePlaceCurrentLocation = (LinearLayout) findViewById(R.id.lyGooglePlaceCurrentLocation);
 
         lvGoogleSearch.setTextFilterEnabled(true);
         lvGoogleSearch.setOnItemClickListener(this);
         tvGooglePlacesCancel.setOnClickListener(this);
         ibGooglePlaceEmpty.setOnClickListener(this);
         tvGooglePlacesCurrentLocation.setOnClickListener(this);
+        lyGooglePlaceCurrentLocation.setOnClickListener(this);
 
         if (getIntent() != null && getIntent().hasExtra("typeAddress") && getIntent().getIntExtra("typeAddress", 0) != 1) {
-            tvGooglePlacesCurrentLocation.setVisibility(View.GONE);
+            lyGooglePlaceCurrentLocation.setVisibility(View.GONE);
             viewGooglePlace.setVisibility(View.GONE);
         }
 
@@ -330,6 +334,9 @@ public class GooglePlaces extends FragmentActivity implements OnItemClickListene
             case R.id.tvGooglePlacesCancel:
                 finish();
                 CommonUtil.closeKeyboard(this);
+                break;
+            case R.id.lyGooglePlaceCurrentLocation:
+                tvGooglePlacesCurrentLocation.performClick();
                 break;
             case R.id.tvGooglePlacesCurrentLocation:
                 CommonUtil.closeKeyboard(GooglePlaces.this);

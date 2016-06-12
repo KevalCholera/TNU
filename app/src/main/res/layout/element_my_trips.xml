@@ -21,11 +21,6 @@
             android:background="@color/white"
             android:orientation="vertical">
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/vHeightWidthAll"
-                android:background="@color/blue_element" />
-
             <com.smartsense.taxinearyou.utill.CircleImageView1
                 android:layout_width="@dimen/tvMarginTopBottomStartEndAll"
                 android:layout_height="@dimen/tvMarginTopBottomStartEndAll"
@@ -121,11 +116,6 @@
                 app:civ_border_color="#d2d2d2"
                 app:civ_border_width="@dimen/civTripDetailsBorderWidth" />
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/vHeightWidthAll"
-                android:background="@color/blue_element" />
-
         </LinearLayout>
 
         <LinearLayout
@@ -135,11 +125,6 @@
             android:layout_weight="1"
             android:background="@color/white"
             android:orientation="vertical">
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/vHeightWidthAll"
-                android:background="@color/blue_element" />
 
             <TextView
                 android:id="@+id/tvElementMyTripsStatus"
@@ -330,11 +315,6 @@
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/vHeightWidthAll"
-                android:background="@color/blue_element" />
         </LinearLayout>
 
         <LinearLayout
@@ -344,11 +324,6 @@
             android:layout_marginLeft="@dimen/lyElementMyTripCircularViewMarginLeftRight"
             android:background="@color/white"
             android:orientation="vertical">
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/vHeightWidthAll"
-                android:background="@color/blue_element" />
 
             <com.smartsense.taxinearyou.utill.CircleImageView1
                 android:layout_width="@dimen/tvMarginTopBottomStartEndAll"
@@ -443,11 +418,6 @@
                 android:visibility="visible"
                 app:civ_border_color="#d2d2d2"
                 app:civ_border_width="@dimen/civTripDetailsBorderWidth" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/vHeightWidthAll"
-                android:background="@color/blue_element" />
 
         </LinearLayout>
     </LinearLayout>

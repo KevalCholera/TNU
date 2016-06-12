@@ -183,7 +183,7 @@ public class Constants {
 
     public class AccountSecurity {
         public static final int CHANGE_EMAIL = 1;
-        public static final int CHANGE_ALTERNET_EMAIL = 2;
+        public static final int CHANGE_ALTERNATE_EMAIL = 2;
         public static final int SECURITY_QUESTION = 4;
         public static final int CHANGE_PASSWORD = 3;
     }
