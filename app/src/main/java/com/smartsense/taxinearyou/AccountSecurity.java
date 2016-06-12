@@ -1,6 +1,5 @@
 package com.smartsense.taxinearyou;
 
-import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -31,7 +30,6 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -191,7 +189,7 @@ public class AccountSecurity extends AppCompatActivity implements View.OnClickLi
                 openOccasionsPopupOptions();
                 break;
             case R.id.btAccountSecurityChangeAlternateEmail:
-                clicked = Constants.AccountSecurity.CHANGE_ALTERNET_EMAIL;
+                clicked = Constants.AccountSecurity.CHANGE_ALTERNATE_EMAIL;
                 openOccasionsPopupOptions();
                 break;
             case R.id.btAccountSecurityChangePassword:
@@ -307,7 +305,7 @@ public class AccountSecurity extends AppCompatActivity implements View.OnClickLi
         if (clicked == Constants.AccountSecurity.CHANGE_EMAIL) {
             CommonUtil.handlerDialog(alert, lyPopUpEmail);
             btPopupSecurityEmailSubmit.setOnClickListener(AccountSecurity.this);
-        } else if (clicked == Constants.AccountSecurity.CHANGE_ALTERNET_EMAIL) {
+        } else if (clicked == Constants.AccountSecurity.CHANGE_ALTERNATE_EMAIL) {
             CommonUtil.handlerDialog(alert, lyPopUpAlternateEmail);
             btPopupSecurityAlternateEmailSubmit.setOnClickListener(AccountSecurity.this);
         } else if (clicked == Constants.AccountSecurity.SECURITY_QUESTION) {
@@ -422,7 +420,7 @@ public class AccountSecurity extends AppCompatActivity implements View.OnClickLi
 
                 if (clicked == Constants.AccountSecurity.CHANGE_EMAIL && jsonObject.optInt("__eventid") == Constants.Events.UPDATE_EMAIL)
                     alertBox(jsonObject.optString("msg"));
-                else if (clicked == Constants.AccountSecurity.CHANGE_ALTERNET_EMAIL && !TextUtils.isEmpty(etPopupSecurityAlternateEmail.getText().toString())) {
+                else if (clicked == Constants.AccountSecurity.CHANGE_ALTERNATE_EMAIL && !TextUtils.isEmpty(etPopupSecurityAlternateEmail.getText().toString())) {
                     SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_USER_ALTERNATE_EMAIL, etPopupSecurityAlternateEmail.getText().toString());
                     SharedPreferenceUtil.save();
                     setValue();

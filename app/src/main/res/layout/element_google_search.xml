@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginTop="5dp"
     android:orientation="horizontal">
 
     <ImageView
@@ -9,35 +10,38 @@
         android:layout_height="15dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="5dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="8dp"
         android:src="@mipmap/imgsearcharea" />
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="3dp"
+        android:layout_marginTop="8dp"
         android:orientation="vertical">
 
         <TextView
             android:id="@+id/tvElementGoogle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
             android:layout_marginLeft="@dimen/tvElementCardListMarginStartEnd5"
             android:textColor="#686868"
             android:textSize="@dimen/btSignInSignInSize"
-            android:text="yes"
             android:textStyle="bold" />
-
 
         <TextView
             android:id="@+id/tvElementGoogle1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/tvElementCardListMarginStartEnd5"
-            android:text="yes"
             android:textColor="@color/details"
-            android:textSize="@dimen/vSignInPasswordMarginStart" />
+            android:textSize="@dimen/textHead" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/light_Gray" />
+
     </LinearLayout>
 
 </LinearLayout>

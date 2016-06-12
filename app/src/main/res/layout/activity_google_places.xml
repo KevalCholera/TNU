@@ -2,7 +2,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     android:orientation="vertical">
 
     <LinearLayout
@@ -16,7 +15,14 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.6"
             android:background="@drawable/gray"
+            android:gravity="center"
             android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_marginLeft="@dimen/lyPadding10"
+                android:src="@mipmap/imgsearcharea" />
 
             <EditText
                 android:id="@+id/atv_places"
@@ -24,7 +30,6 @@
                 android:layout_height="@dimen/etHeightAll"
                 android:layout_weight="1"
                 android:background="@null"
-                android:drawableLeft="@mipmap/imgsearcharea"
                 android:drawablePadding="@dimen/margin_5"
                 android:ems="10"
                 android:hint="Search Area"
@@ -67,17 +72,29 @@
         android:layout_height="@dimen/vReviewTextAllMargin"
         android:background="@color/colorAccent" />
 
-    <TextView
-        android:id="@+id/tvGooglePlacesCurrentLocation"
+    <LinearLayout
+        android:id="@+id/lyGooglePlaceCurrentLocation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:drawableLeft="@mipmap/img_current_location"
-        android:drawablePadding="@dimen/lyPadding10"
-        android:gravity="center|left"
-        android:padding="@dimen/lyPadding10"
-        android:text="@string/crnt_lct"
-        android:textColor="@color/current_loc"
-        android:textSize="17dp" />
+        android:gravity="center"
+        android:padding="@dimen/lyPadding10">
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@mipmap/img_current_location" />
+
+        <TextView
+            android:id="@+id/tvGooglePlacesCurrentLocation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/lyPadding10"
+            android:gravity="center|left"
+            android:text="@string/crnt_lct"
+            android:textColor="@color/current_loc"
+            android:textSize="17dp" />
+
+    </LinearLayout>
 
     <View
         android:id="@+id/viewGooglePlace"
@@ -89,7 +106,11 @@
         android:id="@+id/lvGooglePlaces"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="0dp"
+        android:paddingLeft="@dimen/lyPadding10"
+        android:paddingRight="@dimen/lyPadding10" />
 
     <ImageView
         android:id="@+id/imageView"

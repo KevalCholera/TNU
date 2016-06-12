@@ -20,7 +20,7 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.mpt.storage.SharedPreferenceUtil;
@@ -102,28 +102,28 @@ public class Search extends AppCompatActivity {
 
     private void setupTabIcons() {
 
-        RelativeLayout linearLayout = (RelativeLayout) LayoutInflater.from(this).inflate(R.layout.element_search, null);
+        LinearLayout linearLayout = (LinearLayout) LayoutInflater.from(this).inflate(R.layout.element_search, null);
         ImageView tabIconOne = (ImageView) linearLayout.findViewById(R.id.ivElementSearch);
         tabIconOne.setImageResource(R.mipmap.ic_imgtab1_3x);
         TextView tabOne = (TextView) linearLayout.findViewById(R.id.tab);
         tabOne.setText(R.string.book);
         tbSearchTab.getTabAt(0).setCustomView(linearLayout);
 
-        RelativeLayout linearLayout1 = (RelativeLayout) LayoutInflater.from(this).inflate(R.layout.element_search, null);
+        LinearLayout linearLayout1 = (LinearLayout) LayoutInflater.from(this).inflate(R.layout.element_search, null);
         ImageView tabIconTwo = (ImageView) linearLayout1.findViewById(R.id.ivElementSearch);
         tabIconTwo.setImageResource(R.mipmap.ic_baggage);
         TextView tabTwo = (TextView) linearLayout1.findViewById(R.id.tab);
         tabTwo.setText(R.string.my_trip);
         tbSearchTab.getTabAt(1).setCustomView(linearLayout1);
 
-        RelativeLayout linearLayout2 = (RelativeLayout) LayoutInflater.from(this).inflate(R.layout.element_search, null);
+        LinearLayout linearLayout2 = (LinearLayout) LayoutInflater.from(this).inflate(R.layout.element_search, null);
         ImageView tabIconThree = (ImageView) linearLayout2.findViewById(R.id.ivElementSearch);
         tabIconThree.setImageResource(R.mipmap.coins2);
         TextView tabThree = (TextView) linearLayout2.findViewById(R.id.tab);
         tabThree.setText(R.string.credit);
         tbSearchTab.getTabAt(2).setCustomView(linearLayout2);
 
-        RelativeLayout linearLayout3 = (RelativeLayout) LayoutInflater.from(this).inflate(R.layout.element_search, null);
+        LinearLayout linearLayout3 = (LinearLayout) LayoutInflater.from(this).inflate(R.layout.element_search, null);
         ImageView tabIconFour = (ImageView) linearLayout3.findViewById(R.id.ivElementSearch);
         tabIconFour.setImageResource(R.mipmap.hamburger);
         TextView tabFour = (TextView) linearLayout3.findViewById(R.id.tab);
