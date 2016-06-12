@@ -124,7 +124,7 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
             e.printStackTrace();
         }
 
-        mTimePicker = new TimePickerDialog(getActivity(), TimePickerDialog.THEME_HOLO_LIGHT, new TimePickerDialog.OnTimeSetListener() {
+        mTimePicker = new TimePickerDialog(getActivity(), android.R.style.Theme_Light_Panel, new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
 

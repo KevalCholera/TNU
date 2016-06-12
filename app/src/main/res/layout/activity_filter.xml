@@ -4,7 +4,6 @@
     android:id="@+id/clSearchCars"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
     android:fitsSystemWindows="true">
 
     <LinearLayout
@@ -12,28 +11,22 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <android.support.design.widget.AppBarLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbarAll"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimaryDark1"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
-            <android.support.v7.widget.Toolbar
-                android:id="@+id/tbFilter"
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/toolbarText"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@color/colorPrimaryDark1">
-
-                <TextView
-                    android:id="@+id/toolbarText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="right"
-                    android:layout_marginRight="10dp"
-                    android:visibility="gone"
-                    android:text="00:00"
-                    android:textColor="@color/white" />
-            </android.support.v7.widget.Toolbar>
-
-        </android.support.design.widget.AppBarLayout>
+                android:layout_gravity="right"
+                android:layout_marginRight="10dp"
+                android:text=""
+                android:textColor="@color/white" />
+        </android.support.v7.widget.Toolbar>
 
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"

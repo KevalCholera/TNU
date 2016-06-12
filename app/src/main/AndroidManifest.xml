@@ -83,6 +83,7 @@
             android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".Filter"
+            android:label=""
             android:theme="@style/Filter_Theme"
             android:windowSoftInputMode="stateHidden" />
         <activity

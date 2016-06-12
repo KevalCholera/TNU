@@ -69,17 +69,17 @@ public class Filter extends TimeActivity implements View.OnClickListener {
         btFilterResetAll = (Button) findViewById(R.id.btFilterResetAll);
         tvFilterRating1 = (TextView) findViewById(R.id.tvFilterRating1);
 
-        cbFilterRecommend.setOnClickListener(this);
-        rbFilterSingle.setOnClickListener(this);
-        rbFilterReturn.setOnClickListener(this);
-        btFilterDone.setOnClickListener(this);
-        btFilterResetAll.setOnClickListener(this);
-        rbFeedbackRatingForDriver5.setOnClickListener(this);
-        rbFeedbackRatingForDriver4.setOnClickListener(this);
-        rbFeedbackRatingForDriver3.setOnClickListener(this);
-        rbFeedbackRatingForDriver2.setOnClickListener(this);
-        rbFeedbackRatingForDriver1.setOnClickListener(this);
-        tvFilterRating1.setOnClickListener(this);
+        cbFilterRecommend.setOnClickListener(Filter.this);
+        rbFilterSingle.setOnClickListener(Filter.this);
+        rbFilterReturn.setOnClickListener(Filter.this);
+        btFilterDone.setOnClickListener(Filter.this);
+        btFilterResetAll.setOnClickListener(Filter.this);
+        rbFeedbackRatingForDriver5.setOnClickListener(Filter.this);
+        rbFeedbackRatingForDriver4.setOnClickListener(Filter.this);
+        rbFeedbackRatingForDriver3.setOnClickListener(Filter.this);
+        rbFeedbackRatingForDriver2.setOnClickListener(Filter.this);
+        rbFeedbackRatingForDriver1.setOnClickListener(Filter.this);
+        tvFilterRating1.setOnClickListener(Filter.this);
 
         try {
             filterObj = new JSONObject(SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_FILTER_REQUEST, ""));
