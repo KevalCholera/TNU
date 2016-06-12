@@ -4,14 +4,11 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.support.design.widget.CoordinatorLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -26,7 +23,6 @@ import android.widget.TextView;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.mpt.storage.SharedPreferenceUtil;
-
 import com.smartsense.taxinearyou.utill.CommonUtil;
 import com.smartsense.taxinearyou.utill.Constants;
 import com.smartsense.taxinearyou.utill.TimeActivity;
@@ -35,8 +31,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 import java.text.ParseException;
 import java.util.ArrayList;
 
@@ -59,7 +53,7 @@ public class SearchCars extends TimeActivity implements Response.Listener<JSONOb
 
     int pageNumber = 0;
     int totalRecord = 0;
-    int pageSize = SharedPreferenceUtil.getInt(Constants.PAGE_LIMIT,9);
+    int pageSize;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +62,7 @@ public class SearchCars extends TimeActivity implements Response.Listener<JSONOb
         adapterSearchCar = null;
         pageNumber = 0;
         totalRecord = 0;
-
+        pageSize = SharedPreferenceUtil.getInt(Constants.PAGE_LIMIT,9);
         clSearchCars = (CoordinatorLayout) findViewById(R.id.clSearchCars);
         lvSearchCarsLine1 = (ListView) findViewById(R.id.lvSearchCarsLine1);
         tvSearchCarsFilter = (TextView) findViewById(R.id.tvSearchCarsFilter);

@@ -4,27 +4,16 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ListView;
 import android.widget.TextView;
 
-import com.smartsense.taxinearyou.Adapters.AdapterCard;
-import com.smartsense.taxinearyou.AddCard;
 import com.smartsense.taxinearyou.Fragments.FragmentBook;
-import com.smartsense.taxinearyou.PaymentDetails;
 import com.smartsense.taxinearyou.R;
 import com.smartsense.taxinearyou.Search;
-
-import org.json.JSONArray;
-import org.json.JSONException;
 
 public abstract class TimeActivity extends AppCompatActivity {
 
@@ -39,8 +28,7 @@ public abstract class TimeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(getLayoutResource());
         configureToolbar();
-        if (countDownTimer == null)
-            countDownStart(FragmentBook.timeRemaining);
+
 
     }
 
@@ -56,7 +44,7 @@ public abstract class TimeActivity extends AppCompatActivity {
     @Override
     public void onStop() {
         super.onStop();
-        if (countDownTimer == null)
+        if (countDownTimer != null)
             countDownTimer.cancel();
         countDownTimer = null;
     }
@@ -64,7 +52,8 @@ public abstract class TimeActivity extends AppCompatActivity {
     @Override
     public void onResume() {
         super.onResume();
-
+        if (countDownTimer ==null)
+            countDownStart(FragmentBook.timeRemaining);
     }
 
 

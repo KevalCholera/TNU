@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
-import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -14,7 +13,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
@@ -26,12 +24,10 @@ import android.widget.TextView;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.mpt.storage.SharedPreferenceUtil;
-
 import com.smartsense.taxinearyou.R;
 import com.smartsense.taxinearyou.TripDetails;
 import com.smartsense.taxinearyou.utill.CommonUtil;
 import com.smartsense.taxinearyou.utill.Constants;
-import com.smartsense.taxinearyou.utill.LocationSettingsHelper;
 import com.smartsense.taxinearyou.utill.WakeLocker;
 
 import org.json.JSONArray;
@@ -39,9 +35,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.ParseException;
-import java.util.ArrayList;
-
-import javax.xml.transform.Result;
 
 public class FragmentMyTrips extends Fragment implements Response.Listener<JSONObject>, Response.ErrorListener {
 
@@ -52,7 +45,7 @@ public class FragmentMyTrips extends Fragment implements Response.Listener<JSONO
 
     int pageNumber = 0;
     int totalRecord = 0;
-    int pageSize = SharedPreferenceUtil.getInt(Constants.PAGE_LIMIT,9);
+    int pageSize;
     int selected = 0;
     AdapterMyTrips adapterMyTrips = null;
     ProgressBar pbMyTrips;
@@ -64,6 +57,7 @@ public class FragmentMyTrips extends Fragment implements Response.Listener<JSONO
         View rootView = inflater.inflate(R.layout.fragment_my_trips, container, false);
         pageNumber = 0;
         totalRecord = 0;
+        pageSize = SharedPreferenceUtil.getInt(Constants.PAGE_LIMIT,9);
         adapterMyTrips = null;
 
         tvFragmentMyTrips = (TextView) rootView.findViewById(R.id.tvFragmentMyTrips);
