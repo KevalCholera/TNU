@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.mpt.storage.SharedPreferenceUtil;
 import com.smartsense.taxinearyou.utill.CommonUtil;
 import com.smartsense.taxinearyou.utill.Constants;
+import com.smartsense.taxinearyou.utill.TimeActivity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -21,7 +22,7 @@ import org.json.JSONObject;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 
-public class BookingInfo extends AppCompatActivity {
+public class BookingInfo extends TimeActivity {
 
     TextView tvBookInfoDate, tvBookInfoTime, tvBookInfoFrom, tvBookInfoVia1, tvBookInfoVia2, tvBookInfoTo, tvBookInfoVehicleType,
             tvBookInfoProvider, tvBookInfoPassengers, tvBookInfoLugguages, tvBookInfoETA, tvBookInfoDistance, tvBookInfoRideType,
@@ -32,7 +33,7 @@ public class BookingInfo extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_booking_info);
+//        setContentView(R.layout.activity_booking_info);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         tvBookInfoDate = (TextView) findViewById(R.id.tvBookInfoDate);
@@ -127,6 +128,11 @@ public class BookingInfo extends AppCompatActivity {
                 startActivity(new Intent(BookingInfo.this, PersonalInfo.class));
             }
         });
+    }
+
+    @Override
+    public int getLayoutResource() {
+        return R.layout.activity_booking_info;
     }
 
     @Override

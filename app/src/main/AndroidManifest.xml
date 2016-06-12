@@ -73,13 +73,13 @@
             android:name=".BookingInfo"
             android:configChanges="orientation|screenSize"
             android:label="@string/title_activity_booking_info"
-            android:theme="@style/AppTheme"
+            android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".PartnerDetails"
             android:configChanges="orientation|screenSize"
             android:label="@string/partner_rating"
-            android:theme="@style/AppTheme"
+            android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".Filter"

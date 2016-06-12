@@ -3,8 +3,11 @@ package com.smartsense.taxinearyou.Fragments;
 import android.app.Activity;
 import android.app.TimePickerDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
@@ -12,12 +15,15 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AnalogClock;
 import android.widget.BaseAdapter;
+import android.widget.DigitalClock;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextClock;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
@@ -51,12 +57,14 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
     Boolean timeHasToSetInField = true;
     Boolean onCreate = true;
     String dateTimeCanChange;
-
+    private Handler handler;
+    Calendar calendar = Calendar.getInstance();
+    public static long timeRemaining = 0;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_book, container, false);
-
+        handler = new Handler();
         tvBookFrom = (TextView) rootView.findViewById(R.id.tvBookFrom);
         tvBookTo = (TextView) rootView.findViewById(R.id.tvBookTo);
         tvBookvia1 = (TextView) rootView.findViewById(R.id.tvBookvia1);
@@ -78,6 +86,7 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
         clSearch = (CoordinatorLayout) getActivity().findViewById(R.id.clSearch);
         llBookNowTodayTomorrow = (RadioGroup) rootView.findViewById(R.id.llBookNowTodayTomorrow);
 
+
         tvBookFrom.setOnClickListener(this);
         tvBookTo.setOnClickListener(this);
         tvBookvia1.setOnClickListener(this);
@@ -97,16 +106,8 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
         ivBookDeleteVia2.setOnClickListener(this);
 
         setDefaultValues();
-        getServerDateTime();
 
         return rootView;
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        onCreate = false;
-        tvBookDateTime.setText(SharedPreferenceUtil.getString(Constants.PrefKeys.SERVER_DATE_TIME, ""));
     }
 
     public void timePicker() {
@@ -176,23 +177,27 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
 
             case R.id.rbBookNow:
                 timeHasToSetInField = true;
-                getServerDateTime();
+//                getServerDateTime();
+                setTextOnView();
                 break;
 
             case R.id.rbBookToday:
                 timeHasToSetInField = true;
-                getServerDateTime();
+//                getServerDateTime();
+                setTextOnView();
                 break;
 
             case R.id.rbBookTomorrow:
                 timeHasToSetInField = true;
-                getServerDateTime();
+//                getServerDateTime();
+                setTextOnView();
                 break;
 
             case R.id.tvBookDateTime:
                 onCreate = !rbBookNow.isChecked();
                 timeHasToSetInField = rbBookNow.isChecked();
-                getServerDateTime();
+//                getServerDateTime();
+                setTextOnView();
                 break;
 
             case R.id.tvBookSearchCars:
@@ -461,7 +466,18 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
     @Override
     public void onErrorResponse(VolleyError volleyError) {
         CommonUtil.cancelProgressDialog();
-        CommonUtil.errorToastShowing(getActivity());
+//        CommonUtil.errorToastShowing(getActivity());
+        final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setCancelable(false);
+        builder.setMessage("");
+        builder.setPositiveButton("Retry", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                getServerDateTime();
+            }
+        });
+        builder.create();
+        builder.show();
+
     }
 
     @Override
@@ -477,13 +493,8 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
                         tvBookDateTime.setText(Constants.DATE_FORMAT_SET.format(Constants.DATE_FORMAT_GET.parse(jsonObject.optJSONObject("json").optString("serverTime"))));
                     } else if (onCreate)
                         timePicker();
-
-                    if (rbBookTomorrow.isChecked()) {
-                        Calendar calendar = Calendar.getInstance();
-                        calendar.setTime(Constants.DATE_FORMAT_SET.parse(Constants.DATE_FORMAT_SET.format(Constants.DATE_FORMAT_GET.parse(jsonObject.optJSONObject("json").optString("serverTime")))));
-                        calendar.add(Calendar.DAY_OF_MONTH, 1);
-                        tvBookDateTime.setText(Constants.DATE_FORMAT_ONLY_DATE.format(calendar.getTime()) + " " + Constants.DATE_FORMAT_ONLY_TIME.format(Constants.DATE_FORMAT_GET.parse(jsonObject.optJSONObject("json").optString("serverTime"))));
-                    }
+                    calendar.setTime(Constants.DATE_FORMAT_SET.parse(Constants.DATE_FORMAT_SET.format(Constants.DATE_FORMAT_GET.parse(jsonObject.optJSONObject("json").optString("serverTime")))));
+                    updateClock();
 
                 } catch (ParseException e) {
                     e.printStackTrace();
@@ -492,5 +503,39 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
                 CommonUtil.conditionAuthentication(getActivity(), jsonObject);
         } else
             CommonUtil.jsonNullError(getActivity());
+    }
+
+    public void updateClock() {
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                calendar.add(Calendar.MINUTE, 1);
+                setTextOnView();
+                handler.postDelayed(this, 60 * 1000);
+            }
+        }, 60 * 1000);
+    }
+
+    public void setTextOnView(){
+        if (rbBookTomorrow.isChecked()) {
+            calendar.add(Calendar.DAY_OF_MONTH, 1);
+        }
+        tvBookDateTime.setText(Constants.DATE_FORMAT_ONLY_DATE1.format(calendar.getTime()));// + " " + Constants.DATE_FORMAT_ONLY_TIME.format(Constants.DATE_FORMAT_GET.parse(jsonObject.optJSONObject("json").optString("serverTime")))
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        handler.removeCallbacksAndMessages(null);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        getServerDateTime();
+        timeRemaining = 600000;
+//        tvBookDateTime.setText(SharedPreferenceUtil.getString(Constants.PrefKeys.SERVER_DATE_TIME, ""));
+        onCreate = false;
+
     }
 }

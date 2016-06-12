@@ -286,8 +286,9 @@ public class FragmentMyTrips extends Fragment implements Response.Listener<JSONO
             tvElementMyTripsStatus.setText(test.optString("status"));
             tvElementMyTripsTaxiProvider.setText(test.optString("partner"));
             try {
-                tvElementMyTripsDateTime.setText(Constants.DATE_FORMAT_DATE_TIME.format(Constants.DATE_FORMAT_SET.parse(test.optString("pickTime"))));
-            } catch (ParseException e) {
+//                tvElementMyTripsDateTime.setText(Constants.DATE_FORMAT_DATE_TIME.format(Constants.DATE_FORMAT_SET.parse(test.optString("pickTime"))));
+                tvElementMyTripsDateTime.setText(test.optString("pickTime"));
+            } catch (Exception e) {
                 e.printStackTrace();
             }
 

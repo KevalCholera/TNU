@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -28,6 +29,7 @@ import com.mpt.storage.SharedPreferenceUtil;
 
 import com.smartsense.taxinearyou.utill.CommonUtil;
 import com.smartsense.taxinearyou.utill.Constants;
+import com.smartsense.taxinearyou.utill.TimeActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -38,7 +40,7 @@ import java.net.URLEncoder;
 import java.text.ParseException;
 import java.util.ArrayList;
 
-public class SearchCars extends AppCompatActivity implements Response.Listener<JSONObject>, Response.ErrorListener, View.OnClickListener {
+public class SearchCars extends TimeActivity implements Response.Listener<JSONObject>, Response.ErrorListener, View.OnClickListener {
 
     ListView lvSearchCarsLine1;
     TextView tvSearchCarsFilter, tvSearchCarsDateTime, tvSearchNoPartnerFound;
@@ -46,7 +48,7 @@ public class SearchCars extends AppCompatActivity implements Response.Listener<J
     RadioGroup rbgSearchCars;
     ImageView ivSearchCarsFront, ivSearchCarsBack;
     LinearLayout llSearchCarsFilter, lySearchCarsDateTime, llSearchCarsNoPartner;
-
+    private Menu menu;
     String a = "Rating" + (char) 0x2191;
     String b = "Price Range" + (char) 0x2191;
     String c = "Availability" + (char) 0x2191;
@@ -62,14 +64,12 @@ public class SearchCars extends AppCompatActivity implements Response.Listener<J
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_search_cars);
+//        setContentView(R.layout.activity_search_cars);
         adapterSearchCar = null;
         pageNumber = 0;
         totalRecord = 0;
 
-        toolbarAll = (Toolbar) findViewById(R.id.toolbarAll);
-        setSupportActionBar(toolbarAll);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
 
         clSearchCars = (CoordinatorLayout) findViewById(R.id.clSearchCars);
         lvSearchCarsLine1 = (ListView) findViewById(R.id.lvSearchCarsLine1);
@@ -104,7 +104,16 @@ public class SearchCars extends AppCompatActivity implements Response.Listener<J
         SharedPreferenceUtil.remove(Constants.PrefKeys.PREF_FILTER_REQUEST);
         SharedPreferenceUtil.save();
         doPartnerList(pageNumber);
+
+
+//        countDownStart(timeRemaining);
     }
+
+    @Override
+    public int getLayoutResource() {
+        return R.layout.activity_search_cars;
+    }
+
 
     @Override
     public void onClick(View v) {
@@ -335,21 +344,6 @@ public class SearchCars extends AppCompatActivity implements Response.Listener<J
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                finish();
-                break;
-        }
-        return super.onOptionsItemSelected(item);
-
-    }
 
     public class AdapterSearchCar extends BaseAdapter {
         private JSONArray data;
@@ -489,4 +483,7 @@ public class SearchCars extends AppCompatActivity implements Response.Listener<J
             return vi;
         }
     }
+
+
+
 }

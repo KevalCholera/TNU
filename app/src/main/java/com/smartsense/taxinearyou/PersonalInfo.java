@@ -20,6 +20,7 @@ import android.widget.Spinner;
 import com.mpt.storage.SharedPreferenceUtil;
 import com.smartsense.taxinearyou.utill.CommonUtil;
 import com.smartsense.taxinearyou.utill.Constants;
+import com.smartsense.taxinearyou.utill.TimeActivity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -27,7 +28,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PersonalInfo extends AppCompatActivity implements View.OnClickListener {
+public class PersonalInfo extends TimeActivity implements View.OnClickListener {
 
     EditText etPersonalInfoName, etPersonalInfolastName, etPersonalInfoNo, etPersonalInfoEmail, etPersonalInfoAddInfo;
     LinearLayout etInfoSocial;
@@ -39,11 +40,11 @@ public class PersonalInfo extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_personal_info);
+//        setContentView(R.layout.activity_personal_info);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarAll);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarAll);
+//        setSupportActionBar(toolbar);
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 //        getSupportActionBar().getThemedContext();
 
         btInfoConfirmNext = (Button) findViewById(R.id.btInfoConfirmNext);
@@ -109,6 +110,12 @@ public class PersonalInfo extends AppCompatActivity implements View.OnClickListe
             startActivity(new Intent(PersonalInfo.this, PaymentDetails.class));
         }
     }
+
+    @Override
+    public int getLayoutResource() {
+        return R.layout.activity_personal_info;
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

@@ -19,6 +19,7 @@ import com.android.volley.VolleyError;
 import com.mpt.storage.SharedPreferenceUtil;
 import com.smartsense.taxinearyou.utill.CommonUtil;
 import com.smartsense.taxinearyou.utill.Constants;
+import com.smartsense.taxinearyou.utill.TimeActivity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -26,18 +27,18 @@ import org.json.JSONObject;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
-public class PaymentDetails extends AppCompatActivity implements View.OnClickListener, Response.Listener<JSONObject>, Response.ErrorListener {
+public class PaymentDetails extends TimeActivity implements View.OnClickListener, Response.Listener<JSONObject>, Response.ErrorListener {
 
     TextView tvPaymentTNUCredit, tvPaymentCard, tvPaymentCash, tvPaymentAmount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_payment_details);
+//        setContentView(R.layout.activity_payment_details);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarAll);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarAll);
+//        setSupportActionBar(toolbar);
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         tvPaymentTNUCredit = (TextView) findViewById(R.id.tvPaymentTNUCredit);
         tvPaymentCard = (TextView) findViewById(R.id.tvPaymentCard);
@@ -48,6 +49,11 @@ public class PaymentDetails extends AppCompatActivity implements View.OnClickLis
 
         tvPaymentCash.setOnClickListener(this);
         tvPaymentCard.setOnClickListener(this);
+    }
+
+    @Override
+    public int getLayoutResource() {
+        return R.layout.activity_payment_details;
     }
 
     @Override

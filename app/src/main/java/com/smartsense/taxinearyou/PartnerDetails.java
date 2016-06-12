@@ -22,12 +22,13 @@ import com.smartsense.taxinearyou.Fragments.FragmentReview;
 import com.smartsense.taxinearyou.utill.CircleImageView1;
 import com.smartsense.taxinearyou.utill.CommonUtil;
 import com.smartsense.taxinearyou.utill.Constants;
+import com.smartsense.taxinearyou.utill.TimeActivity;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class PartnerDetails extends AppCompatActivity {
+public class PartnerDetails extends TimeActivity {
 
     Button btPartnerBookNow;
     TextView tvPartnerMoney;
@@ -43,7 +44,7 @@ public class PartnerDetails extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_partner_details);
+//        setContentView(R.layout.activity_partner_details);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         btPartnerBookNow = (Button) findViewById(R.id.btPartnerBookNow);
@@ -83,6 +84,11 @@ public class PartnerDetails extends AppCompatActivity {
                     CommonUtil.alertBox(PartnerDetails.this, getResources().getString(R.string.msg_activate_account));
             }
         });
+    }
+
+    @Override
+    public int getLayoutResource() {
+        return R.layout.activity_partner_details;
     }
 
     private void setupViewPager(ViewPager viewPager) {

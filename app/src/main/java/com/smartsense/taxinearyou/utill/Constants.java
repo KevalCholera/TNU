@@ -36,6 +36,7 @@ public class Constants {
     public static final SimpleDateFormat DATE_FORMAT_GET = new SimpleDateFormat("dd MM yyyy HH mm ss");
     public static final SimpleDateFormat DATE_FORMAT_SEND = new SimpleDateFormat("dd-MM-yyyy HH:mm");
     public static final SimpleDateFormat DATE_FORMAT_ONLY_DATE = new SimpleDateFormat("dd-MM-yyyy");
+    public static final SimpleDateFormat DATE_FORMAT_ONLY_DATE1 = new SimpleDateFormat("dd-MM-yyyy hh:mm aa");
     public static final SimpleDateFormat DATE_FORMAT_ONLY_TIME = new SimpleDateFormat("hh:mm aa");
     public static final SimpleDateFormat DATE_FORMAT_DATE_TIME = new SimpleDateFormat("dd-MM-yyyy \n hh:mm aa");
     public static final SimpleDateFormat DATE_FORMAT_FULL_DATE_TIME_DOWN = new SimpleDateFormat("dd-MMM-yyyy \n HH:mm");
