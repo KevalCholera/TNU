@@ -19,7 +19,7 @@ public abstract class TimeActivity extends AppCompatActivity {
 
     Toolbar toolbarAll;
     TextView toolbarText;
-
+    Boolean checkFlow = false;
     CountDownTimer countDownTimer = null;
 
 
@@ -44,15 +44,18 @@ public abstract class TimeActivity extends AppCompatActivity {
     @Override
     public void onPause() {
         super.onPause();
-        if (countDownTimer != null)
-            countDownTimer.cancel();
-        countDownTimer = null;
+        checkFlow = true;
+//        if (countDownTimer != null)
+//            countDownTimer.cancel();
+//        countDownTimer = null;
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        if (countDownTimer ==null)
+        checkFlow = false;
+//        Log.i("Yes","Here "+FragmentBook.timeRemaining);
+        if (countDownTimer == null)
             countDownStart(FragmentBook.timeRemaining);
     }
 
@@ -81,7 +84,14 @@ public abstract class TimeActivity extends AppCompatActivity {
     public void countDownStart(long timeRemaining1) {
         countDownTimer = new CountDownTimer(timeRemaining1, 1000) {
             public void onTick(long millisUntilFinished) {
-                FragmentBook.timeRemaining = millisUntilFinished;
+                if (checkFlow) {
+                    if (countDownTimer != null)
+                        countDownTimer.cancel();
+                    countDownTimer = null;
+//                    Log.i("Yes","Cancel");
+                }else{
+                    FragmentBook.timeRemaining = millisUntilFinished;
+                }
                 long seconds = (millisUntilFinished / 1000) % 60;
                 long minutes = ((millisUntilFinished - seconds) / 1000) / 60;
                 if (toolbarText != null)
