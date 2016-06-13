@@ -67,8 +67,10 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
         View rootView = inflater.inflate(R.layout.fragment_book, container, false);
         handler = new Handler();
+
         tvBookFrom = (TextView) rootView.findViewById(R.id.tvBookFrom);
         tvBookTo = (TextView) rootView.findViewById(R.id.tvBookTo);
         tvBookvia1 = (TextView) rootView.findViewById(R.id.tvBookvia1);
@@ -78,7 +80,6 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
         tvBookPassenger = (TextView) rootView.findViewById(R.id.tvBookPassenger);
         tvBookSearchCars = (TextView) rootView.findViewById(R.id.tvBookSearchCars);
         rbBookNow = (RadioButton) rootView.findViewById(R.id.rbBookNow);
-        rbBookNow.setChecked(true);
         rbBookToday = (RadioButton) rootView.findViewById(R.id.rbBookToday);
         rbBookTomorrow = (RadioButton) rootView.findViewById(R.id.rbBookTomorrow);
         imgBookFromToReverse = (ImageView) rootView.findViewById(R.id.imgBookFromToReverse);
@@ -90,7 +91,7 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
         clSearch = (CoordinatorLayout) getActivity().findViewById(R.id.clSearch);
         llBookNowTodayTomorrow = (RadioGroup) rootView.findViewById(R.id.llBookNowTodayTomorrow);
 
-
+        rbBookNow.setChecked(true);
         tvBookFrom.setOnClickListener(this);
         tvBookTo.setOnClickListener(this);
         tvBookvia1.setOnClickListener(this);
@@ -359,6 +360,10 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
 
     public void setDefaultValues() {
 
+        SharedPreferenceUtil.putValue(Constants.VIA_ADDRESS, "");
+        SharedPreferenceUtil.putValue(Constants.VIA2_ADDRESS, "");
+        SharedPreferenceUtil.save();
+
         String str;
         JSONArray jsonArray;
         try {
@@ -561,9 +566,9 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
     @Override
     public void onResume() {
         super.onResume();
-        SharedPreferenceUtil.putValue(Constants.VIA_ADDRESS, "");
-        SharedPreferenceUtil.putValue(Constants.VIA2_ADDRESS, "");
-        SharedPreferenceUtil.save();
+//        SharedPreferenceUtil.putValue(Constants.VIA_ADDRESS, "");
+//        SharedPreferenceUtil.putValue(Constants.VIA2_ADDRESS, "");
+//        SharedPreferenceUtil.save();
         timeRemaining = TimeUnit.MINUTES.toMillis(SharedPreferenceUtil.getInt(Constants.SESSION_LIMIT, 9));
     }
 

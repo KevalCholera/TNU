@@ -8,7 +8,6 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -44,8 +43,6 @@ public class PartnerDetails extends TimeActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_partner_details);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         btPartnerBookNow = (Button) findViewById(R.id.btPartnerBookNow);
         tvPartnerMoney = (TextView) findViewById(R.id.tvPartnerMoney);
@@ -56,8 +53,8 @@ public class PartnerDetails extends TimeActivity {
         if (!TextUtils.isEmpty(getIntent().getStringExtra("logoPath")))
             Picasso.with(this)
                     .load(Constants.BASE_URL_IMAGE_POSTFIX + getIntent().getStringExtra("logoPath"))
-                    .error(R.mipmap.car_blue)
-                    .placeholder(R.mipmap.car_blue)
+                    .error(R.color.light_Gray)
+                    .placeholder(R.color.light_Gray)
                     .into(cvPartnerPic);
 
         tvPartnerMoney.setText(getIntent().getStringExtra("ETA"));

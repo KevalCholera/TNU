@@ -108,8 +108,8 @@ public class FragmentMenu extends Fragment implements Response.Listener<JSONObje
         if (!TextUtils.isEmpty(SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_PROIMG, "")))
             Picasso.with(getActivity())
                     .load(SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_PROIMG, ""))
-                    .error(R.mipmap.imgtnulogo)
-                    .placeholder(R.mipmap.imgtnulogo)
+                    .error(R.color.light_Gray)
+                    .placeholder(R.color.light_Gray)
                     .into(cvAccountPhoto);
 
         tvAccountPersonName.setText(SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_FULLNAME, ""));

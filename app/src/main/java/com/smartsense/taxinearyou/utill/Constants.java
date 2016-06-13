@@ -31,7 +31,7 @@ public class Constants {
     public static final String VIA2_ADDRESS = "via2_add";
     public static final String EXTRAS = "extras";
 
-//    public static final String GOOGLE_PLACE_API = "AIzaSyCp1vbSHgiC1lsNUYb-PuDs3kJ4wYEKu3I";
+    //    public static final String GOOGLE_PLACE_API = "AIzaSyCp1vbSHgiC1lsNUYb-PuDs3kJ4wYEKu3I";
     public static final String GOOGLE_PLACE_API = "AIzaSyCfaYf-IOFXl2SOEnMeYxEqpeUwNa5IKZw";
     public static final String GOOGLE_MAP_API = "AIzaSyDrWeTlPdYv-p9IfH6kHawV6s-cffgBQPI";
     public static final SimpleDateFormat DATE_FORMAT_SET = new SimpleDateFormat("dd-MM-yyyy hh:mm aa");
@@ -181,6 +181,8 @@ public class Constants {
         public static final int UNAUTHORIZED = 1002;
         public static final int SERVER_ERROR = 1004;
         public static final int UNAUTHENTICATED_OPERATION = 504;
+        public static final int SORRY_INCONVENIENCE = 502;
+
     }
 
     public class AccountSecurity {

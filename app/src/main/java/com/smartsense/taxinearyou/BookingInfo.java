@@ -2,7 +2,6 @@ package com.smartsense.taxinearyou;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -26,7 +25,7 @@ public class BookingInfo extends TimeActivity {
 
     TextView tvBookInfoDate, tvBookInfoTime, tvBookInfoFrom, tvBookInfoVia1, tvBookInfoVia2, tvBookInfoTo, tvBookInfoVehicleType,
             tvBookInfoProvider, tvBookInfoPassengers, tvBookInfoLugguages, tvBookInfoETA, tvBookInfoDistance, tvBookInfoRideType,
-            tvBookInfoCost;
+            tvBookInfoCost, tvBookingInfoVia2ChangeName;
     Button btBookingInfoConfirm;
     LinearLayout lyBookingInfoVia1, lyBookingInfoVia2, lyBookingInfoETA;
 
@@ -50,6 +49,7 @@ public class BookingInfo extends TimeActivity {
         tvBookInfoDistance = (TextView) findViewById(R.id.tvBookInfoDistance);
         tvBookInfoRideType = (TextView) findViewById(R.id.tvBookInfoRideType);
         tvBookInfoCost = (TextView) findViewById(R.id.tvBookInfoCost);
+        tvBookingInfoVia2ChangeName = (TextView) findViewById(R.id.tvBookingInfoVia2ChangeName);
         btBookingInfoConfirm = (Button) findViewById(R.id.btBookingInfoConfirm);
         lyBookingInfoVia2 = (LinearLayout) findViewById(R.id.lyBookingInfoVia2);
         lyBookingInfoVia1 = (LinearLayout) findViewById(R.id.lyBookingInfoVia1);
@@ -77,10 +77,16 @@ public class BookingInfo extends TimeActivity {
                     tvBookInfoVia1.setText(viaField1.optString("viaAreaAddress"));
                 }
                 if (!SharedPreferenceUtil.getString(Constants.VIA2_ADDRESS, "").equalsIgnoreCase("")) {
-                    JSONObject viaField1 = new JSONObject(SharedPreferenceUtil.getString(Constants.VIA2_ADDRESS, ""));
+                    JSONObject viaField2 = new JSONObject(SharedPreferenceUtil.getString(Constants.VIA2_ADDRESS, ""));
                     lyBookingInfoVia2.setVisibility(View.VISIBLE);
-                    tvBookInfoVia2.setText(viaField1.optString("viaAreaAddress"));
+                    tvBookInfoVia2.setText(viaField2.optString("viaAreaAddress"));
                 }
+
+                if (lyBookingInfoVia1.getVisibility() == View.GONE && lyBookingInfoVia2.getVisibility() == View.VISIBLE) {
+                    tvBookingInfoVia2ChangeName.setText(getResources().getString(R.string.via_1));
+                }
+
+                Log.i("NAME", SharedPreferenceUtil.getString(Constants.VIA_ADDRESS, "") + "===>" + SharedPreferenceUtil.getString(Constants.VIA2_ADDRESS, ""));
 
                 tvBookInfoVehicleType.setTag(mainData.optJSONObject("filterRequest").optString("vehicleType"));
                 tvBookInfoVehicleType.setText(mainData.optJSONObject("json").optJSONArray("partnerArray").optJSONObject(0).optJSONObject("taxiType").optString("taxiTypeName"));

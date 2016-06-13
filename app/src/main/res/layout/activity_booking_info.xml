@@ -164,6 +164,7 @@
                                 android:visibility="gone">
 
                                 <TextView
+                                    android:id="@+id/tvBookingInfoVia2ChangeName"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="@string/via_2"
@@ -271,7 +272,8 @@
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:src="@mipmap/imgpassenger" />
+                                android:layout_marginLeft="8dp"
+                                android:src="@mipmap/ic_imgpassenger" />
 
                             <LinearLayout
                                 android:layout_width="match_parent"
