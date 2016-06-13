@@ -121,7 +121,7 @@ public class AddLostItem extends AppCompatActivity implements View.OnClickListen
         if (jsonObject != null)
             if (jsonObject.optInt("status") == Constants.STATUS_SUCCESS) {
 //                CommonUtil.alertBox(this, jsonObject.optString("msg"), false, true);
-                CommonUtil.openDialogs(this, "Add Lost Item", R.id.lyPopUpYourDetail, R.id.btPopupYourDetailOk, jsonObject.optString("msg"));
+                CommonUtil.openDialogs(this, "Add Lost Item", R.id.lyPopUpYourDetail, R.id.btPopupYourDetailOk, jsonObject.optString("msg"), R.id.tvDialogAllSuccess);
 
                 setResult(RESULT_OK);
             } else {

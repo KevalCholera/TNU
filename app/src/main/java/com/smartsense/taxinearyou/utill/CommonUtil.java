@@ -260,7 +260,7 @@ public class CommonUtil {
             activity.startActivity(new Intent(activity, SignIn.class));
             activity.finish();
             activity.setTheme(R.style.AppTheme);
-        } else
+        }else
             successToastShowing(activity, jsonObject);
     }
 
@@ -583,7 +583,7 @@ public class CommonUtil {
         snackbar.show();
     }
 
-    public static void openDialogs(final Activity activity, final String buton_click, int layout, int button, String successText) {
+    public static void openDialogs(final Activity activity, final String buton_click, int layout, int button, String successText,int textViewId) {
 
         try {
             final AlertDialog.Builder alertDialogs = new AlertDialog.Builder(activity);
@@ -593,7 +593,7 @@ public class CommonUtil {
             LinearLayout linearLayout = (LinearLayout) dialog.findViewById(layout);
             Button button1 = (Button) dialog.findViewById(button);
 
-            TextView tvDialogAllSuccess = (TextView) dialog.findViewById(R.id.tvDialogAllSuccess);
+            TextView tvDialogAllSuccess = (TextView) dialog.findViewById(textViewId);
             tvDialogAllSuccess.setText(successText);
 
             linearLayout.setVisibility(View.VISIBLE);
