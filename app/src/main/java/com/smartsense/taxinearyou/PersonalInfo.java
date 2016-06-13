@@ -65,7 +65,7 @@ public class PersonalInfo extends TimeActivity implements View.OnClickListener {
         categories.add(getResources().getString(R.string.ad));
 
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<>(this, R.layout.element_personal_info_spinner, categories);
-        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
         spPersonalInfoAd.setAdapter(dataAdapter);
 
         ivPersonalInfoSpinner.setOnClickListener(this);

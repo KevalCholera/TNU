@@ -278,7 +278,7 @@
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginLeft="@dimen/lyBookingInfoMarginStartAll"
+                                android:layout_marginLeft="@dimen/_20_margin_padding"
                                 android:layout_marginTop="@dimen/tvBookingInfoPaddingMarginTopAll"
                                 android:orientation="vertical">
 

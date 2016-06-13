@@ -29,7 +29,7 @@
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
                 android:layout_gravity="center"
-                android:src="@mipmap/icon_user"
+                android:src="@mipmap/img_place_holder"
                 app:civ_border_color="@color/background"
                 app:civ_border_width="@dimen/civTripDetailsBorderWidth"
                 tools:ignore="ContentDescription,RtlHardcoded" />

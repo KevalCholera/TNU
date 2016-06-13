@@ -53,8 +53,8 @@ public class PartnerDetails extends TimeActivity {
         if (!TextUtils.isEmpty(getIntent().getStringExtra("logoPath")))
             Picasso.with(this)
                     .load(Constants.BASE_URL_IMAGE_POSTFIX + getIntent().getStringExtra("logoPath"))
-                    .error(R.mipmap.icon_user)
-                    .placeholder(R.mipmap.icon_user)
+                    .error(R.mipmap.img_place_holder)
+                    .placeholder(R.mipmap.img_place_holder)
                     .into(cvPartnerPic);
 
         tvPartnerMoney.setText(getIntent().getStringExtra("ETA"));

@@ -504,6 +504,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/btSignUpAllheight"
                 android:layout_marginBottom="@dimen/btPopupSubmitMarginTopBottom"
+                android:layout_marginLeft="@dimen/margin_5"
                 android:layout_marginTop="@dimen/btPopupSubmitMarginTopBottom"
                 android:background="@color/colorPrimary"
                 android:gravity="center"
@@ -865,8 +866,8 @@
             android:id="@+id/lyPopUpLocatedAccount"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
             android:background="@drawable/dialog_corner"
+            android:gravity="center"
             android:orientation="vertical"
             android:padding="@dimen/lyPadding10"
             android:visibility="gone">
@@ -933,7 +934,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:background="@drawable/dialog_corner"
+
             android:orientation="vertical"
             android:padding="@dimen/lyPadding10"
             android:visibility="gone">
@@ -983,7 +984,7 @@
             android:id="@+id/lyPopUpYourDetail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/dialog_corner"
+            android:background="@color/white"
             android:gravity="center"
             android:orientation="vertical"
             android:padding="@dimen/lyPadding10"
