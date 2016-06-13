@@ -72,7 +72,7 @@ public class SecurityQuestion extends AppCompatActivity implements View.OnClickL
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btSecuritySave:
-                if (TextUtils.isEmpty(etSecurityAnswer1.getText().toString()) && TextUtils.isEmpty(etSecurityAnswer2.getText().toString()))
+                if (TextUtils.isEmpty(etSecurityAnswer1.getText().toString()) || TextUtils.isEmpty(etSecurityAnswer2.getText().toString()))
                     CommonUtil.showSnackBar(getResources().getString(R.string.enter_fields_below), clSecurityQuestion);
                 else if (!cbSecurityFromPrivacyPolicy.isChecked())
                     CommonUtil.showSnackBar(getResources().getString(R.string.check_term), clSecurityQuestion);

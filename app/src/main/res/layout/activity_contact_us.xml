@@ -124,6 +124,7 @@
                 android:background="@drawable/grayborder"
                 android:gravity="top"
                 android:imeOptions="actionDone"
+                android:maxLength="200"
                 android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
                 android:textColor="@color/black"
                 android:textSize="@dimen/etSignUpSizeAll" />

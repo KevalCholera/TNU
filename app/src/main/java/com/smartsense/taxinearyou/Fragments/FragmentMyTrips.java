@@ -26,6 +26,7 @@ import com.android.volley.VolleyError;
 import com.mpt.storage.SharedPreferenceUtil;
 import com.smartsense.taxinearyou.R;
 import com.smartsense.taxinearyou.TripDetails;
+import com.smartsense.taxinearyou.utill.CircleImageView1;
 import com.smartsense.taxinearyou.utill.CommonUtil;
 import com.smartsense.taxinearyou.utill.Constants;
 import com.smartsense.taxinearyou.utill.WakeLocker;
@@ -272,7 +273,6 @@ public class FragmentMyTrips extends Fragment implements Response.Listener<JSONO
             lyElementMyTripLeft = (LinearLayout) vi.findViewById(R.id.lyElementMyTripLeft);
             lyElementMyTripRight = (LinearLayout) vi.findViewById(R.id.lyElementMyTripRight);
             final JSONObject test = data.optJSONObject(position);
-//            Log.i("Test", test.toString());
 
             tvElementMyTripsAmount.setText("£" + CommonUtil.getDecimal(test.optDouble("estimatedAmount")));
             tvElementMyTripsFrom.setText(test.optString("from"));
@@ -296,5 +296,15 @@ public class FragmentMyTrips extends Fragment implements Response.Listener<JSONO
             }
             return vi;
         }
+//        public void circularView(View vi){
+//            TextView event_class = new TextView(this.a);
+//            event_class.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, 0, 1f));
+//            event_class.setTextColor(this.a.getResources().getColor(R.color.white));
+//            event_class.setText(event_classes);
+//            event_class.setBackgroundColor(a.getResources().getColor(R.color._gray));
+//            event_class.setPadding(10, 10, 10, 10);
+//
+//            llElementDatePageEvent.addView(viewAddData);
+//        }
     }
 }

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/clGeneralInfo"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -38,6 +37,7 @@
                 android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
                 android:singleLine="true"
                 android:textColor="@color/black"
+                android:hint="@string/enter_first_name"
                 android:textSize="@dimen/textDetail" />
 
             <TextView
@@ -51,6 +51,7 @@
             <EditText
                 android:id="@+id/etGeneralLastName"
                 android:layout_width="match_parent"
+                android:hint="@string/enter_last_name"
                 android:layout_height="@dimen/etHeightAll"
                 android:layout_marginRight="@dimen/etSignUpPersonNameMarginEnd"
                 android:layout_marginTop="@dimen/etSignUpPersonNameMarginEnd"
@@ -77,6 +78,7 @@
                 android:layout_marginRight="@dimen/etSignUpPersonNameMarginEnd"
                 android:layout_marginTop="@dimen/etSignUpPersonNameMarginEnd"
                 android:background="@drawable/grayborder"
+                android:hint="@string/enter_contact_no"
                 android:digits="1234567890"
                 android:inputType="phone"
                 android:maxLength="10"

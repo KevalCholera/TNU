@@ -353,7 +353,7 @@ public class AccountSecurity extends AppCompatActivity implements View.OnClickLi
     public void passwordChanged() {
         if ((etPopupSecurityPassword.length() < 7 || etPopupSecurityPassword.length() > 15) || !CommonUtil.isLegalPassword(etPopupSecurityPassword.getText().toString()) || CommonUtil.isSpecialChar(etPopupSecurityPassword.getText().toString()))
             CommonUtil.showSnackBar(getString(R.string.enter_valid_pass), clPopUpMain);
-        else if (!etPopupSecurityConfirmPassword.getText().toString().equalsIgnoreCase(etPopupSecurityPassword.getText().toString()))
+        else if (!etPopupSecurityConfirmPassword.getText().toString().equals(etPopupSecurityPassword.getText().toString()))
             CommonUtil.showSnackBar(getString(R.string.conpass_pass_same), clPopUpMain);
         else
             changePasswordAPI();
