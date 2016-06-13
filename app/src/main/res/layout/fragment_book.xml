@@ -275,7 +275,7 @@
             android:background="@drawable/grayborder"
             android:clickable="true"
             android:drawableLeft="@mipmap/ic_imgpassenger"
-            android:drawablePadding="@dimen/tvSearchCarsPaddingTopBottom"
+            android:drawablePadding="10dp"
             android:focusable="false"
             android:gravity="fill"
             android:hint="@string/passengers"

@@ -55,12 +55,12 @@
                 android:paddingLeft="@dimen/etSignInUserPasswordPaddingStartEnd"
                 android:paddingRight="@dimen/etSignInUserPasswordPaddingStartEnd"
                 android:singleLine="true"
-                android:text="thackerronak@gmail.com"
+
                 android:textAllCaps="false"
                 android:textColor="@color/black"
                 android:textColorHint="@color/hintColor"
                 android:textSize="@dimen/etSignInUserPassSize" />
-
+            <!--android:text="thackerronak@gmail.com"-->
         </LinearLayout>
 
         <LinearLayout
@@ -100,12 +100,12 @@
                 android:paddingLeft="@dimen/etSignInUserPasswordPaddingStartEnd"
                 android:paddingRight="@dimen/etSignInUserPasswordPaddingStartEnd"
                 android:singleLine="true"
-                android:text="Abcd123"
+
                 android:textColor="@color/black"
                 android:textColorHint="@color/hintColor"
                 android:textSize="@dimen/etSignInUserPassSize" />
         </LinearLayout>
-
+        <!--android:text="Abcd123"-->
         <Button
             android:id="@+id/btSignInSignIn"
             android:layout_width="match_parent"

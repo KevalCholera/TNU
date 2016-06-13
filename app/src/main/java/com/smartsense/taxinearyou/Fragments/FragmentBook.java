@@ -5,7 +5,6 @@ import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.CoordinatorLayout;
@@ -15,15 +14,12 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AnalogClock;
 import android.widget.BaseAdapter;
-import android.widget.DigitalClock;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.TextClock;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
@@ -569,7 +565,8 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
 //        SharedPreferenceUtil.putValue(Constants.VIA_ADDRESS, "");
 //        SharedPreferenceUtil.putValue(Constants.VIA2_ADDRESS, "");
 //        SharedPreferenceUtil.save();
-        timeRemaining = TimeUnit.MINUTES.toMillis(SharedPreferenceUtil.getInt(Constants.SESSION_LIMIT, 9));
+        timeRemaining = TimeUnit.MINUTES.toMillis(1);
+//        timeRemaining = TimeUnit.MINUTES.toMillis(SharedPreferenceUtil.getInt(Constants.SESSION_LIMIT, 9));
     }
 
 

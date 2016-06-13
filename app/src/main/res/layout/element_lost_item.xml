@@ -211,7 +211,7 @@
                 android:orientation="horizontal">
 
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center"
@@ -222,6 +222,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
+
                         android:textColor="@color/text_color"
                         android:textSize="@dimen/etSignUpSizeAll" />
 
@@ -241,7 +242,7 @@
                     android:background="@color/line_color2" />
 
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
@@ -252,6 +253,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
+
                         android:textColor="@color/text_color"
                         android:textSize="@dimen/etSignUpSizeAll" />
 
@@ -271,7 +273,7 @@
                     android:background="@android:color/darker_gray" />
 
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center"
@@ -282,6 +284,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
+
                         android:textColor="@color/text_color"
                         android:textSize="@dimen/etSignUpSizeAll" />
 
@@ -307,13 +310,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/lyElementLostItemLostMarginStartTop"
-                android:layout_marginRight="@dimen/lyElementLostItemLostItemMarginEnd"
+                android:layout_marginRight="10dp"
                 android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/lost_item"
+
                     android:textColor="@color/blue_element"
                     android:textSize="@dimen/etSignUpSizeAll" />
 
@@ -339,7 +343,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/margin_5"
-                android:layout_marginLeft="@dimen/lyElementLostItemFromToMarginStart"
+                android:layout_marginLeft="10dp"
                 android:orientation="horizontal">
 
                 <TextView
