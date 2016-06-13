@@ -6,6 +6,7 @@
     android:layout_height="wrap_content"
     android:background="@color/very_light_gray"
     android:orientation="horizontal"
+    android:gravity="center_vertical"
     android:padding="@dimen/lyPadding10">
 
     <com.smartsense.taxinearyou.utill.CircleImageView1
@@ -16,43 +17,53 @@
         app:civ_border_color="@color/background"
         app:civ_border_width="@dimen/civTripDetailsBorderWidth" />
 
+    <!--<LinearLayout-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:orientation="vertical">-->
+
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/tvElementReviewCustomerName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_marginLeft="@dimen/lyPadding10"
 
-            <TextView
-                android:id="@+id/tvElementReviewCustomerName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/lyPadding10"
-                android:layout_marginRight="30dp"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="@dimen/tvElementReviewTextSize" />
 
-            <TextView
-                android:id="@+id/tvElementReviewTimeSince"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:singleLine="true"
-                android:textColor="@color/details"
-                android:textSize="@dimen/tvElementReviewTextSize" />
-
-        </LinearLayout>
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="@dimen/tvElementReviewTextSize" />
 
         <TextView
             android:id="@+id/tvElementReviewCustomerFeedback"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/lyPadding10"
             android:gravity="center_vertical"
-            android:minLines="3"
+            android:layout_marginTop="@dimen/lyPadding10"
+
             android:textColor="@color/heading"
             android:textSize="@dimen/tvElementReviewTextSize" />
+
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvElementReviewTimeSince"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:gravity="right"
+        android:layout_marginRight="@dimen/lyPadding10"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="@dimen/lyPadding10"
+        android:layout_gravity="top|right"
+
+        android:textColor="@color/details"
+        android:textSize="@dimen/tvElementReviewTextSize" />
+
+    <!--</LinearLayout>-->
 </LinearLayout>

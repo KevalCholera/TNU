@@ -45,6 +45,7 @@ public abstract class TimeActivity extends AppCompatActivity {
     public void onPause() {
         super.onPause();
         checkFlow = true;
+        FragmentBook.timeRemaining=FragmentBook.timeRemaining-500;
 //        if (countDownTimer != null)
 //            countDownTimer.cancel();
 //        countDownTimer = null;

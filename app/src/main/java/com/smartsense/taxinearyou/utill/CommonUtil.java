@@ -21,11 +21,9 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Handler;
-import android.os.PatternMatcher;
 import android.os.StrictMode;
 import android.provider.MediaStore;
 import android.support.design.widget.CoordinatorLayout;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -36,12 +34,10 @@ import android.text.Spanned;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Base64;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
@@ -54,7 +50,6 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.mpt.storage.SharedPreferenceUtil;
 import com.onesignal.OneSignal;
-import com.smartsense.taxinearyou.GooglePlaces;
 import com.smartsense.taxinearyou.R;
 import com.smartsense.taxinearyou.Search;
 import com.smartsense.taxinearyou.SignIn;
@@ -260,7 +255,7 @@ public class CommonUtil {
             activity.startActivity(new Intent(activity, SignIn.class));
             activity.finish();
             activity.setTheme(R.style.AppTheme);
-        }else
+        } else
             successToastShowing(activity, jsonObject);
     }
 
@@ -583,7 +578,7 @@ public class CommonUtil {
         snackbar.show();
     }
 
-    public static void openDialogs(final Activity activity, final String buton_click, int layout, int button, String successText,int textViewId) {
+    public static void openDialogs(final Activity activity, final String buton_click, int layout, int button, String successText, int textViewId) {
 
         try {
             final AlertDialog.Builder alertDialogs = new AlertDialog.Builder(activity);
@@ -607,8 +602,7 @@ public class CommonUtil {
                         activity.startActivity(new Intent(activity, SignIn.class));
                     else if (buton_click.equalsIgnoreCase("Payment Fail"))
                         activity.startActivity(new Intent(activity, Search.class));
-                    else
-                        alert.dismiss();
+                    alert.dismiss();
                     activity.finish();
                 }
             });

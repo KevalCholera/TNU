@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -19,7 +18,7 @@
             android:padding="@dimen/lyPadding10">
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:orientation="vertical">
@@ -31,7 +30,9 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:gravity="right"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="@dimen/tvReviewMarginEnd"
                         android:text="@string/_5"
@@ -50,8 +51,11 @@
 
                     <TextView
                         android:id="@+id/tvFragmentReview5"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_marginLeft="@dimen/tvReviewMarginEnd"
                         android:layout_height="wrap_content"
+
                         android:textSize="@dimen/tvHeadingSizeAll" />
 
                 </LinearLayout>
@@ -63,7 +67,9 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:gravity="right"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="@dimen/tvReviewMarginEnd"
                         android:text="@string/_4"
@@ -82,7 +88,9 @@
 
                     <TextView
                         android:id="@+id/tvFragmentReview4"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_marginLeft="@dimen/tvReviewMarginEnd"
                         android:layout_height="wrap_content"
                         android:textSize="@dimen/tvHeadingSizeAll" />
 
@@ -95,7 +103,9 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:gravity="right"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="@dimen/tvReviewMarginEnd"
                         android:text="@string/_3"
@@ -114,7 +124,9 @@
 
                     <TextView
                         android:id="@+id/tvFragmentReview3"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_marginLeft="@dimen/tvReviewMarginEnd"
                         android:layout_height="wrap_content"
                         android:textSize="@dimen/tvHeadingSizeAll" />
 
@@ -128,7 +140,9 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:gravity="right"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="@dimen/tvReviewMarginEnd"
                         android:text="@string/_2"
@@ -147,7 +161,9 @@
 
                     <TextView
                         android:id="@+id/tvFragmentReview2"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_marginLeft="@dimen/tvReviewMarginEnd"
                         android:layout_height="wrap_content"
                         android:textSize="@dimen/tvHeadingSizeAll" />
 
@@ -160,7 +176,9 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:gravity="right"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="@dimen/tvReviewMarginEnd"
                         android:text="@string/_1"
@@ -179,7 +197,9 @@
 
                     <TextView
                         android:id="@+id/tvFragmentReview1"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_marginLeft="@dimen/tvReviewMarginEnd"
                         android:layout_height="wrap_content"
                         android:textSize="@dimen/tvHeadingSizeAll" />
 
