@@ -468,7 +468,6 @@ public class SearchCars extends TimeActivity implements Response.Listener<JSONOb
             rbElementSearchCars.setRating(test.optInt("rating"));
             tvElementSearchCarsName.setText(test.optString("partnerName"));
             tvElementSearchCarsMoney.setText("£" + CommonUtil.getDecimal(test.optDouble("ETA")));
-            Log.i("Yes", totalRecord + " " + data.length());
             if ((position + 1) == data.length() && totalRecord != data.length()) {
                 doPartnerList(data.length());
             }

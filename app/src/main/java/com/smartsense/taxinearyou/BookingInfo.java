@@ -85,9 +85,6 @@ public class BookingInfo extends TimeActivity {
                 if (lyBookingInfoVia1.getVisibility() == View.GONE && lyBookingInfoVia2.getVisibility() == View.VISIBLE) {
                     tvBookingInfoVia2ChangeName.setText(getResources().getString(R.string.via_1));
                 }
-
-                Log.i("NAME", SharedPreferenceUtil.getString(Constants.VIA_ADDRESS, "") + "===>" + SharedPreferenceUtil.getString(Constants.VIA2_ADDRESS, ""));
-
                 tvBookInfoVehicleType.setTag(mainData.optJSONObject("filterRequest").optString("vehicleType"));
                 tvBookInfoVehicleType.setText(mainData.optJSONObject("json").optJSONArray("partnerArray").optJSONObject(0).optJSONObject("taxiType").optString("taxiTypeName"));
                 tvBookInfoProvider.setText(jsonObject.optString("partnerName"));
