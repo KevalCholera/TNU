@@ -207,6 +207,9 @@
 
         <service android:name=".push.GcmIntentService" />
 
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="73c4e2f991a9990508e872ec2b3f88a0e35f73a9" />
     </application>
 
 </manifest>

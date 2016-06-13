@@ -10,6 +10,7 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.Volley;
+import com.crashlytics.android.Crashlytics;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
@@ -18,6 +19,7 @@ import com.onesignal.OneSignal;
 import com.smartsense.taxinearyou.imageutil.BitmapCache;
 import com.smartsense.taxinearyou.imageutil.BitmapUtil;
 import com.smartsense.taxinearyou.imageutil.DiskBitmapCache;
+import io.fabric.sdk.android.Fabric;
 
 public class TaxiNearYouApp extends Application {
     private static TaxiNearYouApp appInstance;
@@ -32,6 +34,7 @@ public class TaxiNearYouApp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        Fabric.with(this, new Crashlytics());
         appInstance = this;
         this.setAppContext(getApplicationContext());
 //        register();
