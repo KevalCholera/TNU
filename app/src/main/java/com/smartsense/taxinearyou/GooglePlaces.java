@@ -40,7 +40,6 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.PlaceBuffer;
-import com.google.android.gms.location.places.Places;
 import com.smartsense.taxinearyou.utill.CommonUtil;
 import com.smartsense.taxinearyou.utill.Constants;
 import com.smartsense.taxinearyou.utill.LocationFinderService;
@@ -86,11 +85,11 @@ public class GooglePlaces extends FragmentActivity implements OnItemClickListene
         setContentView(R.layout.activity_google_places);
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
-        GoogleApiClient mGoogleApiClient = new GoogleApiClient.Builder(GooglePlaces.this)
-                .addApi(Places.GEO_DATA_API)
-                .enableAutoManage(this, 0, this)
-                .addConnectionCallbacks(this)
-                .build();
+//        GoogleApiClient mGoogleApiClient = new GoogleApiClient.Builder(GooglePlaces.this)
+//                .addApi(Places.GEO_DATA_API)
+//                .enableAutoManage(this, 0, this)
+//                .addConnectionCallbacks(this)
+//                .build();
         autoCompView = (EditText) findViewById(R.id.atv_places);
         tvGooglePlacesCancel = (TextView) findViewById(R.id.tvGooglePlacesCancel);
         ibGooglePlaceEmpty = (ImageButton) findViewById(R.id.ibGooglePlaceEmpty);
@@ -127,7 +126,8 @@ public class GooglePlaces extends FragmentActivity implements OnItemClickListene
                     ibGooglePlaceEmpty.setVisibility(View.VISIBLE);
                 else
                     ibGooglePlaceEmpty.setVisibility(View.GONE);
-                dataAdapter1.getFilter().filter(s.toString());
+
+                    dataAdapter1.getFilter().filter(s.toString());
             }
 
             @Override
@@ -252,8 +252,6 @@ public class GooglePlaces extends FragmentActivity implements OnItemClickListene
             resultList = new ArrayList<>(predsJsonArray.length());
             resultList1 = new ArrayList<>(predsJsonArray.length());
             for (int i = 0; i < predsJsonArray.length(); i++) {
-                System.out.println(predsJsonArray.optJSONObject(i));
-                System.out.println("============================================================");
                 resultList.add(predsJsonArray.optJSONObject(i).optString("description"));
                 resultList1.add(predsJsonArray.optJSONObject(i).optString("place_id"));
 
@@ -464,7 +462,7 @@ public class GooglePlaces extends FragmentActivity implements OnItemClickListene
                 @Override
                 protected FilterResults performFiltering(CharSequence constraint) {
                     FilterResults filterResults = new FilterResults();
-                    if (constraint != null) {
+                    if (constraint != null && constraint.length() > 1) {
                         // Retrieve the autocomplete results.
                         resultList1 = autocomplete1(constraint.toString());
                         // Assign the data to the FilterResults
