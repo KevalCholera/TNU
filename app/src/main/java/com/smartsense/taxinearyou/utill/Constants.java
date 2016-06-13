@@ -182,6 +182,8 @@ public class Constants {
         public static final int SERVER_ERROR = 1004;
         public static final int UNAUTHENTICATED_OPERATION = 504;
         public static final int SORRY_INCONVENIENCE = 502;
+        public static final int UNPAID_CANCEL_RIDE_CHARGE  = 522;
+        public static final int LOGGEDOUT_PARTNER   = 521;
 
     }
 

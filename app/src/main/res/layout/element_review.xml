@@ -12,6 +12,7 @@
         android:id="@+id/cvElementReviewCustomerPic"
         android:layout_width="@dimen/cvElementReviewWidthHeight"
         android:layout_height="@dimen/cvElementReviewWidthHeight"
+        android:src="@mipmap/icon_user"
         app:civ_border_color="@color/background"
         app:civ_border_width="@dimen/civTripDetailsBorderWidth" />
 

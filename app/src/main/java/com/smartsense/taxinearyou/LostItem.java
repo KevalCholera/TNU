@@ -152,8 +152,8 @@ public class LostItem extends AppCompatActivity implements View.OnClickListener,
 
     @Override
     public void onErrorResponse(VolleyError volleyError) {
-        lvLostItemList.setVisibility(View.GONE);
-        llLostItemNoItemAvailable.setVisibility(View.GONE);
+        llLostItemItemsAvailable.setVisibility(View.GONE);
+        llLostItemNoItemAvailable.setVisibility(View.VISIBLE);
         CommonUtil.errorToastShowing(this);
         CommonUtil.cancelProgressDialog();
         if (srLostItemList.isRefreshing()) {
@@ -171,13 +171,13 @@ public class LostItem extends AppCompatActivity implements View.OnClickListener,
             if (jsonObject.optInt("status") == Constants.STATUS_SUCCESS) {
                 jsonArray = jsonObject.optJSONObject("json").optJSONArray("lostItemInfoArray");
                 if (jsonArray != null && jsonArray.length() > 0) {
-                    lvLostItemList.setVisibility(View.VISIBLE);
+                    llLostItemItemsAvailable.setVisibility(View.VISIBLE);
                     llLostItemNoItemAvailable.setVisibility(View.GONE);
                     lostItemFilter(jsonArray);
 
                 } else {
-                    lvLostItemList.setVisibility(View.GONE);
-                    llLostItemNoItemAvailable.setVisibility(View.GONE);
+                    llLostItemItemsAvailable.setVisibility(View.GONE);
+                    llLostItemNoItemAvailable.setVisibility(View.VISIBLE);
                 }
             } else
                 CommonUtil.conditionAuthentication(this, jsonObject);

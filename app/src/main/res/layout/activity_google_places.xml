@@ -51,6 +51,7 @@
                 android:layout_gravity="center"
                 android:layout_marginRight="@dimen/margin_5"
                 android:background="@null"
+                android:maxHeight="20dp"
                 android:src="@mipmap/ic_cancel"
                 android:visibility="gone" />
         </LinearLayout>

@@ -466,7 +466,7 @@
     <string name="no_trip_available">No Trips Available</string>
     <string name="no_partner">No Partners are available…</string>
     <string name="session_expire">session expired. Please sign in again.</string>
-    <string name="session_expire1">session expired. Please search again.</string>
+    <string name="session_expire1">>Oops! The booking session timed out. Please start the booking again.</string>
     <string name="sel_date">Select Date and Time</string>
     <string name="sel_lug">Select Luggage</string>
     <string name="sel_passe">Select Passenger</string>
@@ -475,7 +475,9 @@
     <string name="turnDeviceGPS">Please turn on your devices gps to get your current location.</string>
     <string name="api_failed">Google Places API connection failed with error code:</string>
     <string name="google_perm_denied">Permission Denied, You cannot access location.</string>
-    <string name="searching">Searching...</string>
+    <string name="searching">Searching…</string>
+    <string name="retry">Retry</string>
+    <string name="time_get_session_out">Something went wrong. We could not get the server date &amp; time.</string>
     <string name="unavailable_to_find_place">Sorry we were unable to find your current location, please search your location.</string>
 
 </resources>

@@ -61,8 +61,8 @@ public class AdapterFragmentReview extends BaseAdapter {
         if (!TextUtils.isEmpty(jsonObject.optString("logo")))
             Picasso.with(a)
                     .load(Constants.BASE_URL_IMAGE_POSTFIX + jsonObject.optString("logo"))
-                    .error(R.mipmap.imgtnulogo)
-                    .placeholder(R.mipmap.imgtnulogo)
+                    .error(R.mipmap.icon_user)
+                    .placeholder(R.mipmap.icon_user)
                     .into(cvElementReviewCustomerPic);
 
         tvElementReviewCustomerFeedback.setText(jsonObject.optString("feedback").trim());

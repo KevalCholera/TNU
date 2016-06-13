@@ -491,8 +491,8 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
 //        CommonUtil.errorToastShowing(getActivity());
         final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setCancelable(false);
-        builder.setMessage("");
-        builder.setPositiveButton("Retry", new DialogInterface.OnClickListener() {
+        builder.setMessage(getResources().getString(R.string.time_get_session_out));
+        builder.setPositiveButton(getResources().getString(R.string.retry), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 getServerDateTime();
             }

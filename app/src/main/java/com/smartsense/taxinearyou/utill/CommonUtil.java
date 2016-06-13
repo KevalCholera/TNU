@@ -138,19 +138,6 @@ public class CommonUtil {
         builder.show();
     }
 
-    public static void alertBoxPaymentMode(final Activity context, final String msg) {
-        final AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setCancelable(false);
-        builder.setMessage(msg);
-        builder.setPositiveButton(context.getResources().getString(R.string.ok), new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                context.startActivity(new Intent(context, Search.class));
-            }
-        });
-        builder.create();
-        builder.show();
-    }
-
     static public ActionBar getActionBar(Activity a) {
         return ((AppCompatActivity) a).getSupportActionBar();
     }
@@ -273,8 +260,6 @@ public class CommonUtil {
             activity.startActivity(new Intent(activity, SignIn.class));
             activity.finish();
             activity.setTheme(R.style.AppTheme);
-        } else if (jsonObject.has("json") && jsonObject.optJSONObject("json").has("errorCode") && jsonObject.optJSONObject("json").optInt("errorCode") == Constants.ErrorCode.SORRY_INCONVENIENCE) {
-            alertBoxPaymentMode(activity, jsonObject.optString("msg"));
         } else
             successToastShowing(activity, jsonObject);
     }
@@ -620,6 +605,8 @@ public class CommonUtil {
                         activity.startActivity(new Intent(activity, Search.class));
                     else if (buton_click.equalsIgnoreCase("Recover Email"))
                         activity.startActivity(new Intent(activity, SignIn.class));
+                    else if (buton_click.equalsIgnoreCase("Payment Fail"))
+                        activity.startActivity(new Intent(activity, Search.class));
                     else
                         alert.dismiss();
                     activity.finish();

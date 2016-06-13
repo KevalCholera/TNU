@@ -39,6 +39,7 @@
                 android:layout_width="@dimen/cvAccountPhotoWidthHeight"
                 android:layout_height="@dimen/cvAccountPhotoWidthHeight"
                 android:layout_margin="@dimen/cvPartnerPicMargin"
+                android:src="@mipmap/icon_user"
                 app:civ_border_color="@color/background"
                 app:civ_border_width="@dimen/cvPartnerPic" />
 
@@ -76,7 +77,7 @@
                 android:background="@color/colorAccent"
                 android:gravity="center"
                 android:textColor="@color/white"
-                android:textSize="@dimen/btSizeAll" />
+                android:textSize="@dimen/buttonGeneral" />
 
             <Button
                 android:id="@+id/btPartnerBookNow"
@@ -87,7 +88,7 @@
                 android:text="@string/booknow"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
-                android:textSize="@dimen/btSizeAll" />
+                android:textSize="@dimen/buttonGeneral" />
 
         </LinearLayout>
     </LinearLayout>

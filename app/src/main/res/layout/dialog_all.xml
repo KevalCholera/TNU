@@ -687,7 +687,6 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/tvPopupMarginTop"
                 android:gravity="center"
-                android:text="@string/thank_you_your_ride_has_been_successfully_booked"
                 android:textColor="@color/heading"
                 android:textSize="@dimen/tvTitlesSizeAll" />
 
@@ -697,7 +696,47 @@
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/btSignUpAllheight"
                 android:layout_marginBottom="@dimen/btPopupSubmitMarginTopBottom"
-                android:layout_marginTop="@dimen/btPopupSubmitMarginTopBottom"
+                android:background="@color/colorPrimary"
+                android:gravity="center"
+                android:paddingLeft="@dimen/btPopupSubmitPaddingLeftRight"
+                android:paddingRight="@dimen/btPopupSubmitPaddingLeftRight"
+                android:text="@string/ok"
+                android:textColor="@color/white"
+                android:textSize="@dimen/buttonGeneral" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lyPopupBookError"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/lyPadding10"
+            android:background="@color/white"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="@dimen/_20_margin_padding"
+            android:visibility="gone">
+
+            <ImageView
+                android:layout_width="@dimen/ivPopImageWidthHeightAll"
+                android:layout_height="@dimen/ivPopImageWidthHeightAll"
+                android:src="@mipmap/error" />
+
+            <TextView
+                android:id="@+id/tvDialogAllError"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/tvPopupMarginTop"
+                android:gravity="center"
+                android:textColor="@color/heading"
+                android:textSize="@dimen/tvTitlesSizeAll" />
+
+            <Button
+                android:id="@+id/btPopupBookErrorOk"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/btSignUpAllheight"
+                android:layout_marginBottom="@dimen/btPopupSubmitMarginTopBottom"
                 android:background="@color/colorPrimary"
                 android:gravity="center"
                 android:paddingLeft="@dimen/btPopupSubmitPaddingLeftRight"
@@ -858,8 +897,8 @@
                 android:id="@+id/tvPopupLocatedEmail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="12sp"
-                android:textColor="@color/colorPrimary" />
+                android:textColor="@color/colorPrimary"
+                android:textSize="12sp" />
 
 
             <TextView
@@ -868,9 +907,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/tvPopupMarginTop"
                 android:gravity="center"
-                android:textSize="12sp"
                 android:text="@string/please_follow_the_instructions_to_recover_your_email_address_if_you_can_t_find_the_email_we_have_send_you_in_your_inbox_check_your_junk_mail"
-                android:textColor="@android:color/darker_gray" />
+                android:textColor="@android:color/darker_gray"
+                android:textSize="12sp" />
 
             <Button
                 android:id="@+id/btPopupLocatedBack"

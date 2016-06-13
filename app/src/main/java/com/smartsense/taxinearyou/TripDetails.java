@@ -113,8 +113,8 @@ public class TripDetails extends AppCompatActivity implements View.OnClickListen
 
             Picasso.with(this)
                     .load(Constants.BASE_URL_IMAGE_POSTFIX + tripDetails.optString("partnerLogo"))
-                    .error(R.mipmap.car_blue)
-                    .placeholder(R.mipmap.car_blue)
+                    .error(R.mipmap.icon_user)
+                    .placeholder(R.mipmap.icon_user)
                     .into(cvTripDetailsPartnerLogo);
 
             tvTripDetailBookingDate.setText(Constants.DATE_FORMAT_DATE_TIME.format(Constants.DATE_FORMAT_SET.parse(tripDetails.optString("bookingTime").trim())));
