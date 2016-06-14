@@ -26,7 +26,6 @@ import com.android.volley.VolleyError;
 import com.mpt.storage.SharedPreferenceUtil;
 import com.smartsense.taxinearyou.R;
 import com.smartsense.taxinearyou.TripDetails;
-import com.smartsense.taxinearyou.utill.CircleImageView1;
 import com.smartsense.taxinearyou.utill.CommonUtil;
 import com.smartsense.taxinearyou.utill.Constants;
 import com.smartsense.taxinearyou.utill.WakeLocker;
@@ -56,6 +55,7 @@ public class FragmentMyTrips extends Fragment implements Response.Listener<JSONO
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_my_trips, container, false);
+
         pageNumber = 0;
         totalRecord = 0;
         pageSize = SharedPreferenceUtil.getInt(Constants.PAGE_LIMIT,9);
@@ -153,10 +153,8 @@ public class FragmentMyTrips extends Fragment implements Response.Listener<JSONO
     @Override
     public void onResume() {
         super.onResume();
-//        pageNumber = 0;
-//        totalRecord = 0;
-//        adapterMyTrips = null;
-
+//        LinearLayout llToolbarAll = (LinearLayout) getActivity().findViewById(R.id.llToolbarAll);
+//        llToolbarAll.setVisibility(View.GONE);
     }
 
     @Override

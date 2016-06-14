@@ -342,4 +342,11 @@ public class FragmentMenu extends Fragment implements Response.Listener<JSONObje
         }
         super.onDestroy();
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+//        LinearLayout llToolbarAll = (LinearLayout) getActivity().findViewById(R.id.llToolbarAll);
+//        llToolbarAll.setVisibility(View.GONE);
+    }
 }

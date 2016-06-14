@@ -4,22 +4,20 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.ViewGroup;
+import android.view.View;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -45,6 +43,7 @@ public class Search extends AppCompatActivity {
     CoordinatorLayout clSearch;
     private final List<Fragment> mFragmentList = new ArrayList<>();
     private final List<String> mFragmentTitleList = new ArrayList<>();
+    private LinearLayout llToolbarAll;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,10 +52,10 @@ public class Search extends AppCompatActivity {
         registerReceiver(tripMessageReceiver, new IntentFilter(String.valueOf(Constants.Events.UPDATE_EMAIL)));
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarAll);
         setSupportActionBar(toolbar);
-
+        llToolbarAll = (LinearLayout) findViewById(R.id.llToolbarAll);
         ViewPager viewPager = (ViewPager) findViewById(R.id.vpSearchPager);
         setupViewPager(viewPager);
-
+        llToolbarAll.setVisibility(View.VISIBLE);
         clSearch = (CoordinatorLayout) findViewById(R.id.clSearch);
         tbSearchTab = (TabLayout) findViewById(R.id.tbSearchTab);
         tbSearchTab.setupWithViewPager(viewPager);
@@ -73,7 +72,10 @@ public class Search extends AppCompatActivity {
             @Override
             public void onPageSelected(int position) {
                 // TODO Auto-generated method stub
-
+                if (position == 0) {
+                    llToolbarAll.setVisibility(View.VISIBLE);
+                } else
+                    llToolbarAll.setVisibility(View.GONE);
                 getSupportActionBar().setTitle(arrayList.get(position));
             }
 

@@ -20,4 +20,11 @@ public class FragmentCredit extends Fragment {
         return rootView;
 
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+//        LinearLayout llToolbarAll = (LinearLayout) getActivity().findViewById(R.id.llToolbarAll);
+//        llToolbarAll.setVisibility(View.GONE);
+    }
 }

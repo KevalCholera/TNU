@@ -44,18 +44,24 @@ public abstract class TimeActivity extends AppCompatActivity {
     @Override
     public void onPause() {
         super.onPause();
-        checkFlow = true;
-        FragmentBook.timeRemaining=FragmentBook.timeRemaining-500;
-//        if (countDownTimer != null)
-//            countDownTimer.cancel();
-//        countDownTimer = null;
+
+//        checkFlow = true;
+//        FragmentBook.timeRemaining=FragmentBook.timeRemaining-500;
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        checkFlow = false;
+        if (countDownTimer != null)
+            countDownTimer.cancel();
+        countDownTimer = null;
     }
 
     @Override
     public void onResume() {
         super.onResume();
         checkFlow = false;
-//        Log.i("Yes","Here "+FragmentBook.timeRemaining);
         if (countDownTimer == null)
             countDownStart(FragmentBook.timeRemaining);
     }
@@ -89,8 +95,7 @@ public abstract class TimeActivity extends AppCompatActivity {
                     if (countDownTimer != null)
                         countDownTimer.cancel();
                     countDownTimer = null;
-//                    Log.i("Yes","Cancel");
-                }else{
+                } else {
                     FragmentBook.timeRemaining = millisUntilFinished;
                 }
                 long seconds = (millisUntilFinished / 1000) % 60;

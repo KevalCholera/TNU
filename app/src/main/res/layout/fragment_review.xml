@@ -41,7 +41,7 @@
 
                     <RatingBar
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="30dp"
                         android:isIndicator="true"
                         android:minHeight="15dp"
                         android:numStars="5"
@@ -78,7 +78,7 @@
 
                     <RatingBar
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="30dp"
                         android:isIndicator="true"
                         android:minHeight="20dp"
                         android:numStars="5"
@@ -114,7 +114,7 @@
 
                     <RatingBar
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="30dp"
                         android:isIndicator="true"
                         android:minHeight="20dp"
                         android:numStars="5"
@@ -151,7 +151,7 @@
 
                     <RatingBar
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="30dp"
                         android:isIndicator="true"
                         android:minHeight="20dp"
                         android:numStars="5"
@@ -187,7 +187,7 @@
 
                     <RatingBar
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="30dp"
                         android:isIndicator="true"
                         android:minHeight="20dp"
                         android:numStars="5"

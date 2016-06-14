@@ -562,11 +562,13 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
     @Override
     public void onResume() {
         super.onResume();
-//        SharedPreferenceUtil.putValue(Constants.VIA_ADDRESS, "");
-//        SharedPreferenceUtil.putValue(Constants.VIA2_ADDRESS, "");
-//        SharedPreferenceUtil.save();
-        timeRemaining = TimeUnit.MINUTES.toMillis(1);
-//        timeRemaining = TimeUnit.MINUTES.toMillis(SharedPreferenceUtil.getInt(Constants.SESSION_LIMIT, 9));
+        SharedPreferenceUtil.putValue(Constants.VIA_ADDRESS, "");
+        SharedPreferenceUtil.putValue(Constants.VIA2_ADDRESS, "");
+        SharedPreferenceUtil.save();
+//        LinearLayout llToolbarAll = (LinearLayout) getActivity().findViewById(R.id.llToolbarAll);
+//        llToolbarAll.setVisibility(View.VISIBLE);
+//        timeRemaining = TimeUnit.MINUTES.toMillis(1);
+        timeRemaining = TimeUnit.MINUTES.toMillis(SharedPreferenceUtil.getInt(Constants.SESSION_LIMIT, 9));
     }
 
 
