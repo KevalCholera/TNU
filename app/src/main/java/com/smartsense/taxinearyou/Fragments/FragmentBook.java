@@ -11,6 +11,7 @@ import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -131,15 +132,14 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
                         Date dateServerTime, dateGetTime;
                         dateServerTime = Constants.DATE_FORMAT_ONLY_TIME.parse(Constants.DATE_FORMAT_ONLY_TIME.format(Constants.DATE_FORMAT_SET.parse(dateTimeCanChange)));
                         dateGetTime = Constants.DATE_FORMAT_ONLY_TIME.parse(time);
-                        long milliServerTime = dateServerTime.getTime();
-//                        long milliServerTime = calendar1.getTime().getTime();
+                        long milliServerTime = dateServerTime.getTime() + 1800000;
                         long milliGetTime = dateGetTime.getTime();
                         if (milliGetTime >= milliServerTime) {
                             tvBookDateTime.setText(Constants.DATE_FORMAT_ONLY_DATE.format(Constants.DATE_FORMAT_SET.parse(dateTimeCanChange)) + " " + time);
                             calendarToday = Calendar.getInstance();
                             calendarToday.setTime(Constants.DATE_FORMAT_SET.parse(dateTimeCanChange + " " + time));
                         } else
-                            CommonUtil.byToastMessage(getActivity(), getResources().getString(R.string.invalid_time));
+                            CommonUtil.byToastMessage(getActivity(), getResources().getString(R.string.time_limit));
 
                     } else {
                         Calendar calendar = Calendar.getInstance();
@@ -484,7 +484,6 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
     @Override
     public void onErrorResponse(VolleyError volleyError) {
         CommonUtil.cancelProgressDialog();
-//        CommonUtil.errorToastShowing(getActivity());
         final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setCancelable(false);
         builder.setMessage(getResources().getString(R.string.time_get_session_out));
@@ -529,7 +528,7 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
             public void run() {
                 calendar.add(Calendar.MINUTE, 1);
                 calendar1.add(Calendar.MINUTE, 1);
-                dateTimeCanChange = Constants.DATE_FORMAT_ONLY_DATE1.format(calendar.getTime());
+                dateTimeCanChange = Constants.DATE_FORMAT_SET.format(calendar.getTime());
                 setTextOnView();
                 handler.postDelayed(this, 60 * 1000);
             }
@@ -537,6 +536,8 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
     }
 
     public void setTextOnView() {
+        calendar.setTime(calendar1.getTime());
+
         if (rbBookToday.isChecked() && calendarToday != null) {
             long milliServerTime = calendar1.getTime().getTime();
             long milliGetTime = calendarToday.getTime().getTime();
@@ -545,12 +546,14 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
                 calendarToday = null;
             }
         }
-        calendar.setTime(calendar1.getTime());
         if (rbBookTomorrow.isChecked()) {
             calendar.add(Calendar.DAY_OF_MONTH, 1);
         }
-        if (!isUserTimeSelect)
-            tvBookDateTime.setText(Constants.DATE_FORMAT_ONLY_DATE1.format(calendar.getTime()));// + " " + Constants.DATE_FORMAT_ONLY_TIME.format(Constants.DATE_FORMAT_GET.parse(jsonObject.optJSONObject("json").optString("serverTime")))
+        if (!isUserTimeSelect) {
+            if (rbBookToday.isChecked())
+                calendar.add(Calendar.MINUTE, 30);
+            tvBookDateTime.setText(Constants.DATE_FORMAT_SET.format(calendar.getTime()));// + " " + Constants.DATE_FORMAT_ONLY_TIME.format(Constants.DATE_FORMAT_GET.parse(jsonObject.optJSONObject("json").optString("serverTime")))
+        }
     }
 
     @Override

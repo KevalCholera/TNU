@@ -472,6 +472,7 @@
     <string name="sel_passe">Select Passenger</string>
     <string name="inter_error">Internet Error</string>
     <string name="invalid_time">Invalid Time</string>
+    <string name="time_limit">Selected Time should be 30+ minutes</string>
     <string name="turnDeviceGPS">Please turn on your devices gps to get your current location.</string>
     <string name="api_failed">Google Places API connection failed with error code:</string>
     <string name="google_perm_denied">Permission Denied, You cannot access location.</string>

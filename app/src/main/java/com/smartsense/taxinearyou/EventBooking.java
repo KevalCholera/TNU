@@ -92,28 +92,33 @@ public class EventBooking extends AppCompatActivity implements Response.Listener
         rbEventBookingOneWay.setOnClickListener(this);
         etEventBookingEventDuration.setOnClickListener(null);
         check = true;
-        setValue();
+        setValue(true);
         getServerDateTime();
     }
 
-    public void setValue() {
+    public void setValue(boolean check) {
         try {
             JSONArray jsonLuggage = new JSONArray(SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_EVENT_lUGGAGE_LIST, ""));
             JSONArray jsonDuration = new JSONArray(SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_EVENT_DURATION, ""));
             JSONArray jsonPassenger = new JSONArray(SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_EVENT_PASSENGER_LIST, ""));
             JSONArray jsonVehicleType = new JSONArray(SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_EVENT_VEHICLE_TYPE, ""));
 
-            etEventBookingEventLuggage.setText(jsonLuggage.optJSONObject(0).optString("name"));
-            etEventBookingEventLuggage.setTag(jsonLuggage.optJSONObject(0).optString("id"));
+            if (check) {
+                etEventBookingEventLuggage.setText(jsonLuggage.optJSONObject(0).optString("name"));
+                etEventBookingEventLuggage.setTag(jsonLuggage.optJSONObject(0).optString("id"));
 
-            etEventBookingEventDuration.setText(jsonDuration.optJSONObject(0).optString("name"));
-            etEventBookingEventDuration.setTag(jsonLuggage.optJSONObject(0).optString("id"));
+                etEventBookingEventDuration.setText(jsonDuration.optJSONObject(0).optString("name"));
+                etEventBookingEventDuration.setTag(jsonLuggage.optJSONObject(0).optString("id"));
 
-            etEventBookingPassengers.setText(jsonPassenger.optJSONObject(0).optString("name"));
-            etEventBookingPassengers.setTag(jsonLuggage.optJSONObject(0).optString("id"));
+                etEventBookingPassengers.setText(jsonPassenger.optJSONObject(0).optString("name"));
+                etEventBookingPassengers.setTag(jsonLuggage.optJSONObject(0).optString("id"));
 
-            etEventBookingVehicleType.setText(jsonVehicleType.optJSONObject(0).optString("name"));
-            etEventBookingVehicleType.setTag(jsonLuggage.optJSONObject(0).optString("id"));
+                etEventBookingVehicleType.setText(jsonVehicleType.optJSONObject(0).optString("name"));
+                etEventBookingVehicleType.setTag(jsonLuggage.optJSONObject(0).optString("id"));
+            } else {
+                etEventBookingEventDuration.setText(jsonDuration.optJSONObject(0).optString("name"));
+                etEventBookingEventDuration.setTag(jsonLuggage.optJSONObject(0).optString("id"));
+            }
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -298,6 +303,7 @@ public class EventBooking extends AppCompatActivity implements Response.Listener
             case R.id.rbEventBookingOneWay:
                 etEventBookingEventDuration.setTextColor(ContextCompat.getColor(this, R.color.hintColor));
                 etEventBookingEventDuration.setOnClickListener(null);
+                setValue(false);
                 break;
 
             case R.id.rbEventBookingReturn:

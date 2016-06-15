@@ -49,11 +49,13 @@ public class ContactUs extends AppCompatActivity implements Response.Listener<JS
     }
 
     public void submitContact(View view) {
-        if (TextUtils.isEmpty(etContactUsName.getText().toString()))
+        if (TextUtils.isEmpty(etContactUsName.getText().toString()) && TextUtils.isEmpty(etContactUsMobile.getText().toString()) && TextUtils.isEmpty(etContactUsEmail.getText().toString()) && TextUtils.isEmpty(etContactUsEmail.getText().toString()) && TextUtils.isEmpty(etContactUsSubject.getText().toString()) && TextUtils.isEmpty(etContactUsMessage.getText().toString()))
+            CommonUtil.showSnackBar(getResources().getString(R.string.enter_fields_below), clContactUs);
+        else if (TextUtils.isEmpty(etContactUsName.getText().toString()))
             CommonUtil.showSnackBar(getResources().getString(R.string.enter_first_name), clContactUs);
         else if (etContactUsMobile.length() != 10)
             CommonUtil.showSnackBar(getResources().getString(R.string.enter_con), clContactUs);
-        else if (CommonUtil.isValidEmail(etContactUsEmail.getText().toString()))
+        else if (!CommonUtil.isValidEmail(etContactUsEmail.getText().toString()))
             CommonUtil.showSnackBar(getResources().getString(R.string.enter_email_id), clContactUs);
         else if (TextUtils.isEmpty(etContactUsSubject.getText().toString()))
             CommonUtil.showSnackBar(getResources().getString(R.string.enter_sub), clContactUs);
@@ -114,7 +116,7 @@ public class ContactUs extends AppCompatActivity implements Response.Listener<JS
                 if (!jsonObject.optJSONObject("json").optString("isAvailable").equalsIgnoreCase("1"))
                     CommonUtil.showSnackBar(jsonObject.optString("msg"), clContactUs);
                 else if (jsonObject.optString("__eventId").equalsIgnoreCase(Constants.Events.CONTACT_US + ""))
-                    CommonUtil.showSnackBar(jsonObject.optString("msg"), clContactUs);
+                    CommonUtil.alertBox(this,jsonObject.optString("msg"));
             } else
                 CommonUtil.conditionAuthentication(this, jsonObject);
         else

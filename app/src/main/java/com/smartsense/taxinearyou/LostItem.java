@@ -17,6 +17,7 @@ import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RadioButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Response;
@@ -35,6 +36,7 @@ import org.json.JSONObject;
 public class LostItem extends AppCompatActivity implements View.OnClickListener, Response.Listener<JSONObject>, Response.ErrorListener {
 
     ListView lvLostItemList;
+    TextView tvLostItemNoItemText;
     RadioButton rbLostItemOnGoing, rbLostItemFound, rbLostItemNotFound;
     LinearLayout llLostItemNoItemAvailable, llLostItemItemsAvailable;
     int which_clicked = Constants.LostItem.ON_GOING;
@@ -57,6 +59,7 @@ public class LostItem extends AppCompatActivity implements View.OnClickListener,
         llLostItemNoItemAvailable = (LinearLayout) findViewById(R.id.llLostItemNoItemAvailable);
         llLostItemItemsAvailable = (LinearLayout) findViewById(R.id.llLostItemItemsAvailable);
         lvLostItemList = (ListView) findViewById(R.id.lvLostItemList);
+        tvLostItemNoItemText = (TextView) findViewById(R.id.tvLostItemNoItemText);
 
         lvLostItemList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -178,6 +181,7 @@ public class LostItem extends AppCompatActivity implements View.OnClickListener,
                 } else {
                     llLostItemItemsAvailable.setVisibility(View.GONE);
                     llLostItemNoItemAvailable.setVisibility(View.VISIBLE);
+                    tvLostItemNoItemText.setText(jsonObject.optString("msg"));
                 }
             } else
                 CommonUtil.conditionAuthentication(this, jsonObject);
