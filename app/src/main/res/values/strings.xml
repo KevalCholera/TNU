@@ -466,7 +466,7 @@
     <string name="no_trip_available">No Trips Available</string>
     <string name="no_partner">No Partners are available…</string>
     <string name="session_expire">session expired. Please sign in again.</string>
-    <string name="session_expire1">>Oops! The booking session timed out. Please start the booking again.</string>
+    <string name="session_expire1">Oops! The booking session timed out. Please start the booking again.</string>
     <string name="sel_date">Select Date and Time</string>
     <string name="sel_lug">Select Luggage</string>
     <string name="sel_passe">Select Passenger</string>

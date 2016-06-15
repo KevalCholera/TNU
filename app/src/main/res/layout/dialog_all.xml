@@ -781,7 +781,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/tvPopupMarginTop"
                 android:gravity="center"
-                android:textSize="@dimen/tvHeadingSizeAll" />
+                android:textSize="@dimen/text15" />
 
             <LinearLayout
                 android:layout_width="match_parent"
