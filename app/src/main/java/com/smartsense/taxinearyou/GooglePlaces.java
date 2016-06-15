@@ -127,7 +127,7 @@ public class GooglePlaces extends FragmentActivity implements OnItemClickListene
                 else
                     ibGooglePlaceEmpty.setVisibility(View.GONE);
 
-                    dataAdapter1.getFilter().filter(s.toString());
+                dataAdapter1.getFilter().filter(s.toString());
             }
 
             @Override
@@ -735,11 +735,13 @@ public class GooglePlaces extends FragmentActivity implements OnItemClickListene
                 if (jsonObj1.has("address_components")) {
                     JSONArray jsonArray = jsonObj1.optJSONArray("address_components");
                     for (int i = 0; i < jsonArray.length(); i++) {
-                        if (jsonArray.optJSONObject(i).optJSONArray("types").optString(0).equalsIgnoreCase("postal_code")) {
-                            AreaPostalCode = jsonArray.optJSONObject(i).optString("long_name");
-                        }
-                        if (jsonArray.optJSONObject(i).optJSONArray("types").optString(0).equalsIgnoreCase("postal_town") || jsonArray.optJSONObject(i).optJSONArray("types").optString(0).equalsIgnoreCase("locality")) {
-                            AreaCity = jsonArray.optJSONObject(i).optString("long_name");
+                        for (int j = 0; j < jsonArray.optJSONObject(i).optJSONArray("types").length(); j++) {
+                            if (jsonArray.optJSONObject(i).optJSONArray("types").optString(j).equalsIgnoreCase("postal_code")) {
+                                AreaPostalCode = jsonArray.optJSONObject(i).optString("long_name");
+                            }
+                            if (jsonArray.optJSONObject(i).optJSONArray("types").optString(j).equalsIgnoreCase("postal_town") || jsonArray.optJSONObject(i).optJSONArray("types").optString(0).equalsIgnoreCase("locality")) {
+                                AreaCity = jsonArray.optJSONObject(i).optString("long_name");
+                            }
                         }
 
                     }
