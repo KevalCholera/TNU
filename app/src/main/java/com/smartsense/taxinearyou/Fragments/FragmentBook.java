@@ -23,6 +23,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -52,15 +53,15 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
     CoordinatorLayout clSearch;
     TimePickerDialog mTimePicker;
     private AlertDialog alert;
-    //    Boolean timeHasToSetInField = true;
-//    Boolean onCreate = true;
     String dateTimeCanChange;
+    int whichClick = Constants.FragmentBook.NOW_CLICK;
     private Handler handler;
     Calendar calendar = Calendar.getInstance();
     Calendar calendar1 = Calendar.getInstance();
     Calendar calendarToday;
     public static long timeRemaining = 0;
     Boolean isUserTimeSelect = false;
+    boolean session = true;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -182,34 +183,24 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
         switch (v.getId()) {
 
             case R.id.rbBookNow:
+                whichClick = Constants.FragmentBook.NOW_CLICK;
                 isUserTimeSelect = false;
-//                timeHasToSetInField = true;
-//                getServerDateTime();
                 setTextOnView();
                 break;
 
             case R.id.rbBookToday:
-                isUserTimeSelect = false;
-//                timeHasToSetInField = true;
-//                getServerDateTime();
-                setTextOnView();
+                todayTimeLimitCondition();
                 break;
 
             case R.id.rbBookTomorrow:
+                whichClick = Constants.FragmentBook.TOMORROW_CLICK;
                 isUserTimeSelect = false;
-//                timeHasToSetInField = true;
-//                getServerDateTime();
                 setTextOnView();
                 break;
 
             case R.id.tvBookDateTime:
-                if (!rbBookNow.isChecked()) {
+                if (!rbBookNow.isChecked())
                     timePicker();
-                }
-//                onCreate = !rbBookNow.isChecked();
-//                timeHasToSetInField = rbBookNow.isChecked();
-//                getServerDateTime();
-//                setTextOnView();
                 break;
 
             case R.id.tvBookSearchCars:
@@ -274,6 +265,31 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
         }
     }
 
+    public void todayTimeLimitCondition() {
+        calendar.setTime(calendar1.getTime());
+
+        Calendar calendar2 = Calendar.getInstance();
+        calendar2.setTime(calendar1.getTime());
+        calendar2.set(Calendar.HOUR_OF_DAY, 23);
+        calendar2.set(Calendar.MINUTE, 30);
+
+        long countingTime = calendar1.getTime().getTime();
+        long limitTime = calendar2.getTime().getTime();
+
+        if (countingTime < limitTime) {
+            isUserTimeSelect = false;
+            setTextOnView();
+            session = true;
+        } else {
+            if (whichClick == Constants.FragmentBook.NOW_CLICK)
+                rbBookNow.performClick();
+            else
+                rbBookTomorrow.performClick();
+            session = false;
+            CommonUtil.byToastMessage(getActivity(), getResources().getString(R.string.timeLimitError));
+        }
+    }
+
     public void checkCondition() {
         if (TextUtils.isEmpty(tvBookFrom.getText().toString()) && TextUtils.isEmpty(tvBookTo.getText().toString()))
             CommonUtil.showSnackBar(getResources().getString(R.string.enter_fields_below), clSearch);
@@ -304,7 +320,7 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
                         .putExtra("tvBookLuggage", (String) tvBookLuggage.getTag())
                         .putExtra("luggageDescription", tvBookLuggage.getText().toString())
                         .putExtra("passengerDescription", tvBookPassenger.getText().toString())
-                        .putExtra("duration", rbBookNow.isChecked() ? 1 : rbBookToday.isChecked() ? 2 : 3)
+                        .putExtra("duration", rbBookNow.isChecked() ? Constants.FragmentBook.NOW_CLICK : rbBookToday.isChecked() ? Constants.FragmentBook.TODAY_CLICK : Constants.FragmentBook.TOMORROW_CLICK)
                         .putExtra("tvBookPassenger", (String) tvBookPassenger.getTag()));
             } catch (ParseException e) {
                 e.printStackTrace();
@@ -393,7 +409,7 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
             View dialog = inflater.inflate(R.layout.dialog_select_question, null);
 
             TextView tvCityDialogHead = (TextView) dialog.findViewById(R.id.tvCityDialogHead);
-            String str = "";
+            String str;
             if (check) {
                 str = SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_LUGGAGE, "");
                 tvCityDialogHead.setText("Select Luggage");
@@ -508,7 +524,15 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
                     SharedPreferenceUtil.save();
                     timeRemaining = TimeUnit.MINUTES.toMillis(SharedPreferenceUtil.getInt(Constants.SESSION_LIMIT, 9));
                     dateTimeCanChange = Constants.DATE_FORMAT_SET.format(Constants.DATE_FORMAT_GET.parse(jsonObject.optJSONObject("json").optString("serverTime")));
-                    tvBookDateTime.setText(dateTimeCanChange);
+//                    dateTimeCanChange = Constants.DATE_FORMAT_SET.format(Constants.DATE_FORMAT_GET.parse("15 06 2016 23 29 50"));
+
+                    if (rbBookToday.isChecked()) {
+                        calendar.setTime(Constants.DATE_FORMAT_SET.parse(dateTimeCanChange));
+                        calendar.add(Calendar.MINUTE, 30);
+                        tvBookDateTime.setText(Constants.DATE_FORMAT_SET.format(calendar.getTime()));
+                    } else
+                        tvBookDateTime.setText(dateTimeCanChange);
+
                     calendar.setTime(Constants.DATE_FORMAT_SET.parse(dateTimeCanChange));
                     calendar1.setTime(Constants.DATE_FORMAT_SET.parse(dateTimeCanChange));
                     updateClock();
@@ -526,13 +550,51 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
+
                 calendar.add(Calendar.MINUTE, 1);
                 calendar1.add(Calendar.MINUTE, 1);
                 dateTimeCanChange = Constants.DATE_FORMAT_SET.format(calendar.getTime());
-                setTextOnView();
-                handler.postDelayed(this, 60 * 1000);
+
+                if (session) {
+                    Calendar calendar2 = Calendar.getInstance();
+                    calendar2.setTime(calendar1.getTime());
+                    calendar2.set(Calendar.HOUR_OF_DAY, 23);
+                    calendar2.set(Calendar.MINUTE, 30);
+
+                    long countingTime = calendar1.getTime().getTime();
+                    long limitTime = calendar2.getTime().getTime();
+                    if (countingTime < limitTime) {
+                        session = true;
+                        setTextOnView();
+                        handler.postDelayed(this, 60 * 1000);
+                    } else {
+                        handler.postDelayed(this, 60 * 1000);
+                        alertBox();
+                        session = false;
+                    }
+                } else {
+                    session = false;
+                    setTextOnView();
+                    handler.postDelayed(this, 60 * 1000);
+                }
             }
         }, 60 * 1000);
+    }
+
+    public void alertBox() {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setCancelable(false);
+        builder.setMessage(getResources().getString(R.string.timeLimitError));
+        builder.setPositiveButton(getResources().getString(R.string.ok), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                if (whichClick == Constants.FragmentBook.NOW_CLICK)
+                    rbBookNow.performClick();
+                else
+                    rbBookTomorrow.performClick();
+            }
+        });
+        builder.create();
+        builder.show();
     }
 
     public void setTextOnView() {
@@ -565,14 +627,6 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
     @Override
     public void onResume() {
         super.onResume();
-//        SharedPreferenceUtil.putValue(Constants.VIA_ADDRESS, "");
-//        SharedPreferenceUtil.putValue(Constants.VIA2_ADDRESS, "");
-//        SharedPreferenceUtil.save();
-//        LinearLayout llToolbarAll = (LinearLayout) getActivity().findViewById(R.id.llToolbarAll);
-//        llToolbarAll.setVisibility(View.VISIBLE);
-//        timeRemaining = TimeUnit.MINUTES.toMillis(1);
         timeRemaining = TimeUnit.MINUTES.toMillis(SharedPreferenceUtil.getInt(Constants.SESSION_LIMIT, 9));
     }
-
-
 }

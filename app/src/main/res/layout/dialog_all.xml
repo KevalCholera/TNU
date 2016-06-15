@@ -466,6 +466,7 @@
                 android:id="@+id/tvPopupSecurityQuestion2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/lyPadding10"
                 android:textColor="@android:color/darker_gray"
                 android:textSize="@dimen/tvTitlesSizeAll" />
 
@@ -501,10 +502,10 @@
 
             <Button
                 android:id="@+id/btPopupSecurityQuestionConfirm"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="@dimen/btSignUpAllheight"
                 android:layout_marginBottom="@dimen/btPopupSubmitMarginTopBottom"
-                android:layout_marginLeft="@dimen/margin_5"
+                android:layout_marginLeft="15dp"
                 android:layout_marginTop="@dimen/btPopupSubmitMarginTopBottom"
                 android:background="@color/colorPrimary"
                 android:gravity="center"

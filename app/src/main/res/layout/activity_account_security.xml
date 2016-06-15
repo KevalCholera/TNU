@@ -96,8 +96,8 @@
         <TextView
             android:id="@+id/tvAccountSecurityQuestion1"
             android:layout_width="match_parent"
-            android:layout_marginBottom="@dimen/vtvAccountSecurityMarginTopBottomAll"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/vtvAccountSecurityMarginTopBottomAll"
             android:textColor="@color/details"
             android:textSize="@dimen/textDetail" />
 
@@ -151,8 +151,8 @@
         <TextView
             android:id="@+id/tvAccountSecurityNote"
             android:layout_width="wrap_content"
-            android:textSize="@dimen/textDetail"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/textDetail" />
 
         <CheckBox
             android:id="@+id/cbAccountSecurityOrganization"

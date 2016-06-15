@@ -135,7 +135,7 @@
         <Button
             android:id="@+id/btContactSubmit"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/btSignInSignUpHeight"
             android:background="@drawable/yellow"
             android:onClick="submitContact"
             android:text="@string/submit"

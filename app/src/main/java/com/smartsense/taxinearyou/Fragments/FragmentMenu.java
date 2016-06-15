@@ -196,35 +196,36 @@ public class FragmentMenu extends Fragment implements Response.Listener<JSONObje
             ByteArrayOutputStream stream = new ByteArrayOutputStream();
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
             byte[] imageInByte = stream.toByteArray();
-            lengthBitmap = imageInByte.length;
+            lengthBitmap = imageInByte.length / 2187;
+            Log.i("lengthBitmap", lengthBitmap + "");
         }
 
-//        if (lengthBitmap <= 500) {
+        if (lengthBitmap <= 500) {
 
-        try {
-            String imageBase64 = CommonUtil.BitMapToString(bitmap);
+            try {
+                String imageBase64 = CommonUtil.BitMapToString(bitmap);
 
-            JSONObject jsonObject = new JSONObject();
-            jsonObject.put("userProfilePic", imageBase64);
-            jsonObject.put("token", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_ACCESS_TOKEN, ""));
-            jsonObject.put("userId", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_ID, ""));
+                JSONObject jsonObject = new JSONObject();
+                jsonObject.put("userProfilePic", imageBase64);
+                jsonObject.put("token", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_ACCESS_TOKEN, ""));
+                jsonObject.put("userId", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_ID, ""));
 
-            String urlType = Constants.BASE_URL_PHOTO;
-            HashMap<String, String> params = new HashMap<>();
-            params.put("userProfilePic", imageBase64);
-            params.put("token", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_ACCESS_TOKEN, ""));
-            params.put("userId", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_ID, ""));
-            params.put("__eventid", Constants.Events.UPDATE_PROFILE_PIC + "");
-            params.put("json", jsonObject.toString());
-            Log.i("params", params.toString());
+                String urlType = Constants.BASE_URL_PHOTO;
+                HashMap<String, String> params = new HashMap<>();
+                params.put("userProfilePic", imageBase64);
+                params.put("token", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_ACCESS_TOKEN, ""));
+                params.put("userId", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_ID, ""));
+                params.put("__eventid", Constants.Events.UPDATE_PROFILE_PIC + "");
+                params.put("json", jsonObject.toString());
+                Log.i("params", params.toString());
 
-            CommonUtil.jsonRequestPOST(getActivity(), getResources().getString(R.string.updating), urlType, params, tag, this, this);
+                CommonUtil.jsonRequestPOST(getActivity(), getResources().getString(R.string.updating), urlType, params, tag, this, this);
 
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-//        } else
-//            CommonUtil.byToastMessage(getActivity(), getResources().getString(R.string.less_100));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        } else
+            CommonUtil.byToastMessage(getActivity(), getResources().getString(R.string.less_100));
     }
 
     @Override

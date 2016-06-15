@@ -39,9 +39,7 @@
                 android:layout_width="@dimen/cvAccountPhotoWidthHeight"
                 android:layout_height="@dimen/cvAccountPhotoWidthHeight"
                 android:layout_margin="@dimen/cvPartnerPicMargin"
-                android:src="@mipmap/img_place_holder"
-                app:civ_border_color="@color/background"
-                app:civ_border_width="@dimen/cvPartnerPic" />
+                android:src="@mipmap/img_place_holder" />
 
         </LinearLayout>
 

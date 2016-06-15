@@ -37,11 +37,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="@dimen/bookingInfoPadding">
+                android:paddingBottom="@dimen/bookingInfoPadding"
+                android:paddingLeft="@dimen/bookingInfoPadding"
+                android:paddingRight="@dimen/bookingInfoPadding">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_5"
                     android:orientation="horizontal">
 
                     <LinearLayout

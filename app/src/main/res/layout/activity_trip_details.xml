@@ -29,10 +29,7 @@
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
                 android:layout_gravity="center"
-                android:src="@mipmap/img_place_holder"
-                app:civ_border_color="@color/background"
-                app:civ_border_width="@dimen/civTripDetailsBorderWidth"
-                tools:ignore="ContentDescription,RtlHardcoded" />
+                android:src="@mipmap/img_place_holder" />
 
             <View
                 android:id="@+id/view"
@@ -49,7 +46,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:padding="@dimen/lyPaddingMainAll">
+            android:paddingBottom="@dimen/lyPaddingMainAll"
+            android:paddingLeft="@dimen/lyPaddingMainAll"
+            android:paddingRight="@dimen/lyPaddingMainAll">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -93,7 +92,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/lytvTripDetailsHeadingsMarginTopAll"
+                        android:layout_marginTop="@dimen/_20_margin_padding"
                         android:gravity="end"
                         android:text="@string/taxi_provider"
                         android:textColor="@color/background"
@@ -167,7 +166,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/lytvTripDetailsHeadingsMarginTopAll"
+                        android:layout_marginTop="@dimen/_20_margin_padding"
                         android:text="@string/total_fare"
                         android:textColor="@color/background"
                         android:textSize="@dimen/etSignUpSizeAll" />

@@ -358,7 +358,7 @@ public class EventBooking extends AppCompatActivity implements Response.Listener
                 tvCityDialogHead.setText("Select Duration");
             } else {
                 str = SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_EVENT_PASSENGER_LIST, "");
-                tvCityDialogHead.setText("Select Passenger/Passengers");
+                tvCityDialogHead.setText("Select People/Peoples");
             }
             JSONArray jsonArray = new JSONArray(str);
             ListView list_view = (ListView) dialog.findViewById(R.id.list_view);

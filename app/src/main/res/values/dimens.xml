@@ -166,6 +166,7 @@
     <dimen name="vPersonalInfoMarginTopBottomAll">5dp</dimen>
     <dimen name="tvPersonalInfoCheckDownMarginTop">5dp</dimen>
     <dimen name="tvMarginTopBottomStartEndAll">10dp</dimen>
+    <dimen name="circularImage">8dp</dimen>
     <dimen name="tvPopUpMarginTop">15dp</dimen>
     <dimen name="rbMarginTopBottomStartEndAll">10dp</dimen>
     <dimen name="tabSearchTabHeight">50dp</dimen>

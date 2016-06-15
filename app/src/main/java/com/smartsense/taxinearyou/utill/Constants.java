@@ -46,6 +46,9 @@ public class Constants {
     public static final SimpleDateFormat DATE_FORMAT_TIME_MIN = new SimpleDateFormat("mm");
     public static final SimpleDateFormat DATE_FORMAT_SMALL_TIME_HOUR = new SimpleDateFormat("hh");
     public static final SimpleDateFormat DATE_FORMAT_BIG_TIME_HOUR = new SimpleDateFormat("HH");
+    public static final SimpleDateFormat DATE_FORMAT_YEAR = new SimpleDateFormat("yyyy");
+    public static final SimpleDateFormat DATE_FORMAT_MONTH = new SimpleDateFormat("MM");
+    public static final SimpleDateFormat DATE_FORMAT_DATE = new SimpleDateFormat("dd");
     public static final SimpleDateFormat DATE_FORMAT_TIME_AM_PM = new SimpleDateFormat("aa");
     public static final SimpleDateFormat DATE_FORMAT_EXTRA = new SimpleDateFormat("dd-MMM-yyyy HH:mm");
     public static final SimpleDateFormat DATE_FORMAT_BIG_TIME_HOUR_MIN = new SimpleDateFormat("HH:mm");
@@ -182,8 +185,8 @@ public class Constants {
         public static final int SERVER_ERROR = 1004;
         public static final int UNAUTHENTICATED_OPERATION = 504;
         public static final int SORRY_INCONVENIENCE = 502;
-        public static final int UNPAID_CANCEL_RIDE_CHARGE  = 522;
-        public static final int LOGGEDOUT_PARTNER   = 521;
+        public static final int UNPAID_CANCEL_RIDE_CHARGE = 522;
+        public static final int LOGGEDOUT_PARTNER = 521;
 
     }
 
@@ -198,6 +201,12 @@ public class Constants {
         public static final int ON_GOING = 1;
         public static final int FOUND = 2;
         public static final int NOT_FOUND = 3;
+    }
+
+    public class FragmentBook {
+        public static final int NOW_CLICK = 1;
+        public static final int TODAY_CLICK = 2;
+        public static final int TOMORROW_CLICK = 3;
     }
 
     public class PushList {

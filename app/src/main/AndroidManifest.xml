@@ -96,7 +96,7 @@
         <activity
             android:name=".TripDetails"
             android:configChanges="orientation|screenSize"
-            android:label="Trip Details"
+            android:label="Trip Detail"
             android:theme="@style/AppTheme" />
         <activity
             android:name=".Feedback"
