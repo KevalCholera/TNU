@@ -716,6 +716,7 @@ public class GooglePlaces extends FragmentActivity implements OnItemClickListene
 
             if (jsonObj.optString("status").equalsIgnoreCase("OK")) {
                 JSONObject jsonObj1 = jsonObj.optJSONObject("result");
+                placeId= jsonObj1.optString("place_id");
                 JSONArray types = jsonObj1.optJSONArray("types");
                 AreaName = jsonObj1.optString("name");
                 if (jsonObj1.has("formatted_address")) {

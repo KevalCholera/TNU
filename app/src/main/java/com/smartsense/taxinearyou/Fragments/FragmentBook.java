@@ -304,7 +304,7 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
                         .putExtra("tvBookLuggage", (String) tvBookLuggage.getTag())
                         .putExtra("luggageDescription", tvBookLuggage.getText().toString())
                         .putExtra("passengerDescription", tvBookPassenger.getText().toString())
-                        .putExtra("duration", rbBookNow.isChecked() ? "1" : rbBookToday.isChecked() ? "2" : "3")
+                        .putExtra("duration", rbBookNow.isChecked() ? 1 : rbBookToday.isChecked() ? 2 : 3)
                         .putExtra("tvBookPassenger", (String) tvBookPassenger.getTag()));
             } catch (ParseException e) {
                 e.printStackTrace();

@@ -79,7 +79,7 @@ public class SearchCars extends TimeActivity implements Response.Listener<JSONOb
         llSearchCarsNoPartner = (LinearLayout) findViewById(R.id.llSearchCarsNoPartner);
 
         try {
-            tvSearchCarsDateTime.setText(Constants.DATE_FORMAT_SET.format(Constants.DATE_FORMAT_SEND.parse(getIntent().getStringExtra("tvBookDateTime"))) + " " + (getIntent().getStringExtra("duration").equalsIgnoreCase("1") ? "Now" : getIntent().getStringExtra("duration").equalsIgnoreCase("2") ? "Today" : "Tomorrow"));
+            tvSearchCarsDateTime.setText(Constants.DATE_FORMAT_SET.format(Constants.DATE_FORMAT_SEND.parse(getIntent().getStringExtra("tvBookDateTime"))) + " " + (getIntent().getIntExtra("duration",1)==1 ? "Now" : getIntent().getIntExtra("duration",1)==2 ? "Today" : "Tomorrow"));
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -211,7 +211,7 @@ public class SearchCars extends TimeActivity implements Response.Listener<JSONOb
                     .put("journeyDatetime", getIntent().getStringExtra("tvBookDateTime"))
                     .put("luggageId", getIntent().getStringExtra("tvBookLuggage"))
                     .put("passanger", getIntent().getStringExtra("tvBookPassenger"))
-                    .put("bookingduration", getIntent().getStringExtra("duration"))
+                    .put("bookingduration", String.valueOf(getIntent().getIntExtra("duration",0)))
                     .put("sortField", sortField)
                     .put("sortOrder", sortOrder)
                     .put("filterRequest", filterRequest)
@@ -238,7 +238,7 @@ public class SearchCars extends TimeActivity implements Response.Listener<JSONOb
                     .put("journeyDatetime", getIntent().getStringExtra("tvBookDateTime"))
                     .put("luggageId", getIntent().getStringExtra("tvBookLuggage"))
                     .put("passanger", getIntent().getStringExtra("tvBookPassenger"))
-                    .put("bookingduration", getIntent().getStringExtra("duration"))
+                    .put("bookingduration", getIntent().getIntExtra("duration",1))
                     .put("luggageDescription", getIntent().getStringExtra("luggageDescription"))
                     .put("passengerDescription", getIntent().getStringExtra("passengerDescription"));
 
@@ -413,7 +413,7 @@ public class SearchCars extends TimeActivity implements Response.Listener<JSONOb
                         jsonObject.put("partnerId", test.optJSONObject("taxiType").optString("partnerId"));
                         jsonObject.put("tripType", bookingduration);
                         jsonObject.put("duration", SharedPreferenceUtil.getString(Constants.PrefKeys.DISTANCE_AFTER_CONVERT, ""));
-                        jsonObject.put("taxiTypeId", test.optJSONObject("taxiType").optString("taxiTypeId"));
+                        jsonObject.put("taxiTypeId", test.optJSONObject("taxiType").optInt("taxiTypeId"));
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -437,7 +437,7 @@ public class SearchCars extends TimeActivity implements Response.Listener<JSONOb
                         jsonObject.put("partnerId", test.optJSONObject("taxiType").optString("partnerId"));
                         jsonObject.put("tripType", bookingduration);
                         jsonObject.put("duration", SharedPreferenceUtil.getString(Constants.PrefKeys.DISTANCE_AFTER_CONVERT, ""));
-                        jsonObject.put("taxiTypeId", test.optJSONObject("taxiType").optString("taxiTypeId"));
+                        jsonObject.put("taxiTypeId", test.optJSONObject("taxiType").optInt("taxiTypeId"));
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }

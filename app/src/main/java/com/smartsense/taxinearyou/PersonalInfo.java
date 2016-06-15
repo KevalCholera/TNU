@@ -89,10 +89,10 @@ public class PersonalInfo extends TimeActivity implements View.OnClickListener {
         else {
             try {
                 JSONObject jsonData = new JSONObject();
-                jsonData.put("hearAboutUs", spPersonalInfoAd.getSelectedItemPosition() + "")
+                jsonData.put("hearAboutUs", String.valueOf(spPersonalInfoAd.getSelectedItemPosition() + 1))
                         .put("firstName", etPersonalInfoName.getText().toString().trim())
                         .put("mobileNo", etPersonalInfoNo.getText().toString().trim())
-                        .put("freeSms", 0)
+                        .put("freeSms", 1)
                         .put("paymentMode", 1)
                         .put("emailId", etPersonalInfoEmail.getText().toString().trim())
                         .put("addtionalInformation", etPersonalInfoAddInfo.getText().toString().trim())
