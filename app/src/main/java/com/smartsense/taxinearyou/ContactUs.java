@@ -1,7 +1,10 @@
 package com.smartsense.taxinearyou;
 
+import android.app.Activity;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
@@ -85,6 +88,19 @@ public class ContactUs extends AppCompatActivity implements Response.Listener<JS
         CommonUtil.jsonRequestGET(this, getResources().getString(R.string.get_data), CommonUtil.utf8Convert(builder, Constants.Events.CONTACT_US), tag, this, this);
     }
 
+    public void alertBox(String msg) {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(false);
+        builder.setMessage(msg);
+        builder.setPositiveButton(getResources().getString(R.string.ok), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                finish();
+            }
+        });
+        builder.create();
+        builder.show();
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         return true;
@@ -113,10 +129,11 @@ public class ContactUs extends AppCompatActivity implements Response.Listener<JS
         CommonUtil.cancelProgressDialog();
         if (jsonObject != null)
             if (jsonObject.optInt("status") == Constants.STATUS_SUCCESS) {
-                if (!jsonObject.optJSONObject("json").optString("isAvailable").equalsIgnoreCase("1"))
-                    CommonUtil.showSnackBar(jsonObject.optString("msg"), clContactUs);
-                else if (jsonObject.optString("__eventId").equalsIgnoreCase(Constants.Events.CONTACT_US + ""))
-                    CommonUtil.alertBox(this,jsonObject.optString("msg"));
+//                if (!jsonObject.optJSONObject("json").optString("isAvailable").equalsIgnoreCase("1"))
+//                    CommonUtil.showSnackBar(jsonObject.optString("msg"), clContactUs);
+//                else
+                if (jsonObject.optString("__eventid").equalsIgnoreCase(Constants.Events.CONTACT_US + ""))
+                    alertBox(jsonObject.optString("msg"));
             } else
                 CommonUtil.conditionAuthentication(this, jsonObject);
         else

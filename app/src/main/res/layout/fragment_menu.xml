@@ -71,12 +71,13 @@
             android:orientation="vertical">
 
             <LinearLayout
+                android:id="@+id/llFragmentMenuGeneralInfo"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/btSignInSignUpHeight"
                 android:layout_marginLeft="@dimen/vAccountAllStartEnd"
                 android:gravity="center"
                 android:orientation="horizontal"
-                android:padding="5dp">
+                android:paddingLeft="5dp">
 
                 <ImageView
                     android:layout_width="30dp"
@@ -87,8 +88,9 @@
                 <TextView
                     android:id="@+id/tvAccountGeneralInfo"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_marginLeft="5dp"
+                    android:gravity="fill"
                     android:text="@string/general_info"
                     android:textColor="@color/text_color"
                     android:textSize="@dimen/textHead" />
@@ -103,12 +105,13 @@
                 android:background="@color/light_Gray" />
 
             <LinearLayout
+                android:id="@+id/llFragmentMenuAccountSecurity"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/btSignInSignUpHeight"
                 android:layout_marginLeft="@dimen/vAccountAllStartEnd"
                 android:gravity="center"
                 android:orientation="horizontal"
-                android:padding="5dp">
+                android:paddingLeft="5dp">
 
                 <ImageView
                     android:layout_width="30dp"
@@ -119,8 +122,9 @@
                 <TextView
                     android:id="@+id/tvAccountAccountSecurity"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_marginLeft="5dp"
+                    android:gravity="fill"
                     android:text="@string/acc_sec"
                     android:textColor="@color/text_color"
                     android:textSize="@dimen/textHead" />
@@ -134,12 +138,13 @@
                 android:background="@color/light_Gray" />
 
             <LinearLayout
+                android:id="@+id/llFragmentMenuPayment"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/btSignInSignUpHeight"
                 android:layout_marginLeft="@dimen/vAccountAllStartEnd"
                 android:gravity="center"
                 android:orientation="horizontal"
-                android:padding="5dp">
+                android:paddingLeft="5dp">
 
                 <ImageView
                     android:layout_width="30dp"
@@ -151,9 +156,10 @@
                 <TextView
                     android:id="@+id/tvAccountPayment"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_marginLeft="5dp"
                     android:enabled="false"
+                    android:gravity="fill"
                     android:text="@string/payment"
                     android:textColor="@color/disable_55"
                     android:textSize="@dimen/textHead" />
@@ -168,12 +174,13 @@
                 android:background="@color/light_Gray" />
 
             <LinearLayout
+                android:id="@+id/llFragmentMenuCredit"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/btSignInSignUpHeight"
                 android:layout_marginLeft="@dimen/vAccountAllStartEnd"
                 android:gravity="center"
                 android:orientation="horizontal"
-                android:padding="5dp">
+                android:paddingLeft="5dp">
 
                 <ImageView
                     android:layout_width="30dp"
@@ -185,7 +192,7 @@
                 <TextView
                     android:id="@+id/tvAccountCredits"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:gravity="fill"
                     android:paddingLeft="@dimen/margin_5"
                     android:text="Credit"
@@ -202,12 +209,13 @@
 
 
             <LinearLayout
+                android:id="@+id/llFragmentMenuLostItem"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/btSignInSignUpHeight"
                 android:layout_marginLeft="@dimen/vAccountAllStartEnd"
                 android:gravity="center"
                 android:orientation="horizontal"
-                android:padding="5dp">
+                android:paddingLeft="5dp">
 
                 <ImageView
                     android:layout_width="30dp"
@@ -218,7 +226,7 @@
                 <TextView
                     android:id="@+id/tvAccountLostItems"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/etHeightAll"
+                    android:layout_height="match_parent"
                     android:layout_marginLeft="5dp"
                     android:gravity="fill"
                     android:text="@string/lostitems"
@@ -234,12 +242,13 @@
                 android:background="@color/light_Gray" />
 
             <LinearLayout
+                android:id="@+id/llFragmentMenuMore"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/btSignInSignUpHeight"
                 android:layout_marginLeft="@dimen/vAccountAllStartEnd"
                 android:gravity="center"
                 android:orientation="horizontal"
-                android:padding="5dp">
+                android:paddingLeft="5dp">
 
                 <ImageView
                     android:layout_width="30dp"
@@ -250,7 +259,7 @@
                 <TextView
                     android:id="@+id/tvAccountMore"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/etHeightAll"
+                    android:layout_height="match_parent"
                     android:layout_marginLeft="5dp"
                     android:gravity="fill"
                     android:text="@string/more"
@@ -266,12 +275,13 @@
                 android:background="@color/light_Gray" />
 
             <LinearLayout
+                android:id="@+id/llFragmentMenuLogOut"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/btSignInSignUpHeight"
                 android:layout_marginLeft="@dimen/vAccountAllStartEnd"
                 android:gravity="center"
                 android:orientation="horizontal"
-                android:padding="5dp">
+                android:paddingLeft="5dp">
 
                 <ImageView
                     android:layout_width="30dp"
@@ -282,7 +292,7 @@
                 <TextView
                     android:id="@+id/tvAccountLogout"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_marginLeft="5dp"
                     android:gravity="fill"
                     android:text="@string/logout"

@@ -59,7 +59,8 @@
                     android:paddingLeft="@dimen/tvMarginTopBottomStartEndAll"
                     android:singleLine="true"
                     android:textColor="@color/black"
-                    android:textColorHint="@color/hintColor" />
+                    android:textColorHint="@color/hintColor"
+                    android:textSize="@dimen/text15" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -82,7 +83,8 @@
                     android:paddingLeft="@dimen/tvMarginTopBottomStartEndAll"
                     android:singleLine="true"
                     android:textColor="@color/black"
-                    android:textColorHint="@color/hintColor" />
+                    android:textColorHint="@color/hintColor"
+                    android:textSize="@dimen/text15" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -103,7 +105,8 @@
                     android:hint="@string/select_card_type"
                     android:paddingLeft="@dimen/tvMarginTopBottomStartEndAll"
                     android:textColor="@color/black"
-                    android:textColorHint="@color/hintColor" />
+                    android:textColorHint="@color/hintColor"
+                    android:textSize="@dimen/text15" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -132,7 +135,8 @@
                         android:maxLines="1"
                         android:paddingLeft="@dimen/tvMarginTopBottomStartEndAll"
                         android:textColor="@color/black"
-                        android:textColorHint="@color/hintColor" />
+                        android:textColorHint="@color/hintColor"
+                        android:textSize="@dimen/text15" />
 
                     <EditText
                         android:id="@+id/etAddCardExpiryDateYear"
@@ -148,7 +152,8 @@
                         android:maxLines="1"
                         android:paddingLeft="@dimen/tvMarginTopBottomStartEndAll"
                         android:textColor="@color/black"
-                        android:textColorHint="@color/hintColor" />
+                        android:textColorHint="@color/hintColor"
+                        android:textSize="@dimen/text15" />
 
                     <View
                         android:layout_width="match_parent"
@@ -177,7 +182,8 @@
                     android:maxLines="1"
                     android:paddingLeft="@dimen/tvMarginTopBottomStartEndAll"
                     android:textColor="@color/black"
-                    android:textColorHint="@color/hintColor" />
+                    android:textColorHint="@color/hintColor"
+                    android:textSize="@dimen/text15" />
 
                 <CheckBox
                     android:id="@+id/cbAddCardFutureUse"
@@ -193,7 +199,6 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
                     android:text="@string/card_details_"
                     android:textColor="@color/background"
                     android:textSize="@dimen/tvHeadingSizeAll" />
@@ -223,7 +228,8 @@
                     android:paddingLeft="@dimen/tvMarginTopBottomStartEndAll"
                     android:singleLine="true"
                     android:textColor="@color/black"
-                    android:textColorHint="@color/hintColor" />
+                    android:textColorHint="@color/hintColor"
+                    android:textSize="@dimen/text15" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -242,7 +248,8 @@
                     android:inputType="textCapSentences"
                     android:paddingLeft="@dimen/tvMarginTopBottomStartEndAll"
                     android:textColor="@color/black"
-                    android:textColorHint="@color/hintColor" />
+                    android:textColorHint="@color/hintColor"
+                    android:textSize="@dimen/text15" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -263,7 +270,8 @@
                     android:paddingLeft="@dimen/tvMarginTopBottomStartEndAll"
                     android:singleLine="true"
                     android:textColor="@color/black"
-                    android:textColorHint="@color/hintColor" />
+                    android:textColorHint="@color/hintColor"
+                    android:textSize="@dimen/text15" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -284,7 +292,8 @@
                     android:paddingLeft="@dimen/tvMarginTopBottomStartEndAll"
                     android:singleLine="true"
                     android:textColor="@color/black"
-                    android:textColorHint="@color/hintColor" />
+                    android:textColorHint="@color/hintColor"
+                    android:textSize="@dimen/text15" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -322,7 +331,8 @@
                             android:paddingLeft="@dimen/tvMarginTopBottomStartEndAll"
                             android:singleLine="true"
                             android:textColor="@color/black"
-                            android:textColorHint="@color/hintColor" />
+                            android:textColorHint="@color/hintColor"
+                            android:textSize="@dimen/text15" />
 
                     </LinearLayout>
 
@@ -354,7 +364,8 @@
                             android:paddingLeft="@dimen/tvMarginTopBottomStartEndAll"
                             android:singleLine="true"
                             android:textColor="@color/black"
-                            android:textColorHint="@color/hintColor" />
+                            android:textColorHint="@color/hintColor"
+                            android:textSize="@dimen/text15" />
 
                     </LinearLayout>
 
@@ -379,7 +390,8 @@
                     android:paddingLeft="@dimen/tvMarginTopBottomStartEndAll"
                     android:singleLine="true"
                     android:textColor="@color/black"
-                    android:textColorHint="@color/hintColor" />
+                    android:textColorHint="@color/hintColor"
+                    android:textSize="@dimen/text15" />
 
             </LinearLayout>
         </ScrollView>
@@ -387,7 +399,7 @@
         <Button
             android:id="@+id/btAddCardSubmit"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/btSignInSignUpHeight"
             android:background="@drawable/yellow"
             android:text="@string/submit"
             android:textAllCaps="false"

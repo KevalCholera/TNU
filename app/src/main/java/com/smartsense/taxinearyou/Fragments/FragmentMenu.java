@@ -22,6 +22,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.android.volley.Response;
@@ -59,7 +60,7 @@ public class FragmentMenu extends Fragment implements Response.Listener<JSONObje
     int whichSelect;
     ImageView ivEditProfilePhoto;
     Button btAccountActivateNow;
-    CoordinatorLayout clSearch;
+    LinearLayout llFragmentMenuLogOut, llFragmentMenuMore, llFragmentMenuLostItem, llFragmentMenuCredit, llFragmentMenuPayment, llFragmentMenuAccountSecurity, llFragmentMenuGeneralInfo;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -79,7 +80,13 @@ public class FragmentMenu extends Fragment implements Response.Listener<JSONObje
         tvAccountLogout = (TextView) rootView.findViewById(R.id.tvAccountLogout);
         btAccountActivateNow = (Button) rootView.findViewById(R.id.btAccountActivateNow);
         ivEditProfilePhoto = (ImageView) rootView.findViewById(R.id.ivEditProfilePhoto);
-        clSearch = (CoordinatorLayout) getActivity().findViewById(R.id.clSearch);
+        llFragmentMenuLogOut = (LinearLayout) rootView.findViewById(R.id.llFragmentMenuLogOut);
+        llFragmentMenuMore = (LinearLayout) rootView.findViewById(R.id.llFragmentMenuMore);
+        llFragmentMenuLostItem = (LinearLayout) rootView.findViewById(R.id.llFragmentMenuLostItem);
+        llFragmentMenuCredit = (LinearLayout) rootView.findViewById(R.id.llFragmentMenuCredit);
+        llFragmentMenuPayment = (LinearLayout)rootView.findViewById(R.id.llFragmentMenuPayment);
+        llFragmentMenuAccountSecurity = (LinearLayout) rootView.findViewById(R.id.llFragmentMenuAccountSecurity);
+        llFragmentMenuGeneralInfo = (LinearLayout) rootView.findViewById(R.id.llFragmentMenuGeneralInfo);
 
         tvAccountLogout.setOnClickListener(this);
         tvAccountAccountSecurity.setOnClickListener(this);
@@ -89,6 +96,13 @@ public class FragmentMenu extends Fragment implements Response.Listener<JSONObje
         tvAccountMore.setOnClickListener(this);
         ivEditProfilePhoto.setOnClickListener(this);
         btAccountActivateNow.setOnClickListener(this);
+        llFragmentMenuGeneralInfo.setOnClickListener(this);
+        llFragmentMenuAccountSecurity.setOnClickListener(this);
+        llFragmentMenuPayment.setOnClickListener(this);
+        llFragmentMenuCredit.setOnClickListener(this);
+        llFragmentMenuLostItem.setOnClickListener(this);
+        llFragmentMenuMore.setOnClickListener(this);
+        llFragmentMenuLogOut.setOnClickListener(this);
 
         setDataInActivity();
 
@@ -142,6 +156,27 @@ public class FragmentMenu extends Fragment implements Response.Listener<JSONObje
                 break;
             case R.id.btAccountActivateNow:
                 activeAccount();
+                break;
+            case R.id.llFragmentMenuGeneralInfo:
+                tvAccountGeneralInfo.performClick();
+                break;
+            case R.id.llFragmentMenuAccountSecurity:
+                tvAccountAccountSecurity.performClick();
+                break;
+            case R.id.llFragmentMenuPayment:
+                tvAccountPayment.performClick();
+                break;
+            case R.id.llFragmentMenuCredit:
+                tvAccountCredits.performClick();
+                break;
+            case R.id.llFragmentMenuLostItem:
+                tvAccountLostItems.performClick();
+                break;
+            case R.id.llFragmentMenuMore:
+                tvAccountMore.performClick();
+                break;
+            case R.id.llFragmentMenuLogOut:
+                tvAccountLogout.performClick();
                 break;
         }
     }
