@@ -5,6 +5,7 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.content.ContextCompat;
@@ -367,6 +368,7 @@ public class EventBooking extends AppCompatActivity implements Response.Listener
             alertDialogs.setView(dialog);
             alertDialogs.setCancelable(true);
             alert = alertDialogs.create();
+            alert.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
             alert.show();
 
         } catch (Exception e) {
@@ -434,6 +436,7 @@ public class EventBooking extends AppCompatActivity implements Response.Listener
             if (convertView == null)
                 vi = inflater.inflate(R.layout.element_select_question, null);
             final TextView cbElementClassName = (TextView) vi.findViewById(R.id.tvElementQuestionName);
+            final View vLine = (View) vi.findViewById(R.id.vElementQuestionName);
             JSONObject object = data.optJSONObject(position);
             cbElementClassName.setTag(object.optString("id"));
             cbElementClassName.setText(object.optString("name"));
@@ -456,6 +459,8 @@ public class EventBooking extends AppCompatActivity implements Response.Listener
                     alert.dismiss();
                 }
             });
+//            if(position==data.length())
+//                vLine.setPadding(16,0,16,5);
             return vi;
         }
     }

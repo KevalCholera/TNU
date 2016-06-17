@@ -5,13 +5,13 @@ import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,7 +23,6 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.TimePicker;
-import android.widget.Toast;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -415,7 +414,7 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
                 tvCityDialogHead.setText("Select Luggage");
             } else {
                 str = SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_PASSENGER, "");
-                tvCityDialogHead.setText("Select Passenger/Passengers");
+                tvCityDialogHead.setText("Select Passenger");
             }
             JSONArray jsonArray = new JSONArray(str);
             ListView list_view = (ListView) dialog.findViewById(R.id.list_view);
@@ -424,6 +423,7 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
             alertDialogs.setView(dialog);
             alertDialogs.setCancelable(true);
             alert = alertDialogs.create();
+            alert.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
             alert.show();
 
         } catch (Exception e) {
