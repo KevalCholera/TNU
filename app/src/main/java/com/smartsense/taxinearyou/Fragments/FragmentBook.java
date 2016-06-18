@@ -9,6 +9,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.CoordinatorLayout;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
@@ -40,7 +41,10 @@ import org.json.JSONObject;
 import java.text.ParseException;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
+
+import cn.qqtheme.framework.picker.OptionPicker;
 
 public class FragmentBook extends Fragment implements Response.Listener<JSONObject>, Response.ErrorListener, View.OnClickListener {
 
@@ -161,6 +165,63 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
         mTimePicker.setCancelable(false);
     }
 
+    public void timeSelect() {
+
+        String hour = "";
+        String minute = "";
+        try {
+            hour = Constants.DATE_FORMAT_BIG_TIME_HOUR.format(Constants.DATE_FORMAT_SET.parse(tvBookDateTime.getText().toString()));
+            minute = Constants.DATE_FORMAT_TIME_MIN.format(Constants.DATE_FORMAT_SET.parse(tvBookDateTime.getText().toString()));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        com.smartsense.taxinearyou.utill.TimePicker picker = new com.smartsense.taxinearyou.utill.TimePicker(getActivity(), com.smartsense.taxinearyou.utill.TimePicker.HOUR, hour, minute);
+        picker.setLabel("", "");
+        picker.setTitleText("Select Time");
+        picker.setTitleTextColor(ActivityCompat.getColor(getActivity(), R.color.white));
+        picker.setTopBackgroundColor(ActivityCompat.getColor(getActivity(), R.color.colorAccent));
+        picker.setTopLineColor(ActivityCompat.getColor(getActivity(), R.color.colorAccent));
+        picker.setCancelTextColor(ActivityCompat.getColor(getActivity(), R.color.white));
+        picker.setSubmitTextColor(ActivityCompat.getColor(getActivity(), R.color.white));
+        picker.setTopLineVisible(false);
+        picker.setOnTimePickListener(new com.smartsense.taxinearyou.utill.TimePicker.OnTimePickListener() {
+            @Override
+            public void onTimePicked(String selectedHour, String selectedMinute, String ampm) {
+//                CommonUtil.byToastMessage(getActivity(),hour + ":" + minute+":"+ampm);
+                try {
+                    String time = Constants.DATE_FORMAT_ONLY_TIME.format(Constants.DATE_FORMAT_BIG_TIME_HOUR_MIN1.parse(selectedHour + ":" + selectedMinute + " " + ampm));
+                    if (rbBookToday.isChecked()) {
+                        Date dateServerTime, dateGetTime;
+                        dateServerTime = Constants.DATE_FORMAT_ONLY_TIME.parse(Constants.DATE_FORMAT_ONLY_TIME.format(Constants.DATE_FORMAT_SET.parse(dateTimeCanChange)));
+                        dateGetTime = Constants.DATE_FORMAT_ONLY_TIME.parse(time);
+                        long milliServerTime = dateServerTime.getTime() + 1800000;
+                        long milliGetTime = dateGetTime.getTime();
+                        if (milliGetTime >= milliServerTime) {
+                            tvBookDateTime.setText(Constants.DATE_FORMAT_ONLY_DATE.format(Constants.DATE_FORMAT_SET.parse(dateTimeCanChange)) + " " + time);
+                            calendarToday = Calendar.getInstance();
+                            calendarToday.setTime(Constants.DATE_FORMAT_SET.parse(dateTimeCanChange + " " + time));
+                        } else
+                            CommonUtil.byToastMessage(getActivity(), getResources().getString(R.string.time_limit));
+
+                    } else {
+                        Calendar calendar = Calendar.getInstance();
+                        calendar.setTime(Constants.DATE_FORMAT_SET.parse(dateTimeCanChange));
+                        calendar.add(Calendar.DAY_OF_MONTH, 1);
+                        tvBookDateTime.setText(Constants.DATE_FORMAT_ONLY_DATE.format(calendar.getTime()) + " " + time);
+                    }
+
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                } finally {
+                    isUserTimeSelect = true;
+                }
+            }
+        });
+        picker.show();
+    }
+
+
     private void getServerDateTime() {
         final String tag = "Get Server Date Time";
         StringBuilder builder = new StringBuilder();
@@ -199,7 +260,8 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
 
             case R.id.tvBookDateTime:
                 if (!rbBookNow.isChecked())
-                    timePicker();
+//                    timePicker();
+                    timeSelect();
                 break;
 
             case R.id.tvBookSearchCars:
@@ -242,10 +304,10 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
                 startActivityForResult(new Intent(getActivity(), GooglePlaces.class).putExtra("typeAddress", 4), 4);
                 break;
             case R.id.tvBookPassenger:
-                openQuestionSelectPopup(false);
+                selectPassenger(false);
                 break;
             case R.id.tvBookLuggage:
-                openQuestionSelectPopup(true);
+                selectPassenger(true);
                 break;
             case R.id.imgBookFromToReverse:
                 if (TextUtils.isEmpty(tvBookFrom.getText().toString()) || TextUtils.isEmpty(tvBookTo.getText().toString()))
@@ -383,7 +445,7 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
             if (jsonArray.length() > 0) {
                 tvBookLuggage.setTag(jsonArray.optJSONObject(0).optString("luggageId"));
                 tvBookLuggage.setText(jsonArray.optJSONObject(0).optString("name"));
-                SharedPreferenceUtil.putValue(Constants.PrefKeys.LUGGAGE_VALUE, "2");
+                SharedPreferenceUtil.putValue(Constants.PrefKeys.LUGGAGE_VALUE, tvBookLuggage.getText().toString());
                 SharedPreferenceUtil.save();
             }
             str = SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_PASSENGER, "");
@@ -417,6 +479,7 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
                 tvCityDialogHead.setText("Select Passenger");
             }
             JSONArray jsonArray = new JSONArray(str);
+
             ListView list_view = (ListView) dialog.findViewById(R.id.list_view);
             AdapterSelectionPassengerOrLuggage adapterSelectionPassengerOrLuggage = new AdapterSelectionPassengerOrLuggage(getActivity(), jsonArray, check);
             list_view.setAdapter(adapterSelectionPassengerOrLuggage);
@@ -426,6 +489,66 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
             alert.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
             alert.show();
 
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    HashMap<String, String> spinnerMap = new HashMap<>();
+
+    public void selectPassenger(final Boolean check) {
+        try {
+            JSONArray newJsonArr;
+            if (check) {
+                newJsonArr = new JSONArray(SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_LUGGAGE, ""));
+            } else {
+                newJsonArr = new JSONArray(SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_PASSENGER, ""));
+            }
+
+            String[] stringArr = new String[newJsonArr.length()];
+            for (int i = 0; i < newJsonArr.length(); i++) {
+                if (check) {
+                    stringArr[i] = newJsonArr.optJSONObject(i).optString("name");
+                    spinnerMap.put(newJsonArr.optJSONObject(i).optString("name"), newJsonArr.optJSONObject(i).optString("luggageId"));
+                } else {
+                    if (newJsonArr.optJSONObject(i).optString("name").equalsIgnoreCase("1"))
+                        stringArr[i] = newJsonArr.optJSONObject(i).optString("name") + " passenger";
+                    else
+                        stringArr[i] = newJsonArr.optJSONObject(i).optString("name") + " passengers";
+                    spinnerMap.put(stringArr[i], newJsonArr.optJSONObject(i).optString("passengerCountId"));
+                }
+            }
+            OptionPicker picker = new OptionPicker(getActivity(), stringArr);
+//            picker.setOffset(2);
+//            picker.setSelectedIndex(1);
+            picker.setTextSize(15);
+
+            if (check)
+                picker.setTitleText("Select Luggage");
+            else
+                picker.setTitleText("Select Passenger");
+            picker.setTitleTextColor(ActivityCompat.getColor(getActivity(), R.color.white));
+            picker.setTopBackgroundColor(ActivityCompat.getColor(getActivity(), R.color.colorAccent));
+            picker.setTopLineColor(ActivityCompat.getColor(getActivity(), R.color.colorAccent));
+            picker.setCancelTextColor(ActivityCompat.getColor(getActivity(), R.color.white));
+            picker.setSubmitTextColor(ActivityCompat.getColor(getActivity(), R.color.white));
+            picker.setOnOptionPickListener(new OptionPicker.OnOptionPickListener() {
+                @Override
+                public void onOptionPicked(String option) {
+                    final String id1 = spinnerMap.get(option);
+                    if (check) {
+                        tvBookLuggage.setText(option);
+                        tvBookLuggage.setTag(id1);
+                        SharedPreferenceUtil.putValue(Constants.PrefKeys.LUGGAGE_VALUE, option);
+                        SharedPreferenceUtil.save();
+                    } else {
+                        tvBookPassenger.setText(option);
+                        tvBookPassenger.setTag(id1);
+                    }
+
+                }
+            });
+            picker.show();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -482,7 +605,7 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
                         if (check) {
                             tvBookLuggage.setText(cbElementClassName.getText().toString());
                             tvBookLuggage.setTag(cbElementClassName.getTag());
-                            SharedPreferenceUtil.putValue(Constants.PrefKeys.LUGGAGE_VALUE, object.optInt("value") + "");
+                            SharedPreferenceUtil.putValue(Constants.PrefKeys.LUGGAGE_VALUE, tvBookLuggage.getText().toString());
                             SharedPreferenceUtil.save();
                         } else {
                             tvBookPassenger.setText(cbElementClassName.getText().toString());

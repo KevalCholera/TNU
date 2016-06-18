@@ -46,12 +46,14 @@ public class Constants {
     public static final SimpleDateFormat DATE_FORMAT_TIME_MIN = new SimpleDateFormat("mm");
     public static final SimpleDateFormat DATE_FORMAT_SMALL_TIME_HOUR = new SimpleDateFormat("hh");
     public static final SimpleDateFormat DATE_FORMAT_BIG_TIME_HOUR = new SimpleDateFormat("HH");
+
     public static final SimpleDateFormat DATE_FORMAT_YEAR = new SimpleDateFormat("yyyy");
     public static final SimpleDateFormat DATE_FORMAT_MONTH = new SimpleDateFormat("MM");
     public static final SimpleDateFormat DATE_FORMAT_DATE = new SimpleDateFormat("dd");
     public static final SimpleDateFormat DATE_FORMAT_TIME_AM_PM = new SimpleDateFormat("aa");
     public static final SimpleDateFormat DATE_FORMAT_EXTRA = new SimpleDateFormat("dd-MMM-yyyy HH:mm");
     public static final SimpleDateFormat DATE_FORMAT_BIG_TIME_HOUR_MIN = new SimpleDateFormat("HH:mm");
+    public static final SimpleDateFormat DATE_FORMAT_BIG_TIME_HOUR_MIN1 = new SimpleDateFormat("hh:mm aa");
     public static final String SESSION_LIMIT = "sessionTime";
     public static final String PAGE_LIMIT = "pageLimit";
 

@@ -2,7 +2,6 @@ package com.smartsense.taxinearyou;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -88,8 +87,8 @@ public class BookingInfo extends TimeActivity {
                 tvBookInfoVehicleType.setTag(mainData.optJSONObject("filterRequest").optString("vehicleType"));
                 tvBookInfoVehicleType.setText(mainData.optJSONObject("json").optJSONArray("partnerArray").optJSONObject(0).optJSONObject("taxiType").optString("taxiTypeName"));
                 tvBookInfoProvider.setText(jsonObject.optString("partnerName"));
-                tvBookInfoPassengers.setText(mainData.optString("passanger") + " Passengers");
-                tvBookInfoLugguages.setText("Up to " + SharedPreferenceUtil.getString(Constants.PrefKeys.LUGGAGE_VALUE, "") + " Luggagges");
+                tvBookInfoPassengers.setText(mainData.optString("passanger").equalsIgnoreCase("1") ? mainData.optString("passanger") + " Passenger" : mainData.optString("passanger") + " Passengers");
+                tvBookInfoLugguages.setText(SharedPreferenceUtil.getString(Constants.PrefKeys.LUGGAGE_VALUE, ""));
                 tvBookInfoRideType.setText(mainData.optJSONObject("filterRequest").optString("bookingType").equalsIgnoreCase("1") ? "Single" : "Return");
                 tvBookInfoCost.setText("£" + CommonUtil.getDecimal(jsonObject.optDouble("price")));
 

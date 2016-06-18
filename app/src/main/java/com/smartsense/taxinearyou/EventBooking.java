@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -39,6 +40,9 @@ import org.json.JSONObject;
 import java.text.ParseException;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
+
+import cn.qqtheme.framework.picker.OptionPicker;
 
 public class EventBooking extends AppCompatActivity implements Response.Listener<JSONObject>, Response.ErrorListener, View.OnClickListener {
 
@@ -313,19 +317,19 @@ public class EventBooking extends AppCompatActivity implements Response.Listener
                 break;
 
             case R.id.etEventBookingEventDuration:
-                openQuestionSelectPopup(duration);
+                selectPassenger(duration);
                 break;
 
             case R.id.etEventBookingPassengers:
-                openQuestionSelectPopup(passenger);
+                selectPassenger(passenger);
                 break;
 
             case R.id.etEventBookingEventLuggage:
-                openQuestionSelectPopup(luggage);
+                selectPassenger(luggage);
                 break;
 
             case R.id.etEventBookingVehicleType:
-                openQuestionSelectPopup(vehicleType);
+                selectPassenger(vehicleType);
                 break;
 
             case R.id.etEventBookingPickUp:
@@ -375,6 +379,70 @@ public class EventBooking extends AppCompatActivity implements Response.Listener
             e.printStackTrace();
         }
     }
+
+    HashMap<String, String> spinnerMap = new HashMap<>();
+
+    public void selectPassenger(final String check) {
+        try {
+            JSONArray newJsonArr;
+            if (check.equalsIgnoreCase(luggage)) {
+                newJsonArr = new JSONArray(SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_EVENT_lUGGAGE_LIST, ""));
+            } else if (check.equalsIgnoreCase(vehicleType)) {
+                newJsonArr = new JSONArray(SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_EVENT_VEHICLE_TYPE, ""));
+            } else if (check.equalsIgnoreCase(duration)) {
+                newJsonArr = new JSONArray(SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_EVENT_DURATION, ""));
+            } else {
+                newJsonArr = new JSONArray(SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_EVENT_PASSENGER_LIST, ""));
+            }
+            String[] stringArr = new String[newJsonArr.length()];
+            for (int i = 0; i < newJsonArr.length(); i++) {
+                stringArr[i] = newJsonArr.optJSONObject(i).optString("name");
+                spinnerMap.put(newJsonArr.optJSONObject(i).optString("name"), newJsonArr.optJSONObject(i).optString("id"));
+            }
+            OptionPicker picker = new OptionPicker(this, stringArr);
+//            picker.setOffset(2);
+//            picker.setSelectedIndex(1);
+            picker.setTextSize(15);
+
+            if (check.equalsIgnoreCase(luggage)) {
+                picker.setTitleText("Select Luggages");
+            } else if (check.equalsIgnoreCase(vehicleType)) {
+                picker.setTitleText("Select Vehicle Type");
+            } else if (check.equalsIgnoreCase(duration)) {
+                picker.setTitleText("Select Duration");
+            } else {
+                picker.setTitleText("Select People/Peoples");
+            }
+            picker.setTitleTextColor(ActivityCompat.getColor(this, R.color.white));
+            picker.setTopBackgroundColor(ActivityCompat.getColor(this, R.color.colorAccent));
+            picker.setTopLineColor(ActivityCompat.getColor(this, R.color.colorAccent));
+            picker.setCancelTextColor(ActivityCompat.getColor(this, R.color.white));
+            picker.setSubmitTextColor(ActivityCompat.getColor(this, R.color.white));
+            picker.setOnOptionPickListener(new OptionPicker.OnOptionPickListener() {
+                @Override
+                public void onOptionPicked(String option) {
+                    final String id1 = spinnerMap.get(option);
+                    if (check.equalsIgnoreCase(luggage)) {
+                        etEventBookingEventLuggage.setText(option);
+                        etEventBookingEventLuggage.setTag(id1);
+                    } else if (check.equalsIgnoreCase(vehicleType)) {
+                        etEventBookingVehicleType.setText(option);
+                        etEventBookingVehicleType.setTag(id1);
+                    } else if (check.equalsIgnoreCase(duration)) {
+                        etEventBookingEventDuration.setText(option);
+                        etEventBookingEventDuration.setTag(id1);
+                    } else {
+                        etEventBookingPassengers.setText(option);
+                        etEventBookingPassengers.setTag(id1);
+                    }
+                }
+            });
+            picker.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
