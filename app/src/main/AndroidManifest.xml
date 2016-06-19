@@ -17,7 +17,7 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.CAMERA" />
-
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-feature
         android:name="android.hardware.camera"
         android:required="true" />
@@ -231,6 +231,9 @@
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="73c4e2f991a9990508e872ec2b3f88a0e35f73a9" />
+        <activity
+            android:configChanges="orientation|screenSize"
+            android:name="me.nereo.multi_image_selector.MultiImageSelectorActivity" />
     </application>
 
 </manifest>

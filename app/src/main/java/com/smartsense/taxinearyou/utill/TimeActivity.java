@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
 import com.smartsense.taxinearyou.Fragments.FragmentBook;
@@ -37,6 +38,7 @@ public abstract class TimeActivity extends AppCompatActivity {
     private void configureToolbar() {
         toolbarAll = (Toolbar) findViewById(R.id.toolbarAll);
         toolbarText = (TextView) findViewById(R.id.toolbarText);
+        toolbarText.setVisibility(View.GONE);
         setSupportActionBar(toolbarAll);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
@@ -62,8 +64,8 @@ public abstract class TimeActivity extends AppCompatActivity {
     public void onResume() {
         super.onResume();
         checkFlow = false;
-        if (countDownTimer == null)
-            countDownStart(FragmentBook.timeRemaining);
+//        if (countDownTimer == null)
+//            countDownStart(FragmentBook.timeRemaining);
     }
 
 
@@ -100,8 +102,8 @@ public abstract class TimeActivity extends AppCompatActivity {
                 }
                 long seconds = (millisUntilFinished / 1000) % 60;
                 long minutes = ((millisUntilFinished - seconds) / 1000) / 60;
-                if (toolbarText != null)
-                    toolbarText.setText(String.format("%02d:%02d", minutes, seconds));
+//                if (toolbarText != null)
+//                    toolbarText.setText(String.format("%02d:%02d", minutes, seconds));
             }
 
             public void onFinish() {

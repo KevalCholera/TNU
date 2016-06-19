@@ -10,8 +10,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
-import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
@@ -25,6 +23,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.mpt.storage.SharedPreferenceUtil;
@@ -36,9 +35,11 @@ import com.smartsense.taxinearyou.LostItem;
 import com.smartsense.taxinearyou.More;
 import com.smartsense.taxinearyou.R;
 import com.smartsense.taxinearyou.SignIn;
+import com.smartsense.taxinearyou.TaxiNearYouApp;
 import com.smartsense.taxinearyou.utill.CircleImageView1;
 import com.smartsense.taxinearyou.utill.CommonUtil;
 import com.smartsense.taxinearyou.utill.Constants;
+import com.smartsense.taxinearyou.utill.MultipartRequestJson;
 import com.smartsense.taxinearyou.utill.WakeLocker;
 import com.squareup.picasso.Picasso;
 
@@ -46,9 +47,13 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.HashMap;
+import java.util.List;
+
+import me.nereo.multi_image_selector.MultiImageSelectorActivity;
 
 public class FragmentMenu extends Fragment implements Response.Listener<JSONObject>, Response.ErrorListener, View.OnClickListener {
 
@@ -268,7 +273,8 @@ public class FragmentMenu extends Fragment implements Response.Listener<JSONObje
         if (resultCode == Activity.RESULT_OK && data != null)
             switch (requestCode) {
                 case SELECT_FILE:
-                    doUpload(data);
+                    List<String> path = data.getStringArrayListExtra(MultiImageSelectorActivity.EXTRA_RESULT);
+                    doUpload(path.get(0));
                     break;
                 case REQUEST_CAMERA:
                     doUpload(data);
@@ -290,13 +296,18 @@ public class FragmentMenu extends Fragment implements Response.Listener<JSONObje
             public void onClick(DialogInterface dialog, int item) {
                 if (items[item].equals(getResources().getString(R.string.take_photo))) {
                     whichSelect = REQUEST_CAMERA;
+
                     Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
                     startActivityForResult(intent, REQUEST_CAMERA);
                 } else if (items[item].equals(getResources().getString(R.string.select_pic))) {
                     whichSelect = SELECT_FILE;
-                    Intent intImage = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                    intImage.setType("image/*");
-                    startActivityForResult(intImage, SELECT_FILE);
+                    Intent intent = new Intent(getActivity(), MultiImageSelectorActivity.class);
+                    intent.putExtra(MultiImageSelectorActivity.EXTRA_SHOW_CAMERA, false);
+                    intent.putExtra(MultiImageSelectorActivity.EXTRA_SELECT_MODE, MultiImageSelectorActivity.MODE_SINGLE);
+                    startActivityForResult(intent, SELECT_FILE);
+//                    Intent intImage = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+//                    intImage.setType("image/*");
+//                    startActivityForResult(intImage, SELECT_FILE);
                 } else if (items[item].equals(getResources().getString(R.string.cancel))) {
                     dialog.dismiss();
                 }
@@ -384,5 +395,72 @@ public class FragmentMenu extends Fragment implements Response.Listener<JSONObje
         super.onResume();
 //        LinearLayout llToolbarAll = (LinearLayout) getActivity().findViewById(R.id.llToolbarAll);
 //        llToolbarAll.setVisibility(View.GONE);
+    }
+
+    private void doUpload(String outputFile) {
+        final String tag = "doUpload";
+        File file = null;
+        file = new File(outputFile);
+        CommonUtil.showProgressDialog(getActivity(), "Uploading...");
+        HashMap<String, String> params = new HashMap<String, String>();
+        params.put("token", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_ACCESS_TOKEN, ""));
+        params.put("userId", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_ID, ""));
+        MultipartRequestJson multipartRequest = new MultipartRequestJson(Constants.BASE_URL_IMAGE_POSTFIX + "/CustomerProfilePic",
+                new Response.Listener<JSONObject>() {
+
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+                        CommonUtil.cancelProgressDialog();
+                        try {
+                            if (response.getInt("status") == Constants.STATUS_SUCCESS) {
+                                Log.i("Push ", response.toString());
+//                                ivProfileImage.setDefaultImageResId(R.drawable.ic_user);
+                                SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_USER_PROIMG, Constants.BASE_URL_IMAGE_POSTFIX +response.optJSONObject("json").optJSONObject("userInfo").optString("profilePic"));
+                                SharedPreferenceUtil.save();
+                                if (!TextUtils.isEmpty(SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_PROIMG, "")))
+                                    Picasso.with(getActivity())
+                                            .load(SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_PROIMG, ""))
+                                            .error(R.mipmap.icon_user)
+                                            .placeholder(R.mipmap.icon_user)
+                                            .into(cvAccountPhoto);
+//                                Log.d("response", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_PROIMG, ""));
+                                CommonUtil.alertBox(getActivity(), response.optString("msg"));
+//                                ivProfileImage.setDefaultImageResId(R.drawable.ic_user);
+//                                ivProfileImage.setImageUrl(Constants.BASE_URL + "/images/users/" + userInfo.optString("image"), imageLoader);
+//                                final AlertDialog.Builder alert = new AlertDialog.Builder(ProfileActivity.this);
+//                                alert.setTitle("Success!");
+//                                alert.setMessage(response.optString("message"));
+//                                alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+//                                    public void onClick(DialogInterface dialog, int id) {
+//
+//                                    }
+//
+//                                });
+//                                alert.show();
+
+                            } else {
+//                                JsonErrorShow.jsonErrorShow(response, );
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+//                CommonUtil.alertBox(getActivity(), "", getActivity().getResources().getString(R.string.nointernet_try_again_msg));
+                CommonUtil.cancelProgressDialog();
+
+                Log.e("Volley Request Error", error.getLocalizedMessage());
+
+            }
+
+        }, file, params);
+        multipartRequest.setRetryPolicy(new DefaultRetryPolicy(20000, 0, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        TaxiNearYouApp.getInstance().addToRequestQueue(multipartRequest, tag);
+
     }
 }

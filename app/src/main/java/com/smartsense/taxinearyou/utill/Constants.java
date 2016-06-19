@@ -21,7 +21,7 @@ public class Constants {
     public static final String BASE_TERMS_AND_CONDITION = "/customer/termsAndConditions.html";
     public static final String BASE_PRIVACY_POLICY = "/customer/privacyPolicy.html";
     public static final String BASE_URL_PHOTO_THUMB = BASE_URL + "/images/products/";
-    public static final String BASE_IMAGE_URL = "http://104.43.15.1:8025";
+
     public static final String PRO_TITLE = "Please Wait";
     public static final String PRO_LIST = "Syncing Process Running...";
     public static final String FROM_ADDRESS = "from_add";
@@ -177,6 +177,7 @@ public class Constants {
         public static final int ACTIVE_ACCOUNT = 1121;
         public static final int EVENT_CHANGE = 1022;
         public static final int LOST_ITEM_STATUS = 1030;
+        public static final int EVENT_PENDING_TRIP = 1145;
     }
 
     public class ErrorCode {

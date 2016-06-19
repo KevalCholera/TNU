@@ -64,7 +64,7 @@ public class Search extends AppCompatActivity {
         final ArrayList<String> arrayList = new ArrayList<>();
         arrayList.add("Search");
         arrayList.add("My Trips");
-        arrayList.add("Credit");
+        arrayList.add("Wallet");
         arrayList.add("Menu");
 
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {

@@ -65,7 +65,7 @@ public class FragmentMyTrips extends Fragment implements Response.Listener<JSONO
         ivMyTripsNoTrips = (ImageView) rootView.findViewById(R.id.ivMyTripsNoTrips);
         srMyTrips = (SwipeRefreshLayout) rootView.findViewById(R.id.srMyTrips);
         lvMyTrips = (ListView) rootView.findViewById(R.id.lvMyTrips);
-        pbMyTrips = (ProgressBar) rootView.findViewById(R.id.pbMyTrips);
+
         llFragmentMyTrips = (LinearLayout) rootView.findViewById(R.id.llFragmentMyTrips);
 
         lvMyTrips.setOnItemClickListener(new AdapterView.OnItemClickListener() {
