@@ -178,6 +178,9 @@ public class Constants {
         public static final int EVENT_CHANGE = 1022;
         public static final int LOST_ITEM_STATUS = 1030;
         public static final int EVENT_PENDING_TRIP = 1145;
+        public static final int EVENT_PAY_TRIP = 1146;
+        public static final int EVENT_CHECK_BOOK = 1143;
+        public static final int EVENT_IS_PARTNER_AVAILABLE = 1144;
     }
 
     public class ErrorCode {

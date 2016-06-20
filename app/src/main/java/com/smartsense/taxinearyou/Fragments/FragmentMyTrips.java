@@ -195,7 +195,7 @@ public class FragmentMyTrips extends Fragment implements Response.Listener<JSONO
         @Override
         public void onReceive(Context context, Intent intent) {
             WakeLocker.acquire(context);
-            Log.i("Push ", intent.getStringExtra(Constants.EXTRAS));
+            Log.i("Push 123", intent.getStringExtra(Constants.EXTRAS));
             pageNumber = 0;
             totalRecord = 0;
             adapterMyTrips = null;

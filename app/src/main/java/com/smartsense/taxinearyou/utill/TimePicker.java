@@ -58,7 +58,7 @@ public class TimePicker extends WheelPicker {
      * @param activity the activity
      */
     public TimePicker(Activity activity) {
-        this(activity, HOUR_OF_DAY, "", "");
+        this(activity, HOUR_OF_DAY, 0, 0);
     }
 
     /**
@@ -69,7 +69,7 @@ public class TimePicker extends WheelPicker {
      * @see #HOUR_OF_DAY
      * @see #HOUR
      */
-    public TimePicker(Activity activity, @Mode int mode, String hour, String minute) {
+    public TimePicker(Activity activity, @Mode int mode, Integer hour, Integer minute) {
         super(activity);
         this.mode = mode;
         if (hour.equals(""))
@@ -77,11 +77,11 @@ public class TimePicker extends WheelPicker {
         else{
             if(Integer.valueOf(hour) < 12) {
 //            selectedHour=String.valueOf(Integer.valueOf(selectedHour));
-                selectedHour = hour;
+                selectedHour = DateUtils.fillZero(hour);
                 Log.i("selectedHour1",selectedHour);
             }else{
 
-                selectedHour=String.format("%01d", Integer.valueOf(hour)-12);
+                selectedHour=DateUtils.fillZero(hour-12);
                 Log.i("selectedHour",selectedHour);
             }
 
@@ -89,9 +89,9 @@ public class TimePicker extends WheelPicker {
         if (minute.equals(""))
             selectedMinute = DateUtils.fillZero(Calendar.getInstance().get(Calendar.MINUTE));
         else
-            selectedMinute = minute;
+            selectedMinute = DateUtils.fillZero(minute);
 //        setSelectedItem(selectedHour,selectedMinute);
-        selectedAmPm = Integer.valueOf(hour) < 12 ? "AM" : "PM";
+        selectedAmPm = hour < 12 ? "AM" : "PM";
 
     }
 

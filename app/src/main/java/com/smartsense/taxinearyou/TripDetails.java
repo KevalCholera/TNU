@@ -40,7 +40,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.text.DecimalFormat;
 import java.text.ParseException;
 
 public class TripDetails extends AppCompatActivity implements View.OnClickListener, Response.Listener<JSONObject>, Response.ErrorListener {
@@ -48,7 +47,7 @@ public class TripDetails extends AppCompatActivity implements View.OnClickListen
     TextView tvTripDetailBookingDate, tvTripDetailBookingTime, tvTripDetailLost, tvTripDetailTaxiProvider, tvTripDetailPickUpDate,
             tvTripDetailPickUpTime, tvTripDetailFare, tvTripDetailFrom, tvTripDetailVia1, tvTripDetailVia2, tvTripDetailTo,
             tvTripDetailTNR, tvTripDetailPassengers, tvTripDetailAdditionsInfo, tvTripDetailLugguages, tvTripDetailMiles, tvTripDetailPayment, tvTripDetailRideType,
-            tvTripDetailRideStatus, tvTripDetailVehicle, tvTripDetailCancle, tvTripDetailInvoice, tvTripDetailFeedback;
+            tvTripDetailRideStatus, tvTripDetailVehicle, tvTripDetailCancle, tvTripDetailInvoice, tvTripDetailFeedback, tvTripDetailFareLabel, tvTripDetailAdditionsReasonLabel, tvTripDetailAdditionsReason;
     LinearLayout lyTripDetailInvoiceFeedback, lyTripDetailsVia2, lyTripDetailsVia1;
     CircleImageView1 cvTripDetailsPartnerLogo;
     AlertDialog alert;
@@ -56,16 +55,17 @@ public class TripDetails extends AppCompatActivity implements View.OnClickListen
     final int requestFeedBack = 1;
     final int requestLostItem = 2;
     int requestRefreshMyTrip = 0;
+    Boolean check = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trip_details);
-
+        check = getIntent().getBooleanExtra("check", false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         registerReceiver(tripMessageReceiver, new IntentFilter(String.valueOf(Constants.Events.EVENT_CHANGE)));
         registerReceiver(tripMessageReceiver, new IntentFilter(String.valueOf(Constants.Events.BookRide)));
-
+        tvTripDetailFareLabel = (TextView) findViewById(R.id.tvTripDetailFareLabel);
         tvTripDetailBookingDate = (TextView) findViewById(R.id.tvTripDetailBookingDate);
         tvTripDetailBookingTime = (TextView) findViewById(R.id.tvTripDetailBookingTime);
         tvTripDetailLost = (TextView) findViewById(R.id.tvTripDetailLost);
@@ -89,6 +89,8 @@ public class TripDetails extends AppCompatActivity implements View.OnClickListen
         tvTripDetailCancle = (TextView) findViewById(R.id.tvTripDetailCancle);
         tvTripDetailInvoice = (TextView) findViewById(R.id.btTripDetailInvoice);
         tvTripDetailFeedback = (TextView) findViewById(R.id.tvTripDetailFeedback);
+        tvTripDetailAdditionsReasonLabel = (TextView) findViewById(R.id.tvTripDetailAdditionsReasonLabel);
+        tvTripDetailAdditionsReason = (TextView) findViewById(R.id.tvTripDetailAdditionsReason);
         lyTripDetailInvoiceFeedback = (LinearLayout) findViewById(R.id.lyTripDetailInvoiceFeedback);
         lyTripDetailsVia2 = (LinearLayout) findViewById(R.id.lyTripDetailsVia2);
         lyTripDetailsVia1 = (LinearLayout) findViewById(R.id.lyTripDetailsVia1);
@@ -96,6 +98,7 @@ public class TripDetails extends AppCompatActivity implements View.OnClickListen
         ivTripDetailsMap = (ImageView) findViewById(R.id.ivTripDetailsMap);
 
         try {
+
             final JSONObject tripDetails = new JSONObject(getIntent().getStringExtra("key"));
             tvTripDetailRideStatus.setText(tripDetails.optString("status"));
 
@@ -203,9 +206,29 @@ public class TripDetails extends AppCompatActivity implements View.OnClickListen
             tvTripDetailRideType.setText(tripDetails.optString("bookingType"));
             tvTripDetailVehicle.setText(tripDetails.optString("vehicleType"));
 
+            if (check) {
+                tvTripDetailFareLabel.setText("Charge");
+                if (tripDetails.optInt("isPaid") == 0) {
+                    tvTripDetailLost.setText("Pending Payment");
+                    tvTripDetailLost.setBackgroundColor(ContextCompat.getColor(TripDetails.this, R.color.red));
+                } else {
+                    tvTripDetailLost.setBackgroundColor(ContextCompat.getColor(TripDetails.this, R.color.dark_green));
+                    tvTripDetailLost.setText("Paid");
+                }
+
+                tvTripDetailLost.setTag(tripDetails.optString("paymentId"));
+                tvTripDetailLost.setVisibility(View.VISIBLE);
+                tvTripDetailAdditionsReasonLabel.setVisibility(View.VISIBLE);
+                tvTripDetailAdditionsReason.setVisibility(View.VISIBLE);
+                if (tripDetails.optString("chargeReason").equalsIgnoreCase(""))
+                    tvTripDetailAdditionsReason.setText("-");
+                else
+                    tvTripDetailAdditionsReason.setText(tripDetails.optString("chargeReason"));
+            }
         } catch (JSONException | ParseException e) {
             e.printStackTrace();
         }
+
 
         tvTripDetailCancle.setOnClickListener(this);
         tvTripDetailLost.setOnClickListener(this);
@@ -221,7 +244,12 @@ public class TripDetails extends AppCompatActivity implements View.OnClickListen
                 cancelRideDialog();
                 break;
             case R.id.tvTripDetailLost:
-                startActivityForResult(new Intent(TripDetails.this, AddLostItem.class).putExtra("rideId", (String) tvTripDetailTaxiProvider.getTag()), requestLostItem);
+                if (tvTripDetailLost.getText().toString().equalsIgnoreCase("Paid")) {
+
+                } else if (tvTripDetailLost.getText().toString().equalsIgnoreCase("Pending Payment")) {
+                    payPayment();
+                } else
+                    startActivityForResult(new Intent(TripDetails.this, AddLostItem.class).putExtra("rideId", (String) tvTripDetailTaxiProvider.getTag()), requestLostItem);
                 break;
             case R.id.tvTripDetailFeedback:
                 startActivityForResult(new Intent(TripDetails.this, Feedback.class).putExtra("rideId", (String) tvTripDetailTaxiProvider.getTag()), requestFeedBack);
@@ -230,6 +258,23 @@ public class TripDetails extends AppCompatActivity implements View.OnClickListen
                 resendInvoice();
                 break;
         }
+    }
+
+    private void payPayment() {
+        final String tag = "payPayment";
+        StringBuilder builder = new StringBuilder();
+        JSONObject jsonData = new JSONObject();
+
+        try {
+            builder.append(jsonData.put("token", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_ACCESS_TOKEN, ""))
+                    .put("userId", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_ID, ""))
+                    .put("paymentId", (String) tvTripDetailLost.getTag()));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        CommonUtil.jsonRequestGET(this, getResources().getString(R.string.get_data), CommonUtil.utf8Convert(builder, Constants.Events.EVENT_PAY_TRIP), tag, this, this);
+
     }
 
     private void resendInvoice() {
@@ -388,6 +433,12 @@ public class TripDetails extends AppCompatActivity implements View.OnClickListen
                     alert.dismiss();
                     requestRefreshMyTrip = 1;
                     alertBoxTripDetails(jsonObject.optString("msg"));
+                } else if (jsonObject.optInt("__eventid") == Constants.Events.EVENT_PAY_TRIP) {
+                    tvTripDetailLost.setBackgroundColor(ContextCompat.getColor(TripDetails.this, R.color.dark_green));
+                    tvTripDetailLost.setText("Paid");
+                    requestRefreshMyTrip = 1;
+                    CommonUtil.alertBox(this, jsonObject.optString("msg"));
+
                 } else if (jsonObject.optInt("__eventid") == Constants.Events.RESEND_INVOICE) {
                     CommonUtil.alertBox(this, jsonObject.optString("msg"));
                 }

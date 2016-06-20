@@ -20,8 +20,13 @@ import android.widget.RadioGroup;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.RequestFuture;
+import com.android.volley.toolbox.Volley;
 import com.mpt.storage.SharedPreferenceUtil;
 import com.smartsense.taxinearyou.utill.CommonUtil;
 import com.smartsense.taxinearyou.utill.Constants;
@@ -62,7 +67,7 @@ public class SearchCars extends TimeActivity implements Response.Listener<JSONOb
         adapterSearchCar = null;
         pageNumber = 0;
         totalRecord = 0;
-        pageSize = SharedPreferenceUtil.getInt(Constants.PAGE_LIMIT,9);
+        pageSize = SharedPreferenceUtil.getInt(Constants.PAGE_LIMIT, 9);
         clSearchCars = (CoordinatorLayout) findViewById(R.id.clSearchCars);
         lvSearchCarsLine1 = (ListView) findViewById(R.id.lvSearchCarsLine1);
         tvSearchCarsFilter = (TextView) findViewById(R.id.tvSearchCarsFilter);
@@ -79,7 +84,7 @@ public class SearchCars extends TimeActivity implements Response.Listener<JSONOb
         llSearchCarsNoPartner = (LinearLayout) findViewById(R.id.llSearchCarsNoPartner);
 
         try {
-            tvSearchCarsDateTime.setText(Constants.DATE_FORMAT_SET.format(Constants.DATE_FORMAT_SEND.parse(getIntent().getStringExtra("tvBookDateTime"))) + " " + (getIntent().getIntExtra("duration",1)==1 ? "Now" : getIntent().getIntExtra("duration",1)==2 ? "Today" : "Tomorrow"));
+            tvSearchCarsDateTime.setText(Constants.DATE_FORMAT_SET.format(Constants.DATE_FORMAT_SEND.parse(getIntent().getStringExtra("tvBookDateTime"))) + " " + (getIntent().getIntExtra("duration", 1) == 1 ? "Now" : getIntent().getIntExtra("duration", 1) == 2 ? "Today" : "Tomorrow"));
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -211,7 +216,7 @@ public class SearchCars extends TimeActivity implements Response.Listener<JSONOb
                     .put("journeyDatetime", getIntent().getStringExtra("tvBookDateTime"))
                     .put("luggageId", getIntent().getStringExtra("tvBookLuggage"))
                     .put("passanger", getIntent().getStringExtra("tvBookPassenger"))
-                    .put("bookingduration", String.valueOf(getIntent().getIntExtra("duration",0)))
+                    .put("bookingduration", String.valueOf(getIntent().getIntExtra("duration", 0)))
                     .put("sortField", sortField)
                     .put("sortOrder", sortOrder)
                     .put("filterRequest", filterRequest)
@@ -238,7 +243,7 @@ public class SearchCars extends TimeActivity implements Response.Listener<JSONOb
                     .put("journeyDatetime", getIntent().getStringExtra("tvBookDateTime"))
                     .put("luggageId", getIntent().getStringExtra("tvBookLuggage"))
                     .put("passanger", getIntent().getStringExtra("tvBookPassenger"))
-                    .put("bookingduration", getIntent().getIntExtra("duration",1))
+                    .put("bookingduration", getIntent().getIntExtra("duration", 1))
                     .put("luggageDescription", getIntent().getStringExtra("luggageDescription"))
                     .put("passengerDescription", getIntent().getStringExtra("passengerDescription"));
 
@@ -279,6 +284,9 @@ public class SearchCars extends TimeActivity implements Response.Listener<JSONOb
                                 lvSearchCarsLine1.setVisibility(View.GONE);
                                 tvSearchNoPartnerFound.setText(response.optString("msg"));
                             }
+
+                            break;
+                        case Constants.Events.EVENT_CHECK_BOOK:
 
                             break;
                     }
@@ -336,6 +344,8 @@ public class SearchCars extends TimeActivity implements Response.Listener<JSONOb
         }
     }
 
+    RequestQueue queue;
+    RequestFuture<JSONObject> future;
 
     public class AdapterSearchCar extends BaseAdapter {
         private JSONArray data;
@@ -393,6 +403,7 @@ public class SearchCars extends TimeActivity implements Response.Listener<JSONOb
             llElementSearchCarsMain.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+
                     a.startActivity(new Intent(a, PartnerDetails.class).putExtra("customerSelection", SharedPreferenceUtil.getString(Constants.PrefKeys.DISTANCE_AFTER_CONVERT, ""))
                             .putExtra("ETA", "£" + CommonUtil.getDecimal(test.optDouble("ETA")))
                             .putExtra("partnerName", test.optString("partnerName"))
@@ -417,37 +428,63 @@ public class SearchCars extends TimeActivity implements Response.Listener<JSONOb
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-
                     SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_CUSTOMER_SELECTION, jsonObject.toString());
                     SharedPreferenceUtil.save();
+
+
                 }
             });
 
             tvSearchCarsBookNow.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
-                    JSONObject jsonObject = new JSONObject();
-                    try {
-                        jsonObject.put("partnerTaxiTypeId", test.optJSONObject("taxiType").optInt("partnerTaxiTypeId"));
-                        jsonObject.put("partnerName", test.optString("partnerName"));
-                        jsonObject.put("distance", test.optString("distance"));
-                        jsonObject.put("price", test.optString("ETA"));
-                        jsonObject.put("taxiTypeName", test.optJSONObject("taxiType").optString("taxiTypeName"));
-                        jsonObject.put("partnerId", test.optJSONObject("taxiType").optString("partnerId"));
-                        jsonObject.put("tripType", bookingduration);
-                        jsonObject.put("duration", SharedPreferenceUtil.getString(Constants.PrefKeys.DISTANCE_AFTER_CONVERT, ""));
-                        jsonObject.put("taxiTypeId", test.optJSONObject("taxiType").optInt("taxiTypeId"));
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-
-                    SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_CUSTOMER_SELECTION, jsonObject.toString());
-                    SharedPreferenceUtil.save();
-
-                    if (SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_STATUS, "").equalsIgnoreCase("1"))
-                        a.startActivity(new Intent(a, BookingInfo.class));
-                    else
+                    if (SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_STATUS, "").equalsIgnoreCase("1")) {
+                        queue = Volley.newRequestQueue(SearchCars.this);
+                        future = RequestFuture.newFuture();
+                        StringBuilder builder = new StringBuilder();
+                        JSONObject jsonData = new JSONObject();
+                        try {
+                            builder.append(jsonData.put("token", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_ACCESS_TOKEN, ""))
+                                    .put("userId", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_ID, "")));
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, CommonUtil.utf8Convert(builder, Constants.Events.EVENT_CHECK_BOOK), null, new Response.Listener<JSONObject>() {
+                            @Override
+                            public void onResponse(JSONObject response) {
+                                CommonUtil.cancelProgressDialog();
+                                if (response.optJSONObject("json").optBoolean("bookingAllow")) {
+                                    JSONObject jsonObject = new JSONObject();
+                                    try {
+                                        jsonObject.put("partnerTaxiTypeId", test.optJSONObject("taxiType").optInt("partnerTaxiTypeId"));
+                                        jsonObject.put("partnerName", test.optString("partnerName"));
+                                        jsonObject.put("distance", test.optString("distance"));
+                                        jsonObject.put("price", test.optString("ETA"));
+                                        jsonObject.put("taxiTypeName", test.optJSONObject("taxiType").optString("taxiTypeName"));
+                                        jsonObject.put("partnerId", test.optJSONObject("taxiType").optString("partnerId"));
+                                        jsonObject.put("tripType", bookingduration);
+                                        jsonObject.put("duration", SharedPreferenceUtil.getString(Constants.PrefKeys.DISTANCE_AFTER_CONVERT, ""));
+                                        jsonObject.put("taxiTypeId", test.optJSONObject("taxiType").optInt("taxiTypeId"));
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    }
+                                    SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_CUSTOMER_SELECTION, jsonObject.toString());
+                                    SharedPreferenceUtil.save();
+                                    a.startActivity(new Intent(a, BookingInfo.class));
+                                } else {
+                                    CommonUtil.alertBox(SearchCars.this, response.optJSONObject("json").optString("reason"));
+                                }
+                            }
+                        }, new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                CommonUtil.cancelProgressDialog();
+                                CommonUtil.errorToastShowing(SearchCars.this);
+                            }
+                        });
+                        CommonUtil.showProgressDialog(SearchCars.this,getResources().getString(R.string.get_data));
+                        TaxiNearYouApp.getInstance().addToRequestQueue(request, "");
+                    } else
                         CommonUtil.alertBox(a, a.getResources().getString(R.string.msg_activate_account));
                 }
             });
@@ -474,7 +511,6 @@ public class SearchCars extends TimeActivity implements Response.Listener<JSONOb
             return vi;
         }
     }
-
 
 
 }

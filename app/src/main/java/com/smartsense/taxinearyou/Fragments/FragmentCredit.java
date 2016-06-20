@@ -56,7 +56,7 @@ public class FragmentCredit extends Fragment implements Response.Listener<JSONOb
 
         pageNumber = 0;
         totalRecord = 0;
-        pageSize = SharedPreferenceUtil.getInt(Constants.PAGE_LIMIT,9);
+        pageSize = SharedPreferenceUtil.getInt(Constants.PAGE_LIMIT, 9);
         adapterMyTrips = null;
 
         tvFragmentMyTrips = (TextView) rootView.findViewById(R.id.tvFragmentMyTrips);
@@ -71,7 +71,7 @@ public class FragmentCredit extends Fragment implements Response.Listener<JSONOb
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 selected = position;
                 JSONObject obj = (JSONObject) parent.getItemAtPosition(position);
-                startActivityForResult(new Intent(getActivity(), TripDetails.class).putExtra("key", obj.toString()), request);
+                startActivityForResult(new Intent(getActivity(), TripDetails.class).putExtra("key", obj.toString()).putExtra("check",true), request);
             }
         });
         srMyTrips.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -273,7 +273,7 @@ public class FragmentCredit extends Fragment implements Response.Listener<JSONOb
             tvElementMyTripsAmount.setText("£" + CommonUtil.getDecimal(test.optDouble("estimatedAmount")));
             tvElementMyTripsFrom.setText(test.optString("from"));
             tvElementMyTripsTo.setText(test.optString("to"));
-            tvElementMyTripsStatus.setText(test.optString("status"));
+
             tvElementMyTripsTaxiProvider.setText(test.optString("partner"));
             try {
                 tvElementMyTripsDateTime.setText(Constants.DATE_FORMAT_DATE_TIME.format(Constants.DATE_FORMAT_SET.parse(test.optString("pickTime").trim())));
@@ -281,12 +281,15 @@ public class FragmentCredit extends Fragment implements Response.Listener<JSONOb
                 e.printStackTrace();
             }
 
-            if (test.optString("status").equals("Cancelled"))
+            if (test.optInt("isPaid") == 0) {
+                tvElementMyTripsStatus.setText("Pending");
                 tvElementMyTripsStatus.setBackgroundColor(ContextCompat.getColor(a, R.color.red));
-            else if (tvElementMyTripsStatus.getText().toString().equals("Complete"))
+            } else {
                 tvElementMyTripsStatus.setBackgroundColor(ContextCompat.getColor(a, R.color.dark_green));
-            else
-                tvElementMyTripsStatus.setBackgroundColor(ContextCompat.getColor(a, R.color.Yellow));
+                tvElementMyTripsStatus.setText("Paid");
+            }
+
+
             if ((position + 1) == data.length() && totalRecord != data.length()) {
                 doMyTrip(data.length(), true);
             }

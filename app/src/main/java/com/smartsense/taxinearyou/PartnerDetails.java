@@ -15,6 +15,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.mpt.storage.SharedPreferenceUtil;
 import com.smartsense.taxinearyou.Fragments.FragmentAvailability;
 import com.smartsense.taxinearyou.Fragments.FragmentReview;
@@ -23,6 +27,9 @@ import com.smartsense.taxinearyou.utill.CommonUtil;
 import com.smartsense.taxinearyou.utill.Constants;
 import com.smartsense.taxinearyou.utill.TimeActivity;
 import com.squareup.picasso.Picasso;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,6 +46,7 @@ public class PartnerDetails extends TimeActivity {
     public static String partnerId;
     public static int available;
     public static ArrayList<String> rating = new ArrayList<>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,9 +83,39 @@ public class PartnerDetails extends TimeActivity {
         btPartnerBookNow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_STATUS, "").equalsIgnoreCase("1"))
-                    startActivity(new Intent(PartnerDetails.this, BookingInfo.class));
-                else
+                if (SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_STATUS, "").equalsIgnoreCase("1")) {
+
+                    StringBuilder builder = new StringBuilder();
+                    JSONObject jsonData = new JSONObject();
+                    try {
+                        builder.append(jsonData.put("token", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_ACCESS_TOKEN, ""))
+                                .put("userId", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_ID, "")));
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, CommonUtil.utf8Convert(builder, Constants.Events.EVENT_CHECK_BOOK), null, new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            if (response.optJSONObject("json").optBoolean("bookingAllow")) {
+
+                                startActivity(new Intent(PartnerDetails.this, BookingInfo.class));
+
+                            } else {
+                                CommonUtil.alertBox(PartnerDetails.this, response.optJSONObject("json").optString("reason"));
+                            }
+                            CommonUtil.cancelProgressDialog();
+                        }
+                    }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            CommonUtil.cancelProgressDialog();
+                            CommonUtil.errorToastShowing(PartnerDetails.this);
+                        }
+                    });
+                    CommonUtil.showProgressDialog(PartnerDetails.this,getResources().getString(R.string.get_data));
+                    TaxiNearYouApp.getInstance().addToRequestQueue(request, "");
+
+                } else
                     CommonUtil.alertBox(PartnerDetails.this, getResources().getString(R.string.msg_activate_account));
             }
         });

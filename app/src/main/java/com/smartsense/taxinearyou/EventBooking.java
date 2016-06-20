@@ -29,6 +29,8 @@ import android.widget.TimePicker;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.jzxiang.pickerview.data.Type;
+import com.jzxiang.pickerview.listener.OnDateSetListener;
 import com.mpt.storage.SharedPreferenceUtil;
 import com.smartsense.taxinearyou.utill.CommonUtil;
 import com.smartsense.taxinearyou.utill.Constants;
@@ -43,6 +45,7 @@ import java.util.Date;
 import java.util.HashMap;
 
 import cn.qqtheme.framework.picker.OptionPicker;
+
 
 public class EventBooking extends AppCompatActivity implements Response.Listener<JSONObject>, Response.ErrorListener, View.OnClickListener {
 
@@ -274,6 +277,39 @@ public class EventBooking extends AppCompatActivity implements Response.Listener
         } catch (ParseException e) {
             e.printStackTrace();
         }
+    }
+    Calendar calendar = Calendar.getInstance();
+    long oneYear = 1L * 365 * 1000 * 60 * 60 * 24L;
+    public void selectPicker(long minTime){
+        com.jzxiang.pickerview.TimePickerDialog mDialogAll = new com.jzxiang.pickerview.TimePickerDialog.Builder()
+                .setCallBack(new OnDateSetListener() {
+                    @Override
+                    public void onDateSet(com.jzxiang.pickerview.TimePickerDialog timePickerView, long millseconds) {
+
+                        calendar.setTimeInMillis(millseconds);
+                        updateTime(Integer.valueOf(Constants.DATE_FORMAT_BIG_TIME_HOUR.format(calendar.getTime())),Integer.valueOf(Constants.DATE_FORMAT_TIME_MIN.format(calendar.getTime())),Constants.DATE_FORMAT_ONLY_DATE.format(calendar.getTime()));
+                    }
+                })
+                .setCancelStringId("CANCEL")
+                .setSureStringId("OK")
+                .setTitleStringId("Select Date and Time")
+                .setYearText("")
+                .setMonthText("")
+                .setDayText("")
+                .setHourText("")
+                .setMinuteText("")
+                .setCyclic(true)
+                .setCurrentMillseconds(minTime)
+                .setThemeColor(ActivityCompat.getColor(EventBooking.this, R.color.colorAccent))
+                .setType(Type.ALL)
+                .setWheelItemTextNormalColor(getResources().getColor(R.color.timetimepicker_default_text_color))
+                .setWheelItemTextSelectorColor(ActivityCompat.getColor(EventBooking.this, R.color.colorAccent))
+                .setWheelItemTextSize(12)
+                .setMinMillseconds(minTime)
+                .setMaxMillseconds(minTime+oneYear)
+                .build();
+        mDialogAll.show(getSupportFragmentManager(), "all");
+
     }
 
     @Override
@@ -598,6 +634,7 @@ public class EventBooking extends AppCompatActivity implements Response.Listener
 
                     try {
                         String dateTime = Constants.DATE_FORMAT_SET.format(Constants.DATE_FORMAT_GET.parse(jsonObject.optJSONObject("json").optString("serverTime")));
+
                         jsonDate = Constants.DATE_FORMAT_ONLY_DATE.format(Constants.DATE_FORMAT_SET.parse(dateTime));
                         if (check) {
                             jsonTimeHour = Constants.DATE_FORMAT_BIG_TIME_HOUR.format(Constants.DATE_FORMAT_SET.parse(dateTime));
@@ -607,7 +644,8 @@ public class EventBooking extends AppCompatActivity implements Response.Listener
                             check = false;
                         }
                         if (once)
-                            datePicker(dateTime);
+                            selectPicker(Constants.DATE_FORMAT_SET.parse(dateTime).getTime());
+//                            datePicker(dateTime);
 
                     } catch (ParseException e) {
                         e.printStackTrace();

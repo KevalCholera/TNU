@@ -1,14 +1,7 @@
 package com.smartsense.taxinearyou;
 
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,9 +16,6 @@ import com.smartsense.taxinearyou.utill.TimeActivity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 
 public class PaymentDetails extends TimeActivity implements View.OnClickListener, Response.Listener<JSONObject>, Response.ErrorListener {
 
@@ -60,7 +50,8 @@ public class PaymentDetails extends TimeActivity implements View.OnClickListener
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.tvPaymentCash:
-                finalBooking();
+
+                isPartnerAvailable();
                 break;
             case R.id.tvPaymentCard:
                 startActivity(new Intent(PaymentDetails.this, Card.class));
@@ -108,6 +99,22 @@ public class PaymentDetails extends TimeActivity implements View.OnClickListener
         return super.onOptionsItemSelected(item);
     }
 
+    private void isPartnerAvailable() {
+
+        final String tag = "Book Or Not";
+        StringBuilder builder = new StringBuilder();
+        JSONObject jsonData = new JSONObject();
+        try {
+            JSONObject jsonObject = new JSONObject(SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_CUSTOMER_SELECTION, ""));
+            builder.append(jsonData.put("token", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_ACCESS_TOKEN, ""))
+                    .put("userId", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_ID, "")).put("partnerId",jsonObject.optString("partnerId")));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        CommonUtil.jsonRequestGET(this, getResources().getString(R.string.get_data), CommonUtil.utf8Convert(builder, Constants.Events.EVENT_IS_PARTNER_AVAILABLE), tag, this, this);
+    }
+
     @Override
     public void onErrorResponse(VolleyError volleyError) {
         CommonUtil.cancelProgressDialog();
@@ -118,9 +125,24 @@ public class PaymentDetails extends TimeActivity implements View.OnClickListener
     public void onResponse(JSONObject jsonObject) {
         CommonUtil.cancelProgressDialog();
         if (jsonObject != null)
-            if (jsonObject.optInt("status") == Constants.STATUS_SUCCESS)
-                CommonUtil.openDialogs(PaymentDetails.this, "Payment Details", R.id.lyPopupBookSuccess, R.id.btPopupBookSuccessOk, jsonObject.optString("msg"), R.id.tvDialogAllSuccess);
-            else if (jsonObject.has("json") && jsonObject.optJSONObject("json").has("errorCode") && jsonObject.optJSONObject("json").optInt("errorCode") == Constants.ErrorCode.SORRY_INCONVENIENCE || jsonObject.has("json") && jsonObject.optJSONObject("json").has("errorCode") && jsonObject.optJSONObject("json").optInt("errorCode") == Constants.ErrorCode.UNPAID_CANCEL_RIDE_CHARGE || jsonObject.has("json") && jsonObject.optJSONObject("json").has("errorCode") && jsonObject.optJSONObject("json").optInt("errorCode") == Constants.ErrorCode.LOGGEDOUT_PARTNER)
+            if (jsonObject.optInt("status") == Constants.STATUS_SUCCESS) {
+                try {
+                    switch (jsonObject.getInt("__eventid")) {
+                        case Constants.Events.BookRide:
+                            CommonUtil.openDialogs(PaymentDetails.this, "Payment Details", R.id.lyPopupBookSuccess, R.id.btPopupBookSuccessOk, jsonObject.optString("msg"), R.id.tvDialogAllSuccess);
+                            break;
+                        case Constants.Events.EVENT_IS_PARTNER_AVAILABLE:
+                            if (jsonObject.optJSONObject("json").optBoolean("available")) {
+                                finalBooking();
+                            }else{
+                                CommonUtil.alertBox(PaymentDetails.this, jsonObject.optJSONObject("json").optString("msg"));
+                            }
+                            break;
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            } else if (jsonObject.has("json") && jsonObject.optJSONObject("json").has("errorCode") && jsonObject.optJSONObject("json").optInt("errorCode") == Constants.ErrorCode.SORRY_INCONVENIENCE || jsonObject.has("json") && jsonObject.optJSONObject("json").has("errorCode") && jsonObject.optJSONObject("json").optInt("errorCode") == Constants.ErrorCode.UNPAID_CANCEL_RIDE_CHARGE || jsonObject.has("json") && jsonObject.optJSONObject("json").has("errorCode") && jsonObject.optJSONObject("json").optInt("errorCode") == Constants.ErrorCode.LOGGEDOUT_PARTNER)
                 CommonUtil.openDialogs(this, "Payment Fail", R.id.lyPopupBookError, R.id.btPopupBookErrorOk, jsonObject.optString("msg"), R.id.tvDialogAllError);
             else
                 CommonUtil.conditionAuthentication(this, jsonObject);

@@ -167,8 +167,8 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
 
     public void timeSelect() {
 
-        String hour = "";
-        String minute = "";
+        String hour = "1";
+        String minute = "1";
         try {
             hour = Constants.DATE_FORMAT_BIG_TIME_HOUR.format(Constants.DATE_FORMAT_SET.parse(tvBookDateTime.getText().toString()));
             minute = Constants.DATE_FORMAT_TIME_MIN.format(Constants.DATE_FORMAT_SET.parse(tvBookDateTime.getText().toString()));
@@ -176,7 +176,7 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
             e.printStackTrace();
         }
 
-        com.smartsense.taxinearyou.utill.TimePicker picker = new com.smartsense.taxinearyou.utill.TimePicker(getActivity(), com.smartsense.taxinearyou.utill.TimePicker.HOUR, hour, minute);
+        com.smartsense.taxinearyou.utill.TimePicker picker = new com.smartsense.taxinearyou.utill.TimePicker(getActivity(), com.smartsense.taxinearyou.utill.TimePicker.HOUR, Integer.valueOf(hour), Integer.valueOf(minute));
         picker.setLabel("", "");
         picker.setTitleText("Select Time");
         picker.setTitleTextColor(ActivityCompat.getColor(getActivity(), R.color.white));

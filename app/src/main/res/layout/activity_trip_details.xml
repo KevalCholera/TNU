@@ -164,6 +164,7 @@
                         android:visibility="gone" />
 
                     <TextView
+                        android:id="@+id/tvTripDetailFareLabel"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_20_margin_padding"
@@ -522,6 +523,27 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/lyPadding10"
                 android:layout_weight="1"
+                android:textColor="@color/heading"
+                android:textSize="@dimen/etSignUpSizeAll" />
+
+            <TextView
+                android:id="@+id/tvTripDetailAdditionsReasonLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/lyPadding10"
+                android:layout_weight="1"
+                android:text="Reason"
+                android:visibility="gone"
+                android:textColor="@color/background"
+                android:textSize="@dimen/etSignUpSizeAll" />
+
+            <TextView
+                android:id="@+id/tvTripDetailAdditionsReason"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/lyPadding10"
+                android:layout_weight="1"
+                android:visibility="gone"
                 android:textColor="@color/heading"
                 android:textSize="@dimen/etSignUpSizeAll" />
 
