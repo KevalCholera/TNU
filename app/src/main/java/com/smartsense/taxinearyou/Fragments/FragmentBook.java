@@ -13,6 +13,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -677,6 +678,7 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
                 calendar.add(Calendar.MINUTE, 1);
                 calendar1.add(Calendar.MINUTE, 1);
                 dateTimeCanChange = Constants.DATE_FORMAT_SET.format(calendar.getTime());
+                Log.i("updateTime", calendar1.getTime().getTime() + "");
 
                 if (session) {
                     Calendar calendar2 = Calendar.getInstance();
@@ -686,19 +688,23 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
 
                     long countingTime = calendar1.getTime().getTime();
                     long limitTime = calendar2.getTime().getTime();
+                    Log.i("compare", countingTime + "==>" + limitTime);
                     if (countingTime < limitTime) {
                         session = true;
                         setTextOnView();
                         handler.postDelayed(this, 60 * 1000);
+                        Log.i("comparing", "comparing");
                     } else {
-                        handler.postDelayed(this, 60 * 1000);
                         alertBox();
                         session = false;
+                        handler.postDelayed(this, 60 * 1000);
+                        Log.i("compare Time", "compare Time");
                     }
                 } else {
                     session = false;
                     setTextOnView();
                     handler.postDelayed(this, 60 * 1000);
+                    Log.i("session", session + "");
                 }
             }
         }, 60 * 1000);
