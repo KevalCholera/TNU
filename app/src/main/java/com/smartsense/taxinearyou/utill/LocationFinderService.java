@@ -14,11 +14,13 @@ public class LocationFinderService {
     LocationManager lm;
     LocationResult locationResult;
     boolean gps_enabled = false;
+    Context context;
     boolean network_enabled = false;
 
     public boolean getLocation(Context context, LocationResult result) {
         //I use LocationResult callback class to pass location value from MyLocation to user code.
         locationResult = result;
+        this.context = context;
         if (lm == null)
             lm = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
 
@@ -33,8 +35,10 @@ public class LocationFinderService {
         }
 
         //don't start listeners if no provider is enabled
-        if (!gps_enabled && !network_enabled)
+        if (!gps_enabled && !network_enabled) {
+            locationResult.gotLocation(null);
             return false;
+        }
         try {
             if (gps_enabled)
                 lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListenerGps);
@@ -44,7 +48,7 @@ public class LocationFinderService {
             e.printStackTrace();
         }
         timer1 = new Timer();
-        timer1.schedule(new GetLastLocation(), 20000);
+        timer1.schedule(new GetLastLocation(), 10000);
         return true;
     }
 
@@ -61,6 +65,7 @@ public class LocationFinderService {
         }
 
         public void onProviderDisabled(String provider) {
+            locationResult.gotLocation(null);
         }
 
         public void onProviderEnabled(String provider) {
@@ -83,12 +88,14 @@ public class LocationFinderService {
         }
 
         public void onProviderDisabled(String provider) {
+            locationResult.gotLocation(null);
         }
 
         public void onProviderEnabled(String provider) {
         }
 
         public void onStatusChanged(String provider, int status, Bundle extras) {
+
         }
     };
 
@@ -96,33 +103,36 @@ public class LocationFinderService {
         @Override
         public void run() {
             try {
-                lm.removeUpdates(locationListenerGps);
-                lm.removeUpdates(locationListenerNetwork);
+                if (CommonUtil.isGPS(context)) {
+                    lm.removeUpdates(locationListenerGps);
+                    lm.removeUpdates(locationListenerNetwork);
 
-                Location net_loc = null, gps_loc = null;
-                if (gps_enabled)
-                    gps_loc = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-                if (network_enabled)
-                    net_loc = lm.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+                    Location net_loc = null, gps_loc = null;
+                    if (gps_enabled)
+                        gps_loc = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+                    if (network_enabled)
+                        net_loc = lm.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
 
-                //if there are both values use the latest one
-                if (gps_loc != null && net_loc != null) {
-                    if (gps_loc.getTime() > net_loc.getTime())
+                    //if there are both values use the latest one
+                    if (gps_loc != null && net_loc != null) {
+                        if (gps_loc.getTime() > net_loc.getTime())
+                            locationResult.gotLocation(gps_loc);
+                        else
+                            locationResult.gotLocation(net_loc);
+                        return;
+                    }
+
+                    if (gps_loc != null) {
                         locationResult.gotLocation(gps_loc);
-                    else
+                        return;
+                    }
+                    if (net_loc != null) {
                         locationResult.gotLocation(net_loc);
-                    return;
-                }
-
-                if (gps_loc != null) {
-                    locationResult.gotLocation(gps_loc);
-                    return;
-                }
-                if (net_loc != null) {
-                    locationResult.gotLocation(net_loc);
-                    return;
-                }
-                locationResult.gotLocation(null);
+                        return;
+                    }
+                    locationResult.gotLocation(null);
+                } else
+                    locationResult.gotLocation(null);
             } catch (SecurityException e) {
                 e.printStackTrace();
             }
@@ -134,12 +144,14 @@ public class LocationFinderService {
     }
 
     public void stopLocation() {
-        timer1.cancel();
-        try {
-            lm.removeUpdates(locationListenerNetwork);
-            lm.removeUpdates(locationListenerGps);
-        } catch (SecurityException e) {
-            e.printStackTrace();
-        }
+        if (timer1 != null)
+            timer1.cancel();
+        if (lm != null)
+            try {
+                lm.removeUpdates(locationListenerNetwork);
+                lm.removeUpdates(locationListenerGps);
+            } catch (SecurityException e) {
+                e.printStackTrace();
+            }
     }
 }

@@ -327,5 +327,6 @@
     <dimen name="buttonGeneral">15sp</dimen>
     <dimen name="fromToGaping">8dp</dimen>
     <dimen name="bookingInfoPadding">20dp</dimen>
+    <dimen name="corner_radius">3dp</dimen>
 
 </resources>

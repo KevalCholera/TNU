@@ -40,8 +40,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.text.ParseException;
-
 public class TripDetails extends AppCompatActivity implements View.OnClickListener, Response.Listener<JSONObject>, Response.ErrorListener {
 
     TextView tvTripDetailBookingDate, tvTripDetailBookingTime, tvTripDetailLost, tvTripDetailTaxiProvider, tvTripDetailPickUpDate,
@@ -98,7 +96,7 @@ public class TripDetails extends AppCompatActivity implements View.OnClickListen
         ivTripDetailsMap = (ImageView) findViewById(R.id.ivTripDetailsMap);
 
         try {
-
+Log.i("Yes","Here");
             final JSONObject tripDetails = new JSONObject(getIntent().getStringExtra("key"));
             tvTripDetailRideStatus.setText(tripDetails.optString("status"));
 
@@ -225,7 +223,7 @@ public class TripDetails extends AppCompatActivity implements View.OnClickListen
                 else
                     tvTripDetailAdditionsReason.setText(tripDetails.optString("chargeReason"));
             }
-        } catch (JSONException | ParseException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 

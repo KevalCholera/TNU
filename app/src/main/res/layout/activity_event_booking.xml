@@ -356,6 +356,7 @@
                     android:layout_marginTop="@dimen/margin_5"
                     android:background="@drawable/grayborder"
                     android:gravity="top"
+                    android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
                     android:imeOptions="actionDone"
                     android:textColor="@color/black"
                     android:textSize="@dimen/etSignUpSizeAll" />

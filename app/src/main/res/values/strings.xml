@@ -482,5 +482,6 @@
     <string name="unavailable_to_find_place">Sorry we were unable to find your current location, please search your location.</string>
     <string name="timeLimitError">Rides for today are closed.Please book a ride for now or tomorrow.</string>
     <string name="people">Peoples</string>
+    <string name="google_map">AIzaSyDRZ4RBmbSw025CK4D6kyH0nffkrsl0tXg</string>
 
 </resources>

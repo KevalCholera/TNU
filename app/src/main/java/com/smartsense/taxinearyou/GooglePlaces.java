@@ -42,7 +42,6 @@ import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.PlaceBuffer;
 import com.smartsense.taxinearyou.utill.CommonUtil;
 import com.smartsense.taxinearyou.utill.Constants;
-import com.smartsense.taxinearyou.utill.LocationFinderService;
 import com.smartsense.taxinearyou.utill.LocationSettingsHelper;
 
 import org.json.JSONArray;
@@ -546,7 +545,12 @@ public class GooglePlaces extends FragmentActivity implements OnItemClickListene
                         break;
                 }
                 break;
-
+            case 11:
+                if(resultCode==Activity.RESULT_OK){
+                    setResult(Activity.RESULT_OK, new Intent().putExtra("typeAddress", data.getIntExtra("typeAddress", 0)).putExtra("address", data.getStringExtra("address")).putExtra("AreaName",  data.getStringExtra("AreaName")));
+                }
+                finish();
+                break;
         }
     }
 
@@ -600,34 +604,34 @@ public class GooglePlaces extends FragmentActivity implements OnItemClickListene
     }
 
     public void getCurrentLocationSuggestions() {
-        final LocationFinderService myLocation = new LocationFinderService();
-        if (!CommonUtil.isInternetAvailable(GooglePlaces.this))
-            CommonUtil.byToastMessage(this, getResources().getString(R.string.nointernet_try_again_msg));
-        else {
-
-            CommonUtil.showProgressDialog(this, getResources().getString(R.string.searching));
-            LocationFinderService.LocationResult locationResult = new LocationFinderService.LocationResult() {
-                @Override
-                public void gotLocation(Location location) {
-                    //Got the location!
-                    myLocation.stopLocation();
-                    CommonUtil.cancelProgressDialog();
-                    if (location != null) {
-                        fillLocation(location);
-                    } else {
-//                        CommonUtil.cancelProgressDialog();
-                        runOnUiThread(new Runnable() {
-                            public void run() {
-                                CommonUtil.byToastMessage(GooglePlaces.this, getResources().getString(R.string.unavailable_to_find_place));
-                            }
-                        });
-
-                    }
-                }
-            };
-
-            myLocation.getLocation(this, locationResult);
-        }
+        startActivityForResult(new Intent(this, GoogleMap.class).putExtra("typeAddress", getIntent().getIntExtra("typeAddress", 0)), 11);
+//        final LocationFinderService myLocation = new LocationFinderService();
+//        if (!CommonUtil.isInternetAvailable(GooglePlaces.this))
+//            CommonUtil.byToastMessage(this, getResources().getString(R.string.nointernet_try_again_msg));
+//        else {
+//            CommonUtil.showProgressDialog(this, getResources().getString(R.string.searching));
+//            LocationFinderService.LocationResult locationResult = new LocationFinderService.LocationResult() {
+//                @Override
+//                public void gotLocation(Location location) {
+//                    //Got the location!
+//                    myLocation.stopLocation();
+//                    CommonUtil.cancelProgressDialog();
+//                    if (location != null) {
+//                        fillLocation(location);
+//                    } else {
+////                        CommonUtil.cancelProgressDialog();
+//                        runOnUiThread(new Runnable() {
+//                            public void run() {
+//                                CommonUtil.byToastMessage(GooglePlaces.this, getResources().getString(R.string.unavailable_to_find_place));
+//                            }
+//                        });
+//
+//                    }
+//                }
+//            };
+//
+//            myLocation.getLocation(this, locationResult);
+//        }
     }
 
     public void fillLocation(Location location) {
@@ -757,6 +761,7 @@ public class GooglePlaces extends FragmentActivity implements OnItemClickListene
             addObj.put("viaAreaLat", AreaLat.equalsIgnoreCase("") ? " " : AreaLat);
             addObj.put("viaAreaLong", AreaLong.equalsIgnoreCase("") ? " " : AreaLong);
             addObj.put("viaAreaAddress", AreaAddress.equalsIgnoreCase("") ? " " : AreaAddress);
+            addObj.put("viaFullAddress", AreaAddress.equalsIgnoreCase("") ? " " : AreaAddress);
             addObj.put("viaAreaPostalCode", AreaPostalCode.equalsIgnoreCase("") ? " " : AreaPostalCode);
             addObj.put("viaAreaCity", AreaCity.equalsIgnoreCase("") ? " " : AreaCity);
             System.out.println("jsonObj: " + addObj.toString());

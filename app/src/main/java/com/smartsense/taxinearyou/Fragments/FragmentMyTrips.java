@@ -199,7 +199,7 @@ public class FragmentMyTrips extends Fragment implements Response.Listener<JSONO
             pageNumber = 0;
             totalRecord = 0;
             adapterMyTrips = null;
-            doMyTrip(pageNumber, true);
+            doMyTrip(pageNumber, false);
             WakeLocker.release();
         }
     };

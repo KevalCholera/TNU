@@ -17,7 +17,8 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <uses-feature
         android:name="android.hardware.camera"
         android:required="true" />
@@ -201,13 +202,18 @@
             android:configChanges="orientation|screenSize"
             android:label="More"
             android:theme="@style/AppTheme" />
+        <activity
+            android:name=".GoogleMap"
+            android:configChanges="orientation|screenSize"
+            android:label="More"
+            android:theme="@style/Filter_Theme" />
 
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyDslds4uckd0q06CFMQGOKPFCWs8cZOKnI" />
+            android:value="@string/google_map" />
 
         <receiver
             android:name="com.onesignal.NotificationOpenedReceiver"
@@ -232,8 +238,10 @@
             android:name="io.fabric.ApiKey"
             android:value="73c4e2f991a9990508e872ec2b3f88a0e35f73a9" />
         <activity
-            android:configChanges="orientation|screenSize"
-            android:name="me.nereo.multi_image_selector.MultiImageSelectorActivity" />
+            android:name="me.nereo.multi_image_selector.MultiImageSelectorActivity"
+            android:configChanges="orientation|screenSize" />
+
+
     </application>
 
 </manifest>

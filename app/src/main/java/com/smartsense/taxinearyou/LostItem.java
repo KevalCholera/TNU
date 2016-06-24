@@ -8,7 +8,6 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -18,12 +17,10 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.mpt.storage.SharedPreferenceUtil;
-import com.onesignal.OneSignal;
 import com.smartsense.taxinearyou.Adapters.AdapterLostItem;
 import com.smartsense.taxinearyou.utill.CommonUtil;
 import com.smartsense.taxinearyou.utill.Constants;
@@ -51,7 +48,7 @@ public class LostItem extends AppCompatActivity implements View.OnClickListener,
         setContentView(R.layout.activity_lost_item);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         registerReceiver(tripMessageReceiver, new IntentFilter(String.valueOf(Constants.Events.ADD_LOST_ITEM)));
-
+        registerReceiver(tripMessageReceiver, new IntentFilter(String.valueOf(Constants.Events.LOST_ITEM_STATUS)));
         srLostItemList = (SwipeRefreshLayout) findViewById(R.id.srLostItemList);
         rbLostItemNotFound = (RadioButton) findViewById(R.id.rbLostItemNotFound);
         rbLostItemOnGoing = (RadioButton) findViewById(R.id.rbLostItemOnGoing);
