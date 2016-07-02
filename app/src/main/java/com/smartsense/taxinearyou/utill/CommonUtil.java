@@ -6,7 +6,6 @@ import android.app.ActivityManager;
 import android.app.ProgressDialog;
 import android.content.ComponentName;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.ResolveInfo;
@@ -50,8 +49,10 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.mpt.storage.SharedPreferenceUtil;
 import com.onesignal.OneSignal;
+import com.smartsense.taxinearyou.GeneralInformation;
 import com.smartsense.taxinearyou.R;
 import com.smartsense.taxinearyou.Search;
+import com.smartsense.taxinearyou.SecurityQuestion;
 import com.smartsense.taxinearyou.SignIn;
 import com.smartsense.taxinearyou.SnackBar.TSnackbar;
 import com.smartsense.taxinearyou.TaxiNearYouApp;
@@ -118,19 +119,55 @@ public class CommonUtil {
     }
 
     public static void alertBox(final Activity context, final String msg) {
-        final AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setCancelable(false);
-        builder.setMessage(msg);
-        builder.setPositiveButton(context.getResources().getString(R.string.ok), new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                if (msg.equalsIgnoreCase(context.getResources().getString(R.string.event_complete))) {
-                    context.finish();
-                    context.setTheme(R.style.AppTheme);
+//        final AlertDialog.Builder builder = new AlertDialog.Builder(context);
+//        builder.setCancelable(false);
+//        builder.setMessage(msg);
+//        builder.setPositiveButton(context.getResources().getString(R.string.ok), new DialogInterface.OnClickListener() {
+//            public void onClick(DialogInterface dialog, int id) {
+//                if (msg.equalsIgnoreCase(context.getResources().getString(R.string.event_complete))) {
+//                    context.finish();
+//                    context.setTheme(R.style.AppTheme);
+//                }
+//            }
+//        });
+//        builder.create();
+//        builder.show();
+
+        try {
+            final AlertDialog.Builder alertDialogs = new AlertDialog.Builder(context);
+            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            final View dialog = inflater.inflate(R.layout.dialog_all, null);
+            LinearLayout linearLayout;
+            Button button1;
+            linearLayout = (LinearLayout) dialog.findViewById(R.id.lyPopUpGen);
+            TextView tvPopupLocatedEmail = (TextView) dialog.findViewById(R.id.tvPopupGen);
+            tvPopupLocatedEmail.setText(msg);
+            button1 = (Button) dialog.findViewById(R.id.btPopupGen);
+            linearLayout.setVisibility(View.VISIBLE);
+            button1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    alert.dismiss();
+                    if (msg.equalsIgnoreCase(context.getResources().getString(R.string.event_complete))) {
+                        context.finish();
+                        context.setTheme(R.style.AppTheme);
+                    } else if (context instanceof SecurityQuestion) {
+                        context.startActivity(new Intent(context, SignIn.class));
+                        context.finish();
+                    } else if (context instanceof GeneralInformation) {
+                        context.finish();
+                        context.setTheme(R.style.AppTheme);
+                    }
                 }
-            }
-        });
-        builder.create();
-        builder.show();
+            });
+            alertDialogs.setView(dialog);
+            alertDialogs.setCancelable(false);
+            alert = alertDialogs.create();
+            alert.show();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     static public ActionBar getActionBar(Activity a) {

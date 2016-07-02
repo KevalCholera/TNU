@@ -1,21 +1,16 @@
 package com.smartsense.taxinearyou;
 
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.InputFilter;
-import android.text.Spanned;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import com.android.volley.Response;
@@ -38,6 +33,8 @@ public class SignUp extends AppCompatActivity implements Response.Listener<JSONO
     ImageView ivSignUpAvailableNumber, ivSignUpUnAvailableNumber, ivSignUpAvailableEmail, ivSignUpUnAvailableEmail, ivSignUpUnAvailableAlternateEmail, ivSignUpAvailableAlternateEmail;
     int whichEmail;
     ArrayList<String> text = new ArrayList<String>();
+    private ImageView ivSignUpUnAvailableAlternatePass;
+    private ImageView ivSignUpAvailableAlternatePass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,11 +61,13 @@ public class SignUp extends AppCompatActivity implements Response.Listener<JSONO
         ivSignUpUnAvailableNumber = (ImageView) findViewById(R.id.ivSignUpUnAvailableNumber);
         ivSignUpAvailableNumber = (ImageView) findViewById(R.id.ivSignUpAvailableNumber);
         ivSignUpAvailableAlternateEmail = (ImageView) findViewById(R.id.ivSignUpAvailableAlternateEmail);
+        ivSignUpAvailableAlternatePass = (ImageView) findViewById(R.id.ivSignUpAvailablePass);
+        ivSignUpUnAvailableAlternatePass = (ImageView) findViewById(R.id.ivSignUpUnAvailablePass);
         ivSignUpUnAvailableAlternateEmail = (ImageView) findViewById(R.id.ivSignUpUnAvailableAlternateEmail);
 
         etSignUpFirstName.setFilters(new InputFilter[]{CommonUtil.textFilter});
         etSignUpLastName.setFilters(new InputFilter[]{CommonUtil.textFilter});
-
+        etSignUpLastName.setNextFocusForwardId(R.id.etSignUpContact);
         etSignUpContact.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -151,7 +150,33 @@ public class SignUp extends AppCompatActivity implements Response.Listener<JSONO
                 CommonUtil.closeKeyboard(SignUp.this);
             }
         });
+        etSignUpConfirmPassword.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (s.length() > 0) {
+                    if (s.length() < 7 || s.length() > 15 || !CommonUtil.isLegalPassword(s.toString()) || CommonUtil.isSpecialChar(s.toString())) {
+                        ivSignUpAvailableAlternatePass.setVisibility(View.GONE);
+                        ivSignUpUnAvailableAlternatePass.setVisibility(View.VISIBLE);
+                    }else{
+                        ivSignUpUnAvailableAlternatePass.setVisibility(View.GONE);
+                        ivSignUpAvailableAlternatePass.setVisibility(View.VISIBLE);
+                    }
+                } else {
+                    ivSignUpAvailableAlternatePass.setVisibility(View.GONE);
+                    ivSignUpUnAvailableAlternatePass.setVisibility(View.INVISIBLE);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
         imageVisibility();
     }
 

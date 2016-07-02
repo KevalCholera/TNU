@@ -16,6 +16,7 @@
     <string name="password_signup">Password</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="alternate_email">Alternate Email Address:</string>
+    <string name="alternate_email_">Alternate Email Address</string>
     <string name="new_alternate_email">New Alternate Email</string>
     <string name="confirm_next">Confirm &amp; Next</string>
     <string name="title_activity_forgot_password">ForgotPassword</string>
@@ -138,11 +139,11 @@
     <string name="html"><![CDATA[<p>406.00<p>]]]></string>
     <string name="title_activity_zzzzz">ZZZZZ</string>
     <string name="johnsmith_gmail_com">JohnSmith@gmail.com</string>
-    <string name="change_email">Change Email ID</string>
-    <string name="alternate_email_id">Alternate Email ID</string>
-    <string name="alternate_email_id_">Alternate Email ID :</string>
+    <string name="change_email">Change Email Address</string>
+    <string name="alternate_email_id">Alternate Email Address</string>
+    <string name="alternate_email_id_">Alternate Email Address :</string>
     <string name="johnsmith123_gmail_com">JohnSmith123@gmail.com</string>
-    <string name="change_alternate_email">Change Alternate Email ID</string>
+    <string name="change_alternate_email">Change Alternate Email Address</string>
     <string name="security_question_1">Security Question 1</string>
     <string name="security_question">Security Question :</string>
     <string name="in_which_city_or_town_did_your_mother_and_father_live">In which city or town did your mother and father live?</string>
@@ -150,8 +151,8 @@
     <string name="change_security_question">Change Security Question</string>
     <string name="change_password">Change password</string>
     <string name="yes_i_would_like_to_receive_offers_and_infromation_about_products_and_services_about_taxinearu">Yes, I would like to receive offers and infromation about products and services about Taxinearu.</string>
-    <string name="email_id">Email ID</string>
-    <string name="email_id_">Email ID :</string>
+    <string name="email_id">Email Address</string>
+    <string name="email_id_">Email Address :</string>
     <string name="_03_02_2016">03/02/2016</string>
     <string name="_16_20am">16:20am</string>
     <string name="from_">From : </string>
@@ -247,8 +248,8 @@
     <string name="are_you_sure_you_want_to_cancel_the_ride">Are you sure you want to Cancel the Ride?</string>
     <string name="cancel">Cancel</string>
     <string name="thank_you_for_submitting_your_feedback_this_will_help_us_to_improve_our_service">Thank you for submitting your feedback this will help us to improve our Services.</string>
-    <string name="we_have_located_your_account">we have located your account !</string>
-    <string name="please_follow_the_instructions_to_recover_your_email_address_if_you_can_t_find_the_email_we_have_send_you_in_your_inbox_check_your_junk_mail">Please follow the instructions to recover your email address.If you can\'t find the email we have send you in your inbox, check your junk mail</string>
+    <string name="we_have_located_your_account">We Have Located Your Account !</string>
+    <string name="please_follow_the_instructions_to_recover_your_email_address_if_you_can_t_find_the_email_we_have_send_you_in_your_inbox_check_your_junk_mail">Your request has been sent to our Taxinearu support team. Once they receive your email they will contact you within 24/48 hours.</string>
     <string name="back">Back</string>
     <string name="thank_you">Thank you !</string>
     <string name="your_recover_email_request_has_been_sent_to_our_taxinearu_support_team_once_they_receive_your_email_they_will_contact_you_within_24_48_hours">Your recover email request has been sent to our TaxiNearU support team. Once they receive your email they will contact you within 24/48 hours.</string>
@@ -259,8 +260,8 @@
     <string name="save_amp_next"><![CDATA[Save & Next]]></string>
     <string name="please_enter_your_email_address_and_we_ll_help_you_to_reset_you_password1">Please enter your email address and we\'ll help you to reset your password.</string>
     <string name="email_address_">Email Address</string>
-    <string name="enter_email_id">Enter Email address</string>
-    <string name="enter_email_id_">Enter email Id</string>
+    <string name="enter_email_id">Enter email address</string>
+    <string name="enter_email_id_">Enter email address</string>
     <string name="pls_email">Please enter email address</string>
     <string name="enter_confirm_email_id">Enter Confirm Email ID</string>
     <string name="enter_valid_email_id">Enter Valid Email ID</string>
@@ -448,7 +449,7 @@
     <string name="eta_err">ETA may differ at any time due to unexpected circumstances e.g. traffic, weather changes, road works or any other events.</string>
     <string name="enter_sub">Enter subject</string>
     <string name="pls_ent_alt">Please enter alternative email address</string>
-    <string name="pls_ent_alt_id">Enter alternate email id</string>
+    <string name="pls_ent_alt_id">Enter alternate email address</string>
     <string name="enter_alt_not_same">Confirm alternative email address does not match</string>
     <string name="take_photo">Take photo</string>
     <string name="select_pic">Select your Photos</string>

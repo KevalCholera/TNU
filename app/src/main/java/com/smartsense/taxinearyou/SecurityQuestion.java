@@ -2,7 +2,6 @@ package com.smartsense.taxinearyou;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
@@ -16,7 +15,6 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -236,15 +234,16 @@ public class SecurityQuestion extends AppCompatActivity implements View.OnClickL
                 if (response.getInt("status") == Constants.STATUS_SUCCESS) {
                     switch (response.getInt("__eventid")) {
                         case Constants.Events.EVENT_SIGNUP:
-                            AlertDialog.Builder alert = new AlertDialog.Builder(this);
-                            alert.setMessage(response.optString("msg"));
-                            alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int whichButton) {
-                                    startActivity(new Intent(SecurityQuestion.this, SignIn.class));
-                                    finish();
-                                }
-                            });
-                            alert.show();
+//                            AlertDialog.Builder alert = new AlertDialog.Builder(this);
+//                            alert.setMessage(response.optString("msg"));
+//                            alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+//                                public void onClick(DialogInterface dialog, int whichButton) {
+//                                    startActivity(new Intent(SecurityQuestion.this, SignIn.class));
+//                                    finish();
+//                                }
+//                            });
+//                            alert.show();
+                            CommonUtil.alertBox(SecurityQuestion.this, response.optString("msg"));
                             break;
                         case Constants.Events.EVENT_GET_SECURITY_QES:
                             if (response.optJSONObject("json").has("questionList")) {

@@ -1,16 +1,13 @@
 package com.smartsense.taxinearyou;
 
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -19,10 +16,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.mpt.storage.SharedPreferenceUtil;
 import com.onesignal.OneSignal;
-import com.pubnub.api.Callback;
-import com.pubnub.api.Pubnub;
-import com.pubnub.api.PubnubError;
-import com.pubnub.api.PubnubException;
 import com.smartsense.taxinearyou.utill.CommonUtil;
 import com.smartsense.taxinearyou.utill.Constants;
 

@@ -36,6 +36,7 @@ public class RecoverEmailAddress extends AppCompatActivity implements Response.L
     Button btRecoverEmailSubmit;
     CoordinatorLayout clRecoverEmail;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -126,21 +127,25 @@ public class RecoverEmailAddress extends AppCompatActivity implements Response.L
         }
     }
 
-    public void openDialog() {
+    public void openDialog(Boolean check) {
 
         try {
             final AlertDialog.Builder alertDialogs = new AlertDialog.Builder(this);
             LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
             final View dialog = inflater.inflate(R.layout.dialog_all, null);
-            LinearLayout linearLayout = (LinearLayout) dialog.findViewById(R.id.lyPopUpLocatedAccount);
-            TextView tvPopupLocatedEmail = (TextView) dialog.findViewById(R.id.tvPopupLocatedEmail);
-            tvPopupLocatedEmail.setText(etRecoverEmailAlternateEmail.getText().toString());
-
-            Button button1 = (Button) dialog.findViewById(R.id.btPopupLocatedBack);
-
+            LinearLayout linearLayout;
+            Button button1;
+            if (check) {
+                linearLayout = (LinearLayout) dialog.findViewById(R.id.lyPopUpLocatedAccount);
+                TextView tvPopupLocatedEmail = (TextView) dialog.findViewById(R.id.tvPopupLocatedEmail);
+                tvPopupLocatedEmail.setText(etRecoverEmailAlternateEmail.getText().toString());
+                button1 = (Button) dialog.findViewById(R.id.btPopupLocatedBack);
+            } else {
+                button1 = (Button) dialog.findViewById(R.id.btPopupWithOutMail);
+                linearLayout = (LinearLayout) dialog.findViewById(R.id.lyPopUpWithOutMail);
+            }
             linearLayout.setVisibility(View.VISIBLE);
-
             button1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -188,11 +193,10 @@ public class RecoverEmailAddress extends AppCompatActivity implements Response.L
                 if (response.getInt("status") == Constants.STATUS_SUCCESS) {
                     switch (response.getInt("__eventid")) {
                         case Constants.Events.EVENT_FORGOT_EMAIL:
-                            openDialog();
+                            openDialog(true);
                             break;
                         case Constants.Events.EVENT_FORGOT_EMAIL_WITHOUT:
-                            CommonUtil.byToastMessage(this, getResources().getString(R.string.your_detail_send));
-                            finish();
+                            openDialog(false);
                             break;
                     }
                 } else {

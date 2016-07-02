@@ -234,7 +234,7 @@
         android:layout_height="@dimen/btSignUpAllheight"
         android:layout_gravity="bottom"
         android:background="@color/Yellow"
-        android:text="@string/send"
+        android:text="@string/submit"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="@dimen/buttonGeneral" />

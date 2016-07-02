@@ -120,6 +120,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="right"
         android:layout_margin="@dimen/tvElementCardListMarginStartEnd5"
-        android:src="@drawable/powered_by_google_light" />
+        android:src="@mipmap/powered_by_google_light" />
 
 </LinearLayout>

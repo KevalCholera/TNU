@@ -46,13 +46,12 @@
         <android.support.design.widget.TabLayout
             android:id="@+id/tbPartnerRatingTabLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:background="@drawable/yellowborder"
             app:tabBackground="@drawable/tab_color"
             app:tabGravity="fill"
             app:tabIndicatorColor="@color/Yellow"
             app:tabMode="fixed"
-
             app:tabSelectedTextColor="@color/white"
             app:tabTextColor="@color/black" />
 

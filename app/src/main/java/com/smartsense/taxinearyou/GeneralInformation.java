@@ -179,12 +179,14 @@ public class GeneralInformation extends AppCompatActivity implements Response.Li
                         generalInfo();
 
                 if (jsonObject.optString("__eventid").equalsIgnoreCase(Constants.Events.UPDATE_GENERAL_INFO + "")) {
-                    CommonUtil.alertBox(this, jsonObject.optString("msg"));
+
                     SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_USER_FIRST, etGeneralFirstName.getText().toString());
                     SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_USER_LAST, etGeneralLastName.getText().toString());
                     SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_USER_MNO, etGeneralMobile.getText().toString());
                     SharedPreferenceUtil.save();
                     check = 0;
+                    CommonUtil.alertBox(this, jsonObject.optString("msg"));
+
                 }
 
             } else {

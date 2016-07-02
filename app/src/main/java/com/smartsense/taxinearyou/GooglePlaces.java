@@ -37,9 +37,6 @@ import android.widget.TextView;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.common.api.ResultCallback;
-import com.google.android.gms.location.places.Place;
-import com.google.android.gms.location.places.PlaceBuffer;
 import com.smartsense.taxinearyou.utill.CommonUtil;
 import com.smartsense.taxinearyou.utill.Constants;
 import com.smartsense.taxinearyou.utill.LocationSettingsHelper;
@@ -189,22 +186,22 @@ public class GooglePlaces extends FragmentActivity implements OnItemClickListene
 //        Toast.makeText(this, str, Toast.LENGTH_SHORT).show();
     }
 
-    private ResultCallback<PlaceBuffer> mUpdatePlaceDetailsCallback
-            = new ResultCallback<PlaceBuffer>() {
-        @Override
-        public void onResult(PlaceBuffer places) {
-            if (!places.getStatus().isSuccess()) {
-                Log.e(LOG_TAG, "Place query did not complete. Error: " +
-                        places.getStatus().toString());
-                return;
-            }
-            // Selecting the first object buffer.
-            final Place place = places.get(0);
-            CharSequence attributions = places.getAttributions();
-
-
-        }
-    };
+//    private ResultCallback<PlaceBuffer> mUpdatePlaceDetailsCallback
+//            = new ResultCallback<PlaceBuffer>() {
+//        @Override
+//        public void onResult(PlaceBuffer places) {
+//            if (!places.getStatus().isSuccess()) {
+//                Log.e(LOG_TAG, "Place query did not complete. Error: " +
+//                        places.getStatus().toString());
+//                return;
+//            }
+//            // Selecting the first object buffer.
+//            final Place place = places.get(0);
+//            CharSequence attributions = places.getAttributions();
+//
+//
+//        }
+//    };
 
     public static ArrayList<String> autocomplete(String input) {
         ArrayList<String> resultList = null;
