@@ -73,6 +73,8 @@ public class FragmentMyTrips extends Fragment implements Response.Listener<JSONO
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 selected = position;
                 JSONObject obj = (JSONObject) parent.getItemAtPosition(position);
+                SharedPreferenceUtil.putValue("key",obj.toString());
+                SharedPreferenceUtil.save();
                 startActivityForResult(new Intent(getActivity(), TripDetails.class).putExtra("key", obj.toString()), request);
             }
         });

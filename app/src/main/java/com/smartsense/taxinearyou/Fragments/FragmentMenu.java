@@ -148,7 +148,7 @@ public class FragmentMenu extends Fragment implements Response.Listener<JSONObje
                 startActivity(new Intent(getActivity(), LostItem.class));
                 break;
             case R.id.tvAccountGeneralInfo:
-                startActivity(new Intent(getActivity(), GeneralInformation.class));
+                startActivityForResult(new Intent(getActivity(), GeneralInformation.class),10);
                 break;
             case R.id.tvAccountPayment:
                 startActivity(new Intent(getActivity(), CardList.class));
@@ -279,10 +279,14 @@ public class FragmentMenu extends Fragment implements Response.Listener<JSONObje
                 case REQUEST_CAMERA:
                     doUpload(data);
                     break;
+                case 10:
+
+                    break;
             }
 //        else
 //            Toast.makeText(getContext(), getResources().getString(R.string.cancel_camera), Toast.LENGTH_SHORT).show();
         super.onActivityResult(requestCode, resultCode, data);
+        tvAccountPersonName.setText(SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_FULLNAME, ""));
     }
 
 

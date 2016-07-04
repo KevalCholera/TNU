@@ -21,7 +21,12 @@ public class ActivitySplash extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // TODO Auto-generated method stub
-
+//        try {
+//            PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
+//            startActivityForResult(builder.build(this), 1);
+//        } catch (GooglePlayServicesRepairableException | GooglePlayServicesNotAvailableException e) {
+//            e.printStackTrace();
+//        }
 
         if (Build.VERSION.SDK_INT < 16) {
             getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,

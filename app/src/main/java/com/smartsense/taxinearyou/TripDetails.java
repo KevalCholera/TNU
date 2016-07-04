@@ -96,8 +96,10 @@ public class TripDetails extends AppCompatActivity implements View.OnClickListen
         ivTripDetailsMap = (ImageView) findViewById(R.id.ivTripDetailsMap);
 
         try {
-Log.i("Yes","Here");
-            final JSONObject tripDetails = new JSONObject(getIntent().getStringExtra("key"));
+            Log.i("Yes", "Here");
+
+//            final JSONObject tripDetails = new JSONObject(getIntent().getStringExtra("key"));
+            final JSONObject tripDetails = new JSONObject(SharedPreferenceUtil.getString("key",""));
             tvTripDetailRideStatus.setText(tripDetails.optString("status"));
 
             if (tripDetails.optInt("feedbackSts") == 1)

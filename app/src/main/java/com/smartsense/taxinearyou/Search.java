@@ -21,6 +21,9 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
+import com.google.android.gms.common.GooglePlayServicesRepairableException;
+import com.google.android.gms.location.places.ui.PlacePicker;
 import com.mpt.storage.SharedPreferenceUtil;
 import com.onesignal.OneSignal;
 import com.smartsense.taxinearyou.Fragments.FragmentBook;
@@ -103,6 +106,8 @@ public class Search extends AppCompatActivity {
     }
 
     private void setupTabIcons() {
+
+
 
         RelativeLayout linearLayout = (RelativeLayout) LayoutInflater.from(this).inflate(R.layout.element_search, null);
         ImageView tabIconOne = (ImageView) linearLayout.findViewById(R.id.ivElementSearch);
