@@ -24,6 +24,7 @@
                 android:layout_height="18dp"
                 android:layout_marginBottom="@dimen/tvSignUpSignUpMarginBottom"
                 android:layout_marginLeft="20dp"
+                android:visibility="invisible"
                 android:layout_marginTop="@dimen/btSignUpAllMarginTop"
                 android:src="@mipmap/imgback" />
 

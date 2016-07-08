@@ -71,6 +71,8 @@ public class FragmentCredit extends Fragment implements Response.Listener<JSONOb
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 selected = position;
                 JSONObject obj = (JSONObject) parent.getItemAtPosition(position);
+                SharedPreferenceUtil.putValue("key",obj.toString());
+                SharedPreferenceUtil.save();
                 startActivityForResult(new Intent(getActivity(), TripDetails.class).putExtra("key", obj.toString()).putExtra("check",true), request);
             }
         });

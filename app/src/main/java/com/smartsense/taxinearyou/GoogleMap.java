@@ -17,7 +17,6 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -80,11 +79,13 @@ public class GoogleMap extends FragmentActivity implements OnMapReadyCallback, V
                 imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
                 break;
             case R.id.ibGooglePlacesSave:
-
-
                 //finish();
+                String countryName = (String) etMapSearch.getTag();
+                countryName = countryName.equalsIgnoreCase(null) ? "" : countryName;
                 if (TextUtils.isEmpty(etMapSearch.getText().toString())) {
-                    Toast.makeText(GoogleMap.this, "Please select location", Toast.LENGTH_SHORT).show();
+                    CommonUtil.byToastMessage(GoogleMap.this, "Please select location");
+                } else if (!countryName.equalsIgnoreCase("United Kingdom")) {
+                    CommonUtil.byToastMessage(GoogleMap.this, "At present we are providing service only in uk.");
                 } else {
                     setResult(Activity.RESULT_OK, new Intent().putExtra("typeAddress", getIntent().getIntExtra("typeAddress", 0)).putExtra("address", addObj.toString()).putExtra("AreaName", etMapSearch.getText().toString()));
                     finish();
@@ -107,6 +108,7 @@ public class GoogleMap extends FragmentActivity implements OnMapReadyCallback, V
 
     private class ReverseGeocodingTask extends AsyncTask<LatLng, Void, String> {
         Context mContext;
+        String countryName = "";
 
         public ReverseGeocodingTask(Context context) {
             super();
@@ -134,7 +136,7 @@ public class GoogleMap extends FragmentActivity implements OnMapReadyCallback, V
                     Log.i("address", "" + address.toString());
                     addressText = "";
                     if (address.getMaxAddressLineIndex() > 0) {
-                        for (int i = 0; i < address.getMaxAddressLineIndex()+1; i++) {
+                        for (int i = 0; i < address.getMaxAddressLineIndex() + 1; i++) {
                             String s = address.getMaxAddressLineIndex() == i ? "" : ", ";
                             addressText = addressText + address.getAddressLine(i) + s;
 
@@ -157,7 +159,7 @@ public class GoogleMap extends FragmentActivity implements OnMapReadyCallback, V
                     String AreaLong = String.valueOf(longitude);
                     String AreaPostalCode = address.getPostalCode() == null ? " " : address.getPostalCode();
                     String AreaCity = address.getLocality() == null ? address.getAdminArea() : address.getLocality();
-
+                    countryName = address.getCountryName() == null ? "" : address.getCountryName();
                     addObj.put("viaAreaName", AreaName.equalsIgnoreCase(null) ? " " : AreaName);
                     addObj.put("viaAreaPlaceid", " ");
                     addObj.put("viaAreaLat", AreaLat.equalsIgnoreCase(null) ? " " : AreaLat);
@@ -184,6 +186,7 @@ public class GoogleMap extends FragmentActivity implements OnMapReadyCallback, V
         @Override
         protected void onPostExecute(String addressText) {
             etMapSearch.setText(addressText);
+            etMapSearch.setTag(countryName);
 
         }
 

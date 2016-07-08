@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="@dimen/tabSearchTabHeight"
+
     android:orientation="vertical">
 
     <ImageView
@@ -9,9 +10,9 @@
         android:layout_width="30dp"
         android:layout_height="20dp"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="@dimen/lyPadding10"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center"
+        android:layout_marginTop="@dimen/lyPadding10"
         android:scaleType="centerInside" />
 
     <TextView
@@ -22,7 +23,9 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_gravity="bottom"
+        android:layout_marginTop="3dp"
         android:gravity="center"
+        android:singleLine="true"
         android:textColor="@color/white" />
 
 </RelativeLayout>

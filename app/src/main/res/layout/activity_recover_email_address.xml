@@ -56,7 +56,8 @@
                         android:checked="true"
                         android:text="@string/enter_alternate_email"
                         android:textColor="@color/text_color"
-                        android:textSize="12sp" />
+                        android:textSize="12sp"
+                        android:visibility="visible" />
 
                     <LinearLayout
                         android:id="@+id/lyRadioButton1"
@@ -165,7 +166,8 @@
                             android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
                             android:hint="@string/last_name"
                             android:inputType="textCapSentences"
-                            android:nextFocusForward="@+id/etSignUpLastName"
+                            android:imeOptions="actionNext"
+                            android:nextFocusForward="@+id/etRecoverEmailContact"
                             android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
                             android:singleLine="true"
                             android:textColor="@color/black"
@@ -180,22 +182,44 @@
                             android:text="@string/contact"
                             android:textColor="@color/background" />
 
-                        <EditText
-                            android:id="@+id/etRecoverEmailContact"
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="@dimen/etHeightAll"
-                            android:layout_marginBottom="@dimen/tvetRecoverEmailMarginTopBottomAll"
-                            android:background="@drawable/grayborder"
-                            android:digits="0123456789"
-                            android:hint="@string/contact"
-                            android:inputType="phone"
-                            android:maxLength="10"
-                            android:nextFocusForward="@+id/etSignUpLastName"
-                            android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
-                            android:singleLine="true"
-                            android:textColor="@color/black"
-                            android:textColorHint="@color/hintColor"
-                            android:textSize="@dimen/etSignUpSizeAll" />
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/etSignUpAllMarginTop">
+
+                            <EditText
+                                android:layout_width="50dp"
+                                android:layout_height="@dimen/etHeightAll"
+                                android:layout_marginRight="5dp"
+                                android:background="@drawable/grayborder"
+                                android:cursorVisible="false"
+                                android:digits="1234567890"
+                                android:enabled="false"
+                                android:gravity="center"
+                                android:inputType="number"
+                                android:maxLength="10"
+                                android:text="+44"
+                                android:textColor="@color/black"
+                                android:textColorHint="@color/hintColor"
+                                android:textSize="@dimen/etSignUpSizeAll" />
+
+                            <EditText
+                                android:id="@+id/etRecoverEmailContact"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/etHeightAll"
+                                android:layout_marginBottom="@dimen/tvetRecoverEmailMarginTopBottomAll"
+                                android:background="@drawable/grayborder"
+                                android:digits="0123456789"
+                                android:hint="@string/contact"
+                                android:inputType="phone"
+                                android:maxLength="10"
+                                android:nextFocusForward="@+id/etSignUpLastName"
+                                android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
+                                android:singleLine="true"
+                                android:textColor="@color/black"
+                                android:textColorHint="@color/hintColor"
+                                android:textSize="@dimen/etSignUpSizeAll" />
+                        </LinearLayout>
 
                         <TextView
                             android:layout_width="match_parent"

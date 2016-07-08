@@ -281,7 +281,7 @@
     <string name="enter_contact_no">Enter contact number</string>
     <string name="enter_message">Enter message</string>
     <string name="enter_valid_contact_no">Contact Number should be between 7 to 13 only</string>
-    <string name="enter_valid_contact">Enter 10 digit UK number</string>
+    <string name="enter_valid_contact">Enter valid UK number</string>
     <string name="alternate_email_not_same">Email address &amp; Alternative email can not be the same</string>
     <string name="conpass_pass_same">Confirm password does not match</string>
     <string name="enter_first_name">Enter first name</string>

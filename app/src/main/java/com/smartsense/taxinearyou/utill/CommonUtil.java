@@ -33,6 +33,7 @@ import android.text.Spanned;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Base64;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -141,6 +142,9 @@ public class CommonUtil {
             Button button1;
             linearLayout = (LinearLayout) dialog.findViewById(R.id.lyPopUpGen);
             TextView tvPopupLocatedEmail = (TextView) dialog.findViewById(R.id.tvPopupGen);
+            if (context instanceof SecurityQuestion) {
+                tvPopupLocatedEmail.setGravity(Gravity.LEFT);
+            }
             tvPopupLocatedEmail.setText(msg);
             button1 = (Button) dialog.findViewById(R.id.btPopupGen);
             linearLayout.setVisibility(View.VISIBLE);

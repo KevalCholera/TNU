@@ -7,7 +7,6 @@ import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -62,6 +61,7 @@ public class ResetPassword extends AppCompatActivity implements Response.Listene
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(ResetPassword.this, RecoverEmailAddress.class));
+                finish();
             }
         });
     }
@@ -89,6 +89,7 @@ public class ResetPassword extends AppCompatActivity implements Response.Listene
             TextView tvPopupLocatedEmail = (TextView) dialog.findViewById(R.id.tvPopupLocatedEmail);
             tvPopupLocatedEmail.setText(etResetPasswordEmailAddress.getText().toString());
             TextView tvPopupLocatedDetail = (TextView) dialog.findViewById(R.id.tvPopupLocatedDetail);
+            tvPopupLocatedDetail.setText("Please follow the instructions to recover your password. If you can not find the email we have sent you, please check your junk mail.");
             tvPopupLocatedEmail.setText(etResetPasswordEmailAddress.getText().toString().trim());
             Button button1 = (Button) dialog.findViewById(R.id.btPopupLocatedBack);
 

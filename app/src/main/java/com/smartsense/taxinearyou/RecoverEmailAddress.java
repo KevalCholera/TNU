@@ -52,6 +52,7 @@ public class RecoverEmailAddress extends AppCompatActivity implements Response.L
         etRecoverEmailFirstName = (EditText) findViewById(R.id.etRecoverEmailFirstName);
         etRecoverEmailLastName = (EditText) findViewById(R.id.etRecoverEmailLastName);
         etRecoverEmailContact = (EditText) findViewById(R.id.etRecoverEmailContact);
+//        etRecoverEmailLastName.setNextFocusForwardId(R.id.etRecoverEmailContact);
         etRecoverEmailAddress = (EditText) findViewById(R.id.etRecoverEmailAddress);
         lyRadioButton1 = (LinearLayout) findViewById(R.id.lyRadioButton1);
         lyRadioButton2 = (LinearLayout) findViewById(R.id.lyRadioButton2);
@@ -140,6 +141,8 @@ public class RecoverEmailAddress extends AppCompatActivity implements Response.L
                 linearLayout = (LinearLayout) dialog.findViewById(R.id.lyPopUpLocatedAccount);
                 TextView tvPopupLocatedEmail = (TextView) dialog.findViewById(R.id.tvPopupLocatedEmail);
                 tvPopupLocatedEmail.setText(etRecoverEmailAlternateEmail.getText().toString());
+                TextView tvPopupLocatedDetail = (TextView) dialog.findViewById(R.id.tvPopupLocatedDetail);
+                tvPopupLocatedDetail.setText("Please follow the instructions to recover your password. If you can not find the email we have sent you, please check your junk mail.");
                 button1 = (Button) dialog.findViewById(R.id.btPopupLocatedBack);
             } else {
                 button1 = (Button) dialog.findViewById(R.id.btPopupWithOutMail);
@@ -200,7 +203,10 @@ public class RecoverEmailAddress extends AppCompatActivity implements Response.L
                             break;
                     }
                 } else {
-                    CommonUtil.conditionAuthentication(this, response);
+                    if (response.getInt("__eventid") == Constants.Events.EVENT_FORGOT_EMAIL) {
+                        CommonUtil.showSnackBar(response.optString("msg"), clRecoverEmail);
+                    } else
+                        CommonUtil.conditionAuthentication(this, response);
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
