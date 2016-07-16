@@ -9,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -425,6 +426,8 @@ public class SearchCars extends TimeActivity implements Response.Listener<JSONOb
                         jsonObject.put("taxiTypeName", test.optJSONObject("taxiType").optString("taxiTypeName"));
                         jsonObject.put("partnerId", test.optJSONObject("taxiType").optString("partnerId"));
                         jsonObject.put("tripType", bookingduration);
+                        jsonObject.put("available", test.optInt("availability"));
+                        jsonObject.put("taxiStatus", test.optJSONObject("taxiType").optInt("status"));
                         jsonObject.put("duration", SharedPreferenceUtil.getString(Constants.PrefKeys.DISTANCE_AFTER_CONVERT, ""));
                         jsonObject.put("taxiTypeId", test.optJSONObject("taxiType").optInt("taxiTypeId"));
                     } catch (JSONException e) {
@@ -465,6 +468,8 @@ public class SearchCars extends TimeActivity implements Response.Listener<JSONOb
                                         jsonObject.put("taxiTypeName", test.optJSONObject("taxiType").optString("taxiTypeName"));
                                         jsonObject.put("partnerId", test.optJSONObject("taxiType").optString("partnerId"));
                                         jsonObject.put("tripType", bookingduration);
+                                        jsonObject.put("available", test.optInt("availability"));
+                                        jsonObject.put("taxiStatus", test.optJSONObject("taxiType").optInt("status"));
                                         jsonObject.put("duration", SharedPreferenceUtil.getString(Constants.PrefKeys.DISTANCE_AFTER_CONVERT, ""));
                                         jsonObject.put("taxiTypeId", test.optJSONObject("taxiType").optInt("taxiTypeId"));
                                     } catch (JSONException e) {
@@ -484,7 +489,7 @@ public class SearchCars extends TimeActivity implements Response.Listener<JSONOb
                                 CommonUtil.errorToastShowing(SearchCars.this);
                             }
                         });
-                        CommonUtil.showProgressDialog(SearchCars.this,getResources().getString(R.string.get_data));
+                        CommonUtil.showProgressDialog(SearchCars.this, getResources().getString(R.string.get_data));
                         TaxiNearYouApp.getInstance().addToRequestQueue(request, "");
                     } else
                         CommonUtil.alertBox(a, a.getResources().getString(R.string.msg_activate_account));
@@ -514,5 +519,31 @@ public class SearchCars extends TimeActivity implements Response.Listener<JSONOb
         }
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+//        super.onCreateOptionsMenu(menu);
+//        getMenuInflater().inflate(R.menu.menutime, menu);
+//        actionTime = menu.findItem(R.id.action_time);
+
+        return true;
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(this, Search.class));
+        finish();
+    }
 
 }

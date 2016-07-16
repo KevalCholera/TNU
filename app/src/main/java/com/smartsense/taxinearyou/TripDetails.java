@@ -99,7 +99,7 @@ public class TripDetails extends AppCompatActivity implements View.OnClickListen
             Log.i("Yes", "Here");
 
 //            final JSONObject tripDetails = new JSONObject(getIntent().getStringExtra("key"));
-            final JSONObject tripDetails = new JSONObject(SharedPreferenceUtil.getString("key",""));
+            final JSONObject tripDetails = new JSONObject(SharedPreferenceUtil.getString("key", ""));
             tvTripDetailRideStatus.setText(tripDetails.optString("status"));
 
             if (tripDetails.optInt("feedbackSts") == 1)
@@ -210,6 +210,8 @@ public class TripDetails extends AppCompatActivity implements View.OnClickListen
                 tvTripDetailFareLabel.setText("Charge");
                 if (tripDetails.optInt("isPaid") == 0) {
                     tvTripDetailLost.setText("Pending Payment");
+                    tvTripDetailCancle.setText("Make Payment");
+                    tvTripDetailCancle.setVisibility(View.VISIBLE);
                     tvTripDetailLost.setBackgroundColor(ContextCompat.getColor(TripDetails.this, R.color.red));
                 } else {
                     tvTripDetailLost.setBackgroundColor(ContextCompat.getColor(TripDetails.this, R.color.dark_green));
@@ -241,13 +243,16 @@ public class TripDetails extends AppCompatActivity implements View.OnClickListen
 
         switch (v.getId()) {
             case R.id.tvTripDetailCancle:
-                cancelRideDialog();
+                if (tvTripDetailLost.getText().toString().equalsIgnoreCase("Pending Payment")) {
+                    payPayment();
+                } else
+                    cancelRideDialog();
                 break;
             case R.id.tvTripDetailLost:
                 if (tvTripDetailLost.getText().toString().equalsIgnoreCase("Paid")) {
 
                 } else if (tvTripDetailLost.getText().toString().equalsIgnoreCase("Pending Payment")) {
-                    payPayment();
+//                    payPayment();
                 } else
                     startActivityForResult(new Intent(TripDetails.this, AddLostItem.class).putExtra("rideId", (String) tvTripDetailTaxiProvider.getTag()), requestLostItem);
                 break;

@@ -1,6 +1,7 @@
 package com.smartsense.taxinearyou.utill;
 
 import java.text.SimpleDateFormat;
+import java.util.Locale;
 
 public class Constants {
     public static final int STATUS_SUCCESS = 200;
@@ -34,7 +35,7 @@ public class Constants {
     //    public static final String GOOGLE_PLACE_API = "AIzaSyCp1vbSHgiC1lsNUYb-PuDs3kJ4wYEKu3I";
     public static final String GOOGLE_PLACE_API = "AIzaSyCfaYf-IOFXl2SOEnMeYxEqpeUwNa5IKZw";
     public static final String GOOGLE_MAP_API = "AIzaSyDrWeTlPdYv-p9IfH6kHawV6s-cffgBQPI";
-    public static final SimpleDateFormat DATE_FORMAT_SET = new SimpleDateFormat("dd-MM-yyyy hh:mm aa");
+    public static final SimpleDateFormat DATE_FORMAT_SET = new SimpleDateFormat("dd-MM-yyyy hh:mm aa", Locale.ENGLISH);
     public static final SimpleDateFormat DATE_FORMAT_GET = new SimpleDateFormat("dd MM yyyy HH mm ss");
     public static final SimpleDateFormat DATE_FORMAT_SEND = new SimpleDateFormat("dd-MM-yyyy HH:mm");
     public static final SimpleDateFormat DATE_FORMAT_ONLY_DATE = new SimpleDateFormat("dd-MM-yyyy");

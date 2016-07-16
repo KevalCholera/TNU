@@ -1,10 +1,14 @@
 package com.smartsense.taxinearyou;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.android.volley.Response;
@@ -20,6 +24,8 @@ import org.json.JSONObject;
 public class PaymentDetails extends TimeActivity implements View.OnClickListener, Response.Listener<JSONObject>, Response.ErrorListener {
 
     TextView tvPaymentTNUCredit, tvPaymentCard, tvPaymentCash, tvPaymentAmount;
+    private AlertDialog alert;
+    JSONObject jsonObject3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +35,11 @@ public class PaymentDetails extends TimeActivity implements View.OnClickListener
 //        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarAll);
 //        setSupportActionBar(toolbar);
 //        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+        try {
+            jsonObject3 = new JSONObject(SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_REQUEST_JSON, ""));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         tvPaymentTNUCredit = (TextView) findViewById(R.id.tvPaymentTNUCredit);
         tvPaymentCard = (TextView) findViewById(R.id.tvPaymentCard);
         tvPaymentCash = (TextView) findViewById(R.id.tvPaymentCash);
@@ -59,15 +69,16 @@ public class PaymentDetails extends TimeActivity implements View.OnClickListener
         }
     }
 
-    public void finalBooking() {
+    public void finalBooking(Boolean check) {
         final String tag = "Final Booking";
         StringBuilder builder = new StringBuilder();
         JSONObject mainData = new JSONObject();
 
         try {
             JSONObject jsonObject1 = new JSONObject(SharedPreferenceUtil.getString(Constants.PrefKeys.BOOKING_INFO, ""));
+            jsonObject1.put("forceBook", check);
             JSONObject jsonObject2 = new JSONObject(SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_DISTANCE_MATRIX, ""));
-            JSONObject jsonObject3 = new JSONObject(SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_REQUEST_JSON, ""));
+
             JSONObject jsonObject4 = new JSONObject(SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_CUSTOMER_SELECTION, ""));
 
             builder.append(mainData.put("bookingInfo", jsonObject1)
@@ -75,6 +86,7 @@ public class PaymentDetails extends TimeActivity implements View.OnClickListener
                     .put("distanceMatrix", jsonObject2)
                     .put("token", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_ACCESS_TOKEN, ""))
                     .put("requestJson", jsonObject3)
+
                     .put("customerSelection", jsonObject4));
 
         } catch (JSONException e) {
@@ -107,7 +119,7 @@ public class PaymentDetails extends TimeActivity implements View.OnClickListener
         try {
             JSONObject jsonObject = new JSONObject(SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_CUSTOMER_SELECTION, ""));
             builder.append(jsonData.put("token", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_ACCESS_TOKEN, ""))
-                    .put("userId", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_ID, "")).put("partnerId",jsonObject.optString("partnerId")));
+                    .put("userId", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_ID, "")).put("taxiTypeId", jsonObject.optString("taxiTypeId")).put("availabilityStatus", jsonObject.optString("available")).put("partnerId", jsonObject.optString("partnerId")));
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -132,10 +144,14 @@ public class PaymentDetails extends TimeActivity implements View.OnClickListener
                             CommonUtil.openDialogs(PaymentDetails.this, "Payment Details", R.id.lyPopupBookSuccess, R.id.btPopupBookSuccessOk, jsonObject.optString("msg"), R.id.tvDialogAllSuccess);
                             break;
                         case Constants.Events.EVENT_IS_PARTNER_AVAILABLE:
+
                             if (jsonObject.optJSONObject("json").optBoolean("available")) {
-                                finalBooking();
-                            }else{
-                                CommonUtil.alertBox(PaymentDetails.this, jsonObject.optJSONObject("json").optString("msg"));
+                                if (!jsonObject.optJSONObject("json").optBoolean("taxiAvailibilityUpdated"))
+                                    finalBooking(false);
+                                else
+                                    openDialog(jsonObject.optJSONObject("json").optString("msg"));
+                            } else {
+                                CommonUtil.openDialogs(this, "Payment Fail", R.id.lyPopupBookError, R.id.btPopupBookErrorOk, jsonObject.optJSONObject("json").optString("msg"), R.id.tvDialogAllError);
                             }
                             break;
                     }
@@ -149,4 +165,48 @@ public class PaymentDetails extends TimeActivity implements View.OnClickListener
         else
             CommonUtil.jsonNullError(this);
     }
+
+    public void openDialog(String msg) {
+
+        try {
+            final AlertDialog.Builder alertDialogs = new AlertDialog.Builder(this);
+            LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+            final View dialog = inflater.inflate(R.layout.dialog_all, null);
+            LinearLayout linearLayout = (LinearLayout) dialog.findViewById(R.id.lyPopUpForseRide);
+            linearLayout.setVisibility(View.VISIBLE);
+            TextView tvPopupLocatedEmail = (TextView) dialog.findViewById(R.id.tvPopupCancelForse);
+            tvPopupLocatedEmail.setText(msg);
+            TextView button1 = (TextView) dialog.findViewById(R.id.tvPopupCancelForseCancel);
+            button1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    alert.dismiss();
+                    startActivity(new Intent(PaymentDetails.this, SearchCars.class)
+                            .putExtra("tvBookDateTime", jsonObject3.optString("journeyDatetime"))
+                            .putExtra("tvBookLuggage", jsonObject3.optString("luggageId"))
+                            .putExtra("luggageDescription", jsonObject3.optString("luggageDescription"))
+                            .putExtra("passengerDescription", jsonObject3.optString("passengerDescription"))
+                            .putExtra("duration", Integer.valueOf(jsonObject3.optString("bookingduration")))
+                            .putExtra("tvBookPassenger", jsonObject3.optString("passanger")));
+                    finish();
+                }
+            });
+            TextView button2 = (TextView) dialog.findViewById(R.id.tvPopupCancelForseOk);
+            button2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    alert.dismiss();
+                    finalBooking(true);
+                }
+            });
+            alertDialogs.setView(dialog);
+            alertDialogs.setCancelable(true);
+            alert = alertDialogs.create();
+            alert.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }

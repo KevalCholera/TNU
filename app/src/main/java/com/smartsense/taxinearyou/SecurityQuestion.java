@@ -8,6 +8,7 @@ import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -243,7 +245,33 @@ public class SecurityQuestion extends AppCompatActivity implements View.OnClickL
 //                                }
 //                            });
 //                            alert.show();
-                            CommonUtil.alertBox(SecurityQuestion.this, response.optString("msg"));
+                            final AlertDialog.Builder alertDialogs = new AlertDialog.Builder(this);
+                            LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                            final View dialog = inflater.inflate(R.layout.dialog_all, null);
+                            LinearLayout linearLayout;
+                            linearLayout = (LinearLayout) dialog.findViewById(R.id.lyPopUpAfterRecovery);
+                            Button button1;
+                            TextView tvPopupLocatedEmail = (TextView) dialog.findViewById(R.id.tvPopupHead);
+                            TextView tvPopupDetail = (TextView) dialog.findViewById(R.id.tvPopupDetail);
+                            tvPopupLocatedEmail.setText(response.optJSONObject("json").optString("title"));
+                            tvPopupDetail.setGravity(Gravity.LEFT);
+                            tvPopupDetail.setText(response.optString("msg"));
+                            button1 = (Button) dialog.findViewById(R.id.btPopupThankingRecoveryBack);
+                            linearLayout.setVisibility(View.VISIBLE);
+                            button1.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    alert.dismiss();
+                                        startActivity(new Intent(SecurityQuestion.this, SignIn.class));
+                                        finish();
+
+                                }
+                            });
+                            alertDialogs.setView(dialog);
+                            alertDialogs.setCancelable(false);
+                            alert = alertDialogs.create();
+                            alert.show();
+//                            CommonUtil.alertBox(SecurityQuestion.this, response.optString("msg"));
                             break;
                         case Constants.Events.EVENT_GET_SECURITY_QES:
                             if (response.optJSONObject("json").has("questionList")) {

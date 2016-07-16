@@ -85,7 +85,7 @@ public class GoogleMap extends FragmentActivity implements OnMapReadyCallback, V
                 if (TextUtils.isEmpty(etMapSearch.getText().toString())) {
                     CommonUtil.byToastMessage(GoogleMap.this, "Please select location");
                 } else if (!countryName.equalsIgnoreCase("United Kingdom")) {
-                    CommonUtil.byToastMessage(GoogleMap.this, "At present we are providing service only in uk.");
+                    CommonUtil.byToastMessage(GoogleMap.this, "Service is not available in this area.");
                 } else {
                     setResult(Activity.RESULT_OK, new Intent().putExtra("typeAddress", getIntent().getIntExtra("typeAddress", 0)).putExtra("address", addObj.toString()).putExtra("AreaName", etMapSearch.getText().toString()));
                     finish();

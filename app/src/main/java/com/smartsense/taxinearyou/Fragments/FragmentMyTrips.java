@@ -34,8 +34,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.text.ParseException;
-
 public class FragmentMyTrips extends Fragment implements Response.Listener<JSONObject>, Response.ErrorListener {
 
     ImageView ivMyTripsNoTrips;
@@ -281,7 +279,7 @@ public class FragmentMyTrips extends Fragment implements Response.Listener<JSONO
             tvElementMyTripsTaxiProvider.setText(test.optString("partner"));
             try {
                 tvElementMyTripsDateTime.setText(Constants.DATE_FORMAT_DATE_TIME.format(Constants.DATE_FORMAT_SET.parse(test.optString("pickTime").trim())));
-            } catch (ParseException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
 
