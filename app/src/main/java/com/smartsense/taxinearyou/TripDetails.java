@@ -387,8 +387,10 @@ public class TripDetails extends AppCompatActivity implements View.OnClickListen
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == Activity.RESULT_OK) {
+            requestRefreshMyTrip = 1;
             switch (requestCode) {
                 case requestFeedBack:
+
                     tvTripDetailFeedback.setVisibility(View.GONE);
                     break;
                 case requestLostItem:

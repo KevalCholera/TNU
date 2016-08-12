@@ -21,9 +21,6 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
-import com.google.android.gms.common.GooglePlayServicesRepairableException;
-import com.google.android.gms.location.places.ui.PlacePicker;
 import com.mpt.storage.SharedPreferenceUtil;
 import com.onesignal.OneSignal;
 import com.smartsense.taxinearyou.Fragments.FragmentBook;
@@ -102,6 +99,7 @@ public class Search extends AppCompatActivity {
         adapter.addFragment(new FragmentMyTrips(), getResources().getString(R.string.my_trip));
         adapter.addFragment(new FragmentCredit(), getResources().getString(R.string.credit));
         adapter.addFragment(new FragmentMenu(), getResources().getString(R.string.menu));
+        viewPager.setOffscreenPageLimit(4);
         viewPager.setAdapter(adapter);
     }
 

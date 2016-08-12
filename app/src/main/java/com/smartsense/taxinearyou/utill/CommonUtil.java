@@ -479,13 +479,26 @@ public class CommonUtil {
 
     static public void closeKeyboard(Activity a) {
         try {
-            InputMethodManager inputManager = (InputMethodManager) a.getSystemService(Context.INPUT_METHOD_SERVICE);
-
-            inputManager.hideSoftInputFromWindow(a.getCurrentFocus().getWindowToken(),
-                    InputMethodManager.HIDE_NOT_ALWAYS);
+//            View view = a.getCurrentFocus();
+//            if (view != null) {
+                InputMethodManager imm = (InputMethodManager) a.getSystemService(Activity.INPUT_METHOD_SERVICE);
+                imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
+//            }
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public static void hideKeyboard(Context activityContext) {
+
+        InputMethodManager imm = (InputMethodManager)
+                activityContext.getSystemService(Context.INPUT_METHOD_SERVICE);
+
+        //android.R.id.content ( http://stackoverflow.com/a/12887919/2077479 )
+        View rootView = ((Activity) activityContext)
+                .findViewById(android.R.id.content).getRootView();
+
+        imm.hideSoftInputFromWindow(rootView.getWindowToken(), 0);
     }
 
 //    public static Boolean isOnline(Context context) {

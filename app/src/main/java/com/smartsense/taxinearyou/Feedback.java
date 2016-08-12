@@ -7,6 +7,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -27,9 +28,6 @@ import com.smartsense.taxinearyou.utill.Constants;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 
 public class Feedback extends AppCompatActivity implements View.OnClickListener, Response.Listener<JSONObject>, Response.ErrorListener {
 
@@ -68,7 +66,7 @@ public class Feedback extends AppCompatActivity implements View.OnClickListener,
         ivFeedbacksad.setOnClickListener(this);
         btFeedBackSubmit.setOnClickListener(this);
         ivFeedbackhappy.setOnClickListener(this);
-
+        ivFeedbackhappy.setEnabled(false);
         rbFeedbackRatingForDriver.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
 
             @Override
@@ -105,15 +103,29 @@ public class Feedback extends AppCompatActivity implements View.OnClickListener,
                 break;
 
             case R.id.ivFeedbacksad:
+
                 cbFeedbackCommentForTaxinearu.setVisibility(View.VISIBLE);
+                etFeedbackCommentForTaxinearu.setVisibility(View.GONE);
+//                cbFeedbackCommentForTaxinearu.setVisibility(View.GONE);
+                cbFeedbackCommentForTaxinearu.setChecked(false);
+                etFeedbackCommentForTaxinearu.setText("");
+                ivFeedbacksad.setEnabled(false);
+                ivFeedbackhappy.setEnabled(true);
+                CommonUtil.hideKeyboard(this);
+
                 break;
 
             case R.id.ivFeedbackhappy:
+                Log.i("onClick: ", "aa");
+
+                ivFeedbackhappy.setEnabled(false);
+                ivFeedbacksad.setEnabled(true);
                 etFeedbackCommentForTaxinearu.setVisibility(View.GONE);
-                cbFeedbackCommentForTaxinearu.setVisibility(View.GONE);
+//                cbFeedbackCommentForTaxinearu.setVisibility(View.GONE);
                 cbFeedbackCommentForTaxinearu.setChecked(false);
                 etFeedbackCommentForTaxinearu.setText("");
-                CommonUtil.closeKeyboard(this);
+                CommonUtil.hideKeyboard(this);
+
                 break;
 
             case R.id.btFeedBackSubmit:

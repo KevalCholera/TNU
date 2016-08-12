@@ -2,29 +2,34 @@ package com.smartsense.taxinearyou;
 
 import android.app.Application;
 import android.content.Context;
-import android.os.AsyncTask;
 import android.text.TextUtils;
-import android.util.Log;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.HurlStack;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.Volley;
 import com.crashlytics.android.Crashlytics;
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 import com.mpt.storage.SharedPreferenceUtil;
 import com.onesignal.OneSignal;
 import com.smartsense.taxinearyou.imageutil.BitmapCache;
 import com.smartsense.taxinearyou.imageutil.BitmapUtil;
 import com.smartsense.taxinearyou.imageutil.DiskBitmapCache;
+
+import java.io.InputStream;
+import java.security.KeyStore;
+
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLSocketFactory;
+import javax.net.ssl.TrustManagerFactory;
+
 import io.fabric.sdk.android.Fabric;
 
 public class TaxiNearYouApp extends Application {
     private static TaxiNearYouApp appInstance;
     public static final String TAG = TaxiNearYouApp.class.getSimpleName();
-    //    private static char[] KEYSTORE_PASSWORD = "gifkar".toCharArray();
+        private static char[] KEYSTORE_PASSWORD = "smart123".toCharArray();
     private RequestQueue requestQueue;
     private ImageLoader imageLoader;
     private static Context mAppContext;
@@ -37,15 +42,10 @@ public class TaxiNearYouApp extends Application {
         Fabric.with(this, new Crashlytics());
         appInstance = this;
         this.setAppContext(getApplicationContext());
-//        register();
+
         OneSignal.startInit(this).init();
         OneSignal.enableInAppAlertNotification(false);
 
-
-
-//        Parse.initialize(this, "9yjUxrJuubYfJQvh8gONZuZqTEu3gcpqB1mdRkpH", "w3znN1nsItMDKIZaTJ8qzdRDPnfFKeW6uAI56C8Y");
-//        ParseInstallation.getCurrentInstallation().put("user", "customer");
-//        ParseInstallation.getCurrentInstallation().saveInBackground();
         SharedPreferenceUtil.init(this);
     }
 
@@ -63,8 +63,8 @@ public class TaxiNearYouApp extends Application {
 
     public RequestQueue getRequestQueue() {
         if (requestQueue == null) {
-            requestQueue = Volley.newRequestQueue(getApplicationContext());
-//            requestQueue = Volley.newRequestQueue(getApplicationContext(),new HurlStack(null, newSslSocketFactory()));
+//            requestQueue = Volley.newRequestQueue(getApplicationContext());
+            requestQueue = Volley.newRequestQueue(getApplicationContext(),new HurlStack(null, newSslSocketFactory()));
         }
         return requestQueue;
     }
@@ -104,73 +104,35 @@ public class TaxiNearYouApp extends Application {
         }
     }
 
-//    private SSLSocketFactory newSslSocketFactory() {
-//        try {
-//            // Get an instance of the Bouncy Castle KeyStore format
-//            KeyStore trusted = KeyStore.getInstance("BKS");
-//            // Get the raw resource, which contains the keystore with
-//            // your trusted certificates (root and any intermediate certs)
-//            InputStream in = GifkarApp.getInstance().getResources().openRawResource(R.raw.gifkar);
-////            InputStream in = GifkarApp.getInstance().getResources().openRawResource(R.raw.local);
-//            try {
-//                // Initialize the keystore with the provided trusted certificates
-//                // Provide the password of the keystore
-//                trusted.load(in, KEYSTORE_PASSWORD);
-//            } finally {
-//                in.close();
-//            }
-//
-//            String tmfAlgorithm = TrustManagerFactory.getDefaultAlgorithm();
-//            TrustManagerFactory tmf = TrustManagerFactory.getInstance(tmfAlgorithm);
-//            tmf.init(trusted);
-//
-//            SSLContext context = SSLContext.getInstance("TLS");
-//            context.init(null, tmf.getTrustManagers(), null);
-//
-//            SSLSocketFactory sf = context.getSocketFactory();
-//            return sf;
-//        } catch (Exception e) {
-//            throw new AssertionError(e);
-//        }
-//    }
-
-    private void register() {
-        if (checkPlayServices()) {
-            gcm = GoogleCloudMessaging.getInstance(this);
-
-                registerInBackground();
-
-        } else {
-            Log.e(TAG, "No valid Google Play Services APK found.");
-        }
-    }
-
-    private boolean checkPlayServices() {
-        int resultCode = GooglePlayServicesUtil.isGooglePlayServicesAvailable(this);
-        if (resultCode != ConnectionResult.SUCCESS) {
-            return false;
-        }
-        return true;
-    }
-
-    private void registerInBackground() {
-        new AsyncTask() {
-            @Override
-            protected String doInBackground(Object[] params) {
-                String msg;
-                try {
-                    if (gcm == null) {
-                        gcm = GoogleCloudMessaging.getInstance(TaxiNearYouApp.getAppContext());
-                    }
-                    regId = gcm.register("115896185562");
-                    msg = "Device registered, registration ID: " + regId;
-                    Log.i(TAG, msg);
-                } catch (Exception ex) {
-                    msg = "Error :" + ex.getMessage();
-                    Log.e(TAG, msg);
-                }
-                return msg;
+    private SSLSocketFactory newSslSocketFactory() {
+        try {
+            // Get an instance of the Bouncy Castle KeyStore format
+            KeyStore trusted = KeyStore.getInstance("BKS");
+            // Get the raw resource, which contains the keystore with
+            // your trusted certificates (root and any intermediate certs)
+            InputStream in = TaxiNearYouApp.getInstance().getResources().openRawResource(R.raw.tnu1);
+//            InputStream in = GifkarApp.getInstance().getResources().openRawResource(R.raw.local);
+            try {
+                // Initialize the keystore with the provided trusted certificates
+                // Provide the password of the keystore
+                trusted.load(in, KEYSTORE_PASSWORD);
+            } finally {
+                in.close();
             }
-        }.execute(null, null, null);
+
+            String tmfAlgorithm = TrustManagerFactory.getDefaultAlgorithm();
+            TrustManagerFactory tmf = TrustManagerFactory.getInstance(tmfAlgorithm);
+            tmf.init(trusted);
+
+            SSLContext context = SSLContext.getInstance("TLS");
+            context.init(null, tmf.getTrustManagers(), null);
+
+            SSLSocketFactory sf = context.getSocketFactory();
+            return sf;
+        } catch (Exception e) {
+            throw new AssertionError(e);
+        }
     }
+
+
 }

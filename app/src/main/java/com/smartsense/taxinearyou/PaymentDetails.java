@@ -158,10 +158,12 @@ public class PaymentDetails extends TimeActivity implements View.OnClickListener
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-            } else if (jsonObject.has("json") && jsonObject.optJSONObject("json").has("errorCode") && jsonObject.optJSONObject("json").optInt("errorCode") == Constants.ErrorCode.SORRY_INCONVENIENCE || jsonObject.has("json") && jsonObject.optJSONObject("json").has("errorCode") && jsonObject.optJSONObject("json").optInt("errorCode") == Constants.ErrorCode.UNPAID_CANCEL_RIDE_CHARGE || jsonObject.has("json") && jsonObject.optJSONObject("json").has("errorCode") && jsonObject.optJSONObject("json").optInt("errorCode") == Constants.ErrorCode.LOGGEDOUT_PARTNER)
-                CommonUtil.openDialogs(this, "Payment Fail", R.id.lyPopupBookError, R.id.btPopupBookErrorOk, jsonObject.optString("msg"), R.id.tvDialogAllError);
-            else
-                CommonUtil.conditionAuthentication(this, jsonObject);
+            } else {
+                if (jsonObject.has("json") && jsonObject.optJSONObject("json").has("errorCode") && jsonObject.optJSONObject("json").optInt("errorCode") == Constants.ErrorCode.SORRY_INCONVENIENCE || jsonObject.has("json") && jsonObject.optJSONObject("json").has("errorCode") && jsonObject.optJSONObject("json").optInt("errorCode") == Constants.ErrorCode.UNPAID_CANCEL_RIDE_CHARGE || jsonObject.has("json") && jsonObject.optJSONObject("json").has("errorCode") && jsonObject.optJSONObject("json").optInt("errorCode") == Constants.ErrorCode.LOGGEDOUT_PARTNER)
+                    CommonUtil.openDialogs(this, "Payment Fail", R.id.lyPopupBookError, R.id.btPopupBookErrorOk, jsonObject.optString("msg"), R.id.tvDialogAllError);
+                else
+                    CommonUtil.conditionAuthentication(this, jsonObject);
+            }
         else
             CommonUtil.jsonNullError(this);
     }
