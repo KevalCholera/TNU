@@ -95,7 +95,7 @@ public class Search extends AppCompatActivity {
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new FragmentBook(), getResources().getString(R.string.book));
+        adapter.addFragment(new FragmentBook().newInstance(getIntent().getBooleanExtra("checkFlag", false)), getResources().getString(R.string.book));
         adapter.addFragment(new FragmentMyTrips(), getResources().getString(R.string.my_trip));
         adapter.addFragment(new FragmentCredit(), getResources().getString(R.string.credit));
         adapter.addFragment(new FragmentMenu(), getResources().getString(R.string.menu));
@@ -104,7 +104,6 @@ public class Search extends AppCompatActivity {
     }
 
     private void setupTabIcons() {
-
 
 
         RelativeLayout linearLayout = (RelativeLayout) LayoutInflater.from(this).inflate(R.layout.element_search, null);

@@ -57,6 +57,8 @@ public class Constants {
     public static final SimpleDateFormat DATE_FORMAT_BIG_TIME_HOUR_MIN1 = new SimpleDateFormat("hh:mm aa");
     public static final String SESSION_LIMIT = "sessionTime";
     public static final String PAGE_LIMIT = "pageLimit";
+    public static final String PAYMENT_TYPE_CASH = "1";
+    public static final String PAYMENT_TYPE_CARD = "3";
 
     public class PrefKeys {
 

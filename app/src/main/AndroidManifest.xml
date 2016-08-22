@@ -227,6 +227,12 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <activity
+            android:name=".WebViewActivity"
+            android:configChanges="orientation|screenSize"
+            android:label="Processing Payment"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+        <activity
             android:name=".More"
             android:configChanges="orientation|screenSize"
             android:label="More"

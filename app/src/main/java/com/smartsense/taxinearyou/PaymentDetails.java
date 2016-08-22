@@ -1,5 +1,6 @@
 package com.smartsense.taxinearyou;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -26,6 +27,9 @@ public class PaymentDetails extends TimeActivity implements View.OnClickListener
     TextView tvPaymentTNUCredit, tvPaymentCard, tvPaymentCash, tvPaymentAmount;
     private AlertDialog alert;
     JSONObject jsonObject3;
+    private String pType = Constants.PAYMENT_TYPE_CASH;
+    private final int paymentRequest = 1;
+    String msg = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,11 +64,12 @@ public class PaymentDetails extends TimeActivity implements View.OnClickListener
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.tvPaymentCash:
-
+                pType = Constants.PAYMENT_TYPE_CASH;
                 isPartnerAvailable();
                 break;
             case R.id.tvPaymentCard:
-                startActivity(new Intent(PaymentDetails.this, Card.class));
+                pType = Constants.PAYMENT_TYPE_CARD;
+                isPartnerAvailable();
                 break;
         }
     }
@@ -77,6 +82,7 @@ public class PaymentDetails extends TimeActivity implements View.OnClickListener
         try {
             JSONObject jsonObject1 = new JSONObject(SharedPreferenceUtil.getString(Constants.PrefKeys.BOOKING_INFO, ""));
             jsonObject1.put("forceBook", check);
+            jsonObject1.put("paymentType", pType);
             JSONObject jsonObject2 = new JSONObject(SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_DISTANCE_MATRIX, ""));
 
             JSONObject jsonObject4 = new JSONObject(SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_CUSTOMER_SELECTION, ""));
@@ -141,10 +147,13 @@ public class PaymentDetails extends TimeActivity implements View.OnClickListener
                 try {
                     switch (jsonObject.getInt("__eventid")) {
                         case Constants.Events.BookRide:
-                            CommonUtil.openDialogs(PaymentDetails.this, "Payment Details", R.id.lyPopupBookSuccess, R.id.btPopupBookSuccessOk, jsonObject.optString("msg"), R.id.tvDialogAllSuccess);
+                            if (jsonObject.optJSONObject("json").has("key")) {
+                                msg=jsonObject.optString("msg");
+                                startActivityForResult(new Intent(this, WebViewActivity.class).putExtra("key", jsonObject.optJSONObject("json").optString("key")).putExtra("vendor", jsonObject.optJSONObject("json").optString("vendor")), paymentRequest);
+                            } else
+                                CommonUtil.openDialogs(PaymentDetails.this, "Payment Details", R.id.lyPopupBookSuccess, R.id.btPopupBookSuccessOk, jsonObject.optString("msg"), R.id.tvDialogAllSuccess);
                             break;
                         case Constants.Events.EVENT_IS_PARTNER_AVAILABLE:
-
                             if (jsonObject.optJSONObject("json").optBoolean("available")) {
                                 if (!jsonObject.optJSONObject("json").optBoolean("taxiAvailibilityUpdated"))
                                     finalBooking(false);
@@ -210,5 +219,18 @@ public class PaymentDetails extends TimeActivity implements View.OnClickListener
             e.printStackTrace();
         }
     }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode) {
+            case paymentRequest:
+                if (resultCode == Activity.RESULT_OK)
+                    CommonUtil.openDialogs(PaymentDetails.this, "Payment Details", R.id.lyPopupBookSuccess, R.id.btPopupBookSuccessOk, "Success", R.id.tvDialogAllSuccess);
+                else
+                    CommonUtil.openDialogs(this, "Payment Fail", R.id.lyPopupBookError, R.id.btPopupBookErrorOk, "Fail", R.id.tvDialogAllError);
+                break;
+        }
+    }
+
 
 }

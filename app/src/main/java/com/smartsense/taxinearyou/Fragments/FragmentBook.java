@@ -66,13 +66,22 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
     public static long timeRemaining = 0;
     Boolean isUserTimeSelect = false;
     boolean session = true;
+    private boolean checkData = false;
+
+    public FragmentBook newInstance(Boolean check) {
+        FragmentBook fragmentBook = new FragmentBook();
+        Bundle args = new Bundle();
+        args.putBoolean("key", check);
+        fragmentBook.setArguments(args);
+        return fragmentBook;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View rootView = inflater.inflate(R.layout.fragment_book, container, false);
         handler = new Handler();
-
+        checkData = getArguments().getBoolean("key");
         tvBookFrom = (TextView) rootView.findViewById(R.id.tvBookFrom);
         tvBookTo = (TextView) rootView.findViewById(R.id.tvBookTo);
         tvBookvia1 = (TextView) rootView.findViewById(R.id.tvBookvia1);
@@ -113,7 +122,10 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
         ivBookDeleteVia2.setOnClickListener(this);
 
         setDefaultValues();
-        getServerDateTime();
+        if (checkData)
+            saveDataLoad();
+        else
+            getServerDateTime();
         return rootView;
     }
 
@@ -437,6 +449,8 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
 
         SharedPreferenceUtil.putValue(Constants.VIA_ADDRESS, "");
         SharedPreferenceUtil.putValue(Constants.VIA2_ADDRESS, "");
+        SharedPreferenceUtil.remove(Constants.VIA_ADDRESS);
+        SharedPreferenceUtil.remove(Constants.VIA2_ADDRESS);
         SharedPreferenceUtil.save();
 
         String str;
@@ -662,6 +676,7 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
                     calendar1.setTime(Constants.DATE_FORMAT_SET.parse(dateTimeCanChange));
                     updateClock();
 
+
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
@@ -758,5 +773,40 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
     public void onResume() {
         super.onResume();
         timeRemaining = TimeUnit.MINUTES.toMillis(SharedPreferenceUtil.getInt(Constants.SESSION_LIMIT, 9));
+    }
+
+    public void saveDataLoad() {
+        try {
+            tvBookFrom.setText(new JSONObject(SharedPreferenceUtil.getString(Constants.FROM_ADDRESS, "")).optString("viaAreaAddress"));
+            tvBookTo.setText(new JSONObject(SharedPreferenceUtil.getString(Constants.TO_ADDRESS, "")).optString("viaAreaAddress"));
+            if (SharedPreferenceUtil.contains(Constants.VIA_ADDRESS)) {
+                llBookVia1.setVisibility(View.VISIBLE);
+                tvBookvia1.setText(new JSONObject(SharedPreferenceUtil.getString(Constants.VIA_ADDRESS, "")).optString("viaAreaAddress"));
+            }
+            if (SharedPreferenceUtil.contains(Constants.VIA2_ADDRESS)) {
+                llBookVia2.setVisibility(View.VISIBLE);
+                tvBookvia2.setText(new JSONObject(SharedPreferenceUtil.getString(Constants.VIA2_ADDRESS, "")).optString("viaAreaAddress"));
+            }
+
+            JSONObject jsonObject3 = new JSONObject(SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_REQUEST_JSON, ""));
+
+            if (jsonObject3.optInt("bookingduration", 1) == 1)
+                rbBookNow.setChecked(true);
+            else if (jsonObject3.optInt("bookingduration", 1) == 2)
+                rbBookToday.setChecked(true);
+            else
+                rbBookTomorrow.setChecked(true);
+            tvBookDateTime.setText(Constants.DATE_FORMAT_SET.format(Constants.DATE_FORMAT_SEND.parse(jsonObject3.optString("journeyDatetime"))));
+
+            tvBookLuggage.setTag(jsonObject3.optString("luggageId"));
+            tvBookLuggage.setText(jsonObject3.optString("luggageDescription"));
+            tvBookPassenger.setText(jsonObject3.optString("passengerDescription"));
+            tvBookPassenger.setTag(jsonObject3.optString("passanger"));
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
     }
 }

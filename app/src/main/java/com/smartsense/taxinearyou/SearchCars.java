@@ -150,7 +150,7 @@ public class SearchCars extends TimeActivity implements Response.Listener<JSONOb
                 doPartnerList(0);
                 break;
             case R.id.lySearchCarsDateTime:
-                finish();
+                onBackPressed();
                 break;
         }
     }
@@ -542,7 +542,7 @@ public class SearchCars extends TimeActivity implements Response.Listener<JSONOb
 
     @Override
     public void onBackPressed() {
-        startActivity(new Intent(this, Search.class));
+        startActivity(new Intent(this, Search.class).putExtra("checkFlag",true));
         finish();
     }
 
