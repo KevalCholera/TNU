@@ -3,7 +3,6 @@ package com.smartsense.taxinearyou;
 import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.Uri;
@@ -371,17 +370,54 @@ public class TripDetails extends AppCompatActivity implements View.OnClickListen
     }
 
     public void alertBoxTripDetails(final String msg) {
-        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setCancelable(false);
-        builder.setMessage(msg);
-        builder.setTitle(getResources().getString(R.string.cancellation));
-        builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                tvTripDetailCancle.setVisibility(View.GONE);
-            }
-        });
-        builder.create();
-        builder.show();
+//        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//        builder.setCancelable(false);
+//        builder.setMessage(msg);
+//        builder.setTitle(getResources().getString(R.string.cancellation));
+//        builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+//            public void onClick(DialogInterface dialog, int id) {
+//                tvTripDetailCancle.setVisibility(View.GONE);
+//            }
+//        });
+//        builder.create();
+//        builder.show();
+
+        try {
+
+            final AlertDialog.Builder alertDialogs = new AlertDialog.Builder(this);
+            LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            final View dialog = inflater.inflate(R.layout.dialog_all, null);
+            LinearLayout lyPopUpCancelRide = (LinearLayout) dialog.findViewById(R.id.lyPopUpGen);
+            lyPopUpCancelRide.setVisibility(View.VISIBLE);
+
+
+
+            Button tvPopupCancelRideOk = (Button) dialog.findViewById(R.id.btPopupGen);
+
+            TextView tvDialogCancelText = (TextView) dialog.findViewById(R.id.tvPopupGen);
+
+
+            tvDialogCancelText.setText(msg);
+
+
+
+            tvPopupCancelRideOk.setOnClickListener(new Button.OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+                    alert.dismiss();
+                    tvTripDetailCancle.setVisibility(View.GONE);
+
+                }
+            });
+            alertDialogs.setView(dialog);
+            alertDialogs.setCancelable(false);
+            alert = alertDialogs.create();
+            alert.show();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

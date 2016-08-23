@@ -1,6 +1,7 @@
 package com.smartsense.taxinearyou;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -50,7 +51,7 @@ public class WebViewActivity extends AppCompatActivity {
 
     }
 
-    public static void webview_ClientPost(WebView webView, String url, Collection< Map.Entry<String, String>> postData){
+    public static void webview_ClientPost(WebView webView, String url, Collection<Map.Entry<String, String>> postData) {
         StringBuilder sb = new StringBuilder();
 
         sb.append("<html><head></head>");
@@ -84,10 +85,12 @@ public class WebViewActivity extends AppCompatActivity {
             Log.i("url", url);
             if (url.contains("closewebview")) {
                 String[] getParam = url.split("=");
+                Intent i = new Intent();
+                i.putExtra("msg", getParam[2]);
                 if (getParam[1].contains("success")) {
-                    setResult(Activity.RESULT_OK);
+                    setResult(Activity.RESULT_OK, i);
                 } else {
-                    setResult(Activity.RESULT_CANCELED);
+                    setResult(Activity.RESULT_CANCELED, i);
                 }
                 finish();
             }

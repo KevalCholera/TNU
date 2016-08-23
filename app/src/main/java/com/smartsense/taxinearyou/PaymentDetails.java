@@ -44,6 +44,8 @@ public class PaymentDetails extends TimeActivity implements View.OnClickListener
         } catch (Exception e) {
             e.printStackTrace();
         }
+//        getWindow().setSoftInputMode(
+//                WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         tvPaymentTNUCredit = (TextView) findViewById(R.id.tvPaymentTNUCredit);
         tvPaymentCard = (TextView) findViewById(R.id.tvPaymentCard);
         tvPaymentCash = (TextView) findViewById(R.id.tvPaymentCash);
@@ -148,7 +150,7 @@ public class PaymentDetails extends TimeActivity implements View.OnClickListener
                     switch (jsonObject.getInt("__eventid")) {
                         case Constants.Events.BookRide:
                             if (jsonObject.optJSONObject("json").has("key")) {
-                                msg=jsonObject.optString("msg");
+                                msg = jsonObject.optString("msg");
                                 startActivityForResult(new Intent(this, WebViewActivity.class).putExtra("key", jsonObject.optJSONObject("json").optString("key")).putExtra("vendor", jsonObject.optJSONObject("json").optString("vendor")), paymentRequest);
                             } else
                                 CommonUtil.openDialogs(PaymentDetails.this, "Payment Details", R.id.lyPopupBookSuccess, R.id.btPopupBookSuccessOk, jsonObject.optString("msg"), R.id.tvDialogAllSuccess);
@@ -224,10 +226,11 @@ public class PaymentDetails extends TimeActivity implements View.OnClickListener
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (requestCode) {
             case paymentRequest:
+                String msg = data.getStringExtra("msg");
                 if (resultCode == Activity.RESULT_OK)
-                    CommonUtil.openDialogs(PaymentDetails.this, "Payment Details", R.id.lyPopupBookSuccess, R.id.btPopupBookSuccessOk, "Success", R.id.tvDialogAllSuccess);
+                    CommonUtil.openDialogs(PaymentDetails.this, "Payment Details", R.id.lyPopupBookSuccess, R.id.btPopupBookSuccessOk, msg, R.id.tvDialogAllSuccess);
                 else
-                    CommonUtil.openDialogs(this, "Payment Fail", R.id.lyPopupBookError, R.id.btPopupBookErrorOk, "Fail", R.id.tvDialogAllError);
+                    CommonUtil.openDialogs(this, "Payment Fail", R.id.lyPopupBookError, R.id.btPopupBookErrorOk, msg, R.id.tvDialogAllError);
                 break;
         }
     }

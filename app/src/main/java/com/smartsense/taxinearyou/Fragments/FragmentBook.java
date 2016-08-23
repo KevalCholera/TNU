@@ -291,13 +291,16 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
                 llBookVia1.setVisibility(View.GONE);
                 tvBookvia1.setText("");
                 SharedPreferenceUtil.putValue(Constants.VIA_ADDRESS, "");
+                SharedPreferenceUtil.remove(Constants.VIA_ADDRESS);
                 SharedPreferenceUtil.save();
                 break;
 
             case R.id.ivBookDeleteVia2:
                 llBookVia2.setVisibility(View.GONE);
                 tvBookvia2.setText("");
+
                 SharedPreferenceUtil.putValue(Constants.VIA2_ADDRESS, "");
+                SharedPreferenceUtil.remove(Constants.VIA2_ADDRESS);
                 SharedPreferenceUtil.save();
                 break;
 
@@ -447,11 +450,11 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
 
     public void setDefaultValues() {
 
-        SharedPreferenceUtil.putValue(Constants.VIA_ADDRESS, "");
-        SharedPreferenceUtil.putValue(Constants.VIA2_ADDRESS, "");
-        SharedPreferenceUtil.remove(Constants.VIA_ADDRESS);
-        SharedPreferenceUtil.remove(Constants.VIA2_ADDRESS);
-        SharedPreferenceUtil.save();
+//        SharedPreferenceUtil.putValue(Constants.VIA_ADDRESS, "");
+//        SharedPreferenceUtil.putValue(Constants.VIA2_ADDRESS, "");
+//        SharedPreferenceUtil.remove(Constants.VIA_ADDRESS);
+//        SharedPreferenceUtil.remove(Constants.VIA2_ADDRESS);
+//        SharedPreferenceUtil.save();
 
         String str;
         JSONArray jsonArray;
@@ -797,7 +800,10 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
             else
                 rbBookTomorrow.setChecked(true);
             tvBookDateTime.setText(Constants.DATE_FORMAT_SET.format(Constants.DATE_FORMAT_SEND.parse(jsonObject3.optString("journeyDatetime"))));
-
+            dateTimeCanChange =Constants.DATE_FORMAT_SET.format(Constants.DATE_FORMAT_SEND.parse(jsonObject3.optString("journeyDatetime")));
+            calendar.setTime(Constants.DATE_FORMAT_SET.parse(dateTimeCanChange));
+            calendar1.setTime(Constants.DATE_FORMAT_SET.parse(dateTimeCanChange));
+            updateClock();
             tvBookLuggage.setTag(jsonObject3.optString("luggageId"));
             tvBookLuggage.setText(jsonObject3.optString("luggageDescription"));
             tvBookPassenger.setText(jsonObject3.optString("passengerDescription"));
