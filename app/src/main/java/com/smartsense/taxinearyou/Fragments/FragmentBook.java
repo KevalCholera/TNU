@@ -690,6 +690,7 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
     }
 
     public void updateClock() {
+
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {

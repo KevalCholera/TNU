@@ -23,8 +23,8 @@ android {
         applicationId "com.smartsense.taxinearyou"
         minSdkVersion 14
         targetSdkVersion 22
-        versionCode 7
-        versionName "1.7"
+        versionCode 8
+        versionName "1.8"
         multiDexEnabled true
         manifestPlaceholders = [manifestApplicationId          : "${applicationId}",
                                 onesignal_app_id               : "1a615161-856c-4fc7-81fd-7b31c8be9607",
