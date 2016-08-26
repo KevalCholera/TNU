@@ -226,11 +226,14 @@ public class PaymentDetails extends TimeActivity implements View.OnClickListener
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (requestCode) {
             case paymentRequest:
-                String msg = data.getStringExtra("msg");
+                if (data.hasExtra("msg"))
+                    msg = data.getStringExtra("msg");
+                else
+                    msg = "Back Pressed";
                 if (resultCode == Activity.RESULT_OK)
                     CommonUtil.openDialogs(PaymentDetails.this, "Payment Details", R.id.lyPopupBookSuccess, R.id.btPopupBookSuccessOk, msg, R.id.tvDialogAllSuccess);
                 else
-                    CommonUtil.openDialogs(this, "Payment Fail", R.id.lyPopupBookError, R.id.btPopupBookErrorOk, msg, R.id.tvDialogAllError);
+                    CommonUtil.openDialogs(this, "Payment Failed", R.id.lyPopupBookError, R.id.btPopupBookErrorOk, msg, R.id.tvDialogAllError);
                 break;
         }
     }

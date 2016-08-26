@@ -191,7 +191,7 @@
                                 android:layout_width="50dp"
                                 android:layout_height="@dimen/etHeightAll"
                                 android:layout_marginRight="5dp"
-                                android:background="@drawable/grayborder"
+                                android:background="@drawable/darkgrayborder"
                                 android:cursorVisible="false"
                                 android:digits="1234567890"
                                 android:enabled="false"

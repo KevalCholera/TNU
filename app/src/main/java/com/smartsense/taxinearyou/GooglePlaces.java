@@ -721,9 +721,9 @@ public class GooglePlaces extends FragmentActivity implements OnItemClickListene
                 JSONArray types = jsonObj1.optJSONArray("types");
                 AreaName = jsonObj1.optString("name");
                 if (jsonObj1.has("formatted_address")) {
-                    String[] str = jsonObj1.optString("formatted_address").split(",");
-                    Log.i("Yes", jsonObj1.optString("name") + " " + str[0].trim());
-                    if (jsonObj1.optString("name").trim().equalsIgnoreCase(str[0].trim())) {
+//                    String[] str = jsonObj1.optString("formatted_address").split(",");
+                    Log.i("Yes", jsonObj1.optString("name") + " - " + jsonObj1.optString("formatted_address"));
+                    if (jsonObj1.optString("formatted_address").toLowerCase().contains(jsonObj1.optString("name").toLowerCase())) {
                         AreaAddress = jsonObj1.optString("formatted_address");
                     } else {
                         AreaAddress = jsonObj1.optString("name") + ", " + jsonObj1.optString("formatted_address");

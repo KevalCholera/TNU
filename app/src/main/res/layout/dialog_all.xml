@@ -999,6 +999,7 @@
                 android:src="@mipmap/form" />
 
             <TextView
+                android:id="@+id/tvPopupYourDetail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/tvPopupMarginTop"

@@ -128,12 +128,13 @@
 
             <TextView
                 android:id="@+id/tvElementMyTripsStatus"
-                android:layout_width="@dimen/tvElementMyTripStatusWidth"
+                android:layout_width="112dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
                 android:gravity="center"
                 android:paddingLeft="@dimen/etPaddingAll"
                 android:paddingRight="@dimen/etPaddingAll"
+
                 android:textColor="@color/white"
                 android:textSize="@dimen/textDetail" />
 

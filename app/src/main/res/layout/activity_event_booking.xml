@@ -98,21 +98,45 @@
                     android:text="@string/contact_number_"
                     android:textColor="@color/background" />
 
-                <EditText
-                    android:id="@+id/etEventBookingContactNumber"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/etHeightAll"
-                    android:layout_marginTop="@dimen/margin_5"
-                    android:background="@drawable/grayborder"
-                    android:digits="01234567890"
-                    android:hint="@string/enter_contact_no"
-                    android:imeOptions="actionNext"
-                    android:inputType="phone"
-                    android:maxLength="10"
-                    android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/hintColor"
-                    android:textSize="@dimen/etSignUpSizeAll" />
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:layout_width="50dp"
+                        android:layout_height="@dimen/etHeightAll"
+
+                        android:layout_marginRight="@dimen/etSignUpPersonNameMarginEnd"
+                        android:layout_marginTop="@dimen/etSignUpPersonNameMarginEnd"
+                        android:background="@drawable/darkgrayborder"
+                        android:cursorVisible="false"
+                        android:digits="1234567890"
+                        android:enabled="false"
+                        android:gravity="center"
+                        android:inputType="number"
+                        android:maxLength="10"
+                        android:text="+44"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/hintColor"
+                        android:textSize="@dimen/etSignUpSizeAll" />
+
+
+                    <EditText
+                        android:id="@+id/etEventBookingContactNumber"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/etHeightAll"
+                        android:layout_marginTop="@dimen/margin_5"
+                        android:background="@drawable/grayborder"
+                        android:digits="01234567890"
+                        android:hint="@string/enter_contact_no"
+                        android:imeOptions="actionNext"
+                        android:inputType="phone"
+                        android:maxLength="10"
+                        android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/hintColor"
+                        android:textSize="@dimen/etSignUpSizeAll" />
+                </LinearLayout>
 
                 <TextView
                     android:layout_width="match_parent"
@@ -215,11 +239,11 @@
                             android:background="@drawable/grayborder"
                             android:clickable="true"
                             android:cursorVisible="false"
-                            android:singleLine="true"
                             android:ellipsize="end"
-                            android:maxLines="1"
                             android:focusable="false"
+                            android:maxLines="1"
                             android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
+                            android:singleLine="true"
                             android:textColor="@color/black"
                             android:textSize="@dimen/etSignUpSizeAll" />
 
@@ -359,8 +383,8 @@
                     android:layout_marginTop="@dimen/margin_5"
                     android:background="@drawable/grayborder"
                     android:gravity="top"
-                    android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
                     android:imeOptions="actionDone"
+                    android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
                     android:textColor="@color/black"
                     android:textSize="@dimen/etSignUpSizeAll" />
             </LinearLayout>

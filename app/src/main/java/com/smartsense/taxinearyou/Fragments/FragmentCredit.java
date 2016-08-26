@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
@@ -54,6 +55,7 @@ public class FragmentCredit extends Fragment implements Response.Listener<JSONOb
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_credit, container, false);
 
+        getActivity().registerReceiver(tripMessageReceiver, new IntentFilter(String.valueOf(Constants.Events.EVENT_NO_CONTACT)));
         pageNumber = 0;
         totalRecord = 0;
         pageSize = SharedPreferenceUtil.getInt(Constants.PAGE_LIMIT, 9);
@@ -207,7 +209,7 @@ public class FragmentCredit extends Fragment implements Response.Listener<JSONOb
     @Override
     public void onDestroy() {
         try {
-//            getActivity().unregisterReceiver(tripMessageReceiver);
+            getActivity().unregisterReceiver(tripMessageReceiver);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -284,7 +286,7 @@ public class FragmentCredit extends Fragment implements Response.Listener<JSONOb
             }
 
             if (test.optInt("isPaid") == 0) {
-                tvElementMyTripsStatus.setText("Pending");
+                tvElementMyTripsStatus.setText("Pending Payment");
                 tvElementMyTripsStatus.setBackgroundColor(ContextCompat.getColor(a, R.color.red));
             } else {
                 tvElementMyTripsStatus.setBackgroundColor(ContextCompat.getColor(a, R.color.dark_green));

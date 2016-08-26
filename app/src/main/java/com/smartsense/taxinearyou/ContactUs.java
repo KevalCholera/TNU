@@ -1,6 +1,6 @@
 package com.smartsense.taxinearyou;
 
-import android.app.Activity;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
@@ -8,11 +8,14 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -28,6 +31,7 @@ public class ContactUs extends AppCompatActivity implements Response.Listener<JS
     EditText etContactUsName, etContactUsMobile, etContactUsEmail, etContactUsMessage, etContactUsSubject;
     Button btContactSubmit;
     CoordinatorLayout clContactUs;
+    private AlertDialog alert;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -133,10 +137,38 @@ public class ContactUs extends AppCompatActivity implements Response.Listener<JS
 //                    CommonUtil.showSnackBar(jsonObject.optString("msg"), clContactUs);
 //                else
                 if (jsonObject.optString("__eventid").equalsIgnoreCase(Constants.Events.CONTACT_US + ""))
-                    alertBox(jsonObject.optString("msg"));
+                    openDialog();//alertBox(jsonObject.optString("msg"));
             } else
                 CommonUtil.conditionAuthentication(this, jsonObject);
         else
             CommonUtil.jsonNullError(this);
+    }
+
+    public void openDialog() {
+
+        try {
+            final AlertDialog.Builder alertDialogs = new AlertDialog.Builder(this);
+            LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+            final View dialog = inflater.inflate(R.layout.dialog_all, null);
+            LinearLayout linearLayout = (LinearLayout) dialog.findViewById(R.id.lyPopUpYourDetail);
+            linearLayout.setVisibility(View.VISIBLE);
+            TextView tvPopupLocatedEmail = (TextView) dialog.findViewById(R.id.tvPopupYourDetail);
+            tvPopupLocatedEmail.setText("We aim to reply all enquiries within 24/48 hours of receiving your email. We will get back to you as soon as we can.");
+            Button button1 = (Button) dialog.findViewById(R.id.btPopupYourDetailOk);
+            button1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    alert.dismiss();
+                    finish();
+                }
+            });
+            alertDialogs.setView(dialog);
+            alertDialogs.setCancelable(true);
+            alert = alertDialogs.create();
+            alert.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

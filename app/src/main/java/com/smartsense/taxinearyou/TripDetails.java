@@ -480,6 +480,7 @@ public class TripDetails extends AppCompatActivity implements View.OnClickListen
                     tvTripDetailLost.setBackgroundColor(ContextCompat.getColor(TripDetails.this, R.color.dark_green));
                     tvTripDetailLost.setText("Paid");
                     requestRefreshMyTrip = 1;
+                    tvTripDetailCancle.setVisibility(View.GONE);
                     CommonUtil.alertBox(this, jsonObject.optString("msg"));
 
                 } else if (jsonObject.optInt("__eventid") == Constants.Events.RESEND_INVOICE) {

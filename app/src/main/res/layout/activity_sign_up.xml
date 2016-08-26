@@ -93,7 +93,7 @@
             <EditText
                 android:layout_width="50dp"
                 android:layout_height="@dimen/etHeightAll"
-                android:background="@drawable/grayborder"
+                android:background="@drawable/darkgrayborder"
                 android:digits="1234567890"
                 android:text="+44"
                 android:enabled="false"

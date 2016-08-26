@@ -1,11 +1,9 @@
 package com.smartsense.taxinearyou;
 
-import android.annotation.TargetApi;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -38,7 +36,7 @@ public class GeneralInformation extends AppCompatActivity implements Response.Li
     CoordinatorLayout clGeneralInfo;
     int check;
 
-    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -152,6 +150,7 @@ public class GeneralInformation extends AppCompatActivity implements Response.Li
             case android.R.id.home:
                 CommonUtil.closeKeyboard(GeneralInformation.this);
                 finish();
+
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -163,7 +162,7 @@ public class GeneralInformation extends AppCompatActivity implements Response.Li
         CommonUtil.errorToastShowing(this);
     }
 
-    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+
     @Override
     public void onResponse(JSONObject jsonObject) {
         CommonUtil.cancelProgressDialog();

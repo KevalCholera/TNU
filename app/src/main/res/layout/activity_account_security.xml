@@ -162,7 +162,7 @@
             android:button="@drawable/checkbox"
             android:paddingLeft="@dimen/lyAccountSecurityCheckTextMarginStartTop"
             android:text="@string/ReceiveOffersFromOrganization"
-            android:textColor="@color/details"
+            android:textColor="@color/gray_55"
             android:textSize="@dimen/textDetail" />
 
 
