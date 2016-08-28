@@ -10,6 +10,8 @@ import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -18,6 +20,8 @@ import java.util.Map;
 public class WebViewActivity extends AppCompatActivity {
     WebView wvTerms;
     private ImageView btBack;
+    TextView tvwebView, tvwebView1;
+    ProgressBar pbwebView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +29,9 @@ public class WebViewActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setContentView(R.layout.activity_web_view);
         wvTerms = (WebView) findViewById(R.id.webView);
+        pbwebView = (ProgressBar) findViewById(R.id.pbwebView);
+        tvwebView = (TextView) findViewById(R.id.tvwebView);
+        tvwebView1 = (TextView) findViewById(R.id.tvwebView1);
 
 
         wvTerms.setWebViewClient(new MyBrowser());
@@ -82,7 +89,16 @@ public class WebViewActivity extends AppCompatActivity {
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
             view.loadUrl(url);
+            pbwebView.setVisibility(View.GONE);
+            tvwebView1.setVisibility(View.GONE);
             Log.i("url", url);
+            if (url.contains("/tnu/paymentsuccess") || url.contains("/tnu/paymentfailure")) {
+                wvTerms.setVisibility(View.GONE);
+                tvwebView.setVisibility(View.GONE);
+                tvwebView1.setVisibility(View.VISIBLE);
+                pbwebView.setVisibility(View.VISIBLE);
+            }
+
             if (url.contains("closewebview")) {
                 String[] getParam = url.split("=");
                 Intent i = new Intent();
@@ -96,14 +112,25 @@ public class WebViewActivity extends AppCompatActivity {
             }
             return true;
         }
+
+
+    }
+
+
+    @Override
+    public void onBackPressed(){
+
+        Intent i = new Intent();
+        setResult(Activity.RESULT_CANCELED, i);
+        finish();
+        super.onBackPressed();
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-
-                finish();
+                onBackPressed();
                 break;
         }
         return super.onOptionsItemSelected(item);

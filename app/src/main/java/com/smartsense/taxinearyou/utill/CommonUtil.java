@@ -669,7 +669,7 @@ public class CommonUtil {
                         activity.startActivity(new Intent(activity, Search.class));
                     else if (buton_click.equalsIgnoreCase("Recover Email"))
                         activity.startActivity(new Intent(activity, SignIn.class));
-                    else if (buton_click.equalsIgnoreCase("Payment Fail"))
+                    else if (buton_click.equalsIgnoreCase("Payment Failed"))
                         activity.startActivity(new Intent(activity, Search.class).putExtra("checkFlag",true));
                     alert.dismiss();
                     activity.finish();
