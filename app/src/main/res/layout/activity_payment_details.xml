@@ -73,6 +73,26 @@
                 android:background="@color/line_color" />
 
             <TextView
+                android:id="@+id/tvPaymentNewCard"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/btSignUpAllheight"
+                android:layout_gravity="center"
+                android:drawableLeft="@mipmap/card_pay"
+                android:drawablePadding="@dimen/tvPaymentDetailsDrawableCashPadding"
+                android:drawableRight="@mipmap/arrow_right_yellow"
+                android:gravity="fill"
+                android:text="New Card"
+                android:textColor="@color/black"
+                android:textSize="@dimen/heading" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/vHeightWidthAll"
+                android:layout_marginBottom="@dimen/margin_5"
+                android:layout_marginTop="@dimen/margin_5"
+                android:background="@color/line_color" />
+
+            <TextView
                 android:id="@+id/tvPaymentCard"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/btSignUpAllheight"
@@ -81,7 +101,7 @@
                 android:drawablePadding="@dimen/tvPaymentDetailsDrawableCashPadding"
                 android:drawableRight="@mipmap/arrow_right_yellow"
                 android:gravity="fill"
-                android:text="@string/card"
+                android:text="Existing Card"
                 android:textColor="@color/black"
                 android:textSize="@dimen/heading" />
 

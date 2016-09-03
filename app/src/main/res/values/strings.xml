@@ -274,6 +274,7 @@
     <string name="enter_req">Enter Any Requirement</string>
     <string name="enter_valid_pass">Password should be 7 characters long, containing alphabetic and numeric characters with altleast one uppercase alphabet.Password can not contain any special characters(~!@#$%^&amp;*_+=|(){}[]:;,./?)</string>
     <string name="enter_alternate_email">Enter Alternate Email</string>
+    <string name="enter_valid_card">Enter Valid Card No</string>
     <string name="enter_alternate">Enter alternative email address</string>
     <string name="enter_valid_alternate_email">Enter Valid Alternate Email</string>
     <string name="enter_confirm_pass">Enter Confirm Password</string>
@@ -287,6 +288,8 @@
     <string name="enter_first_name">Enter first name</string>
     <string name="enter_name">Enter name</string>
     <string name="enter_last_name">Enter last name</string>
+    <string name="select_month">Select month</string>
+    <string name="select_year">Select year</string>
     <string name="enter_from">Enter from where you want to go</string>
     <string name="enter_to">Enter where you want to go</string>
     <string name="save">Save</string>
@@ -484,5 +487,7 @@
     <string name="timeLimitError">Rides for today are closed.Please book a ride for now or tomorrow.</string>
     <string name="people">Peoples</string>
     <string name="google_map">AIzaSyDRZ4RBmbSw025CK4D6kyH0nffkrsl0tXg</string>
+    <string name="enter_sequ_valid_card">Enter valid security number</string>
+    <string name="select_valid_month">Select valid expiry date</string>
 
 </resources>

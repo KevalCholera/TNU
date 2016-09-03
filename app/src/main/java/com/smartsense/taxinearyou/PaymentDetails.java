@@ -24,12 +24,13 @@ import org.json.JSONObject;
 
 public class PaymentDetails extends TimeActivity implements View.OnClickListener, Response.Listener<JSONObject>, Response.ErrorListener {
 
-    TextView tvPaymentTNUCredit, tvPaymentCard, tvPaymentCash, tvPaymentAmount;
+    TextView tvPaymentTNUCredit, tvPaymentCard, tvPaymentCash, tvPaymentAmount,tvPaymentNewCard;
     private AlertDialog alert;
     JSONObject jsonObject3;
     private String pType = Constants.PAYMENT_TYPE_CASH;
     private final int paymentRequest = 1;
     String msg = "";
+    private final int cardPaymentRequest = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,10 +51,12 @@ public class PaymentDetails extends TimeActivity implements View.OnClickListener
         tvPaymentCard = (TextView) findViewById(R.id.tvPaymentCard);
         tvPaymentCash = (TextView) findViewById(R.id.tvPaymentCash);
         tvPaymentAmount = (TextView) findViewById(R.id.tvPaymentAmount);
+        tvPaymentNewCard = (TextView) findViewById(R.id.tvPaymentNewCard);
 
         tvPaymentAmount.setText("£" + CommonUtil.getDecimal(Double.valueOf(SharedPreferenceUtil.getString(Constants.PrefKeys.FARE_COST, ""))));
 
         tvPaymentCash.setOnClickListener(this);
+        tvPaymentNewCard.setOnClickListener(this);
         tvPaymentCard.setOnClickListener(this);
     }
 
@@ -69,9 +72,11 @@ public class PaymentDetails extends TimeActivity implements View.OnClickListener
                 pType = Constants.PAYMENT_TYPE_CASH;
                 isPartnerAvailable();
                 break;
+            case R.id.tvPaymentNewCard:
+                startActivityForResult(new Intent(PaymentDetails.this, CardPayment.class), cardPaymentRequest);
+                break;
             case R.id.tvPaymentCard:
-                pType = Constants.PAYMENT_TYPE_CARD;
-                isPartnerAvailable();
+                startActivityForResult(new Intent(PaymentDetails.this, CardList.class), cardPaymentRequest);
                 break;
         }
     }
@@ -235,6 +240,12 @@ public class PaymentDetails extends TimeActivity implements View.OnClickListener
                 else
                     CommonUtil.openDialogs(this, "Payment Failed", R.id.lyPopupBookError, R.id.btPopupBookErrorOk, msg, R.id.tvDialogAllError);
                 break;
+//            case cardPaymentRequest:
+//                if (resultCode == Activity.RESULT_OK) {
+//                    pType = Constants.PAYMENT_TYPE_CARD;
+//                    isPartnerAvailable();
+//                }
+//                break;
         }
     }
 

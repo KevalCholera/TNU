@@ -15,12 +15,13 @@ public class Constants {
     //    public static final String BASE_URL = "http://fmcgfinal.cloudapp.net:8080";
 //    public static final String BASE_URL = "http://188.166.157.61";
     public static final String BASE_URL = "https://taxinearu.co.uk";
-//        public static final String BASE_URL = "http://192.168.1.102:8081";
+//    public static final String BASE_URL = "http://192.168.0.104:8080";
     public static final String BASE_URL_IMAGE_POSTFIX = BASE_URL + "/tnu";
     public static final String BASE_URL_POSTFIX = "/tnu/m?__eventid=";
     public static final String BASE_URL_PHOTO = BASE_URL + "/tnu/m?";
-    public static final String BASE_TERMS_AND_CONDITION = "/customer/termsAndConditions.html";
-    public static final String BASE_PRIVACY_POLICY = "/customer/privacyPolicy.html";
+    public static final String BASE_TERMS_AND_CONDITION = "/home/termsAndConditions.html";
+    public static final String BASE_PRIVACY_POLICY = "/home/privacyPolicy.html";
+    public static final String BASE_ABOUT_US = "/home/aboutUs.html";
     public static final String BASE_URL_PHOTO_THUMB = BASE_URL + "/images/products/";
 
     public static final String PRO_TITLE = "Please Wait";
@@ -33,8 +34,10 @@ public class Constants {
     public static final String EXTRAS = "extras";
 
     //    public static final String GOOGLE_PLACE_API = "AIzaSyCp1vbSHgiC1lsNUYb-PuDs3kJ4wYEKu3I";
-    public static final String GOOGLE_PLACE_API = "AIzaSyCfaYf-IOFXl2SOEnMeYxEqpeUwNa5IKZw";
-    public static final String GOOGLE_MAP_API = "AIzaSyDrWeTlPdYv-p9IfH6kHawV6s-cffgBQPI";
+//    public static final String GOOGLE_PLACE_API = "AIzaSyCfaYf-IOFXl2SOEnMeYxEqpeUwNa5IKZw";
+    public static final String GOOGLE_PLACE_API = "AIzaSyBPiHmUOkSEyedL-i08WmCZBC6m89wSk9A";
+//    public static final String GOOGLE_MAP_API = "AIzaSyDrWeTlPdYv-p9IfH6kHawV6s-cffgBQPI";
+    public static final String GOOGLE_MAP_API = "AIzaSyBPiHmUOkSEyedL-i08WmCZBC6m89wSk9A";
     public static final SimpleDateFormat DATE_FORMAT_SET = new SimpleDateFormat("dd-MM-yyyy hh:mm aa", Locale.ENGLISH);
     public static final SimpleDateFormat DATE_FORMAT_GET = new SimpleDateFormat("dd MM yyyy HH mm ss");
     public static final SimpleDateFormat DATE_FORMAT_SEND = new SimpleDateFormat("dd-MM-yyyy HH:mm");
@@ -185,6 +188,7 @@ public class Constants {
         public static final int EVENT_CHECK_BOOK = 1143;
         public static final int EVENT_IS_PARTNER_AVAILABLE = 1144;
         public static final int EVENT_NO_CONTACT = 1142;
+        public static final int EVENT_CARD_LIST = 1151;
     }
 
     public class ErrorCode {

@@ -151,6 +151,7 @@ public class FragmentMenu extends Fragment implements Response.Listener<JSONObje
                 startActivityForResult(new Intent(getActivity(), GeneralInformation.class),10);
                 break;
             case R.id.tvAccountPayment:
+            case R.id.llFragmentMenuPayment:
                 startActivity(new Intent(getActivity(), CardList.class));
                 break;
             case R.id.tvAccountMore:
@@ -167,9 +168,6 @@ public class FragmentMenu extends Fragment implements Response.Listener<JSONObje
                 break;
             case R.id.llFragmentMenuAccountSecurity:
                 tvAccountAccountSecurity.performClick();
-                break;
-            case R.id.llFragmentMenuPayment:
-                tvAccountPayment.performClick();
                 break;
             case R.id.llFragmentMenuCredit:
                 tvAccountCredits.performClick();

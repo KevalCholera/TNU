@@ -178,6 +178,13 @@
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateHidden" />
         <activity
+            android:name=".CardPayment"
+            android:configChanges="orientation|screenSize"
+            android:label="Pay with new card"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
             android:name=".AddCard"
             android:configChanges="orientation|screenSize"
             android:label="Add Card"
@@ -194,7 +201,7 @@
         <activity
             android:name=".CardList"
             android:configChanges="orientation|screenSize"
-            android:label="CardList"
+            android:label="Card List"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="stateHidden" />

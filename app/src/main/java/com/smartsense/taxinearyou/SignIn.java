@@ -91,6 +91,7 @@ public class SignIn extends AppCompatActivity implements Response.Listener<JSONO
                 else if (TextUtils.isEmpty(etSignInPassword.getText().toString()))
                     CommonUtil.showSnackBar(getResources().getString(R.string.enter_pass), rlSignInMain);
                 else {
+                    CommonUtil.closeKeyboard(SignIn.this);
                     doLogin();
                 }
                 break;

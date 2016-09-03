@@ -159,10 +159,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="5dp"
-                    android:enabled="false"
+                    
                     android:gravity="fill"
-                    android:text="@string/payment"
-                    android:textColor="@color/disable_55"
+                    android:text="Card List"
+                    android:textColor="@color/text_color"
                     android:textSize="@dimen/textHead" />
 
             </LinearLayout>
