@@ -489,5 +489,6 @@
     <string name="google_map">AIzaSyDRZ4RBmbSw025CK4D6kyH0nffkrsl0tXg</string>
     <string name="enter_sequ_valid_card">Enter valid security number</string>
     <string name="select_valid_month">Select valid expiry date</string>
+    <string name="google_app_id">754553740728</string>
 
 </resources>

@@ -24,13 +24,15 @@ import org.json.JSONObject;
 
 public class PaymentDetails extends TimeActivity implements View.OnClickListener, Response.Listener<JSONObject>, Response.ErrorListener {
 
-    TextView tvPaymentTNUCredit, tvPaymentCard, tvPaymentCash, tvPaymentAmount,tvPaymentNewCard;
+    TextView tvPaymentTNUCredit, tvPaymentCard, tvPaymentCash, tvPaymentAmount, tvPaymentNewCard;
     private AlertDialog alert;
     JSONObject jsonObject3;
     private String pType = Constants.PAYMENT_TYPE_CASH;
+
     private final int paymentRequest = 1;
     String msg = "";
     private final int cardPaymentRequest = 2;
+    private JSONObject paymentObj;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,7 +87,6 @@ public class PaymentDetails extends TimeActivity implements View.OnClickListener
         final String tag = "Final Booking";
         StringBuilder builder = new StringBuilder();
         JSONObject mainData = new JSONObject();
-
         try {
             JSONObject jsonObject1 = new JSONObject(SharedPreferenceUtil.getString(Constants.PrefKeys.BOOKING_INFO, ""));
             jsonObject1.put("forceBook", check);
@@ -93,13 +94,13 @@ public class PaymentDetails extends TimeActivity implements View.OnClickListener
             JSONObject jsonObject2 = new JSONObject(SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_DISTANCE_MATRIX, ""));
 
             JSONObject jsonObject4 = new JSONObject(SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_CUSTOMER_SELECTION, ""));
-
+            if (pType.equalsIgnoreCase(Constants.PAYMENT_TYPE_CARD))
+                mainData.put("cardDetail", paymentObj);
             builder.append(mainData.put("bookingInfo", jsonObject1)
                     .put("userId", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_ID, ""))
                     .put("distanceMatrix", jsonObject2)
                     .put("token", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_ACCESS_TOKEN, ""))
                     .put("requestJson", jsonObject3)
-
                     .put("customerSelection", jsonObject4));
 
         } catch (JSONException e) {
@@ -229,23 +230,26 @@ public class PaymentDetails extends TimeActivity implements View.OnClickListener
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        switch (requestCode) {
-            case paymentRequest:
-                if (data.hasExtra("msg"))
-                    msg = data.getStringExtra("msg");
-                else
-                    msg = "Back Pressed";
-                if (resultCode == Activity.RESULT_OK)
-                    CommonUtil.openDialogs(PaymentDetails.this, "Payment Details", R.id.lyPopupBookSuccess, R.id.btPopupBookSuccessOk, msg, R.id.tvDialogAllSuccess);
-                else
-                    CommonUtil.openDialogs(this, "Payment Failed", R.id.lyPopupBookError, R.id.btPopupBookErrorOk, msg, R.id.tvDialogAllError);
-                break;
-//            case cardPaymentRequest:
-//                if (resultCode == Activity.RESULT_OK) {
-//                    pType = Constants.PAYMENT_TYPE_CARD;
-//                    isPartnerAvailable();
-//                }
+        try {
+            if (resultCode == Activity.RESULT_OK) {
+                switch (requestCode) {
+//            case paymentRequest:
+//                if (data.hasExtra("msg"))
+//                    msg = data.getStringExtra("msg");
+//                else
+//                    msg = "Back Pressed";
+//                if (resultCode == Activity.RESULT_OK)
+//                    CommonUtil.openDialogs(PaymentDetails.this, "Payment Details", R.id.lyPopupBookSuccess, R.id.btPopupBookSuccessOk, msg, R.id.tvDialogAllSuccess);
 //                break;
+                    case cardPaymentRequest:
+                        pType = Constants.PAYMENT_TYPE_CARD;
+                        paymentObj = new JSONObject(data.getStringExtra("obj"));
+                        isPartnerAvailable();
+                        break;
+                }
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
     }
 

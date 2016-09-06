@@ -1,12 +1,11 @@
 package com.smartsense.taxinearyou;
 
-import android.content.Context;
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,7 +13,6 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -30,30 +28,43 @@ import org.json.JSONObject;
 public class CardList extends AppCompatActivity implements View.OnClickListener, Response.Listener<JSONObject>, Response.ErrorListener {
 
     ListView lvCardList;
+    LinearLayout llCardList;
     private AlertDialog alert;
-    CoordinatorLayout clPaymentDetails;
+    Button btCardSavePay;
+    //    CoordinatorLayout clPaymentDetails;
     private AdapterCardList adapterCardList;
+    String cardId = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_card_list);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
         lvCardList = (ListView) findViewById(R.id.lvCardList);
-        clPaymentDetails = (CoordinatorLayout) findViewById(R.id.clPaymentDetails);
-
-
+        llCardList = (LinearLayout) findViewById(R.id.llCardList);
+        btCardSavePay = (Button) findViewById(R.id.btCardSavePay1);
+        
+//        clPaymentDetails = (CoordinatorLayout) findViewById(R.id.clRecoverEmail);
         lvCardList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                JSONObject jsonObject = (JSONObject) adapterView.getItemAtPosition(i);
+                if (AdapterCardList.pos != i) {
+                    cardId = jsonObject.optString("id");
+                    Log.i("Yes", "Here" + cardId);
+                    AdapterCardList.pos = i;
 
-                AdapterCardList.pos = i;
+                }else{
+                    AdapterCardList.pos = -1;
+
+                }
                 adapterCardList.adapterCardList();
 //                alertBoxTripDetails("Are you sure you want to delete?");
             }
         });
 
+
+        btCardSavePay.setOnClickListener(this);
         isCardList();
     }
 
@@ -74,76 +85,34 @@ public class CardList extends AppCompatActivity implements View.OnClickListener,
 
     }
 
-    public void alertBoxTripDetails(final String msg) {
-//        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-//        builder.setCancelable(false);
-//        builder.setMessage(msg);
-//        builder.setTitle(getResources().getString(R.string.cancellation));
-//        builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
-//            public void onClick(DialogInterface dialog, int id) {
-//                tvTripDetailCancle.setVisibility(View.GONE);
-//            }
-//        });
-//        builder.create();
-//        builder.show();
-
-        try {
-
-            final AlertDialog.Builder alertDialogs = new AlertDialog.Builder(this);
-            LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            final View dialog = inflater.inflate(R.layout.dialog_all, null);
-            LinearLayout lyPopUpCancelRide = (LinearLayout) dialog.findViewById(R.id.lyPopUpGen);
-            lyPopUpCancelRide.setVisibility(View.VISIBLE);
-
-
-            Button tvPopupCancelRideOk = (Button) dialog.findViewById(R.id.btPopupGen);
-            Button tvPopupCancelRideCancel = (Button) dialog.findViewById(R.id.btPopupGen1);
-            tvPopupCancelRideCancel.setVisibility(View.VISIBLE);
-            TextView tvDialogCancelText = (TextView) dialog.findViewById(R.id.tvPopupGen);
-
-
-            tvDialogCancelText.setText(msg);
-
-
-            tvPopupCancelRideOk.setOnClickListener(new Button.OnClickListener() {
-
-                @Override
-                public void onClick(View v) {
-                    alert.dismiss();
-
-
-                }
-            });
-            tvPopupCancelRideCancel.setOnClickListener(new Button.OnClickListener() {
-
-                @Override
-                public void onClick(View v) {
-                    alert.dismiss();
-
-
-                }
-            });
-            alertDialogs.setView(dialog);
-            alertDialogs.setCancelable(false);
-            alert = alertDialogs.create();
-            alert.show();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.tvPaymentCash:
-
+            case R.id.btCardSavePay1:
+                try {
+                    Log.i("Yes", "Here");
+                    CommonUtil.closeKeyboard(this);
+                    if (cardId.equalsIgnoreCase("")) {
+                        Log.i("Yes1", "Here");
+//                        CommonUtil.showSnackBar("Please select card", clPaymentDetails);
+                    } else {
+                        Log.i("Yes", "1Here");
+                        Intent i = new Intent();
+                        JSONObject jsonObject = new JSONObject();
+                        jsonObject.put("card_id", cardId);
+                        i.putExtra("obj", jsonObject.toString());
+                        setResult(Activity.RESULT_OK, i);
+                        finish();
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    Log.i("Yes", "Here1");
+                }
                 break;
         }
     }
 
     private void isCardList() {
-
         final String tag = "Card List";
         StringBuilder builder = new StringBuilder();
         JSONObject jsonData = new JSONObject();
@@ -154,7 +123,6 @@ public class CardList extends AppCompatActivity implements View.OnClickListener,
             e.printStackTrace();
         }
         Log.i("builder", builder.toString());
-
         CommonUtil.jsonRequestGET(this, getResources().getString(R.string.get_data), CommonUtil.utf8Convert(builder, Constants.Events.EVENT_CARD_LIST), tag, this, this);
     }
 
@@ -172,12 +140,18 @@ public class CardList extends AppCompatActivity implements View.OnClickListener,
                 if (response.getInt("status") == Constants.STATUS_SUCCESS) {
                     switch (response.getInt("__eventid")) {
                         case Constants.Events.EVENT_CARD_LIST:
-                            String data = "[{\"Card_No\":\"4567\",\"Expiry_Date\":\"16/20\"},{\"Card_No\":\"4521\",\"Expiry_Date\":\"30/25\"},{\"Card_No\":\"7854\",\"Expiry_Date\":\"10/29\"},{\"Card_No\":\"9854\",\"Expiry_Date\":\"15/45\"}]";
-
+//                            Log.i("Yes1","Here");
                             JSONArray jsonArray = response.optJSONObject("json").getJSONArray("jCardList");
-                            adapterCardList = new AdapterCardList(this, jsonArray);
-                            lvCardList.setAdapter(adapterCardList);
+                            if (jsonArray.length() > 0) {
+//                                Log.i("Yes","Here");
+//                            String s = "{\"msg\":\"\",\"json\":{\"jCardList\":[{\"last4\":\"4242\",\"exp_month\":4,\"id\":\"card_18qmPlCYlFwHDlzNCVz1iAwj\",\"exp_year\":2018,\"brand\":\"Visa\"}]},\"__eventid\":\"1151\",\"userId\":\"271\",\"token\":\"A0G4LsWglNkNEtfAr0U7\",\"status\":200}";
+//                            JSONObject response1 = new JSONObject(s);
+//                            JSONArray jsonArray = response1.optJSONObject("json").getJSONArray("jCardList");
 
+                                llCardList.setVisibility(View.VISIBLE);
+                                adapterCardList = new AdapterCardList(this, jsonArray);
+                                lvCardList.setAdapter(adapterCardList);
+                            }
                             break;
                     }
                 } else {
@@ -188,5 +162,14 @@ public class CardList extends AppCompatActivity implements View.OnClickListener,
             }
         } else
             CommonUtil.jsonNullError(this);
+    }
+
+    @Override
+    public void onBackPressed() {
+        CommonUtil.closeKeyboard(this);
+        Intent i = new Intent();
+        setResult(Activity.RESULT_CANCELED, i);
+        finish();
+        super.onBackPressed();
     }
 }

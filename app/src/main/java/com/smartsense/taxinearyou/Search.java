@@ -53,10 +53,10 @@ public class Search extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarAll);
         setSupportActionBar(toolbar);
         llToolbarAll = (LinearLayout) findViewById(R.id.llToolbarAll);
-        ViewPager viewPager = (ViewPager) findViewById(R.id.vpSearchPager);
+        ViewPager viewPager = (ViewPager) findViewById(R.id.vpSearchPager1);
         setupViewPager(viewPager);
         llToolbarAll.setVisibility(View.VISIBLE);
-        clSearch = (CoordinatorLayout) findViewById(R.id.clSearch);
+//        clSearch = (CoordinatorLayout) findViewById(R.id.clSearch);
         tbSearchTab = (TabLayout) findViewById(R.id.tbSearchTab);
         tbSearchTab.setupWithViewPager(viewPager);
         setupTabIcons();

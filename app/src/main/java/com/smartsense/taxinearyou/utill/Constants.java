@@ -38,6 +38,7 @@ public class Constants {
     public static final String GOOGLE_PLACE_API = "AIzaSyBPiHmUOkSEyedL-i08WmCZBC6m89wSk9A";
 //    public static final String GOOGLE_MAP_API = "AIzaSyDrWeTlPdYv-p9IfH6kHawV6s-cffgBQPI";
     public static final String GOOGLE_MAP_API = "AIzaSyBPiHmUOkSEyedL-i08WmCZBC6m89wSk9A";
+    public static final SimpleDateFormat DATE_MONTH = new SimpleDateFormat("yyyy_MM", Locale.ENGLISH);
     public static final SimpleDateFormat DATE_FORMAT_SET = new SimpleDateFormat("dd-MM-yyyy hh:mm aa", Locale.ENGLISH);
     public static final SimpleDateFormat DATE_FORMAT_GET = new SimpleDateFormat("dd MM yyyy HH mm ss");
     public static final SimpleDateFormat DATE_FORMAT_SEND = new SimpleDateFormat("dd-MM-yyyy HH:mm");
@@ -62,6 +63,7 @@ public class Constants {
     public static final String PAGE_LIMIT = "pageLimit";
     public static final String PAYMENT_TYPE_CASH = "1";
     public static final String PAYMENT_TYPE_CARD = "3";
+    public static final String YEAR_MONTH = "year_month";
 
     public class PrefKeys {
 

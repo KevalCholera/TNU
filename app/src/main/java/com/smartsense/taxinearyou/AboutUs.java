@@ -22,6 +22,8 @@ public class AboutUs extends AppCompatActivity {
         setContentView(R.layout.activity_about_us);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+
+
         lyAboutUs = (LinearLayout) findViewById(R.id.lyAboutUs);
         wvPrivacyPolicy = (WebView) findViewById(R.id.wvPrivacyPolicy);
         wvPrivacyPolicy.setVisibility(View.VISIBLE);

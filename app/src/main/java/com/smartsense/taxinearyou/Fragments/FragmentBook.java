@@ -662,6 +662,7 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
             if (jsonObject.optInt("status") == Constants.STATUS_SUCCESS) {
                 try {
                     SharedPreferenceUtil.putValue(Constants.SESSION_LIMIT, jsonObject.optJSONObject("json").optInt("sessionLimit"));
+
                     SharedPreferenceUtil.putValue(Constants.PAGE_LIMIT, jsonObject.optJSONObject("json").optInt("pageLimit"));
                     SharedPreferenceUtil.save();
                     timeRemaining = TimeUnit.MINUTES.toMillis(SharedPreferenceUtil.getInt(Constants.SESSION_LIMIT, 9));
@@ -674,7 +675,8 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
                         tvBookDateTime.setText(Constants.DATE_FORMAT_SET.format(calendar.getTime()));
                     } else
                         tvBookDateTime.setText(dateTimeCanChange);
-
+                    SharedPreferenceUtil.putValue(Constants.YEAR_MONTH, Constants.DATE_MONTH.format(Constants.DATE_FORMAT_GET.parse(jsonObject.optJSONObject("json").optString("serverTime"))));
+                    SharedPreferenceUtil.save();
                     calendar.setTime(Constants.DATE_FORMAT_SET.parse(dateTimeCanChange));
                     calendar1.setTime(Constants.DATE_FORMAT_SET.parse(dateTimeCanChange));
                     updateClock();

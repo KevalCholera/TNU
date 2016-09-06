@@ -1,0 +1,35 @@
+{
+  "project_info": {
+    "project_number": "754553740728",
+    "project_id": "taxinearu-gcm"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:754553740728:android:df25c03f522dc52c",
+        "android_client_info": {
+          "package_name": "com.taxinearu"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAdvv8SM7OEJe03mlSBzuYHJpB0um9-4dw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

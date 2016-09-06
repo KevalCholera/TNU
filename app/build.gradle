@@ -20,15 +20,15 @@ android {
     buildToolsVersion "23.0.3"
     useLibrary 'org.apache.http.legacy'
     defaultConfig {
-        applicationId "com.smartsense.taxinearyou"
+        applicationId "com.taxinearu"
         minSdkVersion 14
         targetSdkVersion 22
         versionCode 10
         versionName "2.0"
         multiDexEnabled true
         manifestPlaceholders = [manifestApplicationId          : "${applicationId}",
-                                onesignal_app_id               : "1a615161-856c-4fc7-81fd-7b31c8be9607",
-                                onesignal_google_project_number: "250345419071"]
+                                onesignal_app_id               : "61c90d22-3111-4991-8609-3c81b0eb55fc",
+                                onesignal_google_project_number: "754553740728"]
     }
     buildTypes {
         release {

@@ -19,11 +19,14 @@ import android.widget.LinearLayout;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.mpt.storage.SharedPreferenceUtil;
 import com.smartsense.taxinearyou.utill.CommonUtil;
 import com.smartsense.taxinearyou.utill.Constants;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.Calendar;
 
 import cn.qqtheme.framework.picker.OptionPicker;
 
@@ -35,13 +38,12 @@ public class CardPayment extends AppCompatActivity implements Response.Listener<
     CoordinatorLayout clRecoverEmail;
     EditText etCardSaveNo, etCardSaveMonth, etCardSaveYear, etCardSaveSecurity;
     private int year;
-    private String currentMonth = "08";
+    private String currentMonth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_card_payment);
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarAll);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -68,7 +70,7 @@ public class CardPayment extends AppCompatActivity implements Response.Listener<
                 selectPassenger(false);
                 break;
             case R.id.btCardSavePay:
-                Log.i("check", etCardSaveYear.getText().toString() + year + etCardSaveMonth.getText().toString() + Integer.valueOf(currentMonth));
+
                 if (TextUtils.isEmpty(etCardSaveMonth.getText().toString()) && TextUtils.isEmpty(etCardSaveYear.getText().toString()) && TextUtils.isEmpty(etCardSaveNo.getText().toString()))
                     CommonUtil.showSnackBar(getString(R.string.enter_fields_below), clRecoverEmail);
                 else if (etCardSaveNo.length() < 13 || TextUtils.isEmpty(etCardSaveNo
@@ -76,7 +78,6 @@ public class CardPayment extends AppCompatActivity implements Response.Listener<
                     CommonUtil.showSnackBar(getString(R.string.enter_valid_card), clRecoverEmail);
                 else if (TextUtils.isEmpty(etCardSaveMonth.getText().toString()))
                     CommonUtil.showSnackBar(getString(R.string.select_month), clRecoverEmail);
-
                 else if (TextUtils.isEmpty(etCardSaveYear.getText().toString()))
                     CommonUtil.showSnackBar(getString(R.string.select_year), clRecoverEmail);
                 else if (Integer.valueOf(etCardSaveYear.getText().toString()) == year && Integer.valueOf(etCardSaveMonth.getText().toString()) < Integer.valueOf(currentMonth))
@@ -91,8 +92,20 @@ public class CardPayment extends AppCompatActivity implements Response.Listener<
     }
 
     private void doRideBook(String no, String month, String year, String security) {
-
-
+        try {
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("cardNumber",no);
+            jsonObject.put("saveCard",cbCardSave.isChecked());
+            jsonObject.put("expYear",year);
+            jsonObject.put("expMonth",month);
+            jsonObject.put("cardCVV",security);
+            Intent i = new Intent();
+            i.putExtra("obj", jsonObject.toString());
+            setResult(Activity.RESULT_OK, i);
+            finish();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 
@@ -162,12 +175,22 @@ public class CardPayment extends AppCompatActivity implements Response.Listener<
                 };
             } else {
                 stringArr = new String[15];
-                year = 2016;
+                try {
+                    Log.i("yes",SharedPreferenceUtil.getString(Constants.YEAR_MONTH, ""));
+                    String[] date = SharedPreferenceUtil.getString(Constants.YEAR_MONTH, "").split("_");
+                    year = Integer.valueOf(date[0]);
+                    currentMonth = date[1];
+                } catch (Exception e) {
+                    Calendar c = Calendar.getInstance();
+                    year = c.getTime().getYear();
+                    currentMonth = "" + c.getTime().getMonth();
+                }
+                int year1=year;
                 for (int i = 0; i < 15; i++) {
-                    if (i==0)
+                    if (i == 0)
                         stringArr[i] = "" + (year);
                     else
-                        stringArr[i] = "" + (year + 1);
+                        stringArr[i] = "" + (++year1);
                 }
             }
             OptionPicker picker = new OptionPicker(this, stringArr);

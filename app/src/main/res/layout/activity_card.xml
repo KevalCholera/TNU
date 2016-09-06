@@ -10,8 +10,8 @@
     <ListView
         android:id="@+id/lvCard"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/lvCardListViewMarginTop"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:divider="@null"
         android:dividerHeight="0dp"
         android:scrollbarStyle="@null" />
@@ -26,6 +26,7 @@
         android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
         android:background="@drawable/blue_stroke_gray_solid"
         android:text="@string/add_card"
+        android:visibility="gone"
         android:textColor="@color/dark_gray"
         android:textSize="@dimen/btSignInSignInSize" />
 
@@ -34,9 +35,8 @@
         android:id="@+id/btCardDone"
         android:layout_width="match_parent"
         android:layout_height="@dimen/btSignUpAllheight"
-        android:layout_margin="@dimen/tvMarginTopBottomStartEndAll"
-        android:background="@drawable/yellow"
-        android:text="@string/done"
+        android:background="@color/Yellow"
+        android:text="PAY"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="@dimen/btSizeAll" />
