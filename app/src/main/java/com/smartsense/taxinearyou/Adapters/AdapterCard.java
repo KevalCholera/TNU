@@ -7,8 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
-import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.smartsense.taxinearyou.R;
 
@@ -46,15 +46,21 @@ public class AdapterCard extends BaseAdapter {
         if (convertView == null)
 
             vi = inflater.inflate(R.layout.element_card, null);
-
-        Button btElementCards = (Button) vi.findViewById(R.id.btElementCards);
-        LinearLayout lyElementCards = (LinearLayout) vi.findViewById(R.id.lyElementCards);
+        TextView tvElementCardListCardNumber = (TextView) vi.findViewById(R.id.tvElementCardListCardNumber);
+        TextView tvElementCardListExpiryDate = (TextView) vi.findViewById(R.id.tvElementCardListExpiryDate);
+        TextView tvElementCardListRemoveCard = (TextView) vi.findViewById(R.id.tvElementCardListRemoveCard);
 
         JSONObject test = data.optJSONObject(position);
         Log.i("Test", test.toString());
 
-        btElementCards.setText("Card xx" + test.optString("Card"));
-
+        tvElementCardListCardNumber.setText("xxxx xxxx xxxx " + test.optString("last4"));
+        tvElementCardListExpiryDate.setText(test.optString("exp_month") + " - " + test.optString("exp_year"));
+        tvElementCardListRemoveCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(a, "CLick", Toast.LENGTH_SHORT).show();
+            }
+        });
         return vi;
     }
 }

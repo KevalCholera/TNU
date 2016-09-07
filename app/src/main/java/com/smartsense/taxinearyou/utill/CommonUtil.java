@@ -669,10 +669,42 @@ public class CommonUtil {
                         activity.startActivity(new Intent(activity, Search.class));
                     else if (buton_click.equalsIgnoreCase("Recover Email"))
                         activity.startActivity(new Intent(activity, SignIn.class));
-                    else if (buton_click.equalsIgnoreCase("Payment Failed"))
+                    else if (buton_click.equalsIgnoreCase("Payment Fail"))
                         activity.startActivity(new Intent(activity, Search.class).putExtra("checkFlag",true));
                     alert.dismiss();
                     activity.finish();
+                }
+            });
+            alertDialogs.setView(dialog);
+            alertDialogs.setCancelable(false);
+            alert = alertDialogs.create();
+            alert.show();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void openDialogs1(final Activity activity, final String buton_click, int layout, int button, String successText, int textViewId) {
+
+        try {
+            final AlertDialog.Builder alertDialogs = new AlertDialog.Builder(activity);
+            LayoutInflater inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+            final View dialog = inflater.inflate(R.layout.dialog_all, null);
+            LinearLayout linearLayout = (LinearLayout) dialog.findViewById(layout);
+            Button button1 = (Button) dialog.findViewById(button);
+
+            TextView tvDialogAllSuccess = (TextView) dialog.findViewById(textViewId);
+            tvDialogAllSuccess.setText(successText);
+
+            linearLayout.setVisibility(View.VISIBLE);
+
+            button1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    alert.dismiss();
+
                 }
             });
             alertDialogs.setView(dialog);

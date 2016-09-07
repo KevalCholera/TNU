@@ -29,7 +29,7 @@ import com.android.volley.VolleyError;
 import com.mpt.storage.SharedPreferenceUtil;
 import com.onesignal.OneSignal;
 import com.smartsense.taxinearyou.AccountSecurity;
-import com.smartsense.taxinearyou.CardList;
+import com.smartsense.taxinearyou.Card;
 import com.smartsense.taxinearyou.GeneralInformation;
 import com.smartsense.taxinearyou.LostItem;
 import com.smartsense.taxinearyou.More;
@@ -152,7 +152,7 @@ public class FragmentMenu extends Fragment implements Response.Listener<JSONObje
                 break;
             case R.id.tvAccountPayment:
             case R.id.llFragmentMenuPayment:
-                startActivity(new Intent(getActivity(), CardList.class));
+                startActivity(new Intent(getActivity(), Card.class));
                 break;
             case R.id.tvAccountMore:
                 startActivity(new Intent(getActivity(), More.class));

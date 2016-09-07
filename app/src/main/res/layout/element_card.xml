@@ -1,18 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/lyElementCards"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/lyElementCardPaddingBottom"
-    android:paddingEnd="@dimen/lyElementCardButtonsPadding"
-    android:paddingStart="@dimen/lyElementCardButtonsPadding">
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:paddingEnd="@dimen/lyPadding10"
+    android:paddingStart="@dimen/lyPadding10"
+    android:paddingTop="@dimen/lyPadding10">
 
-    <Button
-        android:id="@+id/btElementCards"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/btSignUpAllheight"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/tvMarginTopBottomStartEndAll"
         android:background="@drawable/gray_full"
-        android:textColor="@color/heading"
-        android:textSize="@dimen/btSignInSignInSize" />
+        android:padding="@dimen/lyElementCardListPadding">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/blue_stroke_gray_solid"
+            android:orientation="vertical"
+            android:padding="@dimen/lyElementCardListPadding">
+
+            <TextView
+                android:id="@+id/tvElementCardListCardNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
+                android:gravity="center"
+                android:text="Card xx4212"
+                android:textColor="@color/background"
+                android:textSize="@dimen/tvHeadingSizeAll" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Expiry Date :"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="@dimen/tvTitlesSizeAll" />
+
+                <TextView
+                    android:id="@+id/tvElementCardListExpiryDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="19 June, 2016"
+                    android:textSize="@dimen/tvTitlesSizeAll" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/tvElementCardListEditCard"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/tvElementCardListMarginStartEnd10"
+                    android:layout_marginLeft="@dimen/tvElementCardListMarginStartEnd5"
+                    android:layout_weight="1"
+                    android:background="@drawable/yellowborder"
+                    android:gravity="center"
+                    android:paddingBottom="@dimen/tvElementCardListPaddingTopBottom"
+                    android:paddingEnd="@dimen/tvElementCardListPaddingStartEnd"
+                    android:paddingStart="@dimen/tvElementCardListPaddingStartEnd"
+                    android:paddingTop="@dimen/tvElementCardListPaddingTopBottom"
+                    android:text="Edit Card Details"
+                    android:visibility="gone"
+                    android:textColor="@color/Yellow"
+                    android:textSize="@dimen/tvElementCardListSize" />
+
+                <TextView
+                    android:id="@+id/tvElementCardListRemoveCard"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/tvElementCardListMarginStartEnd5"
+                    android:layout_marginLeft="@dimen/tvElementCardListMarginStartEnd10"
+                    android:layout_weight="1"
+                    android:background="@drawable/yellowborder"
+                    android:gravity="center"
+                    android:paddingBottom="@dimen/tvElementCardListPaddingTopBottom"
+                    android:paddingEnd="@dimen/tvElementCardListPaddingStartEnd"
+                    android:paddingStart="@dimen/tvElementCardListPaddingStartEnd"
+                    android:paddingTop="@dimen/tvElementCardListPaddingTopBottom"
+                    android:text="Remove"
+                    android:textColor="@color/Yellow"
+                    android:textSize="@dimen/tvElementCardListSize" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
 </LinearLayout>

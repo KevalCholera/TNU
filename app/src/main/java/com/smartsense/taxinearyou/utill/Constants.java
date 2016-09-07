@@ -191,6 +191,7 @@ public class Constants {
         public static final int EVENT_IS_PARTNER_AVAILABLE = 1144;
         public static final int EVENT_NO_CONTACT = 1142;
         public static final int EVENT_CARD_LIST = 1151;
+        public static final int EVENT_MAKE_PAYMENT = 1152;
     }
 
     public class ErrorCode {
@@ -204,6 +205,8 @@ public class Constants {
         public static final int UNPAID_CANCEL_RIDE_CHARGE = 522;
         public static final int LOGGEDOUT_PARTNER = 521;
 
+        public static final int AVAILABILITY_CHANGE = 526;
+        public static final int PAYMENT_FAILED = 529;
     }
 
     public class AccountSecurity {

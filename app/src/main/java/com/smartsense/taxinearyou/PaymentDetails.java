@@ -28,11 +28,14 @@ public class PaymentDetails extends TimeActivity implements View.OnClickListener
     private AlertDialog alert;
     JSONObject jsonObject3;
     private String pType = Constants.PAYMENT_TYPE_CASH;
-
+    LinearLayout llPaymentCash;
     private final int paymentRequest = 1;
     String msg = "";
     private final int cardPaymentRequest = 2;
     private JSONObject paymentObj;
+    Boolean check = false;
+    private JSONObject tripDetails;
+    private final int cardPaymentRequest1 = 3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,15 +50,26 @@ public class PaymentDetails extends TimeActivity implements View.OnClickListener
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        check = getIntent().getBooleanExtra("check", false);
 //        getWindow().setSoftInputMode(
 //                WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+        llPaymentCash = (LinearLayout) findViewById(R.id.llPaymentCash);
         tvPaymentTNUCredit = (TextView) findViewById(R.id.tvPaymentTNUCredit);
         tvPaymentCard = (TextView) findViewById(R.id.tvPaymentCard);
         tvPaymentCash = (TextView) findViewById(R.id.tvPaymentCash);
         tvPaymentAmount = (TextView) findViewById(R.id.tvPaymentAmount);
         tvPaymentNewCard = (TextView) findViewById(R.id.tvPaymentNewCard);
-
-        tvPaymentAmount.setText("£" + CommonUtil.getDecimal(Double.valueOf(SharedPreferenceUtil.getString(Constants.PrefKeys.FARE_COST, ""))));
+        if (check) {
+            try {
+                llPaymentCash.setVisibility(View.GONE);
+                tripDetails = new JSONObject(getIntent().getStringExtra("json"));
+                tvPaymentAmount.setText("£" + tripDetails.optString("pendingAmount"));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else
+            tvPaymentAmount.setText("£" + CommonUtil.getDecimal(Double.valueOf(SharedPreferenceUtil.getString(Constants.PrefKeys.FARE_COST, ""))));
 
         tvPaymentCash.setOnClickListener(this);
         tvPaymentNewCard.setOnClickListener(this);
@@ -75,10 +89,10 @@ public class PaymentDetails extends TimeActivity implements View.OnClickListener
                 isPartnerAvailable();
                 break;
             case R.id.tvPaymentNewCard:
-                startActivityForResult(new Intent(PaymentDetails.this, CardPayment.class), cardPaymentRequest);
+                startActivityForResult(new Intent(PaymentDetails.this, CardPayment.class), check ? cardPaymentRequest1 : cardPaymentRequest);
                 break;
             case R.id.tvPaymentCard:
-                startActivityForResult(new Intent(PaymentDetails.this, CardList.class), cardPaymentRequest);
+                startActivityForResult(new Intent(PaymentDetails.this, CardList.class), check ? cardPaymentRequest1 : cardPaymentRequest);
                 break;
         }
     }
@@ -141,6 +155,31 @@ public class PaymentDetails extends TimeActivity implements View.OnClickListener
         CommonUtil.jsonRequestGET(this, getResources().getString(R.string.get_data), CommonUtil.utf8Convert(builder, Constants.Events.EVENT_IS_PARTNER_AVAILABLE), tag, this, this);
     }
 
+    private void isChargedPayment(String json) {
+        final String tag = "Book Or Not";
+        StringBuilder builder = new StringBuilder();
+        JSONObject jsonData = new JSONObject();
+        try {
+            JSONObject jsonObject = new JSONObject(json);
+            if (jsonObject.has("card_id")) {
+                jsonData.put("card_id", jsonObject.optString("card_id"));
+            } else {
+                jsonData.put("cardNumber", jsonObject.optString("cardNumber"));
+                jsonData.put("saveCard", jsonObject.optString("saveCard"));
+                jsonData.put("expYear", jsonObject.optString("expYear"));
+                jsonData.put("expMonth", jsonObject.optString("expMonth"));
+                jsonData.put("cardCVV", jsonObject.optString("cardCVV"));
+            }
+            jsonData.put("amount", tripDetails.optString("pendingAmount"));
+            builder.append(jsonData.put("token", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_ACCESS_TOKEN, ""))
+                    .put("userId", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_ID, "")).put("id", tripDetails.optString("paymentId")));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        CommonUtil.jsonRequestGET(this, getResources().getString(R.string.get_data), CommonUtil.utf8Convert(builder, Constants.Events.EVENT_MAKE_PAYMENT), tag, this, this);
+    }
+
     @Override
     public void onErrorResponse(VolleyError volleyError) {
         CommonUtil.cancelProgressDialog();
@@ -155,9 +194,14 @@ public class PaymentDetails extends TimeActivity implements View.OnClickListener
                 try {
                     switch (jsonObject.getInt("__eventid")) {
                         case Constants.Events.BookRide:
-                            if (jsonObject.optJSONObject("json").has("key")) {
-                                msg = jsonObject.optString("msg");
-                                startActivityForResult(new Intent(this, WebViewActivity.class).putExtra("key", jsonObject.optJSONObject("json").optString("key")).putExtra("vendor", jsonObject.optJSONObject("json").optString("vendor")), paymentRequest);
+                            if (jsonObject.optJSONObject("json").optInt("errorCode") == Constants.ErrorCode.AVAILABILITY_CHANGE) {
+                                openDialog(jsonObject.optJSONObject("json").optString("msg"));
+//                                msg = jsonObject.optString("msg");
+//                                startActivityForResult(new Intent(this, WebViewActivity.class).putExtra("key", jsonObject.optJSONObject("json").optString("key")).putExtra("vendor", jsonObject.optJSONObject("json").optString("vendor")), paymentRequest);
+                            } else if (jsonObject.optJSONObject("json").optInt("errorCode") == Constants.ErrorCode.PAYMENT_FAILED) {
+                                CommonUtil.openDialogs(this, "Payment Fail", R.id.lyPopupBookError, R.id.btPopupBookErrorOk, jsonObject.optJSONObject("json").optString("msg"), R.id.tvDialogAllError);
+//                                msg = jsonObject.optString("msg");
+//                                startActivityForResult(new Intent(this, WebViewActivity.class).putExtra("key", jsonObject.optJSONObject("json").optString("key")).putExtra("vendor", jsonObject.optJSONObject("json").optString("vendor")), paymentRequest);
                             } else
                                 CommonUtil.openDialogs(PaymentDetails.this, "Payment Details", R.id.lyPopupBookSuccess, R.id.btPopupBookSuccessOk, jsonObject.optString("msg"), R.id.tvDialogAllSuccess);
                             break;
@@ -170,6 +214,14 @@ public class PaymentDetails extends TimeActivity implements View.OnClickListener
                             } else {
                                 CommonUtil.openDialogs(this, "Payment Fail", R.id.lyPopupBookError, R.id.btPopupBookErrorOk, jsonObject.optJSONObject("json").optString("msg"), R.id.tvDialogAllError);
                             }
+                            break;
+                        case Constants.Events.EVENT_MAKE_PAYMENT:
+                            if (jsonObject.optJSONObject("json").optInt("errorCode") == Constants.ErrorCode.PAYMENT_FAILED) {
+                                CommonUtil.openDialogs1(this, "Re", R.id.lyPopupBookError, R.id.btPopupBookErrorOk, jsonObject.optJSONObject("json").optString("msg"), R.id.tvDialogAllError);
+//                                msg = jsonObject.optString("msg");
+//                                startActivityForResult(new Intent(this, WebViewActivity.class).putExtra("key", jsonObject.optJSONObject("json").optString("key")).putExtra("vendor", jsonObject.optJSONObject("json").optString("vendor")), paymentRequest);
+                            } else
+                                CommonUtil.openDialogs(PaymentDetails.this, "Payment Details", R.id.lyPopupBookSuccess, R.id.btPopupBookSuccessOk, jsonObject.optString("msg"), R.id.tvDialogAllSuccess);
                             break;
                     }
                 } catch (JSONException e) {
@@ -241,6 +293,9 @@ public class PaymentDetails extends TimeActivity implements View.OnClickListener
 //                if (resultCode == Activity.RESULT_OK)
 //                    CommonUtil.openDialogs(PaymentDetails.this, "Payment Details", R.id.lyPopupBookSuccess, R.id.btPopupBookSuccessOk, msg, R.id.tvDialogAllSuccess);
 //                break;
+                    case cardPaymentRequest1:
+                        isChargedPayment(data.getStringExtra("obj"));
+                        break;
                     case cardPaymentRequest:
                         pType = Constants.PAYMENT_TYPE_CARD;
                         paymentObj = new JSONObject(data.getStringExtra("obj"));

@@ -53,7 +53,7 @@ public class TripDetails extends AppCompatActivity implements View.OnClickListen
     final int requestLostItem = 2;
     int requestRefreshMyTrip = 0;
     Boolean check = false;
-
+    JSONObject tripDetails;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -98,7 +98,7 @@ public class TripDetails extends AppCompatActivity implements View.OnClickListen
             Log.i("Yes", "Here");
 
 //            final JSONObject tripDetails = new JSONObject(getIntent().getStringExtra("key"));
-            final JSONObject tripDetails = new JSONObject(SharedPreferenceUtil.getString("key", ""));
+            tripDetails = new JSONObject(SharedPreferenceUtil.getString("key", ""));
             tvTripDetailRideStatus.setText(tripDetails.optString("status"));
 
             if (tripDetails.optInt("feedbackSts") == 1)
@@ -125,7 +125,7 @@ public class TripDetails extends AppCompatActivity implements View.OnClickListen
             tvTripDetailTaxiProvider.setText(tripDetails.optString("partner"));
             tvTripDetailTaxiProvider.setTag(tripDetails.optString("rideId"));
             tvTripDetailMiles.setText(CommonUtil.getDecimal(tripDetails.optDouble("estimatedKm")) + " miles");
-            tvTripDetailFare.setText("£" + CommonUtil.getDecimal(tripDetails.optDouble("estimatedAmount")));
+
             tvTripDetailFrom.setText(tripDetails.optString("from"));
             tvTripDetailTo.setText(tripDetails.optString("to"));
 
@@ -204,8 +204,9 @@ public class TripDetails extends AppCompatActivity implements View.OnClickListen
             tvTripDetailPayment.setText(tripDetails.optString("paymentType"));
             tvTripDetailRideType.setText(tripDetails.optString("bookingType"));
             tvTripDetailVehicle.setText(tripDetails.optString("vehicleType"));
-
+            tvTripDetailFare.setText("£" + CommonUtil.getDecimal(tripDetails.optDouble("estimatedAmount")));
             if (check) {
+                tvTripDetailFare.setText("£" + CommonUtil.getDecimal(tripDetails.optDouble("pendingAmount")));
                 tvTripDetailFareLabel.setText("Charge");
                 if (tripDetails.optInt("isPaid") == 0) {
                     tvTripDetailLost.setText("Pending Payment");
@@ -243,7 +244,8 @@ public class TripDetails extends AppCompatActivity implements View.OnClickListen
         switch (v.getId()) {
             case R.id.tvTripDetailCancle:
                 if (tvTripDetailLost.getText().toString().equalsIgnoreCase("Pending Payment")) {
-                    payPayment();
+//                    payPayment();
+                    startActivity(new Intent(TripDetails.this, PaymentDetails.class).putExtra("check",true).putExtra("json",tripDetails.toString()));
                 } else
                     cancelRideDialog();
                 break;
@@ -482,7 +484,6 @@ public class TripDetails extends AppCompatActivity implements View.OnClickListen
                     requestRefreshMyTrip = 1;
                     tvTripDetailCancle.setVisibility(View.GONE);
                     CommonUtil.alertBox(this, jsonObject.optString("msg"));
-
                 } else if (jsonObject.optInt("__eventid") == Constants.Events.RESEND_INVOICE) {
                     CommonUtil.alertBox(this, jsonObject.optString("msg"));
                 }

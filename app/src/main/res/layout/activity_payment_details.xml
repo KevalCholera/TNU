@@ -2,17 +2,17 @@
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/clPaymentDetails"
-    android:focusable="true"
-    android:focusableInTouchMode="true"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true">
 
     <LinearLayout
         android:layout_width="match_parent"
 
+        android:layout_height="fill_parent"
         android:focusable="true"
         android:focusableInTouchMode="true"
-        android:layout_height="fill_parent"
         android:orientation="vertical">
 
         <android.support.v7.widget.Toolbar
@@ -112,23 +112,30 @@
                 android:layout_marginTop="@dimen/margin_5"
                 android:background="@color/line_color" />
 
-            <TextView
-                android:id="@+id/tvPaymentCash"
+            <LinearLayout
+                android:id="@+id/llPaymentCash"
+                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/btSignUpAllheight"
-                android:drawableLeft="@mipmap/banknotes"
-                android:drawablePadding="@dimen/tvPaymentDetailsDrawableCashPadding"
-                android:drawableRight="@mipmap/arrow_right_yellow"
-                android:gravity="fill"
-                android:text="@string/cash"
-                android:textColor="@color/black"
-                android:textSize="@dimen/heading" />
+                android:layout_height="wrap_content">
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/vHeightWidthAll"
-                android:layout_marginTop="@dimen/margin_5"
-                android:background="@color/line_color" />
+                <TextView
+                    android:id="@+id/tvPaymentCash"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/btSignUpAllheight"
+                    android:drawableLeft="@mipmap/banknotes"
+                    android:drawablePadding="@dimen/tvPaymentDetailsDrawableCashPadding"
+                    android:drawableRight="@mipmap/arrow_right_yellow"
+                    android:gravity="fill"
+                    android:text="@string/cash"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/heading" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/vHeightWidthAll"
+                    android:layout_marginTop="@dimen/margin_5"
+                    android:background="@color/line_color" />
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"

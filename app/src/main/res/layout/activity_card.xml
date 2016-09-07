@@ -5,39 +5,43 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     android:orientation="vertical"
+    android:gravity="center"
     android:theme="@style/AppTheme">
+
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="visible">
+
+        <ImageView
+
+            android:layout_width="@dimen/ivCreditImage"
+            android:layout_height="@dimen/ivCreditImage"
+            android:background="@mipmap/bancard" />
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="No cards saved."
+            android:textColor="@color/heading"
+            android:textSize="@dimen/tvHeadingSizeAll" />
+    </LinearLayout>
 
     <ListView
         android:id="@+id/lvCard"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_height="match_parent"
         android:divider="@null"
+        android:visibility="gone"
         android:dividerHeight="0dp"
         android:scrollbarStyle="@null" />
 
-    <Button
-        android:id="@+id/btCardAddCard"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/btSignUpAllheight"
-        android:layout_marginBottom="@dimen/tvMarginTopBottomStartEndAll"
-        android:layout_marginRight="@dimen/btCardButtonMargin"
-        android:layout_marginLeft="@dimen/btCardButtonMargin"
-        android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
-        android:background="@drawable/blue_stroke_gray_solid"
-        android:text="@string/add_card"
-        android:visibility="gone"
-        android:textColor="@color/dark_gray"
-        android:textSize="@dimen/btSignInSignInSize" />
 
-
-    <Button
-        android:id="@+id/btCardDone"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/btSignUpAllheight"
-        android:background="@color/Yellow"
-        android:text="PAY"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textSize="@dimen/btSizeAll" />
 </LinearLayout>

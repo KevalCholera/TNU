@@ -43,7 +43,7 @@ public class CardList extends AppCompatActivity implements View.OnClickListener,
         lvCardList = (ListView) findViewById(R.id.lvCardList);
         llCardList = (LinearLayout) findViewById(R.id.llCardList);
         btCardSavePay = (Button) findViewById(R.id.btCardSavePay1);
-        
+
 //        clPaymentDetails = (CoordinatorLayout) findViewById(R.id.clRecoverEmail);
         lvCardList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -55,6 +55,7 @@ public class CardList extends AppCompatActivity implements View.OnClickListener,
                     AdapterCardList.pos = i;
 
                 }else{
+                    cardId ="";
                     AdapterCardList.pos = -1;
 
                 }
