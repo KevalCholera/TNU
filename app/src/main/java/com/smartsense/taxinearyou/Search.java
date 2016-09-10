@@ -67,6 +67,8 @@ public class Search extends AppCompatActivity {
         arrayList.add("Wallet");
         arrayList.add("Menu");
 
+
+
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 
             @Override
@@ -91,6 +93,10 @@ public class Search extends AppCompatActivity {
 
             }
         });
+
+        if(getIntent().getBooleanExtra("checkWallet",false)){
+            tbSearchTab.getTabAt(2).select();
+        }
     }
 
     private void setupViewPager(ViewPager viewPager) {

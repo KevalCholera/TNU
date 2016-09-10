@@ -3,8 +3,10 @@ package com.smartsense.taxinearyou;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -31,7 +33,8 @@ public class CardList extends AppCompatActivity implements View.OnClickListener,
     LinearLayout llCardList;
     private AlertDialog alert;
     Button btCardSavePay;
-    //    CoordinatorLayout clPaymentDetails;
+        CoordinatorLayout clPaymentDetails;
+
     private AdapterCardList adapterCardList;
     String cardId = "";
 
@@ -39,12 +42,16 @@ public class CardList extends AppCompatActivity implements View.OnClickListener,
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_card_list);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarAll);
+        setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         lvCardList = (ListView) findViewById(R.id.lvCardList);
         llCardList = (LinearLayout) findViewById(R.id.llCardList);
         btCardSavePay = (Button) findViewById(R.id.btCardSavePay1);
 
-//        clPaymentDetails = (CoordinatorLayout) findViewById(R.id.clRecoverEmail);
+        clPaymentDetails = (CoordinatorLayout) findViewById(R.id.clRecoverEmail);
         lvCardList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -95,7 +102,7 @@ public class CardList extends AppCompatActivity implements View.OnClickListener,
                     CommonUtil.closeKeyboard(this);
                     if (cardId.equalsIgnoreCase("")) {
                         Log.i("Yes1", "Here");
-//                        CommonUtil.showSnackBar("Please select card", clPaymentDetails);
+                        CommonUtil.showSnackBar("Please select card", clPaymentDetails);
                     } else {
                         Log.i("Yes", "1Here");
                         Intent i = new Intent();
@@ -152,6 +159,8 @@ public class CardList extends AppCompatActivity implements View.OnClickListener,
                                 llCardList.setVisibility(View.VISIBLE);
                                 adapterCardList = new AdapterCardList(this, jsonArray);
                                 lvCardList.setAdapter(adapterCardList);
+                            } else {
+                                llCardList.setVisibility(View.GONE);
                             }
                             break;
                     }

@@ -49,6 +49,7 @@
                     android:id="@+id/tvElementCardListExpiryDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="3dp"
                     android:text="19 June, 2016"
                     android:textSize="@dimen/tvTitlesSizeAll" />
 

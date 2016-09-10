@@ -209,9 +209,10 @@ public class SignUp extends AppCompatActivity implements Response.Listener<JSONO
             CommonUtil.showSnackBar(getResources().getString(R.string.alt_email_alred_exist), clSignUp);
         else if (TextUtils.equals(etSignUpAlternateEmail.getText().toString(), etSignUpEmail.getText().toString()))
             CommonUtil.showSnackBar(getString(R.string.alternate_email_not_same), clSignUp);
-        else
+        else {
+            CommonUtil.closeKeyboard(SignUp.this);
             startActivity(new Intent(SignUp.this, SecurityQuestion.class).putExtra("firstName", etSignUpFirstName.getText().toString().trim()).putExtra("lastName", etSignUpLastName.getText().toString().trim()).putExtra("contactNo", etSignUpContact.getText().toString().trim()).putExtra("emailId", etSignUpEmail.getText().toString().trim()).putExtra("password", etSignUpPassword.getText().toString().trim()).putExtra("confPassword", etSignUpConfirmPassword.getText().toString().trim()).putExtra("altEmailId", etSignUpAlternateEmail.getText().toString().trim()));
-
+        }
     }
 
     private void contactAvailability() {

@@ -54,6 +54,7 @@ public class TripDetails extends AppCompatActivity implements View.OnClickListen
     int requestRefreshMyTrip = 0;
     Boolean check = false;
     JSONObject tripDetails;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -227,6 +228,12 @@ public class TripDetails extends AppCompatActivity implements View.OnClickListen
                 else
                     tvTripDetailAdditionsReason.setText(tripDetails.optString("chargeReason"));
             }
+            if (tripDetails.has("refundMsg")) {
+                tvTripDetailAdditionsReasonLabel.setText("Refund Information");
+                tvTripDetailAdditionsReasonLabel.setVisibility(View.VISIBLE);
+                tvTripDetailAdditionsReason.setVisibility(View.VISIBLE);
+                tvTripDetailAdditionsReason.setText(tripDetails.optString("refundMsg"));
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -245,7 +252,7 @@ public class TripDetails extends AppCompatActivity implements View.OnClickListen
             case R.id.tvTripDetailCancle:
                 if (tvTripDetailLost.getText().toString().equalsIgnoreCase("Pending Payment")) {
 //                    payPayment();
-                    startActivity(new Intent(TripDetails.this, PaymentDetails.class).putExtra("check",true).putExtra("json",tripDetails.toString()));
+                    startActivity(new Intent(TripDetails.this, PaymentDetails.class).putExtra("check", true).putExtra("json", tripDetails.toString()));
                 } else
                     cancelRideDialog();
                 break;
@@ -393,14 +400,12 @@ public class TripDetails extends AppCompatActivity implements View.OnClickListen
             lyPopUpCancelRide.setVisibility(View.VISIBLE);
 
 
-
             Button tvPopupCancelRideOk = (Button) dialog.findViewById(R.id.btPopupGen);
 
             TextView tvDialogCancelText = (TextView) dialog.findViewById(R.id.tvPopupGen);
 
 
             tvDialogCancelText.setText(msg);
-
 
 
             tvPopupCancelRideOk.setOnClickListener(new Button.OnClickListener() {

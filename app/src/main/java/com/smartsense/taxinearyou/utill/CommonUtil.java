@@ -636,7 +636,6 @@ public class CommonUtil {
     }
 
     public static void showSnackBar(String msg, View view) {
-
         TSnackbar snackbar = TSnackbar
                 .make(view, msg, TSnackbar.LENGTH_SHORT);
         snackbar.setActionTextColor(Color.WHITE);
@@ -667,6 +666,8 @@ public class CommonUtil {
                 public void onClick(View v) {
                     if (buton_click.equalsIgnoreCase("Payment Details"))
                         activity.startActivity(new Intent(activity, Search.class));
+                    if (buton_click.equalsIgnoreCase("Payment Details1"))
+                        activity.startActivity(new Intent(activity, Search.class).putExtra("checkWallet",true));
                     else if (buton_click.equalsIgnoreCase("Recover Email"))
                         activity.startActivity(new Intent(activity, SignIn.class));
                     else if (buton_click.equalsIgnoreCase("Payment Fail"))
@@ -739,5 +740,26 @@ public class CommonUtil {
             SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_ANSWER2, jsonObject.optString("ans2"));
             SharedPreferenceUtil.save();
         }
+    }
+
+    public static boolean CheckCreditCard(String ccNumber)
+    {
+        int sum = 0;
+        boolean alternate = false;
+        for (int i = ccNumber.length() - 1; i >= 0; i--)
+        {
+            int n = Integer.parseInt(ccNumber.substring(i, i + 1));
+            if (alternate)
+            {
+                n *= 2;
+                if (n > 9)
+                {
+                    n = (n % 10) + 1;
+                }
+            }
+            sum += n;
+            alternate = !alternate;
+        }
+        return (sum % 10 == 0);
     }
 }

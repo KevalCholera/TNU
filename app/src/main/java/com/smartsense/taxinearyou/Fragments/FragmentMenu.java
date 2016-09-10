@@ -456,12 +456,12 @@ public class FragmentMenu extends Fragment implements Response.Listener<JSONObje
 //                CommonUtil.alertBox(getActivity(), "", getActivity().getResources().getString(R.string.nointernet_try_again_msg));
                 CommonUtil.cancelProgressDialog();
 
-                Log.e("Volley Request Error", error.getLocalizedMessage());
+//                Log.e("Volley Request Error", error.getLocalizedMessage());
 
             }
 
         }, file, params);
-        multipartRequest.setRetryPolicy(new DefaultRetryPolicy(20000, 0, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        multipartRequest.setRetryPolicy(new DefaultRetryPolicy(60000, 0, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         TaxiNearYouApp.getInstance().addToRequestQueue(multipartRequest, tag);
 
     }

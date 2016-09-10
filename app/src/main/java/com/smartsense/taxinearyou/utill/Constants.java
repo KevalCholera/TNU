@@ -15,7 +15,7 @@ public class Constants {
     //    public static final String BASE_URL = "http://fmcgfinal.cloudapp.net:8080";
 //    public static final String BASE_URL = "http://188.166.157.61";
     public static final String BASE_URL = "https://taxinearu.co.uk";
-//    public static final String BASE_URL = "http://192.168.0.104:8080";
+//    public static final String BASE_URL = "http://192.168.0.108:8080";
     public static final String BASE_URL_IMAGE_POSTFIX = BASE_URL + "/tnu";
     public static final String BASE_URL_POSTFIX = "/tnu/m?__eventid=";
     public static final String BASE_URL_PHOTO = BASE_URL + "/tnu/m?";
@@ -192,6 +192,7 @@ public class Constants {
         public static final int EVENT_NO_CONTACT = 1142;
         public static final int EVENT_CARD_LIST = 1151;
         public static final int EVENT_MAKE_PAYMENT = 1152;
+        public static final int EVENT_CARD_DELETE = 1153;
     }
 
     public class ErrorCode {

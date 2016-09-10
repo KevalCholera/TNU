@@ -40,6 +40,7 @@ public class CardPayment extends AppCompatActivity implements Response.Listener<
     private int year;
     private String currentMonth;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +48,7 @@ public class CardPayment extends AppCompatActivity implements Response.Listener<
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarAll);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         etCardSaveNo = (EditText) findViewById(R.id.etCardSaveNo);
         etCardSaveMonth = (EditText) findViewById(R.id.etCardSaveMonth);
         etCardSaveMonth.setOnClickListener(this);
@@ -76,6 +78,8 @@ public class CardPayment extends AppCompatActivity implements Response.Listener<
                 else if (etCardSaveNo.length() < 13 || TextUtils.isEmpty(etCardSaveNo
                         .getText().toString()))
                     CommonUtil.showSnackBar(getString(R.string.enter_valid_card), clRecoverEmail);
+                else if (!CommonUtil.CheckCreditCard(etCardSaveNo.getText().toString()))
+                    CommonUtil.showSnackBar(getString(R.string.enter_valid_card), clRecoverEmail);
                 else if (TextUtils.isEmpty(etCardSaveMonth.getText().toString()))
                     CommonUtil.showSnackBar(getString(R.string.select_month), clRecoverEmail);
                 else if (TextUtils.isEmpty(etCardSaveYear.getText().toString()))
@@ -94,11 +98,11 @@ public class CardPayment extends AppCompatActivity implements Response.Listener<
     private void doRideBook(String no, String month, String year, String security) {
         try {
             JSONObject jsonObject = new JSONObject();
-            jsonObject.put("cardNumber",no);
-            jsonObject.put("saveCard",cbCardSave.isChecked());
-            jsonObject.put("expYear",year);
-            jsonObject.put("expMonth",month);
-            jsonObject.put("cardCVV",security);
+            jsonObject.put("cardNumber", no);
+            jsonObject.put("saveCard", cbCardSave.isChecked());
+            jsonObject.put("expYear", year);
+            jsonObject.put("expMonth", month);
+            jsonObject.put("cardCVV", security);
             Intent i = new Intent();
             i.putExtra("obj", jsonObject.toString());
             setResult(Activity.RESULT_OK, i);
@@ -176,7 +180,7 @@ public class CardPayment extends AppCompatActivity implements Response.Listener<
             } else {
                 stringArr = new String[15];
                 try {
-                    Log.i("yes",SharedPreferenceUtil.getString(Constants.YEAR_MONTH, ""));
+                    Log.i("yes", SharedPreferenceUtil.getString(Constants.YEAR_MONTH, ""));
                     String[] date = SharedPreferenceUtil.getString(Constants.YEAR_MONTH, "").split("_");
                     year = Integer.valueOf(date[0]);
                     currentMonth = date[1];
@@ -185,7 +189,7 @@ public class CardPayment extends AppCompatActivity implements Response.Listener<
                     year = c.getTime().getYear();
                     currentMonth = "" + c.getTime().getMonth();
                 }
-                int year1=year;
+                int year1 = year;
                 for (int i = 0; i < 15; i++) {
                     if (i == 0)
                         stringArr[i] = "" + (year);

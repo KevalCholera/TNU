@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
@@ -30,6 +31,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.HashMap;
+
+import cn.qqtheme.framework.picker.OptionPicker;
+
 public class SecurityQuestion extends AppCompatActivity implements View.OnClickListener, Response.Listener<JSONObject>, Response.ErrorListener {
 
     EditText etSecurityQuestion1, etSecurityAnswer1, etSecurityQuestion2, etSecurityAnswer2;
@@ -40,6 +45,7 @@ public class SecurityQuestion extends AppCompatActivity implements View.OnClickL
     ImageView btSecurityBack;
     private AlertDialog alert;
     private JSONObject jsonObject;
+    HashMap<String, String> spinnerMap = new HashMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,8 +82,10 @@ public class SecurityQuestion extends AppCompatActivity implements View.OnClickL
                     CommonUtil.showSnackBar(getResources().getString(R.string.enter_fields_below), clSecurityQuestion);
                 else if (!cbSecurityFromPrivacyPolicy.isChecked())
                     CommonUtil.showSnackBar(getResources().getString(R.string.check_term), clSecurityQuestion);
-                else
+                else {
+                    CommonUtil.closeKeyboard(SecurityQuestion.this);
                     doSignUp();
+                }
                 break;
             case R.id.btSecurityBack:
                 finish();
@@ -86,14 +94,14 @@ public class SecurityQuestion extends AppCompatActivity implements View.OnClickL
             case R.id.etSecurityQuestion1:
                 CommonUtil.closeKeyboard(this);
                 if (jsonObject != null) {
-                    openQuestionSelectPopup(true, jsonObject);
+                    selectPassenger(true, jsonObject);
                 } else
                     getSecurityQuestion();
                 break;
             case R.id.etSecurityQuestion2:
                 CommonUtil.closeKeyboard(this);
                 if (jsonObject != null) {
-                    openQuestionSelectPopup(false, jsonObject);
+                    selectPassenger(false, jsonObject);
                 } else
                     getSecurityQuestion();
                 break;
@@ -225,7 +233,9 @@ public class SecurityQuestion extends AppCompatActivity implements View.OnClickL
     @Override
     public void onErrorResponse(VolleyError volleyError) {
         CommonUtil.errorToastShowing(this);
+
         CommonUtil.cancelProgressDialog();
+        getSecurityQuestion();
     }
 
     @Override
@@ -262,8 +272,8 @@ public class SecurityQuestion extends AppCompatActivity implements View.OnClickL
                                 @Override
                                 public void onClick(View v) {
                                     alert.dismiss();
-                                        startActivity(new Intent(SecurityQuestion.this, SignIn.class));
-                                        finish();
+                                    startActivity(new Intent(SecurityQuestion.this, SignIn.class));
+                                    finish();
 
                                 }
                             });
@@ -298,5 +308,66 @@ public class SecurityQuestion extends AppCompatActivity implements View.OnClickL
             }
         } else
             CommonUtil.jsonNullError(this);
+    }
+
+    JSONArray question1;
+    JSONArray question2;
+
+    public void selectPassenger(final Boolean check, JSONObject jsonObject1) {
+        jsonObject = jsonObject1;
+        question1 = new JSONArray();
+        question2 = new JSONArray();
+        try {
+            for (int i = 0; i < jsonObject.optJSONObject("json").optJSONArray("questionList").length(); i++) {
+                if (i < jsonObject.optJSONObject("json").optJSONArray("questionList").length() / 2) {
+                    question1.put(jsonObject.optJSONObject("json").optJSONArray("questionList").optJSONObject(i));
+                } else {
+                    question2.put(jsonObject.optJSONObject("json").optJSONArray("questionList").optJSONObject(i));
+                }
+            }
+            String[] stringArr;
+            if (check) {
+                stringArr = new String[question1.length()];
+                for (int i = 0; i < question1.length(); i++) {
+                    stringArr[i] = question1.optJSONObject(i).optString("name");
+                    spinnerMap.put(question1.optJSONObject(i).optString("name"), question1.optJSONObject(i).optString("id"));
+                }
+            } else {
+                stringArr = new String[question2.length()];
+                for (int i = 0; i < question2.length(); i++) {
+                    stringArr[i] = question2.optJSONObject(i).optString("name");
+                    spinnerMap.put(question2.optJSONObject(i).optString("name"), question2.optJSONObject(i).optString("id"));
+                }
+            }
+
+            OptionPicker picker = new OptionPicker(SecurityQuestion.this, stringArr);
+//            picker.setOffset(2);
+//            picker.setSelectedIndex(1);
+            picker.setTextSize(15);
+
+            picker.setTitleText("Select Question");
+            picker.setTitleTextColor(ActivityCompat.getColor(SecurityQuestion.this, R.color.white));
+            picker.setTopBackgroundColor(ActivityCompat.getColor(SecurityQuestion.this, R.color.colorAccent));
+            picker.setTopLineColor(ActivityCompat.getColor(SecurityQuestion.this, R.color.colorAccent));
+            picker.setCancelTextColor(ActivityCompat.getColor(SecurityQuestion.this, R.color.white));
+            picker.setSubmitTextColor(ActivityCompat.getColor(SecurityQuestion.this, R.color.white));
+            picker.setOnOptionPickListener(new OptionPicker.OnOptionPickListener() {
+                @Override
+                public void onOptionPicked(String option) {
+                    final String id1 = spinnerMap.get(option);
+                    if (check) {
+                        etSecurityQuestion1.setText(option);
+                        etSecurityQuestion1.setTag(id1);
+                    } else {
+                        etSecurityQuestion2.setText(option);
+                        etSecurityQuestion2.setTag(id1);
+                    }
+
+                }
+            });
+            picker.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

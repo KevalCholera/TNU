@@ -24,6 +24,7 @@ public class AdapterCardList extends BaseAdapter {
     public AdapterCardList(Activity a, JSONArray data) {
         this.data = data;
         this.a = a;
+        pos=-1;
         Log.i("Yes","Here");
         inflater = (LayoutInflater) a.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }

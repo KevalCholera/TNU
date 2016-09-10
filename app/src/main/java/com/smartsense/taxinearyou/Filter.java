@@ -274,7 +274,7 @@ public class Filter extends TimeActivity implements View.OnClickListener {
                     j++;
                     Log.i("Yes", j + "" + i);
                     tableRow[j] = new TableRow(this);
-                    tableRow[j].setId(jsonArray.optJSONObject(i).getInt("distanceId"));
+                    tableRow[j].setId(jsonArray.optJSONObject(i).getInt("mile"));
                     tableRow[j].setLayoutParams(params1);
                 }
                 radioButton[i] = new RadioButton(this);
@@ -283,11 +283,11 @@ public class Filter extends TimeActivity implements View.OnClickListener {
                 radioButton[i].setTextSize(12f);
                 radioButton[i].setText(jsonArray.optJSONObject(i).getString("name"));
                 radioButton[i].setTextColor(ContextCompat.getColor(Filter.this, R.color.white));
-                int id1 = jsonArray.optJSONObject(i).getInt("distanceId") == -1 ? 0 : jsonArray.optJSONObject(i).getInt("distanceId");
+                int id1 = jsonArray.optJSONObject(i).getInt("mile") == -1 ? 0 : jsonArray.optJSONObject(i).getInt("mile");
                 radioButton[i].setId(id1);
                 radioButton[i].setGravity(Gravity.CENTER);
                 radioButton[i].setPadding(15, 15, 15, 15); // android:checked="true"
-                if (filterObj.optInt("distance") == (jsonArray.optJSONObject(i).getInt("distanceId")))
+                if (filterObj.optInt("distance") == (jsonArray.optJSONObject(i).getInt("mile")))
                     radioButton[i].setChecked(true);
                 radioButton[i].setClickable(true);
 

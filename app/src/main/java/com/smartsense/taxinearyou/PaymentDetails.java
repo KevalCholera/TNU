@@ -221,7 +221,7 @@ public class PaymentDetails extends TimeActivity implements View.OnClickListener
 //                                msg = jsonObject.optString("msg");
 //                                startActivityForResult(new Intent(this, WebViewActivity.class).putExtra("key", jsonObject.optJSONObject("json").optString("key")).putExtra("vendor", jsonObject.optJSONObject("json").optString("vendor")), paymentRequest);
                             } else
-                                CommonUtil.openDialogs(PaymentDetails.this, "Payment Details", R.id.lyPopupBookSuccess, R.id.btPopupBookSuccessOk, jsonObject.optString("msg"), R.id.tvDialogAllSuccess);
+                                CommonUtil.openDialogs(PaymentDetails.this, "Payment Details1", R.id.lyPopupBookSuccess, R.id.btPopupBookSuccessOk, jsonObject.optString("msg"), R.id.tvDialogAllSuccess);
                             break;
                     }
                 } catch (JSONException e) {
