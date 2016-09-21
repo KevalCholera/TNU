@@ -9,7 +9,6 @@ import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
-import android.text.InputFilter;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -57,8 +56,8 @@ public class GeneralInformation extends AppCompatActivity implements Response.Li
 
 //        clGeneralInfo.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION);
 
-        etGeneralFirstName.setFilters(new InputFilter[]{CommonUtil.textFilter});
-        etGeneralLastName.setFilters(new InputFilter[]{CommonUtil.textFilter});
+//        etGeneralFirstName.setFilters(new InputFilter[]{CommonUtil.textFilter});
+//        etGeneralLastName.setFilters(new InputFilter[]{CommonUtil.textFilter});
 
         setDataInActivity();
 

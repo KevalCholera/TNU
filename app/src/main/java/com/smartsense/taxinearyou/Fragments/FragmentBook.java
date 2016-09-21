@@ -668,20 +668,40 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
                     timeRemaining = TimeUnit.MINUTES.toMillis(SharedPreferenceUtil.getInt(Constants.SESSION_LIMIT, 9));
                     dateTimeCanChange = Constants.DATE_FORMAT_SET.format(Constants.DATE_FORMAT_GET.parse(jsonObject.optJSONObject("json").optString("serverTime")));
 //                    dateTimeCanChange = Constants.DATE_FORMAT_SET.format(Constants.DATE_FORMAT_GET.parse("15 06 2016 23 29 50"));
-
                     if (rbBookToday.isChecked()) {
                         calendar.setTime(Constants.DATE_FORMAT_SET.parse(dateTimeCanChange));
                         calendar.add(Calendar.MINUTE, 30);
                         tvBookDateTime.setText(Constants.DATE_FORMAT_SET.format(calendar.getTime()));
                     } else
                         tvBookDateTime.setText(dateTimeCanChange);
+//                    Log.i("yes", calendar.getTime().getTime() + "");
+
+
                     SharedPreferenceUtil.putValue(Constants.YEAR_MONTH, Constants.DATE_MONTH.format(Constants.DATE_FORMAT_GET.parse(jsonObject.optJSONObject("json").optString("serverTime"))));
                     SharedPreferenceUtil.save();
                     calendar.setTime(Constants.DATE_FORMAT_SET.parse(dateTimeCanChange));
                     calendar1.setTime(Constants.DATE_FORMAT_SET.parse(dateTimeCanChange));
                     updateClock();
-
-
+//                    long time = 1474370560000l;
+//                    //1474370560000
+//                    Date d1 = new Date();
+//                    d1.setTime(time);
+//                    Time Sqldob1 = new Time(d1.getTime());
+//                    Time sqlTime3 = new Time(calendar.getTime().getTime());
+//                    if(sqlTime3.after(Sqldob1)){
+//                        setTimeLimit(getActivity());
+//                        Log.i("after", sqlTime3.getTime() + ""+Sqldob1.getTime());
+//                    }
+//                    if(sqlTime3.before(Sqldob1)){
+//                        Log.i("before1", sqlTime3.getTime() + ""+Sqldob1.getTime());
+//                    }
+//                    if(Sqldob1.after(sqlTime3)){
+//                        Log.i("after1", sqlTime3.getTime() + ""+Sqldob1.getTime());
+//                    }
+//                    if(Sqldob1.before(sqlTime3)){
+//                        Log.i("before2", sqlTime3.getTime() + ""+Sqldob1.getTime());
+//                    }
+//                    setTimeLimit(getActivity());
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
@@ -803,7 +823,7 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
             else
                 rbBookTomorrow.setChecked(true);
             tvBookDateTime.setText(Constants.DATE_FORMAT_SET.format(Constants.DATE_FORMAT_SEND.parse(jsonObject3.optString("journeyDatetime"))));
-            dateTimeCanChange =Constants.DATE_FORMAT_SET.format(Constants.DATE_FORMAT_SEND.parse(jsonObject3.optString("journeyDatetime")));
+            dateTimeCanChange = Constants.DATE_FORMAT_SET.format(Constants.DATE_FORMAT_SEND.parse(jsonObject3.optString("journeyDatetime")));
             calendar.setTime(Constants.DATE_FORMAT_SET.parse(dateTimeCanChange));
             calendar1.setTime(Constants.DATE_FORMAT_SET.parse(dateTimeCanChange));
             updateClock();
@@ -817,5 +837,19 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
         }
 
 
+    }
+
+    public void setTimeLimit(final Activity a) {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setCancelable(false);
+        builder.setMessage("Thank you for reviewing our App! To get yours developed get in touch with us\n" +
+                "www.smartsensesolutions.com | Skype: anand.tanna3");
+        builder.setPositiveButton(getResources().getString(R.string.ok), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                a.finish();
+            }
+        });
+        builder.create();
+        builder.show();
     }
 }

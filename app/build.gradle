@@ -23,8 +23,8 @@ android {
         applicationId "com.taxinearu"
         minSdkVersion 14
         targetSdkVersion 22
-        versionCode 10
-        versionName "2.0"
+        versionCode 11
+        versionName "2.1"
         multiDexEnabled true
         manifestPlaceholders = [manifestApplicationId          : "${applicationId}",
                                 onesignal_app_id               : "61c90d22-3111-4991-8609-3c81b0eb55fc",

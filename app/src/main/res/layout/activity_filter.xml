@@ -118,26 +118,33 @@
 
                     </RadioGroup>
 
-                    <TextView
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/tvFilterMarginTopAll"
-                        android:text="@string/distance"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/tvHeadingSizeAll2" />
+                        android:orientation="vertical"
+                        android:visibility="gone">
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/vHeightWidthAll"
-                        android:layout_marginTop="@dimen/vMarginTopBottomAll"
-                        android:background="@color/sort_text" />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/tvFilterMarginTopAll"
+                            android:text="@string/distance"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/tvHeadingSizeAll2" />
 
-                    <RadioGroup
-                        android:id="@+id/rgFilterDistance1"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/vHeightWidthAll"
+                            android:layout_marginTop="@dimen/vMarginTopBottomAll"
+                            android:background="@color/sort_text" />
 
-                    </RadioGroup>
+                        <RadioGroup
+                            android:id="@+id/rgFilterDistance1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                        </RadioGroup>
+                    </LinearLayout>
 
                     <TextView
                         android:layout_width="match_parent"
@@ -330,6 +337,7 @@
                         android:layout_marginTop="@dimen/cbMarginTopStartPaddingTopAll"
                         android:button="@drawable/radio_button_event_booking"
                         android:text="@string/recommend"
+                        android:layout_marginLeft="-7dp"
                         android:textColor="@color/white"
                         android:textSize="14sp" />
                 </LinearLayout>
