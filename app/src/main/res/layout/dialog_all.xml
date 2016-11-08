@@ -1,0 +1,1216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/clPopUpMain"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/lyPopUpAlternateEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/dialog_corner"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="@dimen/lyPadding10"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/new_alternate_email"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/tvTitlesSizeAll" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/vHeightWidthAll"
+                android:layout_margin="@dimen/vMarginTopBottomAll"
+                android:background="@android:color/darker_gray" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/enter_alternate_email"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="@dimen/tvTitlesSizeAll" />
+
+            <EditText
+                android:id="@+id/etPopupSecurityAlternateEmail"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/etHeightAll"
+                android:layout_gravity="center"
+                android:background="@drawable/grayborder"
+                android:inputType="textEmailAddress"
+                android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
+                android:singleLine="true"
+                android:textColor="@color/black"
+                android:textColorHint="@android:color/darker_gray"
+                android:textSize="@dimen/etSignInUserPassSize" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/tvPopupMarginTop"
+                android:text="@string/confirm_alternate_email"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="@dimen/tvTitlesSizeAll" />
+
+            <EditText
+                android:id="@+id/etPopupSecurityConfirmAlternateEmail"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/etHeightAll"
+                android:layout_gravity="center"
+                android:background="@drawable/grayborder"
+                android:inputType="textEmailAddress"
+                android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
+                android:singleLine="true"
+                android:textColor="@color/black"
+                android:textColorHint="@android:color/darker_gray"
+                android:textSize="@dimen/etSignInUserPassSize" />
+
+            <Button
+                android:id="@+id/btPopupSecurityAlternateEmailSubmit"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/btSignUpAllheight"
+                android:layout_marginBottom="@dimen/btPopupSubmitMarginTopBottom"
+                android:layout_marginTop="@dimen/btPopupSubmitMarginTopBottom"
+                android:background="@color/colorPrimary"
+                android:gravity="center"
+                android:paddingLeft="@dimen/btPopupSubmitPaddingLeftRight"
+                android:paddingRight="@dimen/btPopupSubmitPaddingLeftRight"
+                android:text="@string/submit"
+                android:textColor="@color/white"
+                android:textSize="@dimen/buttonGeneral" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lyPopUpEmail"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="@drawable/dialog_corner"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="@dimen/lyPadding10"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/new_email"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/tvTitlesSizeAll" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/vHeightWidthAll"
+                android:layout_marginBottom="@dimen/vMarginTopBottomAll"
+                android:layout_marginTop="@dimen/vMarginTopBottomAll"
+                android:background="@android:color/darker_gray" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/enter_email"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="@dimen/tvTitlesSizeAll" />
+
+            <EditText
+                android:id="@+id/etPopupSecurityEmail"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/etHeightAll"
+                android:layout_gravity="center"
+                android:background="@drawable/grayborder"
+                android:inputType="textEmailAddress"
+                android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
+                android:singleLine="true"
+                android:textColor="@color/black"
+                android:textColorHint="@android:color/darker_gray"
+                android:textSize="@dimen/etSignInUserPassSize" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/tvPopupMarginTop"
+                android:text="@string/confirm_email"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="@dimen/tvTitlesSizeAll" />
+
+            <EditText
+                android:id="@+id/etPopupSecurityConfirmEmail"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/etHeightAll"
+                android:layout_gravity="center"
+                android:background="@drawable/grayborder"
+                android:inputType="textEmailAddress"
+                android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
+                android:singleLine="true"
+                android:textColor="@color/black"
+                android:textColorHint="@android:color/darker_gray"
+                android:textSize="@dimen/etSignInUserPassSize" />
+
+            <Button
+                android:id="@+id/btPopupSecurityEmailSubmit"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/btSignUpAllheight"
+                android:layout_marginTop="@dimen/btPopupSubmitMarginTopBottom"
+                android:background="@color/colorPrimary"
+                android:gravity="center"
+                android:paddingLeft="@dimen/btPopupSubmitPaddingLeftRight"
+                android:paddingRight="@dimen/btPopupSubmitPaddingLeftRight"
+                android:text="@string/submit"
+                android:textColor="@color/white"
+                android:textSize="@dimen/buttonGeneral" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lyPopUpSecurityOptions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/dialog_corner"
+            android:orientation="vertical"
+            android:padding="@dimen/vMarginTopBottomAll"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/tvPopupMarginTop"
+                android:text="@string/select_from_the_options_below"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/tvTitlesSizeAll" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/vHeightWidthAll"
+                android:layout_marginTop="@dimen/vMarginTopBottomAll"
+                android:background="@android:color/darker_gray" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/tvPopupMarginTop"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <!--<View-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_weight="1" />-->
+
+                <RadioGroup
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="9"
+                    android:orientation="vertical">
+
+                    <RadioButton
+                        android:id="@+id/rbPopupSecurityOptionsEmail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_5"
+                        android:button="@drawable/radio_button_popup"
+                        android:checked="true"
+                        android:textColor="@color/details" />
+
+                    <RadioButton
+                        android:id="@+id/rbPopupSecurityOptionsAlternateEmail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_5"
+                        android:button="@drawable/radio_button_popup"
+                        android:textColor="@color/details" />
+
+                    <RadioButton
+                        android:id="@+id/rbPopupSecurityOptionsQuestions"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="@dimen/margin_5"
+                        android:button="@drawable/radio_button_popup"
+                        android:gravity="center"
+                        android:text="@string/answer_security_question"
+                        android:textColor="@color/details" />
+
+                </RadioGroup>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="fill"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <LinearLayout
+                        android:id="@+id/lyPopupSecurityOptionsEmail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/lyPopupSecurityOptionsEmailMarginTop"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/send_email_to_primary_email_address"
+                            android:textSize="@dimen/rbRadioTextSize" />
+
+                        <TextView
+                            android:id="@+id/tvPopupSecurityOptionsEmail"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/rbRadioTextSize"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/lyPopupSecurityOptionsAlternateEmail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/lyPopupSecurityOptionsAlternateEmailMarginTop"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/send_email_to_alternate_email_address"
+                            android:textSize="@dimen/rbRadioTextSize" />
+
+                        <TextView
+                            android:id="@+id/tvPopupSecurityOptionsAlternateEmail"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/kevalcholeracholera369_gmail_com"
+                            android:textSize="@dimen/rbRadioTextSize"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/answer_security_question"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btPopupSecurityOptionsSubmit"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/btSignUpAllheight"
+                android:layout_gravity="center"
+                android:layout_marginBottom="@dimen/btPopupSubmitMarginTopBottom"
+                android:layout_marginTop="@dimen/btPopupSubmitMarginTopBottom"
+                android:background="@color/colorPrimary"
+                android:gravity="center"
+                android:paddingLeft="@dimen/btPopupSubmitPaddingLeftRight"
+                android:paddingRight="@dimen/btPopupSubmitPaddingLeftRight"
+                android:text="@string/submit"
+                android:textColor="@color/white"
+                android:textSize="@dimen/buttonGeneral" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lyPopUpPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/dialog_corner"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="@dimen/lyPadding10"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/tvPopupMarginTop"
+                android:gravity="center"
+                android:text="@string/new_password"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/tvTitlesSizeAll" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/vHeightWidthAll"
+                android:layout_marginBottom="@dimen/vMarginTopBottomAll"
+                android:background="@android:color/darker_gray" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/enter_new_password"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="@dimen/tvTitlesSizeAll" />
+
+            <EditText
+                android:id="@+id/etPopupSecurityPassword"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/etHeightAll"
+                android:layout_gravity="center"
+                android:background="@drawable/grayborder"
+                android:inputType="textPassword"
+                android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
+                android:singleLine="true"
+                android:textColor="@color/black"
+                android:textColorHint="@android:color/darker_gray"
+                android:textSize="@dimen/etSignInUserPassSize" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/tvPopupMarginTop"
+                android:text="@string/confirm_password"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="@dimen/tvTitlesSizeAll" />
+
+            <EditText
+                android:id="@+id/etPopupSecurityConfirmPassword"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/etHeightAll"
+                android:layout_gravity="center"
+                android:background="@drawable/grayborder"
+                android:inputType="textPassword"
+                android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
+                android:singleLine="true"
+                android:textColor="@color/black"
+                android:textColorHint="@android:color/darker_gray"
+                android:textSize="@dimen/etSignInUserPassSize" />
+
+            <Button
+                android:id="@+id/btPopupSecurityPasswordSubmit"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/btSignUpAllheight"
+                android:layout_marginBottom="@dimen/btPopupSubmitMarginTopBottom"
+                android:layout_marginTop="@dimen/btPopupSubmitMarginTopBottom"
+                android:background="@color/colorPrimary"
+                android:gravity="center"
+                android:paddingLeft="@dimen/btPopupSubmitPaddingLeftRight"
+                android:paddingRight="@dimen/btPopupSubmitPaddingLeftRight"
+                android:text="@string/submit"
+                android:textColor="@color/white"
+                android:textSize="@dimen/buttonGeneral" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lyPopUpQuestion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/vMarginTopBottomAll"
+            android:background="@drawable/dialog_corner"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="@dimen/lyPadding10"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/tvPopupMarginTop"
+                android:gravity="center"
+                android:text="@string/ans_sec_qus"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/tvTitlesSizeAll" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/vHeightWidthAll"
+                android:layout_marginBottom="@dimen/vMarginTopBottomAll"
+                android:layout_marginTop="@dimen/vMarginTopBottomAll"
+                android:background="@android:color/darker_gray" />
+
+            <TextView
+                android:id="@+id/tvPopupSecurityQuestion1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="@dimen/tvTitlesSizeAll" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/lyPopupSecurityAnswerMarginTop"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="@string/a"
+                    android:textColor="@color/details"
+                    android:textSize="@dimen/tvTitlesSizeAll" />
+
+                <EditText
+                    android:id="@+id/etPopupSecurityQuestionAnswer1"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/etHeightAll"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/etPopupSecurityQuestionChangeAnswerMarginStart"
+                    android:background="@drawable/grayborder"
+                    android:hint="@string/enter_ans"
+                    android:inputType="text"
+                    android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
+                    android:singleLine="true"
+                    android:textColor="@color/black"
+                    android:textColorHint="@android:color/darker_gray"
+                    android:textSize="@dimen/etSignInUserPassSize" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvPopupSecurityQuestion2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/lyPadding10"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="@dimen/tvTitlesSizeAll" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/lyPopupSecurityAnswerMarginTop"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="@string/a"
+                    android:textColor="@color/details"
+                    android:textSize="@dimen/tvTitlesSizeAll" />
+
+                <EditText
+                    android:id="@+id/etPopupSecurityQuestionAnswer2"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/etHeightAll"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/etPopupSecurityQuestionChangeAnswerMarginStart"
+                    android:background="@drawable/grayborder"
+                    android:hint="@string/enter_ans"
+                    android:inputType="text"
+                    android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
+                    android:singleLine="true"
+                    android:textColor="@color/black"
+                    android:textColorHint="@android:color/darker_gray"
+                    android:textSize="@dimen/etSignInUserPassSize" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btPopupSecurityQuestionConfirm"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/btSignUpAllheight"
+                android:layout_marginBottom="@dimen/btPopupSubmitMarginTopBottom"
+
+                android:layout_marginTop="@dimen/btPopupSubmitMarginTopBottom"
+                android:background="@color/colorPrimary"
+                android:gravity="center"
+                android:paddingLeft="40dp"
+                android:paddingRight="40dp"
+                android:text="@string/confirm"
+                android:textColor="@color/white"
+                android:textSize="@dimen/buttonGeneral" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lyPopUpQuestionChanges"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/dialog_corner"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="@dimen/lyPadding10"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/answer_security_question"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/tvTitlesSizeAll" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/vHeightWidthAll"
+                android:layout_marginBottom="@dimen/vMarginTopBottomAll"
+                android:layout_marginTop="@dimen/vMarginTopBottomAll"
+                android:background="@android:color/darker_gray" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/q"
+                    android:textSize="@dimen/tvTitlesSizeAll" />
+
+                <EditText
+                    android:id="@+id/etPopupSecurityQuestionChangeQuestion1"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/etHeightAll"
+                    android:layout_marginLeft="@dimen/etPopupSecurityQuestionChangeQuestionMarginStart"
+                    android:background="@drawable/grayborder"
+                    android:clickable="true"
+                    android:cursorVisible="false"
+                    android:drawableRight="@mipmap/imgdropdown"
+                    android:focusable="false"
+                    android:padding="@dimen/etPopupSecurityQuestionChangeAnswerPadding"
+                    android:singleLine="true"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="@dimen/tvTitlesSizeAll" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/lyPopupSecurityQuestionChangeAnswerMarginTop"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="@string/a"
+                    android:textSize="@dimen/tvTitlesSizeAll" />
+
+                <EditText
+                    android:id="@+id/etPopupSecurityQuestionChangeAnswer1"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/etHeightAll"
+                    android:layout_marginLeft="@dimen/etPopupSecurityQuestionChangeAnswerMarginStart"
+                    android:background="@drawable/grayborder"
+                    android:padding="@dimen/etPopupSecurityQuestionChangeAnswerPadding"
+                    android:singleLine="true"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="@dimen/tvTitlesSizeAll" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/lyPopupSecurityQuestionChangeQuestionMarginTop"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/q"
+                    android:textSize="@dimen/tvTitlesSizeAll" />
+
+                <EditText
+                    android:id="@+id/etPopupSecurityQuestionChangeQuestion2"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/etHeightAll"
+                    android:layout_marginLeft="@dimen/etPopupSecurityQuestionChangeQuestionMarginStart"
+                    android:background="@drawable/grayborder"
+                    android:clickable="true"
+                    android:cursorVisible="false"
+                    android:drawableRight="@mipmap/imgdropdown"
+                    android:focusable="false"
+                    android:padding="@dimen/etPopupSecurityQuestionChangeAnswerPadding"
+                    android:singleLine="true"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="@dimen/tvTitlesSizeAll" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/lyPopupSecurityQuestionChangeAnswerMarginTop"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="@string/a"
+                    android:textSize="@dimen/tvTitlesSizeAll" />
+
+                <EditText
+                    android:id="@+id/etPopupSecurityQuestionChangeAnswer2"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/etHeightAll"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/etPopupSecurityQuestionChangeAnswerMarginStart"
+                    android:background="@drawable/grayborder"
+                    android:inputType="text"
+                    android:padding="@dimen/etPopupSecurityQuestionChangeAnswerPadding"
+                    android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
+                    android:singleLine="true"
+                    android:textColor="@color/black"
+                    android:textColorHint="@android:color/darker_gray"
+                    android:textSize="@dimen/etSignInUserPassSize" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btPopupSecurityQuestionChangeConfirm"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/btSignUpAllheight"
+                android:layout_marginBottom="@dimen/btPopupSubmitMarginTopBottom"
+                android:layout_marginTop="@dimen/btPopupSubmitMarginTopBottom"
+                android:background="@color/colorPrimary"
+                android:gravity="center"
+                android:paddingLeft="@dimen/btPopupSubmitPaddingLeftRight"
+                android:paddingRight="@dimen/btPopupSubmitPaddingLeftRight"
+                android:text="@string/confirm"
+                android:textColor="@color/white"
+                android:textSize="@dimen/buttonGeneral" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lyPopupBookSuccess"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/lyPadding10"
+            android:background="@drawable/dialog_corner"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="@dimen/_20_margin_padding"
+            android:visibility="gone">
+
+            <ImageView
+                android:layout_width="@dimen/ivPopImageWidthHeightAll"
+                android:layout_height="@dimen/ivPopImageWidthHeightAll"
+                android:src="@mipmap/img_ok" />
+
+            <TextView
+                android:id="@+id/tvDialogAllSuccess"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/tvPopupMarginTop"
+                android:gravity="center"
+                android:textColor="@color/heading"
+                android:textSize="@dimen/tvTitlesSizeAll" />
+
+            <Button
+                android:id="@+id/btPopupBookSuccessOk"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/btSignUpAllheight"
+                android:layout_marginBottom="@dimen/btPopupSubmitMarginTopBottom"
+                android:background="@color/colorPrimary"
+                android:gravity="center"
+                android:paddingLeft="@dimen/btPopupSubmitPaddingLeftRight"
+                android:paddingRight="@dimen/btPopupSubmitPaddingLeftRight"
+                android:text="@string/ok"
+                android:textColor="@color/white"
+                android:textSize="@dimen/buttonGeneral" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lyPopupBookError"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/lyPadding10"
+            android:background="@drawable/dialog_corner"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="@dimen/_20_margin_padding"
+            android:visibility="gone">
+
+            <ImageView
+                android:layout_width="@dimen/ivPopImageWidthHeightAll"
+                android:layout_height="@dimen/ivPopImageWidthHeightAll"
+                android:src="@mipmap/error" />
+
+            <TextView
+                android:id="@+id/tvDialogAllError"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/tvPopupMarginTop"
+                android:gravity="center"
+                android:textColor="@color/heading"
+                android:textSize="@dimen/tvTitlesSizeAll" />
+
+            <Button
+                android:id="@+id/btPopupBookErrorOk"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/btSignUpAllheight"
+                android:layout_marginBottom="@dimen/btPopupSubmitMarginTopBottom"
+                android:background="@color/colorPrimary"
+                android:gravity="center"
+                android:paddingLeft="@dimen/btPopupSubmitPaddingLeftRight"
+                android:paddingRight="@dimen/btPopupSubmitPaddingLeftRight"
+                android:text="@string/ok"
+                android:textColor="@color/white"
+                android:textSize="@dimen/buttonGeneral" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lyPopUpCancelRide"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/dialog_corner"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="@dimen/lyPadding10"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/tvPopupMarginTop"
+                android:gravity="center"
+                android:text="@string/cancel_title"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/text15" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/vHeightWidthAll"
+                android:layout_marginLeft="@dimen/tvElementCardListMarginStartEnd10"
+                android:layout_marginRight="@dimen/tvElementCardListMarginStartEnd10"
+                android:background="@color/disable_55" />
+
+            <TextView
+                android:id="@+id/tvDialogCancelText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/tvPopupMarginTop"
+                android:gravity="center"
+                android:textSize="@dimen/text15" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/lyPopupCancelRideOkCancelMarginBottom"
+                android:layout_marginTop="@dimen/lyPopupCancelRideOkCancelMarginTop"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvPopupCancelRideCancel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/tvPopupCancelRideMarginStartEnd"
+                    android:layout_weight="1"
+                    android:background="@color/colorPrimary"
+                    android:gravity="center"
+                    android:padding="@dimen/tvPopupCancelRidePadding"
+                    android:text="@string/no"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/tvTitlesSizeAll" />
+
+                <TextView
+                    android:id="@+id/tvPopupCancelRideOk"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/tvPopupCancelRideCancelMarginStart"
+                    android:layout_marginRight="@dimen/tvPopupCancelRideMarginStartEnd"
+                    android:layout_weight="1"
+                    android:background="@color/Yellow"
+                    android:gravity="center"
+                    android:padding="@dimen/tvPopupCancelRidePadding"
+                    android:text="@string/ye"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/tvTitlesSizeAll" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lyPopUpFeedback"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/tvTitlesSizeAll"
+            android:layout_marginRight="@dimen/tvTitlesSizeAll"
+            android:background="@drawable/dialog_corner"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="@dimen/lyPadding10"
+            android:visibility="gone">
+
+            <ImageView
+                android:layout_width="@dimen/ivPopImageWidthHeightAll"
+                android:layout_height="@dimen/ivPopImageWidthHeightAll"
+                android:layout_marginTop="@dimen/lyPadding10"
+                android:src="@mipmap/like_blue" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/tvPopupMarginTop"
+                android:gravity="center"
+                android:text="@string/thank_you_for_submitting_your_feedback_this_will_help_us_to_improve_our_service"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="@dimen/tvTitlesSizeAll" />
+
+            <Button
+                android:id="@+id/btPopupFeedbackOk"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/btSignUpAllheight"
+                android:layout_marginBottom="@dimen/btPopupSubmitMarginTopBottom"
+                android:layout_marginTop="@dimen/btPopupSubmitMarginTopBottom"
+                android:background="@color/colorPrimary"
+                android:gravity="center"
+                android:paddingLeft="@dimen/btPopupSubmitPaddingLeftRight"
+                android:paddingRight="@dimen/btPopupSubmitPaddingLeftRight"
+                android:text="@string/ok"
+                android:textColor="@color/white"
+                android:textSize="@dimen/buttonGeneral" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lyPopUpLocatedAccount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/dialog_corner"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="@dimen/lyPadding10"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/we_have_located_your_account"
+                android:textColor="@color/colorAccent"
+                android:textSize="@dimen/tvTitlesSizeAll" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/vHeightWidthAll"
+                android:layout_marginBottom="@dimen/vMarginTopBottomAll"
+                android:layout_marginTop="@dimen/vMarginTopBottomAll"
+                android:background="@color/line_color" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="An Email has been sent to"
+                android:textColor="@android:color/darker_gray" />
+
+            <TextView
+                android:id="@+id/tvPopupLocatedEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorAccent"
+                android:textSize="12sp" />
+
+
+            <TextView
+                android:id="@+id/tvPopupLocatedDetail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/tvPopupMarginTop"
+                android:gravity="center"
+                android:text="@string/please_follow_the_instructions_to_recover_your_email_address_if_you_can_t_find_the_email_we_have_send_you_in_your_inbox_check_your_junk_mail"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="12sp" />
+
+            <Button
+                android:id="@+id/btPopupLocatedBack"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/btSignUpAllheight"
+                android:layout_marginBottom="@dimen/btPopupSubmitMarginTopBottom"
+                android:layout_marginTop="@dimen/btPopupSubmitMarginTopBottom"
+                android:background="@drawable/gray_blue"
+                android:gravity="center"
+                android:paddingLeft="@dimen/btPopupSubmitPaddingLeftRight"
+                android:paddingRight="@dimen/btPopupSubmitPaddingLeftRight"
+                android:text="@string/ok"
+                android:textColor="@color/white"
+                android:textSize="@dimen/buttonGeneral" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lyPopUpAfterRecovery"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+
+            android:orientation="vertical"
+            android:padding="@dimen/lyPadding10"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/tvPopupHead"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/thank_you"
+                android:textAllCaps="true"
+                android:textColor="@color/colorPrimary"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/vHeightWidthAll"
+                android:layout_marginBottom="@dimen/vMarginTopBottomAll"
+                android:layout_marginTop="@dimen/vMarginTopBottomAll"
+                android:background="@android:color/darker_gray" />
+
+
+            <TextView
+                android:id="@+id/tvPopupDetail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/your_recover_email_request_has_been_sent_to_our_taxinearu_support_team_once_they_receive_your_email_they_will_contact_you_within_24_48_hours"
+                android:textColor="@android:color/darker_gray" />
+
+            <Button
+                android:id="@+id/btPopupThankingRecoveryBack"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/btSignUpAllheight"
+                android:layout_marginBottom="@dimen/btPopupSubmitMarginTopBottom"
+                android:layout_marginTop="@dimen/btPopupSubmitMarginTopBottom"
+                android:background="@color/colorPrimary"
+                android:gravity="center"
+                android:paddingLeft="@dimen/btPopupSubmitPaddingLeftRight"
+                android:paddingRight="@dimen/btPopupSubmitPaddingLeftRight"
+                android:text="@string/ok"
+                android:textColor="@color/white"
+                android:textSize="@dimen/buttonGeneral" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lyPopUpYourDetail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="@dimen/lyPadding10"
+            android:visibility="gone">
+
+            <ImageView
+                android:layout_width="@dimen/ivPopImageWidthHeightAll"
+                android:layout_height="@dimen/ivPopImageWidthHeightAll"
+                android:layout_margin="@dimen/tvPopupMarginTop"
+                android:src="@mipmap/form" />
+
+            <TextView
+                android:id="@+id/tvPopupYourDetail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/tvPopupMarginTop"
+                android:gravity="center"
+                android:text="@string/your_lost_and_found_form_has_been_sent_to_our_taxinearu_support_team_we_will_contact_you_within_24_48_hours"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="@dimen/tvTitlesSizeAll" />
+
+            <Button
+                android:id="@+id/btPopupYourDetailOk"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/btSignUpAllheight"
+                android:layout_marginBottom="@dimen/btPopupSubmitMarginTopBottom"
+                android:layout_marginTop="@dimen/btPopupSubmitMarginTopBottom"
+                android:background="@color/colorPrimary"
+                android:gravity="center"
+                android:paddingLeft="@dimen/btPopupSubmitPaddingLeftRight"
+                android:paddingRight="@dimen/btPopupSubmitPaddingLeftRight"
+                android:text="@string/ok"
+                android:textColor="@color/white"
+                android:textSize="@dimen/buttonGeneral" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lyPopUpWithOutMail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/dialog_corner"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="@dimen/lyPadding10"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Thank You !"
+                android:textColor="@color/colorAccent"
+                android:textSize="@dimen/tvTitlesSizeAll" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/vHeightWidthAll"
+                android:layout_marginBottom="@dimen/vMarginTopBottomAll"
+                android:layout_marginTop="@dimen/vMarginTopBottomAll"
+                android:background="@color/line_color" />
+
+
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorAccent"
+                android:textSize="12sp" />
+
+
+            <TextView
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/tvPopupMarginTop"
+                android:gravity="center"
+                android:text="@string/please_follow_the_instructions_to_recover_your_email_address_if_you_can_t_find_the_email_we_have_send_you_in_your_inbox_check_your_junk_mail"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="12sp" />
+
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorAccent"
+                android:textSize="12sp" />
+
+            <Button
+                android:id="@+id/btPopupWithOutMail"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/btSignUpAllheight"
+                android:layout_marginBottom="@dimen/btPopupSubmitMarginTopBottom"
+                android:layout_marginTop="@dimen/btPopupSubmitMarginTopBottom"
+                android:background="@drawable/gray_blue"
+                android:gravity="center"
+                android:paddingLeft="@dimen/btPopupSubmitPaddingLeftRight"
+                android:paddingRight="@dimen/btPopupSubmitPaddingLeftRight"
+                android:text="@string/ok"
+                android:textColor="@color/white"
+                android:textSize="@dimen/buttonGeneral" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lyPopUpGen"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/dialog_corner"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+
+            <TextView
+                android:id="@+id/tvPopupGen"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/tvPopupMarginTop"
+                android:gravity="center"
+                android:padding="20dp"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/vHeightWidthAll"
+                android:layout_marginTop="@dimen/vMarginTopBottomAll"
+                android:background="@color/line_color" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btPopupGen1"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="@dimen/btSignUpAllheight"
+                    android:background="@null"
+                    android:gravity="center"
+                    android:visibility="gone"
+                    android:text="@string/cancel"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="@dimen/buttonGeneral" />
+                <View
+                    android:layout_width="1dp"
+                    android:background="@color/black"
+                    android:layout_height="match_parent"/>
+
+                <Button
+                    android:id="@+id/btPopupGen"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/btSignUpAllheight"
+                    android:background="@null"
+                    android:gravity="center"
+                    android:text="@string/ok"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="@dimen/buttonGeneral" />
+            </LinearLayout>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/lyPopUpForseRide"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/dialog_corner"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="@dimen/lyPadding10"
+            android:visibility="gone">
+
+            <ImageView
+                android:layout_width="@dimen/ivPopImageWidthHeightAll"
+                android:layout_height="@dimen/ivPopImageWidthHeightAll"
+                android:src="@mipmap/error" />
+
+
+            <TextView
+                android:id="@+id/tvPopupCancelForse"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/tvPopupMarginTop"
+                android:gravity="center"
+                android:textColor="@color/gray_55"
+                android:textSize="@dimen/text15" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/lyPopupCancelRideOkCancelMarginBottom"
+                android:layout_marginTop="@dimen/lyPopupCancelRideOkCancelMarginTop"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvPopupCancelForseCancel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/tvPopupCancelRideMarginStartEnd"
+                    android:layout_weight="1"
+                    android:background="@color/colorPrimary"
+                    android:gravity="center"
+                    android:padding="@dimen/tvPopupCancelRidePadding"
+                    android:text="@string/no"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/tvTitlesSizeAll" />
+
+                <TextView
+                    android:id="@+id/tvPopupCancelForseOk"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/tvPopupCancelRideCancelMarginStart"
+                    android:layout_marginRight="@dimen/tvPopupCancelRideMarginStartEnd"
+                    android:layout_weight="1"
+                    android:background="@color/Yellow"
+                    android:gravity="center"
+                    android:padding="@dimen/tvPopupCancelRidePadding"
+                    android:text="@string/ye"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/tvTitlesSizeAll" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</android.support.design.widget.CoordinatorLayout>

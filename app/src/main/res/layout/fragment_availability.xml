@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/lyPaddingMainAll">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/ivFragmentAvailabilityStatus"
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:layout_gravity="center" />
+
+            <TextView
+                android:id="@+id/tvAvailabilityDriverNmae"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/gray_55"
+                android:textSize="@dimen/textHead" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvAvailabilityWaitingTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/tvAvailabilityWaitingTimeMarginTop"
+            android:gravity="center"
+            android:textSize="12sp"
+            android:textColor="@color/text_color" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/vHeightWidthAll"
+            android:layout_marginBottom="@dimen/vMarginTopBottomAll"
+            android:layout_marginTop="@dimen/vMarginTopBottomAll"
+            android:background="@color/line_color2" />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="@dimen/textHead"
+            android:text="@string/availability_text_1"
+            android:textColor="@color/text_color" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/vHeightWidthAll"
+            android:layout_marginBottom="@dimen/vMarginTopBottomAll"
+            android:layout_marginTop="@dimen/vMarginTopBottomAll"
+            android:background="@color/line_color2" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="@dimen/textHead"
+            android:text="@string/availability_text_2"
+            android:textColor="@color/text_color" />
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/vHeightWidthAll"
+            android:layout_marginBottom="@dimen/vMarginTopBottomAll"
+            android:layout_marginTop="@dimen/vMarginTopBottomAll"
+            android:background="@color/line_color2" />
+
+    </LinearLayout>
+</ScrollView>

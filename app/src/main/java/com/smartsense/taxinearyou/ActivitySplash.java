@@ -9,17 +9,24 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
+import com.mpt.storage.SharedPreferenceUtil;
+import com.smartsense.taxinearyou.utill.Constants;
 import com.smartsense.taxinearyou.utill.LocationSettingsHelper;
 
 
-public class ActivitySplash extends AppCompatActivity{
+public class ActivitySplash extends AppCompatActivity {
     private LocationSettingsHelper mSettingsHelper;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // TODO Auto-generated method stub
-
+//        try {
+//            PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
+//            startActivityForResult(builder.build(this), 1);
+//        } catch (GooglePlayServicesRepairableException | GooglePlayServicesNotAvailableException e) {
+//            e.printStackTrace();
+//        }
 
         if (Build.VERSION.SDK_INT < 16) {
             getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
@@ -69,7 +76,10 @@ public class ActivitySplash extends AppCompatActivity{
 //                        }
 //                    } else
 //                    startActivity(new Intent(getBaseContext(), NoInternetConnection.class));
-                        startActivity(new Intent(getBaseContext(), ActivityTaxiNearYou.class));
+                    if (SharedPreferenceUtil.contains(Constants.PrefKeys.PREF_ACCESS_TOKEN))
+                        startActivity(new Intent(getBaseContext(), Search.class));
+                    else
+                        startActivity(new Intent(getBaseContext(), SignIn.class));
                     finish();
 
                 } catch (InterruptedException e) {
@@ -98,11 +108,6 @@ public class ActivitySplash extends AppCompatActivity{
                         break;
                 }
                 break;
-
         }
     }
-
-
-
-
 }

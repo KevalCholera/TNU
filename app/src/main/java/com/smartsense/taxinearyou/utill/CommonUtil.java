@@ -1,5 +1,6 @@
 package com.smartsense.taxinearyou.utill;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.ProgressDialog;
@@ -12,32 +13,67 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.Rect;
 import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
+import android.os.Build;
+import android.os.Handler;
 import android.os.StrictMode;
 import android.provider.MediaStore;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.InputFilter;
+import android.text.Spanned;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.Base64;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.Request;
+import com.android.volley.Response;
 import com.mpt.storage.SharedPreferenceUtil;
+import com.onesignal.OneSignal;
+import com.smartsense.taxinearyou.GeneralInformation;
+import com.smartsense.taxinearyou.R;
+import com.smartsense.taxinearyou.Search;
+import com.smartsense.taxinearyou.SecurityQuestion;
+import com.smartsense.taxinearyou.SignIn;
+import com.smartsense.taxinearyou.SnackBar.TSnackbar;
+import com.smartsense.taxinearyou.TaxiNearYouApp;
 
 import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLEncoder;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.util.HashMap;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 //import org.apache.http.HttpStatus;
 
@@ -46,18 +82,20 @@ public class CommonUtil {
 
     static ProgressDialog pDialog;
     SQLiteDatabase sqLiteDatabase;
+    static AlertDialog alert;
 
     public static void showProgressDialog(Context activity, String msg) {
+        activity.setTheme(R.style.New_Style);
         pDialog = new ProgressDialog(activity);
 //        pDialog.getIndeterminateDrawable().setColorFilter(0xFFFF0000, android.graphics.PorterDuff.Mode.MULTIPLY);
         pDialog.setMessage(msg);
         pDialog.setCancelable(false);
         pDialog.show();
+        activity.setTheme(R.style.AppTheme);
     }
 
 
     public static void cancelProgressDialog() {
-        // pDialog = new ProgressDialog(activity);
         if (pDialog != null)
             pDialog.cancel();
     }
@@ -66,13 +104,75 @@ public class CommonUtil {
         return !TextUtils.isEmpty(strEmail) && android.util.Patterns.EMAIL_ADDRESS.matcher(strEmail).matches();
     }
 
-    public static void alertBox(Context context, String title, String msg) {
-//        Builder alert = new AlertDialog.Builder(context);
-//        alert.setTitle(title);
-//        alert.setMessage(msg);
-//        alert.setPositiveButton("OK", null);
-//        alert.show();
-        Toast.makeText(context, msg, Toast.LENGTH_LONG).show();
+    public static boolean isLegalPassword(String pass) {
+
+        Pattern p = Pattern.compile("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).+$", Pattern.DOTALL);
+        Matcher m = p.matcher(pass);
+
+        return m.find();
+    }
+
+    public static boolean isSpecialChar(String pass) {
+
+        Pattern p = Pattern.compile("[&@!#+]", Pattern.DOTALL);
+        Matcher m = p.matcher(pass);
+
+        return m.find();
+    }
+
+    public static void alertBox(final Activity context, final String msg) {
+//        final AlertDialog.Builder builder = new AlertDialog.Builder(context);
+//        builder.setCancelable(false);
+//        builder.setMessage(msg);
+//        builder.setPositiveButton(context.getResources().getString(R.string.ok), new DialogInterface.OnClickListener() {
+//            public void onClick(DialogInterface dialog, int id) {
+//                if (msg.equalsIgnoreCase(context.getResources().getString(R.string.event_complete))) {
+//                    context.finish();
+//                    context.setTheme(R.style.AppTheme);
+//                }
+//            }
+//        });
+//        builder.create();
+//        builder.show();
+
+        try {
+            final AlertDialog.Builder alertDialogs = new AlertDialog.Builder(context);
+            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            final View dialog = inflater.inflate(R.layout.dialog_all, null);
+            LinearLayout linearLayout;
+            Button button1;
+            linearLayout = (LinearLayout) dialog.findViewById(R.id.lyPopUpGen);
+            TextView tvPopupLocatedEmail = (TextView) dialog.findViewById(R.id.tvPopupGen);
+            if (context instanceof SecurityQuestion) {
+                tvPopupLocatedEmail.setGravity(Gravity.LEFT);
+            }
+            tvPopupLocatedEmail.setText(msg);
+            button1 = (Button) dialog.findViewById(R.id.btPopupGen);
+            linearLayout.setVisibility(View.VISIBLE);
+            button1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    alert.dismiss();
+                    if (msg.equalsIgnoreCase(context.getResources().getString(R.string.event_complete))) {
+                        context.finish();
+                        context.setTheme(R.style.AppTheme);
+                    } else if (context instanceof SecurityQuestion) {
+                        context.startActivity(new Intent(context, SignIn.class));
+                        context.finish();
+                    } else if (context instanceof GeneralInformation) {
+//                        context.finish();
+//                        context.setTheme(R.style.AppTheme);
+                    }
+                }
+            });
+            alertDialogs.setView(dialog);
+            alertDialogs.setCancelable(false);
+            alert = alertDialogs.create();
+            alert.show();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     static public ActionBar getActionBar(Activity a) {
@@ -161,8 +261,118 @@ public class CommonUtil {
         } else {
             return false;
         }
-
     }
+
+    public static void byToastMessage(Activity activity, String msg) {
+        activity.setTheme(R.style.New_Style);
+        Toast.makeText(activity, msg, Toast.LENGTH_SHORT).show();
+        activity.setTheme(R.style.AppTheme);
+    }
+
+    public static void errorToastShowing(Activity activity) {
+        activity.setTheme(R.style.New_Style);
+        Toast.makeText(activity, activity.getResources().getString(R.string.inter_error), Toast.LENGTH_SHORT).show();
+        activity.setTheme(R.style.AppTheme);
+    }
+
+    public static void successToastShowing(Activity activity, JSONObject jsonObject) {
+        activity.setTheme(R.style.New_Style);
+        Toast.makeText(activity, jsonObject.optString("msg"), Toast.LENGTH_SHORT).show();
+        activity.setTheme(R.style.AppTheme);
+    }
+
+    public static void jsonNullError(Activity activity) {
+        activity.setTheme(R.style.New_Style);
+        Toast.makeText(activity, activity.getResources().getString(R.string.something_wrong), Toast.LENGTH_SHORT).show();
+        activity.setTheme(R.style.AppTheme);
+    }
+
+    public static void conditionAuthentication(Activity activity, JSONObject jsonObject) {
+        activity.setTheme(R.style.New_Style);
+        if (jsonObject.has("json") && jsonObject.optJSONObject("json").has("errorCode") && jsonObject.optJSONObject("json").optInt("errorCode") == Constants.ErrorCode.UNAUTHENTICATED_OPERATION) {
+            Toast.makeText(activity, activity.getResources().getString(R.string.session_expire), Toast.LENGTH_SHORT).show();
+            SharedPreferenceUtil.clear();
+            SharedPreferenceUtil.save();
+            OneSignal.sendTag("emailId", "");
+            activity.startActivity(new Intent(activity, SignIn.class));
+            activity.finish();
+            activity.setTheme(R.style.AppTheme);
+        } else
+            successToastShowing(activity, jsonObject);
+    }
+
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+    public static void FitSystemUI(CoordinatorLayout coordinatorLayout) {
+        coordinatorLayout.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION);
+    }
+
+    public static void jsonRequestPOST(Activity activity, String msg, String urlType, HashMap<String, String> params, String tag, Response.Listener<JSONObject> requestListener, Response.ErrorListener errorListener) {
+        CommonUtil.showProgressDialog(activity, msg);
+        DataRequest dataRequest = new DataRequest(Request.Method.POST, urlType, params, requestListener, errorListener);
+        dataRequest.setRetryPolicy(new DefaultRetryPolicy(20000, 0, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        TaxiNearYouApp.getInstance().addToRequestQueue(dataRequest, tag);
+    }
+
+    public static void jsonRequestGET(Activity activity, String msg, String builder, String tag, Response.Listener<JSONObject> requestListener, Response.ErrorListener errorListener) {
+        CommonUtil.showProgressDialog(activity, msg);
+        DataRequest dataRequest = new DataRequest(Request.Method.GET, builder, null, requestListener, errorListener);
+        dataRequest.setRetryPolicy(new DefaultRetryPolicy(20000, 0, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        TaxiNearYouApp.getInstance().addToRequestQueue(dataRequest, tag);
+    }
+
+    public static void jsonRequestNoProgressBar(String builder, String tag, Response.Listener<JSONObject> requestListener, Response.ErrorListener errorListener) {
+        DataRequest dataRequest = new DataRequest(Request.Method.GET, builder, null, requestListener, errorListener);
+        dataRequest.setRetryPolicy(new DefaultRetryPolicy(20000, 0, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        TaxiNearYouApp.getInstance().addToRequestQueue(dataRequest, tag);
+    }
+
+    public static InputFilter textFilter = new InputFilter() {
+        @Override
+        public CharSequence filter(CharSequence c, int arg1, int arg2, Spanned arg3, int arg4, int arg5) {
+            StringBuilder sbText = new StringBuilder(c);
+            String text = sbText.toString();
+            if (text.contains(" ")) {
+                return "";
+            }
+            return c;
+        }
+    };
+
+    public static void handlerDialog(final AlertDialog alert, final LinearLayout linearLayout) {
+        Handler mHandler = new Handler();
+        Runnable mRunnable = new Runnable() {
+            public void run() {
+                alert.show();
+                alert.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
+                linearLayout.setVisibility(View.VISIBLE);
+            }
+        };
+        mHandler.postDelayed(mRunnable, 500);
+    }
+
+    public static String text(EditText editText) {
+
+        editText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                if (s.toString().equalsIgnoreCase(""))
+                    s = "";
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        return "";
+    }
+
 
 //    public Cursor rawQuery(DataBaseHelper dbHelper, String sqlQuery) {
 //        Log.i("sqlQuery", sqlQuery);
@@ -202,7 +412,7 @@ public class CommonUtil {
 //        return sqLiteDatabase.insert(table, nullColumnHack, values);
 //    }
 
-    public String BitMapToString(Bitmap bitmap) {
+    public static String BitMapToString(Bitmap bitmap) {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
         byte[] b = baos.toByteArray();
@@ -270,13 +480,40 @@ public class CommonUtil {
 
     static public void closeKeyboard(Activity a) {
         try {
-            InputMethodManager inputManager = (InputMethodManager) a.getSystemService(Context.INPUT_METHOD_SERVICE);
-
-            inputManager.hideSoftInputFromWindow(a.getCurrentFocus().getWindowToken(),
-                    InputMethodManager.HIDE_NOT_ALWAYS);
+//            View view = a.getCurrentFocus();
+//            if (view != null) {
+            if (isKeyboardVisible(a)) {
+                InputMethodManager imm = (InputMethodManager) a.getSystemService(Activity.INPUT_METHOD_SERVICE);
+                imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
+            }
         } catch (Exception e) {
-e.printStackTrace();
+            e.printStackTrace();
         }
+    }
+
+    public static boolean isKeyboardVisible(Activity activity) {
+        ///This method is based on the one described at http://stackoverflow.com/questions/4745988/how-do-i-detect-if-software-keyboard-is-visible-on-android-device
+        Rect r = new Rect();
+        View contentView = activity.findViewById(android.R.id.content);
+        contentView.getWindowVisibleDisplayFrame(r);
+        int screenHeight = contentView.getRootView().getHeight();
+
+        int keypadHeight = screenHeight - r.bottom;
+
+        return
+                (keypadHeight > screenHeight * 0.15);
+    }
+
+    public static void hideKeyboard(Context activityContext) {
+
+        InputMethodManager imm = (InputMethodManager)
+                activityContext.getSystemService(Context.INPUT_METHOD_SERVICE);
+
+        //android.R.id.content ( http://stackoverflow.com/a/12887919/2077479 )
+        View rootView = ((Activity) activityContext)
+                .findViewById(android.R.id.content).getRootView();
+
+        imm.hideSoftInputFromWindow(rootView.getWindowToken(), 0);
     }
 
 //    public static Boolean isOnline(Context context) {
@@ -379,5 +616,150 @@ e.printStackTrace();
         }
 
         return false;
+    }
+
+    public static String utf8Convert(StringBuilder builder, int apiKey) {
+        String url = "";
+        try {
+            url = Constants.BASE_URL + Constants.BASE_URL_POSTFIX + apiKey + "&json="
+                    + URLEncoder.encode(builder.toString(), "UTF8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        return url;
+    }
+
+    public static String getDecimal(Double x) {
+        NumberFormat formatter = new DecimalFormat("#0.00");
+        String s = formatter.format(x);
+        return s;
+    }
+
+    public static void showSnackBar(String msg, View view) {
+        TSnackbar snackbar = TSnackbar
+                .make(view, msg, TSnackbar.LENGTH_SHORT);
+        snackbar.setActionTextColor(Color.WHITE);
+        View snackbarView = snackbar.getView();
+        snackbarView.setBackgroundColor(Color.WHITE);
+        TextView textView = (TextView) snackbarView.findViewById(R.id.snackbar_text);
+        textView.setTextColor(Color.RED);
+        snackbar.show();
+    }
+
+    public static void openDialogs(final Activity activity, final String buton_click, int layout, int button, String successText, int textViewId) {
+
+        try {
+            final AlertDialog.Builder alertDialogs = new AlertDialog.Builder(activity);
+            LayoutInflater inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+            final View dialog = inflater.inflate(R.layout.dialog_all, null);
+            LinearLayout linearLayout = (LinearLayout) dialog.findViewById(layout);
+            Button button1 = (Button) dialog.findViewById(button);
+
+            TextView tvDialogAllSuccess = (TextView) dialog.findViewById(textViewId);
+            tvDialogAllSuccess.setText(successText);
+
+            linearLayout.setVisibility(View.VISIBLE);
+
+            button1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (buton_click.equalsIgnoreCase("Payment Details"))
+                        activity.startActivity(new Intent(activity, Search.class));
+                    if (buton_click.equalsIgnoreCase("Payment Details1"))
+                        activity.startActivity(new Intent(activity, Search.class).putExtra("checkWallet",true));
+                    else if (buton_click.equalsIgnoreCase("Recover Email"))
+                        activity.startActivity(new Intent(activity, SignIn.class));
+                    else if (buton_click.equalsIgnoreCase("Payment Fail"))
+                        activity.startActivity(new Intent(activity, Search.class).putExtra("checkFlag",true));
+                    alert.dismiss();
+                    activity.finish();
+                }
+            });
+            alertDialogs.setView(dialog);
+            alertDialogs.setCancelable(false);
+            alert = alertDialogs.create();
+            alert.show();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void openDialogs1(final Activity activity, final String buton_click, int layout, int button, String successText, int textViewId) {
+
+        try {
+            final AlertDialog.Builder alertDialogs = new AlertDialog.Builder(activity);
+            LayoutInflater inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+            final View dialog = inflater.inflate(R.layout.dialog_all, null);
+            LinearLayout linearLayout = (LinearLayout) dialog.findViewById(layout);
+            Button button1 = (Button) dialog.findViewById(button);
+
+            TextView tvDialogAllSuccess = (TextView) dialog.findViewById(textViewId);
+            tvDialogAllSuccess.setText(successText);
+
+            linearLayout.setVisibility(View.VISIBLE);
+
+            button1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    alert.dismiss();
+
+                }
+            });
+            alertDialogs.setView(dialog);
+            alertDialogs.setCancelable(false);
+            alert = alertDialogs.create();
+            alert.show();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void ToastShowing(Activity a, String s) {
+        Toast.makeText(a, s, Toast.LENGTH_SHORT).show();
+    }
+
+    public static void storeUserData(JSONObject jsonObject) {
+        if (jsonObject.optString("userId").equalsIgnoreCase(SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_ID, ""))) {
+            SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_USER_FULLNAME, jsonObject.optString("firstName") + " " + jsonObject.optString("lastName"));
+            SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_USER_FIRST, jsonObject.optString("firstName"));
+            SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_USER_LAST, jsonObject.optString("lastName"));
+            SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_USER_EMAIL, jsonObject.optString("primaryEmailId"));
+            SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_USER_ALTERNATE_EMAIL, jsonObject.optString("alternateEmailId"));
+            SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_USER_MNO, jsonObject.optString("mobileNo"));
+            SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_USER_PROIMG, Constants.BASE_URL_IMAGE_POSTFIX + jsonObject.optString("profilePic"));
+            SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_USER_STATUS, jsonObject.optString("isActivated"));
+            SharedPreferenceUtil.putValue(Constants.PrefKeys.RECEIVE_ORG_OFFERS, jsonObject.optString("receiveOrgOffers"));
+            SharedPreferenceUtil.putValue(Constants.PrefKeys.RECEIVE_TNU_OFFERS, jsonObject.optString("receiveTnuOffers"));
+            SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_QUESTION1, jsonObject.optString("secQ1"));
+            SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_QUESTION2, jsonObject.optString("secQ2"));
+            SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_ANSWER1, jsonObject.optString("ans1"));
+            SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_ANSWER2, jsonObject.optString("ans2"));
+            SharedPreferenceUtil.save();
+        }
+    }
+
+    public static boolean CheckCreditCard(String ccNumber)
+    {
+        int sum = 0;
+        boolean alternate = false;
+        for (int i = ccNumber.length() - 1; i >= 0; i--)
+        {
+            int n = Integer.parseInt(ccNumber.substring(i, i + 1));
+            if (alternate)
+            {
+                n *= 2;
+                if (n > 9)
+                {
+                    n = (n % 10) + 1;
+                }
+            }
+            sum += n;
+            alternate = !alternate;
+        }
+        return (sum % 10 == 0);
     }
 }

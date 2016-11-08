@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/clRecoverEmail"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:fitsSystemWindows="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <include
+            layout="@layout/element_appbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
+
+            <!--android:layout_marginBottom="40dp"-->
+            <!--android:layout_marginTop="80dp"-->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/lyResetPaddingAll">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/btSignUpAllheight"
+                    android:drawablePadding="@dimen/tvPaymentDetailsDrawableTNUPadding"
+                    android:gravity="fill"
+                    android:text="Card Number :"
+                    android:textColor="@color/background"
+                    android:textSize="@dimen/textHead" />
+
+                <EditText
+                    android:id="@+id/etCardSaveNo"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/etHeightAll"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:background="@drawable/grayborder"
+                    android:hint="Enter card number"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:maxLength="16"
+                    android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
+                    android:singleLine="true"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/hintColor"
+                    android:textSize="@dimen/etSignUpSizeAll" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/btSignUpAllheight"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="5dp"
+                    android:gravity="fill"
+                    android:text="Expiry Date :"
+                    android:textColor="@color/background"
+                    android:textSize="@dimen/textHead" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/etCardSaveMonth"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/etHeightAll"
+                        android:layout_gravity="center"
+                        android:layout_marginRight="@dimen/etSignUpPersonNameMarginEnd"
+                        android:layout_weight="1"
+                        android:background="@drawable/grayborder"
+                        android:clickable="true"
+                        android:cursorVisible="false"
+                        android:drawableRight="@mipmap/imgdropdown"
+                        android:focusable="false"
+                        android:hint="Enter month"
+                        android:imeOptions="actionNext"
+                        android:inputType="number"
+                        android:maxLength="2"
+                        android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
+                        android:singleLine="true"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/hintColor"
+                        android:textSize="@dimen/etSignUpSizeAll" />
+
+                    <EditText
+                        android:id="@+id/etCardSaveYear"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/etHeightAll"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:background="@drawable/grayborder"
+                        android:clickable="true"
+                        android:cursorVisible="false"
+                        android:drawableRight="@mipmap/imgdropdown"
+                        android:focusable="false"
+                        android:hint="Enter year"
+                        android:imeOptions="actionNext"
+                        android:inputType="number"
+                        android:maxLength="4"
+                        android:nextFocusForward="@+id/etSignUpContact"
+                        android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
+                        android:singleLine="true"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/hintColor"
+                        android:textSize="@dimen/etSignUpSizeAll" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/btSignUpAllheight"
+                    android:drawablePadding="@dimen/tvPaymentDetailsDrawableTNUPadding"
+                    android:gravity="fill"
+                    android:text="CVV Number :"
+                    android:textColor="@color/background"
+                    android:textSize="@dimen/textHead" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/etCardSaveSecurity"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/etHeightAll"
+                        android:layout_weight="1"
+                        android:background="@drawable/grayborder"
+                        android:hint="Enter CVV number"
+                        android:imeOptions="actionNext"
+                        android:inputType="numberPassword"
+                        android:maxLength="4"
+                        android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
+                        android:singleLine="true"
+                        android:layout_marginRight="5dp"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/hintColor"
+                        android:textSize="@dimen/etSignUpSizeAll" />
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/etHeightAll"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:background="@drawable/grayborder"
+                        android:clickable="true"
+                        android:cursorVisible="false"
+                        android:drawableRight="@mipmap/imgdropdown"
+                        android:focusable="false"
+                        android:hint="Enter year"
+                        android:imeOptions="actionNext"
+                        android:inputType="number"
+                        android:maxLength="4"
+                        android:nextFocusForward="@+id/etSignUpContact"
+                        android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
+                        android:singleLine="true"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/hintColor"
+                        android:textSize="@dimen/etSignUpSizeAll"
+                        android:visibility="invisible" />
+
+                </LinearLayout>
+
+
+                <CheckBox
+                    android:id="@+id/cbCardSave"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="-10dp"
+                    android:button="@drawable/radio_button_event_booking"
+                    android:checked="true"
+                    android:text="Save the card for future payments"
+                    android:visibility="visible" />
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btCardSavePay"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/btSignUpAllheight"
+        android:layout_gravity="bottom"
+        android:background="@color/Yellow"
+        android:text="PAY NOW"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="@dimen/buttonGeneral" />
+
+
+</android.support.design.widget.CoordinatorLayout>

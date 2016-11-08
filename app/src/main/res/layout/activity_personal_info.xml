@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/clPersonalInfo"
+    android:layout_width="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:layout_height="fill_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:orientation="vertical">
+
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbarAll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorAccent"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+            <TextView
+                android:id="@+id/toolbarText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginRight="10dp"
+                android:text="00:00"
+                android:visibility="gone"
+                android:textColor="@color/white" />
+        </android.support.v7.widget.Toolbar>
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+            <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="@color/white">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/lyPaddingMainAll">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/first_name"
+                        android:textColor="@color/background"
+                        android:textSize="@dimen/etSignUpSizeAll" />
+
+                    <EditText
+                        android:id="@+id/etPersonalInfoName"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@null"
+                        android:enabled="false"
+                        android:inputType="textCapSentences"
+                        android:paddingBottom="@dimen/vPersonalInfoMarginTopBottomAll"
+                        android:paddingRight="@dimen/etPersonalInfoPadding"
+                        android:singleLine="true"
+                        android:textColor="@color/disable_55"
+                        android:textColorHint="@color/disable_55"
+                        android:textSize="@dimen/etSignUpSizeAll" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/vAccountAllHeight"
+                        android:background="@color/light_Gray" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/vPersonalInfoMarginTopBottomAll"
+                        android:text="@string/last_name"
+                        android:textColor="@color/background"
+                        android:textSize="@dimen/etSignUpSizeAll" />
+
+                    <EditText
+                        android:id="@+id/etPersonalInfolastName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:enabled="false"
+                        android:inputType="textCapSentences"
+                        android:paddingBottom="@dimen/vPersonalInfoMarginTopBottomAll"
+                        android:paddingRight="@dimen/etPersonalInfoPadding"
+                        android:singleLine="true"
+                        android:textColor="@color/disable_55"
+                        android:textColorHint="@color/disable_55"
+                        android:textSize="@dimen/etSignUpSizeAll" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/vAccountAllHeight"
+                        android:background="@color/light_Gray" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/vPersonalInfoMarginTopBottomAll"
+                        android:text="@string/mobile_no"
+                        android:textColor="@color/background"
+                        android:textSize="@dimen/etSignUpSizeAll" />
+
+                    <EditText
+                        android:id="@+id/etPersonalInfoNo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:enabled="false"
+                        android:inputType="number"
+                        android:paddingBottom="@dimen/vPersonalInfoMarginTopBottomAll"
+                        android:paddingRight="@dimen/etPersonalInfoPadding"
+                        android:singleLine="true"
+                        android:textColor="@color/disable_55"
+                        android:textColorHint="@color/disable_55"
+                        android:textSize="@dimen/etSignUpSizeAll" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/vAccountAllHeight"
+                        android:background="@color/light_Gray" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/vPersonalInfoMarginTopBottomAll"
+                        android:text="@string/email_add"
+                        android:textColor="@color/background"
+                        android:textSize="@dimen/etSignUpSizeAll" />
+
+                    <EditText
+                        android:id="@+id/etPersonalInfoEmail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:enabled="false"
+                        android:inputType="textEmailAddress"
+                        android:paddingBottom="@dimen/vPersonalInfoMarginTopBottomAll"
+                        android:paddingRight="@dimen/etPersonalInfoPadding"
+                        android:singleLine="true"
+                        android:textColor="@color/disable_55"
+                        android:textColorHint="@color/disable_55"
+                        android:textSize="@dimen/etSignUpSizeAll" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/vAccountAllHeight"
+                        android:background="@color/light_Gray" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
+                        android:text="@string/add_info"
+                        android:textColor="@color/background"
+                        android:textSize="@dimen/textDetail" />
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="3dp"
+                        android:text="@string/e.g"
+                        android:textColor="@color/disable_55"
+                        android:textSize="8sp" />
+
+                    <EditText
+                        android:id="@+id/etPersonalInfoAddInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/etLongTextHeightAll"
+                        android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
+                        android:background="@drawable/grayborder2"
+                        android:gravity="top"
+                        android:imeOptions="actionDone"
+                        android:maxLength="200"
+                        android:padding="@dimen/vPersonalInfoMarginTopBottomAll"
+                        android:scrollbars="vertical"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/light_Gray"
+                        android:textSize="@dimen/etSignUpSizeAll" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
+                        android:text="@string/how_did_you_hear_about_us"
+                        android:textColor="@color/background"
+                        android:textSize="@dimen/textDetail" />
+
+                    <LinearLayout
+                        android:id="@+id/etInfoSocial"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
+                        android:background="@drawable/grayborder2"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <Spinner
+                            android:id="@+id/spPersonalInfoAd"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/margin_5"
+                            android:layout_weight="1"
+                            android:padding="@dimen/lyPadding10" />
+
+                        <ImageView
+                            android:id="@+id/ivPersonalInfoSpinner"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@mipmap/imgdropdown"
+                            android:visibility="gone" />
+                    </LinearLayout>
+                </LinearLayout>
+            </ScrollView>
+
+            <Button
+                android:id="@+id/btInfoConfirmNext"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/btSignUpAllheight"
+                android:layout_gravity="center_horizontal"
+                android:background="@color/Yellow"
+                android:text="@string/confirm_amp_next"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="@dimen/buttonGeneral" />
+
+        </LinearLayout>
+    </LinearLayout>
+</android.support.design.widget.CoordinatorLayout>

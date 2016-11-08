@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/clSecurityQuestion"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@mipmap/imgappbackground">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/lyMarginMainAll"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/btSecurityBack"
+                android:layout_width="12dp"
+                android:layout_height="18dp"
+                android:layout_marginBottom="@dimen/tvSignUpSignUpMarginBottom"
+                android:layout_marginTop="@dimen/btSignUpAllMarginTop"
+                android:src="@mipmap/imgback" />
+
+            <ImageView
+                android:layout_width="160dp"
+                android:layout_height="72dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="5dp"
+                android:background="@mipmap/imgtnulogo" />
+        </RelativeLayout>
+
+        <EditText
+            android:id="@+id/etSecurityQuestion1"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/btSignUpAllheight"
+            android:layout_marginLeft="@dimen/etSignUpContactMarginStartEnd"
+            android:layout_marginRight="@dimen/etSignUpContactMarginStartEnd"
+            android:background="@drawable/grayborder"
+            android:clickable="true"
+            android:cursorVisible="false"
+            android:drawableRight="@mipmap/imgdropdown"
+            android:focusable="false"
+            android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
+            android:singleLine="true"
+            android:textColor="@color/black"
+            android:textSize="@dimen/etSignUpSizeAll" />
+
+        <EditText
+            android:id="@+id/etSecurityAnswer1"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/btSignUpAllheight"
+            android:layout_marginLeft="@dimen/etSignUpContactMarginStartEnd"
+            android:layout_marginRight="@dimen/etSignUpContactMarginStartEnd"
+            android:layout_marginTop="@dimen/etSecurityAnswerMarginTop"
+            android:background="@drawable/grayborder"
+            android:hint="@string/security_answer"
+            android:inputType="textCapSentences"
+            android:nextFocusDown="@+id/etSecurityAnswer2"
+            android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
+            android:singleLine="true"
+            android:textColor="@color/black"
+            android:textColorHint="@color/hintColor"
+            android:textSize="@dimen/etSignUpSizeAll" />
+
+        <EditText
+            android:id="@+id/etSecurityQuestion2"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/btSignUpAllheight"
+            android:layout_marginLeft="@dimen/etSignUpContactMarginStartEnd"
+            android:layout_marginRight="@dimen/etSignUpContactMarginStartEnd"
+            android:layout_marginTop="@dimen/etSecurityAnswerMarginTop"
+            android:background="@drawable/grayborder"
+            android:clickable="true"
+            android:cursorVisible="false"
+            android:drawableRight="@mipmap/imgdropdown"
+            android:focusable="false"
+            android:imeOptions="actionNext"
+            android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
+            android:singleLine="true"
+            android:textColor="@color/black"
+            android:textSize="@dimen/etSignUpSizeAll" />
+
+        <EditText
+            android:id="@+id/etSecurityAnswer2"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/btSignUpAllheight"
+            android:layout_marginLeft="@dimen/etSignUpContactMarginStartEnd"
+            android:layout_marginRight="@dimen/etSignUpContactMarginStartEnd"
+            android:layout_marginTop="@dimen/etSecurityAnswerMarginTop"
+            android:background="@drawable/grayborder"
+            android:hint="@string/security_answer"
+            android:inputType="textCapSentences"
+            android:paddingLeft="@dimen/etSignUpAllPaddingStartEnd"
+            android:singleLine="true"
+            android:textColor="@color/black"
+            android:textColorHint="@color/hintColor"
+            android:textSize="@dimen/etSignUpSizeAll" />
+
+        <CheckBox
+            android:id="@+id/cbSecurityFromOrganization"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/etSignUpContactMarginStartEnd"
+            android:layout_marginRight="@dimen/etSignUpContactMarginStartEnd"
+            android:layout_marginTop="3dp"
+            android:button="@drawable/checkbox"
+            android:checked="false"
+            android:paddingLeft="@dimen/tvMarginTopBottomStartEndAll"
+            android:text="@string/ReceiveOffersFromOrganization"
+            android:textColor="@color/black"
+            android:textSize="@dimen/cbCheckTextSizeAll" />
+
+        <CheckBox
+            android:id="@+id/cbSecurityAboutTaxinearu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/etSignUpContactMarginStartEnd"
+            android:layout_marginRight="@dimen/etSignUpContactMarginStartEnd"
+            android:layout_marginTop="2dp"
+            android:button="@drawable/checkbox"
+            android:checked="false"
+            android:paddingLeft="@dimen/tvMarginTopBottomStartEndAll"
+            android:text="@string/yes_i_would_like_to_receive_offers_and_infromation_about_products_and_services_about_taxinearu"
+            android:textSize="@dimen/cbCheckTextSizeAll" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/etSignUpContactMarginStartEnd"
+            android:layout_marginRight="@dimen/etSignUpContactMarginStartEnd"
+            android:layout_marginTop="2dp"
+            android:orientation="horizontal">
+
+
+            <CheckBox
+                android:id="@+id/cbSecurityFromPrivacyPolicy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:button="@drawable/checkbox"
+                android:checked="false"
+                android:paddingLeft="@dimen/tvMarginTopBottomStartEndAll"
+                android:text="@string/agree"
+                android:textSize="@dimen/cbCheckTextSizeAll" />
+
+            <TextView
+                android:id="@+id/tvSecurityTermsConditions"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/lySecurityQuestionCheckLayoutPaddingTop"
+                android:gravity="fill"
+                android:text="@string/terms_service"
+                android:textColor="@color/purple"
+                android:textSize="@dimen/cbCheckTextSizeAll" />
+
+            <TextView
+                android:id="@+id/tvSecurityPrivacyPolicy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/lySecurityQuestionCheckLayoutPaddingTop"
+                android:gravity="fill"
+                android:text="@string/privacy_policy"
+                android:textColor="@color/purple"
+                android:textSize="@dimen/cbCheckTextSizeAll" />
+
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btSecuritySave"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/btSignUpAllheight"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="@dimen/etSignUpContactMarginStartEnd"
+            android:layout_marginRight="@dimen/etSignUpContactMarginStartEnd"
+            android:layout_marginTop="6dp"
+            android:background="@drawable/yellow"
+            android:text="@string/sign_up"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/buttonGeneral" />
+    </LinearLayout>
+
+</android.support.design.widget.CoordinatorLayout>

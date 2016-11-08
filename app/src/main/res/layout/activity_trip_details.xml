@@ -1,0 +1,609 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/ivTripDetailsMap"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/ivTripDetailsMap"
+                android:scaleType="fitXY"
+                android:src="@mipmap/img_map" />
+
+            <com.smartsense.taxinearyou.utill.CircleImageView1
+                android:id="@+id/cvTripDetailsPartnerLogo"
+                android:layout_width="@dimen/civTripDetailsWidthHeight"
+                android:layout_height="@dimen/civTripDetailsWidthHeight"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:src="@mipmap/img_place_holder" />
+
+            <View
+                android:id="@+id/view"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/vTripDetailsView"
+                android:layout_alignParentBottom="true"
+                android:layout_below="@+id/ivTripDetailsMap"
+                android:layout_marginTop="@dimen/tvElementCardListMarginStartEnd10"
+                android:background="@null" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/lyPaddingMainAll"
+            android:paddingLeft="@dimen/lyPaddingMainAll"
+            android:paddingRight="@dimen/lyPaddingMainAll">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="end"
+                        android:text="@string/booking_time"
+                        android:textColor="@color/background"
+                        android:textSize="@dimen/etSignUpSizeAll" />
+
+                    <TextView
+                        android:id="@+id/tvTripDetailBookingDate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/tvTripDetailsTitlesMarginTop"
+                        android:gravity="center"
+                        android:textColor="@color/heading"
+                        android:textSize="@dimen/etSignUpSizeAll" />
+
+                    <TextView
+                        android:id="@+id/tvTripDetailBookingTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/tvTripDetailsTitlesMarginTop"
+                        android:textColor="@color/heading"
+                        android:textSize="@dimen/etSignUpSizeAll"
+                        android:visibility="gone" />
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_20_margin_padding"
+                        android:gravity="end"
+                        android:text="@string/taxi_provider"
+                        android:textColor="@color/background"
+                        android:textSize="@dimen/etSignUpSizeAll" />
+
+                    <TextView
+                        android:id="@+id/tvTripDetailTaxiProvider"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/tvTripDetailsTitlesMarginTop"
+                        android:gravity="center"
+
+                        android:textColor="@color/heading"
+                        android:textSize="@dimen/etSignUpSizeAll" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center">
+
+                    <Button
+                        android:id="@+id/tvTripDetailLost"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/btSignUpAllheight"
+                        android:background="@drawable/yellow"
+                        android:gravity="center"
+                        android:text="@string/lost_som"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/textDetail"
+                        android:visibility="gone" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/pick_up"
+                        android:textColor="@color/background"
+                        android:textSize="@dimen/etSignUpSizeAll" />
+
+                    <TextView
+                        android:id="@+id/tvTripDetailPickUpDate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/tvTripDetailsTitlesMarginTop"
+                        android:gravity="center"
+                        android:textColor="@color/heading"
+                        android:textSize="@dimen/etSignUpSizeAll" />
+
+                    <TextView
+                        android:id="@+id/tvTripDetailPickUpTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/tvTripDetailsTitlesMarginTop"
+                        android:textColor="@color/heading"
+                        android:textSize="@dimen/etSignUpSizeAll"
+                        android:visibility="gone" />
+
+                    <TextView
+                        android:id="@+id/tvTripDetailFareLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_20_margin_padding"
+                        android:text="@string/total_fare"
+                        android:textColor="@color/background"
+                        android:textSize="@dimen/etSignUpSizeAll" />
+
+                    <TextView
+                        android:id="@+id/tvTripDetailFare"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/tvTripDetailsTitlesMarginTop"
+                        android:textColor="@color/heading"
+                        android:textSize="@dimen/etSignUpSizeAll" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/vHeightWidthAll"
+                android:layout_marginBottom="@dimen/vMarginTopBottomAll"
+                android:layout_marginTop="@dimen/vMarginTopBottomAll"
+                android:background="@android:color/darker_gray" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/from_"
+                        android:textColor="@color/background"
+                        android:textSize="@dimen/etSignUpSizeAll" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tvTripDetailFrom"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/fromToGaping"
+                            android:textColor="@color/heading"
+                            android:textSize="@dimen/etSignUpSizeAll" />
+
+                        <LinearLayout
+                            android:id="@+id/lyTripDetailsVia1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/lytvTripDetailsHeadingsMarginTopAll"
+                            android:orientation="horizontal"
+                            android:visibility="gone">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/via_1"
+                                android:textColor="@color/background"
+                                android:textSize="@dimen/etSignUpSizeAll" />
+
+                            <TextView
+                                android:id="@+id/tvTripDetailVia1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/fromToGaping"
+                                android:textColor="@color/heading"
+                                android:textSize="@dimen/etSignUpSizeAll" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/lyTripDetailsVia2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/lytvTripDetailsHeadingsMarginTopAll"
+                            android:layout_marginTop="@dimen/lytvTripDetailsHeadingsMarginTopAll"
+                            android:orientation="horizontal"
+                            android:visibility="gone">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/via_2"
+                                android:textColor="@color/background"
+                                android:textSize="@dimen/etSignUpSizeAll" />
+
+                            <TextView
+                                android:id="@+id/tvTripDetailVia2"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/fromToGaping"
+                                android:textColor="@color/heading"
+                                android:textSize="@dimen/etSignUpSizeAll" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/lytvTripDetailsHeadingsMarginStartAll"
+                    android:layout_marginTop="@dimen/padding_10"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/to_"
+                        android:textColor="@color/background"
+                        android:textSize="@dimen/etSignUpSizeAll" />
+
+                    <TextView
+                        android:id="@+id/tvTripDetailTo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/fromToGaping"
+                        android:textColor="@color/heading"
+                        android:textSize="@dimen/etSignUpSizeAll" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/vHeightWidthAll"
+                android:layout_marginBottom="@dimen/vMarginTopBottomAll"
+                android:layout_marginTop="@dimen/vMarginTopBottomAll"
+                android:background="@android:color/darker_gray" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/taxi_recipt"
+                android:textColor="@color/Yellow"
+                android:textSize="@dimen/heading" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/lytvTripDetailsHeadingsMarginTopAll">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/tnr_"
+                    android:textColor="@color/background"
+                    android:textSize="@dimen/etSignUpSizeAll" />
+
+                <TextView
+                    android:id="@+id/tvTripDetailTNR"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    android:textColor="@color/heading"
+                    android:textSize="@dimen/etSignUpSizeAll" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/lytvTripDetailsHeadingsMarginTopAll">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/passengers"
+                    android:textColor="@color/background"
+                    android:textSize="@dimen/etSignUpSizeAll" />
+
+                <TextView
+                    android:id="@+id/tvTripDetailPassengers"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    android:textColor="@color/heading"
+                    android:textSize="@dimen/etSignUpSizeAll" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/lytvTripDetailsHeadingsMarginTopAll">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/luggage"
+                    android:textColor="@color/background"
+                    android:textSize="@dimen/etSignUpSizeAll" />
+
+                <TextView
+                    android:id="@+id/tvTripDetailLugguages"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    android:textColor="@color/heading"
+                    android:textSize="@dimen/etSignUpSizeAll" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/lytvTripDetailsHeadingsMarginTopAll">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/mile_jour"
+                    android:textColor="@color/background"
+                    android:textSize="@dimen/etSignUpSizeAll" />
+
+                <TextView
+                    android:id="@+id/tvTripDetailMiles"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    android:textColor="@color/heading"
+                    android:textSize="@dimen/etSignUpSizeAll" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/lytvTripDetailsHeadingsMarginTopAll">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/payment"
+                    android:textColor="@color/background"
+                    android:textSize="@dimen/etSignUpSizeAll" />
+
+                <TextView
+                    android:id="@+id/tvTripDetailPayment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    android:textColor="@color/heading"
+                    android:textSize="@dimen/etSignUpSizeAll" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/lytvTripDetailsHeadingsMarginTopAll">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/ride_type"
+                    android:textColor="@color/background"
+                    android:textSize="@dimen/etSignUpSizeAll" />
+
+                <TextView
+                    android:id="@+id/tvTripDetailRideType"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    android:textColor="@color/heading"
+                    android:textSize="@dimen/etSignUpSizeAll" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/lytvTripDetailsHeadingsMarginTopAll">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/ride_status"
+                    android:textColor="@color/background"
+                    android:textSize="@dimen/etSignUpSizeAll" />
+
+                <TextView
+                    android:id="@+id/tvTripDetailRideStatus"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    android:textColor="@color/heading"
+                    android:textSize="@dimen/etSignUpSizeAll" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/lytvTripDetailsHeadingsMarginTopAll">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/vehicle_type"
+                    android:textColor="@color/background"
+                    android:textSize="@dimen/etSignUpSizeAll" />
+
+                <TextView
+                    android:id="@+id/tvTripDetailVehicle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    android:textColor="@color/heading"
+                    android:textSize="@dimen/etSignUpSizeAll" />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/lyPadding10"
+                android:layout_weight="1"
+                android:text="@string/add_info"
+                android:textColor="@color/background"
+                android:textSize="@dimen/etSignUpSizeAll" />
+
+            <TextView
+                android:id="@+id/tvTripDetailAdditionsInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/lyPadding10"
+                android:layout_weight="1"
+                android:textColor="@color/heading"
+                android:textSize="@dimen/etSignUpSizeAll" />
+
+            <TextView
+                android:id="@+id/tvTripDetailAdditionsReasonLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/lyPadding10"
+                android:layout_weight="1"
+                android:text="Reason"
+                android:visibility="gone"
+                android:textColor="@color/background"
+                android:textSize="@dimen/etSignUpSizeAll" />
+
+            <TextView
+                android:id="@+id/tvTripDetailAdditionsReason"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/lyPadding10"
+                android:layout_weight="1"
+                android:visibility="gone"
+                android:textColor="@color/heading"
+                android:textSize="@dimen/etSignUpSizeAll" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/vHeightWidthAll"
+                android:layout_marginBottom="@dimen/vMarginTopBottomAll"
+                android:layout_marginTop="@dimen/vMarginTopBottomAll"
+                android:background="@android:color/darker_gray" />
+
+            <LinearLayout
+                android:id="@+id/lyTripDetailInvoiceFeedback"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <Button
+                    android:id="@+id/btTripDetailInvoice"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/btSignUpAllheight"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="@dimen/btTripDetailsMarginStartEnd"
+                    android:layout_weight="1"
+                    android:background="@drawable/yellow"
+                    android:text="@string/re_invoice"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/buttonGeneral" />
+
+                <Button
+                    android:id="@+id/tvTripDetailFeedback"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/btSignUpAllheight"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/btTripDetailsMarginStartEnd"
+                    android:layout_weight="1"
+                    android:background="@drawable/yellow"
+                    android:text="@string/feed_back"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/buttonGeneral" />
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/tvTripDetailCancle"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/btSignUpAllheight"
+                android:layout_gravity="center"
+                android:background="@drawable/yellow"
+                android:paddingEnd="@dimen/btTripDetailsCancelPaddingStartEnd"
+                android:paddingStart="@dimen/btTripDetailsCancelPaddingStartEnd"
+                android:text="@string/cancel_ride"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="@dimen/buttonGeneral"
+                android:visibility="gone" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+</ScrollView>

@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="@dimen/lyPadding10">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/tvReviewMarginEnd"
+                        android:text="@string/_5"
+                        android:textColor="@color/heading"
+                        android:textSize="@dimen/tvHeadingSizeAll" />
+
+                    <RatingBar
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:isIndicator="true"
+                        android:minHeight="15dp"
+                        android:numStars="5"
+                        android:progressDrawable="@drawable/rating_star"
+                        android:rating="5"
+                        android:stepSize="1" />
+
+                    <TextView
+                        android:id="@+id/tvFragmentReview5"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_marginLeft="@dimen/tvReviewMarginEnd"
+                        android:layout_height="wrap_content"
+
+                        android:textSize="@dimen/tvHeadingSizeAll" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/tvReviewMarginEnd"
+                        android:text="@string/_4"
+                        android:textColor="@color/heading"
+                        android:textSize="@dimen/tvHeadingSizeAll" />
+
+                    <RatingBar
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:isIndicator="true"
+                        android:minHeight="20dp"
+                        android:numStars="5"
+                        android:progressDrawable="@drawable/rating_star"
+                        android:rating="4"
+                        android:stepSize="1" />
+
+                    <TextView
+                        android:id="@+id/tvFragmentReview4"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_marginLeft="@dimen/tvReviewMarginEnd"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/tvHeadingSizeAll" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/tvReviewMarginEnd"
+                        android:text="@string/_3"
+                        android:textColor="@color/heading"
+                        android:textSize="@dimen/tvHeadingSizeAll" />
+
+                    <RatingBar
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:isIndicator="true"
+                        android:minHeight="20dp"
+                        android:numStars="5"
+                        android:progressDrawable="@drawable/rating_star"
+                        android:rating="3"
+                        android:stepSize="1" />
+
+                    <TextView
+                        android:id="@+id/tvFragmentReview3"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_marginLeft="@dimen/tvReviewMarginEnd"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/tvHeadingSizeAll" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/tvReviewMarginEnd"
+                        android:text="@string/_2"
+                        android:textColor="@color/heading"
+                        android:textSize="@dimen/tvHeadingSizeAll" />
+
+                    <RatingBar
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:isIndicator="true"
+                        android:minHeight="20dp"
+                        android:numStars="5"
+                        android:progressDrawable="@drawable/rating_star"
+                        android:rating="2"
+                        android:stepSize="1" />
+
+                    <TextView
+                        android:id="@+id/tvFragmentReview2"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_marginLeft="@dimen/tvReviewMarginEnd"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/tvHeadingSizeAll" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/tvReviewMarginEnd"
+                        android:text="@string/_1"
+                        android:textColor="@color/heading"
+                        android:textSize="@dimen/tvHeadingSizeAll" />
+
+                    <RatingBar
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:isIndicator="true"
+                        android:minHeight="20dp"
+                        android:numStars="5"
+                        android:progressDrawable="@drawable/rating_star"
+                        android:rating="1"
+                        android:stepSize="1" />
+
+                    <TextView
+                        android:id="@+id/tvFragmentReview1"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_marginLeft="@dimen/tvReviewMarginEnd"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/tvHeadingSizeAll" />
+
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <ListView
+            android:id="@+id/lvReviewListView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/lvReviewListViewMarginTop" />
+
+    </LinearLayout>
+</ScrollView>

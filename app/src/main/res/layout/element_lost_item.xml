@@ -1,0 +1,487 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/lyElementLostItemMain"
+    android:layout_width="match_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/element"
+    android:paddingTop="@dimen/margin_5">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/lyElementLostItemLeft"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginRight="@dimen/lyElementMyTripCircularViewMarginLeftRight"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+            <com.smartsense.taxinearyou.utill.CircleImageView1
+                android:layout_width="@dimen/circularImage"
+                android:layout_height="@dimen/circularImage"
+                android:layout_marginLeft="@dimen/tvPopupCancelRidePadding"
+                android:layout_marginRight="@dimen/tvPopupCancelRidePadding"
+                android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_weight="1"
+                android:src="@color/element"
+                app:civ_border_color="#d2d2d2"
+                app:civ_border_width="@dimen/civTripDetailsBorderWidth" />
+
+            <com.smartsense.taxinearyou.utill.CircleImageView1
+                android:layout_width="@dimen/circularImage"
+                android:layout_height="@dimen/circularImage"
+                android:layout_marginLeft="@dimen/tvPopupCancelRidePadding"
+                android:layout_marginRight="@dimen/tvPopupCancelRidePadding"
+                android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_weight="1"
+                android:src="@color/element"
+                app:civ_border_color="#d2d2d2"
+                app:civ_border_width="@dimen/civTripDetailsBorderWidth" />
+
+            <com.smartsense.taxinearyou.utill.CircleImageView1
+                android:layout_width="@dimen/circularImage"
+                android:layout_height="@dimen/circularImage"
+                android:layout_marginLeft="@dimen/tvPopupCancelRidePadding"
+                android:layout_marginRight="@dimen/tvPopupCancelRidePadding"
+                android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_weight="1"
+                android:src="@color/element"
+                app:civ_border_color="#d2d2d2"
+                app:civ_border_width="@dimen/civTripDetailsBorderWidth" />
+
+            <com.smartsense.taxinearyou.utill.CircleImageView1
+                android:layout_width="@dimen/circularImage"
+                android:layout_height="@dimen/circularImage"
+                android:layout_marginLeft="@dimen/tvPopupCancelRidePadding"
+                android:layout_marginRight="@dimen/tvPopupCancelRidePadding"
+                android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_weight="1"
+                android:src="@color/element"
+                app:civ_border_color="#d2d2d2"
+                app:civ_border_width="@dimen/civTripDetailsBorderWidth" />
+
+            <com.smartsense.taxinearyou.utill.CircleImageView1
+                android:layout_width="@dimen/circularImage"
+                android:layout_height="@dimen/circularImage"
+                android:layout_marginLeft="@dimen/tvPopupCancelRidePadding"
+                android:layout_marginRight="@dimen/tvPopupCancelRidePadding"
+                android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_weight="1"
+                android:src="@color/element"
+                app:civ_border_color="#d2d2d2"
+                app:civ_border_width="@dimen/civTripDetailsBorderWidth" />
+
+            <com.smartsense.taxinearyou.utill.CircleImageView1
+                android:layout_width="@dimen/circularImage"
+                android:layout_height="@dimen/circularImage"
+                android:layout_marginLeft="@dimen/tvPopupCancelRidePadding"
+                android:layout_marginRight="@dimen/tvPopupCancelRidePadding"
+                android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_weight="1"
+                android:src="@color/element"
+                app:civ_border_color="#d2d2d2"
+                app:civ_border_width="@dimen/civTripDetailsBorderWidth" />
+
+            <com.smartsense.taxinearyou.utill.CircleImageView1
+                android:layout_width="@dimen/circularImage"
+                android:layout_height="@dimen/circularImage"
+                android:layout_marginLeft="@dimen/tvPopupCancelRidePadding"
+                android:layout_marginRight="@dimen/tvPopupCancelRidePadding"
+                android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_weight="1"
+                android:src="@color/element"
+                app:civ_border_color="#d2d2d2"
+                app:civ_border_width="@dimen/civTripDetailsBorderWidth" />
+
+            <com.smartsense.taxinearyou.utill.CircleImageView1
+                android:layout_width="@dimen/circularImage"
+                android:layout_height="@dimen/circularImage"
+                android:layout_marginLeft="@dimen/tvPopupCancelRidePadding"
+                android:layout_marginRight="@dimen/tvPopupCancelRidePadding"
+                android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_weight="1"
+                android:src="@color/element"
+                app:civ_border_color="#d2d2d2"
+                app:civ_border_width="@dimen/civTripDetailsBorderWidth" />
+
+            <com.smartsense.taxinearyou.utill.CircleImageView1
+                android:layout_width="@dimen/circularImage"
+                android:layout_height="@dimen/circularImage"
+                android:layout_marginLeft="@dimen/tvPopupCancelRidePadding"
+                android:layout_marginRight="@dimen/tvPopupCancelRidePadding"
+                android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_weight="1"
+                android:src="@color/element"
+                app:civ_border_color="#d2d2d2"
+                app:civ_border_width="@dimen/civTripDetailsBorderWidth" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/vElementLostItemHeight"
+                android:background="@color/element" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lyElementLostItemStatus"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/lyElementLostItemFromToMarginStart"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="@dimen/lyElementLostItemFromToMarginEnd"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/from_"
+                            android:textColor="@color/blue_element"
+                            android:textSize="@dimen/etSignUpSizeAll" />
+
+                        <TextView
+                            android:id="@+id/tvLostItemFrom"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/fromToGaping"
+                            android:textColor="@color/text_color"
+                            android:textSize="@dimen/etSignUpSizeAll" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/lyElementLostItemToMarginStart"
+                        android:layout_marginRight="@dimen/lyElementLostItemFromToMarginEnd"
+                        android:layout_marginTop="@dimen/lyElementLostItemLostMarginStartTop"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/to_"
+                            android:textColor="@color/blue_element"
+                            android:textSize="@dimen/etSignUpSizeAll" />
+
+                        <TextView
+                            android:id="@+id/tvLostItemTo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/fromToGaping"
+                            android:textColor="@color/text_color"
+                            android:textSize="@dimen/etSignUpSizeAll" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/vHeightWidthAll"
+                android:layout_marginBottom="@dimen/vMarginTopBottomAll"
+                android:layout_marginTop="@dimen/vMarginTopBottomAll"
+                android:background="@color/line_color2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvLostItemProvider"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+
+                        android:textColor="@color/text_color"
+                        android:textSize="@dimen/etSignUpSizeAll" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center|bottom"
+                        android:text="@string/taxi_provider"
+                        android:textColor="@color/blue_element"
+                        android:textSize="@dimen/etSignUpSizeAll" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="@dimen/vHeightWidthAll"
+                    android:layout_height="match_parent"
+                    android:background="@color/line_color2" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvLostItemDateTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+
+                        android:textColor="@color/text_color"
+                        android:textSize="@dimen/etSignUpSizeAll" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center|bottom"
+                        android:text="@string/datetime"
+                        android:textColor="@color/blue_element"
+                        android:textSize="@dimen/etSignUpSizeAll" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="@dimen/vHeightWidthAll"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/darker_gray" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvLostItemStatus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+
+                        android:textColor="@color/text_color"
+                        android:textSize="@dimen/etSignUpSizeAll" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center|bottom"
+                        android:text="@string/status"
+                        android:textColor="@color/blue_element"
+                        android:textSize="@dimen/etSignUpSizeAll" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/vHeightWidthAll"
+                android:layout_marginBottom="@dimen/vMarginTopBottomAll"
+                android:layout_marginTop="@dimen/vMarginTopBottomAll"
+                android:background="@android:color/darker_gray" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/lyElementLostItemLostMarginStartTop"
+                android:layout_marginRight="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/lost_item"
+
+                    android:textColor="@color/blue_element"
+                    android:textSize="@dimen/etSignUpSizeAll" />
+
+                <TextView
+                    android:id="@+id/tvLostItemLostItem"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/fromToGaping"
+                    android:gravity="center"
+                    android:textColor="@color/text_color"
+                    android:textSize="@dimen/etSignUpSizeAll" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/vHeightWidthAll"
+                android:layout_marginBottom="@dimen/vMarginTopBottomAll"
+                android:layout_marginTop="@dimen/vMarginTopBottomAll"
+                android:background="@color/line_color2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_5"
+                android:layout_marginLeft="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tnr"
+                    android:textColor="@color/blue_element"
+                    android:textSize="@dimen/etSignUpSizeAll" />
+
+                <TextView
+                    android:id="@+id/tvLostItemTNR"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/fromToGaping"
+                    android:textColor="@color/text_color"
+                    android:textSize="@dimen/etSignUpSizeAll" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/vElementLostItemHeight"
+                android:background="@color/element" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lyElementLostItemRight"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/lyElementMyTripCircularViewMarginLeftRight"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+            <com.smartsense.taxinearyou.utill.CircleImageView1
+                android:layout_width="@dimen/circularImage"
+                android:layout_height="@dimen/circularImage"
+                android:layout_marginLeft="@dimen/tvPopupCancelRidePadding"
+                android:layout_marginRight="@dimen/tvPopupCancelRidePadding"
+                android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_weight="1"
+                android:src="@color/element"
+                app:civ_border_color="#d2d2d2"
+                app:civ_border_width="@dimen/civTripDetailsBorderWidth" />
+
+            <com.smartsense.taxinearyou.utill.CircleImageView1
+                android:layout_width="@dimen/circularImage"
+                android:layout_height="@dimen/circularImage"
+                android:layout_marginLeft="@dimen/tvPopupCancelRidePadding"
+                android:layout_marginRight="@dimen/tvPopupCancelRidePadding"
+                android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_weight="1"
+                android:src="@color/element"
+                app:civ_border_color="#d2d2d2"
+                app:civ_border_width="@dimen/civTripDetailsBorderWidth" />
+
+            <com.smartsense.taxinearyou.utill.CircleImageView1
+                android:layout_width="@dimen/circularImage"
+                android:layout_height="@dimen/circularImage"
+                android:layout_marginLeft="@dimen/tvPopupCancelRidePadding"
+                android:layout_marginRight="@dimen/tvPopupCancelRidePadding"
+                android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_weight="1"
+                android:src="@color/element"
+                app:civ_border_color="#d2d2d2"
+                app:civ_border_width="@dimen/civTripDetailsBorderWidth" />
+
+            <com.smartsense.taxinearyou.utill.CircleImageView1
+                android:layout_width="@dimen/circularImage"
+                android:layout_height="@dimen/circularImage"
+                android:layout_marginLeft="@dimen/tvPopupCancelRidePadding"
+                android:layout_marginRight="@dimen/tvPopupCancelRidePadding"
+                android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_weight="1"
+                android:src="@color/element"
+                app:civ_border_color="#d2d2d2"
+                app:civ_border_width="@dimen/civTripDetailsBorderWidth" />
+
+            <com.smartsense.taxinearyou.utill.CircleImageView1
+                android:layout_width="@dimen/circularImage"
+                android:layout_height="@dimen/circularImage"
+                android:layout_marginLeft="@dimen/tvPopupCancelRidePadding"
+                android:layout_marginRight="@dimen/tvPopupCancelRidePadding"
+                android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_weight="1"
+                android:src="@color/element"
+                app:civ_border_color="#d2d2d2"
+                app:civ_border_width="@dimen/civTripDetailsBorderWidth" />
+
+            <com.smartsense.taxinearyou.utill.CircleImageView1
+                android:layout_width="@dimen/circularImage"
+                android:layout_height="@dimen/circularImage"
+                android:layout_marginLeft="@dimen/tvPopupCancelRidePadding"
+                android:layout_marginRight="@dimen/tvPopupCancelRidePadding"
+                android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_weight="1"
+                android:src="@color/element"
+                app:civ_border_color="#d2d2d2"
+                app:civ_border_width="@dimen/civTripDetailsBorderWidth" />
+
+            <com.smartsense.taxinearyou.utill.CircleImageView1
+                android:layout_width="@dimen/circularImage"
+                android:layout_height="@dimen/circularImage"
+                android:layout_marginLeft="@dimen/tvPopupCancelRidePadding"
+                android:layout_marginRight="@dimen/tvPopupCancelRidePadding"
+                android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_weight="1"
+                android:src="@color/element"
+                app:civ_border_color="#d2d2d2"
+                app:civ_border_width="@dimen/civTripDetailsBorderWidth" />
+
+            <com.smartsense.taxinearyou.utill.CircleImageView1
+                android:layout_width="@dimen/circularImage"
+                android:layout_height="@dimen/circularImage"
+                android:layout_marginLeft="@dimen/tvPopupCancelRidePadding"
+                android:layout_marginRight="@dimen/tvPopupCancelRidePadding"
+                android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_weight="1"
+                android:src="@color/element"
+                app:civ_border_color="#d2d2d2"
+                app:civ_border_width="@dimen/civTripDetailsBorderWidth" />
+
+            <com.smartsense.taxinearyou.utill.CircleImageView1
+                android:layout_width="@dimen/circularImage"
+                android:layout_height="@dimen/circularImage"
+                android:layout_marginLeft="@dimen/tvPopupCancelRidePadding"
+                android:layout_marginRight="@dimen/tvPopupCancelRidePadding"
+                android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
+                android:layout_weight="1"
+                android:src="@color/element"
+                app:civ_border_color="#d2d2d2"
+                app:civ_border_width="@dimen/civTripDetailsBorderWidth" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/vElementLostItemHeight"
+                android:background="@color/element" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>

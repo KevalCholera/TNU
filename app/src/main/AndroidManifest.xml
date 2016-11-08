@@ -2,21 +2,301 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.smartsense.taxinearyou">
 
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+
+    <permission
+        android:name="com.smartsense.taxinearyou.permission.C2D_MESSAGE"
+        android:protectionLevel="signature" />
+
+    <uses-permission android:name="com.smartsense.taxinearyou.permission.C2D_MESSAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
+
     <application
+        android:name=".TaxiNearYouApp"
         android:allowBackup="true"
+        android:configChanges="orientation|screenSize"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ActivityTaxiNearYou"/>
-
-        <activity android:name=".ActivitySplash">
+        <activity
+            android:name=".ActivityTaxiNearYou"
+            android:windowSoftInputMode="stateHidden"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ActivitySplash"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".Search"
+            android:configChanges="orientation|screenSize"
+            android:label="@string/search"
+            android:windowSoftInputMode="stateHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".SignIn"
+            android:configChanges="orientation|screenSize"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".SignUp"
+            android:configChanges="orientation|screenSize"
+            android:label="@string/sign_up"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".SecurityQuestion"
+            android:configChanges="orientation|screenSize"
+            android:label="Security Question"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".SearchCars"
+            android:configChanges="orientation|screenSize"
+            android:label="@string/providers"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".BookingInfo"
+            android:configChanges="orientation|screenSize"
+            android:label="@string/title_activity_booking_info"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".PartnerDetails"
+            android:configChanges="orientation|screenSize"
+            android:label="@string/partner_rating"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".Filter"
+            android:configChanges="orientation|screenSize"
+            android:label=""
+            android:screenOrientation="portrait"
+            android:theme="@style/Filter_Theme"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".PaymentDetails"
+            android:configChanges="orientation|screenSize"
+            android:label="Payment Details"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".TripDetails"
+            android:configChanges="orientation|screenSize"
+            android:label="Trip Detail"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".Feedback"
+            android:configChanges="orientation|screenSize"
+            android:label="Feedback"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".AddLostItem"
+            android:configChanges="orientation|screenSize"
+            android:label="Your Details"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".GeneralInformation"
+            android:configChanges="orientation|screenSize"
+            android:label="General Information"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".LostItemDetail"
+            android:configChanges="orientation|screenSize"
+            android:label="Lost Item Detail"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".LostItem"
+            android:configChanges="orientation|screenSize"
+            android:label="Lost Item"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".AccountSecurity"
+            android:configChanges="orientation|screenSize"
+            android:label="Account Security"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".PersonalInfo"
+            android:configChanges="orientation|screenSize"
+            android:label="Personal Info"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".ResetPassword"
+            android:configChanges="orientation|screenSize"
+            android:label="Reset Password"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".RecoverEmailAddress"
+            android:configChanges="orientation|screenSize"
+            android:label="Recover Email Address"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".CardPayment"
+            android:configChanges="orientation|screenSize"
+            android:label="Pay with new card"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".AddCard"
+            android:configChanges="orientation|screenSize"
+            android:label="Add Card"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".Card"
+            android:configChanges="orientation|screenSize"
+            android:label="Card"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".CardList"
+            android:configChanges="orientation|screenSize"
+            android:label="Card List"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".CardDetails"
+            android:configChanges="orientation|screenSize"
+            android:label="Card Details"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".GooglePlaces"
+            android:configChanges="orientation|screenSize"
+            android:label="Google Places"
+            android:screenOrientation="portrait"
+
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".EventBooking"
+            android:configChanges="orientation|screenSize"
+            android:label="Event Booking"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".ContactUs"
+            android:configChanges="orientation|screenSize"
+            android:label="Contact Us"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".AboutUs"
+            android:configChanges="orientation|screenSize"
+            android:label="About Us"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".WebViewActivity"
+            android:configChanges="orientation|screenSize"
+            android:label="Processing Payment"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".More"
+            android:configChanges="orientation|screenSize"
+            android:label="More"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".GoogleMap"
+            android:configChanges="orientation|screenSize"
+            android:label="More"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden"
+            android:theme="@style/Filter_Theme" />
+
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_map" />
+
+        <receiver
+            android:name="com.onesignal.NotificationOpenedReceiver"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name=".push.GcmBroadcastReceiver"
+            android:permission="com.google.android.c2dm.permission.SEND">
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+
+                <category android:name="com.smartsense.taxinearyou" />
+            </intent-filter>
+        </receiver>
+
+        <service android:name=".push.GcmIntentService" />
+
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="73c4e2f991a9990508e872ec2b3f88a0e35f73a9" />
+        <activity
+            android:name="me.nereo.multi_image_selector.MultiImageSelectorActivity"
+            android:configChanges="orientation|screenSize"
+            android:windowSoftInputMode="stateHidden"
+            android:screenOrientation="portrait" />
+
+
     </application>
 
 </manifest>

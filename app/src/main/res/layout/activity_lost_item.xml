@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/element"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/llLostItemItemsAvailable"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/bookingInfoPadding"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/btSignUpAllheight"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rbLostItemOnGoing"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/radio_yellow_border_lost_item_open"
+                android:button="@color/white"
+                android:checked="true"
+                android:gravity="center"
+                android:padding="2dp"
+                android:text="@string/on_going"
+                android:textColor="@drawable/radio_yellow_border_lost_item_open"
+                android:textSize="@dimen/textButton" />
+
+            <RadioButton
+                android:id="@+id/rbLostItemFound"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/radio_yellow_border_lost_item_inprogress"
+                android:button="@color/white"
+                android:gravity="center"
+                android:padding="2dp"
+                android:text="@string/found"
+                android:textColor="@drawable/radio_yellow_border_lost_item_inprogress"
+                android:textSize="@dimen/textButton" />
+
+            <RadioButton
+                android:id="@+id/rbLostItemNotFound"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/radio_yellow_border_lost_item_closed"
+                android:button="@color/white"
+                android:gravity="center"
+                android:padding="2dp"
+                android:text="@string/not_found"
+                android:textColor="@drawable/radio_yellow_border_lost_item_closed"
+                android:textSize="@dimen/textButton" />
+
+        </RadioGroup>
+
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/srLostItemList"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ListView
+                android:id="@+id/lvLostItemList"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/element"
+                android:divider="@null"
+                android:dividerHeight="0dp" />
+
+        </android.support.v4.widget.SwipeRefreshLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llLostItemNoItemAvailable"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <ImageView
+            android:layout_width="@dimen/ivCreditImage"
+            android:layout_height="@dimen/ivCreditImage"
+            android:background="@mipmap/no_lost_item" />
+
+        <TextView
+            android:id="@+id/tvLostItemNoItemText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="5dp"
+            android:textColor="@color/heading"
+            android:textSize="@dimen/tvHeadingSizeAll" />
+    </LinearLayout>
+
+</LinearLayout>

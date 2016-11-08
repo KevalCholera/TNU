@@ -1,0 +1,410 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/clAddCard"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        tools:context=".AddCard">
+
+        <include layout="@layout/element_appbar" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:fillViewport="true">
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/lyPaddingMainAll">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/card_details"
+                    android:textColor="@color/background"
+                    android:textSize="@dimen/tvHeadingSizeAll" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/vHeightWidthAll"
+                    android:layout_marginBottom="@dimen/vMarginTopBottomAll"
+                    android:layout_marginTop="@dimen/vMarginTopBottomAll"
+                    android:background="@color/background" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/cardholder_s_name"
+                    android:textColor="@color/heading"
+                    android:textSize="@dimen/tvTitlesSizeAll" />
+
+                <EditText
+                    android:id="@+id/etAddCardCardHolderName"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/etHeightAll"
+                    android:background="@drawable/grayborder"
+                    android:hint="@string/enter_card_holder_name"
+                    android:imeOptions="actionNext"
+                    android:inputType="textCapSentences"
+                    android:maxLines="1"
+                    android:paddingLeft="@dimen/tvMarginTopBottomStartEndAll"
+                    android:singleLine="true"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/hintColor"
+                    android:textSize="@dimen/text15" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/lyPadding10"
+                    android:text="@string/card_number"
+                    android:textColor="@color/heading"
+                    android:textSize="@dimen/tvTitlesSizeAll" />
+
+                <EditText
+                    android:id="@+id/etAddCardCardNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/etHeightAll"
+                    android:background="@drawable/grayborder"
+                    android:hint="@string/enter_card_number"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:maxLines="1"
+                    android:nextFocusDown="@+id/etAddCardSecurityNumber"
+                    android:paddingLeft="@dimen/tvMarginTopBottomStartEndAll"
+                    android:singleLine="true"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/hintColor"
+                    android:textSize="@dimen/text15" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/lyPadding10"
+                    android:text="@string/card_type"
+                    android:textColor="@color/heading"
+                    android:textSize="@dimen/tvTitlesSizeAll" />
+
+                <EditText
+                    android:id="@+id/etAddCardCardType"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/etHeightAll"
+                    android:background="@drawable/grayborder"
+                    android:clickable="true"
+                    android:cursorVisible="false"
+                    android:focusable="false"
+                    android:hint="@string/select_card_type"
+                    android:paddingLeft="@dimen/tvMarginTopBottomStartEndAll"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/hintColor"
+                    android:textSize="@dimen/text15" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/lyPadding10"
+                    android:text="@string/expiry_date_"
+                    android:textColor="@color/heading"
+                    android:textSize="@dimen/tvTitlesSizeAll" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/etAddCardExpiryDateMonth"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/etHeightAll"
+                        android:layout_marginRight="@dimen/tvMarginTopBottomStartEndAll"
+                        android:layout_weight="0.6"
+                        android:background="@drawable/grayborder"
+                        android:clickable="true"
+                        android:cursorVisible="false"
+                        android:focusable="false"
+                        android:hint="@string/enter_month"
+                        android:maxLines="1"
+                        android:paddingLeft="@dimen/tvMarginTopBottomStartEndAll"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/hintColor"
+                        android:textSize="@dimen/text15" />
+
+                    <EditText
+                        android:id="@+id/etAddCardExpiryDateYear"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/etHeightAll"
+                        android:layout_marginLeft="@dimen/tvMarginTopBottomStartEndAll"
+                        android:layout_weight="0.8"
+                        android:background="@drawable/grayborder"
+                        android:clickable="true"
+                        android:cursorVisible="false"
+                        android:focusable="false"
+                        android:hint="@string/enter_year"
+                        android:maxLines="1"
+                        android:paddingLeft="@dimen/tvMarginTopBottomStartEndAll"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/hintColor"
+                        android:textSize="@dimen/text15" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/etHeightAll"
+                        android:layout_weight="01"
+                        android:background="@null" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
+                    android:text="@string/security_number"
+                    android:textColor="@color/heading"
+                    android:textSize="@dimen/tvTitlesSizeAll" />
+
+                <EditText
+                    android:id="@+id/etAddCardSecurityNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/etHeightAll"
+                    android:layout_marginRight="@dimen/tvMarginTopBottomStartEndAll"
+                    android:background="@drawable/grayborder"
+                    android:hint="@string/enter_sec_num"
+                    android:inputType="numberPassword"
+                    android:maxLines="1"
+                    android:paddingLeft="@dimen/tvMarginTopBottomStartEndAll"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/hintColor"
+                    android:textSize="@dimen/text15" />
+
+                <CheckBox
+                    android:id="@+id/cbAddCardFutureUse"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:button="@drawable/checkbox"
+                    android:checked="false"
+                    android:text="@string/use_card_for_future_payment"
+                    android:textColor="@color/heading"
+                    android:textSize="@dimen/cbCheckTextSizeAll"
+                    android:theme="@style/AppTheme" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/card_details_"
+                    android:textColor="@color/background"
+                    android:textSize="@dimen/tvHeadingSizeAll" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/vHeightWidthAll"
+                    android:layout_marginBottom="@dimen/vMarginTopBottomAll"
+                    android:layout_marginTop="@dimen/vMarginTopBottomAll"
+                    android:background="@color/colorPrimaryDark" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/first_name_"
+                    android:textColor="@color/heading"
+                    android:textSize="@dimen/tvTitlesSizeAll" />
+
+                <EditText
+                    android:id="@+id/etAddCardCardFirstName"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/etHeightAll"
+                    android:background="@drawable/grayborder"
+                    android:hint="@string/enter_first_name"
+                    android:inputType="textCapSentences"
+                    android:maxLines="1"
+                    android:paddingLeft="@dimen/tvMarginTopBottomStartEndAll"
+                    android:singleLine="true"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/hintColor"
+                    android:textSize="@dimen/text15" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
+                    android:text="@string/last_name_"
+                    android:textColor="@color/heading"
+                    android:textSize="@dimen/tvTitlesSizeAll" />
+
+                <EditText
+                    android:id="@+id/etAddCardCardLastName"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/etHeightAll"
+                    android:background="@drawable/grayborder"
+                    android:hint="@string/enter_last_name"
+                    android:inputType="textCapSentences"
+                    android:paddingLeft="@dimen/tvMarginTopBottomStartEndAll"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/hintColor"
+                    android:textSize="@dimen/text15" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
+                    android:text="@string/address_1"
+                    android:textColor="@color/heading"
+                    android:textSize="@dimen/tvTitlesSizeAll" />
+
+                <EditText
+                    android:id="@+id/etAddCardCardAddress1"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/etHeightAll"
+                    android:background="@drawable/grayborder"
+                    android:hint="@string/enter_add"
+                    android:inputType="textPostalAddress|textCapSentences"
+                    android:maxLines="1"
+                    android:paddingLeft="@dimen/tvMarginTopBottomStartEndAll"
+                    android:singleLine="true"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/hintColor"
+                    android:textSize="@dimen/text15" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
+                    android:text="@string/address_2"
+                    android:textColor="@color/heading"
+                    android:textSize="@dimen/tvTitlesSizeAll" />
+
+                <EditText
+                    android:id="@+id/etAddCardCardAddress2"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/etHeightAll"
+                    android:background="@drawable/grayborder"
+                    android:hint="@string/enter_first_name"
+                    android:inputType="textPostalAddress|textCapSentences"
+                    android:maxLines="1"
+                    android:paddingLeft="@dimen/tvMarginTopBottomStartEndAll"
+                    android:singleLine="true"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/hintColor"
+                    android:textSize="@dimen/text15" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/tvMarginTopBottomStartEndAll"
+                    android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/tvMarginTopBottomStartEndAll"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/town"
+                            android:textColor="@color/heading"
+                            android:textSize="@dimen/tvTitlesSizeAll" />
+
+                        <EditText
+                            android:id="@+id/etAddCardTown"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/etHeightAll"
+                            android:background="@drawable/grayborder"
+                            android:clickable="true"
+                            android:cursorVisible="false"
+                            android:focusable="false"
+                            android:hint="@string/enter_town_below"
+                            android:imeOptions="actionNext"
+                            android:inputType="text"
+                            android:maxLines="1"
+                            android:paddingLeft="@dimen/tvMarginTopBottomStartEndAll"
+                            android:singleLine="true"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/hintColor"
+                            android:textSize="@dimen/text15" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/tvMarginTopBottomStartEndAll"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/city"
+                            android:textColor="@color/heading"
+                            android:textSize="@dimen/tvTitlesSizeAll" />
+
+                        <EditText
+                            android:id="@+id/etAddCardCity"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/etHeightAll"
+                            android:background="@drawable/grayborder"
+                            android:clickable="true"
+                            android:cursorVisible="false"
+                            android:focusable="false"
+                            android:hint="@string/enter_city_below"
+                            android:inputType="text"
+                            android:maxLines="1"
+                            android:paddingLeft="@dimen/tvMarginTopBottomStartEndAll"
+                            android:singleLine="true"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/hintColor"
+                            android:textSize="@dimen/text15" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
+                    android:text="@string/postal_code"
+                    android:textColor="@color/heading"
+                    android:textSize="@dimen/tvTitlesSizeAll" />
+
+                <EditText
+                    android:id="@+id/etAddCardCardPostCode"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/etHeightAll"
+                    android:background="@drawable/grayborder"
+                    android:hint="@string/enter_postcode"
+                    android:inputType="number"
+                    android:maxLines="1"
+                    android:paddingLeft="@dimen/tvMarginTopBottomStartEndAll"
+                    android:singleLine="true"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/hintColor"
+                    android:textSize="@dimen/text15" />
+
+            </LinearLayout>
+        </ScrollView>
+
+        <Button
+            android:id="@+id/btAddCardSubmit"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/btSignInSignUpHeight"
+            android:background="@drawable/yellow"
+            android:text="@string/submit"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/btSizeAll" />
+
+    </LinearLayout>
+</android.support.design.widget.CoordinatorLayout>

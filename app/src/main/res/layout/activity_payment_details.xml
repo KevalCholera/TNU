@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/clPaymentDetails"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+
+        android:layout_height="fill_parent"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbarAll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorAccent"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+            <TextView
+                android:id="@+id/toolbarText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginRight="10dp"
+                android:text="00:00"
+                android:textColor="@color/white" />
+        </android.support.v7.widget.Toolbar>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:background="@color/white"
+            android:orientation="vertical"
+            android:padding="@dimen/lyPaddingMainAll">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/choose_a_payment_option"
+                android:textColor="@color/background"
+                android:textSize="@dimen/heading" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/vHeightWidthAll"
+                android:layout_marginBottom="@dimen/margin_5"
+                android:layout_marginTop="@dimen/margin_5"
+                android:background="@color/background" />
+
+            <TextView
+                android:id="@+id/tvPaymentTNUCredit"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/btSignUpAllheight"
+                android:drawableLeft="@mipmap/bank_cards"
+                android:drawablePadding="@dimen/tvPaymentDetailsDrawableTNUPadding"
+                android:drawableRight="@mipmap/arrow_right_yellow"
+                android:gravity="fill"
+                android:text="@string/tnu_credit_coming_soon"
+                android:textColor="@color/disable_55"
+                android:textSize="@dimen/heading" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/vHeightWidthAll"
+                android:layout_marginBottom="@dimen/margin_5"
+                android:layout_marginTop="@dimen/margin_5"
+                android:background="@color/line_color" />
+
+            <TextView
+                android:id="@+id/tvPaymentNewCard"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/btSignUpAllheight"
+                android:layout_gravity="center"
+                android:drawableLeft="@mipmap/card_pay"
+                android:drawablePadding="@dimen/tvPaymentDetailsDrawableCashPadding"
+                android:drawableRight="@mipmap/arrow_right_yellow"
+                android:gravity="fill"
+                android:text="New Card"
+                android:textColor="@color/black"
+                android:textSize="@dimen/heading" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/vHeightWidthAll"
+                android:layout_marginBottom="@dimen/margin_5"
+                android:layout_marginTop="@dimen/margin_5"
+                android:background="@color/line_color" />
+
+            <TextView
+                android:id="@+id/tvPaymentCard"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/btSignUpAllheight"
+                android:layout_gravity="center"
+                android:drawableLeft="@mipmap/card_pay"
+                android:drawablePadding="@dimen/tvPaymentDetailsDrawableCashPadding"
+                android:drawableRight="@mipmap/arrow_right_yellow"
+                android:gravity="fill"
+                android:text="Existing Card"
+                android:textColor="@color/black"
+                android:textSize="@dimen/heading" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/vHeightWidthAll"
+                android:layout_marginBottom="@dimen/margin_5"
+                android:layout_marginTop="@dimen/margin_5"
+                android:background="@color/line_color" />
+
+            <LinearLayout
+                android:id="@+id/llPaymentCash"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tvPaymentCash"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/btSignUpAllheight"
+                    android:drawableLeft="@mipmap/banknotes"
+                    android:drawablePadding="@dimen/tvPaymentDetailsDrawableCashPadding"
+                    android:drawableRight="@mipmap/arrow_right_yellow"
+                    android:gravity="fill"
+                    android:text="@string/cash"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/heading" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/vHeightWidthAll"
+                    android:layout_marginTop="@dimen/margin_5"
+                    android:background="@color/line_color" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="@dimen/lyPaymentDetailsFareCostMarginTop"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/total_fare_cost"
+                    android:textColor="@color/Yellow"
+                    android:textSize="@dimen/buttonGeneral"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvPaymentAmount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/tvPaymentDetailsFareMoneySize" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</android.support.design.widget.CoordinatorLayout>

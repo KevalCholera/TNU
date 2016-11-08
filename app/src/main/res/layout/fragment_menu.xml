@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:weightSum="1">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="5dp">
+
+        <com.smartsense.taxinearyou.utill.CircleImageView1
+            android:id="@+id/cvAccountPhoto"
+            android:layout_width="@dimen/cvAccountPhotoWidthHeight"
+            android:layout_height="@dimen/cvAccountPhotoWidthHeight"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_marginBottom="@dimen/lyPadding10"
+            android:layout_marginTop="@dimen/lyPadding10"
+            android:src="@mipmap/icon_user"
+            app:civ_border_color="@color/Yellow"
+            app:civ_border_width="@dimen/cvAccountPhoto" />
+
+        <ImageView
+            android:id="@+id/ivEditProfilePhoto"
+            android:layout_width="@dimen/ivAccountPersonPhotoSmallHeightWidth"
+            android:layout_height="@dimen/ivAccountPersonPhotoSmallHeightWidth"
+            android:layout_alignRight="@+id/cvAccountPhoto"
+            android:layout_alignTop="@+id/cvAccountPhoto"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/ivEditProfilePhoto"
+            android:src="@mipmap/img_edit" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tvAccountPersonName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="5dp"
+        android:textColor="@color/gray_55"
+        android:textSize="@dimen/text15" />
+
+    <Button
+        android:id="@+id/btAccountActivateNow"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/btSignUpAllheight"
+        android:layout_gravity="center"
+        android:background="@drawable/yellowborderaccount"
+        android:paddingEnd="@dimen/btAccountActivateNowPaddingStartEnd"
+        android:paddingStart="@dimen/btAccountActivateNowPaddingStartEnd"
+        android:text="@string/active_now"
+        android:textAllCaps="false"
+        android:textColor="@color/text_color"
+        android:textSize="@dimen/textDetail"
+        android:visibility="gone" />
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/llFragmentMenuGeneralInfo"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/btSignInSignUpHeight"
+                android:layout_marginLeft="@dimen/vAccountAllStartEnd"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingLeft="5dp">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:background="@mipmap/genreal_info"
+                    android:gravity="center" />
+
+                <TextView
+                    android:id="@+id/tvAccountGeneralInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="fill"
+                    android:text="@string/general_info"
+                    android:textColor="@color/text_color"
+                    android:textSize="@dimen/textHead" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/vAccountAllHeight"
+                android:layout_marginLeft="@dimen/vAccountAllStartEnd"
+                android:layout_marginRight="@dimen/vAccountAllStartEnd"
+                android:background="@color/light_Gray" />
+
+            <LinearLayout
+                android:id="@+id/llFragmentMenuAccountSecurity"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/btSignInSignUpHeight"
+                android:layout_marginLeft="@dimen/vAccountAllStartEnd"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingLeft="5dp">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:background="@mipmap/acc_security"
+                    android:gravity="center" />
+
+                <TextView
+                    android:id="@+id/tvAccountAccountSecurity"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="fill"
+                    android:text="@string/acc_sec"
+                    android:textColor="@color/text_color"
+                    android:textSize="@dimen/textHead" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/vAccountAllHeight"
+                android:layout_marginLeft="@dimen/vAccountAllStartEnd"
+                android:layout_marginRight="@dimen/vAccountAllStartEnd"
+                android:background="@color/light_Gray" />
+
+            <LinearLayout
+                android:id="@+id/llFragmentMenuPayment"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/btSignInSignUpHeight"
+                android:layout_marginLeft="@dimen/vAccountAllStartEnd"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingLeft="5dp">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:src="@mipmap/img_payment" />
+
+                <TextView
+                    android:id="@+id/tvAccountPayment"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    
+                    android:gravity="fill"
+                    android:text="Card List"
+                    android:textColor="@color/text_color"
+                    android:textSize="@dimen/textHead" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/vAccountAllHeight"
+                android:layout_marginLeft="@dimen/vAccountAllStartEnd"
+                android:layout_marginRight="@dimen/vAccountAllStartEnd"
+                android:background="@color/light_Gray" />
+
+            <LinearLayout
+                android:id="@+id/llFragmentMenuCredit"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/btSignInSignUpHeight"
+                android:layout_marginLeft="@dimen/vAccountAllStartEnd"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingLeft="5dp">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:src="@mipmap/img_free_rides" />
+
+                <TextView
+                    android:id="@+id/tvAccountCredits"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="fill"
+                    android:paddingLeft="@dimen/margin_5"
+                    android:text="Credit"
+                    android:textColor="@color/disable_55"
+                    android:textSize="@dimen/textHead" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/vAccountAllHeight"
+                android:layout_marginLeft="@dimen/vAccountAllStartEnd"
+                android:layout_marginRight="@dimen/vAccountAllStartEnd"
+                android:background="@color/light_Gray" />
+
+
+            <LinearLayout
+                android:id="@+id/llFragmentMenuLostItem"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/btSignInSignUpHeight"
+                android:layout_marginLeft="@dimen/vAccountAllStartEnd"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingLeft="5dp">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:src="@mipmap/imglostitems" />
+
+                <TextView
+                    android:id="@+id/tvAccountLostItems"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="fill"
+                    android:text="@string/lostitems"
+                    android:textColor="@color/text_color"
+                    android:textSize="@dimen/textHead" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/vAccountAllHeight"
+                android:layout_marginLeft="@dimen/vAccountAllStartEnd"
+                android:layout_marginRight="@dimen/vAccountAllStartEnd"
+                android:background="@color/light_Gray" />
+
+            <LinearLayout
+                android:id="@+id/llFragmentMenuMore"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/btSignInSignUpHeight"
+                android:layout_marginLeft="@dimen/vAccountAllStartEnd"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingLeft="5dp">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:src="@mipmap/ic_more_" />
+
+                <TextView
+                    android:id="@+id/tvAccountMore"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="fill"
+                    android:text="@string/more"
+                    android:textColor="@color/text_color"
+                    android:textSize="@dimen/textHead" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/vAccountAllHeight"
+                android:layout_marginLeft="@dimen/vAccountAllStartEnd"
+                android:layout_marginRight="@dimen/vAccountAllStartEnd"
+                android:background="@color/light_Gray" />
+
+            <LinearLayout
+                android:id="@+id/llFragmentMenuLogOut"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/btSignInSignUpHeight"
+                android:layout_marginLeft="@dimen/vAccountAllStartEnd"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingLeft="5dp">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:src="@mipmap/img_login_logout" />
+
+                <TextView
+                    android:id="@+id/tvAccountLogout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="fill"
+                    android:text="@string/logout"
+                    android:textColor="@color/text_color"
+                    android:textSize="@dimen/textHead" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/vAccountAllHeight"
+                android:layout_marginLeft="@dimen/vAccountAllStartEnd"
+                android:layout_marginRight="@dimen/vAccountAllStartEnd"
+                android:background="@color/light_Gray" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

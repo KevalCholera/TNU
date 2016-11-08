@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/element"
+    android:orientation="vertical"
+    tools:context=".Fragments.FragmentMyTrips">
+
+    <LinearLayout
+        android:id="@+id/llFragmentMyTrips"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/ivMyTripsNoTrips"
+            android:layout_width="@dimen/ivCreditImage"
+            android:layout_height="@dimen/ivCreditImage"
+            android:background="@mipmap/nopanding" />
+
+        <TextView
+            android:id="@+id/tvFragmentMyTrips"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/heading"
+            android:textSize="@dimen/tvHeadingSizeAll" />
+    </LinearLayout>
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/srMyTrips"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <ListView
+            android:id="@+id/lvMyTrips"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@null"
+            android:dividerHeight="0dp"
+            android:paddingBottom="@dimen/lyPadding10"
+            android:visibility="gone" />
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+</LinearLayout>

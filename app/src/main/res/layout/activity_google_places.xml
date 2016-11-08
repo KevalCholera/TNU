@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/padding_10">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.6"
+            android:background="@drawable/gray"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_marginLeft="@dimen/lyPadding10"
+                android:src="@mipmap/imgsearcharea" />
+
+            <EditText
+                android:id="@+id/atv_places"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/etHeightAll"
+                android:layout_weight="1"
+                android:background="@null"
+                android:drawablePadding="@dimen/margin_5"
+                android:ems="10"
+                android:hint="Search Area"
+                android:imeOptions="actionSearch"
+                android:inputType="textCapSentences"
+                android:padding="@dimen/margin_5"
+                android:singleLine="true"
+                android:textColor="@color/black"
+                android:textColorHint="@color/dark_gray"
+                android:textSize="12sp">
+
+                <requestFocus />
+            </EditText>
+
+            <ImageButton
+                android:id="@+id/ibGooglePlaceEmpty"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginRight="@dimen/margin_5"
+                android:background="@null"
+                android:maxHeight="20dp"
+                android:src="@mipmap/ic_cancel"
+                android:visibility="gone" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvGooglePlacesCancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/tvMarginTopBottomStartEndAll"
+            android:background="@null"
+            android:text="@string/cancel"
+            android:textColor="@color/colorAccent"
+            android:textSize="17sp" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/vReviewTextAllMargin"
+        android:background="@color/colorAccent" />
+
+    <LinearLayout
+        android:id="@+id/lyGooglePlaceCurrentLocation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="@dimen/lyPadding10">
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@mipmap/img_current_location" />
+
+        <TextView
+            android:id="@+id/tvGooglePlacesCurrentLocation"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/lyPadding10"
+            android:gravity="fill"
+            android:text="@string/crnt_lct"
+            android:textColor="@color/current_loc"
+            android:textSize="17sp" />
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/viewGooglePlace"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/vReviewTextAllMargin"
+        android:background="@color/line_color1" />
+
+    <ListView
+        android:id="@+id/lvGooglePlaces"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="0dp"
+        android:paddingLeft="@dimen/lyPadding10"
+        android:paddingRight="@dimen/lyPadding10" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:layout_margin="@dimen/tvElementCardListMarginStartEnd5"
+        android:src="@mipmap/powered_by_google_light" />
+
+</LinearLayout>

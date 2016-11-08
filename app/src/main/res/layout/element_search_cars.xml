@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/llElementSearchCarsMain"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/tvSearchCarsBookNowPaddingStartEnd"
+    android:background="#ffffff"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="5dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
+
+        <TextView
+            android:id="@+id/tvElementSearchCarsName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColor="@color/black"
+            android:textSize="@dimen/tvTitlesSizeAll" />
+
+        <TextView
+            android:id="@+id/tvElementSearchCarsMoney"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <RatingBar
+        android:id="@+id/rbElementSearchCars"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:isIndicator="true"
+        android:max="5"
+        android:minHeight="15dp"
+        android:numStars="5"
+        android:progressDrawable="@drawable/rating_search_star"
+        android:rating="0"
+        android:stepSize="1" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingBottom="5dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="10dp"
+        android:paddingTop="3dp">
+
+        <ImageView
+            android:id="@+id/ivElementSearchCarsOnline"
+            android:layout_width="@dimen/ivElementSearchCarsOnlineSize"
+            android:layout_height="@dimen/ivElementSearchCarsOnlineSize"
+            android:layout_gravity="center"
+            android:layout_marginRight="@dimen/lyElementSearchCarsWaitingTimeMarginTopRight"
+            android:layout_marginTop="2dp" />
+
+        <TextView
+            android:id="@+id/tvElementSearchCarsChat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:singleLine="true"
+            android:textColor="@color/filter_text"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/tvElementSearchCarsWaitingTime"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:gravity="left"
+            android:singleLine="true"
+            android:textColor="@color/filter_text1"
+            android:textSize="10sp" />
+
+        <TextView
+            android:id="@+id/tvSearchCarsBookNow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@color/Yellow"
+            android:paddingBottom="@dimen/tvSearchCarsBookNowPaddingTopBottom"
+            android:paddingLeft="@dimen/tvSearchCarsBookNowPaddingStartEnd"
+            android:paddingRight="@dimen/tvSearchCarsBookNowPaddingStartEnd"
+            android:paddingTop="@dimen/tvSearchCarsBookNowPaddingTopBottom"
+            android:text="@string/booknow"
+            android:textColor="@color/white"
+            android:textSize="12sp" />
+
+    </LinearLayout>
+
+</LinearLayout>

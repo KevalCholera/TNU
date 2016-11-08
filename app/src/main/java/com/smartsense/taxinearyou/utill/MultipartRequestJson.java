@@ -27,16 +27,16 @@ public class MultipartRequestJson extends Request<JSONObject> {
 
     private MultipartEntity entity = new MultipartEntity();
 
-    private static final String FILE_PART_NAME = "image";
+    private String FILE_PART_NAME = "profilePic";
 
-    private final Response.Listener<JSONObject> mListener;
-    private final File file;
+    private Response.Listener<JSONObject> mListener;
+    private  File file;
     private final HashMap<String, String> params;
 
     public MultipartRequestJson(String url, Response.Listener<JSONObject> listener, Response.ErrorListener errorListener,
                                 File file, HashMap<String, String> params) {
         super(Method.POST, url, errorListener);
-
+//        FILE_PART_NAME = param;
         mListener = listener;
         this.file = file;
         this.params = params;
@@ -44,7 +44,10 @@ public class MultipartRequestJson extends Request<JSONObject> {
     }
 
     private void buildMultipartEntity() {
-        entity.addPart(FILE_PART_NAME, new FileBody(file));
+//        for (int i = 0; i < file.length; i++) {
+
+            entity.addPart(FILE_PART_NAME, new FileBody(file));
+//        }
         try {
             for (String key : params.keySet()) {
                 entity.addPart(key, new StringBody(params.get(key)));
