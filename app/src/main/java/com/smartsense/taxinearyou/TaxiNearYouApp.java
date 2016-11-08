@@ -6,7 +6,6 @@ import android.text.TextUtils;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.toolbox.HurlStack;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.Volley;
 import com.crashlytics.android.Crashlytics;
@@ -63,8 +62,8 @@ public class TaxiNearYouApp extends Application {
 
     public RequestQueue getRequestQueue() {
         if (requestQueue == null) {
-//            requestQueue = Volley.newRequestQueue(getApplicationContext());
-            requestQueue = Volley.newRequestQueue(getApplicationContext(),new HurlStack(null, newSslSocketFactory()));
+            requestQueue = Volley.newRequestQueue(getApplicationContext());
+//            requestQueue = Volley.newRequestQueue(getApplicationContext(),new HurlStack(null, newSslSocketFactory()));
         }
         return requestQueue;
     }
