@@ -56,7 +56,7 @@ public class SearchCars extends TimeActivity implements Response.Listener<JSONOb
     CoordinatorLayout clSearchCars;
     private String bookingduration;
     AdapterSearchCar adapterSearchCar;
-
+    JSONObject commission;
     int pageNumber = 0;
     int totalRecord = 0;
     int pageSize;
@@ -277,6 +277,7 @@ public class SearchCars extends TimeActivity implements Response.Listener<JSONOb
                             SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_DISTANCE_MATRIX, response.optJSONObject("json").optJSONObject("distanceMatrix").toString());
                             SharedPreferenceUtil.save();
                             totalRecord = response.optJSONObject("json").optInt("totalRecords");
+                            commission= response.optJSONObject("json").optJSONObject("commision");
                             fillPartnerList(response.optJSONObject("json").optJSONArray("partnerArray"));
 
                             if (response.optJSONObject("json").optJSONArray("partnerArray").length() > 0) {
@@ -426,6 +427,7 @@ public class SearchCars extends TimeActivity implements Response.Listener<JSONOb
                         jsonObject.put("taxiTypeName", test.optJSONObject("taxiType").optString("taxiTypeName"));
                         jsonObject.put("partnerId", test.optJSONObject("taxiType").optString("partnerId"));
                         jsonObject.put("tripType", bookingduration);
+                        jsonObject.put("commision",countCommission(test));
                         jsonObject.put("available", test.optInt("availability"));
                         jsonObject.put("taxiStatus", test.optJSONObject("taxiType").optInt("status"));
                         jsonObject.put("duration", SharedPreferenceUtil.getString(Constants.PrefKeys.DISTANCE_AFTER_CONVERT, ""));
@@ -468,6 +470,7 @@ public class SearchCars extends TimeActivity implements Response.Listener<JSONOb
                                         jsonObject.put("taxiTypeName", test.optJSONObject("taxiType").optString("taxiTypeName"));
                                         jsonObject.put("partnerId", test.optJSONObject("taxiType").optString("partnerId"));
                                         jsonObject.put("tripType", bookingduration);
+                                        jsonObject.put("commision",countCommission(test));
                                         jsonObject.put("available", test.optInt("availability"));
                                         jsonObject.put("taxiStatus", test.optJSONObject("taxiType").optInt("status"));
                                         jsonObject.put("duration", SharedPreferenceUtil.getString(Constants.PrefKeys.DISTANCE_AFTER_CONVERT, ""));
@@ -542,8 +545,25 @@ public class SearchCars extends TimeActivity implements Response.Listener<JSONOb
 
     @Override
     public void onBackPressed() {
-        startActivity(new Intent(this, Search.class).putExtra("checkFlag",true));
+        startActivity(new Intent(this, Search.class).putExtra("checkFlag", true));
         finish();
+    }
+
+    public double countCommission(JSONObject jObj) {
+
+        double peakMiles = commission.optDouble("miles");
+        double extendedCommission = commission.optDouble("extended");
+        double defaultCommission = commission.optDouble("default");
+
+        double miles = jObj.optDouble("distance") * 0.000621371;
+        double price = jObj.optDouble("ETA");
+
+        if (Math.ceil(miles) > peakMiles) {
+            return (price * defaultCommission) / (100 + defaultCommission);
+        } else {
+            return (price * extendedCommission) / (100 + extendedCommission);
+        }
+
     }
 
 }
