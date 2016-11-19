@@ -130,7 +130,9 @@ public class FragmentMyTrips extends Fragment implements Response.Listener<JSONO
 
     @Override
     public void onErrorResponse(VolleyError volleyError) {
-        CommonUtil.errorToastShowing(getActivity());
+        if (getActivity() != null && isAdded())
+            CommonUtil.errorToastShowing(getActivity());
+
         CommonUtil.cancelProgressDialog();
         if (srMyTrips.isRefreshing()) {
             srMyTrips.setRefreshing(false);

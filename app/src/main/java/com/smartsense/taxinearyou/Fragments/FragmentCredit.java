@@ -73,9 +73,9 @@ public class FragmentCredit extends Fragment implements Response.Listener<JSONOb
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 selected = position;
                 JSONObject obj = (JSONObject) parent.getItemAtPosition(position);
-                SharedPreferenceUtil.putValue("key",obj.toString());
+                SharedPreferenceUtil.putValue("key", obj.toString());
                 SharedPreferenceUtil.save();
-                startActivityForResult(new Intent(getActivity(), TripDetails.class).putExtra("key", obj.toString()).putExtra("check",true), request);
+                startActivityForResult(new Intent(getActivity(), TripDetails.class).putExtra("key", obj.toString()).putExtra("check", true), request);
             }
         });
         srMyTrips.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -132,7 +132,10 @@ public class FragmentCredit extends Fragment implements Response.Listener<JSONOb
 
     @Override
     public void onErrorResponse(VolleyError volleyError) {
-        CommonUtil.errorToastShowing(getActivity());
+
+        if (getActivity() != null && isAdded())
+            CommonUtil.errorToastShowing(getActivity());
+
         CommonUtil.cancelProgressDialog();
         if (srMyTrips.isRefreshing()) {
             srMyTrips.setRefreshing(false);

@@ -2,10 +2,9 @@ package com.smartsense.taxinearyou;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
@@ -238,9 +237,13 @@ public class Filter extends TimeActivity implements View.OnClickListener {
                 radioButton[i].setButtonDrawable(R.drawable.radio_button_filter);
                 radioButton[i].setId(taxiTypeArray.optJSONObject(i).getInt("taxiTypeId"));
                 radioButton[i].setGravity(Gravity.CENTER);
-                radioButton[i].setPadding(15, 15, 15, 15); // android:checked="true"
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN)
+                    radioButton[i].setPadding(15, 15, 15, 15); // android:checked="true"
+
                 if (filterObj.optInt("vehicleType") == taxiTypeArray.optJSONObject(i).getInt("taxiTypeId"))
                     radioButton[i].setChecked(true);
+
                 radioButton[i].setClickable(true);
                 radioButton[i].setLayoutParams(params);
 //                tableRow[j].addView(radioButton[i]);

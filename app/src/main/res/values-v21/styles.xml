@@ -24,10 +24,10 @@
     <style name="Filter_Theme" parent="AppTheme">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
-        <item name="colorPrimary">@color/colorPrimaryDark</item>
+        <item name="colorPrimary">@color/colorAccent</item>
         <item name="android:fitsSystemWindows">false</item>
         <item name="android:colorControlNormal">@color/white</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark1</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
     </style>
 
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">

@@ -162,7 +162,7 @@ public class SignUp extends AppCompatActivity implements Response.Listener<JSONO
                     if (s.length() < 7 || s.length() > 15 || !CommonUtil.isLegalPassword(s.toString()) || CommonUtil.isSpecialChar(s.toString())) {
                         ivSignUpAvailableAlternatePass.setVisibility(View.GONE);
                         ivSignUpUnAvailableAlternatePass.setVisibility(View.VISIBLE);
-                    }else{
+                    } else {
                         ivSignUpUnAvailableAlternatePass.setVisibility(View.GONE);
                         ivSignUpAvailableAlternatePass.setVisibility(View.VISIBLE);
                     }
@@ -203,13 +203,24 @@ public class SignUp extends AppCompatActivity implements Response.Listener<JSONO
 //            CommonUtil.showSnackBar(getString(R.string.enter_valid_pass), clSignUp);
         else if (!etSignUpConfirmPassword.getText().toString().equals(etSignUpPassword.getText().toString()))
             CommonUtil.showSnackBar(getString(R.string.conpass_pass_same), clSignUp);
-        else if (!CommonUtil.isValidEmail(etSignUpAlternateEmail.getText().toString()))
-            CommonUtil.showSnackBar(getString(R.string.enter_alternate_email), clSignUp);
-        else if (ivSignUpUnAvailableAlternateEmail.getVisibility() == View.VISIBLE)
-            CommonUtil.showSnackBar(getResources().getString(R.string.alt_email_alred_exist), clSignUp);
-        else if (TextUtils.equals(etSignUpAlternateEmail.getText().toString(), etSignUpEmail.getText().toString()))
-            CommonUtil.showSnackBar(getString(R.string.alternate_email_not_same), clSignUp);
-        else {
+
+        else if (!TextUtils.isEmpty(etSignUpAlternateEmail.getText().toString())) {
+
+            if (!CommonUtil.isValidEmail(etSignUpAlternateEmail.getText().toString()))
+                CommonUtil.showSnackBar(getString(R.string.enter_alternate_email), clSignUp);
+
+            else if (ivSignUpUnAvailableAlternateEmail.getVisibility() == View.VISIBLE)
+                CommonUtil.showSnackBar(getResources().getString(R.string.alt_email_alred_exist), clSignUp);
+
+            else if (TextUtils.equals(etSignUpAlternateEmail.getText().toString(), etSignUpEmail.getText().toString()))
+                CommonUtil.showSnackBar(getString(R.string.alternate_email_not_same), clSignUp);
+
+            else {
+                CommonUtil.closeKeyboard(SignUp.this);
+                startActivity(new Intent(SignUp.this, SecurityQuestion.class).putExtra("firstName", etSignUpFirstName.getText().toString().trim()).putExtra("lastName", etSignUpLastName.getText().toString().trim()).putExtra("contactNo", etSignUpContact.getText().toString().trim()).putExtra("emailId", etSignUpEmail.getText().toString().trim()).putExtra("password", etSignUpPassword.getText().toString().trim()).putExtra("confPassword", etSignUpConfirmPassword.getText().toString().trim()).putExtra("altEmailId", etSignUpAlternateEmail.getText().toString().trim()));
+            }
+
+        } else {
             CommonUtil.closeKeyboard(SignUp.this);
             startActivity(new Intent(SignUp.this, SecurityQuestion.class).putExtra("firstName", etSignUpFirstName.getText().toString().trim()).putExtra("lastName", etSignUpLastName.getText().toString().trim()).putExtra("contactNo", etSignUpContact.getText().toString().trim()).putExtra("emailId", etSignUpEmail.getText().toString().trim()).putExtra("password", etSignUpPassword.getText().toString().trim()).putExtra("confPassword", etSignUpConfirmPassword.getText().toString().trim()).putExtra("altEmailId", etSignUpAlternateEmail.getText().toString().trim()));
         }
