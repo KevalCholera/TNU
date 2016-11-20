@@ -17,7 +17,6 @@ import com.smartsense.taxinearyou.utill.TimeActivity;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.text.DecimalFormat;
 import java.text.ParseException;
 
 public class BookingInfo extends TimeActivity {
@@ -90,7 +89,7 @@ public class BookingInfo extends TimeActivity {
                 tvBookInfoPassengers.setText(mainData.optString("passanger").equalsIgnoreCase("1") ? mainData.optString("passanger") + " Passenger" : mainData.optString("passanger") + " Passengers");
                 tvBookInfoLugguages.setText(SharedPreferenceUtil.getString(Constants.PrefKeys.LUGGAGE_VALUE, ""));
                 tvBookInfoRideType.setText(mainData.optJSONObject("filterRequest").optString("bookingType").equalsIgnoreCase("1") ? "Single" : "Return");
-                tvBookInfoCost.setText("£" + CommonUtil.getDecimal(jsonObject.optDouble("price")));
+                tvBookInfoCost.setText("£" + CommonUtil.getDecimal(Double.valueOf(SharedPreferenceUtil.getString(Constants.PrefKeys.FARE_COST, ""))));
 
                 int hours = mainData.optJSONObject("json").optJSONObject("distanceMatrix").optInt("duration") / 3600;
                 String hour;
@@ -108,14 +107,10 @@ public class BookingInfo extends TimeActivity {
                     min = "" + mins;
 
                 tvBookInfoETA.setText(hour + ":" + min + " hours");
-                double x = mainData.optJSONObject("json").optJSONObject("distanceMatrix").optInt("distance") * 0.000621371192;
-                DecimalFormat df = new DecimalFormat("#.##");
-                String dx = df.format(x);
-                x = Double.valueOf(dx);
 
-                tvBookInfoDistance.setText(x + " miles");
-                SharedPreferenceUtil.putValue(Constants.PrefKeys.FARE_COST, CommonUtil.getDecimal(jsonObject.optDouble("price")));
-                SharedPreferenceUtil.save();
+
+                tvBookInfoDistance.setText(CommonUtil.getDecimal(mainData.optJSONObject("json").optJSONObject("distanceMatrix").optDouble("distance")) + " miles");
+
             } catch (ParseException e) {
                 e.printStackTrace();
             }

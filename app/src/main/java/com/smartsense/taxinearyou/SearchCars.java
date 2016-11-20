@@ -277,7 +277,7 @@ public class SearchCars extends TimeActivity implements Response.Listener<JSONOb
                             SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_DISTANCE_MATRIX, response.optJSONObject("json").optJSONObject("distanceMatrix").toString());
                             SharedPreferenceUtil.save();
                             totalRecord = response.optJSONObject("json").optInt("totalRecords");
-                            commission= response.optJSONObject("json").optJSONObject("commision");
+                            commission = response.optJSONObject("json").optJSONObject("commision");
                             fillPartnerList(response.optJSONObject("json").optJSONArray("partnerArray"));
 
                             if (response.optJSONObject("json").optJSONArray("partnerArray").length() > 0) {
@@ -423,11 +423,11 @@ public class SearchCars extends TimeActivity implements Response.Listener<JSONOb
                         jsonObject.put("partnerTaxiTypeId", test.optJSONObject("taxiType").optInt("partnerTaxiTypeId"));
                         jsonObject.put("partnerName", test.optString("partnerName"));
                         jsonObject.put("distance", test.optString("distance"));
-                        jsonObject.put("price", test.optString("ETA"));
+                        jsonObject.put("price", String.valueOf(test.optDouble("ETA") - countCommission(test)));
                         jsonObject.put("taxiTypeName", test.optJSONObject("taxiType").optString("taxiTypeName"));
                         jsonObject.put("partnerId", test.optJSONObject("taxiType").optString("partnerId"));
                         jsonObject.put("tripType", bookingduration);
-                        jsonObject.put("commision",countCommission(test));
+                        jsonObject.put("commision", countCommission(test));
                         jsonObject.put("available", test.optInt("availability"));
                         jsonObject.put("taxiStatus", test.optJSONObject("taxiType").optInt("status"));
                         jsonObject.put("duration", SharedPreferenceUtil.getString(Constants.PrefKeys.DISTANCE_AFTER_CONVERT, ""));
@@ -466,11 +466,11 @@ public class SearchCars extends TimeActivity implements Response.Listener<JSONOb
                                         jsonObject.put("partnerTaxiTypeId", test.optJSONObject("taxiType").optInt("partnerTaxiTypeId"));
                                         jsonObject.put("partnerName", test.optString("partnerName"));
                                         jsonObject.put("distance", test.optString("distance"));
-                                        jsonObject.put("price", test.optString("ETA"));
+                                        jsonObject.put("price", String.valueOf(test.optDouble("ETA") - countCommission(test)));
                                         jsonObject.put("taxiTypeName", test.optJSONObject("taxiType").optString("taxiTypeName"));
                                         jsonObject.put("partnerId", test.optJSONObject("taxiType").optString("partnerId"));
                                         jsonObject.put("tripType", bookingduration);
-                                        jsonObject.put("commision",countCommission(test));
+                                        jsonObject.put("commision", countCommission(test));
                                         jsonObject.put("available", test.optInt("availability"));
                                         jsonObject.put("taxiStatus", test.optJSONObject("taxiType").optInt("status"));
                                         jsonObject.put("duration", SharedPreferenceUtil.getString(Constants.PrefKeys.DISTANCE_AFTER_CONVERT, ""));
@@ -479,6 +479,7 @@ public class SearchCars extends TimeActivity implements Response.Listener<JSONOb
                                         e.printStackTrace();
                                     }
                                     SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_CUSTOMER_SELECTION, jsonObject.toString());
+                                    SharedPreferenceUtil.putValue(Constants.PrefKeys.FARE_COST, CommonUtil.getDecimal(test.optDouble("ETA")));
                                     SharedPreferenceUtil.save();
                                     a.startActivity(new Intent(a, BookingInfo.class));
                                 } else {

@@ -33,7 +33,7 @@ public class CardList extends AppCompatActivity implements View.OnClickListener,
     LinearLayout llCardList;
     private AlertDialog alert;
     Button btCardSavePay;
-        CoordinatorLayout clPaymentDetails;
+    CoordinatorLayout clPaymentDetails;
 
     private AdapterCardList adapterCardList;
     String cardId = "";
@@ -46,6 +46,9 @@ public class CardList extends AppCompatActivity implements View.OnClickListener,
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarAll);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        if (getIntent().getBooleanExtra("pending Amount", false))
+            getSupportActionBar().setTitle("Pay with existing card");
 
         lvCardList = (ListView) findViewById(R.id.lvCardList);
         llCardList = (LinearLayout) findViewById(R.id.llCardList);
@@ -61,8 +64,8 @@ public class CardList extends AppCompatActivity implements View.OnClickListener,
                     Log.i("Yes", "Here" + cardId);
                     AdapterCardList.pos = i;
 
-                }else{
-                    cardId ="";
+                } else {
+                    cardId = "";
                     AdapterCardList.pos = -1;
 
                 }

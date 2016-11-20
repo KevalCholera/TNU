@@ -177,7 +177,12 @@ public class Card extends AppCompatActivity implements View.OnClickListener, Res
 //            Log.i("Test", test.toString());
 
             tvElementCardListCardNumber.setText("xxxx xxxx xxxx " + test.optString("last4"));
-            tvElementCardListExpiryDate.setText(test.optString("exp_month") + " - " + test.optString("exp_year"));
+            String expMonth = test.optString("exp_month");
+
+            if (expMonth.length() == 1)
+                expMonth = "0" + expMonth;
+
+            tvElementCardListExpiryDate.setText(expMonth + " / " + test.optString("exp_year"));
             tvElementCardListRemoveCard.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

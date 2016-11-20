@@ -131,10 +131,10 @@
                 android:layout_width="112dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
+                android:layout_marginTop="@dimen/margin_5"
                 android:gravity="center"
                 android:paddingLeft="@dimen/etPaddingAll"
                 android:paddingRight="@dimen/etPaddingAll"
-
                 android:textColor="@color/white"
                 android:textSize="@dimen/textDetail" />
 
@@ -238,9 +238,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
+                            android:ellipsize="end"
                             android:gravity="center|top"
                             android:maxLines="2"
-                            android:ellipsize="end"
 
 
                             android:textColor="@color/text_color"
@@ -316,6 +316,7 @@
                             android:textSize="@dimen/etSignUpSizeAll" />
 
                         <TextView
+                            android:id="@+id/tvElementMyTripFare"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"

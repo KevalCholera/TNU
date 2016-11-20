@@ -471,7 +471,8 @@
                     android:layout_weight="1"
                     android:text="@string/ride_status"
                     android:textColor="@color/background"
-                    android:textSize="@dimen/etSignUpSizeAll" />
+                    android:textSize="@dimen/etSignUpSizeAll"
+                    android:id="@+id/textView" />
 
                 <TextView
                     android:id="@+id/tvTripDetailRideStatus"

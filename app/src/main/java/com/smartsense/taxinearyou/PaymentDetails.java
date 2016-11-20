@@ -30,21 +30,16 @@ public class PaymentDetails extends TimeActivity implements View.OnClickListener
     private String pType = Constants.PAYMENT_TYPE_CASH;
     LinearLayout llPaymentCash;
     private final int paymentRequest = 1;
-    String msg = "";
     private final int cardPaymentRequest = 2;
+    private final int cardPaymentRequest1 = 3;
+    String msg = "";
     private JSONObject paymentObj;
     Boolean check = false;
     private JSONObject tripDetails;
-    private final int cardPaymentRequest1 = 3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_payment_details);
-
-//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarAll);
-//        setSupportActionBar(toolbar);
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         try {
             jsonObject3 = new JSONObject(SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_REQUEST_JSON, ""));
         } catch (Exception e) {
@@ -52,8 +47,7 @@ public class PaymentDetails extends TimeActivity implements View.OnClickListener
         }
 
         check = getIntent().getBooleanExtra("check", false);
-//        getWindow().setSoftInputMode(
-//                WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+
         llPaymentCash = (LinearLayout) findViewById(R.id.llPaymentCash);
         tvPaymentTNUCredit = (TextView) findViewById(R.id.tvPaymentTNUCredit);
         tvPaymentCard = (TextView) findViewById(R.id.tvPaymentCard);
@@ -92,7 +86,7 @@ public class PaymentDetails extends TimeActivity implements View.OnClickListener
                 startActivityForResult(new Intent(PaymentDetails.this, CardPayment.class), check ? cardPaymentRequest1 : cardPaymentRequest);
                 break;
             case R.id.tvPaymentCard:
-                startActivityForResult(new Intent(PaymentDetails.this, CardList.class), check ? cardPaymentRequest1 : cardPaymentRequest);
+                startActivityForResult(new Intent(PaymentDetails.this, CardList.class).putExtra("pending Amount", check), check ? cardPaymentRequest1 : cardPaymentRequest);
                 break;
         }
     }

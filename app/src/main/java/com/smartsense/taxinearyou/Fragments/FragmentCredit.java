@@ -271,11 +271,13 @@ public class FragmentCredit extends Fragment implements Response.Listener<JSONOb
             final TextView tvElementMyTripsStatus = (TextView) vi.findViewById(R.id.tvElementMyTripsStatus);
             TextView tvElementMyTripsTaxiProvider = (TextView) vi.findViewById(R.id.tvElementMyTripsTaxiProvider);
             TextView tvElementMyTripsDateTime = (TextView) vi.findViewById(R.id.tvElementMyTripsDateTime);
-
+            TextView tvElementMyTripFare = (TextView) vi.findViewById(R.id.tvElementMyTripFare);
             lyElementMyTripStatusLayout = (LinearLayout) vi.findViewById(R.id.lyElementMyTripStatusLayout);
             lyElementMyTripLeft = (LinearLayout) vi.findViewById(R.id.lyElementMyTripLeft);
             lyElementMyTripRight = (LinearLayout) vi.findViewById(R.id.lyElementMyTripRight);
             final JSONObject test = data.optJSONObject(position);
+
+            tvElementMyTripFare.setText("Charge");
 
 //            tvElementMyTripsAmount.setText("£" + CommonUtil.getDecimal(test.optDouble("estimatedAmount")));
 

@@ -67,8 +67,7 @@
                         android:padding="@dimen/etSignInUserPasswordPaddingStartEnd"
                         android:textColor="@color/black"
                         android:textColorHint="@color/light_Gray"
-                        android:textSize="@dimen/tvHeadingSizeAll"
-                         />
+                        android:textSize="@dimen/tvHeadingSizeAll" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -86,11 +85,11 @@
                         android:layout_marginTop="@dimen/etCardDetailsMarginTopAll"
                         android:background="@drawable/grayborder2"
                         android:hint="@string/required"
+                        android:imeOptions="actionNext"
                         android:padding="@dimen/etSignInUserPasswordPaddingStartEnd"
                         android:textColor="@color/black"
                         android:textColorHint="@color/light_Gray"
-                        android:textSize="@dimen/tvHeadingSizeAll"
-                         />
+                        android:textSize="@dimen/tvHeadingSizeAll" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -108,12 +107,11 @@
                         android:background="@drawable/grayborder2"
                         android:gravity="top"
                         android:hint="@string/billing_address"
-                        android:padding="@dimen/etSignInUserPasswordPaddingStartEnd"
                         android:inputType="textMultiLine|textLongMessage|textCapSentences"
+                        android:padding="@dimen/etSignInUserPasswordPaddingStartEnd"
                         android:textColor="@color/black"
                         android:textColorHint="@color/light_Gray"
-                        android:textSize="@dimen/tvHeadingSizeAll"
-                         />
+                        android:textSize="@dimen/tvHeadingSizeAll" />
 
                 </LinearLayout>
             </LinearLayout>

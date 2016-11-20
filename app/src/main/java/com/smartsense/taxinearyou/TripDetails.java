@@ -43,8 +43,11 @@ public class TripDetails extends AppCompatActivity implements View.OnClickListen
 
     TextView tvTripDetailBookingDate, tvTripDetailBookingTime, tvTripDetailLost, tvTripDetailTaxiProvider, tvTripDetailPickUpDate,
             tvTripDetailPickUpTime, tvTripDetailFare, tvTripDetailFrom, tvTripDetailVia1, tvTripDetailVia2, tvTripDetailTo,
-            tvTripDetailTNR, tvTripDetailPassengers, tvTripDetailAdditionsInfo, tvTripDetailLugguages, tvTripDetailMiles, tvTripDetailPayment, tvTripDetailRideType,
-            tvTripDetailRideStatus, tvTripDetailVehicle, tvTripDetailCancle, tvTripDetailInvoice, tvTripDetailFeedback, tvTripDetailFareLabel, tvTripDetailAdditionsReasonLabel, tvTripDetailAdditionsReason;
+            tvTripDetailTNR, tvTripDetailPassengers, tvTripDetailAdditionsInfo, tvTripDetailLugguages, tvTripDetailMiles,
+            tvTripDetailPayment, tvTripDetailRideType, tvTripDetailRideStatus, tvTripDetailVehicle, tvTripDetailCancle,
+            tvTripDetailInvoice, tvTripDetailFeedback, tvTripDetailFareLabel, tvTripDetailAdditionsReasonLabel,
+            tvTripDetailAdditionsReason;
+
     LinearLayout lyTripDetailInvoiceFeedback, lyTripDetailsVia2, lyTripDetailsVia1;
     CircleImageView1 cvTripDetailsPartnerLogo;
     AlertDialog alert;

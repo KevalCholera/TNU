@@ -86,24 +86,24 @@ public class PersonalInfo extends TimeActivity implements View.OnClickListener {
 //        else if (!CommonUtil.isValidEmail(etPersonalInfoEmail.getText().toString()))
 //            CommonUtil.showSnackBar(getString(R.string.enter_valid_email_id), clPersonalInfo);
 //        else {
-            try {
-                JSONObject jsonData = new JSONObject();
-                jsonData.put("hearAboutUs", String.valueOf(spPersonalInfoAd.getSelectedItemPosition() + 1))
-                        .put("firstName", etPersonalInfoName.getText().toString().trim())
-                        .put("mobileNo", etPersonalInfoNo.getText().toString().trim())
-                        .put("freeSms", 1)
-                        .put("paymentMode", 1)
-                        .put("emailId", etPersonalInfoEmail.getText().toString().trim())
-                        .put("addtionalInformation", etPersonalInfoAddInfo.getText().toString().trim())
-                        .put("lastName", etPersonalInfolastName.getText().toString().trim());
+        try {
+            JSONObject jsonData = new JSONObject();
+            jsonData.put("hearAboutUs", String.valueOf(spPersonalInfoAd.getSelectedItemPosition() + 1))
+                    .put("firstName", etPersonalInfoName.getText().toString().trim())
+                    .put("mobileNo", etPersonalInfoNo.getText().toString().trim())
+                    .put("freeSms", 1)
+                    .put("paymentMode", 1)
+                    .put("emailId", etPersonalInfoEmail.getText().toString().trim())
+                    .put("addtionalInformation", etPersonalInfoAddInfo.getText().toString().trim())
+                    .put("lastName", etPersonalInfolastName.getText().toString().trim());
 
-                SharedPreferenceUtil.putValue(Constants.PrefKeys.BOOKING_INFO, jsonData.toString());
-                SharedPreferenceUtil.save();
+            SharedPreferenceUtil.putValue(Constants.PrefKeys.BOOKING_INFO, jsonData.toString());
+            SharedPreferenceUtil.save();
 
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-            startActivity(new Intent(PersonalInfo.this, PaymentDetails.class));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        startActivity(new Intent(PersonalInfo.this, PaymentDetails.class));
 //        }
     }
 

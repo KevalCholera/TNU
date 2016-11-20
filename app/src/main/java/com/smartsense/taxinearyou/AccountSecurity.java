@@ -97,6 +97,10 @@ public class AccountSecurity extends AppCompatActivity implements View.OnClickLi
         btAccountSecurityChangePassword.setOnClickListener(this);
         btAccountSecurityUpdate.setOnClickListener(this);
 
+        if (TextUtils.isEmpty(SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_ALTERNATE_EMAIL, "")))
+            btAccountSecurityChangeAlternateEmail.setText("Add Alternate Email Address");
+        else
+            btAccountSecurityChangeAlternateEmail.setText("Change Alternate Email Address");
 
         Spannable span = Spannable.Factory.getInstance().newSpannable(Html.fromHtml(important + text + privacy));
         span.setSpan(new ClickableSpan() {
@@ -163,6 +167,10 @@ public class AccountSecurity extends AppCompatActivity implements View.OnClickLi
                 rbPopupSecurityOptionsQuestions.setVisibility(View.GONE);
 
             rbPopupSecurityOptionsEmail.setText(getResources().getString(R.string.send_email_to_primary_email_address) + "\n" + SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_EMAIL, ""));
+
+            if (TextUtils.isEmpty(SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_ALTERNATE_EMAIL, "")))
+                rbPopupSecurityOptionsAlternateEmail.setVisibility(View.GONE);
+
             rbPopupSecurityOptionsAlternateEmail.setText(getResources().getString(R.string.send_email_to_alternate_email_address) + "\n" + SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_ALTERNATE_EMAIL, ""));
 
             btPopupSecurityOptionsSubmit.setOnClickListener(this);
@@ -413,6 +421,7 @@ public class AccountSecurity extends AppCompatActivity implements View.OnClickLi
     @Override
     public void onResponse(JSONObject jsonObject) {
         CommonUtil.cancelProgressDialog();
+        CommonUtil.closeKeyboard(this);
         if (jsonObject != null) {
             if (jsonObject.optInt("status") == Constants.STATUS_SUCCESS) {
                 if (alert != null)
@@ -426,6 +435,11 @@ public class AccountSecurity extends AppCompatActivity implements View.OnClickLi
                     setValue();
                 } else
                     CommonUtil.alertBox(this, jsonObject.optString("msg"));
+
+                if (TextUtils.isEmpty(SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_ALTERNATE_EMAIL, "")))
+                    btAccountSecurityChangeAlternateEmail.setText("Add Alternate Email Address");
+                else
+                    btAccountSecurityChangeAlternateEmail.setText("Change Alternate Email Address");
 
             } else
                 CommonUtil.conditionAuthentication(this, jsonObject);

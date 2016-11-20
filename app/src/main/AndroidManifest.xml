@@ -33,8 +33,8 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".ActivityTaxiNearYou"
-            android:windowSoftInputMode="stateHidden"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".ActivitySplash"
             android:screenOrientation="portrait"
@@ -49,9 +49,9 @@
             android:name=".Search"
             android:configChanges="orientation|screenSize"
             android:label="@string/search"
-            android:windowSoftInputMode="stateHidden"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".SignIn"
             android:configChanges="orientation|screenSize"
@@ -105,15 +105,15 @@
             android:configChanges="orientation|screenSize"
             android:label="Payment Details"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".TripDetails"
             android:configChanges="orientation|screenSize"
             android:label="Trip Detail"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".Feedback"
             android:configChanges="orientation|screenSize"
@@ -147,15 +147,15 @@
             android:configChanges="orientation|screenSize"
             android:label="Lost Item"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".AccountSecurity"
             android:configChanges="orientation|screenSize"
             android:label="Account Security"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".PersonalInfo"
             android:configChanges="orientation|screenSize"
@@ -238,8 +238,8 @@
             android:configChanges="orientation|screenSize"
             android:label="About Us"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".WebViewActivity"
             android:configChanges="orientation|screenSize"
@@ -251,15 +251,15 @@
             android:configChanges="orientation|screenSize"
             android:label="More"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".GoogleMap"
             android:configChanges="orientation|screenSize"
             android:label="More"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden"
-            android:theme="@style/Filter_Theme" />
+            android:theme="@style/Filter_Theme"
+            android:windowSoftInputMode="stateHidden" />
 
         <meta-data
             android:name="com.google.android.gms.version"
@@ -293,8 +293,8 @@
         <activity
             android:name="me.nereo.multi_image_selector.MultiImageSelectorActivity"
             android:configChanges="orientation|screenSize"
-            android:windowSoftInputMode="stateHidden"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
 
 
     </application>
