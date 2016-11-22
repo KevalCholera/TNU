@@ -78,6 +78,19 @@
             android:textColor="@color/white"
             android:textSize="@dimen/textButton" />
 
+        <Button
+            android:id="@+id/btAccountSecurityRemoveAlternateEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/btSignUpAllheight"
+            android:layout_marginTop="@dimen/btSignUpAllMarginTop"
+            android:background="@drawable/yellow"
+            android:paddingLeft="@dimen/btAccountSecurityPaddingEndStartAll"
+            android:paddingRight="@dimen/btAccountSecurityPaddingEndStartAll"
+            android:text="@string/remove_alternate_email"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/textButton" />
+
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/vHeightWidthAll"

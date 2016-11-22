@@ -195,6 +195,7 @@ public class Constants {
         public static final int EVENT_CARD_LIST = 1151;
         public static final int EVENT_MAKE_PAYMENT = 1152;
         public static final int EVENT_CARD_DELETE = 1153;
+        public static final int REMOVE_ALTERNATIVE_EMAIL = 1154;
     }
 
     public class ErrorCode {

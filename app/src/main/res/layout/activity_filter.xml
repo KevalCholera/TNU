@@ -52,7 +52,8 @@
                         android:layout_height="wrap_content"
                         android:text="@string/vehicle_type"
                         android:textColor="@color/white"
-                        android:textSize="@dimen/tvHeadingSizeAll2" />
+                        android:textSize="@dimen/tvHeadingSizeAll2"
+                        android:id="@+id/textView2" />
 
                     <View
                         android:layout_width="match_parent"

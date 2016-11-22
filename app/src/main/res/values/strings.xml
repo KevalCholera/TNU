@@ -144,6 +144,7 @@
     <string name="alternate_email_id_">Alternate Email Address :</string>
     <string name="johnsmith123_gmail_com">JohnSmith123@gmail.com</string>
     <string name="change_alternate_email">Change Alternate Email Address</string>
+    <string name="remove_alternate_email">Remove</string>
     <string name="security_question_1">Security Question 1</string>
     <string name="security_question">Security Question :</string>
     <string name="in_which_city_or_town_did_your_mother_and_father_live">In which city or town did your mother and father live?</string>

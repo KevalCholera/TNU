@@ -28,7 +28,7 @@ import org.json.JSONObject;
 public class Filter extends TimeActivity implements View.OnClickListener {
 
     RadioGroup rgFilterBookingType, rgFilterDistance, rgFilterVehicleType, rbgFilterRating;
-    RadioButton rbFilterRating5, rbFilterRating4, rbFilterRating3, rbFilterRating2, rbFilterRating1, rbFilterRatingAll;
+    RadioButton rbFilterRating5, rbFilterRating4, rbFilterRating3, rbFilterRating2, rbFilterRating1, rbFilterRatingAll, rbFilterReturn;
     Button btFilterDone, btFilterResetAll;
     //    ImageView ivFilterCancel;
     CheckBox cbFilterRecommend;
@@ -52,7 +52,7 @@ public class Filter extends TimeActivity implements View.OnClickListener {
         rgFilterDistance = (RadioGroup) findViewById(R.id.rgFilterDistance1);
         rbgFilterRating = (RadioGroup) findViewById(R.id.rbgFilterRating);
         rbFilterSingle = (RadioButton) findViewById(R.id.rbFilterSingle);
-        RadioButton rbFilterReturn = (RadioButton) findViewById(R.id.rbFilterReturn);
+        rbFilterReturn = (RadioButton) findViewById(R.id.rbFilterReturn);
         rbFilterRating5 = (RadioButton) findViewById(R.id.rbFilterRating5);
         rbFilterRating4 = (RadioButton) findViewById(R.id.rbFilterRating4);
         rbFilterRating3 = (RadioButton) findViewById(R.id.rbFilterRating3);
@@ -81,6 +81,10 @@ public class Filter extends TimeActivity implements View.OnClickListener {
         rbFeedbackRatingForDriver1.setOnClickListener(Filter.this);
         tvFilterRating1.setOnClickListener(Filter.this);
 
+        resetAll();
+    }
+
+    public void resetAll() {
         try {
             filterObj = new JSONObject(SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_FILTER_REQUEST, ""));
             if (filterObj.has("bookingType")) {
@@ -126,6 +130,7 @@ public class Filter extends TimeActivity implements View.OnClickListener {
                 SharedPreferenceUtil.save();
                 setResult(Activity.RESULT_OK, new Intent());
                 finish();
+//                resetAll();
                 break;
             case R.id.rbFeedbackRatingForDriver5:
                 rbFilterRating5.performClick();

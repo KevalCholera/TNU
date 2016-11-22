@@ -47,7 +47,7 @@ public class CardList extends AppCompatActivity implements View.OnClickListener,
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        if (getIntent().getBooleanExtra("pending Amount", false))
+//        if (getIntent().getBooleanExtra("pending Amount", false))
             getSupportActionBar().setTitle("Pay with existing card");
 
         lvCardList = (ListView) findViewById(R.id.lvCardList);

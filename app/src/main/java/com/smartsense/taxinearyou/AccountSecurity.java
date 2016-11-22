@@ -42,9 +42,11 @@ import com.smartsense.taxinearyou.utill.WakeLocker;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class AccountSecurity extends AppCompatActivity implements View.OnClickListener, Response.Listener<JSONObject>, Response.ErrorListener {
+public class AccountSecurity extends AppCompatActivity implements View.OnClickListener, Response.Listener<JSONObject>,
+        Response.ErrorListener {
 
-    TextView tvAccountSecurityNote, tvAccountSecurityQuestion1, tvAccountSecurityQuestion2, tvPopupSecurityQuestion1, tvPopupSecurityQuestion2;
+    TextView tvAccountSecurityNote, tvAccountSecurityQuestion1, tvAccountSecurityQuestion2, tvPopupSecurityQuestion1,
+            tvPopupSecurityQuestion2;
     CheckBox cbAccountSecurityOrganization, cbAccountSecurityTaxinearu;
     String important, privacy, text;
     private AlertDialog alert;
@@ -57,7 +59,8 @@ public class AccountSecurity extends AppCompatActivity implements View.OnClickLi
             etPopupSecurityConfirmEmail, etPopupSecurityPassword, etPopupSecurityConfirmPassword,
             etPopupSecurityQuestionAnswer1, etPopupSecurityQuestionAnswer2, etPopupSecurityQuestionChangeAnswer1,
             etPopupSecurityQuestionChangeAnswer2, etPopupSecurityQuestionChangeQuestion1, etPopupSecurityQuestionChangeQuestion2;
-    Button btAccountSecurityChangeEmail, btAccountSecurityUpdate, btAccountSecurityChangeAlternateEmail, btAccountSecurityChangePassword, btAccountSecurityChangeQuestion;
+    Button btAccountSecurityChangeEmail, btAccountSecurityUpdate, btAccountSecurityChangeAlternateEmail,
+            btAccountSecurityChangePassword, btAccountSecurityChangeQuestion, btAccountSecurityRemoveAlternateEmail;
     RadioButton rbPopupSecurityOptionsEmail, rbPopupSecurityOptionsAlternateEmail, rbPopupSecurityOptionsQuestions;
     Button btPopupSecurityAlternateEmailSubmit, btPopupSecurityEmailSubmit, btPopupSecurityOptionsSubmit, btPopupSecurityQuestionChangeConfirm,
             btPopupSecurityPasswordSubmit, btPopupSecurityQuestionConfirm;
@@ -82,13 +85,14 @@ public class AccountSecurity extends AppCompatActivity implements View.OnClickLi
         btAccountSecurityChangeQuestion = (Button) findViewById(R.id.btAccountSecurityChangeQuestion);
         btAccountSecurityChangePassword = (Button) findViewById(R.id.btAccountSecurityChangePassword);
         btAccountSecurityUpdate = (Button) findViewById(R.id.btAccountSecurityUpdate);
+        btAccountSecurityRemoveAlternateEmail = (Button) findViewById(R.id.btAccountSecurityRemoveAlternateEmail);
         cbAccountSecurityOrganization = (CheckBox) findViewById(R.id.cbAccountSecurityOrganization);
         cbAccountSecurityTaxinearu = (CheckBox) findViewById(R.id.cbAccountSecurityTaxinearu);
         etAccountSecurityEmail = (EditText) findViewById(R.id.etAccountSecurityEmail);
         etAccountSecurityAlternateEmail = (EditText) findViewById(R.id.etAccountSecurityAlternateEmail);
 
-        important = "<font color='" + ContextCompat.getColor(this, R.color.disable_55) + "'><b>Important: </b></font>";
-        text = "<font color='" + ContextCompat.getColor(this, R.color.search_car_gray) + "'>Tick the boxes below, to receive offers and information (By Email, Telephone and Text) about products and services from various organization. For more information please view our </font>";
+        important = "<font color='" + ContextCompat.getColor(this, R.color.dark_gray) + "'><b>Important: </b></font>";
+        text = "<font color='" + ContextCompat.getColor(this, R.color.text_color) + "'>Tick the boxes below, to receive offers and information (By Email, Telephone and Text) about products and services from various organization. For more information please view our </font>";
         privacy = "<u><font color='" + ContextCompat.getColor(this, R.color.purple) + "'>Privacy Policy</font></u>.";
 
         btAccountSecurityChangeEmail.setOnClickListener(this);
@@ -96,11 +100,15 @@ public class AccountSecurity extends AppCompatActivity implements View.OnClickLi
         btAccountSecurityChangeQuestion.setOnClickListener(this);
         btAccountSecurityChangePassword.setOnClickListener(this);
         btAccountSecurityUpdate.setOnClickListener(this);
+        btAccountSecurityRemoveAlternateEmail.setOnClickListener(this);
 
-        if (TextUtils.isEmpty(SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_ALTERNATE_EMAIL, "")))
-            btAccountSecurityChangeAlternateEmail.setText("Add Alternate Email Address");
-        else
+        if (TextUtils.isEmpty(SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_ALTERNATE_EMAIL, ""))) {
+            btAccountSecurityChangeAlternateEmail.setText("Change Alternate Email Address"); // Add Alternative Email Change
+            btAccountSecurityRemoveAlternateEmail.setVisibility(View.GONE);
+        } else {
             btAccountSecurityChangeAlternateEmail.setText("Change Alternate Email Address");
+            btAccountSecurityRemoveAlternateEmail.setVisibility(View.VISIBLE);
+        }
 
         Spannable span = Spannable.Factory.getInstance().newSpannable(Html.fromHtml(important + text + privacy));
         span.setSpan(new ClickableSpan() {
@@ -226,7 +234,70 @@ public class AccountSecurity extends AppCompatActivity implements View.OnClickLi
             case R.id.btAccountSecurityUpdate:
                 updatePromotions();
                 break;
+            case R.id.btAccountSecurityRemoveAlternateEmail:
+                dialogRemoveAlternativeEmail();
+                break;
         }
+    }
+
+    public void dialogRemoveAlternativeEmail() {
+        try {
+
+            final AlertDialog.Builder alertDialogs = new AlertDialog.Builder(this);
+            LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            final View dialog = inflater.inflate(R.layout.dialog_all, null);
+            LinearLayout lyPopUpCancelRide = (LinearLayout) dialog.findViewById(R.id.lyPopUpCancelRide);
+            lyPopUpCancelRide.setVisibility(View.VISIBLE);
+
+            TextView tvPopupCancelRideOk, tvPopupCancelRideCancel, tvDialogCancelText, tvDialogCancelHeading;
+
+            tvDialogCancelHeading = (TextView) dialog.findViewById(R.id.tvDialogCancelHeading);
+            tvPopupCancelRideOk = (TextView) dialog.findViewById(R.id.tvPopupCancelRideOk);
+            tvPopupCancelRideCancel = (TextView) dialog.findViewById(R.id.tvPopupCancelRideCancel);
+            tvDialogCancelText = (TextView) dialog.findViewById(R.id.tvDialogCancelText);
+
+            tvDialogCancelText.setText("Sure to remove alternative email?");
+            tvDialogCancelHeading.setText("Remove Alternative Email?");
+
+            tvPopupCancelRideOk.setOnClickListener(new Button.OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+                    removeAlternativeEmail();
+
+                }
+            });
+            tvPopupCancelRideCancel.setOnClickListener(new Button.OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+                    alert.dismiss();
+                }
+            });
+            alertDialogs.setView(dialog);
+            alertDialogs.setCancelable(false);
+            alert = alertDialogs.create();
+            alert.show();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void removeAlternativeEmail() {
+        final String tag = "Account Security";
+        StringBuilder builder = new StringBuilder();
+        JSONObject jsonData = new JSONObject();
+
+        try {
+            builder.append(jsonData.put("token", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_ACCESS_TOKEN, ""))
+                    .put("userId", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_ID, "")));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        CommonUtil.jsonRequestGET(this, getResources().getString(R.string.get_data), CommonUtil.utf8Convert(builder, Constants.Events.REMOVE_ALTERNATIVE_EMAIL), tag, this, this);
+
     }
 
     private void changeByLinkAPI() {
@@ -368,6 +439,7 @@ public class AccountSecurity extends AppCompatActivity implements View.OnClickLi
     }
 
     public void verifyingAnswers() {
+
         if (TextUtils.isEmpty(etPopupSecurityQuestionAnswer1.getText().toString()) || TextUtils.isEmpty(etPopupSecurityQuestionAnswer2.getText().toString()))
             CommonUtil.showSnackBar(getResources().getString(R.string.enter_fields_below), clPopUpMain);
         else if (!etPopupSecurityQuestionAnswer1.getText().toString().equalsIgnoreCase(SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_ANSWER1, "")))
@@ -429,17 +501,26 @@ public class AccountSecurity extends AppCompatActivity implements View.OnClickLi
 
                 if (clicked == Constants.AccountSecurity.CHANGE_EMAIL && jsonObject.optInt("__eventid") == Constants.Events.UPDATE_EMAIL)
                     alertBox(jsonObject.optString("msg"));
-                else if (clicked == Constants.AccountSecurity.CHANGE_ALTERNATE_EMAIL && !TextUtils.isEmpty(etPopupSecurityAlternateEmail.getText().toString())) {
+                else if (jsonObject.optInt("__eventid") == Constants.Events.REMOVE_ALTERNATIVE_EMAIL) {
+                    SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_USER_ALTERNATE_EMAIL, "");
+                    SharedPreferenceUtil.save();
+                    setValue();
+                    CommonUtil.alertBox(this, jsonObject.optString("msg"));
+                } else if (clicked == Constants.AccountSecurity.CHANGE_ALTERNATE_EMAIL && !TextUtils.isEmpty(etPopupSecurityAlternateEmail.getText().toString())) {
                     SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_USER_ALTERNATE_EMAIL, etPopupSecurityAlternateEmail.getText().toString());
                     SharedPreferenceUtil.save();
                     setValue();
+                    CommonUtil.alertBox(this, jsonObject.optString("msg"));
                 } else
                     CommonUtil.alertBox(this, jsonObject.optString("msg"));
 
-                if (TextUtils.isEmpty(SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_ALTERNATE_EMAIL, "")))
-                    btAccountSecurityChangeAlternateEmail.setText("Add Alternate Email Address");
-                else
+                if (TextUtils.isEmpty(SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_ALTERNATE_EMAIL, ""))) {
+                    btAccountSecurityChangeAlternateEmail.setText("Change Alternate Email Address"); // Add Alternative Email Change
+                    btAccountSecurityRemoveAlternateEmail.setVisibility(View.GONE);
+                } else {
                     btAccountSecurityChangeAlternateEmail.setText("Change Alternate Email Address");
+                    btAccountSecurityRemoveAlternateEmail.setVisibility(View.VISIBLE);
+                }
 
             } else
                 CommonUtil.conditionAuthentication(this, jsonObject);
