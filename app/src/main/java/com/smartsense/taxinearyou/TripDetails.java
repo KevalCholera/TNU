@@ -301,7 +301,7 @@ public class TripDetails extends AppCompatActivity implements View.OnClickListen
         try {
             builder.append(jsonData.put("token", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_ACCESS_TOKEN, ""))
                     .put("userId", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_ID, ""))
-                    .put("rideId", tvTripDetailTaxiProvider.getTag()));
+                    .put("rideId", (String) tvTripDetailTaxiProvider.getTag()));
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -318,7 +318,7 @@ public class TripDetails extends AppCompatActivity implements View.OnClickListen
         try {
             builder.append(jsonData.put("token", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_ACCESS_TOKEN, ""))
                     .put("userId", SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_ID, ""))
-                    .put("rideId", tvTripDetailTaxiProvider.getTag()));
+                    .put("rideId", (String) tvTripDetailTaxiProvider.getTag()));
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -505,23 +505,28 @@ public class TripDetails extends AppCompatActivity implements View.OnClickListen
     private final BroadcastReceiver tripMessageReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            WakeLocker.acquire(context);
-            Log.i("Push ", intent.getStringExtra(Constants.EXTRAS));
             try {
                 JSONObject pushData = new JSONObject(intent.getStringExtra(Constants.EXTRAS));
-                if (pushData.optJSONObject("ride").optString("rideId").equalsIgnoreCase((String) tvTripDetailTaxiProvider.getTag())) {
-                    requestRefreshMyTrip = 1;
-                    if (pushData.optJSONObject("ride").optString("status").equalsIgnoreCase("complete")) {
-                        tvTripDetailLost.setVisibility(View.VISIBLE);
-                        lyTripDetailInvoiceFeedback.setVisibility(View.VISIBLE);
-                        tvTripDetailCancle.setVisibility(View.GONE);
+                if (pushData.has("ride")) {
+                    WakeLocker.acquire(context);
+                    Log.i("Push ", intent.getStringExtra(Constants.EXTRAS));
+
+                    String taxiProvider = (String) tvTripDetailTaxiProvider.getTag();
+                    if (pushData.optJSONObject("ride").optString("rideId").equalsIgnoreCase(taxiProvider)) {
+                        requestRefreshMyTrip = 1;
+                        if (pushData.optJSONObject("ride").optString("status").equalsIgnoreCase("complete")) {
+                            tvTripDetailLost.setVisibility(View.VISIBLE);
+                            lyTripDetailInvoiceFeedback.setVisibility(View.VISIBLE);
+                            tvTripDetailCancle.setVisibility(View.GONE);
+                        }
+                        tvTripDetailRideStatus.setText(pushData.optJSONObject("ride").optString("status"));
                     }
-                    tvTripDetailRideStatus.setText(pushData.optJSONObject("ride").optString("status"));
+                    WakeLocker.release();
                 }
-            } catch (JSONException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
-            WakeLocker.release();
+
         }
     };
 

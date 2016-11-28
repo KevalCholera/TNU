@@ -196,12 +196,14 @@
                         android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
                         android:text="@string/how_did_you_hear_about_us"
                         android:textColor="@color/background"
+                        android:visibility="gone"
                         android:textSize="@dimen/textDetail" />
 
                     <LinearLayout
                         android:id="@+id/etInfoSocial"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:visibility="gone"
                         android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
                         android:background="@drawable/grayborder2"
                         android:gravity="center"
