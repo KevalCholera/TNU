@@ -13,7 +13,6 @@ import android.support.v4.app.FragmentActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -35,13 +34,12 @@ public class GoogleMap extends FragmentActivity implements OnMapReadyCallback, V
 
     private com.google.android.gms.maps.GoogleMap mMap;
 
-
     EditText etMapSearch;
     ImageButton ibGooglePlaceBack, ibGooglePlacesMyLocation, ibGooglePlacesSave;
     Context context;
     ImageView ivMapImage;
     private JSONObject addObj;
-
+    private String country = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,15 +73,14 @@ public class GoogleMap extends FragmentActivity implements OnMapReadyCallback, V
                 break;
             case R.id.ibGooglePlaceBack:
                 finish();
-                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+                CommonUtil.closeKeyboard(this);
                 break;
             case R.id.ibGooglePlacesSave:
                 //finish();
                 String countryName = (String) etMapSearch.getTag();
                 countryName = countryName.equalsIgnoreCase(null) ? "" : countryName;
                 if (TextUtils.isEmpty(etMapSearch.getText().toString())) {
-                    CommonUtil.byToastMessage(GoogleMap.this, "Please select location");
+                    CommonUtil.byToastMessage(GoogleMap.this, "Please select a valid location.");
                 } else if (!countryName.equalsIgnoreCase("United Kingdom")) {
                     CommonUtil.byToastMessage(GoogleMap.this, "Service is not available in this area.");
                 } else {
@@ -104,6 +101,10 @@ public class GoogleMap extends FragmentActivity implements OnMapReadyCallback, V
         markerPosition = myProjection.fromScreenLocation(mdispSize);
 //        etMapSearch.setTag(markerPosition);
         new ReverseGeocodingTask(getBaseContext()).execute(markerPosition);
+
+        if (!country.equalsIgnoreCase("United Kingdom"))
+            CommonUtil.byToastMessage(GoogleMap.this, "Service is not available in this area.");
+
     }
 
     private class ReverseGeocodingTask extends AsyncTask<LatLng, Void, String> {
@@ -160,6 +161,7 @@ public class GoogleMap extends FragmentActivity implements OnMapReadyCallback, V
                     String AreaPostalCode = address.getPostalCode() == null ? " " : address.getPostalCode();
                     String AreaCity = address.getLocality() == null ? address.getAdminArea() : address.getLocality();
                     countryName = address.getCountryName() == null ? "" : address.getCountryName();
+
                     addObj.put("viaAreaName", AreaName.equalsIgnoreCase(null) ? " " : AreaName);
                     addObj.put("viaAreaPlaceid", " ");
                     addObj.put("viaAreaLat", AreaLat.equalsIgnoreCase(null) ? " " : AreaLat);
@@ -169,14 +171,11 @@ public class GoogleMap extends FragmentActivity implements OnMapReadyCallback, V
                     addObj.put("viaAreaCity", AreaCity.equalsIgnoreCase(null) ? " " : AreaCity);
                     addObj.put("viaFullAddress", AreaName.equalsIgnoreCase(null) ? " " : AreaName);
                     Log.i("jsonObj: ", addObj.toString());
-
+                    Log.i("countryName", countryName);
+                    country = countryName;
 
                 }
-            } catch (
-                    Exception e
-                    )
-
-            {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
 

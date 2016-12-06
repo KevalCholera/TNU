@@ -545,8 +545,8 @@ public class GooglePlaces extends FragmentActivity implements OnItemClickListene
             case 11:
                 if(resultCode==Activity.RESULT_OK){
                     setResult(Activity.RESULT_OK, new Intent().putExtra("typeAddress", data.getIntExtra("typeAddress", 0)).putExtra("address", data.getStringExtra("address")).putExtra("AreaName",  data.getStringExtra("AreaName")));
+                    finish();
                 }
-                finish();
                 break;
         }
     }
