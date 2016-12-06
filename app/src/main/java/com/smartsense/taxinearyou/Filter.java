@@ -86,7 +86,11 @@ public class Filter extends TimeActivity implements View.OnClickListener {
 
     public void resetAll() {
         try {
-            filterObj = new JSONObject(SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_FILTER_REQUEST, ""));
+            if (SharedPreferenceUtil.contains(Constants.PrefKeys.PREF_FILTER_REQUEST))
+                filterObj = new JSONObject(SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_FILTER_REQUEST, ""));
+            else
+                filterObj = new JSONObject();
+//            filterObj = new JSONObject(SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_FILTER_REQUEST, ""));
             if (filterObj.has("bookingType")) {
                 if (filterObj.optInt("bookingType") == 1)
                     rbFilterSingle.setChecked(true);
@@ -128,8 +132,9 @@ public class Filter extends TimeActivity implements View.OnClickListener {
             case R.id.btFilterResetAll:
                 SharedPreferenceUtil.remove(Constants.PrefKeys.PREF_FILTER_REQUEST);
                 SharedPreferenceUtil.save();
-                setResult(Activity.RESULT_OK, new Intent());
-                finish();
+                setDefaultValue();
+//                setResult(Activity.RESULT_OK, new Intent());
+//                finish();
 //                resetAll();
                 break;
             case R.id.rbFeedbackRatingForDriver5:
@@ -246,8 +251,9 @@ public class Filter extends TimeActivity implements View.OnClickListener {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN)
                     radioButton[i].setPadding(15, 15, 15, 15); // android:checked="true"
 
-                if (filterObj.optInt("vehicleType") == taxiTypeArray.optJSONObject(i).getInt("taxiTypeId"))
-                    radioButton[i].setChecked(true);
+                if (filterObj.has("vehicleType"))
+                    if (filterObj.optInt("vehicleType") == taxiTypeArray.optJSONObject(i).getInt("taxiTypeId"))
+                        radioButton[i].setChecked(true);
 
                 radioButton[i].setClickable(true);
                 radioButton[i].setLayoutParams(params);
@@ -339,4 +345,12 @@ public class Filter extends TimeActivity implements View.OnClickListener {
         }
         return super.onOptionsItemSelected(item);
     }
+
+    public void setDefaultValue(){
+        ((RadioButton)rgFilterVehicleType.getChildAt(0)).setChecked(true);
+        rbFilterSingle.setChecked(true);
+        rbFilterRatingAll.setChecked(true);
+        cbFilterRecommend.setChecked(false);
+    }
+
 }

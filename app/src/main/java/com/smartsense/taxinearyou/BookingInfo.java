@@ -109,7 +109,7 @@ public class BookingInfo extends TimeActivity {
                 tvBookInfoETA.setText(hour + ":" + min + " hours");
 
 
-                tvBookInfoDistance.setText(CommonUtil.getDecimal(mainData.optJSONObject("json").optJSONObject("distanceMatrix").optDouble("distance")) + " miles");
+                tvBookInfoDistance.setText(CommonUtil.getDecimal(mainData.optJSONObject("json").optJSONObject("distanceMatrix").optDouble("miles")) + " miles");
 
             } catch (ParseException e) {
                 e.printStackTrace();

@@ -17,7 +17,7 @@ public class Constants {
 //    public static final String BASE_URL = "https://taxinearu.co.uk";
     public static final String BASE_URL = "http://138.68.137.97:8080";
 //    public static final String BASE_URL = "http://192.168.0.111:8080";
-//    public static final String BASE_URL = "http://192.168.0.102:8080";
+//    public static final String BASE_URL = "http://192.168.0.101:8080";
     public static final String BASE_URL_IMAGE_POSTFIX = BASE_URL + "/tnu";
     public static final String BASE_URL_POSTFIX = "/tnu/m?__eventid=";
     public static final String BASE_URL_PHOTO = BASE_URL + "/tnu/m?";

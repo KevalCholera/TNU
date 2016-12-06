@@ -556,7 +556,7 @@ public class SearchCars extends TimeActivity implements Response.Listener<JSONOb
         double extendedCommission = commission.optDouble("extended");
         double defaultCommission = commission.optDouble("default");
 
-        double miles = jObj.optDouble("distance") * 0.000621371;
+        double miles = jObj.optDouble("miles");// * 0.000621371
         double price = jObj.optDouble("ETA");
 
         if (Math.ceil(miles) > peakMiles) {
