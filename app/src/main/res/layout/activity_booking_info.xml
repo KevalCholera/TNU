@@ -518,7 +518,8 @@
                         android:gravity="center"
                         android:text="@string/fare_cost"
                         android:textColor="@color/Yellow"
-                        android:textSize="@dimen/buttonGeneral" />
+                        android:textSize="@dimen/buttonGeneral"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/tvBookInfoCost"

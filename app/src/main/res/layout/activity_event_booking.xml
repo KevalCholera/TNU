@@ -184,7 +184,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
-                    android:text="@string/trip_type"
+                    android:text="@string/trip_type_"
                     android:textColor="@color/background" />
 
                 <RadioGroup
@@ -198,7 +198,7 @@
                         android:layout_height="wrap_content"
                         android:button="@drawable/radio_button_event_booking"
                         android:checked="true"
-                        android:text="@string/single"
+                        android:text="@string/one_way"
                         android:textColor="@color/background" />
 
                     <RadioButton
@@ -294,7 +294,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/people"
+                            android:text="@string/passengers_"
                             android:textColor="@color/background" />
 
                         <EditText

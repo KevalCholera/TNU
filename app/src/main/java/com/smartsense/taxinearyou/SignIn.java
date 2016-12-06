@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -126,6 +127,8 @@ public class SignIn extends AppCompatActivity implements Response.Listener<JSONO
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        Log.i("Builder", CommonUtil.utf8Convert(builder, Constants.Events.EVENT_LOGIN));
+        Log.i("builder", builder.toString());
         CommonUtil.jsonRequestGET(this, getResources().getString(R.string.login_in), CommonUtil.utf8Convert(builder, Constants.Events.EVENT_LOGIN), tag, this, this);
 
     }

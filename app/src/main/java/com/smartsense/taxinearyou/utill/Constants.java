@@ -14,8 +14,8 @@ public class Constants {
 
     //    public static final String BASE_URL = "http://fmcgfinal.cloudapp.net:8080";
 //    public static final String BASE_URL = "http://188.166.157.61";
-//    public static final String BASE_URL = "https://taxinearu.co.uk";
-    public static final String BASE_URL = "http://138.68.137.97:8080";
+    public static final String BASE_URL = "https://www.taxinearu.co.uk";
+    //    public static final String BASE_URL = "http://138.68.137.97:8080";
 //    public static final String BASE_URL = "http://192.168.0.111:8080";
 //    public static final String BASE_URL = "http://192.168.0.101:8080";
     public static final String BASE_URL_IMAGE_POSTFIX = BASE_URL + "/tnu";
@@ -38,7 +38,7 @@ public class Constants {
     //    public static final String GOOGLE_PLACE_API = "AIzaSyCp1vbSHgiC1lsNUYb-PuDs3kJ4wYEKu3I";
 //    public static final String GOOGLE_PLACE_API = "AIzaSyCfaYf-IOFXl2SOEnMeYxEqpeUwNa5IKZw";
     public static final String GOOGLE_PLACE_API = "AIzaSyBPiHmUOkSEyedL-i08WmCZBC6m89wSk9A";
-//    public static final String GOOGLE_MAP_API = "AIzaSyDrWeTlPdYv-p9IfH6kHawV6s-cffgBQPI";
+    //    public static final String GOOGLE_MAP_API = "AIzaSyDrWeTlPdYv-p9IfH6kHawV6s-cffgBQPI";
     public static final String GOOGLE_MAP_API = "AIzaSyBPiHmUOkSEyedL-i08WmCZBC6m89wSk9A";
     public static final SimpleDateFormat DATE_MONTH = new SimpleDateFormat("yyyy_MM", Locale.ENGLISH);
     public static final SimpleDateFormat DATE_FORMAT_SET = new SimpleDateFormat("dd-MM-yyyy hh:mm aa", Locale.ENGLISH);

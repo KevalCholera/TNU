@@ -126,6 +126,17 @@ public class TripDetails extends AppCompatActivity implements View.OnClickListen
             tvTripDetailBookingDate.setText(Constants.DATE_FORMAT_DATE_TIME.format(Constants.DATE_FORMAT_SET.parse(tripDetails.optString("bookingTime").trim())));
             tvTripDetailPickUpDate.setText(Constants.DATE_FORMAT_DATE_TIME.format(Constants.DATE_FORMAT_SET.parse(tripDetails.optString("pickTime").trim())));
 
+            if (tvTripDetailPickUpDate.getText().toString().contains("a.m."))
+                tvTripDetailPickUpDate.setText(CommonUtil.changeTimeSmallToCaps(tvTripDetailPickUpDate.getText().toString(), "a.m.", "AM"));
+            else
+                tvTripDetailPickUpDate.setText(CommonUtil.changeTimeSmallToCaps(tvTripDetailPickUpDate.getText().toString(), "p.m.", "PM"));
+
+            if (tvTripDetailBookingDate.getText().toString().contains("a.m."))
+                tvTripDetailBookingDate.setText(CommonUtil.changeTimeSmallToCaps(tvTripDetailBookingDate.getText().toString(), "a.m.", "AM"));
+            else
+                tvTripDetailBookingDate.setText(CommonUtil.changeTimeSmallToCaps(tvTripDetailBookingDate.getText().toString(), "p.m.", "PM"));
+
+
             tvTripDetailTaxiProvider.setText(tripDetails.optString("partner"));
             tvTripDetailTaxiProvider.setTag(tripDetails.optString("rideId"));
             tvTripDetailMiles.setText(CommonUtil.getDecimal(tripDetails.optDouble("estimatedKm")) + " miles");

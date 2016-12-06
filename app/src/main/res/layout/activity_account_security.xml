@@ -153,7 +153,6 @@
             android:textColor="@color/white"
             android:textSize="@dimen/textButton" />
 
-
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/vHeightWidthAll"
@@ -178,7 +177,6 @@
             android:textColor="@color/gray_55"
             android:textSize="@dimen/textDetail" />
 
-
         <CheckBox
             android:id="@+id/cbAccountSecurityTaxinearu"
             android:layout_width="wrap_content"
@@ -187,7 +185,7 @@
             android:button="@drawable/checkbox"
             android:paddingLeft="@dimen/lyAccountSecurityCheckTextMarginStartTop"
             android:text="@string/yes_i_would_like_to_receive_offers_and_infromation_about_products_and_services_about_taxinearu"
-            android:textColor="@color/details"
+            android:textColor="@color/gray_55"
             android:textSize="@dimen/textDetail" />
 
         <Button

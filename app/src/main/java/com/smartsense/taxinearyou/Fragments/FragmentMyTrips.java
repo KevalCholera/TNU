@@ -56,7 +56,7 @@ public class FragmentMyTrips extends Fragment implements Response.Listener<JSONO
 
         pageNumber = 0;
         totalRecord = 0;
-        pageSize = SharedPreferenceUtil.getInt(Constants.PAGE_LIMIT,9);
+        pageSize = SharedPreferenceUtil.getInt(Constants.PAGE_LIMIT, 9);
         adapterMyTrips = null;
 
         tvFragmentMyTrips = (TextView) rootView.findViewById(R.id.tvFragmentMyTrips);
@@ -71,7 +71,7 @@ public class FragmentMyTrips extends Fragment implements Response.Listener<JSONO
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 selected = position;
                 JSONObject obj = (JSONObject) parent.getItemAtPosition(position);
-                SharedPreferenceUtil.putValue("key",obj.toString());
+                SharedPreferenceUtil.putValue("key", obj.toString());
                 SharedPreferenceUtil.save();
                 startActivityForResult(new Intent(getActivity(), TripDetails.class).putExtra("key", obj.toString()), request);
             }
@@ -284,6 +284,11 @@ public class FragmentMyTrips extends Fragment implements Response.Listener<JSONO
             } catch (Exception e) {
                 e.printStackTrace();
             }
+
+            if (tvElementMyTripsDateTime.getText().toString().contains("a.m."))
+                tvElementMyTripsDateTime.setText(CommonUtil.changeTimeSmallToCaps(tvElementMyTripsDateTime.getText().toString(), "a.m.", "AM"));
+            else
+                tvElementMyTripsDateTime.setText(CommonUtil.changeTimeSmallToCaps(tvElementMyTripsDateTime.getText().toString(), "p.m.", "PM"));
 
             if (test.optString("status").equals("Cancelled"))
                 tvElementMyTripsStatus.setBackgroundColor(ContextCompat.getColor(a, R.color.red));

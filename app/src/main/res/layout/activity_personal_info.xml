@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/clPersonalInfo"
     android:layout_width="match_parent"
+    android:layout_height="fill_parent"
     android:focusable="true"
-    android:focusableInTouchMode="true"
-    android:layout_height="fill_parent">
+    android:focusableInTouchMode="true">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -29,8 +28,8 @@
                 android:layout_gravity="right"
                 android:layout_marginRight="10dp"
                 android:text="00:00"
-                android:visibility="gone"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:visibility="gone" />
         </android.support.v7.widget.Toolbar>
 
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -108,7 +107,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/vPersonalInfoMarginTopBottomAll"
-                        android:text="@string/mobile_no"
+                        android:text="@string/_contact_number"
                         android:textColor="@color/background"
                         android:textSize="@dimen/etSignUpSizeAll" />
 
@@ -196,18 +195,18 @@
                         android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
                         android:text="@string/how_did_you_hear_about_us"
                         android:textColor="@color/background"
-                        android:visibility="gone"
-                        android:textSize="@dimen/textDetail" />
+                        android:textSize="@dimen/textDetail"
+                        android:visibility="gone" />
 
                     <LinearLayout
                         android:id="@+id/etInfoSocial"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:visibility="gone"
                         android:layout_marginTop="@dimen/tvMarginTopBottomStartEndAll"
                         android:background="@drawable/grayborder2"
                         android:gravity="center"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:visibility="gone">
 
                         <Spinner
                             android:id="@+id/spPersonalInfoAd"

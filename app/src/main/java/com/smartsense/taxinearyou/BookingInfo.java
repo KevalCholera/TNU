@@ -66,6 +66,12 @@ public class BookingInfo extends TimeActivity {
             try {
                 tvBookInfoDate.setText(Constants.DATE_FORMAT_ONLY_DATE.format(Constants.DATE_FORMAT_SEND.parse(mainData.optString("journeyDatetime"))));
                 tvBookInfoTime.setText(Constants.DATE_FORMAT_ONLY_TIME.format(Constants.DATE_FORMAT_SEND.parse(mainData.optString("journeyDatetime"))));
+
+                if (tvBookInfoTime.getText().toString().contains("a.m."))
+                    tvBookInfoTime.setText(CommonUtil.changeTimeSmallToCaps(tvBookInfoTime.getText().toString(), "a.m.", "AM"));
+                else
+                    tvBookInfoTime.setText(CommonUtil.changeTimeSmallToCaps(tvBookInfoTime.getText().toString(), "p.m.", "PM"));
+
                 tvBookInfoFrom.setText(mainData.optString("fromAreaAddress"));
                 tvBookInfoTo.setText(mainData.optString("toAreaAddress"));
 

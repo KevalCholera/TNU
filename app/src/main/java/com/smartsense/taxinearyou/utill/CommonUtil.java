@@ -629,6 +629,11 @@ public class CommonUtil {
         return url;
     }
 
+    public static String changeTimeSmallToCaps(String timeBack, String from, String to) {
+
+        return timeBack.replace(from, to);
+    }
+
     public static String getDecimal(Double x) {
         NumberFormat formatter = new DecimalFormat("#0.00");
         String s = formatter.format(x);
@@ -667,11 +672,11 @@ public class CommonUtil {
                     if (buton_click.equalsIgnoreCase("Payment Details"))
                         activity.startActivity(new Intent(activity, Search.class));
                     if (buton_click.equalsIgnoreCase("Payment Details1"))
-                        activity.startActivity(new Intent(activity, Search.class).putExtra("checkWallet",true));
+                        activity.startActivity(new Intent(activity, Search.class).putExtra("checkWallet", true));
                     else if (buton_click.equalsIgnoreCase("Recover Email"))
                         activity.startActivity(new Intent(activity, SignIn.class));
                     else if (buton_click.equalsIgnoreCase("Payment Fail"))
-                        activity.startActivity(new Intent(activity, Search.class).putExtra("checkFlag",true));
+                        activity.startActivity(new Intent(activity, Search.class).putExtra("checkFlag", true));
                     alert.dismiss();
                     activity.finish();
                 }
@@ -742,18 +747,14 @@ public class CommonUtil {
         }
     }
 
-    public static boolean CheckCreditCard(String ccNumber)
-    {
+    public static boolean CheckCreditCard(String ccNumber) {
         int sum = 0;
         boolean alternate = false;
-        for (int i = ccNumber.length() - 1; i >= 0; i--)
-        {
+        for (int i = ccNumber.length() - 1; i >= 0; i--) {
             int n = Integer.parseInt(ccNumber.substring(i, i + 1));
-            if (alternate)
-            {
+            if (alternate) {
                 n *= 2;
-                if (n > 9)
-                {
+                if (n > 9) {
                     n = (n % 10) + 1;
                 }
             }

@@ -92,8 +92,11 @@ public class AccountSecurity extends AppCompatActivity implements View.OnClickLi
         etAccountSecurityAlternateEmail = (EditText) findViewById(R.id.etAccountSecurityAlternateEmail);
 
         important = "<font color='" + ContextCompat.getColor(this, R.color.dark_gray) + "'><b>Important: </b></font>";
-        text = "<font color='" + ContextCompat.getColor(this, R.color.text_color) + "'>Tick the boxes below, to receive offers and information (By Email, Telephone and Text) about products and services from various organization. For more information please view our </font>";
-        privacy = "<u><font color='" + ContextCompat.getColor(this, R.color.purple) + "'>Privacy Policy</font></u>.";
+        text = "<font color='" + ContextCompat.getColor(this, R.color.text_color) + "'>Tick the boxes below, " +
+                "to receive offers and information (by email, phone and text) about product and services from " +
+                "various organizations. For more information please view our </font>";
+
+        privacy = "<font color='" + ContextCompat.getColor(this, R.color.purple) + "'>Privacy policy</font>.";
 
         btAccountSecurityChangeEmail.setOnClickListener(this);
         btAccountSecurityChangeAlternateEmail.setOnClickListener(this);
@@ -116,7 +119,7 @@ public class AccountSecurity extends AppCompatActivity implements View.OnClickLi
             public void onClick(View v) {
                 startActivity(new Intent(AccountSecurity.this, AboutUs.class).putExtra("privacy", "privacy"));
             }
-        }, 190, 205, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        }, 186, 201, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 
         tvAccountSecurityNote.setText(span);
         tvAccountSecurityNote.setMovementMethod(LinkMovementMethod.getInstance());
@@ -516,6 +519,11 @@ public class AccountSecurity extends AppCompatActivity implements View.OnClickLi
                     SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_USER_ALTERNATE_EMAIL, etPopupSecurityAlternateEmail.getText().toString());
                     SharedPreferenceUtil.save();
                     setValue();
+                    CommonUtil.alertBox(this, jsonObject.optString("msg"));
+                } else if (jsonObject.optInt("__eventid") == Constants.Events.UPDATE_PROMOTIONS) {
+                    SharedPreferenceUtil.putValue(Constants.PrefKeys.RECEIVE_ORG_OFFERS, cbAccountSecurityOrganization.isChecked() ? "1" : "0");
+                    SharedPreferenceUtil.putValue(Constants.PrefKeys.RECEIVE_TNU_OFFERS, cbAccountSecurityTaxinearu.isChecked() ? "1" : "0");
+                    SharedPreferenceUtil.save();
                     CommonUtil.alertBox(this, jsonObject.optString("msg"));
                 } else
                     CommonUtil.alertBox(this, jsonObject.optString("msg"));

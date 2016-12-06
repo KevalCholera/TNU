@@ -24,6 +24,7 @@ import android.widget.TextView;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.mpt.storage.SharedPreferenceUtil;
 import com.smartsense.taxinearyou.utill.CommonUtil;
 import com.smartsense.taxinearyou.utill.Constants;
 
@@ -83,6 +84,10 @@ public class SecurityQuestion extends AppCompatActivity implements View.OnClickL
                 else if (!cbSecurityFromPrivacyPolicy.isChecked())
                     CommonUtil.showSnackBar(getResources().getString(R.string.check_term), clSecurityQuestion);
                 else {
+                    SharedPreferenceUtil.putValue(Constants.PrefKeys.RECEIVE_ORG_OFFERS, cbSecurityFromOrganization.isChecked() ? "1" : "0");
+                    SharedPreferenceUtil.putValue(Constants.PrefKeys.RECEIVE_TNU_OFFERS, cbSecurityAboutTaxinearu.isChecked() ? "1" : "0");
+                    SharedPreferenceUtil.save();
+
                     CommonUtil.closeKeyboard(SecurityQuestion.this);
                     doSignUp();
                 }
