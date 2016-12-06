@@ -23,7 +23,6 @@ import org.json.JSONObject;
 public class GcmIntentService extends IntentService {
     public static final int NOTIFICATION_ID = 1;
     private static final String TAG = "Gcm";
-    private NotificationManager mNotificationManager;
     NotificationCompat.Builder builder;
 
     public GcmIntentService() {
@@ -50,6 +49,13 @@ public class GcmIntentService extends IntentService {
                         OneSignal.sendTag("emailId", "");
                     }
                 }
+                else if (pushDataObj.optJSONObject("a").optInt("eventId") == Constants.Events.REMOVE_ALTERNATIVE_EMAIL) {
+                    if (pushDataObj.optJSONObject("a").optInt("reqType") == 2) {
+                        SharedPreferenceUtil.clear();
+                        SharedPreferenceUtil.save();
+                        OneSignal.sendTag("alternateEmailId", "");
+                    }
+                }
                 Intent intentBroadCast;
                 intentBroadCast = new Intent(pushDataObj.optJSONObject("a").optString("eventId"));
                 intentBroadCast.putExtra(Constants.EXTRAS, pushDataObj.optJSONObject("a").toString());
@@ -65,7 +71,7 @@ public class GcmIntentService extends IntentService {
     }
 
     private void sendNotification(String msg) {
-        mNotificationManager = (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
+        NotificationManager mNotificationManager = (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
 
         PendingIntent contentIntent = PendingIntent.getActivity(this, 0, new Intent(this, ActivitySplash.class), 0);
 

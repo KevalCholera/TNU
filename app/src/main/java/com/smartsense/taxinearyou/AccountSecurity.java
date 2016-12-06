@@ -370,6 +370,12 @@ public class AccountSecurity extends AppCompatActivity implements View.OnClickLi
     }
 
     public void setValue() {
+
+        if (!TextUtils.isEmpty(SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_ALTERNATE_EMAIL, "")))
+            btAccountSecurityRemoveAlternateEmail.setVisibility(View.VISIBLE);
+        else
+            btAccountSecurityRemoveAlternateEmail.setVisibility(View.GONE);
+
         etAccountSecurityEmail.setText(SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_EMAIL, ""));
         etAccountSecurityAlternateEmail.setText(SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_ALTERNATE_EMAIL, ""));
         tvAccountSecurityQuestion1.setText("Q1)  " + SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_QUESTION1, ""));
