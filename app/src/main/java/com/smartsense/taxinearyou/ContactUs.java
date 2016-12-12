@@ -60,6 +60,8 @@ public class ContactUs extends AppCompatActivity implements Response.Listener<JS
             CommonUtil.showSnackBar(getResources().getString(R.string.enter_fields_below), clContactUs);
         else if (TextUtils.isEmpty(etContactUsName.getText().toString()))
             CommonUtil.showSnackBar(getResources().getString(R.string.enter_first_name), clContactUs);
+        else if (etContactUsName.getText().toString().length() < 2 || etContactUsName.getText().toString().length() > 20)
+            CommonUtil.showSnackBar(getResources().getString(R.string.enter_first_name_validation), clContactUs);
         else if (etContactUsMobile.length() != 10)
             CommonUtil.showSnackBar(getResources().getString(R.string.enter_con), clContactUs);
         else if (!CommonUtil.isValidEmail(etContactUsEmail.getText().toString()))

@@ -185,8 +185,12 @@ public class SignUp extends AppCompatActivity implements Response.Listener<JSONO
             CommonUtil.showSnackBar(getResources().getString(R.string.enter_fields_below), clSignUp);
         else if (TextUtils.isEmpty(etSignUpFirstName.getText().toString()))
             CommonUtil.showSnackBar(getString(R.string.enter_first_name), clSignUp);
+        else if (etSignUpFirstName.getText().toString().length() < 2 || etSignUpFirstName.getText().toString().length() > 20)
+            CommonUtil.showSnackBar(getString(R.string.enter_first_name_validation), clSignUp);
         else if (TextUtils.isEmpty(etSignUpLastName.getText().toString()))
             CommonUtil.showSnackBar(getString(R.string.enter_last_name), clSignUp);
+        else if (etSignUpLastName.getText().toString().length() < 2 || etSignUpLastName.getText().toString().length() > 20)
+            CommonUtil.showSnackBar(getString(R.string.enter_last_name_validation), clSignUp);
         else if (TextUtils.isEmpty(etSignUpContact.getText().toString()) || etSignUpContact.length() != 10)
             CommonUtil.showSnackBar(getString(R.string.enter_valid_contact), clSignUp);
         else if (ivSignUpUnAvailableNumber.getVisibility() == View.VISIBLE)
@@ -197,10 +201,6 @@ public class SignUp extends AppCompatActivity implements Response.Listener<JSONO
             CommonUtil.showSnackBar(getResources().getString(R.string.email_alred_exist), clSignUp);
         else if (etSignUpPassword.length() < 7 || etSignUpPassword.length() > 15 || !CommonUtil.isLegalPassword(etSignUpPassword.getText().toString()) || CommonUtil.isSpecialChar(etSignUpPassword.getText().toString()))
             CommonUtil.showSnackBar(getString(R.string.enter_valid_pass), clSignUp);
-//        else if (!CommonUtil.isLegalPassword(etSignUpPassword.getText().toString()))
-//            CommonUtil.showSnackBar(getString(R.string.enter_valid_pass), clSignUp);
-//        else if (CommonUtil.isSpecialChar(etSignUpPassword.getText().toString()))
-//            CommonUtil.showSnackBar(getString(R.string.enter_valid_pass), clSignUp);
         else if (!etSignUpConfirmPassword.getText().toString().equals(etSignUpPassword.getText().toString()))
             CommonUtil.showSnackBar(getString(R.string.conpass_pass_same), clSignUp);
 

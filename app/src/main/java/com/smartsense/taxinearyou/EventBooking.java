@@ -278,16 +278,18 @@ public class EventBooking extends AppCompatActivity implements Response.Listener
             e.printStackTrace();
         }
     }
+
     Calendar calendar = Calendar.getInstance();
     long oneYear = 1L * 365 * 1000 * 60 * 60 * 24L;
-    public void selectPicker(long minTime){
+
+    public void selectPicker(long minTime) {
         com.jzxiang.pickerview.TimePickerDialog mDialogAll = new com.jzxiang.pickerview.TimePickerDialog.Builder()
                 .setCallBack(new OnDateSetListener() {
                     @Override
                     public void onDateSet(com.jzxiang.pickerview.TimePickerDialog timePickerView, long millseconds) {
 
                         calendar.setTimeInMillis(millseconds);
-                        updateTime(Integer.valueOf(Constants.DATE_FORMAT_BIG_TIME_HOUR.format(calendar.getTime())),Integer.valueOf(Constants.DATE_FORMAT_TIME_MIN.format(calendar.getTime())),Constants.DATE_FORMAT_ONLY_DATE.format(calendar.getTime()));
+                        updateTime(Integer.valueOf(Constants.DATE_FORMAT_BIG_TIME_HOUR.format(calendar.getTime())), Integer.valueOf(Constants.DATE_FORMAT_TIME_MIN.format(calendar.getTime())), Constants.DATE_FORMAT_ONLY_DATE.format(calendar.getTime()));
                     }
                 })
                 .setCancelStringId("CANCEL")
@@ -306,7 +308,7 @@ public class EventBooking extends AppCompatActivity implements Response.Listener
                 .setWheelItemTextSelectorColor(ActivityCompat.getColor(EventBooking.this, R.color.colorAccent))
                 .setWheelItemTextSize(12)
                 .setMinMillseconds(minTime)
-                .setMaxMillseconds(minTime+oneYear)
+                .setMaxMillseconds(minTime + oneYear)
                 .build();
         mDialogAll.show(getSupportFragmentManager(), "all");
 
@@ -322,8 +324,12 @@ public class EventBooking extends AppCompatActivity implements Response.Listener
                     CommonUtil.showSnackBar(getResources().getString(R.string.enter_fields_below), clEventBooking);
                 else if (TextUtils.isEmpty(etEventBookingFirstName.getText().toString()))
                     CommonUtil.showSnackBar(getResources().getString(R.string.enter_first_name), clEventBooking);
+                else if (etEventBookingFirstName.getText().toString().length() < 2 || etEventBookingFirstName.getText().toString().length() > 20)
+                    CommonUtil.showSnackBar(getString(R.string.enter_first_name_validation), clEventBooking);
                 else if (TextUtils.isEmpty(etEventBookingLastName.getText().toString()))
                     CommonUtil.showSnackBar(getResources().getString(R.string.enter_last_name), clEventBooking);
+                else if (etEventBookingLastName.getText().toString().length() < 2 || etEventBookingLastName.getText().toString().length() > 20)
+                    CommonUtil.showSnackBar(getString(R.string.enter_last_name_validation), clEventBooking);
                 else if (TextUtils.isEmpty(etEventBookingEmailAddress.getText().toString()) || !CommonUtil.isValidEmail(etEventBookingEmailAddress.getText().toString()))
                     CommonUtil.showSnackBar(getResources().getString(R.string.enter_email_id), clEventBooking);
                 else if (etEventBookingContactNumber.length() != 10)

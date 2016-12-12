@@ -35,7 +35,6 @@ public class GeneralInformation extends AppCompatActivity implements Response.Li
     CoordinatorLayout clGeneralInfo;
     int check;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,13 +50,6 @@ public class GeneralInformation extends AppCompatActivity implements Response.Li
         etGeneralMobile = (EditText) findViewById(R.id.etGeneralMobile);
         btGeneralUpdateProfile = (Button) findViewById(R.id.btGeneralUpdateProfile);
         clGeneralInfo = (CoordinatorLayout) findViewById(R.id.clGeneralInfo);
-
-//        clGeneralInfo.setFitsSystemWindows(true);
-
-//        clGeneralInfo.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION);
-
-//        etGeneralFirstName.setFilters(new InputFilter[]{CommonUtil.textFilter});
-//        etGeneralLastName.setFilters(new InputFilter[]{CommonUtil.textFilter});
 
         setDataInActivity();
 
@@ -86,8 +78,12 @@ public class GeneralInformation extends AppCompatActivity implements Response.Li
                     CommonUtil.showSnackBar(getResources().getString(R.string.enter_fields_below), clGeneralInfo);
                 else if (TextUtils.isEmpty(etGeneralFirstName.getText().toString()))
                     CommonUtil.showSnackBar(getString(R.string.enter_first_name), clGeneralInfo);
+                else if (etGeneralFirstName.getText().toString().length() < 2 || etGeneralFirstName.getText().toString().length() > 20)
+                    CommonUtil.showSnackBar(getString(R.string.enter_first_name_validation), clGeneralInfo);
                 else if (TextUtils.isEmpty(etGeneralLastName.getText().toString()))
                     CommonUtil.showSnackBar(getString(R.string.enter_last_name), clGeneralInfo);
+                else if (etGeneralLastName.getText().toString().length() < 2 || etGeneralLastName.getText().toString().length() > 20)
+                    CommonUtil.showSnackBar(getString(R.string.enter_last_name_validation), clGeneralInfo);
                 else if (etGeneralMobile.length() != 10)
                     CommonUtil.showSnackBar(getString(R.string.enter_valid_contact), clGeneralInfo);
                 else {
