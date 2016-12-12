@@ -1,6 +1,5 @@
 package com.smartsense.taxinearyou.utill;
 
-
 import com.android.volley.AuthFailureError;
 import com.android.volley.NetworkResponse;
 import com.android.volley.ParseError;
@@ -8,27 +7,20 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.HttpHeaderParser;
-
 import org.apache.http.entity.mime.MultipartEntity;
 import org.apache.http.entity.mime.content.FileBody;
 import org.apache.http.entity.mime.content.StringBody;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 
-
-
 public class MultipartRequestJson extends Request<JSONObject> {
 
     private MultipartEntity entity = new MultipartEntity();
-
-    private String FILE_PART_NAME = "profilePic";
-
     private Response.Listener<JSONObject> mListener;
     private  File file;
     private final HashMap<String, String> params;
@@ -46,7 +38,8 @@ public class MultipartRequestJson extends Request<JSONObject> {
     private void buildMultipartEntity() {
 //        for (int i = 0; i < file.length; i++) {
 
-            entity.addPart(FILE_PART_NAME, new FileBody(file));
+        String FILE_PART_NAME = "profilePic";
+        entity.addPart(FILE_PART_NAME, new FileBody(file));
 //        }
         try {
             for (String key : params.keySet()) {
