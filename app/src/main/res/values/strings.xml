@@ -287,6 +287,7 @@
     <string name="alternate_email_not_same">Email address &amp; Alternative email can not be the same</string>
     <string name="conpass_pass_same">Confirm password does not match</string>
     <string name="enter_first_name">Enter first name</string>
+    <string name="enter_name_validation_in_contact_us">Name must be 5 to 20 characters long</string>
     <string name="enter_first_name_validation">First name must be 2 to 20 characters long</string>
     <string name="enter_last_name_validation">Last name must be 2 to 20 characters long</string>
     <string name="enter_name">Enter name</string>
