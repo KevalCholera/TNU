@@ -194,7 +194,7 @@
         <activity
             android:name=".Card"
             android:configChanges="orientation|screenSize"
-            android:label="Card"
+            android:label="@string/saved_cards"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="stateHidden" />

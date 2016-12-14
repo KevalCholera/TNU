@@ -143,6 +143,7 @@ public class SignUp extends AppCompatActivity implements Response.Listener<JSONO
                 submitConditions();
             }
         });
+
         btSignUpBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -150,6 +151,7 @@ public class SignUp extends AppCompatActivity implements Response.Listener<JSONO
                 CommonUtil.closeKeyboard(SignUp.this);
             }
         });
+
         etSignUpConfirmPassword.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -159,7 +161,7 @@ public class SignUp extends AppCompatActivity implements Response.Listener<JSONO
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (s.length() > 0) {
-                    if (s.length() < 7 || s.length() > 15 || !CommonUtil.isLegalPassword(s.toString()) || CommonUtil.isSpecialChar(s.toString())) {
+                    if (s.length() < 7 || s.length() > 15 || !CommonUtil.isLegalPassword(s.toString()) || CommonUtil.isSpecialChar(s.toString()) || !etSignUpPassword.getText().toString().trim().equalsIgnoreCase(etSignUpConfirmPassword.getText().toString().trim())) {
                         ivSignUpAvailableAlternatePass.setVisibility(View.GONE);
                         ivSignUpUnAvailableAlternatePass.setVisibility(View.VISIBLE);
                     } else {

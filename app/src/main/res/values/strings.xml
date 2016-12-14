@@ -496,5 +496,7 @@
     <string name="google_app_id">754553740728</string>
     <string name="_contact_number">Contact Number</string>
     <string name="trip_type_">Trip Type :</string>
+    <string name="no_cards_saved">No cards saved.</string>
+    <string name="saved_cards">Saved Cards</string>
 
 </resources>

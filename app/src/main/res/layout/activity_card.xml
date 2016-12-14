@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    android:orientation="vertical"
     android:gravity="center"
+    android:orientation="vertical"
     android:theme="@style/AppTheme">
-
 
     <LinearLayout
         android:id="@+id/llCard"
@@ -19,17 +17,15 @@
         android:visibility="visible">
 
         <ImageView
-
             android:layout_width="@dimen/ivCreditImage"
             android:layout_height="@dimen/ivCreditImage"
             android:background="@mipmap/bancard" />
 
         <TextView
-
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:text="No cards saved."
+            android:text="@string/no_cards_saved"
             android:textColor="@color/heading"
             android:textSize="@dimen/tvHeadingSizeAll" />
     </LinearLayout>
@@ -39,9 +35,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:divider="@null"
-        android:visibility="gone"
         android:dividerHeight="0dp"
-        android:scrollbarStyle="@null" />
+        android:scrollbarStyle="@null"
+        android:visibility="gone" />
 
-
-</FrameLayout>
+</LinearLayout>

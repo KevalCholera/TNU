@@ -160,7 +160,7 @@
                     android:layout_height="match_parent"
                     android:layout_marginLeft="5dp"
                     android:gravity="fill"
-                    android:text="@string/payment"
+                    android:text="@string/saved_cards"
                     android:textColor="@color/text_color"
                     android:textSize="@dimen/textHead" />
 

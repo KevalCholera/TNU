@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/clYourDetails"
     android:layout_width="match_parent"
@@ -7,7 +6,7 @@
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
         <include layout="@layout/element_appbar" />
@@ -245,9 +244,9 @@
                         android:background="@drawable/grayborder"
                         android:gravity="top"
                         android:imeOptions="actionDone"
+                        android:maxLength="200"
                         android:maxLines="4"
                         android:padding="@dimen/etPaddingAll"
-                        android:maxLength="200"
                         android:scrollbars="vertical"
                         android:textColor="@color/black"
                         android:textSize="@dimen/heading" />

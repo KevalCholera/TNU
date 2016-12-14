@@ -47,6 +47,7 @@ public class AccountSecurity extends AppCompatActivity implements View.OnClickLi
 
     TextView tvAccountSecurityNote, tvAccountSecurityQuestion1, tvAccountSecurityQuestion2, tvPopupSecurityQuestion1,
             tvPopupSecurityQuestion2;
+
     CheckBox cbAccountSecurityOrganization, cbAccountSecurityTaxinearu;
     String important, privacy, text;
     private AlertDialog alert;
@@ -55,15 +56,20 @@ public class AccountSecurity extends AppCompatActivity implements View.OnClickLi
     int clicked = 0;
     EditText etAccountSecurityEmail, etAccountSecurityAlternateEmail;
     LinearLayout lyPopUpAlternateEmail, lyPopUpSecurityOptions, lyPopUpPassword, lyPopUpQuestion, lyPopUpQuestionChanges;
+
     EditText etPopupSecurityAlternateEmail, etPopupSecurityConfirmAlternateEmail, etPopupSecurityEmail,
             etPopupSecurityConfirmEmail, etPopupSecurityPassword, etPopupSecurityConfirmPassword,
             etPopupSecurityQuestionAnswer1, etPopupSecurityQuestionAnswer2, etPopupSecurityQuestionChangeAnswer1,
             etPopupSecurityQuestionChangeAnswer2, etPopupSecurityQuestionChangeQuestion1, etPopupSecurityQuestionChangeQuestion2;
+
     Button btAccountSecurityChangeEmail, btAccountSecurityUpdate, btAccountSecurityChangeAlternateEmail,
             btAccountSecurityChangePassword, btAccountSecurityChangeQuestion, btAccountSecurityRemoveAlternateEmail;
+
     RadioButton rbPopupSecurityOptionsEmail, rbPopupSecurityOptionsAlternateEmail, rbPopupSecurityOptionsQuestions;
-    Button btPopupSecurityAlternateEmailSubmit, btPopupSecurityEmailSubmit, btPopupSecurityOptionsSubmit, btPopupSecurityQuestionChangeConfirm,
-            btPopupSecurityPasswordSubmit, btPopupSecurityQuestionConfirm;
+
+    Button btPopupSecurityAlternateEmailSubmit, btPopupSecurityEmailSubmit, btPopupSecurityOptionsSubmit,
+            btPopupSecurityQuestionChangeConfirm, btPopupSecurityPasswordSubmit, btPopupSecurityQuestionConfirm;
+
     CoordinatorLayout clPopUpMain;
     LinearLayout lyPopUpEmail;
 
@@ -106,7 +112,7 @@ public class AccountSecurity extends AppCompatActivity implements View.OnClickLi
         btAccountSecurityRemoveAlternateEmail.setOnClickListener(this);
 
         if (TextUtils.isEmpty(SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_ALTERNATE_EMAIL, ""))) {
-            btAccountSecurityChangeAlternateEmail.setText("Change Alternate Email Address"); // Add Alternative Email Change
+            btAccountSecurityChangeAlternateEmail.setText("Add Alternate Email Address"); // Add Alternative Email Change
             btAccountSecurityRemoveAlternateEmail.setVisibility(View.GONE);
         } else {
             btAccountSecurityChangeAlternateEmail.setText("Change Alternate Email Address");
@@ -380,7 +386,12 @@ public class AccountSecurity extends AppCompatActivity implements View.OnClickLi
             btAccountSecurityRemoveAlternateEmail.setVisibility(View.GONE);
 
         etAccountSecurityEmail.setText(SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_EMAIL, ""));
-        etAccountSecurityAlternateEmail.setText(SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_ALTERNATE_EMAIL, ""));
+
+        if (!TextUtils.isEmpty(SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_ALTERNATE_EMAIL, "")))
+            etAccountSecurityAlternateEmail.setText(SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_ALTERNATE_EMAIL, ""));
+        else
+            etAccountSecurityAlternateEmail.setText("--");
+
         tvAccountSecurityQuestion1.setText("Q1)  " + SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_QUESTION1, ""));
         tvAccountSecurityQuestion2.setText("Q2)  " + SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_QUESTION2, ""));
         cbAccountSecurityOrganization.setChecked(SharedPreferenceUtil.getString(Constants.PrefKeys.RECEIVE_ORG_OFFERS, "0").equalsIgnoreCase("1") ? true : false);
@@ -529,7 +540,7 @@ public class AccountSecurity extends AppCompatActivity implements View.OnClickLi
                     CommonUtil.alertBox(this, jsonObject.optString("msg"));
 
                 if (TextUtils.isEmpty(SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_ALTERNATE_EMAIL, ""))) {
-                    btAccountSecurityChangeAlternateEmail.setText("Change Alternate Email Address"); // Add Alternative Email Change
+                    btAccountSecurityChangeAlternateEmail.setText("Add Alternate Email Address"); // Add Alternative Email Change
                     btAccountSecurityRemoveAlternateEmail.setVisibility(View.GONE);
                 } else {
                     btAccountSecurityChangeAlternateEmail.setText("Change Alternate Email Address");
