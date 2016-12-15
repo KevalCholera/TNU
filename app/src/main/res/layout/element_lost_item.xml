@@ -220,15 +220,15 @@
                     <TextView
                         android:id="@+id/tvLostItemProvider"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
                         android:gravity="center"
-
                         android:textColor="@color/text_color"
                         android:textSize="@dimen/etSignUpSizeAll" />
 
                     <TextView
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:gravity="center|bottom"
                         android:text="@string/taxi_provider"
                         android:textColor="@color/blue_element"
@@ -251,15 +251,15 @@
                     <TextView
                         android:id="@+id/tvLostItemDateTime"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
                         android:gravity="center"
-
                         android:textColor="@color/text_color"
                         android:textSize="@dimen/etSignUpSizeAll" />
 
                     <TextView
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:gravity="center|bottom"
                         android:text="@string/datetime"
                         android:textColor="@color/blue_element"
@@ -282,15 +282,15 @@
                     <TextView
                         android:id="@+id/tvLostItemStatus"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
                         android:gravity="center"
-
                         android:textColor="@color/text_color"
                         android:textSize="@dimen/etSignUpSizeAll" />
 
                     <TextView
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:gravity="center|bottom"
                         android:text="@string/status"
                         android:textColor="@color/blue_element"

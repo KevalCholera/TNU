@@ -172,8 +172,7 @@
                             android:paddingLeft="@dimen/tvMarginTopBottomStartEndAll"
                             android:text="@string/do_you_wish_to_leave_a_comment"
                             android:textColor="@color/heading"
-                            android:theme="@style/AppTheme"
-                             />
+                            android:theme="@style/AppTheme" />
 
                         <EditText
                             android:id="@+id/etFeedbackCommentForTaxinearu"
@@ -189,7 +188,6 @@
                             android:scrollbars="vertical"
                             android:textColor="@color/black"
                             android:textColorHint="@android:color/darker_gray"
-                            android:textStyle="italic"
                             android:visibility="gone" />
 
                     </LinearLayout>

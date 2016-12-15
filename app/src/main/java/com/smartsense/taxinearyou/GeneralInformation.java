@@ -9,6 +9,7 @@ import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
+import android.text.InputFilter;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -50,6 +51,9 @@ public class GeneralInformation extends AppCompatActivity implements Response.Li
         etGeneralMobile = (EditText) findViewById(R.id.etGeneralMobile);
         btGeneralUpdateProfile = (Button) findViewById(R.id.btGeneralUpdateProfile);
         clGeneralInfo = (CoordinatorLayout) findViewById(R.id.clGeneralInfo);
+
+        etGeneralFirstName.setFilters(new InputFilter[]{CommonUtil.textFilter});
+        etGeneralLastName.setFilters(new InputFilter[]{CommonUtil.textFilter});
 
         setDataInActivity();
 
@@ -174,10 +178,10 @@ public class GeneralInformation extends AppCompatActivity implements Response.Li
 
                 if (jsonObject.optString("__eventid").equalsIgnoreCase(Constants.Events.UPDATE_GENERAL_INFO + "")) {
 
-                    SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_USER_FIRST, etGeneralFirstName.getText().toString());
-                    SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_USER_LAST, etGeneralLastName.getText().toString());
-                    SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_USER_FULLNAME, etGeneralFirstName.getText().toString() + " " + etGeneralLastName.getText().toString());
-                    SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_USER_MNO, etGeneralMobile.getText().toString());
+                    SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_USER_FIRST, etGeneralFirstName.getText().toString().trim());
+                    SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_USER_LAST, etGeneralLastName.getText().toString().trim());
+                    SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_USER_FULLNAME, etGeneralFirstName.getText().toString().trim() + " " + etGeneralLastName.getText().toString().trim());
+                    SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_USER_MNO, etGeneralMobile.getText().toString().trim());
                     SharedPreferenceUtil.save();
                     check = 0;
                     CommonUtil.alertBox(this, jsonObject.optString("msg"));
