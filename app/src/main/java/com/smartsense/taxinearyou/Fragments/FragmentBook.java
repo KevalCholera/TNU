@@ -31,7 +31,7 @@ import com.android.volley.VolleyError;
 import com.mpt.storage.SharedPreferenceUtil;
 import com.smartsense.taxinearyou.GooglePlaces;
 import com.smartsense.taxinearyou.R;
-import com.smartsense.taxinearyou.SearchCars;
+import com.smartsense.taxinearyou.PartnerList;
 import com.smartsense.taxinearyou.utill.CommonUtil;
 import com.smartsense.taxinearyou.utill.Constants;
 
@@ -198,12 +198,19 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
         picker.setCancelTextColor(ActivityCompat.getColor(getActivity(), R.color.white));
         picker.setSubmitTextColor(ActivityCompat.getColor(getActivity(), R.color.white));
         picker.setTopLineVisible(false);
+
         picker.setOnTimePickListener(new com.smartsense.taxinearyou.utill.TimePicker.OnTimePickListener() {
             @Override
             public void onTimePicked(String selectedHour, String selectedMinute, String ampm) {
-//                CommonUtil.byToastMessage(getActivity(),hour + ":" + minute+":"+ampm);
+//
                 try {
                     String time = Constants.DATE_FORMAT_ONLY_TIME.format(Constants.DATE_FORMAT_BIG_TIME_HOUR_MIN1.parse(selectedHour + ":" + selectedMinute + " " + ampm));
+
+                    if (time.contains("a.m."))
+                        time = CommonUtil.changeTimeSmallToCaps(time, "a.m.", "AM");
+                    else
+                        time = CommonUtil.changeTimeSmallToCaps(time, "p.m.", "PM");
+
                     if (rbBookToday.isChecked()) {
                         Date dateServerTime, dateGetTime;
                         dateServerTime = Constants.DATE_FORMAT_ONLY_TIME.parse(Constants.DATE_FORMAT_ONLY_TIME.format(Constants.DATE_FORMAT_SET.parse(dateTimeCanChange)));
@@ -392,7 +399,7 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
             CommonUtil.showSnackBar(getResources().getString(R.string.sel_passe), clSearch);
         else
             try {
-                startActivity(new Intent(getActivity(), SearchCars.class)
+                startActivity(new Intent(getActivity(), PartnerList.class)
                         .putExtra("tvBookDateTime", Constants.DATE_FORMAT_SEND.format(Constants.DATE_FORMAT_SET.parse(tvBookDateTime.getText().toString())))
                         .putExtra("tvBookLuggage", (String) tvBookLuggage.getTag())
                         .putExtra("luggageDescription", tvBookLuggage.getText().toString())
@@ -720,7 +727,7 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
                 calendar.add(Calendar.MINUTE, 1);
                 calendar1.add(Calendar.MINUTE, 1);
                 dateTimeCanChange = Constants.DATE_FORMAT_SET.format(calendar.getTime());
-                Log.i("updateTime", calendar1.getTime().getTime() + "");
+//                Log.i("updateTime", calendar1.getTime().getTime() + "");
 
                 if (session) {
                     Calendar calendar2 = Calendar.getInstance();
@@ -730,12 +737,12 @@ public class FragmentBook extends Fragment implements Response.Listener<JSONObje
 
                     long countingTime = calendar1.getTime().getTime();
                     long limitTime = calendar2.getTime().getTime();
-                    Log.i("compare", countingTime + "==>" + limitTime);
+//                    Log.i("compare", countingTime + "==>" + limitTime);
                     if (countingTime < limitTime) {
                         session = true;
                         setTextOnView();
                         handler.postDelayed(this, 60 * 1000);
-                        Log.i("comparing", "comparing");
+//                        Log.i("comparing", "comparing");
                     } else {
                         alertBox();
                         session = false;

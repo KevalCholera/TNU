@@ -40,7 +40,7 @@ import org.json.JSONObject;
 import java.text.ParseException;
 import java.util.ArrayList;
 
-public class SearchCars extends TimeActivity implements Response.Listener<JSONObject>, Response.ErrorListener, View.OnClickListener {
+public class PartnerList extends TimeActivity implements Response.Listener<JSONObject>, Response.ErrorListener, View.OnClickListener {
 
     ListView lvSearchCarsLine1;
     TextView tvSearchCarsFilter, tvSearchCarsDateTime, tvSearchNoPartnerFound;
@@ -103,24 +103,22 @@ public class SearchCars extends TimeActivity implements Response.Listener<JSONOb
         SharedPreferenceUtil.save();
         doPartnerList(pageNumber);
 
-
 //        countDownStart(timeRemaining);
     }
 
     @Override
     public int getLayoutResource() {
-        return R.layout.activity_search_cars;
+        return R.layout.activity_partner_list;
     }
-
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.tvSearchCarsFilter:
-                startActivityForResult(new Intent(SearchCars.this, Filter.class), 0);
+                startActivityForResult(new Intent(PartnerList.this, Filter.class), 0);
                 break;
             case R.id.llSearchCarsFilter:
-                startActivityForResult(new Intent(SearchCars.this, Filter.class), 0);
+                startActivityForResult(new Intent(PartnerList.this, Filter.class), 0);
                 break;
             case R.id.rbSearchCarsRating:
                 rbSearchCarsPriceRange.setText("Price Range");
@@ -305,7 +303,7 @@ public class SearchCars extends TimeActivity implements Response.Listener<JSONOb
 
     private void fillPartnerList(JSONArray jsonArray) {
         if (adapterSearchCar == null) {
-            adapterSearchCar = new AdapterSearchCar(SearchCars.this, jsonArray, bookingduration);
+            adapterSearchCar = new AdapterSearchCar(PartnerList.this, jsonArray, bookingduration);
             lvSearchCarsLine1.setAdapter(adapterSearchCar);
         } else {
             adapterSearchCar.adapterSearchCar(jsonArray);
@@ -338,7 +336,7 @@ public class SearchCars extends TimeActivity implements Response.Listener<JSONOb
         if (resultCode == Activity.RESULT_OK) {
             lvSearchCarsLine1.setVisibility(View.VISIBLE);
             llSearchCarsNoPartner.setVisibility(View.GONE);
-            rbSearchCarsPriceRange.setText("Price Range" + (char) 0x2193);
+            rbSearchCarsPriceRange.setText("Price Range" + (char) 0x2191);
             rbSearchCarsAvailability.setText("Availability");
             rbSearchCarsRating.setText("Rating");
             rbSearchCarsPriceRange.setChecked(true);
@@ -446,7 +444,7 @@ public class SearchCars extends TimeActivity implements Response.Listener<JSONOb
                 @Override
                 public void onClick(View v) {
                     if (SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_STATUS, "").equalsIgnoreCase("1")) {
-                        queue = Volley.newRequestQueue(SearchCars.this);
+                        queue = Volley.newRequestQueue(PartnerList.this);
                         future = RequestFuture.newFuture();
                         StringBuilder builder = new StringBuilder();
                         JSONObject jsonData = new JSONObject();
@@ -483,17 +481,17 @@ public class SearchCars extends TimeActivity implements Response.Listener<JSONOb
                                     SharedPreferenceUtil.save();
                                     a.startActivity(new Intent(a, BookingInfo.class));
                                 } else {
-                                    CommonUtil.alertBox(SearchCars.this, response.optJSONObject("json").optString("reason"));
+                                    CommonUtil.alertBox(PartnerList.this, response.optJSONObject("json").optString("reason"));
                                 }
                             }
                         }, new Response.ErrorListener() {
                             @Override
                             public void onErrorResponse(VolleyError error) {
                                 CommonUtil.cancelProgressDialog();
-                                CommonUtil.errorToastShowing(SearchCars.this);
+                                CommonUtil.errorToastShowing(PartnerList.this);
                             }
                         });
-                        CommonUtil.showProgressDialog(SearchCars.this, getResources().getString(R.string.get_data));
+                        CommonUtil.showProgressDialog(PartnerList.this, getResources().getString(R.string.get_data));
                         TaxiNearYouApp.getInstance().addToRequestQueue(request, "");
                     } else
                         CommonUtil.alertBox(a, a.getResources().getString(R.string.msg_activate_account));

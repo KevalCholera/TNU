@@ -247,7 +247,7 @@ public class PaymentDetails extends TimeActivity implements View.OnClickListener
                 @Override
                 public void onClick(View v) {
                     alert.dismiss();
-                    startActivity(new Intent(PaymentDetails.this, SearchCars.class)
+                    startActivity(new Intent(PaymentDetails.this, PartnerList.class)
                             .putExtra("tvBookDateTime", jsonObject3.optString("journeyDatetime"))
                             .putExtra("tvBookLuggage", jsonObject3.optString("luggageId"))
                             .putExtra("luggageDescription", jsonObject3.optString("luggageDescription"))

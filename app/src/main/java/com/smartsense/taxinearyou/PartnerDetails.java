@@ -47,7 +47,6 @@ public class PartnerDetails extends TimeActivity {
     public static int available;
     public static ArrayList<String> rating = new ArrayList<>();
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,6 +72,9 @@ public class PartnerDetails extends TimeActivity {
         rating = getIntent().getStringArrayListExtra("rating");
         partnerId = getIntent().getStringExtra("partnerId");
         available = getIntent().getIntExtra("available", 0);
+
+        SharedPreferenceUtil.putValue(Constants.PrefKeys.FARE_COST, getIntent().getStringExtra("ETA").replace("£", "").trim());
+        SharedPreferenceUtil.save();
 
         ViewPager vpPartnerRating = (ViewPager) findViewById(R.id.vpPartnerRating);
         setupViewPager(vpPartnerRating);
@@ -112,7 +114,7 @@ public class PartnerDetails extends TimeActivity {
                             CommonUtil.errorToastShowing(PartnerDetails.this);
                         }
                     });
-                    CommonUtil.showProgressDialog(PartnerDetails.this,getResources().getString(R.string.get_data));
+                    CommonUtil.showProgressDialog(PartnerDetails.this, getResources().getString(R.string.get_data));
                     TaxiNearYouApp.getInstance().addToRequestQueue(request, "");
 
                 } else

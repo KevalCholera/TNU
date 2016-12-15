@@ -8,7 +8,6 @@ import android.app.Activity;
 import android.support.annotation.IntDef;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -74,15 +73,17 @@ public class TimePicker extends WheelPicker {
         this.mode = mode;
         if (hour.equals(""))
             selectedHour = DateUtils.fillZero(Calendar.getInstance().get(Calendar.HOUR_OF_DAY));
-        else{
-            if(Integer.valueOf(hour) < 12) {
-//            selectedHour=String.valueOf(Integer.valueOf(selectedHour));
+        else {
+//            Log.i("selectedHour", String.valueOf(hour));
+            if (Integer.valueOf(hour) == 0 || Integer.valueOf(hour) == 12) {
+                selectedHour = "12";
+//                Log.i("selectedHour1", selectedHour);
+            } else if (Integer.valueOf(hour) < 12) {
                 selectedHour = DateUtils.fillZero(hour);
-                Log.i("selectedHour1",selectedHour);
-            }else{
-
-                selectedHour=DateUtils.fillZero(hour-12);
-                Log.i("selectedHour",selectedHour);
+//                Log.i("selectedHour2", selectedHour);
+            } else {
+                selectedHour = DateUtils.fillZero(hour - 12);
+//                Log.i("selectedHour3", selectedHour);
             }
 
         }
