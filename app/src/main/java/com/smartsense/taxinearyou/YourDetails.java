@@ -20,10 +20,7 @@ import com.smartsense.taxinearyou.utill.Constants;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
-
-public class AddLostItem extends AppCompatActivity implements View.OnClickListener, Response.Listener<JSONObject>, Response.ErrorListener {
+public class YourDetails extends AppCompatActivity implements View.OnClickListener, Response.Listener<JSONObject>, Response.ErrorListener {
 
     EditText etYourDetailName, etYourDetailNumber, etYourDetailID, etYourDetailAddress, etYourDetailPostcode, etYourDetailColor, etYourDetailDescription;
     Button btYourDetailSubmit;
@@ -32,7 +29,7 @@ public class AddLostItem extends AppCompatActivity implements View.OnClickListen
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_lost_item);
+        setContentView(R.layout.activity_your_details);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarAll);
         setSupportActionBar(toolbar);

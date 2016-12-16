@@ -122,7 +122,7 @@
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateHidden" />
         <activity
-            android:name=".AddLostItem"
+            android:name=".YourDetails"
             android:configChanges="orientation|screenSize"
             android:label="Your Details"
             android:screenOrientation="portrait"

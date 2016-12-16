@@ -124,9 +124,16 @@ public class PersonalInfo extends TimeActivity implements View.OnClickListener {
         switch (item.getItemId()) {
             case android.R.id.home:
                 finish();
+                CommonUtil.closeKeyboard(this);
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        CommonUtil.closeKeyboard(this);
+        super.onBackPressed();
     }
 
     @Override

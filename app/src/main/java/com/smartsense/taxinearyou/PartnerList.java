@@ -68,6 +68,7 @@ public class PartnerList extends TimeActivity implements Response.Listener<JSONO
         adapterSearchCar = null;
         pageNumber = 0;
         totalRecord = 0;
+
         pageSize = SharedPreferenceUtil.getInt(Constants.PAGE_LIMIT, 9);
         clSearchCars = (CoordinatorLayout) findViewById(R.id.clSearchCars);
         lvSearchCarsLine1 = (ListView) findViewById(R.id.lvSearchCarsLine1);
@@ -101,6 +102,7 @@ public class PartnerList extends TimeActivity implements Response.Listener<JSONO
 
         SharedPreferenceUtil.remove(Constants.PrefKeys.PREF_FILTER_REQUEST);
         SharedPreferenceUtil.save();
+
         doPartnerList(pageNumber);
 
 //        countDownStart(timeRemaining);
@@ -255,6 +257,7 @@ public class PartnerList extends TimeActivity implements Response.Listener<JSONO
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
         CommonUtil.jsonRequestGET(this, getResources().getString(R.string.get_data), CommonUtil.utf8Convert(builder, Constants.Events.EVENT_PARTNER_LIST), tag, this, this);
     }
 
@@ -266,25 +269,31 @@ public class PartnerList extends TimeActivity implements Response.Listener<JSONO
                 if (response.getInt("status") == Constants.STATUS_SUCCESS) {
                     switch (response.getInt("__eventid")) {
                         case Constants.Events.EVENT_PARTNER_LIST:
-                            SharedPreferenceUtil.putValue(Constants.PrefKeys.MAIN_DATA, response.toString());
-                            SharedPreferenceUtil.putValue(Constants.PrefKeys.DISTANCE_AFTER_CONVERT, response.optJSONObject("json").optJSONObject("distanceMatrix").optInt("duration") / 3600 + ":" + (response.optJSONObject("json").optJSONObject("distanceMatrix").optInt("duration") / 60) % 60 + " hours");
-                            SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_TAXI_TYPE, response.optJSONObject("json").optJSONArray("taxiTypeArray").toString());
-                            SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_DISTANCE_LIST, response.optJSONObject("json").optJSONArray("distanceList").toString());
-                            SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_PARTNER_ARRAY, response.optJSONObject("json").optJSONArray("partnerArray").toString());
-                            SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_FILTER_REQUEST, response.optJSONObject("filterRequest").toString());
-                            SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_DISTANCE_MATRIX, response.optJSONObject("json").optJSONObject("distanceMatrix").toString());
-                            SharedPreferenceUtil.save();
-                            totalRecord = response.optJSONObject("json").optInt("totalRecords");
-                            commission = response.optJSONObject("json").optJSONObject("commision");
-                            fillPartnerList(response.optJSONObject("json").optJSONArray("partnerArray"));
 
-                            if (response.optJSONObject("json").optJSONArray("partnerArray").length() > 0) {
-                                llSearchCarsNoPartner.setVisibility(View.GONE);
-                                lvSearchCarsLine1.setVisibility(View.VISIBLE);
+                            if (!response.optJSONObject("json").has("minMileMsg")) {
+
+                                SharedPreferenceUtil.putValue(Constants.PrefKeys.MAIN_DATA, response.toString());
+                                SharedPreferenceUtil.putValue(Constants.PrefKeys.DISTANCE_AFTER_CONVERT, response.optJSONObject("json").optJSONObject("distanceMatrix").optInt("duration") / 3600 + ":" + (response.optJSONObject("json").optJSONObject("distanceMatrix").optInt("duration") / 60) % 60 + " hours");
+                                SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_TAXI_TYPE, response.optJSONObject("json").optJSONArray("taxiTypeArray").toString());
+                                SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_DISTANCE_LIST, response.optJSONObject("json").optJSONArray("distanceList").toString());
+                                SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_PARTNER_ARRAY, response.optJSONObject("json").optJSONArray("partnerArray").toString());
+                                SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_FILTER_REQUEST, response.optJSONObject("filterRequest").toString());
+                                SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_DISTANCE_MATRIX, response.optJSONObject("json").optJSONObject("distanceMatrix").toString());
+                                SharedPreferenceUtil.save();
+                                totalRecord = response.optJSONObject("json").optInt("totalRecords");
+                                commission = response.optJSONObject("json").optJSONObject("commision");
+                                fillPartnerList(response.optJSONObject("json").optJSONArray("partnerArray"));
+
+                                if (response.optJSONObject("json").optJSONArray("partnerArray").length() > 0) {
+                                    llSearchCarsNoPartner.setVisibility(View.GONE);
+                                    lvSearchCarsLine1.setVisibility(View.VISIBLE);
+                                } else {
+                                    llSearchCarsNoPartner.setVisibility(View.VISIBLE);
+                                    lvSearchCarsLine1.setVisibility(View.GONE);
+                                    tvSearchNoPartnerFound.setText(response.optString("msg"));
+                                }
                             } else {
-                                llSearchCarsNoPartner.setVisibility(View.VISIBLE);
-                                lvSearchCarsLine1.setVisibility(View.GONE);
-                                tvSearchNoPartnerFound.setText(response.optString("msg"));
+                                CommonUtil.byToastMessage(this, response.optJSONObject("json").optString("minMileMsg"));
                             }
 
                             break;

@@ -661,4 +661,11 @@ public class EventBooking extends AppCompatActivity implements Response.Listener
                 CommonUtil.conditionAuthentication(this, jsonObject);
         } else CommonUtil.jsonNullError(this);
     }
+
+    @Override
+    public void onBackPressed() {
+        CommonUtil.closeKeyboard(this);
+        super.onBackPressed();
+    }
+
 }

@@ -146,7 +146,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="@string/via_1"
                                     android:textColor="@color/blue_element"
-                                    android:textSize="@dimen/tvTitlesSizeAll" />
+                                    android:textSize="@dimen/etSignInUserPassSize" />
 
                                 <TextView
                                     android:id="@+id/tvBookInfoVia1"
@@ -172,7 +172,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="@string/via_2"
                                     android:textColor="@color/blue_element"
-                                    android:textSize="@dimen/tvTitlesSizeAll" />
+                                    android:textSize="@dimen/etSignInUserPassSize" />
 
                                 <TextView
                                     android:id="@+id/tvBookInfoVia2"
@@ -381,9 +381,10 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/luggage"
+                                    android:text="@string/luggages"
                                     android:textColor="@color/blue_element"
-                                    android:textSize="@dimen/etSignInUserPassSize" />
+                                    android:textSize="@dimen/etSignInUserPassSize"
+                                    android:id="@+id/textView3" />
                             </LinearLayout>
 
                         </LinearLayout>

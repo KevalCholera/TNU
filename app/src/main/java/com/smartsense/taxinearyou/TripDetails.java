@@ -276,7 +276,7 @@ public class TripDetails extends AppCompatActivity implements View.OnClickListen
                 } else if (tvTripDetailLost.getText().toString().equalsIgnoreCase("Pending Payment")) {
 //                    payPayment();
                 } else
-                    startActivityForResult(new Intent(TripDetails.this, AddLostItem.class).putExtra("rideId", (String) tvTripDetailTaxiProvider.getTag()), requestLostItem);
+                    startActivityForResult(new Intent(TripDetails.this, YourDetails.class).putExtra("rideId", (String) tvTripDetailTaxiProvider.getTag()), requestLostItem);
                 break;
             case R.id.tvTripDetailFeedback:
                 startActivityForResult(new Intent(TripDetails.this, Feedback.class).putExtra("rideId", (String) tvTripDetailTaxiProvider.getTag()), requestFeedBack);

@@ -184,6 +184,7 @@
                         android:imeOptions="actionDone"
                         android:maxLength="200"
                         android:padding="@dimen/vPersonalInfoMarginTopBottomAll"
+                        android:inputType="textCapSentences"
                         android:scrollbars="vertical"
                         android:textColor="@color/black"
                         android:textColorHint="@color/light_Gray"

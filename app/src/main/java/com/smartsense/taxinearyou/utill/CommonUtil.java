@@ -723,10 +723,6 @@ public class CommonUtil {
         }
     }
 
-    public static void ToastShowing(Activity a, String s) {
-        Toast.makeText(a, s, Toast.LENGTH_SHORT).show();
-    }
-
     public static void storeUserData(JSONObject jsonObject) {
         if (jsonObject.optString("userId").equalsIgnoreCase(SharedPreferenceUtil.getString(Constants.PrefKeys.PREF_USER_ID, ""))) {
             SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_USER_FULLNAME, jsonObject.optString("firstName") + " " + jsonObject.optString("lastName"));

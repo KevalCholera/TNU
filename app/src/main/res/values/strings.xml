@@ -58,6 +58,7 @@
     <string name="from">From</string>
     <string name="datetime"><![CDATA[Date & Time]]></string>
     <string name="luggage">Luggage</string>
+    <string name="luggages">Luggages</string>
     <string name="passengers">Passengers</string>
     <string name="searchcar">Search</string>
     <string name="book">Book</string>
@@ -398,6 +399,8 @@
     <string name="error_large_image">Image should be less than 100kb</string>
     <string name="error_in_load_image">something went wrong, please try again later</string>
     <string name="enter_fields_below">Enter fields below</string>
+    <string name="enter_ans_1">Enter answer 1</string>
+    <string name="enter_ans_2">Enter answer 2</string>
     <string name="something_wrong">"Something went wrong, Please try again later"</string>
     <string name="get_data">Loading…</string>
     <string name="send_data">Sending details…</string>

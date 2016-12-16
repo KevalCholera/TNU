@@ -170,4 +170,9 @@ public class ContactUs extends AppCompatActivity implements Response.Listener<JS
             e.printStackTrace();
         }
     }
+    @Override
+    public void onBackPressed() {
+        CommonUtil.closeKeyboard(this);
+        super.onBackPressed();
+    }
 }
