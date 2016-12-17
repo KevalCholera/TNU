@@ -97,6 +97,7 @@ public class PartnerList extends TimeActivity implements Response.Listener<JSONO
         rbSearchCarsPriceRange.setOnClickListener(this);
         tvSearchCarsFilter.setOnClickListener(this);
         lySearchCarsDateTime.setOnClickListener(this);
+
         rbSearchCarsPriceRange.setChecked(true);
         rbSearchCarsPriceRange.setText("Price Range" + (char) 0x2191);
 
@@ -182,6 +183,7 @@ public class PartnerList extends TimeActivity implements Response.Listener<JSONO
             if (SharedPreferenceUtil.contains(Constants.VIA2_ADDRESS) && !SharedPreferenceUtil.getString(Constants.VIA2_ADDRESS, "").equalsIgnoreCase(""))
                 viaArea.put(new JSONObject(SharedPreferenceUtil.getString(Constants.VIA2_ADDRESS, "")));
             int selectedId2 = rbgSearchCars.getCheckedRadioButtonId();
+
             RadioButton radioButton2 = (RadioButton) findViewById(selectedId2);
             String s = "" + (char) 0x2193;
             if (radioButton2.getText().toString().contains(s))
@@ -345,12 +347,14 @@ public class PartnerList extends TimeActivity implements Response.Listener<JSONO
         if (resultCode == Activity.RESULT_OK) {
             lvSearchCarsLine1.setVisibility(View.VISIBLE);
             llSearchCarsNoPartner.setVisibility(View.GONE);
-            rbSearchCarsPriceRange.setText("Price Range" + (char) 0x2191);
-            rbSearchCarsAvailability.setText("Availability");
-            rbSearchCarsRating.setText("Rating");
-            rbSearchCarsPriceRange.setChecked(true);
-            rbSearchCarsAvailability.setChecked(false);
-            rbSearchCarsRating.setChecked(false);
+            if (data.getBooleanExtra("reset", false)) {
+                rbSearchCarsPriceRange.setText("Price Range" + (char) 0x2191);
+                rbSearchCarsPriceRange.setChecked(true);
+                rbSearchCarsAvailability.setText("Availability");
+                rbSearchCarsRating.setText("Rating");
+                rbSearchCarsAvailability.setChecked(false);
+                rbSearchCarsRating.setChecked(false);
+            }
             doPartnerList(0);
         }
     }

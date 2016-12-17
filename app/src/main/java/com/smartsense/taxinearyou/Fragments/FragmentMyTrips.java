@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -82,12 +81,14 @@ public class FragmentMyTrips extends Fragment implements Response.Listener<JSONO
                 pageNumber = 0;
                 totalRecord = 0;
                 adapterMyTrips = null;
+
                 doMyTrip(pageNumber, false);
             }
         });
         getActivity().registerReceiver(tripMessageReceiver, new IntentFilter(String.valueOf(Constants.Events.EVENT_CHANGE)));
         getActivity().registerReceiver(tripMessageReceiver, new IntentFilter(String.valueOf(Constants.Events.CANCEL_RIDE)));
         getActivity().registerReceiver(tripMessageReceiver, new IntentFilter(String.valueOf(Constants.Events.BookRide)));
+
         doMyTrip(pageNumber, false);
 
 //        lvMyTrips.setOnScrollListener(new AbsListView.OnScrollListener() {
@@ -111,6 +112,7 @@ public class FragmentMyTrips extends Fragment implements Response.Listener<JSONO
     }
 
     private void doMyTrip(int pageNumber, Boolean check) {
+
         final String tag = "My Trip";
         StringBuilder builder = new StringBuilder();
         JSONObject jsonData = new JSONObject();
@@ -147,7 +149,8 @@ public class FragmentMyTrips extends Fragment implements Response.Listener<JSONO
                     pageNumber = 0;
                     totalRecord = 0;
                     adapterMyTrips = null;
-                    doMyTrip(pageNumber, true);
+
+                    doMyTrip(pageNumber, false);
                     break;
             }
     }
@@ -175,8 +178,10 @@ public class FragmentMyTrips extends Fragment implements Response.Listener<JSONO
                                 totalRecord = response.optJSONObject("json").optInt("totalRecord");
                                 lvMyTrips.setVisibility(View.VISIBLE);
                                 llFragmentMyTrips.setVisibility(View.GONE);
-                                fillMyTrips(response.optJSONObject("json").optJSONArray("rideArray"));
+
+                                fillMyTrips(response.optJSONObject("json").optJSONArray("rideArray"),totalRecord);
                             } else {
+                                totalRecord = 0;
                                 lvMyTrips.setVisibility(View.GONE);
                                 llFragmentMyTrips.setVisibility(View.VISIBLE);
                                 tvFragmentMyTrips.setText(response.optString("msg"));
@@ -197,10 +202,11 @@ public class FragmentMyTrips extends Fragment implements Response.Listener<JSONO
         @Override
         public void onReceive(Context context, Intent intent) {
             WakeLocker.acquire(context);
-            Log.i("Push 123", intent.getStringExtra(Constants.EXTRAS));
+
             pageNumber = 0;
             totalRecord = 0;
             adapterMyTrips = null;
+
             doMyTrip(pageNumber, false);
             WakeLocker.release();
         }
@@ -216,9 +222,9 @@ public class FragmentMyTrips extends Fragment implements Response.Listener<JSONO
         super.onDestroy();
     }
 
-    public void fillMyTrips(JSONArray jsonArray) {
+    public void fillMyTrips(JSONArray jsonArray, int totalRecord) {
         if (adapterMyTrips == null) {
-            adapterMyTrips = new AdapterMyTrips(getActivity(), jsonArray);
+            adapterMyTrips = new AdapterMyTrips(getActivity(), jsonArray,totalRecord);
             lvMyTrips.setAdapter(adapterMyTrips);
         } else {
             adapterMyTrips.adapterMyTrips(jsonArray);
@@ -229,11 +235,13 @@ public class FragmentMyTrips extends Fragment implements Response.Listener<JSONO
         private JSONArray data;
         private LayoutInflater inflater = null;
         Activity a;
+        int totalRecord;
         LinearLayout lyElementMyTripLeft, lyElementMyTripRight, lyElementMyTripStatusLayout;
 
-        public AdapterMyTrips(Activity a, JSONArray data) {
+        public AdapterMyTrips(Activity a, JSONArray data,int totalRecord) {
             this.data = data;
             this.a = a;
+            this.totalRecord=totalRecord;
             inflater = (LayoutInflater) a.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         }
 
@@ -296,7 +304,9 @@ public class FragmentMyTrips extends Fragment implements Response.Listener<JSONO
                 tvElementMyTripsStatus.setBackgroundColor(ContextCompat.getColor(a, R.color.dark_green));
             else
                 tvElementMyTripsStatus.setBackgroundColor(ContextCompat.getColor(a, R.color.Yellow));
+
             if ((position + 1) == data.length() && totalRecord != data.length()) {
+
                 doMyTrip(data.length(), true);
             }
             return vi;

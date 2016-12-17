@@ -36,6 +36,7 @@ public class Filter extends TimeActivity implements View.OnClickListener {
     private RadioButton rbFilterSingle;
     private JSONObject filterObj;
     TextView tvFilterRating1;
+    private boolean checkReset = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -196,7 +197,9 @@ public class Filter extends TimeActivity implements View.OnClickListener {
                     Log.i("filterObj", filterObj.toString());
                     SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_FILTER_REQUEST, filterObj.toString());
                     SharedPreferenceUtil.save();
-                    setResult(Activity.RESULT_OK, new Intent());
+                    Intent i = new Intent();
+                    i.putExtra("reset", checkReset);
+                    setResult(Activity.RESULT_OK, i);
                     finish();
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -346,8 +349,9 @@ public class Filter extends TimeActivity implements View.OnClickListener {
         return super.onOptionsItemSelected(item);
     }
 
-    public void setDefaultValue(){
-        ((RadioButton)rgFilterVehicleType.getChildAt(0)).setChecked(true);
+    public void setDefaultValue() {
+        checkReset = true;
+        ((RadioButton) rgFilterVehicleType.getChildAt(0)).setChecked(true);
         rbFilterSingle.setChecked(true);
         rbFilterRatingAll.setChecked(true);
         cbFilterRecommend.setChecked(false);
