@@ -148,7 +148,7 @@ public class Feedback extends AppCompatActivity implements View.OnClickListener,
                     .put("description", etFeedbackCommentForDriver.getText().toString())
                     .put("rating", Integer.valueOf(ratedValue))
                     .put("orgDescription", etFeedbackCommentForTaxinearu.getText().toString())
-                    .put("orgRating", ivFeedbacksad.isChecked() ? 1 : 0));
+                    .put("orgRating", ivFeedbacksad.isChecked() ? 0 : 1));
 
         } catch (JSONException e) {
             e.printStackTrace();
