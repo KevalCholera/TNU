@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.mpt.storage.SharedPreferenceUtil;
 import com.smartsense.taxinearyou.utill.CommonUtil;
@@ -26,7 +27,8 @@ import java.util.List;
 
 public class PersonalInfo extends TimeActivity implements View.OnClickListener {
 
-    EditText etPersonalInfoName, etPersonalInfolastName, etPersonalInfoNo, etPersonalInfoEmail, etPersonalInfoAddInfo;
+    TextView etPersonalInfoName, etPersonalInfolastName, etPersonalInfoNo, etPersonalInfoEmail;
+    EditText etPersonalInfoAddInfo;
     LinearLayout etInfoSocial;
     CoordinatorLayout clPersonalInfo;
     Spinner spPersonalInfoAd;
@@ -44,10 +46,10 @@ public class PersonalInfo extends TimeActivity implements View.OnClickListener {
 //        getSupportActionBar().getThemedContext();
 
         btInfoConfirmNext = (Button) findViewById(R.id.btInfoConfirmNext);
-        etPersonalInfoName = (EditText) findViewById(R.id.etPersonalInfoName);
-        etPersonalInfolastName = (EditText) findViewById(R.id.etPersonalInfolastName);
-        etPersonalInfoNo = (EditText) findViewById(R.id.etPersonalInfoNo);
-        etPersonalInfoEmail = (EditText) findViewById(R.id.etPersonalInfoEmail);
+        etPersonalInfoName = (TextView) findViewById(R.id.etPersonalInfoName);
+        etPersonalInfolastName = (TextView) findViewById(R.id.etPersonalInfolastName);
+        etPersonalInfoNo = (TextView) findViewById(R.id.etPersonalInfoNo);
+        etPersonalInfoEmail = (TextView) findViewById(R.id.etPersonalInfoEmail);
         etPersonalInfoAddInfo = (EditText) findViewById(R.id.etPersonalInfoAddInfo);
         etInfoSocial = (LinearLayout) findViewById(R.id.etInfoSocial);
         clPersonalInfo = (CoordinatorLayout) findViewById(R.id.clPersonalInfo);
@@ -73,19 +75,6 @@ public class PersonalInfo extends TimeActivity implements View.OnClickListener {
     }
 
     public void checkCondition() {
-//        if (TextUtils.isEmpty(etPersonalInfoName.getText().toString()))
-//            CommonUtil.showSnackBar(getString(R.string.enter_first_name), clPersonalInfo);
-//        else if (TextUtils.isEmpty(etPersonalInfolastName.getText().toString()))
-//            CommonUtil.showSnackBar(getString(R.string.enter_last_name), clPersonalInfo);
-//        else if (TextUtils.isEmpty(etPersonalInfoNo.getText().toString()))
-//            CommonUtil.showSnackBar(getString(R.string.enter_contact_no), clPersonalInfo);
-//        else if (etPersonalInfoNo.length() < 7 || etPersonalInfoNo.length() > 13)
-//            CommonUtil.showSnackBar(getString(R.string.enter_valid_contact_no), clPersonalInfo);
-//        else if (TextUtils.isEmpty(etPersonalInfoEmail.getText().toString()))
-//            CommonUtil.showSnackBar(getString(R.string.enter_email), clPersonalInfo);
-//        else if (!CommonUtil.isValidEmail(etPersonalInfoEmail.getText().toString()))
-//            CommonUtil.showSnackBar(getString(R.string.enter_valid_email_id), clPersonalInfo);
-//        else {
         try {
             JSONObject jsonData = new JSONObject();
 //            .put("hearAboutUs", String.valueOf(spPersonalInfoAd.getSelectedItemPosition() + 1))

@@ -27,6 +27,7 @@
                 android:id="@+id/tvAvailabilityDriverNmae"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/tvElementCardListMarginStartEnd10"
                 android:textColor="@color/gray_55"
                 android:textSize="@dimen/textHead" />
 
@@ -38,8 +39,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/tvAvailabilityWaitingTimeMarginTop"
             android:gravity="center"
-            android:textSize="12sp"
-            android:textColor="@color/text_color" />
+            android:textColor="@color/text_color"
+            android:textSize="12sp" />
 
         <View
             android:layout_width="match_parent"
@@ -53,9 +54,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:textSize="@dimen/textHead"
             android:text="@string/availability_text_1"
-            android:textColor="@color/text_color" />
+            android:textColor="@color/text_color"
+            android:textSize="@dimen/textHead" />
 
         <View
             android:layout_width="match_parent"
@@ -68,9 +69,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:textSize="@dimen/textHead"
             android:text="@string/availability_text_2"
-            android:textColor="@color/text_color" />
+            android:textColor="@color/text_color"
+            android:textSize="@dimen/textHead" />
 
 
         <View

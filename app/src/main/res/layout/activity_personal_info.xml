@@ -13,7 +13,6 @@
         android:focusableInTouchMode="true"
         android:orientation="vertical">
 
-
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbarAll"
             android:layout_width="match_parent"
@@ -57,18 +56,13 @@
                         android:textColor="@color/background"
                         android:textSize="@dimen/etSignUpSizeAll" />
 
-                    <EditText
+                    <TextView
                         android:id="@+id/etPersonalInfoName"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@null"
-                        android:enabled="false"
-                        android:inputType="textCapSentences"
                         android:paddingBottom="@dimen/vPersonalInfoMarginTopBottomAll"
                         android:paddingRight="@dimen/etPersonalInfoPadding"
-                        android:singleLine="true"
-                        android:textColor="@color/disable_55"
-                        android:textColorHint="@color/disable_55"
+                        android:textColor="@color/heading"
                         android:textSize="@dimen/etSignUpSizeAll" />
 
                     <View
@@ -84,18 +78,13 @@
                         android:textColor="@color/background"
                         android:textSize="@dimen/etSignUpSizeAll" />
 
-                    <EditText
+                    <TextView
                         android:id="@+id/etPersonalInfolastName"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@null"
-                        android:enabled="false"
-                        android:inputType="textCapSentences"
+                        android:layout_height="match_parent"
                         android:paddingBottom="@dimen/vPersonalInfoMarginTopBottomAll"
                         android:paddingRight="@dimen/etPersonalInfoPadding"
-                        android:singleLine="true"
-                        android:textColor="@color/disable_55"
-                        android:textColorHint="@color/disable_55"
+                        android:textColor="@color/heading"
                         android:textSize="@dimen/etSignUpSizeAll" />
 
                     <View
@@ -111,18 +100,13 @@
                         android:textColor="@color/background"
                         android:textSize="@dimen/etSignUpSizeAll" />
 
-                    <EditText
+                    <TextView
                         android:id="@+id/etPersonalInfoNo"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@null"
-                        android:enabled="false"
-                        android:inputType="number"
+                        android:layout_height="match_parent"
                         android:paddingBottom="@dimen/vPersonalInfoMarginTopBottomAll"
                         android:paddingRight="@dimen/etPersonalInfoPadding"
-                        android:singleLine="true"
-                        android:textColor="@color/disable_55"
-                        android:textColorHint="@color/disable_55"
+                        android:textColor="@color/heading"
                         android:textSize="@dimen/etSignUpSizeAll" />
 
                     <View
@@ -138,18 +122,13 @@
                         android:textColor="@color/background"
                         android:textSize="@dimen/etSignUpSizeAll" />
 
-                    <EditText
+                    <TextView
                         android:id="@+id/etPersonalInfoEmail"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@null"
-                        android:enabled="false"
-                        android:inputType="textEmailAddress"
+                        android:layout_height="match_parent"
                         android:paddingBottom="@dimen/vPersonalInfoMarginTopBottomAll"
                         android:paddingRight="@dimen/etPersonalInfoPadding"
-                        android:singleLine="true"
-                        android:textColor="@color/disable_55"
-                        android:textColorHint="@color/disable_55"
+                        android:textColor="@color/heading"
                         android:textSize="@dimen/etSignUpSizeAll" />
 
                     <View
@@ -165,13 +144,12 @@
                         android:textColor="@color/background"
                         android:textSize="@dimen/textDetail" />
 
-
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="3dp"
                         android:text="@string/e.g"
-                        android:textColor="@color/disable_55"
+                        android:textColor="@color/heading"
                         android:textSize="8sp" />
 
                     <EditText

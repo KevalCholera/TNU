@@ -48,7 +48,6 @@ public class PartnerList extends TimeActivity implements Response.Listener<JSONO
     RadioGroup rbgSearchCars;
     ImageView ivSearchCarsFront, ivSearchCarsBack;
     LinearLayout llSearchCarsFilter, lySearchCarsDateTime, llSearchCarsNoPartner;
-    private Menu menu;
     String a = "Rating" + (char) 0x2191;
     String b = "Price Range" + (char) 0x2191;
     String c = "Availability" + (char) 0x2191;
@@ -252,7 +251,7 @@ public class PartnerList extends TimeActivity implements Response.Listener<JSONO
                     .put("luggageDescription", getIntent().getStringExtra("luggageDescription"))
                     .put("passengerDescription", getIntent().getStringExtra("passengerDescription"));
 
-            Log.i("params", jsonDataForSet.toString());
+            Log.i("###params", builder.toString());
             SharedPreferenceUtil.putValue(Constants.PrefKeys.PREF_REQUEST_JSON, jsonDataForSet.toString());
             SharedPreferenceUtil.save();
 
@@ -511,18 +510,16 @@ public class PartnerList extends TimeActivity implements Response.Listener<JSONO
                 }
             });
 
-            if (test.optJSONObject("taxiType").optInt("status") == 0)
+            if (test.optJSONObject("taxiType").optInt("status") == 0) {
+                ivElementSearchCarsOnline.setImageResource(R.mipmap.online);
                 tvElementSearchCarsWaitingTime.setText("(10 to 20 minutes for a taxi)");
-            else
+            } else {
                 tvElementSearchCarsWaitingTime.setText("(20 to 45 minutes for a taxi)");
+                ivElementSearchCarsOnline.setImageResource(R.mipmap.ic_image_brightness_1);
+            }
 
             tvElementSearchCarsChat.setText(test.optJSONObject("taxiType").optString("taxiTypeName"));
             tvElementSearchCarsChat.setTag(test.optJSONObject("taxiType").optString("partnerId"));
-
-            if (test.optInt("availability") == 0)
-                ivElementSearchCarsOnline.setImageResource(R.mipmap.online);
-            else
-                ivElementSearchCarsOnline.setImageResource(R.mipmap.ic_image_brightness_1);
 
             rbElementSearchCars.setRating(test.optInt("rating"));
             tvElementSearchCarsName.setText(test.optString("partnerName"));

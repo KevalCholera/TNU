@@ -43,7 +43,7 @@
     <dimen name="etSignUpAllPaddingStartEnd">10dp</dimen>
     <dimen name="btSignUpAllMarginTop">10dp</dimen>
     <dimen name="tvSignUpSignUpMarginBottom">50dp</dimen>
-    <dimen name="btSignUpAllheight">37dp</dimen>
+    <dimen name="btSignUpAllheight">40dp</dimen>
     <dimen name="etBookingInfoPaddingStart">20dp</dimen>
     <dimen name="signUpMargin">30dp</dimen>
     <!-- Default screen margins, per the Android Design guidelines. -->

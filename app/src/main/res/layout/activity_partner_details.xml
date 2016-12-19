@@ -54,7 +54,6 @@
             app:tabGravity="fill"
             app:tabIndicatorColor="@color/Yellow"
             app:tabMode="fixed"
-            app:tabSelectedTextColor="@color/white"
             app:tabTextColor="@color/black" />
 
         <android.support.v4.view.ViewPager

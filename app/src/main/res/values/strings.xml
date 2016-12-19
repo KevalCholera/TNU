@@ -465,7 +465,7 @@
     <string name="select_pic">Select your Photos</string>
     <string name="select_source">"Select Source"</string>
     <string name="availability_text_1">Please Check with the availability of a Taxi with traffic information before you proceed to booking.</string>
-    <string name="availability_text_2">ETA may differ at anytime due to unexpected circumstances e.g. traffic, weather changes, road works or any other events.</string>
+    <string name="availability_text_2">ETA may differ at any time due to unexpected circumstances e.g. traffic, weather changes, road works or any other events.</string>
     <string name="cancel_camera">Oops! seems you had cancelled process…</string>
     <string name="no">NO</string>
     <string name="ye">Yes</string>
