@@ -81,9 +81,9 @@ public class SecurityQuestion extends AppCompatActivity implements View.OnClickL
             case R.id.btSecuritySave:
                 if (TextUtils.isEmpty(etSecurityAnswer1.getText().toString()) && TextUtils.isEmpty(etSecurityAnswer2.getText().toString()))
                     CommonUtil.showSnackBar(getResources().getString(R.string.enter_fields_below), clSecurityQuestion);
-                else if(TextUtils.isEmpty(etSecurityAnswer1.getText().toString()))
+                else if (TextUtils.isEmpty(etSecurityAnswer1.getText().toString()))
                     CommonUtil.showSnackBar(getResources().getString(R.string.enter_ans_1), clSecurityQuestion);
-                else if(TextUtils.isEmpty(etSecurityAnswer2.getText().toString()))
+                else if (TextUtils.isEmpty(etSecurityAnswer2.getText().toString()))
                     CommonUtil.showSnackBar(getResources().getString(R.string.enter_ans_2), clSecurityQuestion);
                 else if (!cbSecurityFromPrivacyPolicy.isChecked())
                     CommonUtil.showSnackBar(getResources().getString(R.string.check_term), clSecurityQuestion);
@@ -141,8 +141,8 @@ public class SecurityQuestion extends AppCompatActivity implements View.OnClickL
                     .put("ans1", etSecurityAnswer1.getText().toString().trim())
                     .put("ans2", etSecurityAnswer2.getText().toString().trim())
                     .put("termsCond", cbSecurityFromPrivacyPolicy.isChecked() ? 1 : 0)
-                    .put("condition2", cbSecurityFromOrganization.isChecked() ? "1" : "0")
-                    .put("condition3", cbSecurityAboutTaxinearu.isChecked() ? "1" : "0").toString());
+                    .put("condition2", cbSecurityFromOrganization.isChecked() ? 1 : 0)
+                    .put("condition3", cbSecurityAboutTaxinearu.isChecked() ? 1 : 0).toString());
         } catch (JSONException e) {
             e.printStackTrace();
         }

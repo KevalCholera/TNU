@@ -245,7 +245,7 @@ public class FragmentMyTrips extends Fragment implements Response.Listener<JSONO
             inflater = (LayoutInflater) a.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         }
 
-        public void adapterMyTrips(JSONArray data) {
+        void adapterMyTrips(JSONArray data) {
             for (int i = 0; i < data.length(); i++) {
                 this.data.put(data.optJSONObject(i));
             }

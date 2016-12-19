@@ -125,6 +125,7 @@ public class Constants {
         public static final String PREF_DISTANCE_LIST = "distanceList";
         public static final String PREF_PARTNER_ARRAY = "partnerArray";
         public static final String PREF_FILTER_REQUEST = "filterRequest111";
+        public static final String PREF_FILTER_REQUEST_FOR_RESET = "filterRequestForReset";
         public static final String PREF_QUESTION1 = "secQ1";
         public static final String PREF_QUESTION2 = "secQ2";
         public static final String PREF_ANSWER1 = "ans1";
